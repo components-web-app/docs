@@ -1,6 +1,6 @@
 export default defineAppConfig({
   ui: {
-    primary: 'green',
+    primary: 'amber',
     gray: 'slate',
     footer: {
       bottom: {
@@ -10,44 +10,39 @@ export default defineAppConfig({
     }
   },
   seo: {
-    siteName: 'Nuxt UI Pro - Docs template'
+    siteName: 'Documentation - CWA (Components Web App)'
   },
   header: {
     logo: {
-      alt: '',
-      light: '',
-      dark: ''
+      alt: 'CWA Logo',
+      light: '/logo-light.svg',
+      dark: '/logo-dark.svg'
     },
     search: true,
     colorMode: true,
     links: [{
       'icon': 'i-simple-icons-github',
-      'to': 'https://github.com/nuxt-ui-pro/docs',
+      'to': 'https://github.com/components-web-app/components-web-app',
       'target': '_blank',
-      'aria-label': 'Docs template on GitHub'
+      'aria-label': 'CWA on GitHub'
     }]
   },
   footer: {
-    credits: 'Copyright © 2023',
+    credits: 'Copyright © 2024',
     colorMode: false,
     links: [{
-      'icon': 'i-simple-icons-nuxtdotjs',
-      'to': 'https://nuxt.com',
+      'icon': 'i-simple-icons-instagram',
+      'to': 'https://www.instagram.com/cwa.rocks',
       'target': '_blank',
-      'aria-label': 'Nuxt Website'
-    }, {
-      'icon': 'i-simple-icons-discord',
-      'to': 'https://discord.com/invite/ps2h6QT',
-      'target': '_blank',
-      'aria-label': 'Nuxt UI on Discord'
+      'aria-label': 'CWA Website'
     }, {
       'icon': 'i-simple-icons-x',
-      'to': 'https://x.com/nuxt_js',
+      'to': 'https://x.com/cwa_rocks',
       'target': '_blank',
       'aria-label': 'Nuxt on X'
     }, {
       'icon': 'i-simple-icons-github',
-      'to': 'https://github.com/nuxt/ui',
+      'to': 'https://github.com/components-web-app',
       'target': '_blank',
       'aria-label': 'Nuxt UI on GitHub'
     }]
@@ -56,21 +51,11 @@ export default defineAppConfig({
     title: 'Table of Contents',
     bottom: {
       title: 'Community',
-      edit: 'https://github.com/nuxt-ui-pro/docs/edit/main/content',
+      edit: 'https://github.com/components-web-app/docs/edit/main/content',
       links: [{
         icon: 'i-heroicons-star',
         label: 'Star on GitHub',
-        to: 'https://github.com/nuxt/ui',
-        target: '_blank'
-      }, {
-        icon: 'i-heroicons-book-open',
-        label: 'Nuxt UI Pro docs',
-        to: 'https://ui.nuxt.com/pro/guide',
-        target: '_blank'
-      }, {
-        icon: 'i-simple-icons-nuxtdotjs',
-        label: 'Purchase a license',
-        to: 'https://ui.nuxt.com/pro/purchase',
+        to: 'https://github.com/components-web-app/components-web-app',
         target: '_blank'
       }]
     }

@@ -9,11 +9,19 @@ const { header } = useAppConfig()
 <template>
   <UHeader>
     <template #logo>
-      <template v-if="header?.logo?.dark || header?.logo?.light">
+      <div
+        v-if="header?.logo?.dark || header?.logo?.light"
+        class="flex items-center"
+      >
         <UColorModeImage v-bind="{ class: 'h-6 w-auto', ...header?.logo }" />
-      </template>
+        <UBadge
+          label="Docs"
+          variant="subtle"
+          class="mb-0.5 ml-4"
+        />
+      </div>
       <template v-else>
-        Nuxt UI Pro <UBadge
+        CWA <UBadge
           label="Docs"
           variant="subtle"
           class="mb-0.5"
