@@ -1,9 +1,15 @@
 <script setup lang="ts">
+import type { FooterLink } from '#ui-pro/types'
+
 const { footer } = useAppConfig()
+
+defineProps<{
+  links: FooterLink[]
+}>()
 </script>
 
 <template>
-  <UFooter>
+  <UFooter :links="links">
     <template #left>
       {{ footer.credits }}
     </template>

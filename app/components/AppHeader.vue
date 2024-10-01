@@ -1,13 +1,22 @@
 <script setup lang="ts">
-import type { NavItem } from '@nuxt/content'
+// import type { NavItem } from '@nuxt/content'
 
-const navigation = inject<NavItem[]>('navigation', [])
+// const navigation = inject<NavItem[]>('navigation', [])
+import type { HeaderLink } from '#ui-pro/types'
+
+const { data: navigation } = await useAsyncData('navigation', () => fetchContentNavigation())
+
+defineProps<{
+  links: HeaderLink[]
+}>()
 
 const { header } = useAppConfig()
+
+provide('navigation', navigation)
 </script>
 
 <template>
-  <UHeader>
+  <UHeader :links="links">
     <template #logo>
       <div
         v-if="header?.logo?.dark || header?.logo?.light"
@@ -30,10 +39,18 @@ const { header } = useAppConfig()
     </template>
 
     <template
-      v-if="header?.search"
-      #center
+      v-if="$route.path !== '/'"
+      #panel
     >
-      <UContentSearchButton class="hidden lg:flex" />
+      <LazyUContentSearchButton
+        size="md"
+        class="mb-4 w-full"
+      />
+      <LazyUNavigationTree
+        :links="mapContentNavigation(navigation!)"
+        default-open
+        :multiple="false"
+      />
     </template>
 
     <template #right>
@@ -52,10 +69,6 @@ const { header } = useAppConfig()
           v-bind="{ color: 'gray', variant: 'ghost', ...link }"
         />
       </template>
-    </template>
-
-    <template #panel>
-      <UNavigationTree :links="mapContentNavigation(navigation)" />
     </template>
   </UHeader>
 </template>

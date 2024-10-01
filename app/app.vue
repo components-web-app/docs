@@ -29,6 +29,17 @@ useSeoMeta({
   twitterCard: 'summary_large_image'
 })
 
+const links = [{
+  label: 'Documentation',
+  icon: 'i-heroicons-book-open-solid',
+  to: '/getting-started'
+}, {
+  label: 'Playground',
+  icon: 'i-ph-play-duotone',
+  to: 'https://preview.cwa.rocks',
+  target: '_blank'
+}]
+
 provide('navigation', navigation)
 </script>
 
@@ -36,7 +47,7 @@ provide('navigation', navigation)
   <div>
     <NuxtLoadingIndicator />
 
-    <AppHeader />
+    <AppHeader :links="links" />
 
     <UMain>
       <NuxtLayout>
@@ -44,7 +55,7 @@ provide('navigation', navigation)
       </NuxtLayout>
     </UMain>
 
-    <AppFooter />
+    <AppFooter :links="links" />
 
     <ClientOnly>
       <LazyUContentSearch

@@ -1,40 +1,32 @@
-title: 'Nuxt UI Pro - Docs template'
-description: Nuxt UI Pro is a collection of premium Vue components built on top of Nuxt UI to create beautiful & responsive Nuxt applications in minutes.
+title: 'CWA - Components Web App Documentation'
+description: With the CWA you will create feature-rich, totally custom web apps with surprisingly little code
 navigation: false
 hero:
-  title: 'Build your docs in seconds'
-  description: 'Create your documentation in seconds with this template!'
-  orientation: horizontal
-  headline:
-    label: Made with Nuxt UI Pro
-    to: https://ui.nuxt.com/pro
-    icon: i-heroicons-arrow-top-right-on-square-20-solid
-  links:
-    - label: Get started
-      icon: i-heroicons-arrow-right-20-solid
-      trailing: true
-      to: '/getting-started'
-      size: lg
-    - label: Use this template
-      icon: i-simple-icons-github
-      size: lg
-      color: gray
-      to: https://github.com/nuxt-ui-pro/docs
-      target: _blank
-  code: |
-    ```bash [Terminal]
-    npx nuxi init -t github:nuxt-ui-pro/docs
-    ```
+  title: 'Components Web App'
+  description: 'Create feature-rich, totally custom web apps with surprisingly little code'
+  orientation: vertical
+#  links:
+#    - label: Get started
+#      icon: i-heroicons-arrow-right-20-solid
+#      trailing: true
+#      to: '/getting-started'
+#      size: lg
+#    - label: Use this template
+#      icon: i-simple-icons-github
+#      size: lg
+#      color: gray
+#      to: https://github.com/nuxt-ui-pro/docs
+#      target: _blank
 features:
-  title: 'All-in-one docs template'
-  links:
-    - label: 'Explore Nuxt UI Pro'
-      icon: 'i-simple-icons-nuxtdotjs'
-      trailingIcon: 'i-heroicons-arrow-right-20-solid'
-      color: 'gray'
-      to: 'https://ui.nuxt.com/pro'
-      target: '_blank'
-      size: lg
+  title: 'Start your next project with<br><span class="text-primary-400">powerful features</span>'
+#  links:
+#    - label: 'Explore Nuxt UI Pro'
+#      icon: 'i-simple-icons-nuxtdotjs'
+#      trailingIcon: 'i-heroicons-arrow-right-20-solid'
+#      color: 'gray'
+#      to: 'https://ui.nuxt.com/pro'
+#      target: '_blank'
+#      size: lg
   items:
     - title: 'Nuxt 3'
       description: 'Powered by Nuxt 3 for optimal performances and SEO.'
