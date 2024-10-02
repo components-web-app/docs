@@ -59,5 +59,9 @@ export default defineNuxtConfig({
     }
   },
 
+  uiPro: {
+    license: 'oss'
+  },
+
   compatibilityDate: '2024-07-11'
 })

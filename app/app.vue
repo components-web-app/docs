@@ -34,7 +34,7 @@ const links = [{
   icon: 'i-heroicons-book-open-solid',
   to: '/getting-started'
 }, {
-  label: 'Playground',
+  label: 'Try It Out',
   icon: 'i-ph-play-duotone',
   to: 'https://preview.cwa.rocks',
   target: '_blank'

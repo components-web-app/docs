@@ -22,7 +22,7 @@ hero:
     gh repo create my-website --template="components-web-app/components-web-app"
     ```
 features:
-  title: 'Simply build individual website components;<br><span class="text-primary-400">we do the rest</span>'
+  title: 'Simply build individual UI components;<br><span class="text-primary-400">we do the rest</span>'
 #  links:
 #    - label: 'Explore Nuxt UI Pro'
 #      icon: 'i-simple-icons-nuxtdotjs'

@@ -26,4 +26,18 @@ defineProps<{
       </template>
     </template>
   </UFooter>
+  <UFooter>
+    <template #center>
+      <div class="text-xs text-gray-500 dark:text-gray-400">
+        With thanks to
+        <NuxtLink
+          to="https://ui.nuxt.com/pro"
+          target="_blank"
+          class="hover:text-gray-600 dark:hover:text-gray-300 font-semibold"
+        >
+        Nuxt UI Pro
+        </NuxtLink> for sponsoring our OSS project
+      </div>
+    </template>
+  </UFooter>
 </template>
