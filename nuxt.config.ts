@@ -63,5 +63,11 @@ export default defineNuxtConfig({
     license: 'oss'
   },
 
+  content: {
+    highlight: {
+      langs: ['json', 'js', 'ts', 'html', 'css', 'vue', 'shell', 'mdc', 'md', 'yaml', 'php']
+    }
+  },
+
   compatibilityDate: '2024-07-11'
 })
