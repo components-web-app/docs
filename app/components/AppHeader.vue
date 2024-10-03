@@ -23,11 +23,6 @@ provide('navigation', navigation)
         class="flex items-center"
       >
         <UColorModeImage v-bind="{ class: 'h-6 w-auto', ...header?.logo }" />
-        <UBadge
-          label="Docs"
-          variant="subtle"
-          class="mb-0.5 ml-4"
-        />
       </div>
       <template v-else>
         CWA <UBadge
