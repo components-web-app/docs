@@ -57,15 +57,12 @@ features:
       icon: 'i-simple-icons-docker'
       to: '/getting-started'
 cta:
-  title: Built and driven by an <span class="text-primary">amazing community</span>
+  title: With help from our <span class="text-primary">amazing contributors</span>
   align: center
   users:
-    - name: Benjamin Canac
-      username: benjamincanac
-      to: https://twitter.com/benjamincanac
-    - name: Romain Hamel
-      username: romhml
-      to: https://github.com/romhml
-    - name: Neil Richter
-      username: noook
-      to: https://nook.sh/
+    - name: Daniel West
+      username: silverbackdan
+      to: https://x.com/developer_west
+    - name: Antoine Bluchet
+      username: soyuka
+      to: https://soyuka.me/

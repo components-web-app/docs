@@ -13,16 +13,8 @@ const { format } = Intl.NumberFormat('en', { notation: 'compact' })
 
 const providers = []
 
-const { data: module } = await useFetch<{
-  stats: {
-    downloads: number
-    stars: number
-  }
-  contributors: {
-    username: string
-  }[]
-}>('https://api.nuxt.com/modules/ui', {
-  transform: ({ stats, contributors }) => ({ stats, contributors })
+const { data: stats } = await useFetch('/api/stats.json', {
+  transform: ({ stargazers, contributors }) => ({ stargazers, contributors })
 })
 
 const videoModalOpen = ref(false)
@@ -134,7 +126,7 @@ const videoModalOpen = ref(false)
       </template>
       <template #links>
         <UButton
-          to="/get-started/installation"
+          to="/getting-started"
           icon="i-ph-rocket-launch-duotone"
           size="xl"
         >
@@ -190,16 +182,9 @@ const videoModalOpen = ref(false)
         </template>
 
         <template #description>
-          <NuxtLink class="text-center lg:text-left group" to="https://npmjs.org/package/@nuxt/ui" target="_blank">
-            <p class="text-5xl font-semibold text-gray-900 dark:text-white group-hover:text-primary-500 dark:group-hover:text-primary-400">
-              {{ format(module.stats.downloads) }}+
-            </p>
-            <p>monthly downloads</p>
-          </NuxtLink>
-
           <NuxtLink class="text-center lg:text-left group" to="https://github.com/nuxt/ui" target="_blank">
-            <p class="text-5xl font-semibold text-gray-900 dark:text-white group-hover:text-primary-500 dark:group-hover:text-primary-400">
-              {{ format(module.stats.stars) }}+
+            <p v-if="stats" class="text-5xl font-semibold text-gray-900 dark:text-white group-hover:text-primary-500 dark:group-hover:text-primary-400">
+              {{ format(stats.stargazers) }}+
             </p>
             <p>GitHub stars</p>
           </NuxtLink>
@@ -236,8 +221,8 @@ const videoModalOpen = ref(false)
           </UButton>
         </template>
 
-        <div class="p-5 overflow-hidden flex">
-          <HomeContributors :contributors="module.contributors" />
+        <div v-if="stats" class="p-5 overflow-hidden flex">
+          {{ stats.contributors }}
         </div>
       </ULandingCTA>
     </ULandingSection>
