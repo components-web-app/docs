@@ -17,6 +17,10 @@ const { data: stats } = await useFetch('/api/stats.json', {
   transform: ({ stargazers, contributors }) => ({ stargazers, contributors })
 })
 
+const orderedContributors = computed(() => {
+  return Object.values(stats.value.contributors).sort((a, b) => (b.contributions - a.contributions))
+})
+
 const videoModalOpen = ref(false)
 </script>
 
@@ -226,7 +230,7 @@ const videoModalOpen = ref(false)
         >
           <div class="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-8">
             <NuxtLink
-              v-for="(contributor, index) in stats.contributors"
+              v-for="(contributor, index) in orderedContributors"
               :key="`contrib-${index}`"
               :to="contributor.link"
               target="_blank"

@@ -24,13 +24,13 @@ export default cachedEventHandler(async () => {
         username: 'lingxiankong',
         link: 'https://github.com/lingxiankong',
         image: 'https://avatars.githubusercontent.com/u/4410121?v=4',
-        contributions: 10
+        contributions: 5
       },
       p1pchenk0: {
         username: 'p1pchenk0',
         link: 'https://github.com/p1pchenk0',
         image: 'https://avatars.githubusercontent.com/u/7996276?v=4',
-        contributions: 10
+        contributions: 2
       }
     },
     stargazers: 0
