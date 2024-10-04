@@ -132,7 +132,7 @@ const videoModalOpen = ref(false)
 
     <ULandingSection align="left">
       <template #title>
-        Title top<br><span class="text-primary-400">title bottom</span>
+        Creating components<br><span class="text-primary-400">is simple</span>
       </template>
       <template #description>
         ...
@@ -191,7 +191,7 @@ const videoModalOpen = ref(false)
 
     <ULandingSection align="right">
       <template #title>
-        Title top<br><span class="text-primary-400">title bottom</span>
+        Built for<br><span class="text-primary-400">simplified workflows</span>
       </template>
       <template #description>
         ...
@@ -257,48 +257,6 @@ const videoModalOpen = ref(false)
           alt="API Platform and Nuxt into the CWA"
           loading="lazy"
         />
-      </div>
-    </ULandingSection>
-
-    <ULandingSection align="left">
-      <template #title>
-        Title top<br><span class="text-primary-400">title bottom</span>
-      </template>
-      <template #description>
-        ...
-      </template>
-      <template #links>
-        <UButton
-          to="/getting-started"
-          icon="i-ph-rocket-launch-duotone"
-          size="xl"
-        >
-          Get Started
-        </UButton>
-      </template>
-      <div class="">
-        Right
-      </div>
-    </ULandingSection>
-
-    <ULandingSection align="right">
-      <template #title>
-        Title top<br><span class="text-primary-400">title bottom</span>
-      </template>
-      <template #description>
-        ...
-      </template>
-      <template #links>
-        <UButton
-          to="/getting-started"
-          icon="i-ph-rocket-launch-duotone"
-          size="xl"
-        >
-          Get Started
-        </UButton>
-      </template>
-      <div class="">
-        Left
       </div>
     </ULandingSection>
 
