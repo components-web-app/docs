@@ -397,27 +397,24 @@ const videoModalOpen = ref(false)
           align="center"
         >
           <div class="px-4">
-            <NuxtImg
-              src="/images/logo-swa.svg"
+            <SvgoLogoSwa
+              class="opacity-50 h-12"
               alt="Sponsored by Silverback Web Apps"
-              loading="lazy"
-              class="opacity-50 h-12"
+              :font-controlled="false"
             />
           </div>
           <div class="px-4">
-            <NuxtImg
-              src="/images/logo-ubc.svg"
+            <SvgoLogoUbc
+              class="opacity-50 h-12"
               alt="Sponsored by Unlocking Behaviour Change"
-              loading="lazy"
-              class="opacity-50 h-12"
+              :font-controlled="false"
             />
           </div>
           <div class="px-4">
-            <NuxtImg
-              src="/images/logo-nuxt-ui.svg"
-              alt="Sponsored by Nuxt UI Pro"
-              loading="lazy"
+            <SvgoLogoNuxtUi
               class="opacity-50 h-10"
+              alt="Sponsored by Nuxt UI Pro"
+              :font-controlled="false"
             />
           </div>
         </ULandingLogos>
