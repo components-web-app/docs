@@ -29,16 +29,29 @@ useSeoMeta({
   twitterCard: 'summary_large_image'
 })
 
-const links = [{
-  label: 'Documentation',
-  icon: 'i-heroicons-book-open-solid',
-  to: '/getting-started'
-}, {
-  label: 'Try It Out',
-  icon: 'i-ph-play-duotone',
-  to: 'https://preview.cwa.rocks',
-  target: '_blank'
-}]
+const links = [
+  {
+    label: 'About',
+    icon: 'i-heroicons-book-open-solid',
+    to: '/about'
+  },
+  {
+    label: 'Built for Business',
+    icon: 'i-heroicons-book-open-solid',
+    to: '/about'
+  },
+  {
+    label: 'Docs',
+    icon: 'i-heroicons-book-open-solid',
+    to: '/getting-started'
+  },
+  {
+    label: 'Try It Out',
+    icon: 'i-ph-play-duotone',
+    to: 'https://preview.cwa.rocks',
+    target: '_blank'
+  }
+]
 
 provide('navigation', navigation)
 </script>

@@ -34,7 +34,7 @@ provide('navigation', navigation)
     </template>
 
     <template
-      v-if="$route.path !== '/'"
+      v-if="!['/', '/about', '/built-for-business'].includes($route.path)"
       #panel
     >
       <LazyUContentSearchButton

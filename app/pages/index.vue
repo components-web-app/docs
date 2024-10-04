@@ -6,7 +6,6 @@ const { data } = await useAsyncData('landing', () => {
   ])
 })
 const [getStarted, page] = data.value
-console.log(page)
 
 useSeoMeta({
   titleTemplate: '',
