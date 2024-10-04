@@ -2,7 +2,7 @@
 navigation: false
 ---
 
-```vue [cwa/components/Title/admin/Title.vue]
+```vue [app/cwa/components/Title/admin/Title.vue]
 <template>
   <CwaUiFormLabelWrapper label="Title">
     <CwaUiFormInput

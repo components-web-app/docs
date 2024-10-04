@@ -2,7 +2,7 @@
 navigation: false
 ---
 
-```vue [cwa/pages/PrimaryPageTemplate.vue]
+```vue [app/cwa/pages/PrimaryPageTemplate.vue]
 <template>
   <div>
     <CwaComponentGroup

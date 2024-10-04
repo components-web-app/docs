@@ -2,7 +2,7 @@
 navigation: false
 ---
 
-```vue [cwa/components/Title/Title.vue]
+```vue [app/cwa/components/Title/Title.vue]
 <template>
   <h1 class="text-primary text-4xl font-extrabold">
     {{ resource?.data?.title || 'No Title' }}
