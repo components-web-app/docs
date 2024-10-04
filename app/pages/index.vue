@@ -1,11 +1,12 @@
 <script setup lang="ts">
 const { data } = await useAsyncData('landing', () => {
   return Promise.all([
-    queryContent('/_partials/get-started').findOne(),
-    queryContent('/').findOne()
+    queryContent('/').findOne(),
+    queryContent('/_partials/back-end').findOne(),
+    queryContent('/_partials/front-end').findOne()
   ])
 })
-const [getStarted, page] = data.value
+const [page, backEnd, frontEnd] = data.value
 
 useSeoMeta({
   titleTemplate: '',
@@ -26,6 +27,17 @@ const orderedContributors = computed(() => {
 })
 
 const videoModalOpen = ref(false)
+
+const codeTabItems = [
+  {
+    key: 'back-end',
+    label: 'Back End'
+  },
+  {
+    key: 'front-end',
+    label: 'Front End'
+  }
+]
 </script>
 
 <template>
@@ -112,6 +124,38 @@ const videoModalOpen = ref(false)
     </ULandingHero>
 
     <ULandingSection
+      align="center"
+      :ui="{ container: 'gap-6 sm:gap-y-10 flex flex-col' }"
+    >
+      <template #title>
+        Simply build individual UI components;<br><span class="text-primary-400">we do the rest</span>
+      </template>
+      <template #description>
+        <div class="max-w-3xl">
+          <p>The CWA is a tool to create decoupled websites; here is an example of how you define your data for the back-end API application and the UI for the front-end.</p>
+        </div>
+      </template>
+      <UTabs
+        :items="codeTabItems"
+        class="w-full"
+        :ui="{ list: { height: 'h-16', tab: { size: 'text-lg', height: 'h-12', padding: 'px-6', font: 'font-semibold', active: 'text-gray-900 dark:text-white', inactive: 'text-gray-500 dark:text-gray-400' } } }"
+      >
+        <template #item="{ item }">
+          <div v-if="item.key === 'back-end'">
+            <div class="prose">
+              <ContentRenderer :value="backEnd" />
+            </div>
+          </div>
+          <div v-else>
+            <div class="prose">
+              <ContentRenderer :value="frontEnd" />
+            </div>
+          </div>
+        </template>
+      </UTabs>
+    </ULandingSection>
+
+    <ULandingSection
       :links="page.features.links"
     >
       <template
@@ -129,66 +173,10 @@ const videoModalOpen = ref(false)
       </UPageGrid>
     </ULandingSection>
 
-    <ULandingSection align="left">
-      <template #title>
-        Creating components<br><span class="text-primary-400">is simple</span>
-      </template>
-      <template #description>
-        ...
-      </template>
-      <template #links>
-        <UButton
-          to="/getting-started"
-          icon="i-ph-rocket-launch-duotone"
-          size="xl"
-        >
-          Get Started
-        </UButton>
-      </template>
-      <div class="w-full flex flex-col items-center justify-center">
-        <div class="flex flex-col space-y-6">
-          <div class="flex space-x-4">
-            <div class="relative hidden flex-col justify-between pt-[20px] pb-[135px] md:flex">
-              <svg
-                width="2"
-                height="295"
-                viewBox="0 0 2 295"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                class="absolute left-4 top-2 h-full z-[-1]"
-              >
-                <path
-                  d="M1 0L1 153"
-                  stroke="#334155"
-                  stroke-dasharray="4 4"
-                />
-                <path
-                  d="M1 142L1 295"
-                  stroke="#334155"
-                  stroke-dasharray="4 4"
-                />
-              </svg>
-
-              <div
-                class="h-8 w-8 flex items-center justify-center border border-1 border-gray-700 rounded-full bg-gray-800 px-4 py-2"
-              >
-                1
-              </div>
-              <div
-                class="h-8 w-8 flex items-center justify-center border border-1 border-gray-700 rounded-full bg-gray-800 px-4 py-2"
-              >
-                2
-              </div>
-            </div>
-            <div class="prose">
-              <ContentRenderer :value="getStarted" />
-            </div>
-          </div>
-        </div>
-      </div>
-    </ULandingSection>
-
-    <ULandingSection align="right">
+    <ULandingSection
+      align="right"
+      :links="[{ label: 'Get started', color: 'primary', size: 'xl', icon: 'i-ph-rocket-launch-duotone' }]"
+    >
       <template #title>
         Supercharge your<br><span class="text-primary-400">business</span>
       </template>
@@ -239,10 +227,10 @@ const videoModalOpen = ref(false)
 
     <ULandingSection align="right">
       <template #title>
-        Hello<br><span class="text-primary-400">World</span>
+        Stay in<br><span class="text-primary-400">control</span>
       </template>
       <template #description>
-        ...
+        <p>We stand above other website builders by ensuring the developer is always in control.</p>
       </template>
       <template #links>
         <UButton
