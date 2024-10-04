@@ -130,11 +130,6 @@ const codeTabItems = [
       <template #title>
         Simply build individual UI components;<br><span class="text-primary-400">we do the rest</span>
       </template>
-      <template #description>
-        <div class="max-w-3xl">
-          <p>The CWA is a tool to create decoupled websites; here is an example of how you define your data for the back-end API application and the UI for the front-end.</p>
-        </div>
-      </template>
       <UTabs
         :items="codeTabItems"
         class="w-full"
