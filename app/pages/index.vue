@@ -185,12 +185,11 @@ function onFrontEndChange(index) {
               <div class="max-w-xl pt-6">
                 <BuildComponentFrontEndScreenshot :highlight="selectedFrontEnd" />
                 <UTabs
-                  @change="onFrontEndChange"
                   :items="frontEndItems"
                   class="w-full"
                   :ui="{ list: { height: 'h-10', background: 'bg-primary-100 dark:bg-primary-800', marker: { background: 'bg-primary dark:bg-primary-900' }, tab: { size: 'text-base', height: 'h-8', padding: 'px-6', font: 'font-semibold', active: 'text-gray-900 dark:text-white', inactive: 'text-gray-500 dark:text-gray-400' } } }"
-                >
-                </UTabs>
+                  @change="onFrontEndChange"
+                />
                 <div class="prose">
                   <ContentRenderer :value="selectedFrontEnd === 'page' ? frontEndPage : (selectedFrontEnd === 'component' ? frontEndComponent : frontEndAdmin)" />
                 </div>
@@ -233,7 +232,21 @@ function onFrontEndChange(index) {
         Built on the<br><span class="text-primary-400">shoulders of giants</span>
       </template>
       <template #description>
-        ...
+        <p>
+          With a background in PHP and Symfony, and the API Platform framework being well maintained by great
+          developers, we decided to use these advanced features and give stability as we knew development of this
+          concept could take some time.
+        </p>
+        <br>
+        <p>
+          We found VueJS and Nuxt to be incredibly fun frameworks for the front-end, well maintained, and with a strong
+          vibrant community.
+        </p>
+        <br>
+        <p>
+          In both instances we wanted to create a system that was built on the shoulders of giants; we didn't want to
+          re-invent the wheel.
+        </p>
       </template>
       <template #links>
         <UButton
