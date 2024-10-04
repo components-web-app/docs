@@ -3,7 +3,7 @@ description: With the CWA you will create feature-rich, totally custom web apps 
 navigation: false
 hero:
   title: 'Components Web App'
-  description: 'Create feature-rich, totally custom web apps with surprisingly little code'
+  description: 'The new <span class="text-primary-400">low-code solution</span> for creating feature-rich, totally <span class="text-primary-400">custom decoupled web apps</span> including an intuitive <span class="text-primary-400">website builder</span> interface'
   orientation: vertical
 #  links:
 #    - label: Get started

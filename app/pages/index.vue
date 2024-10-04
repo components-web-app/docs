@@ -63,6 +63,10 @@ const videoModalOpen = ref(false)
         <MDC :value="page.hero.title" />
       </template>
 
+      <template #description>
+        <MDC :value="page.hero.description" />
+      </template>
+
       <MDC
         :value="page.hero.code"
         class="prose prose-primary dark:prose-invert mx-auto"
@@ -123,13 +127,10 @@ const videoModalOpen = ref(false)
 
     <ULandingSection align="left">
       <template #title>
-        Choose your<br><span class="text-primary-400">favorite provider</span>
+        Title top<br><span class="text-primary-400">title bottom</span>
       </template>
       <template #description>
-        Nuxt Image supports multiple providers for high performance.<br>
-        Providers are integrations between Nuxt Image and third-party image transformation services. Each provider is
-        responsible for generating correct URLs for that image transformation service. Nuxt Image can also be configured
-        to work with any external image transformation service.
+        ...
       </template>
       <template #links>
         <UButton
@@ -140,23 +141,121 @@ const videoModalOpen = ref(false)
           Get Started
         </UButton>
       </template>
-      <div class="grid grid-cols-5 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-6 gap-4 sm:gap-5 lg:gap-6">
-        <NuxtLink
-          v-for="(provider, index) in providers"
-          :key="index"
-          :to="`/providers/${provider}`"
-          :title="provider"
-          class="block lg:hover:scale-110 transition"
+      <div class="">
+        Right
+      </div>
+    </ULandingSection>
+
+    <ULandingSection align="right">
+      <template #title>
+        Title top<br><span class="text-primary-400">title bottom</span>
+      </template>
+      <template #description>
+        ...
+      </template>
+      <template #links>
+        <UButton
+          to="/getting-started"
+          icon="i-ph-rocket-launch-duotone"
+          size="xl"
         >
-          <NuxtImg
-            :src="`/providers/${provider}.svg`"
-            :alt="provider"
-            width="64"
-            height="64"
-            class="w-12 h-12 sm:w-16 sm:h-16 rounded-xl"
-            loading="lazy"
-          />
-        </NuxtLink>
+          Get Started
+        </UButton>
+      </template>
+      <div class="">
+        Left
+      </div>
+    </ULandingSection>
+
+    <ULandingSection align="left">
+      <template #title>
+        Built on the<br><span class="text-primary-400">shoulders of giants</span>
+      </template>
+      <template #description>
+        ...
+      </template>
+      <template #links>
+        <UButton
+          to="/getting-started"
+          icon="i-ph-rocket-launch-duotone"
+          size="xl"
+        >
+          Get Started
+        </UButton>
+      </template>
+      <div>
+        <NuxtImg
+          src="/images/api-platform-nuxt-cwa.png"
+          alt="API Platform and Nuxt into the CWA"
+          loading="lazy"
+        />
+      </div>
+    </ULandingSection>
+
+    <ULandingSection align="right">
+      <template #title>
+        Easily deployed using<br><span class="text-primary-400">Docker containers</span>
+      </template>
+      <template #description>
+        ...
+      </template>
+      <template #links>
+        <UButton
+          to="/getting-started"
+          icon="i-ph-rocket-launch-duotone"
+          size="xl"
+        >
+          Get Started
+        </UButton>
+      </template>
+      <div>
+        <NuxtImg
+          src="/images/docker.png"
+          alt="API Platform and Nuxt into the CWA"
+          loading="lazy"
+        />
+      </div>
+    </ULandingSection>
+
+    <ULandingSection align="left">
+      <template #title>
+        Title top<br><span class="text-primary-400">title bottom</span>
+      </template>
+      <template #description>
+        ...
+      </template>
+      <template #links>
+        <UButton
+          to="/getting-started"
+          icon="i-ph-rocket-launch-duotone"
+          size="xl"
+        >
+          Get Started
+        </UButton>
+      </template>
+      <div class="">
+        Right
+      </div>
+    </ULandingSection>
+
+    <ULandingSection align="right">
+      <template #title>
+        Title top<br><span class="text-primary-400">title bottom</span>
+      </template>
+      <template #description>
+        ...
+      </template>
+      <template #links>
+        <UButton
+          to="/getting-started"
+          icon="i-ph-rocket-launch-duotone"
+          size="xl"
+        >
+          Get Started
+        </UButton>
+      </template>
+      <div class="">
+        Left
       </div>
     </ULandingSection>
 
