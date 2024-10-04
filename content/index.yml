@@ -22,7 +22,7 @@ hero:
     gh repo create my-website --template="components-web-app/components-web-app"
     ```
 features:
-  title: 'That feeling when;<br><span class="text-primary-400">all the hard work is done for you</span>'
+  title: 'That feeling when<br><span class="text-primary-400">all the hard work is done for you</span>'
 #  links:
 #    - label: 'Explore Nuxt UI Pro'
 #      icon: 'i-simple-icons-nuxtdotjs'

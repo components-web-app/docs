@@ -57,13 +57,19 @@ provide('navigation', navigation)
 
       <UColorModeButton v-if="header?.colorMode" />
 
-      <template v-if="header?.links">
+      <div v-if="header?.links" class="pl-3 ml-1 border-l border-black/30 dark:border-white/30">
         <UButton
           v-for="(link, index) of header.links"
           :key="index"
           v-bind="{ color: 'gray', variant: 'ghost', ...link }"
         />
-      </template>
+      </div>
+
+      <div class="text-center pl-3 py-1.5 ml-1 border-l border-black/30 dark:border-white/30">
+        <NuxtLink to="https://silverbackwebapps.com" target="_blank">
+          <SvgoLogoSwa :font-controlled="false" class="h-6" />
+        </NuxtLink>
+      </div>
     </template>
   </UHeader>
 </template>

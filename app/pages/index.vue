@@ -378,7 +378,7 @@ function onFrontEndChange(index) {
     <UContainer class="pb-20">
       <div class="flex justify-center">
         <ULandingLogos
-          title="With thanks to our sponsors"
+          title="Special thanks to our sponsors"
           align="center"
         >
           <div class="px-4">
