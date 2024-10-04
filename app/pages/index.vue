@@ -322,16 +322,29 @@ const videoModalOpen = ref(false)
         <template #description>
           <NuxtLink
             class="text-center lg:text-left group"
-            to="https://github.com/nuxt/ui"
+            to="https://github.com/components-web-app"
             target="_blank"
           >
             <p
               v-if="stats"
               class="text-5xl font-semibold text-gray-900 dark:text-white group-hover:text-primary-500 dark:group-hover:text-primary-400"
             >
-              {{ format(stats.stargazers) }}+
+              {{ format(stats.stargazers) }}
             </p>
             <p>GitHub stars</p>
+          </NuxtLink>
+          <NuxtLink
+            class="text-center lg:text-left group"
+            to="https://github.com/components-web-app"
+            target="_blank"
+          >
+            <p
+              v-if="stats"
+              class="text-5xl font-semibold text-gray-900 dark:text-white group-hover:text-primary-500 dark:group-hover:text-primary-400"
+            >
+              {{ format(orderedContributors.length) }}
+            </p>
+            <p>contributors</p>
           </NuxtLink>
         </template>
 
