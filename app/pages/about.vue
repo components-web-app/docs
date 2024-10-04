@@ -73,6 +73,31 @@ useSeoMeta({
         />
       </template>
     </ULandingHero>
+
+    <ULandingSection align="left">
+      <template #title>
+        Easily deployed using<br><span class="text-primary-400">Docker containers</span>
+      </template>
+      <template #description>
+        ...
+      </template>
+      <template #links>
+        <UButton
+          to="/getting-started"
+          icon="i-ph-rocket-launch-duotone"
+          size="xl"
+        >
+          Get Started
+        </UButton>
+      </template>
+      <div>
+        <NuxtImg
+          src="/images/docker.png"
+          alt="API Platform and Nuxt into the CWA"
+          loading="lazy"
+        />
+      </div>
+    </ULandingSection>
   </div>
 </template>
 

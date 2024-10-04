@@ -38,7 +38,7 @@ const links = [
   {
     label: 'Built for Business',
     icon: 'i-heroicons-book-open-solid',
-    to: '/about'
+    to: '/built-for-business'
   },
   {
     label: 'Docs',

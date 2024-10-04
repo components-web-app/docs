@@ -190,18 +190,21 @@ const videoModalOpen = ref(false)
 
     <ULandingSection align="right">
       <template #title>
-        Built for<br><span class="text-primary-400">simplified workflows</span>
+        Supercharge your<br><span class="text-primary-400">business</span>
       </template>
       <template #description>
-        ...
+        <p>Agencies, developers and website admin</p>
+        <p>Built with teamwork in mind</p>
+        <p>Why improvement on website builder</p>
+        <p>Targeted landing pages</p>
       </template>
       <template #links>
         <UButton
-          to="/getting-started"
-          icon="i-ph-rocket-launch-duotone"
+          to="/built-for-business"
+          icon="i-ph-lightning-duotone"
           size="xl"
         >
-          Get Started
+          Discover more
         </UButton>
       </template>
       <div class="">
@@ -236,7 +239,7 @@ const videoModalOpen = ref(false)
 
     <ULandingSection align="right">
       <template #title>
-        Easily deployed using<br><span class="text-primary-400">Docker containers</span>
+        Hello<br><span class="text-primary-400">World</span>
       </template>
       <template #description>
         ...
@@ -251,11 +254,7 @@ const videoModalOpen = ref(false)
         </UButton>
       </template>
       <div>
-        <NuxtImg
-          src="/images/docker.png"
-          alt="API Platform and Nuxt into the CWA"
-          loading="lazy"
-        />
+        Left
       </div>
     </ULandingSection>
 
