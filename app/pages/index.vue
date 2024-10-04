@@ -102,7 +102,10 @@ const videoModalOpen = ref(false)
     <ULandingSection
       :links="page.features.links"
     >
-      <template v-if="page.features.title" #title>
+      <template
+        v-if="page.features.title"
+        #title
+      >
         <span v-html="page.features?.title" />
       </template>
       <UPageGrid>
@@ -153,18 +156,7 @@ const videoModalOpen = ref(false)
       </div>
     </ULandingSection>
 
-    <UContainer>
-      <ULandingLogos title="Trusted by the best front-end teams" align="center">
-        <UIcon name="i-simple-icons-github" class="w-10 h-10 flex-shrink-0" />
-        <UIcon name="i-simple-icons-discord" class="w-10 h-10 flex-shrink-0" />
-        <UIcon name="i-simple-icons-x" class="w-10 h-10 flex-shrink-0" />
-        <UIcon name="i-simple-icons-instagram" class="w-10 h-10 flex-shrink-0" />
-        <UIcon name="i-simple-icons-linkedin" class="w-10 h-10 flex-shrink-0" />
-        <UIcon name="i-simple-icons-facebook" class="w-10 h-10 flex-shrink-0" />
-      </ULandingLogos>
-    </UContainer>
-
-    <ULandingSection class="!pt-0 dark:bg-gradient-to-b from-gray-950/50 to-gray-900">
+    <ULandingSection>
       <ULandingCTA
         align="left"
         :card="false"
@@ -182,8 +174,15 @@ const videoModalOpen = ref(false)
         </template>
 
         <template #description>
-          <NuxtLink class="text-center lg:text-left group" to="https://github.com/nuxt/ui" target="_blank">
-            <p v-if="stats" class="text-5xl font-semibold text-gray-900 dark:text-white group-hover:text-primary-500 dark:group-hover:text-primary-400">
+          <NuxtLink
+            class="text-center lg:text-left group"
+            to="https://github.com/nuxt/ui"
+            target="_blank"
+          >
+            <p
+              v-if="stats"
+              class="text-5xl font-semibold text-gray-900 dark:text-white group-hover:text-primary-500 dark:group-hover:text-primary-400"
+            >
               {{ format(stats.stargazers) }}+
             </p>
             <p>GitHub stars</p>
@@ -221,10 +220,63 @@ const videoModalOpen = ref(false)
           </UButton>
         </template>
 
-        <div v-if="stats" class="p-5 overflow-hidden flex">
-          {{ stats.contributors }}
+        <div
+          v-if="stats"
+          class="p-5 overflow-hidden flex items-center justify-center"
+        >
+          <div class="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-8">
+            <NuxtLink
+              v-for="(contributor, index) in stats.contributors"
+              :key="`contrib-${index}`"
+              :to="contributor.link"
+              target="_blank"
+              :title="contributor.username"
+              class="block lg:hover:scale-110 transition"
+            >
+              <UAvatar
+                :src="contributor.image"
+                :alt="contributor.username"
+                size="3xl"
+              />
+            </NuxtLink>
+          </div>
         </div>
       </ULandingCTA>
     </ULandingSection>
+
+    <UContainer class="pb-20">
+      <div class="flex justify-center">
+        <ULandingLogos
+          title="With thanks to our sponsors"
+          align="center"
+          :config="{ images: 'mx-auto mt-10 flex flex-wrap items-center justify-between gap-8' }"
+        >
+          <UIcon
+            name="i-simple-icons-github"
+            class="w-10 h-10 flex-shrink-0"
+          />
+          <UIcon
+            name="i-simple-icons-discord"
+            class="w-10 h-10 flex-shrink-0"
+          />
+          <UIcon
+            name="i-simple-icons-discord"
+            class="w-10 h-10 flex-shrink-0"
+          />
+          <UIcon
+            name="i-simple-icons-discord"
+            class="w-10 h-10 flex-shrink-0"
+          />
+          <UIcon
+            name="i-simple-icons-discord"
+            class="w-10 h-10 flex-shrink-0"
+          />
+          <UIcon
+            name="i-simple-icons-discord"
+            class="w-10 h-10 flex-shrink-0"
+          />
+        </ULandingLogos>
+      </div>
+    </UContainer>
   </div>
 </template>
