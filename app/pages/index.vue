@@ -1,17 +1,22 @@
 <script setup lang="ts">
-const { data: page } = await useAsyncData('index', () => queryContent('/').findOne())
+const { data } = await useAsyncData('landing', () => {
+  return Promise.all([
+    queryContent('/_partials/get-started').findOne(),
+    queryContent('/').findOne()
+  ])
+})
+const [getStarted, page] = data.value
+console.log(page)
 
 useSeoMeta({
   titleTemplate: '',
-  title: page.value.title,
-  ogTitle: page.value.title,
-  description: page.value.description,
-  ogDescription: page.value.description
+  title: page.title,
+  ogTitle: page.title,
+  description: page.description,
+  ogDescription: page.description
 })
 
 const { format } = Intl.NumberFormat('en', { notation: 'compact' })
-
-const providers = []
 
 const { data: stats } = await useFetch('/api/stats.json', {
   transform: ({ stargazers, contributors }) => ({ stargazers, contributors })
@@ -141,8 +146,46 @@ const videoModalOpen = ref(false)
           Get Started
         </UButton>
       </template>
-      <div class="">
-        Right
+      <div class="w-full flex flex-col items-center justify-center">
+        <div class="flex flex-col space-y-6">
+          <div class="flex space-x-4">
+            <div class="relative hidden flex-col justify-between pt-[20px] pb-[135px] md:flex">
+              <svg
+                width="2"
+                height="295"
+                viewBox="0 0 2 295"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                class="absolute left-4 top-2 h-full z-[-1]"
+              >
+                <path
+                  d="M1 0L1 153"
+                  stroke="#334155"
+                  stroke-dasharray="4 4"
+                />
+                <path
+                  d="M1 142L1 295"
+                  stroke="#334155"
+                  stroke-dasharray="4 4"
+                />
+              </svg>
+
+              <div
+                class="h-8 w-8 flex items-center justify-center border border-1 border-gray-700 rounded-full bg-gray-800 px-4 py-2"
+              >
+                1
+              </div>
+              <div
+                class="h-8 w-8 flex items-center justify-center border border-1 border-gray-700 rounded-full bg-gray-800 px-4 py-2"
+              >
+                2
+              </div>
+            </div>
+            <div class="prose">
+              <ContentRenderer :value="getStarted" />
+            </div>
+          </div>
+        </div>
       </div>
     </ULandingSection>
 
@@ -352,34 +395,59 @@ const videoModalOpen = ref(false)
         <ULandingLogos
           title="With thanks to our sponsors"
           align="center"
-          :config="{ images: 'mx-auto mt-10 flex flex-wrap items-center justify-between gap-8' }"
         >
-          <UIcon
-            name="i-simple-icons-github"
-            class="w-10 h-10 flex-shrink-0"
-          />
-          <UIcon
-            name="i-simple-icons-discord"
-            class="w-10 h-10 flex-shrink-0"
-          />
-          <UIcon
-            name="i-simple-icons-discord"
-            class="w-10 h-10 flex-shrink-0"
-          />
-          <UIcon
-            name="i-simple-icons-discord"
-            class="w-10 h-10 flex-shrink-0"
-          />
-          <UIcon
-            name="i-simple-icons-discord"
-            class="w-10 h-10 flex-shrink-0"
-          />
-          <UIcon
-            name="i-simple-icons-discord"
-            class="w-10 h-10 flex-shrink-0"
-          />
+          <div class="px-4">
+            <NuxtImg
+              src="/images/logo-swa.svg"
+              alt="Sponsored by Silverback Web Apps"
+              loading="lazy"
+              class="opacity-50 h-12"
+            />
+          </div>
+          <div class="px-4">
+            <NuxtImg
+              src="/images/logo-ubc.svg"
+              alt="Sponsored by Unlocking Behaviour Change"
+              loading="lazy"
+              class="opacity-50 h-12"
+            />
+          </div>
+          <div class="px-4">
+            <NuxtImg
+              src="/images/logo-nuxt-ui.svg"
+              alt="Sponsored by Nuxt UI Pro"
+              loading="lazy"
+              class="opacity-50 h-10"
+            />
+          </div>
         </ULandingLogos>
       </div>
     </UContainer>
   </div>
 </template>
+
+<style scoped lang="postcss">
+.prose {
+  @apply text-white;
+
+  :where(code) {
+    @apply text-gray-200;
+  }
+
+  :where(pre):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+    @apply !bg-gray-800;
+  }
+
+  @media (min-width: 640px) {
+    :where(.prose > :last-child):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+      min-width: 450px;
+    }
+  }
+}
+
+video[poster] {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+</style>

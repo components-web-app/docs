@@ -3,7 +3,7 @@ description: With the CWA you will create feature-rich, totally custom web apps 
 navigation: false
 hero:
   title: 'Components Web App'
-  description: 'The new <span class="text-primary-400">low-code solution</span> for creating feature-rich, totally <span class="text-primary-400">custom decoupled web apps</span> including an intuitive <span class="text-primary-400">website builder</span> interface'
+  description: 'Your new <span class="text-primary-400">low-code solution</span> for creating feature-rich, totally <span class="text-primary-400">custom decoupled web apps</span> including an intuitive <span class="text-primary-400">website builder</span> interface'
   orientation: vertical
 #  links:
 #    - label: Get started
@@ -60,9 +60,9 @@ cta:
   title: With help from our <span class="text-primary">amazing contributors</span>
   align: center
   users:
-    - name: Daniel West
-      username: silverbackdan
-      to: https://x.com/developer_west
-    - name: Antoine Bluchet
-      username: soyuka
-      to: https://soyuka.me/
+#    - name: Daniel West
+#      username: silverbackdan
+#      to: https://x.com/developer_west
+#    - name: Antoine Bluchet
+#      username: soyuka
+#      to: https://soyuka.me/
