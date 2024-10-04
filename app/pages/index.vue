@@ -9,6 +9,22 @@ useSeoMeta({
   ogDescription: page.value.description
 })
 
+const { format } = Intl.NumberFormat('en', { notation: 'compact' })
+
+const providers = []
+
+const { data: module } = await useFetch<{
+  stats: {
+    downloads: number
+    stars: number
+  }
+  contributors: {
+    username: string
+  }[]
+}>('https://api.nuxt.com/modules/ui', {
+  transform: ({ stats, contributors }) => ({ stats, contributors })
+})
+
 const videoModalOpen = ref(false)
 </script>
 
@@ -104,6 +120,126 @@ const videoModalOpen = ref(false)
           v-bind="item"
         />
       </UPageGrid>
+    </ULandingSection>
+
+    <ULandingSection align="left">
+      <template #title>
+        Choose your<br><span class="text-primary-400">favorite provider</span>
+      </template>
+      <template #description>
+        Nuxt Image supports multiple providers for high performance.<br>
+        Providers are integrations between Nuxt Image and third-party image transformation services. Each provider is
+        responsible for generating correct URLs for that image transformation service. Nuxt Image can also be configured
+        to work with any external image transformation service.
+      </template>
+      <template #links>
+        <UButton
+          to="/get-started/installation"
+          icon="i-ph-rocket-launch-duotone"
+          size="xl"
+        >
+          Get Started
+        </UButton>
+      </template>
+      <div class="grid grid-cols-5 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-6 gap-4 sm:gap-5 lg:gap-6">
+        <NuxtLink
+          v-for="(provider, index) in providers"
+          :key="index"
+          :to="`/providers/${provider}`"
+          :title="provider"
+          class="block lg:hover:scale-110 transition"
+        >
+          <NuxtImg
+            :src="`/providers/${provider}.svg`"
+            :alt="provider"
+            width="64"
+            height="64"
+            class="w-12 h-12 sm:w-16 sm:h-16 rounded-xl"
+            loading="lazy"
+          />
+        </NuxtLink>
+      </div>
+    </ULandingSection>
+
+    <UContainer>
+      <ULandingLogos title="Trusted by the best front-end teams" align="center">
+        <UIcon name="i-simple-icons-github" class="w-10 h-10 flex-shrink-0" />
+        <UIcon name="i-simple-icons-discord" class="w-10 h-10 flex-shrink-0" />
+        <UIcon name="i-simple-icons-x" class="w-10 h-10 flex-shrink-0" />
+        <UIcon name="i-simple-icons-instagram" class="w-10 h-10 flex-shrink-0" />
+        <UIcon name="i-simple-icons-linkedin" class="w-10 h-10 flex-shrink-0" />
+        <UIcon name="i-simple-icons-facebook" class="w-10 h-10 flex-shrink-0" />
+      </ULandingLogos>
+    </UContainer>
+
+    <ULandingSection class="!pt-0 dark:bg-gradient-to-b from-gray-950/50 to-gray-900">
+      <ULandingCTA
+        align="left"
+        :card="false"
+        :ui="{
+          body: {
+            padding: '!p-0'
+          },
+          title: 'text-center lg:text-left lg:text-5xl',
+          description: 'mt-10 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-8 lg:gap-16',
+          links: '-ml-3 justify-center lg:justify-start flex-wrap gap-y-3'
+        }"
+      >
+        <template #title>
+          <span v-html="page.cta.title" />
+        </template>
+
+        <template #description>
+          <NuxtLink class="text-center lg:text-left group" to="https://npmjs.org/package/@nuxt/ui" target="_blank">
+            <p class="text-5xl font-semibold text-gray-900 dark:text-white group-hover:text-primary-500 dark:group-hover:text-primary-400">
+              {{ format(module.stats.downloads) }}+
+            </p>
+            <p>monthly downloads</p>
+          </NuxtLink>
+
+          <NuxtLink class="text-center lg:text-left group" to="https://github.com/nuxt/ui" target="_blank">
+            <p class="text-5xl font-semibold text-gray-900 dark:text-white group-hover:text-primary-500 dark:group-hover:text-primary-400">
+              {{ format(module.stats.stars) }}+
+            </p>
+            <p>GitHub stars</p>
+          </NuxtLink>
+        </template>
+
+        <template #links>
+          <UButton
+            v-for="user in page.cta.users"
+            :key="user.username"
+            :to="user.to"
+            size="md"
+            color="gray"
+            variant="ghost"
+            target="_blank"
+          >
+            <UAvatar
+              :alt="user.username"
+              :src="`https://ipx.nuxt.com/s_80x80/gh_avatar/${user.username}`"
+              :srcset="`https://ipx.nuxt.com/s_160x160/gh_avatar/${user.username} 2x`"
+              width="80"
+              height="80"
+              size="md"
+              loading="lazy"
+            />
+
+            <div class="text-left">
+              <p class="font-medium">
+                {{ user.name }}
+              </p>
+              <p class="text-gray-500 dark:text-gray-400 leading-4">
+                {{ `@${user.username}` }}
+              </p>
+            </div>
+          </UButton>
+        </template>
+
+        <div class="p-5 overflow-hidden flex">
+          <HomeContributors :contributors="module.contributors" />
+        </div>
+      </ULandingCTA>
     </ULandingSection>
   </div>
 </template>

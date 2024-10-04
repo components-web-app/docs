@@ -56,3 +56,16 @@ features:
       description: 'We provide Dockerfiles and Docker Compose configurations to get you up and running quickly.'
       icon: 'i-simple-icons-docker'
       to: '/getting-started'
+cta:
+  title: Built and driven by an <span class="text-primary">amazing community</span>
+  align: center
+  users:
+    - name: Benjamin Canac
+      username: benjamincanac
+      to: https://twitter.com/benjamincanac
+    - name: Romain Hamel
+      username: romhml
+      to: https://github.com/romhml
+    - name: Neil Richter
+      username: noook
+      to: https://nook.sh/
