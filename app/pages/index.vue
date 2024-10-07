@@ -208,10 +208,19 @@ function onFrontEndChange(index) {
         Supercharge your<br><span class="text-primary-400">business</span>
       </template>
       <template #description>
-        <p>Agencies, developers and website admin</p>
+        <p>Built for agencies, developers and websites administrators - reduce workloads and increase productivity.</p>
+        <p>&nbsp;</p>
+        <p>
+          Not only is it incredibly easy for developers to build components, but website administrators can easily make
+          changes which will automatically create a draft version - ready for them to set changes to publish when
+          they are ready using a powerful and intuitive website builder interface.
+        </p>
+        <!--
+        <p>Reduce your workload, while providing a powerful intuitive website builder interface</p>
         <p>Built with teamwork in mind</p>
         <p>Why improvement on website builder</p>
         <p>Targeted landing pages</p>
+        -->
       </template>
       <template #links>
         <UButton
@@ -229,23 +238,54 @@ function onFrontEndChange(index) {
 
     <ULandingSection align="left">
       <template #title>
+        Stay in<br><span class="text-primary-400">control</span>
+      </template>
+      <template #description>
+        <p>
+          Your UI and UX design decisions are important, which is why you are in control of what a website content
+          admin can edit. Unlike other website builder which allow unskilled users to hack unlimited changes,
+          you can create preset styles in-keeping with a client's branding.
+        </p>
+        <p>&nbsp;</p>
+        <p>
+          If they decide to create a new landing page for a marketing campaign or just adding more website content,
+          you can be sure that their changes will work seamlessly with your design decisions. To ensure the website
+          visitors experience is optimal, we make sure the web designer is in control.
+        </p>
+      </template>
+      <template #links>
+        <UButton
+          to="/getting-started"
+          icon="i-ph-rocket-launch-duotone"
+          size="xl"
+        >
+          Get Started
+        </UButton>
+      </template>
+      <div>
+        Left
+      </div>
+    </ULandingSection>
+
+    <ULandingSection align="right">
+      <template #title>
         Built on the<br><span class="text-primary-400">shoulders of giants</span>
       </template>
       <template #description>
         <p>
-          With a background in PHP and Symfony, and the API Platform framework being well maintained by great
-          developers, we decided to use these advanced features and give stability as we knew development of this
-          concept could take some time.
+          The CWA has been built on the shoulders of giants, we didn't want to re-invent the wheel - while providing
+          maximum flexibility and extensibility.
         </p>
-        <br>
+        <p>&nbsp;</p>
         <p>
-          We found VueJS and Nuxt to be incredibly fun frameworks for the front-end, well maintained, and with a strong
-          vibrant community.
+          For the API, we chose to build on top of Symfony and API  Platform. These are incredibly powerful, well
+          maintained and stable frameworks. Allowing you to build on top of them for further services, such as SAML
+          authentication protocols or API proxies.
         </p>
-        <br>
+        <p>&nbsp;</p>
         <p>
-          In both instances we wanted to create a system that was built on the shoulders of giants; we didn't want to
-          re-invent the wheel.
+          We decided to build a Nuxt module for the front-end - it's a joy to create front-end applications using Nuxt
+          and Vue. There is also a strong and vibrant community behind these projects.
         </p>
       </template>
       <template #links>
@@ -263,27 +303,6 @@ function onFrontEndChange(index) {
           alt="API Platform and Nuxt into the CWA"
           loading="lazy"
         />
-      </div>
-    </ULandingSection>
-
-    <ULandingSection align="right">
-      <template #title>
-        Stay in<br><span class="text-primary-400">control</span>
-      </template>
-      <template #description>
-        <p>We stand above other website builders by ensuring the developer is always in control.</p>
-      </template>
-      <template #links>
-        <UButton
-          to="/getting-started"
-          icon="i-ph-rocket-launch-duotone"
-          size="xl"
-        >
-          Get Started
-        </UButton>
-      </template>
-      <div>
-        Left
       </div>
     </ULandingSection>
 
