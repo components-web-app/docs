@@ -20,10 +20,6 @@ useSeoMeta({
   ogDescription: page.description
 })
 
-definePageMeta({
-  layout: 'home'
-})
-
 const { format } = Intl.NumberFormat('en', { notation: 'compact' })
 
 const { data: stats } = await useFetch('/api/stats.json', {
@@ -63,7 +59,15 @@ function onFrontEndChange(index) {
 <template>
   <div>
     <div class="relative overflow-hidden [text-shadow:_0_1px_40px_rgb(0_0_0_/_90%)]">
-      <SvgoStarburst class="absolute inset-0 text-primary opacity-5 -translate-y-[33%]" :font-controlled="false" />
+      <div class="bg-primary opacity-5 absolute inset-0">
+        <NuxtImg
+          src="/images/starburst.svg"
+          fit="cover"
+          width="1000"
+          height="1000"
+          class="w-full absolute top-1/2 -translate-y-1/2 md:-mt-40 min-h-full"
+        />
+      </div>
       <ULandingHero
         v-if="page.hero"
         v-bind="page.hero"
