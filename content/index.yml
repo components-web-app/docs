@@ -88,13 +88,13 @@ benefits:
       features:
         - name: Stay on brand
           description: We believe your website components should be fit the branding as you envisaged
-          icon: i-heroicons-square-3-stack-3d
+          icon: i-heroicons-paint-brush
         - name: Pre-configure styles
           description: You define the styles that a website admin can select from.
-          icon: i-heroicons-wrench-screwdriver
+          icon: i-heroicons-swatch
         - name: Seamless integration of new pages
           description: With this balance of flexibility and restrictions, new pages will integrate seamlessly and beautifully into their existing website.
-          icon: i-heroicons-device-phone-mobile
+          icon: i-heroicons-puzzle-piece
       links:
         - label: More about the CWA
           to: /about
