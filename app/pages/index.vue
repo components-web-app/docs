@@ -166,7 +166,7 @@ function onFrontEndChange(index) {
 
     <ULandingSection
       align="center"
-      :ui="{ container: 'gap-6 sm:gap-y-10 flex flex-col bg-black/30 px-8 py-12' }"
+      :ui="{ container: 'gap-6 sm:gap-y-10 flex flex-col bg-black/20 px-8 py-12 border border-gray-700' }"
     >
       <template #title>
         Simply build individual UI components;<br><span class="text-primary-400">we do the rest</span>
