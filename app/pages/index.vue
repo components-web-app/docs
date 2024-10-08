@@ -175,6 +175,24 @@ function onFrontEndChange(index) {
       </UPageGrid>
     </ULandingSection>
 
+    <ULandingSection
+      v-for="(section, index) in page.benefits.sections"
+      :key="index"
+      v-bind="section"
+      class="!pt-0"
+    >
+      <template #title>
+        <span v-html="section.title" />
+      </template>
+      <NuxtImg
+        width="448"
+        height="448"
+        :src="section.image"
+        :alt="section.title"
+        class="w-full max-w-md"
+      />
+    </ULandingSection>
+
     <div class="bg-slate-800/10 mb-24">
       <ULandingSection
         align="center"
@@ -219,24 +237,6 @@ function onFrontEndChange(index) {
         </UTabs>
       </ULandingSection>
     </div>
-
-    <ULandingSection
-      v-for="(section, index) in page.benefits.sections"
-      :key="index"
-      v-bind="section"
-      class="!pt-0"
-    >
-      <template #title>
-        <span v-html="section.title" />
-      </template>
-      <NuxtImg
-        width="448"
-        height="448"
-        :src="section.image"
-        :alt="section.title"
-        class="w-full max-w-md"
-      />
-    </ULandingSection>
 
     <ULandingSection>
       <ULandingCTA
