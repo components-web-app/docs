@@ -118,17 +118,14 @@ benefits:
         - name: Nuxt module
           description: Creating front-end applications using Nuxt and VueJS is a joy and the strong vibrant community behind all of these frameworks gives confidence and re-assurance your project will be secure and stable going on into the future.
           icon: i-simple-icons-nuxtdotjs
-        - name: Maybe Docker?
-          description: Some text...
-          icon: i-simple-icons-docker
-      links:
-        - label: Discover more
-          to: /
-          color: gray
-          icon: i-heroicons-arrow-right-20-solid
-          trailing: true
-          size: xl
-          class: ml-0
+#      links:
+#        - label: Discover more
+#          to: /
+#          color: gray
+#          icon: i-heroicons-arrow-right-20-solid
+#          trailing: true
+#          size: xl
+#          class: ml-0
 
 cta:
   title: With help from our <span class="text-primary">amazing contributors</span>
