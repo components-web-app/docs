@@ -46,7 +46,7 @@ features:
       to: '/getting-started'
     - title: 'Stay in sync'
       description: 'When you publish a change from the management, notify your website users and update their screen in real-time using Mercure.'
-      icon: 'i-heroicons-sparkles-20-solid'
+      icon: 'i-heroicons-arrow-path-20-solid'
       to: '/getting-started'
     - title: 'File uploads'
       description: 'Quickly and easily integrate storage solutions (e.g. Google Cloud Storage or AWS S3) for uploading files using Flysystem.'
