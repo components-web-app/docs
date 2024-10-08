@@ -66,10 +66,10 @@ benefits:
       features:
         - name: For Agencies
           description: Streamline workflows, increase productivity and impress your clients.
-          icon: i-heroicons-wrench-screwdriver
+          icon: i-heroicons-presentation-chart-line
         - name: For Developers
           description: A DX which will keep you smiling as you realise how simple it can be to add such advanced functionality.
-          icon: i-heroicons-square-3-stack-3d
+          icon: i-heroicons-code-bracket
         - name: For Web Admins
           description: An in-line and intuitive website and content management makes updating the website or creating new pages impressively easy.
           icon: i-heroicons-device-phone-mobile
