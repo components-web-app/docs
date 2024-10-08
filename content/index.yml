@@ -109,15 +109,15 @@ benefits:
       id: shoulders
       align: right
       features:
-        - name: API built on API Platform and Symfony
+        - name: API Platform and Symfony
           description: Incredibly powerful, well maintained and stable frameworks. Extend their functionality further for services such as SAML authentication protocols or API proxies.
-          icon: i-heroicons-wrench-screwdriver
-        - name: Front-end Nuxt module
+          icon: i-simple-icons-symfony
+        - name: Nuxt module
           description: Creating front-end applications using Nuxt and VueJS is a joy and the strong vibrant community behind all of these frameworks gives confidence and re-assurance your project will be secure and stable going on into the future.
-          icon: i-heroicons-square-3-stack-3d
-        - name: Another Point...
+          icon: i-simple-icons-nuxtdotjs
+        - name: Maybe Docker?
           description: Some text...
-          icon: i-heroicons-device-phone-mobile
+          icon: i-simple-icons-docker
       links:
         - label: Discover more
           to: /
