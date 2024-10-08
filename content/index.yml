@@ -83,18 +83,17 @@ benefits:
           class: ml-0
     - title: 'Stay in<br><span class="text-primary-400">control</span>'
       description: |
-        Your UI and UX design decisions are important which is why you are in complete control of what a website editor can modify. You create preset styles in-keeping with your client’s branding ensuring users’ of the system are restricted from hacking styles which haven’t been through the design process.
-        Whether it is creating a new landing page for a marketing campaign or just adding more website content; you can be sure that their changes will work seamlessly with your design decisions.
+        Your UI and UX design decisions are important which is why you are in complete control of what a website editor can modify.
       id: control
       align: left
       features:
-        - name: Built for Agencies
-          description: Some text about helping agencies...
+        - name: Pre-configure styles
+          description: in-keeping with your client’s branding ensuring users’ of the system are restricted from hacking styles which haven’t been through the design process
           icon: i-heroicons-wrench-screwdriver
-        - name: Built for Developers
+        - name: Seamless website builder
           description: Some text about helping developers...
           icon: i-heroicons-square-3-stack-3d
-        - name: Built for Website Administrators
+        - name: Create landing pages
           description: Some text about helping administrators...
           icon: i-heroicons-device-phone-mobile
       links:
@@ -107,19 +106,18 @@ benefits:
           class: ml-0
     - title: 'Built on the<br><span class="text-primary-400">shoulders of giants</span>'
       description: |
-        The CWA has been built on the shoulders of giants providing maximum flexibility and extensibility. For the API, we chose to build on top of the incredibly powerful, well maintained and stable frameworks of Symfony and API Platform. You can extend their functionality further for services such as SAML authentication protocols or API proxies.
-        For the front-end we decided to build a Nuxt module which is built on top of Vue.js. Creating front-end applications using Nuxt is a joy and the strong vibrant community behind all of these frameworks gives confidence and re-assurance your project will be secure and stable going on into the future.
+        The CWA has been built on the shoulders of giants providing maximum flexibility and extensibility.
       id: shoulders
       align: right
       features:
-        - name: Built for Agencies
-          description: Some text about helping agencies...
+        - name: API built on API Platform and Symfony
+          description: Incredibly powerful, well maintained and stable frameworks. Extend their functionality further for services such as SAML authentication protocols or API proxies.
           icon: i-heroicons-wrench-screwdriver
-        - name: Built for Developers
-          description: Some text about helping developers...
+        - name: Front-end Nuxt module
+          description: Creating front-end applications using Nuxt and VueJS is a joy and the strong vibrant community behind all of these frameworks gives confidence and re-assurance your project will be secure and stable going on into the future.
           icon: i-heroicons-square-3-stack-3d
-        - name: Built for Website Administrators
-          description: Some text about helping administrators...
+        - name: Another Point...
+          description: Some text...
           icon: i-heroicons-device-phone-mobile
       links:
         - label: Discover more
