@@ -2,6 +2,8 @@
 export default defineNuxtConfig({
   extends: ['@nuxt/ui-pro'],
 
+  build: { transpile: ['shiki'] },
+
   modules: [
     '@nuxt/content',
     '@nuxt/eslint',
