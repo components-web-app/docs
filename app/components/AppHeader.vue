@@ -55,7 +55,7 @@ provide('navigation', navigation)
         class="lg:hidden"
       />
 
-      <UColorModeButton v-if="header?.colorMode" />
+      <UColorModeToggle v-if="header?.colorMode" />
 
       <div v-if="header?.links" class="pl-3 ml-1 border-l border-black/30 dark:border-white/30">
         <UButton
