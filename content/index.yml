@@ -45,11 +45,11 @@ features:
       icon: 'i-heroicons-bolt-20-solid'
       to: '/getting-started'
     - title: 'Stay in sync'
-      description: 'When you publish a change from the management, notify your website users and update their screen in real-time using Mercure.'
+      description: 'Mercure integration gives you the ability update a website user’s screen in real-time when you publish a change.'
       icon: 'i-heroicons-arrow-path-20-solid'
       to: '/getting-started'
     - title: 'File uploads'
-      description: 'Quickly and easily integrate storage solutions (e.g. Google Cloud Storage or AWS S3) for uploading files using Flysystem.'
+      description: 'You can quickly and easily integrate storage solutions such as Google Cloud and AWS S3 within your website using our Flysystem integration.'
       icon: 'i-heroicons-arrow-up-tray-20-solid'
       to: '/getting-started'
     - title: 'Get started with Docker'
@@ -60,17 +60,65 @@ features:
 benefits:
   sections:
     - title: 'Supercharge your<br><span class="text-primary-400">business</span>'
-      description: Built for agencies, developers and websites administrators - the CWA reduces your team’s workload and increase their productivity.
+      description: The CWA reduces your team's workload and increases productivity.
       id: supercharge
-      align: left
+      align: right
       features:
-        - name: Agencies
+        - name: Built for Agencies
           description: Some text about helping agencies...
           icon: i-heroicons-wrench-screwdriver
-        - name: Developers
+        - name: Built for Developers
           description: Some text about helping developers...
           icon: i-heroicons-square-3-stack-3d
-        - name: Website administrators
+        - name: Built for Website Administrators
+          description: Some text about helping administrators...
+          icon: i-heroicons-device-phone-mobile
+      links:
+        - label: Discover more
+          to: /
+          color: gray
+          icon: i-heroicons-arrow-right-20-solid
+          trailing: true
+          size: xl
+          class: ml-0
+    - title: 'Stay in<br><span class="text-primary-400">control</span>'
+      description: |
+        Your UI and UX design decisions are important which is why you are in complete control of what a website editor can modify. You create preset styles in-keeping with your client’s branding ensuring users’ of the system are restricted from hacking styles which haven’t been through the design process.
+        Whether it is creating a new landing page for a marketing campaign or just adding more website content; you can be sure that their changes will work seamlessly with your design decisions.
+      id: control
+      align: left
+      features:
+        - name: Built for Agencies
+          description: Some text about helping agencies...
+          icon: i-heroicons-wrench-screwdriver
+        - name: Built for Developers
+          description: Some text about helping developers...
+          icon: i-heroicons-square-3-stack-3d
+        - name: Built for Website Administrators
+          description: Some text about helping administrators...
+          icon: i-heroicons-device-phone-mobile
+      links:
+        - label: Discover more
+          to: /
+          color: gray
+          icon: i-heroicons-arrow-right-20-solid
+          trailing: true
+          size: xl
+          class: ml-0
+    - title: 'Built on the<br><span class="text-primary-400">shoulders of giants</span>'
+      description: |
+        The CWA has been built on the shoulders of giants providing maximum flexibility and extensibility. For the API, we chose to build on top of the incredibly powerful, well maintained and stable frameworks of Symfony and API Platform. You can extend their functionality further for services such as SAML authentication protocols or API proxies.
+        For the front-end we decided to build a Nuxt module which is built on top of Vue.js. Creating front-end applications using Nuxt is a joy and the strong vibrant community behind all of these frameworks gives confidence and re-assurance your project will be secure and stable going on into the future.
+      id: shoulders
+      align: right
+      features:
+        - name: Built for Agencies
+          description: Some text about helping agencies...
+          icon: i-heroicons-wrench-screwdriver
+        - name: Built for Developers
+          description: Some text about helping developers...
+          icon: i-heroicons-square-3-stack-3d
+        - name: Built for Website Administrators
           description: Some text about helping administrators...
           icon: i-heroicons-device-phone-mobile
       links:
