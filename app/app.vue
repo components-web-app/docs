@@ -62,11 +62,9 @@ provide('navigation', navigation)
 
     <AppHeader :links="links" />
 
-    <UMain>
-      <NuxtLayout>
-        <NuxtPage />
-      </NuxtLayout>
-    </UMain>
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
 
     <AppFooter :links="links" />
 
