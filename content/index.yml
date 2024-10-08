@@ -36,10 +36,6 @@ features:
       description: 'Provide a feature rich in-line content and website management solution out of the box.'
       icon: 'i-heroicons-pencil-square-20-solid'
       to: '/getting-started'
-    - title: 'Publishable resources'
-      description: 'With 2 lines of code, your component will become a draft when you modify it so you can choose to publish when ready.'
-      icon: 'i-heroicons-newspaper-20-solid'
-      to: '/getting-started'
     - title: 'Lightning fast'
       description: 'The API serves small chunks of data via a static cache layer meaning it can handles thousands of requests per second while consuming very little resources'
       icon: 'i-heroicons-bolt-20-solid'
@@ -47,6 +43,10 @@ features:
     - title: 'Stay in sync'
       description: 'Mercure integration gives you the ability update a website user’s screen in real-time when you publish a change.'
       icon: 'i-heroicons-arrow-path-20-solid'
+      to: '/getting-started'
+    - title: 'Publishable resources'
+      description: 'With 2 lines of code, your component will become a draft when you modify it so you can choose to publish when ready.'
+      icon: 'i-heroicons-newspaper-20-solid'
       to: '/getting-started'
     - title: 'File uploads'
       description: 'You can quickly and easily integrate storage solutions such as Google Cloud and AWS S3 within your website using our Flysystem integration.'
@@ -64,41 +64,40 @@ benefits:
       id: supercharge
       align: right
       features:
-        - name: Built for Agencies
-          description: Some text about helping agencies...
+        - name: For Agencies
+          description: Streamline workflows, increase productivity and impress your clients.
           icon: i-heroicons-wrench-screwdriver
-        - name: Built for Developers
-          description: Some text about helping developers...
+        - name: For Developers
+          description: A DX which will keep you smiling as you realise how simple it can be to add such advanced functionality.
           icon: i-heroicons-square-3-stack-3d
-        - name: Built for Website Administrators
-          description: Some text about helping administrators...
+        - name: For Web Admins
+          description: An in-line and intuitive website and content management makes updating the website or creating new pages impressively easy.
           icon: i-heroicons-device-phone-mobile
       links:
-        - label: Discover more
-          to: /
+        - label: Built for business
+          to: /built-for-business
           color: gray
           icon: i-heroicons-arrow-right-20-solid
           trailing: true
           size: xl
           class: ml-0
-    - title: 'Stay in<br><span class="text-primary-400">control</span>'
-      description: |
-        Your UI and UX design decisions are important which is why you are in complete control of what a website editor can modify.
+    - title: 'Leave it to<br><span class="text-primary-400">the professionals</span>'
+      description: Unlike other website builders, we leave don't believe website admins should have unlimited style choices...
       id: control
       align: left
       features:
-        - name: Pre-configure styles
-          description: in-keeping with your client’s branding ensuring users’ of the system are restricted from hacking styles which haven’t been through the design process
-          icon: i-heroicons-wrench-screwdriver
-        - name: Seamless website builder
-          description: Some text about helping developers...
+        - name: Stay on brand
+          description: We believe your website components should be fit the branding as you envisaged
           icon: i-heroicons-square-3-stack-3d
-        - name: Create landing pages
-          description: Some text about helping administrators...
+        - name: Pre-configure styles
+          description: You define the styles that a website admin can select from.
+          icon: i-heroicons-wrench-screwdriver
+        - name: Seamless integration of new pages
+          description: With this balance of flexibility and restrictions, new pages will integrate seamlessly and beautifully into their existing website.
           icon: i-heroicons-device-phone-mobile
       links:
-        - label: Discover more
-          to: /
+        - label: More about the CWA
+          to: /about
           color: gray
           icon: i-heroicons-arrow-right-20-solid
           trailing: true
