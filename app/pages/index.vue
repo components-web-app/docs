@@ -168,48 +168,50 @@ function onFrontEndChange(index) {
       </UPageGrid>
     </ULandingSection>
 
-    <ULandingSection
-      align="center"
-      :ui="{ container: 'gap-6 sm:gap-y-10 flex flex-col bg-black/20 px-8 py-12 border border-gray-700' }"
-    >
-      <template #title>
-        Simply build individual UI components;<br><span class="text-primary-400">we do the rest</span>
-      </template>
-      <UTabs
-        :items="codeTabItems"
-        class="w-full"
-        :ui="{ list: { height: 'h-16', tab: { size: 'text-lg', height: 'h-12', padding: 'px-6', font: 'font-semibold', active: 'text-gray-900 dark:text-white', inactive: 'text-gray-500 dark:text-gray-400' } } }"
+    <div class="bg-slate-800/10 mb-24">
+      <ULandingSection
+        align="center"
+        :ui="{ container: 'gap-6 sm:gap-y-10 flex flex-col' }"
       >
-        <template #item="{ item }">
-          <div
-            v-if="item.key === 'back-end'"
-            class="flex justify-center"
-          >
-            <div class="prose">
-              <ContentRenderer :value="backEnd" />
+        <template #title>
+          Simply build individual UI components;<br><span class="text-primary-400">we do the rest</span>
+        </template>
+        <UTabs
+          :items="codeTabItems"
+          class="w-full"
+          :ui="{ list: { height: 'h-16', tab: { size: 'text-lg', height: 'h-12', padding: 'px-6', font: 'font-semibold', active: 'text-gray-900 dark:text-white', inactive: 'text-gray-500 dark:text-gray-400' } } }"
+        >
+          <template #item="{ item }">
+            <div
+              v-if="item.key === 'back-end'"
+              class="flex justify-center"
+            >
+              <div class="prose">
+                <ContentRenderer :value="backEnd" />
+              </div>
             </div>
-          </div>
-          <div
-            v-else
-          >
-            <div class="flex justify-center">
-              <div class="max-w-xl pt-6">
-                <BuildComponentFrontEndScreenshot :highlight="selectedFrontEnd" />
-                <UTabs
-                  :items="frontEndItems"
-                  class="w-full"
-                  :ui="{ list: { height: 'h-10', background: 'bg-primary-100 dark:bg-primary-800', marker: { background: 'bg-primary dark:bg-primary-900' }, tab: { size: 'text-base', height: 'h-8', padding: 'px-6', font: 'font-semibold', active: 'text-gray-900 dark:text-white', inactive: 'text-gray-500 dark:text-gray-400' } } }"
-                  @change="onFrontEndChange"
-                />
-                <div class="prose">
-                  <ContentRenderer :value="selectedFrontEnd === 'page' ? frontEndPage : (selectedFrontEnd === 'component' ? frontEndComponent : frontEndAdmin)" />
+            <div
+              v-else
+            >
+              <div class="flex justify-center">
+                <div class="max-w-xl pt-6">
+                  <BuildComponentFrontEndScreenshot :highlight="selectedFrontEnd" />
+                  <UTabs
+                    :items="frontEndItems"
+                    class="w-full"
+                    :ui="{ list: { height: 'h-10', background: 'bg-primary-100 dark:bg-primary-800', marker: { background: 'bg-primary dark:bg-primary-900' }, tab: { size: 'text-base', height: 'h-8', padding: 'px-6', font: 'font-semibold', active: 'text-gray-900 dark:text-white', inactive: 'text-gray-500 dark:text-gray-400' } } }"
+                    @change="onFrontEndChange"
+                  />
+                  <div class="prose">
+                    <ContentRenderer :value="selectedFrontEnd === 'page' ? frontEndPage : (selectedFrontEnd === 'component' ? frontEndComponent : frontEndAdmin)" />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </template>
-      </UTabs>
-    </ULandingSection>
+          </template>
+        </UTabs>
+      </ULandingSection>
+    </div>
 
     <ULandingSection
       v-for="(section, index) in page.benefits.sections"
