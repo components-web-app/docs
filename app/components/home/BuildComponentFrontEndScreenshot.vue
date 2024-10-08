@@ -3,7 +3,7 @@
     <div class="relative">
       <div class="opacity-50">
         <img
-          src="/images/screenshot-1c.jpg"
+          src="/images/screenshot.jpg"
           alt="CWA Web Page Screenshot"
           class="w-full"
         >
@@ -17,7 +17,7 @@
         }"
       >
         <img
-          src="/images/screenshot-1c.jpg"
+          src="/images/screenshot.jpg"
           alt="CWA Web Page Screenshot"
           class="absolute -left-1 -top-1.5 transition-all duration-700 max-w-none w-[calc(100%+8px)]"
           :style="{
