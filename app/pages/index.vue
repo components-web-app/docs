@@ -61,6 +61,7 @@ function onFrontEndChange(index) {
     <div class="relative overflow-hidden [text-shadow:_0_1px_40px_rgb(0_0_0_/_90%)]">
       <div class="bg-primary opacity-5 absolute inset-0">
         <NuxtImg
+          v-if="false"
           src="/images/starburst.svg"
           fit="cover"
           width="1000"
@@ -102,6 +103,12 @@ function onFrontEndChange(index) {
         </template>
 
         <template #title>
+          <div class="flex justify-center mb-6">
+            <SvgoLogo
+              class="text-primary h-20"
+              :font-controlled="false"
+            />
+          </div>
           <MDC :value="page.hero.title" />
         </template>
 
