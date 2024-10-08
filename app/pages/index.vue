@@ -209,14 +209,13 @@ function onFrontEndChange(index) {
       <template #title>
         <span v-html="section.title" />
       </template>
-      <NuxtImg
+      <img
         width="448"
         height="448"
-        preload
         :src="section.image"
         :alt="section.title"
         class="w-full max-w-md"
-      />
+      >
     </ULandingSection>
 
     <ULandingSection>
