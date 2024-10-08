@@ -63,7 +63,7 @@ benefits:
       description: The CWA reduces your team's workload and increases productivity.
       id: supercharge
       align: right
-      image: '/images/home/home-supercharge.svg'
+      image: 'images/home/home-supercharge.svg'
       features:
         - name: For Agencies
           description: Streamline workflows, increase productivity and impress your clients.
@@ -86,7 +86,7 @@ benefits:
       description: Unlike other website builders, we leave don't believe website admins should have unlimited style choices.
       id: professionals
       align: left
-      image: '/images/home/home-professional.svg'
+      image: 'images/home/home-professional.svg'
       features:
         - name: Stay on brand
           description: We believe your website components should be fit the branding as you envisaged
@@ -110,7 +110,7 @@ benefits:
         The CWA has been built on the shoulders of giants providing maximum flexibility and extensibility.
       id: shoulders
       align: right
-      image: '/images/home/home-giants.png'
+      image: 'images/home/home-giants.png'
       features:
         - name: API Platform
           description: Incredibly powerful, well maintained and stable frameworks. Extend their functionality further for services such as SAML authentication protocols or API proxies.
