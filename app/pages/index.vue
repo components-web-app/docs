@@ -201,6 +201,18 @@ function onFrontEndChange(index) {
     </ULandingSection>
 
     <ULandingSection
+      v-for="(section, index) in page.benefits.sections"
+      :key="index"
+      v-bind="section"
+      class="!pt-0"
+    >
+      <template #title>
+        <span v-html="section.title" />
+      </template>
+      IMAGE
+    </ULandingSection>
+
+    <ULandingSection
       align="right"
       :links="[{ label: 'Get started', color: 'primary', size: 'xl', icon: 'i-ph-rocket-launch-duotone' }]"
     >

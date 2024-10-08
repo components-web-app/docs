@@ -56,13 +56,32 @@ features:
       description: 'We provide Dockerfiles and Docker Compose configurations to get you up and running quickly.'
       icon: 'i-simple-icons-docker'
       to: '/getting-started'
+
+benefits:
+  sections:
+    - title: 'Supercharge your<br><span class="text-primary-400">business</span>'
+      description: Built for agencies, developers and websites administrators - the CWA reduces your team’s workload and increase their productivity.
+      id: supercharge
+      align: left
+      features:
+        - name: Agencies
+          description: Some text about helping agencies...
+          icon: i-heroicons-wrench-screwdriver
+        - name: Developers
+          description: Some text about helping developers...
+          icon: i-heroicons-square-3-stack-3d
+        - name: Website administrators
+          description: Some text about helping administrators...
+          icon: i-heroicons-device-phone-mobile
+      links:
+        - label: Discover more
+          to: /
+          color: gray
+          icon: i-heroicons-arrow-right-20-solid
+          trailing: true
+          size: xl
+          class: ml-0
+
 cta:
   title: With help from our <span class="text-primary">amazing contributors</span>
   align: center
-  users:
-#    - name: Daniel West
-#      username: silverbackdan
-#      to: https://x.com/developer_west
-#    - name: Antoine Bluchet
-#      username: soyuka
-#      to: https://soyuka.me/
