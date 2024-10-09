@@ -127,4 +127,7 @@ const currentCodeBlock = computed(() => {
 </template>
 
 <style lang="postcss">
+.prose.nowrap pre {
+  white-space: pre;
+}
 </style>
