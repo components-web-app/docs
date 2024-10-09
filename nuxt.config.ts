@@ -13,7 +13,8 @@ export default defineNuxtConfig({
     '@nuxthq/studio',
     'nuxt-og-image',
     'nuxt-svgo',
-    '@vite-pwa/nuxt'
+    '@vite-pwa/nuxt',
+    '@nuxt/scripts'
   ],
 
   hooks: {
@@ -110,6 +111,14 @@ export default defineNuxtConfig({
           purpose: 'maskable'
         }
       ]
+    }
+  },
+
+  scripts: {
+    registry: {
+      cloudflareWebAnalytics: {
+        token: 'dc336a426efc4b2795f820ae32a45dfc'
+      }
     }
   },
 
