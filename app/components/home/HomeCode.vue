@@ -117,7 +117,7 @@ const currentCodeBlock = computed(() => {
               class="flex justify-center max-w-full overflow-hidden"
             >
               <MDC
-                class="prose nowrap prose-primary dark:prose-invert overflow-auto w-full max-w-full"
+                class="prose prose-primary dark:prose-invert nowrap overflow-auto w-full max-w-full"
                 :value="currentCodeBlock(item.key)"
               />
             </div>
@@ -129,7 +129,7 @@ const currentCodeBlock = computed(() => {
 </template>
 
 <style lang="postcss">
-.prose.nowrap pre {
+.nowrap pre {
   white-space: pre;
 }
 </style>

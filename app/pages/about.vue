@@ -100,5 +100,23 @@ useSeoMeta({
   </UContainer>
 </template>
 
-<style scoped lang="postcss">
+<style lang="postcss">
+html.dark .shiki code {
+  width: 100%;
+}
+html pre[class*=language-] code .highlighted {
+  background-color: rgba(255,255,255,0.1);
+  transition: background-color .5s;
+  margin: 0 -24px;
+  padding: 0 24px;
+  width: calc(100% + 48px);
+  display: inline-block
+}
+html pre[class*=language-].has-focused .line:not(.focus) {
+  transition: filter .35s, opacity .35s;
+}
+html pre[class*=language-]:not(:hover).has-focused .line:not(.focused) {
+  filter: blur(.095rem);
+  opacity: .7;
+}
 </style>

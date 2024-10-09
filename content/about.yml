@@ -48,21 +48,39 @@ features:
       description: 'We provide Dockerfiles and Docker Compose configurations to get you up and running quickly.'
       icon: 'i-simple-icons-docker'
 sections:
-  - title: 'The power of<br><span class="text-primary">Vue Components</span>'
-    description: 'We love Vue Single-File Components as much as you do.'
-    class: 'dark bg-gray-900'
+  - title: 'The power of<br><span class="text-primary">draft components</span>'
+    description: 'Making updates to a website requires time and thought. With publishable components, drafts are created when you make changes and ready to publish when you are.'
     align: left
+    features:
+      - name: 'Easy to configure'
+        description: 'Just 2 lines of code - an annotation and a trait and your component is upgraded for publishable features.'
+        icon: 'i-ph-signpost-duotone'
+      - name: 'Add state-specific validation'
+        description: 'Simply use the validation group with the name of the class, a colon, and either `published` or `draft` to apply validation specific to the component state.'
+        icon: 'i-ph-signpost-duotone'
     slot: code
     code: |
-      ```vue [app.vue]
-      <template>
-        <NuxtPage />
-      </template>
+      ```php [api/src/Entity/Title.php]
+      <?php
+      ...
+
+      #[Silverback\Publishable] // [!code focus]
+      #[ApiResource(mercure: true)]
+      #[Orm\Entity]
+      class Title extends AbstractComponent
+      {
+        use PublishableTrait; // [!code focus]
+
+        #[Assert\NotBlank(groups: ['Title:published'])] // [!code focus]
+        #[Orm\Column(type: 'text', nullable: true)]
+        public ?string $title = null;
+      }
+
       ```
   - title: 'Compose with<br><span class="text-primary">everything you need.</span>'
     slot: features
     features:
-      - title: 'Routing & Layouts'
+      - name: 'Routing & Layouts'
         description: 'File based routing system to build complex views and interfaces with a powerful and conventional approach.'
         icon: 'i-ph-signpost-duotone'
     featureCards:
