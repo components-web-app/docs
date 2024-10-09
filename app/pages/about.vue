@@ -18,7 +18,7 @@ useSeoMeta({
         <MDC :value="page.hero.description" />
       </template>
       <div class="flex justify-center">
-        <div class="w-full max-w-[840px]">
+        <div class="w-full max-w-[840px] rounded-md shadow-xl ring-1 ring-gray-300 dark:ring-gray-700 overflow-hidden">
           <div style="padding:56.25% 0 0 0;position:relative;">
             <iframe
               src="https://player.vimeo.com/video/1010679128?badge=0&amp;autopause=0&amp;player_id=0"
