@@ -127,6 +127,141 @@ benefits:
 #          size: xl
 #          class: ml-0
 
-cta:
+code:
+  tabs:
+    - key: back-end
+      label: '1. Back End'
+    - key: front-end
+      label: '2. Front End'
+  backEnd:
+    description: |
+      With an API built on top of API Platform and Symfony, it is incredibly simple to setup a component.
+      <br><br>
+      We provide helpful traits and attributes to quickly add advanced functionality such as draft/live components or handling file uploads.
+    code: |
+      ```php [api/src/Entity/Title.php]
+      <?php
+
+      namespace App\Entity;
+
+      use ApiPlatform\Metadata\ApiResource;
+      use Doctrine\ORM\Mapping as ORM;
+      use Silverback\ApiComponentsBundle\Annotation as Silverback;
+      use Silverback\ApiComponentsBundle\Entity\Core\AbstractComponent;
+      use Silverback\ApiComponentsBundle\Entity\Utility\PublishableTrait;
+      use Symfony\Component\Validator\Constraints as Assert;
+
+      #[Silverback\Publishable]
+      #[ApiResource(mercure: true)]
+      #[Orm\Entity]
+      class Title extends AbstractComponent
+      {
+        use PublishableTrait;
+
+        #[Assert\NotBlank(groups: ['Title:published'])]
+        #[Orm\Column(type: 'text', nullable: true)]
+        public ?string $title = null;
+      }
+
+      ```
+  frontEnd:
+    tabs:
+      - key: page
+        label: 'Page'
+        contentDoc: '_partials/front-end-page'
+        description: |
+          We have built a Nuxt module which means you have nearly all the functionality you need right from the start.
+          <br><br>
+          You’ll quickly setup layouts and pages, using our `<CwaComponentGroup />`{class="mx-0.5 px-1 py-0.5 rounded font-bold text-nowrap text-base bg-primary-100 dark:bg-primary-800"} Vue component to define where your CWA components will appear.
+        code: |
+          ```vue [app/cwa/pages/PrimaryPageTemplate.vue]
+          <template>
+            <div>
+              <CwaComponentGroup
+                reference="primary"
+                :location="props.iri"
+              />
+            </div>
+          </template>
+
+          <script setup lang="ts">
+            import type { IriProp }
+              from '#cwa/runtime/composables/cwa-resource'
+
+            const props = defineProps<IriProp>()
+          </script>
+          ```
+      - key: component
+        label: 'Component'
+        contentDoc: '_partials/front-end-component'
+        description: |
+          With a few composables and very little code you can quickly create your CWA components.
+          <br><br>
+          Load the data provided by the API and add any functionality you need just like any other Vue component.
+          <br><br>
+          Our playground has some examples of different common functionality you may use, such as inline HTML editing and displaying images.
+        code: |
+          ```vue [app/cwa/components/Title/Title.vue]
+          <template>
+            <h1 class="text-primary text-4xl font-extrabold">
+              {{ resource?.data?.title || 'No Title' }}
+            </h1>
+          </template>
+
+          <script setup lang="ts">
+            import { toRef } from 'vue'
+            import {
+              useCwaResource
+            } from '#imports'
+            import type { IriProp }
+              from "#cwa/runtime/composables/cwa-resource";
+
+            const props = defineProps<IriProp>()
+
+            const { getResource, exposeMeta } =
+              useCwaResource(toRef(props, 'iri'))
+
+            const resource = getResource()
+
+            defineExpose(exposeMeta)
+          </script>
+          ```
+
+      - key: admin
+        label: 'Admin'
+        contentDoc: '_partials/front-end-admin'
+        description: |
+          Once you have your data and component setup, all that’s left is to add your own custom tabs into our Components Manager Toolbar.
+          <br><br>
+          With very little code and using our composables and pre-built Vue components, the end-user will be able to manage this new component using the website builder front-end.
+        code: |
+          ```vue [app/cwa/components/Title/admin/Title.vue]
+          <template>
+            <CwaUiFormLabelWrapper label="Title">
+              <CwaUiFormInput
+                v-model="titleModel.model.value"
+              />
+            </CwaUiFormLabelWrapper>
+          </template>
+
+          <script setup lang="ts">
+            import {
+              useCwaResourceManagerTab,
+              useCwaResourceModel
+            } from '#imports'
+
+            const { exposeMeta, iri } =
+              useCwaResourceManagerTab({ name: 'Title' })
+
+            const titleModel =
+              useCwaResourceModel<string>(iri, 'title')
+
+            defineExpose(exposeMeta)
+          </script>
+          ```
+
+
+
+contributors:
   title: With help from our <span class="text-primary">amazing contributors</span>
   align: center

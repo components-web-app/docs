@@ -39,12 +39,12 @@ export default defineAppConfig({
       'icon': 'i-simple-icons-x',
       'to': 'https://x.com/cwa_rocks',
       'target': '_blank',
-      'aria-label': 'Nuxt on X'
+      'aria-label': 'CWA on X'
     }, {
       'icon': 'i-simple-icons-github',
       'to': 'https://github.com/components-web-app',
       'target': '_blank',
-      'aria-label': 'Nuxt UI on GitHub'
+      'aria-label': 'CWA on GitHub'
     }]
   },
   toc: {

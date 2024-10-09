@@ -1,19 +1,18 @@
 <script lang="ts" setup>
-import LandingBackground from '~/components/home/LandingBackground.vue'
-import BackgroundParticles from "~/components/home/BackgroundParticles.vue";
+import BackgroundParticles from '~/components/home/BackgroundParticles.vue'
 
 const { data: page } = await useAsyncData(`home`, () => queryContent('/').findOne())
 const videoModalOpen = ref(false)
 </script>
 
 <template>
-  <div class="relative overflow-hidden dark:[text-shadow:_0_1px_40px_rgb(0_0_0_/_90%)] bg-primary/10">
+  <div class="relative overflow-hidden dark:[text-shadow:_0_1px_40px_rgb(0_0_0_/_90%)] bg-primary/5 dark:bg-primary/10">
     <ULandingHero
       v-if="page.hero"
       v-bind="page.hero"
     >
       <template #top>
-        <BackgroundParticles class="absolute inset-0 -z-10 opacity-30" />
+        <BackgroundParticles class="absolute inset-0 -z-10 opacity-5 dark:opacity-30" />
       </template>
       <template #headline>
         <UBadge

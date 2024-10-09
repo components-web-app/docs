@@ -55,7 +55,7 @@ useSeoMeta({
       />
     </ULandingSection>
 
-    <HomeCode />
+    <HomeCode class="mb-24" />
 
     <HomeContributors />
 

@@ -27,7 +27,7 @@ const { data: page } = await useAsyncData(`home`, () => queryContent('/').findOn
       }"
     >
       <template #title>
-        <span v-html="page.cta.title" />
+        <span v-html="page.contributors.title" />
       </template>
 
       <template #description>
@@ -61,7 +61,7 @@ const { data: page } = await useAsyncData(`home`, () => queryContent('/').findOn
 
       <template #links>
         <UButton
-          v-for="user in page.cta.users"
+          v-for="user in page.contributors.users"
           :key="user.username"
           :to="user.to"
           size="md"
