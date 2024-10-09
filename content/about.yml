@@ -18,16 +18,7 @@ faq:
       content: We add new components and improvements to Nuxt UI Pro as we get new ideas and feedback, you will receive these updates for the major version you purchased. :br **Your license key will work forever for the major version.** We may release a major version including more advanced components and features in the future, you will be able to upgrade to this version with a generous discount.
     - label: Do you offer technical support?
       content: Once you sign up you get access to our private GitHub repository, where you can ask questions, report bugs or feature requests and get help from other customers. If you require more specialised support or consultancy, contact us at ui-pro@nuxt.com.
-features:
-#  title: 'That feeling when<br><span class="text-primary-400">all the hard work is done for you</span>'
-#  links:
-#    - label: 'Explore Nuxt UI Pro'
-#      icon: 'i-simple-icons-nuxtdotjs'
-#      trailingIcon: 'i-heroicons-arrow-right-20-solid'
-#      color: 'gray'
-#      to: 'https://ui.nuxt.com/pro'
-#      target: '_blank'
-#      size: lg
+pageCards:
   items:
     - title: 'Draft & Published Components'
       description: 'Allow users to start making change to their component, and set it to publish when they are ready.'
@@ -48,16 +39,35 @@ features:
       description: 'We provide Dockerfiles and Docker Compose configurations to get you up and running quickly.'
       icon: 'i-simple-icons-docker'
 sections:
+  - title: 'Intuitive, flexible in-line<br><span class="text-primary">Website and Content Manager</span>'
+    slot: features
+    features:
+      - name: 'Routing & Layouts'
+        description: 'File based routing system to build complex views and interfaces with a powerful and conventional approach.'
+        icon: 'i-ph-signpost-duotone'
+    featureCards:
+      - title: 'Routing & Layouts'
+        description: 'File based routing system to build complex views and interfaces with a powerful and conventional approach.'
+        icon: 'i-ph-signpost-duotone'
+      - title: 'Data Fetching'
+        description: 'Composables that run on the server to fetch data for your components and enable you to render content in different ways.'
+        icon: 'i-ph-plugs-connected-duotone'
+      - title: 'Assets & Style'
+        description: 'Image, Font and Script optizations with a built-in support for CSS Modules, Sass, PostCSS, CSS-in-JS and more.'
+        icon: 'i-ph-image-duotone'
   - title: 'The power of<br><span class="text-primary">draft components</span>'
     description: 'Making updates to a website requires time and thought. With publishable components, drafts are created when you make changes and ready to publish when you are.'
     align: left
     features:
       - name: 'Easy to configure'
         description: 'Just 2 lines of code - an annotation and a trait and your component is upgraded for publishable features.'
-        icon: 'i-ph-signpost-duotone'
+        icon: 'i-heroicons-wrench-screwdriver'
       - name: 'Add state-specific validation'
         description: 'Simply use the validation group with the name of the class, a colon, and either `published` or `draft` to apply validation specific to the component state.'
-        icon: 'i-ph-signpost-duotone'
+        icon: 'i-heroicons-document-check'
+#      - name: 'Set a time to publish'
+#        description: 'Set a date and time that you want to your draft component to become published automatically.'
+#        icon: 'i-heroicons-clock'
     slot: code
     code: |
       ```php [api/src/Entity/Title.php]
@@ -77,19 +87,43 @@ sections:
       }
 
       ```
-  - title: 'Compose with<br><span class="text-primary">everything you need.</span>'
-    slot: features
+  - title: 'Built for<br><span class="text-primary">speed</span>'
+    description: 'My info'
+    align: right
     features:
-      - name: 'Routing & Layouts'
-        description: 'File based routing system to build complex views and interfaces with a powerful and conventional approach.'
-        icon: 'i-ph-signpost-duotone'
-    featureCards:
-      - title: 'Routing & Layouts'
-        description: 'File based routing system to build complex views and interfaces with a powerful and conventional approach.'
-        icon: 'i-ph-signpost-duotone'
-      - title: 'Data Fetching'
-        description: 'Composables that run on the server to fetch data for your components and enable you to render content in different ways.'
-        icon: 'i-ph-plugs-connected-duotone'
-      - title: 'Assets & Style'
-        description: 'Image, Font and Script optizations with a built-in support for CSS Modules, Sass, PostCSS, CSS-in-JS and more.'
-        icon: 'i-ph-image-duotone'
+      - name: 'Small chunks of data'
+        description: 'Info about this'
+      - name: 'Small chunks of data'
+        description: 'Info about this'
+      - name: 'Small chunks of data'
+        description: 'Info about this'
+  - title: 'Stay in<br><span class="text-primary">sync</span>'
+    description: 'Leveraging Mercure for collaboration and to keep users up to date with changes'
+    align: left
+    features:
+      - name: 'Small chunks of data'
+        description: 'Info about this'
+      - name: 'Small chunks of data'
+        description: 'Info about this'
+      - name: 'Small chunks of data'
+        description: 'Info about this'
+  - title: 'Flexible ingtegration for<br><span class="text-primary">file uploads</span>'
+    description: 'Using Flysystem, it is possible to upload your files anywhere...'
+    align: right
+    features:
+      - name: 'Small chunks of data'
+        description: 'Info about this'
+      - name: 'Small chunks of data'
+        description: 'Info about this'
+      - name: 'Small chunks of data'
+        description: 'Info about this'
+  - title: 'Easy deployment with<br><span class="text-primary">Docker</span>'
+    description: 'Using Flysystem, it is possible to upload your files anywhere...'
+    align: left
+    features:
+      - name: 'Small chunks of data'
+        description: 'Info about this'
+      - name: 'Small chunks of data'
+        description: 'Info about this'
+      - name: 'Small chunks of data'
+        description: 'Info about this'
