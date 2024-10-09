@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import BuildComponentFrontEndScreenshot from '~/components/home/BuildComponentFrontEndScreenshot.vue'
 
-
 const { data } = await useAsyncData('landing', () => {
   return Promise.all([
     queryContent('/_partials/back-end').findOne(),
@@ -52,19 +51,12 @@ function onFrontEndChange(index) {
         :ui="{ list: { height: 'h-16', tab: { size: 'text-lg', height: 'h-12', padding: 'px-6', font: 'font-semibold', active: 'text-gray-900 dark:text-white', inactive: 'text-gray-500 dark:text-gray-400' } } }"
       >
         <template #item="{ item }">
-          <div
-            v-if="item.key === 'back-end'"
-            class="flex justify-center"
+          <ULandingSection
+            align="left"
+            :ui="{}"
           >
-            <div class="prose">
-              <ContentRenderer :value="backEnd" />
-            </div>
-          </div>
-          <div
-            v-else
-          >
-            <div class="flex justify-center">
-              <div class="max-w-xl pt-6">
+            <template #description>
+              <div v-if="item.key === 'front-end'">
                 <BuildComponentFrontEndScreenshot :highlight="selectedFrontEnd" />
                 <UTabs
                   :items="frontEndItems"
@@ -72,12 +64,25 @@ function onFrontEndChange(index) {
                   :ui="{ list: { height: 'h-10', background: 'bg-primary-100 dark:bg-primary-800', marker: { background: 'bg-white dark:bg-primary-900' }, tab: { size: 'text-base', height: 'h-8', padding: 'px-6', font: 'font-semibold', active: 'text-gray-900 dark:text-white', inactive: 'text-gray-500 dark:text-gray-400' } } }"
                   @change="onFrontEndChange"
                 />
-                <div class="prose">
-                  <ContentRenderer :value="selectedFrontEnd === 'page' ? frontEndPage : (selectedFrontEnd === 'component' ? frontEndComponent : frontEndAdmin)" />
-                </div>
+              </div>
+              Description goes here
+            </template>
+            <div
+              v-if="item.key === 'back-end'"
+              class="flex justify-center"
+            >
+              <div class="prose">
+                <ContentRenderer :value="backEnd" />
               </div>
             </div>
-          </div>
+            <div
+              v-else
+            >
+              <div class="prose">
+                <ContentRenderer :value="selectedFrontEnd === 'page' ? frontEndPage : (selectedFrontEnd === 'component' ? frontEndComponent : frontEndAdmin)" />
+              </div>
+            </div>
+          </ULandingSection>
         </template>
       </UTabs>
     </ULandingSection>
