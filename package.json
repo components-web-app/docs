@@ -9,7 +9,8 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "lint": "eslint .",
-    "typecheck": "nuxt typecheck"
+    "typecheck": "nuxt typecheck",
+    "generate-pwa-assets": "pwa-assets-generator --preset minimal-2023 public/icon.png"
   },
   "dependencies": {
     "@iconify-json/heroicons": "^1.2.0",
@@ -26,6 +27,8 @@
   "devDependencies": {
     "@nuxt/eslint": "^0.5.7",
     "@nuxthq/studio": "^2.1.1",
+    "@vite-pwa/assets-generator": "^0.2.6",
+    "@vite-pwa/nuxt": "^0.10.5",
     "eslint": "^9.11.1",
     "vue-tsc": "^2.1.6"
   },

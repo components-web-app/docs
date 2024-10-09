@@ -58,7 +58,7 @@ function onFrontEndChange(index) {
 
 <template>
   <div>
-    <div class="relative overflow-hidden [text-shadow:_0_1px_40px_rgb(0_0_0_/_90%)]">
+    <div class="relative overflow-hidden dark:[text-shadow:_0_1px_40px_rgb(0_0_0_/_90%)]">
       <div class="bg-primary opacity-5 absolute inset-0">
         <NuxtImg
           v-if="false"
