@@ -48,7 +48,7 @@ const links = [
   {
     label: 'Try It Out',
     icon: 'i-ph-play-duotone',
-    to: 'https://preview.cwa.rocks',
+    to: 'https://preview.cwa.rocks/login',
     target: '_blank'
   }
 ]

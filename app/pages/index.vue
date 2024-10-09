@@ -18,24 +18,26 @@ useSeoMeta({
 <template>
   <div>
     <HomeHero />
-
-    <ULandingSection
-      :links="page.features.links"
-    >
-      <template
-        v-if="page.features.title"
-        #title
+    <div class="bg-primary/5">
+      <ULandingSection
+        :links="page.features.links"
+        :ui="{ wrapper: 'py-16 sm:py-20 mb-20 sm:mb-24' }"
       >
-        <MDC :value="page.features?.title" />
-      </template>
-      <UPageGrid>
-        <ULandingCard
-          v-for="(item, index) of page.features.items"
-          :key="index"
-          v-bind="item"
-        />
-      </UPageGrid>
-    </ULandingSection>
+        <template
+          v-if="page.features.title"
+          #title
+        >
+          <MDC :value="page.features?.title" />
+        </template>
+        <UPageGrid>
+          <ULandingCard
+            v-for="(item, index) of page.features.items"
+            :key="index"
+            v-bind="item"
+          />
+        </UPageGrid>
+      </ULandingSection>
+    </div>
 
     <ULandingSection
       v-for="(section, index) in page.benefits.sections"

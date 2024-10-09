@@ -5,7 +5,7 @@ const { data: page } = await useAsyncData(`home`, () => queryContent('/').findOn
 </script>
 
 <template>
-  <div class="relative overflow-hidden bg-primary/5 dark:bg-primary/10">
+  <div class="relative overflow-hidden">
     <ULandingHero
       v-if="page.hero"
       v-bind="page.hero"
@@ -14,7 +14,7 @@ const { data: page } = await useAsyncData(`home`, () => queryContent('/').findOn
       }"
     >
       <template #top>
-        <BackgroundParticles class="absolute inset-0 -z-10 opacity-5 dark:opacity-30" />
+        <BackgroundParticles class="absolute inset-0 -z-10 opacity-10 dark:opacity-30" />
       </template>
       <template #headline>
         <UBadge

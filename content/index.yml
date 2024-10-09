@@ -23,27 +23,22 @@ hero:
     ```
 features:
   title: 'That feeling when<br><span class="text-primary-400">all the hard work is done for you</span>'
-#  links:
-#    - label: 'Explore Nuxt UI Pro'
-#      icon: 'i-simple-icons-nuxtdotjs'
-#      trailingIcon: 'i-heroicons-arrow-right-20-solid'
-#      color: 'gray'
-#      to: 'https://ui.nuxt.com/pro'
-#      target: '_blank'
-#      size: lg
+  links:
+    - label: 'More about the CWA'
+      trailingIcon: 'i-heroicons-eye-20-solid'
+      color: 'primary'
+      to: '/about'
+      size: xl
   items:
     - title: 'Draft & Published Components'
       description: 'Allow users to start making change to their component, and set it to publish when they are ready.'
       icon: 'i-heroicons-newspaper-20-solid'
-      to: '/getting-started'
     - title: 'Lightning fast'
       description: 'We have built the CWA from the ground up with speed in mind. Each resource is very small and cacheable - we handle it all.'
       icon: 'i-heroicons-bolt-20-solid'
-      to: '/about'
     - title: 'Stay in sync'
       description: 'Learn how we have leveraged Mercure to improve collaboration and make sure your website visitors never miss an update.'
       icon: 'i-heroicons-arrow-path-20-solid'
-      to: '/getting-started'
 #    - title: 'Intuitive website management UI'
 #      description: 'Discover how to build your admin tabs into our component manager bar with ease.'
 #      icon: 'i-heroicons-pencil-square-20-solid'
