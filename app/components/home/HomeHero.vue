@@ -14,7 +14,7 @@ const { data: page } = await useAsyncData(`home`, () => queryContent('/').findOn
       }"
     >
       <template #top>
-        <BackgroundParticles class="absolute inset-0 -z-10 opacity-10 dark:opacity-30" />
+        <BackgroundParticles class="absolute inset-0 -z-10 opacity-30 invert dark:invert-0" />
       </template>
       <template #headline>
         <UBadge
