@@ -112,10 +112,10 @@ const currentCodeBlock = computed(() => {
               </div>
             </template>
             <div
-              class="flex justify-center"
+              class="flex justify-center max-w-full overflow-hidden"
             >
               <MDC
-                class="prose nowrap prose-primary dark:prose-invert overflow-auto w-full"
+                class="prose nowrap prose-primary dark:prose-invert overflow-auto w-full max-w-full"
                 :value="currentCodeBlock(item.key)"
               />
             </div>
