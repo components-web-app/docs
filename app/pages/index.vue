@@ -62,29 +62,3 @@ useSeoMeta({
     <HomeSponsors class="pb-20" />
   </div>
 </template>
-
-<style scoped lang="postcss">
-.prose {
-  @apply text-white;
-
-  :where(code) {
-    @apply text-gray-200;
-  }
-
-  :where(pre):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
-    @apply !bg-gray-800;
-  }
-
-  @media (min-width: 640px) {
-    :where(.prose > :last-child):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
-      min-width: 450px;
-    }
-  }
-}
-
-video[poster] {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-}
-</style>

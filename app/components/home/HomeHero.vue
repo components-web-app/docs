@@ -93,3 +93,11 @@ const videoModalOpen = ref(false)
     </ULandingHero>
   </div>
 </template>
+
+<style scoped lang="postcss">
+video[poster] {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+</style>
