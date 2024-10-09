@@ -34,13 +34,13 @@ pageCards:
   items:
     - title: 'Free & Open-Source'
       description: 'Free and open source'
-      icon: 'i-heroicons-bolt-20-solid'
+      icon: 'i-simple-icons-opensourceinitiative'
     - title: 'Decoupled web apps'
       description: 'API Driven.'
-      icon: 'i-heroicons-newspaper-20-solid'
+      icon: 'i-heroicons-circle-stack'
     - title: 'Low-code, improved DX'
       description: 'Low-code benefits, developer experience...'
-      icon: 'i-heroicons-newspaper-20-solid'
+      icon: 'i-heroicons-face-smile'
 sections:
   - title: 'The power of<br><span class="text-primary">draft components</span>'
     description: 'Making updates to a website requires time and thought. With publishable components, drafts are created when you make changes and ready to publish when you are.'
