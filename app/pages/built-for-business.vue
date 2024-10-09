@@ -31,6 +31,17 @@ useSeoMeta({
       </UContainer>
     </div>
     <UContainer>
+      <UPage>
+        <UPageBody>
+          <UPageGrid>
+            <UPageCard
+              v-for="(item, index) of page.pageCards.items"
+              :key="index"
+              v-bind="item"
+            />
+          </UPageGrid>
+        </UPageBody>
+      </UPage>
     </UContainer>
   </div>
 </template>

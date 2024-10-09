@@ -3,58 +3,47 @@ description: Hello about page
 navigation: false
 hero:
   title: 'About the CWA'
-  description: 'An <span class="text-primary-400 font-semibold">overview</span> of what the CWA is and how it works.'
   align: left
+  description: |
+    An <span class="text-primary-400 font-semibold">overview</span> of what the CWA is and how it works.
+    <br><br>
+    With the rise in de-coupled websites and the power of front-end frameworks, we began to think about a data structure that would fit for every website; what did every website need?
+    <br><br>
+    We didn't want to have to re-make common functionality for each website every time, and if we had a predictable data structure, it would be possible to have most of the functionality pre-built while enabling a developer to still create any website, with any HTML structure, dependencies.
 faq:
   title: Frequently Asked Questions
-  description: If you can't find what you're looking for, email our support team and if you're lucky someone will get back to you.
+  description: Some common questions we have about the CWA
   items:
-    - label: Do you have a free trial?
-      content: We have much better than a free trial, you can use Nuxt UI Pro for free in development mode. Once you are ready to deploy your application, you can purchase a license.
-      defaultOpen: true
-    - label: Can I use Nuxt UI Pro for Open Source projects?
-      content: Yes, you can use Nuxt UI Pro for your open source projects as well as your commercial projects as long as you don't sell Nuxt UI Pro as a product and that you don't share your license key.
+    - label: Why did you choose these frameworks?
+      content: |
+        With a background in PHP and Symfony, and the API Platform framework being well maintained by great developers, we decided to use these advanced features and give some stability as we knew development of this concept could take some time.
+        :br :br
+        We found VueJS and Nuxt to be incredibly fun frameworks for the front-end, well maintained, and with a strong vibrant community. In both instances we wanted to create a system that was built on the shoulders of giants; we didn’t want to re-invent the wheel.
+      defaultOpen: false
+    - label: How is the data loaded?
+      content: |
+        Each individual resource is loaded with a separate request. It results in a lot of HTTP requests, however each part has very small, and most importantly, cacheable, chunks of data.
+        :br :br
+        We only need to load in the data that is required for each individual page which can result in incredibly fast load times.
     - label: What does “Unlimited minor & patch updates” include?
-      content: We add new components and improvements to Nuxt UI Pro as we get new ideas and feedback, you will receive these updates for the major version you purchased. :br **Your license key will work forever for the major version.** We may release a major version including more advanced components and features in the future, you will be able to upgrade to this version with a generous discount.
+      content: The CWA is free and open source forever. You will always be able to upgrade to the latest version without warranty or guarantees.
     - label: Do you offer technical support?
-      content: Once you sign up you get access to our private GitHub repository, where you can ask questions, report bugs or feature requests and get help from other customers. If you require more specialised support or consultancy, contact us at ui-pro@nuxt.com.
+      content: |
+        Contact us at hello@cwa.rocks or raise issues in our GitHub repositories and we will be happy to help.
+        :br :br
+        If you need more personal technical help, Silverback Web Apps will be able to assist.
 pageCards:
   items:
-    - title: 'Draft & Published Components'
-      description: 'Allow users to start making change to their component, and set it to publish when they are ready.'
-      icon: 'i-heroicons-newspaper-20-solid'
-    - title: 'Lightning fast'
-      description: 'We have built the CWA from the ground up with speed in mind. Each resource is very small and cacheable - we handle it all.'
+    - title: 'Free & Open-Source'
+      description: 'Free and open source'
       icon: 'i-heroicons-bolt-20-solid'
-    - title: 'Stay in sync'
-      description: 'Learn how we have leveraged Mercure to improve collaboration and make sure your website visitors never miss an update.'
-      icon: 'i-heroicons-arrow-path-20-solid'
-    - title: 'Intuitive website management UI'
-      description: 'Discover how to build your admin tabs into our component manager bar with ease.'
-      icon: 'i-heroicons-pencil-square-20-solid'
-    - title: 'File uploads'
-      description: 'You can quickly and easily integrate storage solutions such as Google Cloud and AWS S3 within your website using our Flysystem integration.'
-      icon: 'i-heroicons-arrow-up-tray-20-solid'
-    - title: 'Get started with Docker'
-      description: 'We provide Dockerfiles and Docker Compose configurations to get you up and running quickly.'
-      icon: 'i-simple-icons-docker'
+    - title: 'Decoupled web apps'
+      description: 'API Driven.'
+      icon: 'i-heroicons-newspaper-20-solid'
+    - title: 'Low-code, improved DX'
+      description: 'Low-code benefits, developer experience...'
+      icon: 'i-heroicons-newspaper-20-solid'
 sections:
-  - title: 'Intuitive, flexible in-line<br><span class="text-primary">Website and Content Manager</span>'
-    slot: features
-    features:
-      - name: 'Routing & Layouts'
-        description: 'File based routing system to build complex views and interfaces with a powerful and conventional approach.'
-        icon: 'i-ph-signpost-duotone'
-    featureCards:
-      - title: 'Routing & Layouts'
-        description: 'File based routing system to build complex views and interfaces with a powerful and conventional approach.'
-        icon: 'i-ph-signpost-duotone'
-      - title: 'Data Fetching'
-        description: 'Composables that run on the server to fetch data for your components and enable you to render content in different ways.'
-        icon: 'i-ph-plugs-connected-duotone'
-      - title: 'Assets & Style'
-        description: 'Image, Font and Script optizations with a built-in support for CSS Modules, Sass, PostCSS, CSS-in-JS and more.'
-        icon: 'i-ph-image-duotone'
   - title: 'The power of<br><span class="text-primary">draft components</span>'
     description: 'Making updates to a website requires time and thought. With publishable components, drafts are created when you make changes and ready to publish when you are.'
     align: left
@@ -118,7 +107,7 @@ sections:
       - name: 'Small chunks of data'
         description: 'Info about this'
   - title: 'Easy deployment with<br><span class="text-primary">Docker</span>'
-    description: 'Using Flysystem, it is possible to upload your files anywhere...'
+    description: 'We have included configurations in our CWA template repository which will be an easy setup for your first CWA project. Using Docker you’ll be able to try this out on your own machine quickly - and with our example CI/CD scripts and Helm charts, deploying to a Kubernetes cluster will be a breeze.'
     align: left
     features:
       - name: 'Small chunks of data'

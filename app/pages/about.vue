@@ -37,70 +37,70 @@ useSeoMeta({
     </div>
     <UContainer>
       <UPage>
-        <UPageBody />
+        <UPageBody>
+          <UPageGrid>
+            <UPageCard
+              v-for="(item, index) of page.pageCards.items"
+              :key="index"
+              v-bind="item"
+            />
+          </UPageGrid>
 
-        <UPageGrid>
-          <UPageCard
-            v-for="(item, index) of page.pageCards.items"
+          <ULandingSection
+            v-for="(section, index) of page.sections"
             :key="index"
-            v-bind="item"
-          />
-        </UPageGrid>
-
-        <ULandingSection
-          v-for="(section, index) of page.sections"
-          :key="index"
-          v-bind="section"
-        >
-          <template #title>
-            <MDC
-              v-if="section.title"
-              :value="section.title"
-            />
-          </template>
-
-          <template #description>
-            <MDC
-              v-if="section.description"
-              :value="section.description"
-            />
-          </template>
-
-          <template #code>
-            <MDC
-              :value="section.code"
-              tag="pre"
-              class="prose prose-primary dark:prose-invert max-w-none"
-            />
-          </template>
-
-          <template #features>
-            <UPageGrid>
-              <UPageCard
-                v-for="(feature, index) in section.featureCards"
-                :key="index"
-                v-bind="feature"
-              />
-            </UPageGrid>
-          </template>
-        </ULandingSection>
-
-        <ULandingSection
-          :title="page.faq.title"
-          :description="page.faq.description"
-        >
-          <ULandingFAQ
-            :items="page.faq.items"
-            multiple
+            v-bind="section"
           >
-            <template #item="{ item }">
+            <template #title>
               <MDC
-                :value="item.content"
-                class="prose prose-primary dark:prose-invert max-w-none text-gray-500 dark:text-gray-400"
+                v-if="section.title"
+                :value="section.title"
               />
             </template>
-          </ULandingFAQ>
-        </ULandingSection>
+
+            <template #description>
+              <MDC
+                v-if="section.description"
+                :value="section.description"
+              />
+            </template>
+
+            <template #code>
+              <MDC
+                :value="section.code"
+                tag="pre"
+                class="prose prose-primary dark:prose-invert max-w-none"
+              />
+            </template>
+
+            <template #features>
+              <UPageGrid>
+                <UPageCard
+                  v-for="(feature, index) in section.featureCards"
+                  :key="index"
+                  v-bind="feature"
+                />
+              </UPageGrid>
+            </template>
+          </ULandingSection>
+
+          <ULandingSection
+            :title="page.faq.title"
+            :description="page.faq.description"
+          >
+            <ULandingFAQ
+              :items="page.faq.items"
+              multiple
+            >
+              <template #item="{ item }">
+                <MDC
+                  :value="item.content"
+                  class="prose prose-primary dark:prose-invert max-w-none text-gray-500 dark:text-gray-400"
+                />
+              </template>
+            </ULandingFAQ>
+          </ULandingSection>
+        </UPageBody>
       </UPage>
     </UContainer>
   </div>

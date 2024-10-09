@@ -5,3 +5,17 @@ hero:
   title: 'Built for Business'
   description: '<span class="text-primary-400 font-semibold">Streamline</span> your business, whether you <span class="text-primary-400 font-semibold">create websites</span> or you want a <span class="text-primary-400 font-semibold">flexible website management solution</span>'
   align: left
+pageCards:
+  items:
+    - title: 'Save Time'
+      description: 'Allow users to start making change to their component, and set it to publish when they are ready.'
+      icon: 'i-heroicons-newspaper-20-solid'
+    - title: 'Improve Workflows'
+      description: 'We have built the CWA from the ground up with speed in mind. Each resource is very small and cacheable - we handle it all.'
+      icon: 'i-heroicons-bolt-20-solid'
+    - title: 'Surpass Client Expectations'
+      description: 'Allow users to start making change to their component, and set it to publish when they are ready.'
+      icon: 'i-heroicons-newspaper-20-solid'
+    - title: 'Built with teamwork in mind'
+      description: 'Allow users to start making change to their component, and set it to publish when they are ready.'
+      icon: 'i-heroicons-newspaper-20-solid'
