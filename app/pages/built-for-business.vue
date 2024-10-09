@@ -1,79 +1,36 @@
 <script setup lang="ts">
-const { data } = await useAsyncData('landing', () => {
-  return Promise.all([
-    queryContent('/built-for-business').findOne()
-  ])
-})
-const [page] = data.value
+const { data: page } = await useAsyncData('built-for-business', () => queryContent('/built-for-business').findOne())
 
 useSeoMeta({
   titleTemplate: '',
-  title: page.title,
-  ogTitle: page.title,
-  description: page.description,
-  ogDescription: page.description
+  title: page.value.title,
+  ogTitle: page.value.title,
+  description: page.value.description,
+  ogDescription: page.value.description
 })
 </script>
 
 <template>
-  <div>
-    <ULandingHero
-      v-if="page.hero"
+  <UContainer>
+    <UPageHero
       v-bind="page.hero"
     >
-      <template #headline>
-        <UBadge
-          v-if="page.hero.headline"
-          variant="subtle"
-          size="lg"
-          class="relative rounded-full font-semibold"
-        >
-          <NuxtLink
-            :to="page.hero.headline.to"
-            target="_blank"
-            class="focus:outline-none"
-            tabindex="-1"
-          >
-            <span
-              class="absolute inset-0"
-              aria-hidden="true"
-            />
-          </NuxtLink>
-
-          {{ page.hero.headline.label }}
-
-          <UIcon
-            v-if="page.hero.headline.icon"
-            :name="page.hero.headline.icon"
-            class="ml-1 w-4 h-4 pointer-events-none"
-          />
-        </UBadge>
-      </template>
-
-      <template #title>
-        <MDC :value="page.hero.title" />
-      </template>
-
       <template #description>
         <MDC :value="page.hero.description" />
       </template>
-
-      <MDC
-        :value="page.hero.code"
-        class="prose prose-primary dark:prose-invert mx-auto"
-      />
-
-      <template #links>
-        <UButton
-          color="primary"
-          label="Get Started"
-          icon="i-ph-rocket-launch-duotone"
-          to="/getting-started/installation"
-          size="xl"
+      <div class="flex justify-center">
+        <NuxtImg
+          src="https://picsum.photos/id/180/640/360"
+          class="w-full max-w-[640px] rounded-md shadow-xl ring-1 ring-gray-300 dark:ring-gray-700"
+          width="640"
+          height="360"
         />
-      </template>
-    </ULandingHero>
-  </div>
+      </div>
+    </UPageHero>
+    <UPage>
+      <UPageBody />
+    </UPage>
+  </UContainer>
 </template>
 
 <style scoped lang="postcss">
