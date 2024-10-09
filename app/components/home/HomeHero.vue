@@ -1,4 +1,7 @@
 <script lang="ts" setup>
+import LandingBackground from '~/components/home/LandingBackground.vue'
+import BackgroundParticles from "~/components/home/BackgroundParticles.vue";
+
 const { data: page } = await useAsyncData(`home`, () => queryContent('/').findOne())
 const videoModalOpen = ref(false)
 </script>
@@ -9,6 +12,9 @@ const videoModalOpen = ref(false)
       v-if="page.hero"
       v-bind="page.hero"
     >
+      <template #top>
+        <BackgroundParticles class="absolute inset-0 -z-10" />
+      </template>
       <template #headline>
         <UBadge
           v-if="page.hero.headline"
