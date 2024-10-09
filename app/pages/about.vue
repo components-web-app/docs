@@ -33,6 +33,53 @@ useSeoMeta({
     </UPageHero>
     <UPage>
       <UPageBody />
+
+      <UPageGrid>
+        <ULandingCard
+          v-for="(item, index) of page.features.items"
+          :key="index"
+          v-bind="item"
+        />
+      </UPageGrid>
+
+      <ULandingSection
+        v-for="(section, index) of page.sections"
+        :key="index"
+        v-bind="section"
+      >
+        <template #title>
+          <MDC
+            v-if="section.title"
+            :value="section.title"
+          />
+        </template>
+
+        <template #description>
+          <MDC
+            v-if="section.description"
+            :value="section.description"
+          />
+        </template>
+
+        <template #code>
+          <MDC
+            :value="section.code"
+            tag="pre"
+            class="prose prose-primary dark:prose-invert max-w-none"
+          />
+        </template>
+
+        <template #features>
+          <UPageGrid>
+            <UPageCard
+              v-for="(feature, index) in section.featureCards"
+              :key="index"
+              v-bind="feature"
+            />
+          </UPageGrid>
+        </template>
+      </ULandingSection>
+
       <ULandingSection
         :title="page.faq.title"
         :description="page.faq.description"

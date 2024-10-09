@@ -26,7 +26,7 @@ useSeoMeta({
         v-if="page.features.title"
         #title
       >
-        <span v-html="page.features?.title" />
+        <MDC :value="page.features?.title" />
       </template>
       <UPageGrid>
         <ULandingCard
