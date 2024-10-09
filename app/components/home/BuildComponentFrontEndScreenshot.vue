@@ -1,11 +1,11 @@
 <template>
   <div class="justify-center flex mb-8 px-4 sm:px-10">
     <div class="relative">
-      <div class="opacity-50">
+      <div class="bg-gray-700 dark:bg-gray-900 rounded-lg overflow-hidden">
         <img
           src="/images/screenshot.jpg"
           alt="CWA Web Page Screenshot"
-          class="w-full"
+          class="w-full opacity-50"
         >
       </div>
       <div
