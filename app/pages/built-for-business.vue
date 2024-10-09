@@ -2,7 +2,6 @@
 const { data: page } = await useAsyncData('built-for-business', () => queryContent('/built-for-business').findOne())
 
 useSeoMeta({
-  titleTemplate: '',
   title: page.value.title,
   ogTitle: page.value.title,
   description: page.value.description,

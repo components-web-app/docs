@@ -2,14 +2,16 @@
 import BackgroundParticles from '~/components/home/BackgroundParticles.vue'
 
 const { data: page } = await useAsyncData(`home`, () => queryContent('/').findOne())
-const videoModalOpen = ref(false)
 </script>
 
 <template>
-  <div class="relative overflow-hidden dark:[text-shadow:_0_1px_40px_rgb(0_0_0_/_90%)] bg-primary/5 dark:bg-primary/10">
+  <div class="relative overflow-hidden bg-primary/5 dark:bg-primary/10">
     <ULandingHero
       v-if="page.hero"
       v-bind="page.hero"
+      :ui="{
+        container: 'mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl gap-8 sm:gap-y-14 flex flex-col dark:[text-shadow:_0_1px_40px_rgb(0_0_0_/_90%)]'
+      }"
     >
       <template #top>
         <BackgroundParticles class="absolute inset-0 -z-10 opacity-5 dark:opacity-30" />
@@ -65,36 +67,12 @@ const videoModalOpen = ref(false)
           to="/getting-started/installation"
           size="xl"
         />
-        <UButton
-          size="xl"
-          color="white"
-          icon="i-ph-video-duotone"
-          label="What is the CWA?"
-          @click="videoModalOpen = true"
-        />
       </template>
 
       <MDC
         :value="page.hero.code"
         class="prose prose-primary dark:prose-invert mx-auto"
       />
-
-      <UModal
-        v-model="videoModalOpen"
-        :ui="{ width: 'sm:max-w-[560px]' }"
-      >
-        <div>
-          <div style="padding:56.25% 0 0 0;position:relative;">
-            <iframe
-              src="https://player.vimeo.com/video/1010679128?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1"
-              frameborder="0"
-              allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
-              style="position:absolute;top:0;left:0;width:100%;height:100%;"
-              title="CWA Overview"
-            />
-          </div>
-        </div>
-      </UModal>
     </ULandingHero>
   </div>
 </template>

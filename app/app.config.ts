@@ -10,7 +10,7 @@ export default defineAppConfig({
     }
   },
   seo: {
-    siteName: 'Documentation - CWA (Components Web App)'
+    siteName: 'CWA (Components Web App)'
   },
   header: {
     logo: {
