@@ -4,24 +4,25 @@
       <ULandingLogos
         title="Special thanks to our sponsors"
         align="center"
+        :ui="{ images: 'mx-auto mt-10 flex flex-wrap items-center justify-between gap-8 flex-col sm:flex-row' }"
       >
-        <div class="px-4">
+        <div class="md:px-4">
           <SvgoLogoSwa
-            class="opacity-50 h-12"
+            class="opacity-50 h-6 md:h-10"
             alt="Sponsored by Silverback Web Apps"
             :font-controlled="false"
           />
         </div>
-        <div class="px-4">
+        <div class="md:px-4">
           <SvgoLogoUbc
-            class="opacity-50 h-12"
+            class="opacity-50 h-6 md:h-10"
             alt="Sponsored by Unlocking Behaviour Change"
             :font-controlled="false"
           />
         </div>
-        <div class="px-4">
+        <div class="md:px-4">
           <SvgoLogoNuxtUi
-            class="opacity-50 h-10"
+            class="opacity-50 h-6 md:h-9"
             alt="Sponsored by Nuxt UI Pro"
             :font-controlled="false"
           />

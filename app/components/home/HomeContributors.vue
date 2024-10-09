@@ -94,7 +94,7 @@ const { data: page } = await useAsyncData(`home`, () => queryContent('/').findOn
         v-if="stats"
         class="p-5 overflow-hidden flex items-center justify-center"
       >
-        <div class="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-8">
+        <div class="grid grid-cols-3 xs:grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-8">
           <NuxtLink
             v-for="(contributor, index) in orderedContributors"
             :key="`contrib-${index}`"
