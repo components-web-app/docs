@@ -53,7 +53,7 @@ function onFrontEndChange(index) {
         <template #item="{ item }">
           <ULandingSection
             align="left"
-            :ui="{}"
+            :ui="{ wrapper: 'py-8 sm:py-10', container: 'gap-16 sm:gap-y-24 flex flex-col grid lg:grid-cols-2 lg:items-start' }"
           >
             <template #description>
               <div v-if="item.key === 'front-end'">
