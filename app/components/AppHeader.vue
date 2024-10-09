@@ -55,9 +55,12 @@ provide('navigation', navigation)
         class="lg:hidden"
       />
 
-      <UColorModeToggle v-if="header?.colorMode" />
+      <UColorModeToggle v-if="header?.colorMode" size="sm" />
 
-      <div v-if="header?.links" class="pl-3 ml-1 border-l border-black/30 dark:border-white/30">
+      <div
+        v-if="header?.links"
+        class="pl-1.5 md:pl-3 ml-0.5 md:ml-1 border-l border-black/30 dark:border-white/30"
+      >
         <UButton
           v-for="(link, index) of header.links"
           :key="index"
@@ -65,9 +68,15 @@ provide('navigation', navigation)
         />
       </div>
 
-      <div class="text-center pl-3 py-1.5 ml-1 border-l border-black/30 dark:border-white/30">
-        <NuxtLink to="https://silverbackwebapps.com" target="_blank">
-          <SvgoLogoSwa :font-controlled="false" class="h-6" />
+      <div class="text-center pl-1.5 md:pl-3 py-1.5 md:ml-1 border-l border-black/30 dark:border-white/30">
+        <NuxtLink
+          to="https://silverbackwebapps.com"
+          target="_blank"
+        >
+          <SvgoLogoSwa
+            :font-controlled="false"
+            class="h-4 md:h-6"
+          />
         </NuxtLink>
       </div>
     </template>

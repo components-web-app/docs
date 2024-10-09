@@ -27,7 +27,7 @@ const frontEndTabsUI = {
     tab: {
       size: 'text-base',
       height: 'h-8',
-      padding: 'px-6',
+      padding: 'px-2',
       font: 'font-semibold',
       active: 'text-gray-900 dark:text-white',
       inactive: 'text-gray-500 dark:text-gray-400'
@@ -63,11 +63,13 @@ const currentCodeBlock = computed(() => {
         <template #item="{ item }">
           <ULandingSection
             align="left"
-            :ui="{ wrapper: 'py-8 sm:py-10', container: 'gap-16 sm:gap-y-24 flex flex-col grid lg:grid-cols-2 lg:items-start' }"
+            :ui="{ wrapper: 'py-0 sm:py-10', container: 'gap-16 sm:gap-y-24 flex flex-col grid lg:grid-cols-2 lg:items-start' }"
           >
             <template #description>
               <div v-if="item.key === 'front-end'">
-                <BuildComponentFrontEndScreenshot :highlight="selectedFrontEnd.key" />
+                <div class="px-4 md:px-0">
+                  <BuildComponentFrontEndScreenshot :highlight="selectedFrontEnd.key" />
+                </div>
                 <UTabs
                   :items="page.code.frontEnd.tabs"
                   class="w-full mb-6"
