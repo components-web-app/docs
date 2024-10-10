@@ -121,26 +121,27 @@ useSeoMeta({
               </div>
             </template>
           </ULandingSection>
-
-          <ULandingSection
-            :title="page.faq.title"
-            :description="page.faq.description"
-          >
-            <ULandingFAQ
-              :items="page.faq.items"
-              multiple
-            >
-              <template #item="{ item }">
-                <MDC
-                  :value="item.content"
-                  class="prose prose-primary dark:prose-invert max-w-none text-gray-500 dark:text-gray-400"
-                />
-              </template>
-            </ULandingFAQ>
-          </ULandingSection>
         </UPageBody>
       </UPage>
     </UContainer>
+    <div class="bg-primary/5">
+      <ULandingSection
+        :title="page.faq.title"
+        :description="page.faq.description"
+      >
+        <ULandingFAQ
+          :items="page.faq.items"
+          multiple
+        >
+          <template #item="{ item }">
+            <MDC
+              :value="item.content"
+              class="prose prose-primary dark:prose-invert max-w-none text-gray-500 dark:text-gray-400"
+            />
+          </template>
+        </ULandingFAQ>
+      </ULandingSection>
+    </div>
   </div>
 </template>
 
