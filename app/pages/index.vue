@@ -48,13 +48,15 @@ useSeoMeta({
       <template #title>
         <span v-html="section.title" />
       </template>
-      <NuxtImg
-        width="448"
-        height="448"
-        :src="section.image"
-        :alt="section.title"
-        class="w-full max-w-md"
-      />
+      <div class="flex justify-center">
+        <NuxtImg
+          width="448"
+          height="448"
+          :src="section.image"
+          :alt="section.title"
+          class="w-full max-w-md"
+        />
+      </div>
     </ULandingSection>
 
     <HomeCode class="mb-24" />
