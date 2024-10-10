@@ -98,7 +98,7 @@ useSeoMeta({
             </template>
 
             <template #grid>
-              <UPageGrid>
+              <div class="grid grid-cols-3 gap-2 md:gap-8">
                 <NuxtLink
                   v-for="(item, gridIndex) in section.iconGrid"
                   :key="`grid-${gridIndex}-${item.name}`"
@@ -116,7 +116,7 @@ useSeoMeta({
                     />
                   </div>
                 </NuxtLink>
-              </UPageGrid>
+              </div>
             </template>
           </ULandingSection>
 
