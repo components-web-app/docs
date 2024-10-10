@@ -110,6 +110,7 @@ useSeoMeta({
                   >
                     <UIcon
                       :name="item.icon"
+                      :title="item.name"
                       class="w-full h-full"
                       :class="item.class"
                     />

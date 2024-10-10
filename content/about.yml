@@ -108,15 +108,22 @@ sections:
       - name: 'Kubernetes'
         icon: 'i-simple-icons-kubernetes'
         class: 'text-[#326ce5]'
+      - name: 'Helm'
+        icon: 'i-custom-helm'
       - name: 'GitLab'
         icon: 'i-custom-gitlab'
         class: 'scale-150'
       - name: 'Caddy'
         icon: 'i-custom-caddy'
-      - name: 'Vulcain'
+      - name: 'FrankenPHP'
+        icon: 'i-custom-franken-php'
+      - name: 'Vulcain Cache'
         icon: 'i-custom-vulcain'
       - name: 'Mercure'
         icon: 'i-custom-mercure'
+      - name: 'Souin Static Cache'
+        icon: 'i-custom-souin'
+        class: text-primary
 faq:
   title: Frequently Asked Questions
   description: Some common questions we have about the CWA
