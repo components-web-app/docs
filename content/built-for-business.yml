@@ -24,10 +24,10 @@ businessSizes:
       description: 'The website builder interface allows admins with no code knowledge to create, edit and extend any CWA website once it’s been created by your developers.'
       icon: 'i-heroicons-home-modern'
     - title: 'Organisations'
-      description: 'Developers can extend the functionality of any component and integrate any API to deliver whatever you need from a website or web application.'
+      description: 'Business operations are critical, and when your website is powered by an API, the automation and API extensibility can be a huge productivity boost.'
       icon: 'i-heroicons-building-office'
     - title: 'Agencies'
-      description: 'The CWA has been built with a focus on the professional web development workflow and making each stage as streamlined and efficient as possible maximising the use of resources.'
+      description: 'Built with a focus on the professional web development workflow, the CWA helps you to streamline every part of the workflow from discovery to delivery.'
       icon: 'i-heroicons-building-office-2'
 teamwork:
   title: Built with Teamwork in Mind

@@ -5,7 +5,7 @@ hero:
   title: 'Welcome to :br<span class="text-primary-400 font-semibold">the CWA</span>'
   align: center
 cta:
-  title: 'The power of a :br <span class="text-primary-400 font-semibold">predictable data structure</span>'
+  title: 'The benefits of a :br <span class="text-primary-400 font-semibold">predictable data structure</span>'
   class: 'mb-8'
   icon: 'i-ph-barbell'
   align: center
@@ -28,7 +28,7 @@ pageCards:
       description: 'Easy to use abstract classes, traits, and PHP annotations for the API. The front-end we have ready-to-use components and powerful composables to get you up and running quickly.'
       icon: 'i-heroicons-face-smile'
 sections:
-  - title: 'The power of<br><span class="text-primary">draft components</span>'
+  - title: 'The joy of<br><span class="text-primary">draft components</span>'
     description: 'Making updates to a website requires time and thought. With publishable components, drafts are created when you make changes and ready to publish when you are.'
     align: left
     features:
