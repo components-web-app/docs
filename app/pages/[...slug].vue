@@ -44,6 +44,15 @@ const links = computed(() => [toc?.bottom?.edit && {
 
 <template>
   <UPage>
+    <UAlert
+      icon="i-heroicons-exclamation-triangle"
+      color="orange"
+      variant="subtle"
+      title="The CWA is in heavy development"
+      description="The CWA is still in alpha and not ready for production - some code and implementations are likely to change. If you would like to try out the CWA, please enjoy what we have provided and feel free to provide feedback, or get involved on GitHub."
+      class="mt-8"
+    />
+
     <UPageHeader
       :title="page.title"
       :description="page.description"
