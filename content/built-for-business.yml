@@ -29,3 +29,93 @@ businessSizes:
     - title: 'Agencies'
       description: 'The CWA has been built with a focus on the professional web development workflow and making each stage as streamlined and efficient as possible maximising the use of resources.'
       icon: 'i-heroicons-building-office-2'
+teamwork:
+  title: Built with Teamwork in Mind
+  align: center
+  description: |
+    We understand the workflow of creating a web app from concept to fruition while all the time valuing quality, flexibility and in-house control of frameworks and hosting.
+    :br :br
+    We developed the CWA to include all our learnings so your organisation can take advantage of the extreme flexibility the solution provides.
+timeline:
+  - title: <span class="text-primary-400 font-semibold">Planning</span> for using the CWA
+    description: |
+      #### Foundation and discover
+      Before starting the development of a website, it is essential to have a detailed plan of what you want the website to achieve and the overall content and structure, generally in the form of a wireframe, also know as a website blueprint. This can include a discover phase and defines the components needed once finalised.
+      :br :br
+      #### Design
+      Once your wireframe has been defined, the look and feel of the site along with styles are developed by your designers including how the website will reflow on different screens. The resulting finalised UI kit is then handed over to the development team to get started.
+  - title: Built for <span class="text-primary-400 font-semibold">Developers</span>
+    description: |
+      We’ve made the developer experience as simple as possible meaning your coders can breeze through creating components and scaffolding for the builder interface leaving the website ready for a non-developer to populate and arrange components. The developer sets up the project, builds the specific components and defines styles for the web app meaning the structure and content work can be assigned to an administrator with no coding knowledge.
+    features:
+      - title: Back-end
+        description: Only basic php knowledge needed.
+      - title: Styles
+        description: Use your own CSS frameworks.
+      - title: Security
+        description: In-built advanced security allows dev to focus on building.
+      - title: Bespoke
+        description: Fully extensible structure for any application so you know if it's possible CWA can do it.
+      - title: Deployment (DevOps)
+        description: Easily deploy to docker container for maximum portability of website.
+      - title: Ready made admin
+        description: The CWA comes with a feature-rich ready-made admin system.
+  - title: Built for <span class="text-primary-400 font-semibold">Admins</span>
+    description: |
+      Once the developers have setup the project it is time for the administrator to put the site together using the builder interface preparing the structure, pages, routes and components ready for content input.
+    features:
+      - title: Routes (URLs)
+        description: Advanced route and re-direct management including sorting and searching.
+      - title: Re-ordering
+        description: Stable re-ordering allows you to define the order of components within a group.
+      - title: Users
+        description: User management allows your developer to define permissions for different types of users based on their role and security clearance.
+      - title: Page management
+        description: Ability to easily search sort and filter and edit settings on your pages reducing workload on page management.
+      - title: Search Engine Optimisation
+        description: Refine and modify your page title and meta description to help with organic search rankings.
+      - title: Stand-alone pages
+        description: Your website can include standalone pages or even mini websites for targeted PPC landing pages, A/B testing or promotional marketing pages.
+  - title: Built for <span class="text-primary-400 font-semibold">Editors</span>
+    description: |
+      Once the administrator has setup the website it can be passed to editors for content input and review by decision makers before website launch or publishing a component.
+    features:
+      - title: Collaboration
+        description: Add draft content to components and save for review later by decision makers.
+      - title: Articles
+        description: Editors can easily add new data pages with a predefined structure for features such as news, articles and blog posts.
+      - title: Pre-defined styles
+        description: Styles for components are pre-defined enabling continuity of branding across the site.
+      - title: Advanced validation
+        description: Validation such as character limits can be applied to all component inputs to keep the website look and feel consistent.
+      - title: Media/Social integration
+        description: Any media or social API eg. Video can be integrated with the CWA allowing editors to use their favourite system.
+      - title: Live editing
+        description: Live components can be edited directly for urgent updates and faster content population during initial build.
+  - title: Built for <span class="text-primary-400 font-semibold">the future</span>
+    description: |
+      Your preferred workflow between developer, administrator and editor is up to you. Your developer can also build in custom permissions to limit access and modification of the web app to specific roles.
+faq:
+  title: Frequently Asked Questions
+  description: Some common questions we have about the CWA
+  items:
+    - label: How much does it cost?
+      content: |
+        It is free and Open Source.
+    - label: What guarantees are given?
+      content: |
+        It is licenced under the MIT licence, no guarantees are given. The project is created and maintained by the community.
+    - label: How long have you been using the CWA?
+      content: Ongoing and is in version 3 ready for beta users. In production sites.
+    - label: How long is it maintained for?
+      content: Details of API and NUXT releases and continued support
+    - label: What developers do I need?
+      content: PHP and Front-end. Experience with Nuxt good etc.
+    - label: How frequent are updates?
+      content: Currently working continuously. View roadmap. (We do not have a roadmap)
+    - label: Can we commission you to make a website?
+      content: Yes, via SWA
+    - label: Can CWA scale?
+      content: Yes, indefinitely via K8S. Suitable for enterprise projects.
+    - label: Do you provide support?
+      content: Yes, in relation to bug fixes and development of core project – via GitHub. Support for individual projects and development of components your developers can contact SWA.

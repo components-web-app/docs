@@ -59,9 +59,74 @@ useSeoMeta({
               />
             </UPageGrid>
           </ULandingCTA>
+
+          <UPageHero
+            v-bind="page.teamwork"
+          >
+            <template #description>
+              <MDC :value="page.teamwork.description" />
+            </template>
+          </UPageHero>
+
+          <div>
+            <UContainer :ui="{ constrained: 'max-w-4xl' }">
+              <div class="h-[18px] w-0.5 bg-gray-200 dark:bg-gray-800 inset-x-0 rounded-t-full" />
+
+              <div
+                v-for="(item, index) in page.timeline"
+                :key="`timeline-${index}`"
+                class="relative py-3 min-h-[24px] flex items-center justify-center"
+              >
+                <div class="h-full w-0.5 bg-gray-200 dark:bg-gray-800 absolute top-0 inset-x-0 -ml-[1px] flex-shrink-0" />
+
+                <div
+                  class="flex items-start gap-8 relative w-full translate-x-0 -ml-2 mt-14"
+                >
+                  <div
+                    class="h-8 w-8 -ml-3 -mt-1 bg-primary-400 dark:bg-primary-400 rounded-full z-[1] ring-2 ring-gray-300 dark:ring-gray-600 flex-shrink-0 flex justify-center items-center text-black font-bold"
+                  >
+                    {{ index+1 }}
+                  </div>
+                  <div>
+                    <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl mb-4 -mt-2">
+                      <MDC :value="item.title" />
+                    </h2>
+                    <MDC class="prose prose-primary dark:prose-invert max-w-none text-justify" :value="item.description" />
+                    <UPageGrid v-if="item.features" :ui="{ wrapper: 'mt-8 gap-4 xl:grid-cols-2' }">
+                      <UPageCard
+                        v-for="(feature, featureIndex) of item.features"
+                        :key="`feature-${index}-${featureIndex}`"
+                        v-bind="feature"
+                      />
+                    </UPageGrid>
+                  </div>
+                </div>
+              </div>
+
+              <div class="h-[46px] w-0.5 bg-gray-200 dark:bg-gray-800 inset-x-0 rounded-b-full" />
+            </UContainer>
+          </div>
         </UPageBody>
       </UPage>
     </UContainer>
+    <div class="bg-primary/5">
+      <ULandingSection
+        :title="page.faq.title"
+        :description="page.faq.description"
+      >
+        <ULandingFAQ
+          :items="page.faq.items"
+          multiple
+        >
+          <template #item="{ item }">
+            <MDC
+              :value="item.content"
+              class="prose prose-primary dark:prose-invert max-w-none text-gray-500 dark:text-gray-400"
+            />
+          </template>
+        </ULandingFAQ>
+      </ULandingSection>
+    </div>
   </div>
 </template>
 
