@@ -77,7 +77,7 @@ benefits:
           trailing: true
           size: xl
           class: ml-0
-    - title: 'The missing link<br><span class="text-primary-400">in website builders</span>'
+    - title: 'The missing link in<br><span class="text-primary-400">website builders</span>'
       description: Traditional website builders take too much control, complexity and style decisions away from the professionals.
       id: professionals
       align: left

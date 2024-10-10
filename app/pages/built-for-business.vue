@@ -16,6 +16,9 @@ useSeoMeta({
         <UPageHero
           v-bind="page.hero"
         >
+          <template #title>
+            <MDC :value="page.hero.title" />
+          </template>
           <template #description>
             <MDC :value="page.hero.description" />
           </template>
@@ -43,7 +46,7 @@ useSeoMeta({
 
           <ULandingCTA
             card
-            :ui="{ wrapper: 'mt-8 bg-primary/5 dark:bg-primary/5' }"
+            :ui="{ wrapper: 'mt-8 bg-primary/5 dark:bg-primary/5', body: { base: 'flex flex-col gap-10 sm:gap-y-14', padding: 'py-20 sm:py-28 sm:px-16' } }"
           >
             <template #title>
               <MDC :value="page.businessSizes.title" />

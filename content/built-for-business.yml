@@ -2,23 +2,23 @@ title: 'Built for Business'
 description: Built for Business
 navigation: false
 hero:
-  title: 'Built for Business'
-  description: '<span class="text-primary-400 font-semibold">Streamline</span> your business, whether you <span class="text-primary-400 font-semibold">create websites</span> or you want a <span class="text-primary-400 font-semibold">flexible website management solution</span>'
+  title: 'Built for <span class="text-primary-400 font-semibold">Business</span>'
+  description: 'Streamline your business, whether you <span class="text-primary-400 font-semibold">create websites</span> or you want a <span class="text-primary-400 font-semibold">flexible website management solution</span>'
   align: left
 pageCards:
   items:
-    - title: 'Save Time'
-      description: 'Save time, obviously.'
+    - title: 'Time saving'
+      description: 'In business, time is money and productivity is power. Whether you are building a website, or managing it, we know the importance of great DX/UX'
       icon: 'i-heroicons-clock-20-solid'
-    - title: 'Improve Workflows'
-      description: 'Better workflows, clearly'
+    - title: 'Improve your workflows'
+      description: 'Streamline the discovery phase into MVP components, and don''t worry about making changes to your live website with our publishable components.'
       icon: 'i-heroicons-light-bulb-20-solid'
-    - title: 'Surpass Client Expectations'
-      description: 'Clients will be thankful, undoubtedly'
+    - title: 'Surpass clients'' expectations'
+      description: 'We want your website administrators and users to say "wow, that was so fast and intuitive". Now you can provide more than they bargained for within their budget.'
       icon: 'i-heroicons-star-20-solid'
 businessSizes:
   title: Designed for businesses of <span class="text-primary-400 font-semibold">all sizes</span>
-  description: Whether you have an in-house web development team or use freelance developers (or dabble in code yourself) the CWA has been designed from the ground up to provide businesses and organisations with cuttings edge web technologies designed for the professional workflow.
+  description: Whether you are a business user, freelance developer, agency or have an in-house team of developers, the CWA has been designed to provide you with cutting-edge technologies while helping your business run smoothly and efficiently.
   cards:
     - title: 'Small businesses'
       description: 'The website builder interface allows admins with no code knowledge to create, edit and extend any CWA website once it’s been created by your developers.'
