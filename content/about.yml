@@ -16,13 +16,13 @@ cta:
 pageCards:
   items:
     - title: 'Free & Open-Source'
-      description: 'Free and open source'
+      description: 'The CWA code free, open-source MIT licenced and available on the GitHub repository. Everyone can access, audit, contribute and explore the code and documentation.'
       icon: 'i-simple-icons-opensourceinitiative'
     - title: 'Decoupled web apps'
-      description: 'API Driven.'
+      description: 'Now you can build the most modern web apps with ease, where the data is served by an API and the front-end is focussed on the UI/UX. Your website data can be accessed by other services, you can proxy to other APIs and take advantage of the ultimate flexibility.'
       icon: 'i-heroicons-circle-stack'
     - title: 'Convention over configuration'
-      description: 'Using a set directory and file structure allows the CWA Nuxt module to get you up and running fast.'
+      description: 'Using a set directory and file structure allows the CWA Nuxt module to get you up and running fast. You can also add custom configuration to improve the user experience.'
       icon: 'i-ph-folders'
     - title: 'Low-code, great DX'
       description: 'Easy to use abstract classes, traits, and PHP annotations for the API. The front-end we have ready-to-use components and powerful composables to get you up and running quickly.'
@@ -61,7 +61,7 @@ sections:
 
       ```
   - title: 'Control is with<br><span class="text-primary">the web designers</span>'
-    description: Unlike other website builders, we leave don't believe website admins should have unlimited style choices.
+    description: Unlike other website builders, we leave don't believe website admins should have unlimited creative freedom.
     align: right
     slot: image
     image:
@@ -78,43 +78,43 @@ sections:
         description: Build your components your way - the CWA simply provides helpers to make your life easier.
         icon: i-heroicons-square-3-stack-3d
   - title: 'Stay in<br><span class="text-primary">sync</span>'
-    description: 'Leveraging Mercure for collaboration and to keep users up to date with changes'
+    description: 'We leverage and integrate with Mercure to push real-time updates from the API.'
     align: left
     slot: image
     image:
       src: '/images/about/about-sync.svg'
       alt: 'Stay In Sync with the CWA'
     features:
-      - name: 'Small chunks of data'
-        description: 'Info about this'
-      - name: 'Small chunks of data'
-        description: 'Info about this'
-      - name: 'Small chunks of data'
-        description: 'Info about this'
+      - name: 'Publish changes immediately'
+        description: 'When you make a change, users on the website which this affects get an immediate notification to they can stay up to date.'
+      - name: 'Collaborate on changes'
+        description: 'If you are working on an update at the same time as another website admin, you do not have to worry about overwriting each other''s changes'
+      - name: 'Authenticated updates'
+        description: 'With authentication built in by default, the browser will only receive updates for resources they have access to. Website visitors will not be exposed to draft component updates.'
   - title: 'Built for<br><span class="text-primary">speed</span>'
-    description: 'My info'
+    description: 'Our experience means we have optimised the system for the fastest response times and accelerated user experience.'
     align: right
     slot: component
     component:
       is: 'SvgoRoadRunner'
     features:
-      - name: 'Small chunks of data'
-        description: 'Info about this'
-      - name: 'Small chunks of data'
-        description: 'Info about this'
-      - name: 'Small chunks of data'
-        description: 'Info about this'
+      - name: 'Simple, small API responses'
+        description: 'Each API request returns a small amount of data and a single resource instead of complex and deeply nested data. '
+      - name: 'Responsive UI'
+        description: 'The page UI updates as soon as the primary resources are loaded from the API or cached local storage. Each resource is loaded individually, and the CWA only loads what is required for each page.'
+      - name: 'Caching and Preload Hints'
+        description: 'We leverage a static cache layer which is only cleared when resources change. We also leverage Vulcain with preload hints to improve response times.'
   - title: 'Flexible ingtegration for<br><span class="text-primary">file uploads</span>'
-    description: 'Using Flysystem, it is possible to upload your files anywhere...'
+    description: 'We have built in a file storage abstraction layer, Flysystem.'
     align: left
     slot: grid
     features:
-      - name: 'Small chunks of data'
-        description: 'Info about this'
-      - name: 'Small chunks of data'
-        description: 'Info about this'
-      - name: 'Small chunks of data'
-        description: 'Info about this'
+      - name: 'Easy to configure'
+        description: 'Similar to publishable components, with a little config and annotations, you''ll have file uploads setup in no time.'
+      - name: 'Pre-configured file-systems'
+        description: 'Flysystem has a number of file storage systems already built in, sich as Google Cloud, AWS S3, Azure Blob and Local Storage'
+      - name: 'Build your own file storage adapter'
+        description: 'Documentation is clear to configure your own file storage and there are more third-party file storage providers available.'
     iconGrid:
       - name: 'Flysystem'
         icon: 'i-custom-flysystem'
@@ -135,8 +135,8 @@ sections:
     align: right
     slot: grid
     features:
-      - name: 'Small chunks of data'
-        description: 'Info about this'
+      - name: 'Caddy and FrankenPHP'
+        description: 'We use a Caddy server with FrankenPHP in our tech stack for optimal performance. We noted a 95% reduced latency vs FPM.'
       - name: 'Small chunks of data'
         description: 'Info about this'
       - name: 'Small chunks of data'
