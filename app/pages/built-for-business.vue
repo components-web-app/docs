@@ -21,7 +21,7 @@ useSeoMeta({
           </template>
           <div class="flex justify-center">
             <NuxtImg
-              src="https://picsum.photos/id/180/640/360"
+              src="https://picsum.photos/id/445/640/360"
               class="w-full max-w-[640px] rounded-md shadow-xl ring-1 ring-gray-300 dark:ring-gray-700"
               width="640"
               height="360"
@@ -40,6 +40,25 @@ useSeoMeta({
               v-bind="item"
             />
           </UPageGrid>
+
+          <ULandingCTA
+            card
+            :ui="{ wrapper: 'mt-8 bg-primary/5 dark:bg-primary/5' }"
+          >
+            <template #title>
+              <MDC :value="page.businessSizes.title" />
+            </template>
+            <template #description>
+              <MDC :value="page.businessSizes.description" />
+            </template>
+            <UPageGrid>
+              <UPageCard
+                v-for="(item, index) of page.businessSizes.cards"
+                :key="index"
+                v-bind="item"
+              />
+            </UPageGrid>
+          </ULandingCTA>
         </UPageBody>
       </UPage>
     </UContainer>

@@ -8,14 +8,24 @@ hero:
 pageCards:
   items:
     - title: 'Save Time'
-      description: 'Allow users to start making change to their component, and set it to publish when they are ready.'
-      icon: 'i-heroicons-newspaper-20-solid'
+      description: 'Save time, obviously.'
+      icon: 'i-heroicons-clock-20-solid'
     - title: 'Improve Workflows'
-      description: 'We have built the CWA from the ground up with speed in mind. Each resource is very small and cacheable - we handle it all.'
-      icon: 'i-heroicons-bolt-20-solid'
+      description: 'Better workflows, clearly'
+      icon: 'i-heroicons-light-bulb-20-solid'
     - title: 'Surpass Client Expectations'
-      description: 'Allow users to start making change to their component, and set it to publish when they are ready.'
-      icon: 'i-heroicons-newspaper-20-solid'
-    - title: 'Built with teamwork in mind'
-      description: 'Allow users to start making change to their component, and set it to publish when they are ready.'
-      icon: 'i-heroicons-newspaper-20-solid'
+      description: 'Clients will be thankful, undoubtedly'
+      icon: 'i-heroicons-star-20-solid'
+businessSizes:
+  title: Designed for businesses of <span class="text-primary-400 font-semibold">all sizes</span>
+  description: Whether you have an in-house web development team or use freelance developers (or dabble in code yourself) the CWA has been designed from the ground up to provide businesses and organisations with cuttings edge web technologies designed for the professional workflow.
+  cards:
+    - title: 'Small businesses'
+      description: 'The website builder interface allows admins with no code knowledge to create, edit and extend any CWA website once it’s been created by your developers.'
+      icon: 'i-heroicons-home-modern'
+    - title: 'Organisations'
+      description: 'Developers can extend the functionality of any component and integrate any API to deliver whatever you need from a website or web application.'
+      icon: 'i-heroicons-building-office'
+    - title: 'Agencies'
+      description: 'The CWA has been built with a focus on the professional web development workflow and making each stage as streamlined and efficient as possible maximising the use of resources.'
+      icon: 'i-heroicons-building-office-2'
