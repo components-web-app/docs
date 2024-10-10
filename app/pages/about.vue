@@ -100,12 +100,14 @@ useSeoMeta({
             </template>
 
             <template #image>
-              <NuxtImg
-                width="448"
-                height="448"
-                v-bind="section.image"
-                class="w-full max-w-md"
-              />
+              <div class="flex justify-center">
+                <NuxtImg
+                  width="448"
+                  height="448"
+                  v-bind="section.image"
+                  class="w-full max-w-md"
+                />
+              </div>
             </template>
 
             <template #code>
