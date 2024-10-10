@@ -2,7 +2,7 @@ title: 'About'
 description: Hello about page
 navigation: false
 hero:
-  title: 'Find out more :br<span class="text-primary-400 font-semibold">about the CWA</span>'
+  title: 'Welcome to :br<span class="text-primary-400 font-semibold">the CWA</span>'
   align: center
 cta:
   title: 'The power of a :br <span class="text-primary-400 font-semibold">predictable data structure</span>'
@@ -12,7 +12,7 @@ cta:
   description: |
     With the rise in de-coupled websites and the power of front-end frameworks, we began to think about a data structure that would fit for every website; <span class="text-primary-400 font-semibold">what did every website need?</span>
     :br :br
-    We didn't want to have to re-make common functionality for each website every time, and if we had a predictable data structure, it would be possible to have most of the functionality pre-built while enabling a developer to still create any website, with any HTML structure.
+    We didn't want to have to re-make common functionality for each website every time, and if we had a predictable data structure, it would be possible to have <span class="text-primary-400 font-semibold">a powerful website builder and advanced functionality</span>, while enabling a developer to still <span class="text-primary-400 font-semibold">create any website with complete flexibility</span>.
 pageCards:
   items:
     - title: 'Free & Open-Source'
@@ -93,6 +93,7 @@ sections:
   - title: 'Easy deployment with<br><span class="text-primary">Docker</span>'
     description: 'We have included configurations in our CWA template repository which will be an easy setup for your first CWA project. Using Docker you’ll be able to try this out on your own machine quickly - and with our example CI/CD scripts and Helm charts, deploying to a Kubernetes cluster will be a breeze.'
     align: left
+    slot: grid
     features:
       - name: 'Small chunks of data'
         description: 'Info about this'
@@ -100,6 +101,22 @@ sections:
         description: 'Info about this'
       - name: 'Small chunks of data'
         description: 'Info about this'
+    iconGrid:
+      - name: 'Docker'
+        icon: 'i-simple-icons-docker'
+        class: 'text-[#1D63ED]'
+      - name: 'Kubernetes'
+        icon: 'i-simple-icons-kubernetes'
+        class: 'text-[#326ce5]'
+      - name: 'GitLab'
+        icon: 'i-custom-gitlab'
+        class: 'scale-150'
+      - name: 'Caddy'
+        icon: 'i-custom-caddy'
+      - name: 'Vulcain'
+        icon: 'i-custom-vulcain'
+      - name: 'Mercure'
+        icon: 'i-custom-mercure'
 faq:
   title: Frequently Asked Questions
   description: Some common questions we have about the CWA

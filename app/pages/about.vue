@@ -97,13 +97,24 @@ useSeoMeta({
               />
             </template>
 
-            <template #features>
+            <template #grid>
               <UPageGrid>
-                <UPageCard
-                  v-for="(feature, index) in section.featureCards"
-                  :key="index"
-                  v-bind="feature"
-                />
+                <NuxtLink
+                  v-for="(item, gridIndex) in section.iconGrid"
+                  :key="`grid-${gridIndex}-${item.name}`"
+                  :title="item"
+                  class="block lg:hover:scale-110 transition aspect-[1/1] p-4 opacity-90 hover:opacity-100"
+                >
+                  <div
+                    class="rounded-xl bg-slate-100 w-full h-full p-4 ring-1 ring-gray-300 dark:ring-gray-700"
+                  >
+                    <UIcon
+                      :name="item.icon"
+                      class="w-full h-full"
+                      :class="item.class"
+                    />
+                  </div>
+                </NuxtLink>
               </UPageGrid>
             </template>
           </ULandingSection>
