@@ -83,6 +83,7 @@ sections:
   - title: 'Flexible ingtegration for<br><span class="text-primary">file uploads</span>'
     description: 'Using Flysystem, it is possible to upload your files anywhere...'
     align: right
+    slot: grid
     features:
       - name: 'Small chunks of data'
         description: 'Info about this'
@@ -90,6 +91,21 @@ sections:
         description: 'Info about this'
       - name: 'Small chunks of data'
         description: 'Info about this'
+    iconGrid:
+      - name: 'Flysystem'
+        icon: 'i-custom-flysystem'
+      - name: 'Google Cloud'
+        icon: 'i-custom-google-cloud-storage'
+        class: 'text-[#326ce5]'
+      - name: 'Amazon AWS S3'
+        icon: 'i-custom-aws-s3'
+      - name: 'Azure Blob Storage'
+        icon: 'i-custom-azure-blob'
+      - name: 'OneDrive'
+        icon: 'i-custom-one-drive'
+      - name: 'Local storage'
+        icon: 'i-ph-hard-drives'
+        class: text-primary
   - title: 'Easy deployment with<br><span class="text-primary">Docker</span>'
     description: 'We have included configurations in our CWA template repository which will be an easy setup for your first CWA project. Using Docker you’ll be able to try this out on your own machine quickly - and with our example CI/CD scripts and Helm charts, deploying to a Kubernetes cluster will be a breeze.'
     align: left
