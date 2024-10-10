@@ -98,24 +98,26 @@ useSeoMeta({
             </template>
 
             <template #grid>
-              <div class="grid grid-cols-3 gap-2 md:gap-8">
-                <NuxtLink
-                  v-for="(item, gridIndex) in section.iconGrid"
-                  :key="`grid-${gridIndex}-${item.name}`"
-                  :title="item"
-                  class="block lg:hover:scale-110 transition aspect-[1/1] p-4 opacity-90 hover:opacity-100"
-                >
-                  <div
-                    class="rounded-xl bg-slate-100 w-full h-full p-4 ring-1 ring-gray-300 dark:ring-gray-700"
+              <div class="flex justify-center">
+                <div class="grid grid-cols-3 gap-8 md:gap-12 w-full max-w-md">
+                  <NuxtLink
+                    v-for="(item, gridIndex) in section.iconGrid"
+                    :key="`grid-${gridIndex}-${item.name}`"
+                    :title="item"
+                    class="block lg:hover:scale-110 transition aspect-[1/1] opacity-90 hover:opacity-100"
                   >
-                    <UIcon
-                      :name="item.icon"
-                      :title="item.name"
-                      class="w-full h-full"
-                      :class="item.class"
-                    />
-                  </div>
-                </NuxtLink>
+                    <div
+                      class="rounded-xl bg-slate-100 w-full h-full p-4 ring-1 ring-gray-300 dark:ring-gray-700"
+                    >
+                      <UIcon
+                        :name="item.icon"
+                        :title="item.name"
+                        class="w-full h-full"
+                        :class="item.class"
+                      />
+                    </div>
+                  </NuxtLink>
+                </div>
               </div>
             </template>
           </ULandingSection>
