@@ -60,19 +60,23 @@ sections:
       }
 
       ```
-  - title: 'Built for<br><span class="text-primary">speed</span>'
-    description: 'My info'
+  - title: 'Control is with<br><span class="text-primary">the web designers</span>'
+    description: Unlike other website builders, we leave don't believe website admins should have unlimited style choices.
     align: right
-    slot: component
-    component:
-      is: 'SvgoRoadRunner'
+    slot: image
+    image:
+      src: '/images/home/home-professionals.svg'
+      alt: 'Leave it to the professionals'
     features:
-      - name: 'Small chunks of data'
-        description: 'Info about this'
-      - name: 'Small chunks of data'
-        description: 'Info about this'
-      - name: 'Small chunks of data'
-        description: 'Info about this'
+      - name: Be specific
+        description: As a developer, you can specifically allow which components you have created to be added in specific component groups.
+        icon: i-heroicons-magnifying-glass
+      - name: Pre-configure styles
+        description: You define the styles that a website admin can select from. No more revisiting a website you created months ago and realising the client has hacked their way to an ugly UI.
+        icon: i-heroicons-paint-brush
+      - name: Build components your way
+        description: Build your components your way - the CWA simply provides helpers to make your life easier.
+        icon: i-heroicons-square-3-stack-3d
   - title: 'Stay in<br><span class="text-primary">sync</span>'
     description: 'Leveraging Mercure for collaboration and to keep users up to date with changes'
     align: left
@@ -87,9 +91,22 @@ sections:
         description: 'Info about this'
       - name: 'Small chunks of data'
         description: 'Info about this'
+  - title: 'Built for<br><span class="text-primary">speed</span>'
+    description: 'My info'
+    align: right
+    slot: component
+    component:
+      is: 'SvgoRoadRunner'
+    features:
+      - name: 'Small chunks of data'
+        description: 'Info about this'
+      - name: 'Small chunks of data'
+        description: 'Info about this'
+      - name: 'Small chunks of data'
+        description: 'Info about this'
   - title: 'Flexible ingtegration for<br><span class="text-primary">file uploads</span>'
     description: 'Using Flysystem, it is possible to upload your files anywhere...'
-    align: right
+    align: left
     slot: grid
     features:
       - name: 'Small chunks of data'
@@ -115,7 +132,7 @@ sections:
         class: text-primary
   - title: 'Easy deployment with<br><span class="text-primary">Docker</span>'
     description: 'We have included configurations in our CWA template repository which will be an easy setup for your first CWA project. Using Docker you’ll be able to try this out on your own machine quickly - and with our example CI/CD scripts and Helm charts, deploying to a Kubernetes cluster will be a breeze.'
-    align: left
+    align: right
     slot: grid
     features:
       - name: 'Small chunks of data'

@@ -77,20 +77,20 @@ benefits:
           trailing: true
           size: xl
           class: ml-0
-    - title: 'Web apps made by<br><span class="text-primary-400">the professionals</span>'
-      description: Unlike other website builders, we leave don't believe website admins should have unlimited style choices.
+    - title: 'The missing link<br><span class="text-primary-400">in website builders</span>'
+      description: Traditional website builders take too much control, complexity and style decisions away from the professionals.
       id: professionals
       align: left
       image: '/images/home/home-professionals.svg'
       features:
-        - name: Stay on brand
-          description: We believe your website components should be fit the branding as you envisaged
+        - name: Build the website you want
+          description: No need to hack other websites builders to work for you - components are built by professionals, custom to clients' needs.
+          icon: i-heroicons-computer-desktop
+        - name: Easy to make, easy to use
+          description: Using the CWA, styles can be pre-configured to fit the branding. No more endless choices and administrators selecting colours which are slightly off brand
           icon: i-heroicons-paint-brush
-        - name: Pre-configure styles
-          description: You define the styles that a website admin can select from.
-          icon: i-heroicons-swatch
         - name: Seamless integration of new pages
-          description: With this balance of flexibility and restrictions, new pages will integrate seamlessly and beautifully into their existing website.
+          description: With our balance of flexibility and restrictions, new pages are easy to integrate seamlessly and beautifully into their existing website.
           icon: i-heroicons-puzzle-piece
       links:
         - label: More about the CWA
