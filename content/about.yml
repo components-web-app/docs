@@ -63,6 +63,9 @@ sections:
   - title: 'Built for<br><span class="text-primary">speed</span>'
     description: 'My info'
     align: right
+    slot: component
+    component:
+      is: 'SvgoRoadRunner'
     features:
       - name: 'Small chunks of data'
         description: 'Info about this'
@@ -73,6 +76,10 @@ sections:
   - title: 'Stay in<br><span class="text-primary">sync</span>'
     description: 'Leveraging Mercure for collaboration and to keep users up to date with changes'
     align: left
+    slot: image
+    image:
+      src: '/images/about/cwa-sync.jpg'
+      alt: 'Stay In Sync with the CWA'
     features:
       - name: 'Small chunks of data'
         description: 'Info about this'

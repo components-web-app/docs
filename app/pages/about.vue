@@ -89,6 +89,25 @@ useSeoMeta({
               />
             </template>
 
+            <template #component>
+              <Component
+                v-bind="section.component"
+                :is="section.component.is"
+                :font-controlled="false"
+                filled
+                class="w-full max-h-96"
+              />
+            </template>
+
+            <template #image>
+              <NuxtImg
+                width="448"
+                height="448"
+                v-bind="section.image"
+                class="w-full max-w-md"
+              />
+            </template>
+
             <template #code>
               <MDC
                 :value="section.code"
