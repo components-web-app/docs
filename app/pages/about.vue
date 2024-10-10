@@ -47,7 +47,7 @@ useSeoMeta({
     <UContainer>
       <UPage>
         <UPageBody>
-          <ULandingCTA v-bind="page.cta">
+          <UPageHero v-bind="page.cta">
             <template #title>
               <MDC
                 v-if="page.cta.title"
@@ -60,7 +60,7 @@ useSeoMeta({
                 :value="page.cta.description"
               />
             </template>
-          </ULandingCTA>
+          </UPageHero>
 
           <UPageGrid :ui="{ wrapper: 'xl:grid-cols-2' }">
             <UPageCard

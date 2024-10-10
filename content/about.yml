@@ -7,6 +7,8 @@ hero:
 cta:
   title: 'The power of a :br <span class="text-primary-400 font-semibold">predictable data structure</span>'
   class: 'mb-8'
+  icon: 'i-ph-barbell'
+  align: center
   description: |
     With the rise in de-coupled websites and the power of front-end frameworks, we began to think about a data structure that would fit for every website; <span class="text-primary-400 font-semibold">what did every website need?</span>
     :br :br
