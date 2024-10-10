@@ -30,20 +30,19 @@ businessSizes:
       description: 'Built with a focus on the professional web development workflow, the CWA helps you to streamline every part of the workflow from discovery to delivery.'
       icon: 'i-heroicons-building-office-2'
 teamwork:
-  title: Built with Teamwork in Mind
+  title: Built with :br<span class="text-primary-400 font-semibold">teamwork</span> in mind
   align: center
   description: |
-    We understand the workflow of creating a web app from concept to fruition while all the time valuing quality, flexibility and in-house control of frameworks and hosting.
+    The CWA has been built with first-hand knowledge of the web development workflow, from concept and discovery to delivery and maintenance.
     :br :br
-    We developed the CWA to include all our learnings so your organisation can take advantage of the extreme flexibility the solution provides.
+    Streamline your team's workflow from building company branding and UI kits, to how the website and product managers interact with the developers and clients. The CWA gives a clear structure of building individual UI components and provides flexibility to for the right people in the right teams who can work in their areas of expertise.
 timeline:
-  - title: <span class="text-primary-400 font-semibold">Planning</span> for using the CWA
+  - title: Built for <span class="text-primary-400 font-semibold">Managers</span>
     description: |
-      #### Foundation and discover
-      Before starting the development of a website, it is essential to have a detailed plan of what you want the website to achieve and the overall content and structure, generally in the form of a wireframe, also know as a website blueprint. This can include a discover phase and defines the components needed once finalised.
-      :br :br
-      #### Design
-      Once your wireframe has been defined, the look and feel of the site along with styles are developed by your designers including how the website will reflow on different screens. The resulting finalised UI kit is then handed over to the development team to get started.
+      During the discovery phase, a manager will work with a client to build an understanding of requirements. Usually a plan is drawn up in the form of wireframes (also know as website blueprints) as user flows. <span class="text-primary-400 font-semibold">Each section within the blueprint can be considered a component that will need to be created.</span> Each with it's own specific purpose and requirements.
+  - title: Built for <span class="text-primary-400 font-semibold">UI Designers</span>
+    description: |
+      Once you have a blueprint, <span class="text-primary-400 font-semibold">the choice of style frameworks and UI kits is flexible and a business decision for you to make with your UI designer.</span> Each component can be designed with the branding and UI kit to the specification provided which can then be passed to the developer.
   - title: Built for <span class="text-primary-400 font-semibold">Developers</span>
     description: |
       We’ve made the developer experience as simple as possible meaning your coders can breeze through creating components and scaffolding for the builder interface leaving the website ready for a non-developer to populate and arrange components. The developer sets up the project, builds the specific components and defines styles for the web app meaning the structure and content work can be assigned to an administrator with no coding knowledge.

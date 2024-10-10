@@ -66,6 +66,9 @@ useSeoMeta({
           <UPageHero
             v-bind="page.teamwork"
           >
+            <template #title>
+              <MDC :value="page.teamwork.title" />
+            </template>
             <template #description>
               <MDC :value="page.teamwork.description" />
             </template>
