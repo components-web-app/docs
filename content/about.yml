@@ -130,17 +130,20 @@ sections:
       - name: 'Local storage'
         icon: 'i-ph-hard-drives'
         class: text-primary
-  - title: 'Easy deployment with<br><span class="text-primary">Docker</span>'
-    description: 'We have included configurations in our CWA template repository which will be an easy setup for your first CWA project. Using Docker you’ll be able to try this out on your own machine quickly - and with our example CI/CD scripts and Helm charts, deploying to a Kubernetes cluster will be a breeze.'
+  - title: 'Optimised stack and<br><span class="text-primary">easy to deploy</span>'
+    description: 'When it comes to deploying your application, we know designing the tech stack can be difficult. We have done all the heavy lifting.'
+    # description: 'We have included configurations in our CWA template repository which will be an easy setup for your first CWA project. Using Docker you’ll be able to try this out on your own machine quickly - and with our example CI/CD scripts and Helm charts, deploying to a Kubernetes cluster will be a breeze.'
     align: right
     slot: grid
     features:
-      - name: 'Caddy and FrankenPHP'
-        description: 'We use a Caddy server with FrankenPHP in our tech stack for optimal performance. We noted a 95% reduced latency vs FPM.'
-      - name: 'Small chunks of data'
-        description: 'Info about this'
-      - name: 'Small chunks of data'
-        description: 'Info about this'
+      - name: 'Dockerized'
+        description: 'We have built the tech stack into Docker containers and Docker Compose configurations so it is vendor agnostic and can be deployed easily.'
+      - name: 'Kubernetes and a Helm Chart'
+        description: 'Deploy to your own Kubernetes cluster and take advantage of HPA and VPA with easy to customise templates.'
+      - name: 'Bash scripts for CI'
+        description: 'Although we have a vendor specific GitLab configuration, it is easy to create your own for other CI providers as we have created a bash script with functions to carry out the common tasks.'
+      - name: 'Optimised tech stack'
+        description: 'We use a Caddy server with FrankenPHP in our tech stack for optimal performance. We noted a 95% reduced latency vs FPM. We also have included Caddy modules for Mercure, Vulcain and Souin.'
     iconGrid:
       - name: 'Docker'
         icon: 'i-simple-icons-docker'
