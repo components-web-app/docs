@@ -65,7 +65,7 @@ sections:
     align: right
     slot: image
     image:
-      src: '/images/home/home-professionals.svg'
+      src: '/images/about/about-designers.svg'
       alt: 'Leave it to the professionals'
     features:
       - name: Be specific
@@ -82,7 +82,7 @@ sections:
     align: left
     slot: image
     image:
-      src: '/images/about/cwa-sync.jpg'
+      src: '/images/about/about-sync.svg'
       alt: 'Stay In Sync with the CWA'
     features:
       - name: 'Small chunks of data'
