@@ -16,8 +16,17 @@ useSeoMeta({
         <UPageHero
           v-bind="page.hero"
         >
+          <template #title>
+            <MDC
+              v-if="page.hero.title"
+              :value="page.hero.title"
+            />
+          </template>
           <template #description>
-            <MDC :value="page.hero.description" />
+            <MDC
+              v-if="page.hero.description"
+              :value="page.hero.description"
+            />
           </template>
           <div class="flex justify-center">
             <div class="w-full max-w-[840px] rounded-md shadow-xl ring-1 ring-gray-300 dark:ring-gray-700 overflow-hidden">
@@ -38,7 +47,22 @@ useSeoMeta({
     <UContainer>
       <UPage>
         <UPageBody>
-          <UPageGrid>
+          <ULandingCTA v-bind="page.cta">
+            <template #title>
+              <MDC
+                v-if="page.cta.title"
+                :value="page.cta.title"
+              />
+            </template>
+            <template #description>
+              <MDC
+                v-if="page.cta.description"
+                :value="page.cta.description"
+              />
+            </template>
+          </ULandingCTA>
+
+          <UPageGrid :ui="{ wrapper: 'xl:grid-cols-2' }">
             <UPageCard
               v-for="(item, index) of page.pageCards.items"
               :key="index"

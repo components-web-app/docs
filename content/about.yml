@@ -2,34 +2,15 @@ title: 'About'
 description: Hello about page
 navigation: false
 hero:
-  title: 'About the CWA'
-  align: left
+  title: 'Find out more :br<span class="text-primary-400 font-semibold">about the CWA</span>'
+  align: center
+cta:
+  title: 'The power of a :br <span class="text-primary-400 font-semibold">predictable data structure</span>'
+  class: 'mb-8'
   description: |
     With the rise in de-coupled websites and the power of front-end frameworks, we began to think about a data structure that would fit for every website; <span class="text-primary-400 font-semibold">what did every website need?</span>
     :br :br
     We didn't want to have to re-make common functionality for each website every time, and if we had a predictable data structure, it would be possible to have most of the functionality pre-built while enabling a developer to still create any website, with any HTML structure.
-faq:
-  title: Frequently Asked Questions
-  description: Some common questions we have about the CWA
-  items:
-    - label: Why did you choose these frameworks?
-      content: |
-        With a background in PHP and Symfony, and the API Platform framework being well maintained by great developers, we decided to use these advanced features and give some stability as we knew development of this concept could take some time.
-        :br :br
-        We found VueJS and Nuxt to be incredibly fun frameworks for the front-end, well maintained, and with a strong vibrant community. In both instances we wanted to create a system that was built on the shoulders of giants; we didn’t want to re-invent the wheel.
-      defaultOpen: false
-    - label: How is the data loaded?
-      content: |
-        Each individual resource is loaded with a separate request. It results in a lot of HTTP requests, however each part has very small, and most importantly, cacheable, chunks of data.
-        :br :br
-        We only need to load in the data that is required for each individual page which can result in incredibly fast load times.
-    - label: What does “Unlimited minor & patch updates” include?
-      content: The CWA is free and open source forever. You will always be able to upgrade to the latest version without warranty or guarantees.
-    - label: Do you offer technical support?
-      content: |
-        Contact us at hello@cwa.rocks or raise issues in our GitHub repositories and we will be happy to help.
-        :br :br
-        If you need more personal technical help, Silverback Web Apps will be able to assist.
 pageCards:
   items:
     - title: 'Free & Open-Source'
@@ -38,8 +19,11 @@ pageCards:
     - title: 'Decoupled web apps'
       description: 'API Driven.'
       icon: 'i-heroicons-circle-stack'
-    - title: 'Low-code, improved DX'
-      description: 'Low-code benefits, developer experience...'
+    - title: 'Convention over configuration'
+      description: 'Using a set directory and file structure allows the CWA Nuxt module to get you up and running fast.'
+      icon: 'i-ph-folders'
+    - title: 'Low-code, great DX'
+      description: 'Easy to use abstract classes, traits, and PHP annotations for the API. The front-end we have ready-to-use components and powerful composables to get you up and running quickly.'
       icon: 'i-heroicons-face-smile'
 sections:
   - title: 'The power of<br><span class="text-primary">draft components</span>'
@@ -114,3 +98,25 @@ sections:
         description: 'Info about this'
       - name: 'Small chunks of data'
         description: 'Info about this'
+faq:
+  title: Frequently Asked Questions
+  description: Some common questions we have about the CWA
+  items:
+    - label: Why did you choose these frameworks?
+      content: |
+        With a background in PHP and Symfony, and the API Platform framework being well maintained by great developers, we decided to use these advanced features and give some stability as we knew development of this concept could take some time.
+        :br :br
+        We found VueJS and Nuxt to be incredibly fun frameworks for the front-end, well maintained, and with a strong vibrant community. In both instances we wanted to create a system that was built on the shoulders of giants; we didn’t want to re-invent the wheel.
+      defaultOpen: false
+    - label: How is the data loaded?
+      content: |
+        Each individual resource is loaded with a separate request. It results in a lot of HTTP requests, however each part has very small, and most importantly, cacheable, chunks of data.
+        :br :br
+        We only need to load in the data that is required for each individual page which can result in incredibly fast load times.
+    - label: What does “Unlimited minor & patch updates” include?
+      content: The CWA is free and open source forever. You will always be able to upgrade to the latest version without warranty or guarantees.
+    - label: Do you offer technical support?
+      content: |
+        Contact us at hello@cwa.rocks or raise issues in our GitHub repositories and we will be happy to help.
+        :br :br
+        If you need more personal technical help, Silverback Web Apps will be able to assist.
