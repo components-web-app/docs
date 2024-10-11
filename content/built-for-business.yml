@@ -47,18 +47,18 @@ timeline:
     description: |
        Being able to communicate requirements clearly to developers and providing them with concise jobs leads to great unity between teams. The developer just needs to focus on creating individual components to specifications. Then content and website structure can be populated by other team members to improve efficiency.
     features:
-      - title: Back-end
-        description: Only basic php knowledge needed.
-      - title: Styles
-        description: Use your own CSS frameworks.
-      - title: Security
-        description: In-built advanced security allows dev to focus on building.
-      - title: Bespoke
-        description: Fully extensible structure for any application so you know if it's possible CWA can do it.
-      - title: Deployment (DevOps)
-        description: Easily deploy to docker container for maximum portability of website.
-      - title: Ready made admin
-        description: The CWA comes with a feature-rich ready-made admin system.
+      - title: DX first
+        description: Happy developers are productive developers. It is easy for developers to build in advanced functionality and to get up and running.
+      - title: CSS framework agnostic
+        description: While we ship with Tailwind configured by default, you can use whichever framework best is best for your needs.
+      - title: Feeling familiar
+        description: We have built the CWA on top of very well documented and supported frameworks. You'll find developers are quick to learn how the CWA sits on top and the talent is available in the job seekers market.
+      - title: Extensible
+        description: Extend functionality as you would with any other application built on these frameworks. Documentation on functionality is abundant.
+      - title: Devops configured
+        description: No need to spend endless hours working out how to best deploy. We have provided a working CI pipeline for GitLab and it is simple to adjust to be specific for your vendors.
+      - title: Building for the admin
+        description: We already have an advanced manager toolbar for resources, and it instead of a separate CMS, our in-line system is intuitive for both users and developers to create the required tabs.
   - title: Built for <span class="text-primary-400 font-semibold">Admins</span>
     description: |
       Once the developers have setup the project it is time for the administrator to put the site together using the builder interface preparing the structure, pages, routes and components ready for content input.
