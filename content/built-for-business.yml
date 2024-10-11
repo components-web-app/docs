@@ -45,7 +45,7 @@ timeline:
       Once you have a blueprint, <span class="text-primary-400 font-semibold">the choice of style frameworks and UI kits is flexible and a business decision for you to make with your UI designer.</span> Each component can be designed with the branding and UI kit to the specification provided which can then be passed to the developer.
   - title: Built for <span class="text-primary-400 font-semibold">Developers</span>
     description: |
-      We’ve made the developer experience as simple as possible meaning your coders can breeze through creating components and scaffolding for the builder interface leaving the website ready for a non-developer to populate and arrange components. The developer sets up the project, builds the specific components and defines styles for the web app meaning the structure and content work can be assigned to an administrator with no coding knowledge.
+       Being able to communicate requirements clearly to developers and providing them with concise jobs leads to great unity between teams. The developer just needs to focus on creating individual components to specifications. Then content and website structure can be populated by other team members to improve efficiency.
     features:
       - title: Back-end
         description: Only basic php knowledge needed.

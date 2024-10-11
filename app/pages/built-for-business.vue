@@ -24,10 +24,10 @@ useSeoMeta({
           </template>
           <div class="flex justify-center">
             <NuxtImg
-              src="https://picsum.photos/id/445/640/360"
-              class="w-full max-w-[640px] rounded-md shadow-xl ring-1 ring-gray-300 dark:ring-gray-700"
+              src="/images/business/business-hero.svg"
+              class="w-full max-w-[340px]"
               width="640"
-              height="360"
+              height="640"
             />
           </div>
         </UPageHero>
@@ -97,7 +97,7 @@ useSeoMeta({
                     <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl mb-4 -mt-2">
                       <MDC :value="item.title" />
                     </h2>
-                    <MDC class="prose prose-primary dark:prose-invert max-w-none text-justify" :value="item.description" />
+                    <MDC class="prose prose-primary dark:prose-invert max-w-none" :value="item.description" />
                     <UPageGrid v-if="item.features" :ui="{ wrapper: 'mt-8 gap-4 xl:grid-cols-2' }">
                       <UPageCard
                         v-for="(feature, featureIndex) of item.features"
