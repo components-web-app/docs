@@ -37,13 +37,13 @@ teamwork:
     :br :br
     Streamline your team's workflow from building company branding and UI kits, to how the website and product managers interact with the developers and clients. The CWA gives a clear structure of building individual UI components and provides flexibility to for the right people in the right teams who can work in their areas of expertise.
 timeline:
-  - title: Built for <span class="text-primary-400 font-semibold">Managers</span>
+  - title: Built for <span class="text-primary-400 font-semibold">structured planning</span>
     description: |
       During the discovery phase, a manager will work with a client to build an understanding of requirements. Usually a plan is drawn up in the form of wireframes (also know as website blueprints) as user flows. <span class="text-primary-400 font-semibold">Each section within the blueprint can be considered a component that will need to be created.</span> Each with it's own specific purpose and requirements.
-  - title: Built for <span class="text-primary-400 font-semibold">UI Designers</span>
+  - title: Built for <span class="text-primary-400 font-semibold">clarity in design</span>
     description: |
       Once you have a blueprint, <span class="text-primary-400 font-semibold">the choice of style frameworks and UI kits is flexible and a business decision for you to make with your UI designer.</span> Each component can be designed with the branding and UI kit to the specification provided which can then be passed to the developer.
-  - title: Built for <span class="text-primary-400 font-semibold">Developers</span>
+  - title: Built for <span class="text-primary-400 font-semibold">happy developers</span>
     description: |
        Being able to communicate requirements clearly to developers and providing them with concise jobs leads to great unity between teams. The developer just needs to focus on creating individual components to specifications. Then content and website structure can be populated by other team members to improve efficiency.
     features:
@@ -59,9 +59,9 @@ timeline:
         description: No need to spend endless hours working out how to best deploy. We have provided a working CI pipeline for GitLab and it is simple to adjust to be specific for your vendors.
       - title: Building for the admin
         description: We already have an advanced manager toolbar for resources, and it instead of a separate CMS, our in-line system is intuitive for both users and developers to create the required tabs.
-  - title: Built for <span class="text-primary-400 font-semibold">Admins</span>
+  - title: Built for <span class="text-primary-400 font-semibold">easy assembly</span>
     description: |
-      Once the developers have setup the project it is time for the administrator to put the site together using the builder interface preparing the structure, pages, routes and components ready for content input.
+      Managers or clients will find it easy and intuitive to begin working with the website once the developers have the components ready. Simply add the pages required using the website builder which will feel as though it has been made just for them, knowing exactly where they need to go to create and update their custom website.
     features:
       - title: Routes (URLs)
         description: Advanced route and re-direct management including sorting and searching.
@@ -75,7 +75,7 @@ timeline:
         description: Refine and modify your page title and meta description to help with organic search rankings.
       - title: Stand-alone pages
         description: Your website can include standalone pages or even mini websites for targeted PPC landing pages, A/B testing or promotional marketing pages.
-  - title: Built for <span class="text-primary-400 font-semibold">Editors</span>
+  - title: Built for <span class="text-primary-400 font-semibold">content writers</span>
     description: |
       Once the administrator has setup the website it can be passed to editors for content input and review by decision makers before website launch or publishing a component.
     features:
