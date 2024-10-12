@@ -63,19 +63,15 @@ timeline:
     description: |
       Managers or clients will find it easy and intuitive to begin working with the website once the developers have the components ready. Simply add the pages required using the website builder which will feel as though it has been made just for them, knowing exactly where they need to go to create and update their custom website.
     features:
-      - title: Routes (URLs)
-        description: Advanced route and re-direct management including sorting and searching.
-      - title: Re-ordering
-        description: Stable re-ordering allows you to define the order of components within a group.
-      - title: Users
-        description: User management allows your developer to define permissions for different types of users based on their role and security clearance.
+      - title: Stand-alone pages
+        description: Your website can include standalone pages or even mini websites for targeted PPC landing pages, A/B testing or promotional marketing.
+      - title: Search Engine Optimisation
+        description: Built-in management of your page titles and meta descriptions while leaving you in control of on-page SEO.
+      - title: Route management
+        description: Search, sort and manage routes so you can easily audit your public web pages.
       - title: Page management
         description: Ability to easily search sort and filter and edit settings on your pages reducing workload on page management.
-      - title: Search Engine Optimisation
-        description: Refine and modify your page title and meta description to help with organic search rankings.
-      - title: Stand-alone pages
-        description: Your website can include standalone pages or even mini websites for targeted PPC landing pages, A/B testing or promotional marketing pages.
-  - title: Built for <span class="text-primary-400 font-semibold">content writers</span>
+  - title: Built for <span class="text-primary-400 font-semibold">writing content</span>
     description: |
       Once the administrator has setup the website it can be passed to editors for content input and review by decision makers before website launch or publishing a component.
     features:
@@ -93,7 +89,7 @@ timeline:
         description: Live components can be edited directly for urgent updates and faster content population during initial build.
   - title: Built for <span class="text-primary-400 font-semibold">the future</span>
     description: |
-      Your preferred workflow between developer, administrator and editor is up to you. Your developer can also build in custom permissions to limit access and modification of the web app to specific roles.
+      Websites evolve and grow, and we aim to make the process of keeping up to date with changes easy. As a business grows, requirements change, so creating new components which can fit the needs of the every evolving business needs is simple.
 faq:
   title: Frequently Asked Questions
   description: Some common questions we have about the CWA

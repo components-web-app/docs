@@ -104,8 +104,8 @@ sections:
         description: 'The page UI updates as soon as the primary resources are loaded from the API or cached local storage. Each resource is loaded individually, and the CWA only loads what is required for each page.'
       - name: 'Caching and Preload Hints'
         description: 'We leverage a static cache layer which is only cleared when resources change. We also leverage Vulcain with preload hints to improve response times.'
-  - title: 'Flexible ingtegration for<br><span class="text-primary">file uploads</span>'
-    description: 'We have built in a file storage abstraction layer, Flysystem.'
+  - title: 'Integrate your own<br><span class="text-primary">file storage</span>'
+    description: 'We have built in easily configurable file uploads and a file storage abstraction layer with Flysystem.'
     align: left
     slot: grid
     features:
@@ -130,7 +130,7 @@ sections:
       - name: 'Local storage'
         icon: 'i-ph-hard-drives'
         class: text-primary
-  - title: 'Optimised stack and<br><span class="text-primary">easy to deploy</span>'
+  - title: 'Optimised stack,<br><span class="text-primary">easy to deploy</span>'
     description: 'When it comes to deploying your application, we know designing the tech stack can be difficult. We have done all the heavy lifting.'
     # description: 'We have included configurations in our CWA template repository which will be an easy setup for your first CWA project. Using Docker you’ll be able to try this out on your own machine quickly - and with our example CI/CD scripts and Helm charts, deploying to a Kubernetes cluster will be a breeze.'
     align: right
