@@ -100,17 +100,17 @@ faq:
     - label: What guarantees are given?
       content: |
         It is licenced under the MIT licence, no guarantees are given. The project is created and maintained by the community.
-    - label: How long have you been using the CWA?
-      content: Ongoing and is in version 3 ready for beta users. In production sites.
-    - label: How long is it maintained for?
-      content: Details of API and NUXT releases and continued support
+#    - label: How long have you been using the CWA?
+#      content: Ongoing and is in version 3 ready for beta users. In production sites.
+#    - label: How long is it maintained for?
+#      content: Details of API and NUXT releases and continued support
     - label: What developers do I need?
-      content: PHP and Front-end. Experience with Nuxt good etc.
-    - label: How frequent are updates?
-      content: Currently working continuously. View roadmap. (We do not have a roadmap)
+      content: Most developers with some experience will be able to pick up the basic concepts from both the API and front-end quickly. Developers with experience with Symfony, API Platform or just PHP will gravitate more to the back-end. Those with experience and interest with VueJS and Nuxt front-end javascript frameworks.
+#    - label: How frequent are updates?
+#      content: Currently working continuously. View roadmap. (We do not have a roadmap)
     - label: Can we commission you to make a website?
-      content: Yes, via SWA
+      content: Yes, if you would like a website built using the CWA, please contact the creators and primary sponsors of the CWA, Silverback Web Apps.
     - label: Can CWA scale?
-      content: Yes, indefinitely via K8S. Suitable for enterprise projects.
+      content: Yes. We have designed the CWA to work with HPA and VPA - we recommend not mounting volumes to your containers for the most flexibility. We have also load-tested the CWA with the tech stack provided, and get impressive results with very little resources allocated.
     - label: Do you provide support?
-      content: Yes, in relation to bug fixes and development of core project – via GitHub. Support for individual projects and development of components your developers can contact SWA.
+      content: Yes, in relation to bug fixes and development of core project – via GitHub. Support for individual projects and development of components your developers can contact Silverback Web Apps.
