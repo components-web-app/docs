@@ -81,7 +81,7 @@ benefits:
       description: Traditional website builders take too much control, complexity and style decisions away from the professionals.
       id: professionals
       align: left
-      image: '/images/home/home-professionals.svg'
+      image: '/images/home/home-builders.svg'
       features:
         - name: Build the website you want
           description: No need to hack other websites builders to work for you - components are built by professionals, custom to clients' needs.
