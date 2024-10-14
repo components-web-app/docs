@@ -94,9 +94,10 @@ sections:
   - title: 'Built for<br><span class="text-primary">speed</span>'
     description: 'Our experience means we have optimised the system for the fastest response times and accelerated user experience.'
     align: right
-    slot: component
-    component:
-      is: 'SvgoRoadRunner'
+    slot: image
+    image:
+      src: '/images/about/about-speed.svg'
+      alt: 'CWA is built for Speed - Plane breaking sound barrier'
     features:
       - name: 'Simple, small API responses'
         description: 'Each API request returns a small amount of data and a single resource instead of complex and deeply nested data. '
