@@ -20,7 +20,7 @@ onMounted(() => {
           inline: 'justify-center w-20 h-20',
           color: {
             gray: {
-              solid: ' transition shadow-sm ring-1 ring-inset ring-gray-300 ring-gray-700 text-gray-200 bg-gray-700 dark:bg-gray-800 hover:bg-gray-900 dark:hover:bg-gray-900 disabled:bg-gray-800 aria-disabled:bg-gray-800'
+              solid: 'transition shadow-sm ring-1 ring-inset ring-gray-300 ring-gray-700 text-gray-200 bg-gray-700 dark:bg-gray-800 hover:bg-gray-900 dark:hover:bg-gray-900 disabled:bg-gray-800 aria-disabled:bg-gray-800'
             }
           }
         }"
@@ -28,17 +28,20 @@ onMounted(() => {
         @click="isOpen = true"
       >
         <SvgoVipCrown
-          class="h-8"
+          class="h-9"
           :font-controlled="false"
           filled
         />
       </UButton>
     </div>
 
-    <USlideover v-model="isOpen">
+    <USlideover
+      v-model="isOpen"
+      :ui="{ background: 'bg-transparent dark:bg-transparent backdrop-blur-sm' }"
+    >
       <UCard
         class="flex flex-col flex-1"
-        :ui="{ body: { base: 'flex-1' }, ring: '', divide: 'divide-y divide-gray-100 dark:divide-gray-800' }"
+        :ui="{ body: { base: 'flex-1' }, ring: '', rounded: 'rounded-none', divide: 'divide-y divide-gray-100 dark:divide-gray-800', background: 'bg-gray-900/80 dark:bg-gray-900/80' }"
       >
         <template #header>
           <UButton
@@ -49,10 +52,19 @@ onMounted(() => {
             class="flex absolute end-5 top-5 z-10"
             square
             padded
+            :ui="{ color: {
+              gray: {
+                ghost: 'transition text-white hover:bg-white/70'
+              }
+            } }"
             @click="isOpen = false"
           />
           <div class="flex justify-center pt-10">
-            <SvgoVipTitle :font-controlled="false" filled class="w-9/12" />
+            <SvgoVipTitle
+              :font-controlled="false"
+              filled
+              class="w-9/12"
+            />
           </div>
         </template>
       </UCard>
