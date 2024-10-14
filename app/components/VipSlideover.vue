@@ -1,5 +1,14 @@
 <script setup lang="ts">
 const isOpen = ref(false)
+const vipIsShown = useCookie<boolean>('vip-shown', {
+  maxAge: 3600 // 1 hour
+})
+onMounted(() => {
+  if (!vipIsShown.value) {
+    isOpen.value = true
+    vipIsShown.value = true
+  }
+})
 </script>
 
 <template>
@@ -11,7 +20,7 @@ const isOpen = ref(false)
           inline: 'justify-center w-20 h-20',
           color: {
             gray: {
-              solid: 'shadow-sm ring-1 ring-inset ring-gray-300 ring-gray-700 text-gray-200 bg-gray-700 dark:bg-gray-800 hover:bg-gray-900 disabled:bg-gray-800 aria-disabled:bg-gray-800'
+              solid: ' transition shadow-sm ring-1 ring-inset ring-gray-300 ring-gray-700 text-gray-200 bg-gray-700 dark:bg-gray-800 hover:bg-gray-900 dark:hover:bg-gray-900 disabled:bg-gray-800 aria-disabled:bg-gray-800'
             }
           }
         }"
