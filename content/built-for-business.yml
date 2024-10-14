@@ -91,8 +91,8 @@ timeline:
     description: |
       Websites evolve and grow, and we aim to make the process of keeping up to date with changes easy. As a business grows, requirements change, so creating new components which can fit the needs of the every evolving business needs is simple.
 faq:
-  title: Frequently Asked Questions
-  description: Some common questions we have about the CWA
+  title: Business FAQs
+  description: Some common business related questions we have about the CWA
   items:
     - label: How much does it cost?
       content: |

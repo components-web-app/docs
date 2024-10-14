@@ -169,8 +169,8 @@ sections:
         icon: 'i-custom-souin'
         class: text-primary
 faq:
-  title: Frequently Asked Questions
-  description: Some common questions we have about the CWA
+  title: Technical FAQs
+  description: Some common technical questions we have about the CWA
   items:
     - label: Why did you choose these frameworks?
       content: |
