@@ -36,18 +36,26 @@ onMounted(() => {
     </div>
 
     <USlideover v-model="isOpen">
-      <div class="p-4 flex-1">
-        <UButton
-          color="gray"
-          variant="ghost"
-          size="sm"
-          icon="i-heroicons-x-mark-20-solid"
-          class="flex absolute end-5 top-5 z-10"
-          square
-          padded
-          @click="isOpen = false"
-        />
-      </div>
+      <UCard
+        class="flex flex-col flex-1"
+        :ui="{ body: { base: 'flex-1' }, ring: '', divide: 'divide-y divide-gray-100 dark:divide-gray-800' }"
+      >
+        <template #header>
+          <UButton
+            color="gray"
+            variant="ghost"
+            size="sm"
+            icon="i-heroicons-x-mark-20-solid"
+            class="flex absolute end-5 top-5 z-10"
+            square
+            padded
+            @click="isOpen = false"
+          />
+          <div class="flex justify-center pt-10">
+            <SvgoVipTitle :font-controlled="false" filled class="w-9/12" />
+          </div>
+        </template>
+      </UCard>
     </USlideover>
   </div>
 </template>
