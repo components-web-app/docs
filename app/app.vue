@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { ParsedContent } from '@nuxt/content'
+import VipSlideover from "~/components/VipSlideover.vue";
 
 const { seo } = useAppConfig()
 
@@ -9,6 +10,7 @@ const { data: files } = useLazyFetch<ParsedContent[]>('/api/search.json', {
   server: false
 })
 
+const { isVip } = useVip()
 useHead({
   meta: [
     { name: 'viewport', content: 'width=device-width, initial-scale=1' }
@@ -17,7 +19,8 @@ useHead({
     { rel: 'icon', href: '/favicon.ico' }
   ],
   htmlAttrs: {
-    lang: 'en'
+    'lang': 'en',
+    'data-vip': isVip.value
   }
 })
 
@@ -78,5 +81,6 @@ provide('navigation', navigation)
     </ClientOnly>
 
     <UNotifications />
+    <VipSlideover v-if="isVip" />
   </div>
 </template>

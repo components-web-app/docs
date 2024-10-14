@@ -6,6 +6,12 @@ const { footer } = useAppConfig()
 defineProps<{
   links: FooterLink[]
 }>()
+
+const { isVip } = useVip()
+
+const footerClass = computed(() => {
+  return isVip.value ? 'pb-20' : ''
+})
 </script>
 
 <template>
@@ -26,7 +32,7 @@ defineProps<{
       </template>
     </template>
   </UFooter>
-  <UFooter>
+  <UFooter :class="footerClass">
     <template #center>
       <div class="text-xs text-gray-500 dark:text-gray-400">
         With thanks to
@@ -35,7 +41,7 @@ defineProps<{
           target="_blank"
           class="hover:text-gray-600 dark:hover:text-gray-300 font-semibold"
         >
-        Nuxt UI Pro
+          Nuxt UI Pro
         </NuxtLink> for sponsoring our OSS project
       </div>
     </template>
