@@ -39,12 +39,12 @@ async function addSubscriber() {
   <div>
     <div
       v-if="showSuccess"
-      class="mt-8 py-8 text-center px-5 -mx-5 md:-mx-16 md:px-16 -mb-10 border rounded-lg"
+      class="mt-8 py-6 text-center px-5 md:px-8 -mb-10 border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-900 rounded-lg"
     >
-      <h4 class="text-3xl font-mono font-extrabold">
+      <h4 class="text-3xl font-mono font-extrabold text-vip">
         Welcome!
       </h4>
-      <p class="text-lg mt-4">
+      <p class="text mt-4 font-mono font-bold">
         Thank you for becoming our VIP. We will be in touch to share the playground link and look forward to collaborating on this adventure with you.
       </p>
     </div>
