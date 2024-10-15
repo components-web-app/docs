@@ -31,7 +31,7 @@ features:
       size: xl
   items:
     - title: 'Draft & Published Components'
-      description: 'Allow users to start making change to their component as a draft, and publish only when they are ready.'
+      description: 'As a user updates a component it will become a private draft, so they can make changes freely and only publish it when they are ready.'
       icon: 'i-heroicons-newspaper-20-solid'
     - title: 'Lightning fast'
       description: 'We have built the CWA from the ground up with speed in mind. Each resource is very small and cacheable - we handle it all.'

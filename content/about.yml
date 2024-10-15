@@ -12,7 +12,7 @@ cta:
   description: |
     With the rise in de-coupled websites and the power of front-end frameworks, we began to think about a data structure that would fit for every website; <span class="text-primary-400 font-semibold">what did every website need?</span>
     :br :br
-    We didn't want to have to re-make common functionality for each website every time, and if we had a predictable data structure, it would be possible to have <span class="text-primary-400 font-semibold">a powerful website builder and advanced functionality</span>, while enabling a developer to still <span class="text-primary-400 font-semibold">create any website with complete flexibility</span>.
+    We didn't want to have to re-make common functionality for each website every time, and if we had a predictable data structure, it would be possible to have <span class="text-primary-400 font-semibold">a powerful website builder and advanced functionality</span>, while enabling a developer to <span class="text-primary-400 font-semibold">create any website with complete flexibility</span>.
 pageCards:
   items:
     - title: 'Free & Open-Source'
