@@ -35,12 +35,12 @@ useSeoMeta({
 const links = [
   {
     label: 'About',
-    icon: 'i-heroicons-book-open-solid',
+    icon: 'i-custom-c-icon',
     to: '/about'
   },
   {
     label: 'Built for Business',
-    icon: 'i-heroicons-book-open-solid',
+    icon: 'i-heroicons-building-office-solid',
     to: '/built-for-business'
   },
   {
