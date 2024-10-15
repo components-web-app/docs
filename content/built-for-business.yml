@@ -5,6 +5,8 @@ hero:
   title: 'Built for <span class="text-primary-400 font-semibold">Business</span>'
   description: 'Streamline your business, whether you <span class="text-primary-400 font-semibold">create websites</span> or you want a <span class="text-primary-400 font-semibold">flexible website management solution</span>'
   align: left
+  ui:
+    base: 'order-last lg:order-first'
 pageCards:
   items:
     - title: 'Time saving'
