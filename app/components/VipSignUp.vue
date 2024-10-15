@@ -55,7 +55,7 @@ async function addSubscriber() {
       <div class="font-script text-2xl md:text-5xl flex justify-center mb-1">
         <div class="flex">
           <SvgoVipArrow />
-          <span class="block -rotate-6 text-vip -translate-y-7 md:-translate-y-10">Join the adventure!</span>
+          <span class="block -rotate-6 text-black dark:text-vip -translate-y-7 md:-translate-y-10">Join the adventure!</span>
         </div>
       </div>
       <div class="flex justify-center w-full">
