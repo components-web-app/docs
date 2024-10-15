@@ -67,7 +67,7 @@ provide('navigation', navigation)
 
     <UMain>
       <NuxtLayout>
-        <NuxtPage />
+        <NuxtPage :is-vip="isVip" />
       </NuxtLayout>
     </UMain>
 

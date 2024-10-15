@@ -82,10 +82,10 @@ onMounted(() => {
                 filled
               />
             </div>
-            <div class="flex justify-center">
+            <div class="flex justify-center font-source-code">
               <SvgoVipTitle
                 :font-controlled="false"
-                filled
+                :filled="true"
                 class="w-9/12"
               />
             </div>
