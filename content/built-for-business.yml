@@ -16,7 +16,7 @@ pageCards:
       description: 'Streamline the discovery phase into MVP components, and don''t worry about making changes to your live website with our publishable components.'
       icon: 'i-heroicons-light-bulb-20-solid'
     - title: 'Surpass clients'' expectations'
-      description: 'We want your website administrators and users to say "wow, that was so fast and intuitive". Now you can provide more than they bargained for within their budget.'
+      description: 'We designed the CWA so your website admins, editors and users to say "wow, that was so fast and intuitive". Now you can provide more than they bargained for within their budget.'
       icon: 'i-heroicons-star-20-solid'
 businessSizes:
   title: Designed for businesses of <span class="text-primary-400 font-semibold">all sizes</span>
@@ -35,9 +35,9 @@ teamwork:
   title: Built with :br<span class="text-primary-400 font-semibold">teamwork</span> in mind
   align: center
   description: |
-    The CWA has been built with first-hand knowledge of the web development workflow, from concept and discovery to delivery and maintenance.
+    The CWA has been built with first-hand knowledge of the agile web development workflow, from concept and discovery to delivery, monitoring and maintenance.
     :br :br
-    Streamline your team's workflow from building company branding and UI kits, to how the website and product managers interact with the developers and clients. The CWA gives a clear structure of building individual UI components and provides flexibility to for the right people in the right teams who can work in their areas of expertise.
+    Streamline your team's scrum workflow from building company branding and UI kits, to how the website and product managers interact with the developers and clients. The CWA gives a clear structure of building individual UI components and provides flexibility to for the right people in the right teams who can work in their areas of expertise.
 timeline:
   - title: Built for <span class="text-primary-400 font-semibold">structured planning</span>
     description: |
@@ -65,11 +65,11 @@ timeline:
         description: No need to spend endless hours working out how to best deploy. We have provided a working CI pipeline for GitLab and it is simple to adjust to be specific for your vendors.
         icon: i-ph-dev-to-logo
       - title: Building for the admin
-        description: We already have an advanced manager toolbar for resources, and it instead of a separate CMS, our in-line system is intuitive for both users and developers to create the required tabs.
+        description: We created an advanced inline content management toolbar for resources, instead of a separate CMS. Our system is intuitive for both users and developers to create the required tabs.
         icon: i-ph-crane
   - title: Built for <span class="text-primary-400 font-semibold">easy assembly</span>
     description: |
-      Managers or clients will find it easy and intuitive to begin working with the website once the developers have the components ready. Simply add the pages required using the website builder which will feel as though it has been made just for them, knowing exactly where they need to go to create and update their custom website.
+      Managers or clients will find it easy and intuitive to begin working with the website once the developers have the components ready. Simply add the pages required using the website builder, knowing exactly where they need to go to create and update their custom website.
     features:
       - title: Stand-alone pages
         description: Your website can include standalone pages or even mini websites for targeted PPC landing pages, A/B testing or promotional marketing.
@@ -78,7 +78,7 @@ timeline:
         description: Built-in management of your page titles and meta descriptions while leaving you in control of on-page SEO.
         icon: i-ph-binoculars
       - title: Route management
-        description: Search, sort and manage routes so you can easily audit your public web pages.
+        description: Search, sort and manage routes so you can easily audit your public web pages and manage any redirects.
         icon: i-ph-signpost
       - title: Page management
         description: Ability to easily search sort and filter and edit settings on your pages reducing workload on page management.
@@ -91,7 +91,7 @@ timeline:
         description: Writing draft content used to be something that had to be done with external tools or within emails. Now you no longer need to worry about changes becoming live until you are ready.
         icon: i-ph-pencil-ruler
       - title: Collaboration
-        description: Along with the publishable components, because changes are pushed in real-time to other users, you can easily work on content together at the same time.
+        description: You can easily work on content together at the same time because changes are pushed in real-time to other users.
         icon: i-ph-arrows-in-cardinal
       - title: Live editing
         description: You can always skip the draft content writing process. If you are in the middle of drafting changes, but you notice the live version needs an update, no problem - switch to edit the live version and continue with your draft when you are done.
@@ -107,7 +107,7 @@ timeline:
         icon: i-ph-robot
   - title: Built for <span class="text-primary-400 font-semibold">the future</span>
     description: |
-      Websites evolve and grow, and we aim to make the process of keeping up to date with changes easy. As a business grows, requirements change, so creating new components which can fit the needs of the every evolving business needs is simple.
+      Websites evolve and grow, and we aim to make the process of keeping up to date with changes easy. As a business grows, requirements change, so creating new components which can fit the needs of ever evolving business needs is simple.
 faq:
   title: Business FAQs
   description: Some common business related questions we have about the CWA
@@ -129,6 +129,6 @@ faq:
     - label: Can we commission you to make a website?
       content: Yes, if you would like a website built using the CWA, please contact the creators and primary sponsors of the CWA, Silverback Web Apps.
     - label: Can CWA scale?
-      content: Yes. We have designed the CWA to work with HPA and VPA - we recommend not mounting volumes to your containers for the most flexibility. We have also load-tested the CWA with the tech stack provided, and get impressive results with very little resources allocated.
+      content: Yes. We have designed the CWA to work with server cluster autoscaling (both HPA and VPA) - we recommend not mounting volumes to your containers for the most flexibility. We have also load-tested the CWA with the tech stack provided, and get impressive results with very little resources allocated.
     - label: Do you provide support?
-      content: Yes, in relation to bug fixes and development of core project – via GitHub. Support for individual projects and development of components your developers can contact Silverback Web Apps.
+      content: Yes, in relation to bug fixes and development of core project – via GitHub. Support for individual projects and development of components your developers can contact [Silverback Web Apps](https://silverbackwebapps.com/).
