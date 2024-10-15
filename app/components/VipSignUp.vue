@@ -75,7 +75,7 @@ async function addSubscriber() {
               v-model="emailAddress"
               :disabled="submitting"
               type="email"
-              class="font-bold text-base md:text-lg bg-transparent focus:outline-none placeholder:text-white/20"
+              class="font-bold text-base md:text-lg bg-transparent focus:outline-none dark:placeholder:text-white/20"
               placeholder="vip@email.com"
               autoComplete="Email"
               aria-label="Email"
