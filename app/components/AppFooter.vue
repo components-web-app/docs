@@ -3,14 +3,13 @@ import type { FooterLink } from '#ui-pro/types'
 
 const { footer } = useAppConfig()
 
-defineProps<{
+const props = defineProps<{
+  isVip: boolean
   links: FooterLink[]
 }>()
 
-const { isVip } = useVip()
-
 const footerClass = computed(() => {
-  return isVip.value ? 'pb-20' : ''
+  return props.isVip ? 'pb-20' : ''
 })
 </script>
 

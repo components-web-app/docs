@@ -71,7 +71,7 @@ provide('navigation', navigation)
       </NuxtLayout>
     </UMain>
 
-    <AppFooter :links="links" />
+    <AppFooter :is-vip="isVip" :links="links" />
 
     <ClientOnly>
       <LazyUContentSearch
