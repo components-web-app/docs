@@ -15,6 +15,10 @@ const props = defineProps<{
 const vimeoUrl = computed(() => {
   return props.isVip ? 'https://player.vimeo.com/video/1008157540?badge=0&amp;autopause=0&amp;player_id=0' : 'https://player.vimeo.com/video/1010679128?badge=0&amp;autopause=0&amp;player_id=0'
 })
+
+definePageMeta({
+  scrollToTop: true
+})
 </script>
 
 <template>

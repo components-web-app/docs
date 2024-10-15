@@ -2,7 +2,8 @@
 import { withoutTrailingSlash } from 'ufo'
 
 definePageMeta({
-  layout: 'docs'
+  layout: 'docs',
+  scrollToTop: true
 })
 
 const route = useRoute()
