@@ -29,7 +29,7 @@ useSeoMeta({
         >
           <MDC :value="page.features?.title" />
         </template>
-        <UPageGrid>
+        <UPageGrid :ui="{ wrapper: 'grid-cols-1 sm:grid-cols-1 lg:grid-cols-3' }">
           <ULandingCard
             v-for="(item, index) of page.features.items"
             :key="index"
