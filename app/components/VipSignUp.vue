@@ -65,7 +65,7 @@ async function addSubscriber() {
           action="https://www.createsend.com/t/subscribeerror?description="
           @submit.prevent="addSubscriber"
         >
-          <div class="w-full bg-field border-2 border-vip rounded-lg flex flex-col px-2 md:px-4 pt-1 pb-1.5 md:pt-1.5 md:pb-2 focus-within:border-white">
+          <div class="w-full bg-field border-2 border-vip rounded-lg flex flex-col px-2 md:px-4 pt-1 pb-1.5 md:pt-1.5 md:pb-2 focus-within:border-black dark:focus-within:border-white">
             <label
               :for="fieldId"
               class="text-label font-bold text-sm md:text-base"
