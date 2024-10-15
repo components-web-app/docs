@@ -54,7 +54,7 @@ useSeoMeta({
             <template #description>
               <MDC :value="page.businessSizes.description" />
             </template>
-            <UPageGrid>
+            <UPageGrid :ui="{ wrapper: 'grid-cols-1 sm:grid-cols-1 lg:grid-cols-3' }">
               <UPageCard
                 v-for="(item, index) of page.businessSizes.cards"
                 :key="index"

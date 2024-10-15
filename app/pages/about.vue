@@ -84,6 +84,7 @@ const vimeoUrl = computed(() => {
             v-for="(section, index) of page.sections"
             :key="index"
             v-bind="section"
+            :ui="!section.imageFirstMobile ? null : { base: `order-last ${section.align === 'left' ? 'lg:order-first' : ''}` }"
           >
             <template #title>
               <MDC
