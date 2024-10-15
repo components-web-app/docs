@@ -32,9 +32,12 @@ const footerClass = computed(() => {
       </template>
     </template>
   </UFooter>
-  <UFooter :class="footerClass">
+  <UFooter>
     <template #center>
-      <div class="text-xs text-gray-500 dark:text-gray-400">
+      <div
+        class="text-xs text-gray-500 dark:text-gray-400 text-center"
+        :class="footerClass"
+      >
         With thanks to
         <NuxtLink
           to="https://ui.nuxt.com/pro"
