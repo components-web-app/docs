@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import VipFeatureIcons from '~/components/VipFeatureIcons.vue'
+
 const isOpen = ref(false)
 const vipIsShown = useCookie<boolean>('vip-shown', {
   maxAge: 3600 // 1 hour
@@ -41,7 +43,7 @@ onMounted(() => {
     >
       <UCard
         class="flex flex-col flex-1"
-        :ui="{ body: { base: 'flex-1' }, ring: '', rounded: 'rounded-none', divide: 'divide-y divide-gray-100 dark:divide-gray-800', background: 'bg-gray-900/80 dark:bg-gray-900/80' }"
+        :ui="{ body: { base: 'flex-1' }, ring: '', rounded: 'rounded-none', divide: 'divide-y divide-gray-100 dark:divide-gray-800' }"
       >
         <template #header>
           <UButton
@@ -52,21 +54,27 @@ onMounted(() => {
             class="flex absolute end-5 top-5 z-10"
             square
             padded
-            :ui="{ color: {
-              gray: {
-                ghost: 'transition text-white hover:bg-white/70'
-              }
-            } }"
             @click="isOpen = false"
           />
-          <div class="flex justify-center pt-10">
-            <SvgoVipTitle
-              :font-controlled="false"
-              filled
-              class="w-9/12"
-            />
+          <div class="flex flex-col pt-10 space-y-4">
+            <div class="flex justify-center">
+              <SvgoVipCrown
+                class="h-9"
+                :font-controlled="false"
+                filled
+              />
+            </div>
+            <div class="flex justify-center">
+              <SvgoVipTitle
+                :font-controlled="false"
+                filled
+                class="w-9/12"
+              />
+            </div>
           </div>
         </template>
+
+        <VipFeatureIcons />
       </UCard>
     </USlideover>
   </div>

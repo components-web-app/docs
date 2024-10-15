@@ -8,6 +8,7 @@ export default <Partial<Config>>{
         sans: ['DM Sans', ...defaultTheme.fontFamily.sans]
       },
       colors: {
+        vip: '#D3BB75',
         green: {
           50: '#EFFDF5',
           100: '#D9FBE8',

@@ -127,5 +127,15 @@ export default defineNuxtConfig({
     }
   },
 
+  fonts: {
+    families: [
+      {
+        name: 'Caveat',
+        weights: [400],
+        styles: ['normal']
+      }
+    ]
+  },
+
   compatibilityDate: '2024-07-11'
 })
