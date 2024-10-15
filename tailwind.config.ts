@@ -12,6 +12,7 @@ export default <Partial<Config>>{
       },
       colors: {
         vip: '#D3BB75',
+        feature: '#0A3640',
         green: {
           50: '#EFFDF5',
           100: '#D9FBE8',

@@ -18,7 +18,7 @@ useSeoMeta({
 <template>
   <div>
     <HomeHero />
-    <div class="bg-primary/5">
+    <div class="bg-primary/5 dark:bg-feature/65">
       <ULandingSection
         :links="page.features.links"
         :ui="{ wrapper: 'py-16 sm:py-20 mb-20 sm:mb-24' }"

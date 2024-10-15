@@ -11,7 +11,7 @@ useSeoMeta({
 
 <template>
   <div>
-    <div class="bg-primary/5">
+    <div class="bg-primary/5 dark:bg-feature/65">
       <UContainer>
         <UPageHero
           v-bind="page.hero"
@@ -145,7 +145,7 @@ useSeoMeta({
         </UPageBody>
       </UPage>
     </UContainer>
-    <div class="bg-primary/5">
+    <div class="bg-primary/5 dark:bg-feature/65">
       <ULandingSection
         :title="page.faq.title"
         :description="page.faq.description"

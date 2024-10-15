@@ -11,7 +11,7 @@ useSeoMeta({
 
 <template>
   <div>
-    <div class="bg-primary/5">
+    <div class="bg-primary/5 dark:bg-feature/65">
       <UContainer>
         <UPageHero
           v-bind="page.hero"
@@ -46,7 +46,7 @@ useSeoMeta({
 
           <ULandingCTA
             card
-            :ui="{ wrapper: 'mt-8 bg-primary/5 dark:bg-primary/5', body: { base: 'flex flex-col gap-10 sm:gap-y-14', padding: 'py-20 sm:py-28 sm:px-16' } }"
+            :ui="{ wrapper: 'mt-8 bg-primary/5 dark:bg-feature/65', body: { base: 'flex flex-col gap-10 sm:gap-y-14', padding: 'py-20 sm:py-28 sm:px-16' } }"
           >
             <template #title>
               <MDC :value="page.businessSizes.title" />
@@ -115,7 +115,7 @@ useSeoMeta({
         </UPageBody>
       </UPage>
     </UContainer>
-    <div class="bg-primary/5">
+    <div class="bg-primary/5 dark:bg-feature/65">
       <ULandingSection
         :title="page.faq.title"
         :description="page.faq.description"

@@ -46,7 +46,7 @@ const currentCodeBlock = computed(() => {
 </script>
 
 <template>
-  <div class="bg-primary/5">
+  <div class="bg-primary/5 dark:bg-feature/65">
     <ULandingSection
       align="center"
       :ui="{ container: 'gap-6 sm:gap-y-10 flex flex-col' }"
