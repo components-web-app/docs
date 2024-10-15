@@ -39,11 +39,11 @@ onMounted(() => {
 
     <USlideover
       v-model="isOpen"
-      :ui="{ background: 'bg-transparent dark:bg-transparent backdrop-blur-sm' }"
+      :ui="{ background: 'bg-transparent dark:bg-transparent backdrop-blur-sm', base: 'overflow-auto' }"
     >
       <UCard
         class="flex flex-col flex-1"
-        :ui="{ body: { base: 'flex-1' }, ring: '', rounded: 'rounded-none', divide: 'divide-y divide-gray-100 dark:divide-gray-800' }"
+        :ui="{ body: { base: 'flex-1' }, ring: '', rounded: 'rounded-none', divide: 'divide-y divide-gray-100 dark:divide-gray-800', background: 'bg-white/70 dark:bg-gray-900/70' }"
       >
         <template #header>
           <UButton
@@ -75,6 +75,7 @@ onMounted(() => {
         </template>
 
         <VipFeatureIcons />
+        <VipSignUp />
       </UCard>
     </USlideover>
   </div>

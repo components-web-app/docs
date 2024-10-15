@@ -17,6 +17,13 @@ export default defineNuxtConfig({
     '@nuxt/scripts'
   ],
 
+  runtimeConfig: {
+    campaignMonitor: {
+      apiKey: '',
+      clientId: ''
+    }
+  },
+
   hooks: {
     // Define `@nuxt/ui` components as global to use them in `.md` (feel free to add those you need)
     'components:extend': (components) => {
@@ -133,6 +140,16 @@ export default defineNuxtConfig({
         name: 'Caveat',
         weights: [400],
         styles: ['normal']
+      },
+      {
+        name: 'JetBrains Mono',
+        styles: ['normal'],
+        weights: [400, 600]
+      },
+      {
+        name: 'Source Code Pro',
+        styles: ['normal'],
+        weights: [600]
       }
     ]
   },
