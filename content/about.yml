@@ -192,7 +192,9 @@ faq:
       content: |
         With a background in PHP and Symfony, and the API Platform framework being well maintained by great developers, we decided to use these advanced features and give stability to the project as we knew development of this concept could take some time.
         :br :br
-        We found VueJS and Nuxt to be incredibly fun frameworks for the front-end, well maintained, and with a strong vibrant community. In both instances we wanted to create a system that was built on the shoulders of giants; we didn’t want to re-invent the wheel.
+        We found VueJS and Nuxt to be incredibly fun frameworks for the front-end and well maintained. In both instances we wanted to create a system that was built on the shoulders of giants; we didn't want to re-invent the wheel.
+        :br :br
+        The strong vibrant community behind these frameworks gives confidence and re-assurance your project will be secure and stable going on into the future.
       defaultOpen: false
     - label: How is the data loaded?
       content: |

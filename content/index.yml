@@ -31,26 +31,14 @@ features:
       size: xl
   items:
     - title: 'Draft & Published Components'
-      description: 'Allow users to start making change to their component, and set it to publish when they are ready.'
+      description: 'Allow users to start making change to their component as a draft, and publish only when they are ready.'
       icon: 'i-heroicons-newspaper-20-solid'
     - title: 'Lightning fast'
       description: 'We have built the CWA from the ground up with speed in mind. Each resource is very small and cacheable - we handle it all.'
       icon: 'i-heroicons-bolt-20-solid'
     - title: 'Stay in sync'
-      description: 'Learn how we have leveraged Mercure to improve collaboration and make sure your website visitors never miss an update.'
+      description: 'Learn how your website users will get realtime updates and never miss a beat with our integration of Mercure.'
       icon: 'i-heroicons-arrow-path-20-solid'
-#    - title: 'Intuitive website management UI'
-#      description: 'Discover how to build your admin tabs into our component manager bar with ease.'
-#      icon: 'i-heroicons-pencil-square-20-solid'
-#      to: '/getting-started'
-#    - title: 'File uploads'
-#      description: 'You can quickly and easily integrate storage solutions such as Google Cloud and AWS S3 within your website using our Flysystem integration.'
-#      icon: 'i-heroicons-arrow-up-tray-20-solid'
-#      to: '/getting-started'
-#    - title: 'Get started with Docker'
-#      description: 'We provide Dockerfiles and Docker Compose configurations to get you up and running quickly.'
-#      icon: 'i-simple-icons-docker'
-#      to: '/getting-started'
 
 benefits:
   sections:
@@ -61,13 +49,13 @@ benefits:
       image: '/images/home/home-supercharge.svg'
       features:
         - name: For Agencies
-          description: Streamline workflows, increase productivity and impress your clients.
+          description: Streamline workflows, increase output and impress your clients.
           icon: i-heroicons-presentation-chart-line
         - name: For Developers
-          description: A DX which will keep you smiling as you realise how simple it can be to add such advanced functionality.
+          description: A DX which will keep developers smiling as they realise how simple it can be to add advanced functionality, while staying in control.
           icon: i-heroicons-code-bracket
         - name: For Web Admins
-          description: An in-line and intuitive website and content management makes updating the website or creating new pages impressively easy.
+          description: In-line and intuitive website and content management makes updating the website or creating new pages impressively easy.
           icon: i-heroicons-device-phone-mobile
       links:
         - label: Built for business
@@ -78,19 +66,19 @@ benefits:
           size: xl
           class: ml-0
     - title: 'The missing link in<br><span class="text-primary-400">website builders</span>'
-      description: Traditional website builders take too much control, complexity and style decisions away from the professionals.
+      description: Traditional website builders take control and crucial decisions away from the professionals while increasing complexity for users.
       id: professionals
       align: left
       image: '/images/home/home-builders.svg'
       features:
         - name: Build the website you want
-          description: No need to hack other website builders to work for you - components are built by professionals, custom to clients' needs.
+          description: No need to hack other website builders to work for you - components are built by professionals, custom to users' needs.
           icon: i-heroicons-computer-desktop
         - name: Easy to make, easy to use
-          description: Using the CWA, styles can be pre-configured to fit the branding. No more endless choices and administrators selecting colours and styles which are off brand
+          description: Using the CWA, styles can manually pre-configured to match branding. No more endless choices for administrators resulting in off brand styling.
           icon: i-heroicons-paint-brush
         - name: Seamless integration of new pages
-          description: With our balance of flexibility and restrictions, new pages are easy to integrate seamlessly and beautifully into their existing website.
+          description: With our balance of flexibility and restrictions, new pages are easy to integrate seamlessly and beautifully into the website.
           icon: i-heroicons-puzzle-piece
       links:
         - label: More about the CWA
@@ -107,11 +95,11 @@ benefits:
       align: right
       image: '/images/home/home-giants.svg'
       features:
-        - name: API Platform
-          description: Incredibly powerful, well maintained and stable frameworks. Extend their functionality further for services such as SAML authentication protocols or API proxies.
+        - name: Symfony bundle with API Platform
+          description: An incredibly powerful and well maintained framework. Extend API Platform and Symfony functionality for services such as SAML authentication protocols or API proxies.
           icon: i-custom-api-platform
-        - name: Nuxt module
-          description: Creating front-end applications using Nuxt and VueJS is a joy and the strong vibrant community behind these frameworks gives confidence and re-assurance your project will be secure and stable going on into the future.
+        - name: Front-end Nuxt module
+          description: Nuxt and VueJS are one of the most enjoyable front-end frameworks to use. Our CWA Nuxt module provides easy to use composables along with a full management system.
           icon: i-simple-icons-nuxtdotjs
 #      links:
 #        - label: Discover more
@@ -130,7 +118,7 @@ code:
       label: '2. Front End'
   backEnd:
     description: |
-      With an API built on top of API Platform and Symfony, it is incredibly simple to setup a component.
+      With our API built on top of API Platform and Symfony, it is incredibly simple to setup a component.
       <br><br>
       We provide helpful traits and attributes to quickly add advanced functionality such as draft/live components or handling file uploads.
     code: |
@@ -165,9 +153,9 @@ code:
         label: 'Page'
         contentDoc: '_partials/front-end-page'
         description: |
-          We have built a Nuxt module which means you have nearly all the functionality you need right from the start.
+          The CWA Nuxt module means you have nearly all the functionality you need right from the start.
           <br><br>
-          You’ll quickly setup layouts and pages, using our `<CwaComponentGroup />`{class="mx-0.5 px-1 py-0.5 rounded font-bold text-nowrap text-base bg-primary-100 dark:bg-primary-800"} Vue component to define where your CWA components will appear.
+          You'll quickly setup layouts and pages, using our `<CwaComponentGroup />`{class="mx-0.5 px-1 py-0.5 rounded font-bold text-nowrap text-base bg-primary-100 dark:bg-primary-800"} Vue component to define where your CWA components will appear.
         code: |
           ```vue [app/cwa/pages/PrimaryPageTemplate.vue]
           <template>
@@ -191,10 +179,8 @@ code:
         contentDoc: '_partials/front-end-component'
         description: |
           With a few composables and very little code you can quickly create your CWA components.
-          <br><br>
+          :br :br
           Load the data provided by the API and add any functionality you need just like any other Vue component.
-          <br><br>
-          Our playground has some examples of different common functionality you may use, such as inline HTML editing and displaying images.
         code: |
           ```vue [app/cwa/components/Title/Title.vue]
           <template>
@@ -227,8 +213,8 @@ code:
         contentDoc: '_partials/front-end-admin'
         description: |
           Once you have your data and component setup, all that’s left is to add your own custom tabs into our Components Manager Toolbar.
-          <br><br>
-          With very little code and using our composables and pre-built Vue components, the end-user will be able to manage this new component using the website builder front-end.
+          :br :br
+          With very little code (using our composables and pre-built Vue components) the end-user will be able to manage this new component using the component manager toolbar.
         code: |
           ```vue [app/cwa/components/Title/admin/Title.vue]
           <template>
@@ -258,5 +244,5 @@ code:
 
 
 contributors:
-  title: With help from our <span class="text-primary">amazing contributors</span>
+  title: With help from our <span class="text-primary">amazing community</span>
   align: center
