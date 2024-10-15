@@ -16,7 +16,7 @@ cta:
 pageCards:
   items:
     - title: 'Free & Open-Source'
-      description: 'The CWA code free, open-source MIT licenced and available on the GitHub repository. Everyone can access, audit, contribute and explore the code and documentation.'
+      description: 'The CWA is free, open-source and MIT licenced. Everyone can access, audit, contribute and explore the code and documentation.'
       icon: 'i-simple-icons-opensourceinitiative'
     - title: 'Decoupled web apps'
       description: 'Now you can build the most modern web apps with ease, where the data is served by an API and the front-end is focussed on the UI/UX. Your website data can be accessed by other services, you can proxy to other APIs and take advantage of the ultimate flexibility.'
@@ -25,11 +25,11 @@ pageCards:
       description: 'Using a set directory and file structure allows the CWA Nuxt module to get you up and running fast. You can also add custom configuration to improve the user experience.'
       icon: 'i-ph-folders'
     - title: 'Low-code, great DX'
-      description: 'Easy to use abstract classes, traits, and PHP annotations for the API. The front-end we have ready-to-use components and powerful composables to get you up and running quickly.'
+      description: 'Easy to use abstract classes, traits, and PHP annotations for the API. The front-end has ready-to-use components and powerful composables to get you up and running quickly.'
       icon: 'i-heroicons-face-smile'
 sections:
   - title: 'The joy of<br><span class="text-primary">draft components</span>'
-    description: 'Making updates to a website requires time and thought. With publishable components, drafts are created when you make changes and ready to publish when you are.'
+    description: 'Making updates to a website requires time and thought. With publishable components, drafts are created when you make changes and ready to publish when signed off.'
     align: left
     features:
       - name: 'Easy to configure'
@@ -61,7 +61,7 @@ sections:
 
       ```
   - title: 'Control is with<br><span class="text-primary">the web designers</span>'
-    description: Unlike other website builders, we leave don't believe website admins should have unlimited creative freedom.
+    description: Unlike other website builders, we don't believe website admins should have unlimited creative freedom.
     align: right
     slot: image
     ui:
@@ -74,7 +74,7 @@ sections:
         description: As a developer, you can specifically allow which components you have created to be added in specific component groups.
         icon: i-heroicons-magnifying-glass
       - name: Pre-configure styles
-        description: You define the styles that a website admin can select from. No more revisiting a website you created months ago and realising the client has hacked their way to an ugly UI.
+        description: You define the styles that a website admin can select from. No more revisiting a website you created months ago and realising the client has hacked their way to an off brand UI.
         icon: i-heroicons-paint-brush
       - name: Build components your way
         description: Build your components your way - the CWA simply provides helpers to make your life easier.
@@ -90,16 +90,16 @@ sections:
       alt: 'Stay In Sync with the CWA'
     features:
       - name: 'Publish changes immediately'
-        description: 'When you make a change, users on the website which this affects get an immediate notification to they can stay up to date.'
+        description: 'When you make a change, affected users get an immediate notification so they can stay up to date.'
         icon: i-ph-paper-plane-tilt
       - name: 'Collaborate on changes'
-        description: 'If you are working on an update at the same time as another website admin, you do not have to worry about overwriting each other''s changes'
+        description: 'If you are working on an update at the same time as another website admin, you do not have to worry about overwriting each other''s changes as you can see them live in action.'
         icon: i-ph-arrows-in-cardinal
       - name: 'Authenticated updates'
         description: 'With authentication built in by default, the browser will only receive updates for resources they have access to. Website visitors will not be exposed to draft component updates.'
         icon: i-ph-fingerprint
   - title: 'Built for<br><span class="text-primary">speed</span>'
-    description: 'Our experience means we have optimised the system for the fastest response times and accelerated user experience.'
+    description: 'We have optimised the system for the fastest response times and accelerated user experience.'
     align: right
     slot: image
     ui:
@@ -126,10 +126,10 @@ sections:
         description: 'Similar to publishable components, with a little config and annotations, you''ll have file uploads setup in no time.'
         icon: i-ph-gear-fill
       - name: 'Pre-configured file-systems'
-        description: 'Flysystem has a number of file storage systems already built in, such as Google Cloud, AWS S3, Azure Blob and Local Storage'
+        description: 'Flysystem has several file storage systems already built in, such as Google Cloud, AWS S3, Azure Blob and Local Storage'
         icon: i-ph-cloud-fill
       - name: 'Build your own file storage adapter'
-        description: 'Documentation is clear to configure your own file storage and there are more third-party file storage providers available.'
+        description: 'Documentation to configure your own file storage is readily available and there are more third-party file storage providers available.'
         icon: i-ph-code-fill
     iconGrid:
       - name: 'Flysystem'
@@ -153,7 +153,7 @@ sections:
     slot: grid
     features:
       - name: 'Dockerized'
-        description: 'We have built the tech stack into Docker containers and Docker Compose configurations so it is vendor agnostic and can be deployed easily.'
+        description: 'We have built the tech stack into Docker containers and Docker Compose configurations so it is vendor agnostic and can be easily deployed.'
         icon: 'i-simple-icons-docker'
       - name: 'Kubernetes and a Helm Chart'
         description: 'Deploy to your own Kubernetes cluster and take advantage of HPA and VPA with easy to customise templates.'
@@ -193,7 +193,7 @@ faq:
   items:
     - label: Why did you choose these frameworks?
       content: |
-        With a background in PHP and Symfony, and the API Platform framework being well maintained by great developers, we decided to use these advanced features and give some stability as we knew development of this concept could take some time.
+        With a background in PHP and Symfony, and the API Platform framework being well maintained by great developers, we decided to use these advanced features and give stability to the project as we knew development of this concept could take some time.
         :br :br
         We found VueJS and Nuxt to be incredibly fun frameworks for the front-end, well maintained, and with a strong vibrant community. In both instances we wanted to create a system that was built on the shoulders of giants; we didn’t want to re-invent the wheel.
       defaultOpen: false
@@ -202,10 +202,10 @@ faq:
         Each individual resource is loaded with a separate request. It results in a lot of HTTP requests, however each part has very small, and most importantly, cacheable, chunks of data.
         :br :br
         We only need to load in the data that is required for each individual page which can result in incredibly fast load times.
-    - label: What does “Unlimited minor & patch updates” include?
-      content: The CWA is free and open source forever. You will always be able to upgrade to the latest version without warranty or guarantees.
+#    - label: What does “Unlimited minor & patch updates” include?
+#      content: The CWA is free and open source forever. You will always be able to upgrade to the latest version without warranty or guarantees.
     - label: Do you offer technical support?
       content: |
         Contact us at hello@cwa.rocks or raise issues in our GitHub repositories and we will be happy to help.
         :br :br
-        If you need more personal technical help, Silverback Web Apps will be able to assist.
+        If you need more personal technical help, [Silverback Web Apps](https://www.silverbackwebapps.com) will be able to assist.

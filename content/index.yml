@@ -84,10 +84,10 @@ benefits:
       image: '/images/home/home-builders.svg'
       features:
         - name: Build the website you want
-          description: No need to hack other websites builders to work for you - components are built by professionals, custom to clients' needs.
+          description: No need to hack other website builders to work for you - components are built by professionals, custom to clients' needs.
           icon: i-heroicons-computer-desktop
         - name: Easy to make, easy to use
-          description: Using the CWA, styles can be pre-configured to fit the branding. No more endless choices and administrators selecting colours which are slightly off brand
+          description: Using the CWA, styles can be pre-configured to fit the branding. No more endless choices and administrators selecting colours and styles which are off brand
           icon: i-heroicons-paint-brush
         - name: Seamless integration of new pages
           description: With our balance of flexibility and restrictions, new pages are easy to integrate seamlessly and beautifully into their existing website.
@@ -111,7 +111,7 @@ benefits:
           description: Incredibly powerful, well maintained and stable frameworks. Extend their functionality further for services such as SAML authentication protocols or API proxies.
           icon: i-custom-api-platform
         - name: Nuxt module
-          description: Creating front-end applications using Nuxt and VueJS is a joy and the strong vibrant community behind all of these frameworks gives confidence and re-assurance your project will be secure and stable going on into the future.
+          description: Creating front-end applications using Nuxt and VueJS is a joy and the strong vibrant community behind these frameworks gives confidence and re-assurance your project will be secure and stable going on into the future.
           icon: i-simple-icons-nuxtdotjs
 #      links:
 #        - label: Discover more
