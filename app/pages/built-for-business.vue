@@ -36,7 +36,7 @@ useSeoMeta({
     <UContainer>
       <UPage>
         <UPageBody>
-          <UPageGrid>
+          <UPageGrid :ui="{ wrapper: 'grid-cols-1 sm:grid-cols-1 lg:grid-cols-3' }">
             <UPageCard
               v-for="(item, index) of page.pageCards.items"
               :key="index"
@@ -67,7 +67,16 @@ useSeoMeta({
             v-bind="page.teamwork"
           >
             <template #title>
-              <MDC :value="page.teamwork.title" />
+              <div class="flex justify-center mb-4">
+                <SvgoBusinessTeamwork
+                  :font-controlled="false"
+                  filled
+                  class="h-24"
+                />
+              </div>
+              <div class="flex justify-center">
+                <MDC :value="page.teamwork.title" />
+              </div>
             </template>
             <template #description>
               <MDC :value="page.teamwork.description" />
@@ -97,8 +106,14 @@ useSeoMeta({
                     <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl mb-4 -mt-2">
                       <MDC :value="item.title" />
                     </h2>
-                    <MDC class="prose prose-primary dark:prose-invert max-w-none" :value="item.description" />
-                    <UPageGrid v-if="item.features" :ui="{ wrapper: 'mt-8 gap-4 xl:grid-cols-2' }">
+                    <MDC
+                      class="prose prose-primary dark:prose-invert max-w-none"
+                      :value="item.description"
+                    />
+                    <UPageGrid
+                      v-if="item.features"
+                      :ui="{ wrapper: 'mt-8 gap-4 xl:grid-cols-2' }"
+                    >
                       <UPageCard
                         v-for="(feature, featureIndex) of item.features"
                         :key="`feature-${index}-${featureIndex}`"

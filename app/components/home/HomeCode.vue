@@ -81,7 +81,7 @@ const currentCodeBlock = computed(() => {
                 class="font-semibold"
               >
                 <MDC :value="item.key === 'back-end' ? page.code.backEnd.description : selectedFrontEnd.description" />
-                <div class="text-primary opacity-40 flex justify-center items-center space-x-6 mt-10">
+                <div class="text-primary opacity-60 flex justify-center items-center space-x-6 mt-10">
                   <template v-if="item.key === 'back-end'">
                     <div>
                       <SvgoLandingLogoApiPlatform
