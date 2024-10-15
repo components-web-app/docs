@@ -49,12 +49,6 @@ provide('navigation', navigation)
     </template>
 
     <template #right>
-      <UContentSearchButton
-        v-if="header?.search"
-        :label="null"
-        class="lg:hidden"
-      />
-
       <UColorModeToggle v-if="header?.colorMode" size="sm" />
 
       <div
@@ -75,7 +69,7 @@ provide('navigation', navigation)
         >
           <SvgoLogoSwa
             :font-controlled="false"
-            class="h-4 md:h-6"
+            class="h-5 md:h-6"
           />
         </NuxtLink>
       </div>

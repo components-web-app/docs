@@ -72,7 +72,7 @@ const currentCodeBlock = computed(() => {
                 </div>
                 <UTabs
                   :items="page.code.frontEnd.tabs"
-                  class="w-full mb-6"
+                  class="mb-6 -mx-5 sm:mx-0"
                   :ui="frontEndTabsUI"
                   @change="onFrontEndChange"
                 />

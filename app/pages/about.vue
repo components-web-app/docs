@@ -55,10 +55,12 @@ useSeoMeta({
               />
             </template>
             <template #description>
-              <MDC
-                v-if="page.cta.description"
-                :value="page.cta.description"
-              />
+              <div class="max-w-4xl">
+                <MDC
+                  v-if="page.cta.description"
+                  :value="page.cta.description"
+                />
+              </div>
             </template>
           </UPageHero>
 

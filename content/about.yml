@@ -5,9 +5,9 @@ hero:
   title: 'Welcome to :br<span class="text-primary-400 font-semibold">the CWA</span>'
   align: center
 cta:
-  title: 'The benefits of a :br <span class="text-primary-400 font-semibold">predictable data structure</span>'
+  title: 'The power of a :br <span class="text-primary-400 font-semibold">predictable data structure</span>'
   class: 'mb-8'
-  icon: 'i-ph-barbell'
+  icon: 'i-ph-barbell-fill'
   align: center
   description: |
     With the rise in de-coupled websites and the power of front-end frameworks, we began to think about a data structure that would fit for every website; <span class="text-primary-400 font-semibold">what did every website need?</span>

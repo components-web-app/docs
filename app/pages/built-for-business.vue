@@ -79,7 +79,9 @@ useSeoMeta({
               </div>
             </template>
             <template #description>
-              <MDC :value="page.teamwork.description" />
+              <div class="max-w-4xl">
+                <MDC :value="page.teamwork.description" />
+              </div>
             </template>
           </UPageHero>
 
@@ -125,6 +127,12 @@ useSeoMeta({
               </div>
 
               <div class="h-[46px] w-0.5 bg-gray-200 dark:bg-gray-800 inset-x-0 rounded-b-full" />
+              <div class="h-8 w-8 -ml-3.5 -mt-1 bg-primary-400 rounded-full ring-2 ring-gray-300 dark:ring-gray-600 flex justify-center items-center text-black font-bold">
+                <UIcon
+                  name="i-heroicons-rocket-launch-solid"
+                  class="w-5 h-5 z-10"
+                />
+              </div>
             </UContainer>
           </div>
         </UPageBody>
