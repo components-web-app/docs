@@ -44,6 +44,7 @@ useSeoMeta({
       :key="index"
       v-bind="section"
       class="!pt-0"
+      :ui="{ base: 'order-last' }"
     >
       <template #title>
         <span v-html="section.title" />

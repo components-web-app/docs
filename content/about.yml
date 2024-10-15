@@ -64,6 +64,8 @@ sections:
     description: Unlike other website builders, we leave don't believe website admins should have unlimited creative freedom.
     align: right
     slot: image
+    ui:
+      base: 'order-last'
     image:
       src: '/images/about/about-designers.svg'
       alt: 'Leave it to the professionals'
@@ -81,6 +83,8 @@ sections:
     description: 'We leverage and integrate with Mercure to push real-time updates from the API.'
     align: left
     slot: image
+    ui:
+      base: 'order-last'
     image:
       src: '/images/about/about-sync.svg'
       alt: 'Stay In Sync with the CWA'
@@ -98,6 +102,8 @@ sections:
     description: 'Our experience means we have optimised the system for the fastest response times and accelerated user experience.'
     align: right
     slot: image
+    ui:
+      base: 'order-last'
     image:
       src: '/images/about/about-speed.svg'
       alt: 'CWA is built for Speed - Plane breaking sound barrier'
