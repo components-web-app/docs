@@ -19,7 +19,7 @@ hero:
 #      target: _blank
   code: |
     ```bash [Terminal]
-    gh repo create my-website --template="components-web-app/components-web-app"
+    gh repo create my-website --template="components-web-app/components-web-app" --private --clone
     ```
 features:
   title: 'That feeling when<br><span class="text-primary-400">all the hard work is done for you</span>'
