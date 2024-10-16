@@ -2,6 +2,13 @@
 import VueCountdown from '@chenfengyuan/vue-countdown'
 
 const vipExpires = useCookie('vip-expires')
+const vipExpiresTime = computed(() => parseInt(vipExpires.value))
+const timeToExpire = computed(() => {
+  if (!vipExpiresTime.value) {
+    return 0
+  }
+  return new Date(vipExpiresTime.value).getTime() - new Date().getTime()
+})
 </script>
 
 <template>
@@ -12,7 +19,7 @@ const vipExpires = useCookie('vip-expires')
     <h2 class="font-mono">Limited Time Offer</h2>
     <VueCountdown
       v-slot="{ days, hours, minutes, seconds }"
-      :time="parseInt(vipExpires) * 1000"
+      :time="timeToExpire"
     >
       <span class="font-mono font-bold text-vip text-sm">
         <template v-if="days > 0"><span class="text-2xl text-white mr-0.5">{{ days }}</span>day{{ days !== 1 ? 's' : '' }}&nbsp;</template>
