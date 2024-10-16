@@ -91,7 +91,7 @@ onMounted(() => {
             </div>
           </div>
         </template>
-
+        <VipCountdown></VipCountdown>
         <VipFeatureIcons />
         <VipSignUp />
       </UCard>

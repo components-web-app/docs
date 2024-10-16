@@ -13,6 +13,7 @@
     "generate-pwa-assets": "pwa-assets-generator --preset minimal-2023 public/icon.png"
   },
   "dependencies": {
+    "@chenfengyuan/vue-countdown": "2",
     "@iconify-json/heroicons": "^1.2.0",
     "@iconify-json/simple-icons": "^1.2.4",
     "@nuxt/content": "^2.13.2",
