@@ -30,15 +30,15 @@ pageCards:
       description: 'The CWA is free, open-source and MIT licenced. Everyone can access, audit, contribute and explore the code and documentation.'
       icon: 'i-simple-icons-opensourceinitiative'
 sections:
-  - title: 'The joy of<br><span class="text-primary">draft components</span>'
+  - title: 'Love writing content<br><span class="text-primary">draft, refine, publish</span>'
     description: 'Making updates to a website requires time and thought. With publishable components, drafts are created when you make changes and ready to publish when signed off.'
     align: left
     features:
       - name: 'Easy to configure'
-        description: 'Just 2 lines of code - an annotation and a trait and your component is upgraded for publishable features.'
+        description: 'Just 2 lines of code - an annotation and a trait and your component is enabled for advanced publishable features.'
         icon: 'i-heroicons-wrench-screwdriver'
       - name: 'Add state-specific validation'
-        description: 'Simply use the validation group with the name of the class, a colon, and either `published` or `draft` to apply validation specific to the component state.'
+        description: 'Use pre-defined validation groups to apply validation specific to the component state. In the example, the Title resource cannot have a blank title property when it is in a published state.'
         icon: 'i-heroicons-document-check'
 #      - name: 'Set a time to publish'
 #        description: 'Set a date and time that you want to your draft component to become published automatically.'
@@ -62,7 +62,7 @@ sections:
       }
 
       ```
-  - title: 'Control is with<br><span class="text-primary">the web designers</span>'
+  - title: 'Better to trust<br><span class="text-primary">the web designers</span>'
     description: Unlike other website builders, we don't believe website admins should have unlimited creative freedom.
     align: right
     slot: image
@@ -71,17 +71,17 @@ sections:
       src: '/images/about/about-designers.svg'
       alt: 'Leave it to the professionals'
     features:
-      - name: Be specific
-        description: As a developer, you can specifically allow which components you have created to be added in specific component groups.
+      - name: Components used as intended
+        description: As a developer, you can easily specify which components can be added to which component groups.
         icon: i-heroicons-magnifying-glass
       - name: Pre-configure styles
-        description: You define the styles that a website admin can select from. No more revisiting a website you created months ago and realising the client has hacked their way to an off brand UI.
+        description: Designers and developers define the styles that a website admin can select from. This keeps your client on brand, no matter who updates the site.
         icon: i-heroicons-paint-brush
       - name: Build components your way
-        description: Build your components your way - the CWA simply provides helpers to make your life easier.
+        description: Web designers and developers are provided with helpers. We do not impose any HTML structure of stylistic choices. Build, extend and express as you want.
         icon: i-heroicons-square-3-stack-3d
-  - title: 'Stay in<br><span class="text-primary">sync</span>'
-    description: 'We leverage and integrate with Mercure to push real-time updates from the API.'
+  - title: 'FOMO solved with<br><span class="text-primary">real-time updates</span>'
+    description: 'We integrate with Mercure to push real-time updates from the API to website users.'
     align: left
     slot: image
     imageFirstMobile: true
@@ -93,10 +93,10 @@ sections:
         description: 'When you make a change, affected users get an immediate notification so they can stay up to date.'
         icon: i-ph-paper-plane-tilt
       - name: 'Collaborate on changes'
-        description: 'If you are working on an update at the same time as another website admin, you do not have to worry about overwriting each other''s changes as you can see them live in action.'
+        description: 'Multiple website admins can work together on changes without external tools.'
         icon: i-ph-arrows-in-cardinal
       - name: 'Authenticated updates'
-        description: 'With authentication built in by default, the browser will only receive updates for resources they have access to. Website visitors will not be exposed to draft component updates.'
+        description: 'With authentication built in by default, the browser will only receive updates for relevant resources. Website visitors will not be exposed to draft component updates.'
         icon: i-ph-fingerprint
   - title: 'Built for<br><span class="text-primary">speed</span>'
     description: 'We have optimised the system for the fastest response times and accelerated user experience.'
