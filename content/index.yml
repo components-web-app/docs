@@ -195,7 +195,7 @@ code:
               useCwaResource
             } from '#imports'
             import type { IriProp }
-              from "#cwa/runtime/composables/cwa-resource";
+              from '#cwa/runtime/composables/cwa-resource'
 
             const props = defineProps<IriProp>()
 
