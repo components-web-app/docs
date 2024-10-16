@@ -35,7 +35,6 @@ const footerClass = computed(() => {
     <template #center>
       <div
         class="text-xs text-gray-500 dark:text-gray-400 text-center"
-        :class="footerClass"
       >
         With thanks to
         <NuxtLink
@@ -48,4 +47,10 @@ const footerClass = computed(() => {
       </div>
     </template>
   </UFooter>
+  <div
+    v-if="isVip"
+    class="h-28"
+  >
+&nbsp;
+  </div>
 </template>
