@@ -16,7 +16,9 @@ const timeToExpire = computed(() => {
     v-if="vipExpires"
     class="p-4 text-center prose dark:prose-invert mb-12 bg-vip/5 rounded-xl border border-vip"
   >
-    <h2 class="font-mono">Limited Time Offer</h2>
+    <h2 class="font-mono">
+      Limited Time Offer
+    </h2>
     <VueCountdown
       v-slot="{ days, hours, minutes, seconds }"
       :time="timeToExpire"

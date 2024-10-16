@@ -62,7 +62,7 @@ sections:
       }
 
       ```
-  - title: 'Better to trust<br><span class="text-primary">the web designers</span>'
+  - title: 'Prefer trusting<br><span class="text-primary">the web designers</span>'
     description: Unlike other website builders, we don't believe website admins should have unlimited creative freedom.
     align: right
     slot: image
