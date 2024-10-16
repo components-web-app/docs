@@ -4,7 +4,7 @@ navigation: false
 hero:
   title:
     default: 'Welcome to :br<span class="text-primary-400 font-semibold">the CWA</span>'
-    vip: 'Your <span class="text-vip">VIP</span> introduction :br<span class="text-primary-400 font-semibold">to the CWA</span>'
+    vip: '<span class="text-vip">Your VIP introduction</span> :br<span class="text-primary-400 font-semibold">to the CWA</span>'
   align: center
 cta:
   title: 'The power of a :br <span class="text-primary-400 font-semibold">predictable data structure</span>'
