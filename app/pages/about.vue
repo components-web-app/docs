@@ -57,6 +57,17 @@ definePageMeta({
               </div>
             </div>
           </div>
+          <div
+            v-if="false && isVip"
+            class="flex justify-center"
+          >
+            <UButton
+              size="xl"
+              color="gray"
+            >
+              Become a VIP
+            </UButton>
+          </div>
         </UPageHero>
       </UContainer>
     </div>

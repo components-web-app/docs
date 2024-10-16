@@ -80,7 +80,7 @@ sections:
       - name: Build components your way
         description: Web designers and developers are provided with helpers. We do not impose any HTML structure of stylistic choices. Build, extend and express as you want.
         icon: i-heroicons-square-3-stack-3d
-  - title: 'FOMO solved with<br><span class="text-primary">real-time updates</span>'
+  - title: 'Feel united with<br><span class="text-primary">real-time updates</span>'
     description: 'We integrate with Mercure to push real-time updates from the API to website users.'
     align: left
     slot: image
@@ -116,7 +116,7 @@ sections:
       - name: 'Caching and Preload Hints'
         description: 'We leverage a static cache layer which is only cleared when resources change. We also leverage Vulcain with preload hints to improve response times.'
         icon: i-ph-speedometer
-  - title: 'Be loyal to your<br><span class="text-primary">file storage provider</span>'
+  - title: 'Freedom to choose<br><span class="text-primary">your own (file) path</span>'
     description: 'We have built in easily configurable file uploads and a file storage abstraction layer with Flysystem.'
     align: left
     slot: grid
@@ -125,7 +125,7 @@ sections:
         description: 'Similar to publishable components, with a little config and annotations, you''ll have file uploads setup in no time.'
         icon: i-ph-gear-fill
       - name: 'Pre-configured file-systems'
-        description: 'Flysystem has several file storage systems already built in, such as Google Cloud, AWS S3, Azure Blob and Local Storage'
+        description: 'Flysystem has several file storage systems already built in, such as Google Cloud, AWS S3, Azure Blob and Local Storage.'
         icon: i-ph-cloud-fill
       - name: 'Build your own file storage adapter'
         description: 'Documentation to configure your own file storage is readily available and there are more third-party file storage providers available.'
