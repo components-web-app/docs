@@ -27,8 +27,8 @@ useHead({
 useSeoMeta({
   titleTemplate: `%s - ${seo?.siteName}`,
   ogSiteName: seo?.siteName,
-  ogImage: 'https://docs.cwa.rocks/social-card.png',
-  twitterImage: 'https://docs.cwa.rocks/social-card.png',
+  ogImage: 'https://cwa.rocks/social-card.png',
+  twitterImage: 'https://cwa.rocks/social-card.png',
   twitterCard: 'summary_large_image'
 })
 
