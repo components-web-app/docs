@@ -93,6 +93,11 @@ onMounted(() => {
         </template>
         <VipCountdown></VipCountdown>
         <VipFeatureIcons />
+        <div class="prose dark:prose-invert bg-gray-400/5 rounded-xl border border-gray-500 p-4 font-bold text-center">
+          <p class="text-sm">
+            We promise to <span class="text-vip">only</span> use your email to stay touch from time to time about <span class="text-vip">relevant VIP topics</span>.
+          </p>
+        </div>
         <VipSignUp />
       </UCard>
     </USlideover>
