@@ -71,6 +71,7 @@ const { data: page } = await useAsyncData(`home`, () => queryContent('/').findOn
 
       <MDC
         :value="page.hero.code"
+        tag="pre"
         class="prose prose-primary dark:prose-invert mx-auto"
       />
     </ULandingHero>
