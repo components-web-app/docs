@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import VipFeatureIcons from '~/components/VipFeatureIcons.vue'
-
 const isOpen = ref(false)
 const vipIsShown = useCookie<boolean>('vip-shown', {
   maxAge: 3600 // 1 hour
 })
-onMounted(() => {
+onMounted(async () => {
+  await nextTick()
   if (!vipIsShown.value) {
     isOpen.value = true
     vipIsShown.value = true
@@ -91,7 +90,7 @@ onMounted(() => {
             </div>
           </div>
         </template>
-        <VipCountdown></VipCountdown>
+        <VipCountdown />
         <VipFeatureIcons />
         <div class="prose dark:prose-invert bg-gray-400/5 rounded-xl border border-gray-500 p-4 font-bold text-center">
           <p class="text-sm">
