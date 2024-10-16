@@ -16,6 +16,10 @@ const vimeoUrl = computed(() => {
   return props.isVip ? 'https://player.vimeo.com/video/1008157540?badge=0&amp;autopause=0&amp;player_id=0' : 'https://player.vimeo.com/video/1010679128?badge=0&amp;autopause=0&amp;player_id=0'
 })
 
+const title = computed(() => {
+  return props.isVip ? page.value.hero.title.vip : page.value.hero.title.default
+})
+
 definePageMeta({
   scrollToTop: true
 })
@@ -30,8 +34,8 @@ definePageMeta({
         >
           <template #title>
             <MDC
-              v-if="page.hero.title"
-              :value="page.hero.title"
+              v-if="title"
+              :value="title"
             />
           </template>
           <template #description>
