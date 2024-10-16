@@ -12,23 +12,23 @@ cta:
   icon: 'i-ph-barbell-fill'
   align: center
   description: |
-    With the rise in de-coupled websites and the power of front-end frameworks, we began to think about a data structure that would fit for every website; <span class="text-primary-400 font-semibold">what did every website need?</span>
+    With the rise in decoupled websites and the power of front-end frameworks, we began to think about a data structure that would fit for every website; <span class="text-primary-400 font-semibold">what did every website need?</span>
     :br :br
-    We didn't want to have to re-make common functionality for each website every time, and if we had a predictable data structure, it would be possible to have <span class="text-primary-400 font-semibold">a powerful website builder and advanced functionality</span>, while enabling a developer to <span class="text-primary-400 font-semibold">create any website with complete flexibility</span>.
+    We didn't want to have to re-make common functionality for each website every time, and if we had a predictable data structure, it would be possible to have a powerful website builder and advanced functionality, while enabling a developer to <span class="text-primary-400 font-semibold">create any website with complete flexibility</span>.
 pageCards:
   items:
+    - title: 'Decoupled web apps'
+      description: 'Decoupled/headless web apps are data driven. This opens up a world of possibilities - data can be shared between other web services, create API abstraction layers, and so much more.'
+      icon: 'i-heroicons-circle-stack'
+    - title: 'Low-code, great DX'
+      description: 'Easily use abstract classes, traits, and PHP annotations for the API. The front-end module builds on top of a UI layer and has ready-to-use components and powerful composables to get you up and running quickly.'
+      icon: 'i-heroicons-face-smile'
+    - title: 'Convention over configuration'
+      description: 'Using a pre-defined directory and file structure allows the CWA Nuxt module to get you up and running fast. You can also add custom configuration to improve the user experience.'
+      icon: 'i-ph-folders'
     - title: 'Free & Open-Source'
       description: 'The CWA is free, open-source and MIT licenced. Everyone can access, audit, contribute and explore the code and documentation.'
       icon: 'i-simple-icons-opensourceinitiative'
-    - title: 'Decoupled web apps'
-      description: 'Now you can build the most modern web apps with ease, where the data is served by an API and the front-end is focussed on the UI/UX. Your website data can be accessed by other services, you can proxy to other APIs and take advantage of the ultimate flexibility.'
-      icon: 'i-heroicons-circle-stack'
-    - title: 'Convention over configuration'
-      description: 'Using a set directory and file structure allows the CWA Nuxt module to get you up and running fast. You can also add custom configuration to improve the user experience.'
-      icon: 'i-ph-folders'
-    - title: 'Low-code, great DX'
-      description: 'Easy to use abstract classes, traits, and PHP annotations for the API. The front-end has ready-to-use components and powerful composables to get you up and running quickly.'
-      icon: 'i-heroicons-face-smile'
 sections:
   - title: 'The joy of<br><span class="text-primary">draft components</span>'
     description: 'Making updates to a website requires time and thought. With publishable components, drafts are created when you make changes and ready to publish when signed off.'

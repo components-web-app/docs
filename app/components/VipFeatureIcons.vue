@@ -1,5 +1,5 @@
 <template>
-  <div class="flex space-x-5 md:space-10 flex-wrap justify-center -mt-8">
+  <div class="flex flex-wrap justify-center -mt-8">
     <VipFeatureIcon>
       <template #icon>
         <SvgoVipGetSupport :filled="true" class="!mb-0" />
