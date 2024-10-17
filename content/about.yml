@@ -111,10 +111,10 @@ sections:
         description: 'Each API request returns a small amount of data and a single resource instead of complex and deeply nested data. '
         icon: i-ph-brackets-curly
       - name: 'UX: Speedy first impressions'
-        description: 'The page UI updates as soon as the primary resources are loaded from the API or local cache for the fastest FCP (First Contentful Paint) possible. Each resource is loaded individually, and the CWA only loads what is required for each page.'
+        description: 'The page UI updates as soon as the primary resources are loaded from the API or local cache for the fastest FCP (First Contentful Paint) possible. The CWA only loads resources that are required for each page, and reuses resources from a local cache if they exist on multiple pages.'
         icon: i-ph-devices
       - name: 'Caching and Preload Hints'
-        description: 'We leverage a static cache layer which is only cleared when resources change. We also leverage Vulcain with preload hints to improve response times.'
+        description: 'We leverage a smart static cache layer, which is only cleared when resources change. We also leverage Vulcain with preload hints to improve response times.'
         icon: i-ph-speedometer
   - title: 'Freedom to choose<br><span class="text-primary">your own (file) path</span>'
     description: 'We have built in easily configurable file uploads and a file storage abstraction layer with Flysystem.'
