@@ -111,7 +111,7 @@ sections:
         description: 'Each API request returns a small amount of data and a single resource instead of complex and deeply nested data. '
         icon: i-ph-brackets-curly
       - name: 'Reactive UX'
-        description: 'The page UI updates as soon as the primary resources are loaded from the API or cached local storage. Each resource is loaded individually, and the CWA only loads what is required for each page.'
+        description: 'The page UI updates as soon as the primary resources are loaded from the API or local cache for the fastest FCP (First Contentful Paint) possible. Each resource is loaded individually, and the CWA only loads what is required for each page.'
         icon: i-ph-devices
       - name: 'Caching and Preload Hints'
         description: 'We leverage a static cache layer which is only cleared when resources change. We also leverage Vulcain with preload hints to improve response times.'
