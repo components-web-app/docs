@@ -36,7 +36,7 @@ features:
       description: 'As a user updates a component it will become a private draft, so they can make changes freely and only publish it when they are ready.'
       icon: 'i-heroicons-newspaper-20-solid'
     - title: 'Lightning fast'
-      description: 'We have built the CWA from the ground up with speed in mind. Each resource is very small and cacheable - we handle it all.'
+      description: 'The CWA is built from the ground up to be fast. Implementing tactics for the fastest First Contentful Paint, and smart static cache layers, you can improve the UX and increase conversions.'
       icon: 'i-heroicons-bolt-20-solid'
     - title: 'Stay in sync'
       description: 'Learn how your website users will get realtime updates and never miss a beat with our integration of Mercure.'
