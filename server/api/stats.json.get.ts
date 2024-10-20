@@ -26,6 +26,12 @@ export default cachedEventHandler(async () => {
         image: 'https://avatars.githubusercontent.com/u/4410121?v=4',
         contributions: 5
       },
+      darkweak: {
+        username: 'darkweak',
+        link: 'https://github.com/darkweak',
+        image: 'https://avatars.githubusercontent.com/u/25440709?v=4',
+        contributions: 3
+      },
       p1pchenk0: {
         username: 'p1pchenk0',
         link: 'https://github.com/p1pchenk0',
