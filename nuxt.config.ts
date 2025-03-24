@@ -129,8 +129,8 @@ export default defineNuxtConfig({
   scripts: {
     registry: {
       cloudflareWebAnalytics: {
-        token: 'dc336a426efc4b2795f820ae32a45dfc'
-      }
+        token: 'c549c6da5f1a47de8622e59fa1db1ff7'
+      } // <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c549c6da5f1a47de8622e59fa1db1ff7"}'></script><!-- End Cloudflare Web Analytics -->
     }
   },
 
