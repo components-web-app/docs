@@ -28,8 +28,8 @@ export default defineNuxtConfig({
           // .env
           // NUXT_PUBLIC_SCRIPTS_CLOUDFLARE_WEB_ANALYTICS_TOKEN=<your-token>
           token: ''
-        },
-      },
+        }
+      }
     }
   },
 
