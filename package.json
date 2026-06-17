@@ -10,7 +10,9 @@
     "postinstall": "nuxt prepare",
     "lint": "eslint .",
     "typecheck": "nuxt typecheck",
-    "generate-pwa-assets": "pwa-assets-generator --preset minimal-2023 public/icon.png"
+    "generate-pwa-assets": "pwa-assets-generator --preset minimal-2023 public/icon.png",
+    "test": "playwright test",
+    "test:update": "playwright test --update-snapshots"
   },
   "dependencies": {
     "@chenfengyuan/vue-countdown": "2",
@@ -29,6 +31,7 @@
   "devDependencies": {
     "@nuxt/eslint": "^0.5.7",
     "@nuxthq/studio": "^2.1.1",
+    "@playwright/test": "^1.61.0",
     "@vite-pwa/assets-generator": "^0.2.6",
     "@vite-pwa/nuxt": "^0.10.5",
     "eslint": "^9.11.1",
@@ -36,6 +39,5 @@
   },
   "resolutions": {
     "@nuxtjs/tailwindcss": "nightly"
-  },
-  "packageManager": "pnpm@9.11.0"
+  }
 }
