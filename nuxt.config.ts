@@ -1,9 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  extends: ['@nuxt/ui-pro'],
-
-  build: { transpile: ['shiki'] },
-
   modules: [
     '@nuxt/content',
     '@nuxt/eslint',
@@ -16,6 +12,27 @@ export default defineNuxtConfig({
     '@vite-pwa/nuxt',
     '@nuxt/scripts'
   ],
+
+  devtools: {
+    enabled: true
+  },
+
+  css: ['~/assets/css/main.css'],
+
+  colorMode: {
+    disableTransition: true
+  },
+
+  content: {
+    build: {
+      markdown: {
+        highlight: {
+          langs: ['json', 'js', 'ts', 'html', 'css', 'vue', 'shell', 'mdc', 'md', 'yaml', 'php'],
+          theme: { default: 'github-dark', light: 'github-light' }
+        }
+      }
+    }
+  },
 
   runtimeConfig: {
     campaignMonitor: {
@@ -33,18 +50,15 @@ export default defineNuxtConfig({
     }
   },
 
-  hooks: {
-    // Define `@nuxt/ui` components as global to use them in `.md` (feel free to add those you need)
-    'components:extend': (components) => {
-      const globals = components.filter(c => ['UButton', 'UIcon'].includes(c.pascalName))
-
-      globals.forEach(c => c.global = true)
-    }
+  routeRules: {
+    '/api/search.json': { prerender: true }
   },
 
-  colorMode: {
-    disableTransition: true
+  future: {
+    compatibilityVersion: 4
   },
+
+  compatibilityDate: '2024-07-11',
 
   nitro: {
     prerender: {
@@ -55,20 +69,17 @@ export default defineNuxtConfig({
     }
   },
 
-  routeRules: {
-    '/api/search.json': { prerender: true }
-  },
-
-  devtools: {
-    enabled: true
-  },
-
   typescript: {
     strict: false
   },
 
-  future: {
-    compatibilityVersion: 4
+  hooks: {
+    // Define `@nuxt/ui` components as global to use them in `.md` (feel free to add those you need)
+    'components:extend': (components) => {
+      const globals = components.filter(c => ['UButton', 'UIcon'].includes(c.pascalName))
+
+      globals.forEach(c => c.global = true)
+    }
   },
 
   eslint: {
@@ -80,19 +91,24 @@ export default defineNuxtConfig({
     }
   },
 
-  uiPro: {
-    license: 'oss'
-  },
-
-  content: {
-    highlight: {
-      langs: ['json', 'js', 'ts', 'html', 'css', 'vue', 'shell', 'mdc', 'md', 'yaml', 'php'],
-      themes: ['github-dark', 'github-light'],
-      theme: {
-        default: 'github-dark',
-        light: 'github-light'
+  fonts: {
+    families: [
+      {
+        name: 'Caveat',
+        weights: [400],
+        styles: ['normal']
+      },
+      {
+        name: 'JetBrains Mono',
+        styles: ['normal'],
+        weights: [400, 600]
+      },
+      {
+        name: 'Source Code Pro',
+        styles: ['normal'],
+        weights: [600]
       }
-    }
+    ]
   },
 
   icon: {
@@ -139,27 +155,5 @@ export default defineNuxtConfig({
     registry: {
       cloudflareWebAnalytics: true
     }
-  },
-
-  fonts: {
-    families: [
-      {
-        name: 'Caveat',
-        weights: [400],
-        styles: ['normal']
-      },
-      {
-        name: 'JetBrains Mono',
-        styles: ['normal'],
-        weights: [400, 600]
-      },
-      {
-        name: 'Source Code Pro',
-        styles: ['normal'],
-        weights: [600]
-      }
-    ]
-  },
-
-  compatibilityDate: '2024-07-11'
+  }
 })

@@ -9,25 +9,22 @@ const orderedContributors = computed(() => {
   return Object.values(stats.value.contributors).sort((a, b) => (b.contributions - a.contributions))
 })
 
-const { data: page } = await useAsyncData(`home`, () => queryContent('/').findOne())
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const { data: page } = await useAsyncData<any>('home', () => queryCollection('pages').path('/').first())
 </script>
 
 <template>
-  <ULandingSection>
-    <ULandingCTA
+  <UPageSection>
+    <UPageCTA
       align="left"
-      :card="false"
       :ui="{
-        body: {
-          padding: '!p-0'
-        },
         title: 'text-center lg:text-left lg:text-5xl',
         description: 'mt-10 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-8 lg:gap-16',
         links: '-ml-3 justify-center lg:justify-start flex-wrap gap-y-3'
       }"
     >
       <template #title>
-        <span v-html="page.contributors.title" />
+        <span v-html="page?.contributors?.title" />
       </template>
 
       <template #description>
@@ -61,11 +58,11 @@ const { data: page } = await useAsyncData(`home`, () => queryContent('/').findOn
 
       <template #links>
         <UButton
-          v-for="user in page.contributors.users"
+          v-for="user in page?.contributors?.users"
           :key="user.username"
           :to="user.to"
           size="md"
-          color="gray"
+          color="neutral"
           variant="ghost"
           target="_blank"
         >
@@ -111,6 +108,6 @@ const { data: page } = await useAsyncData(`home`, () => queryContent('/').findOn
           </NuxtLink>
         </div>
       </div>
-    </ULandingCTA>
-  </ULandingSection>
+    </UPageCTA>
+  </UPageSection>
 </template>

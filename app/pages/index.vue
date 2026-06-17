@@ -4,14 +4,15 @@ import HomeContributors from '~/components/home/HomeContributors.vue'
 import HomeCode from '~/components/home/HomeCode.vue'
 import HomeHero from '~/components/home/HomeHero.vue'
 
-const { data: page } = await useAsyncData(`home`, () => queryContent('/').findOne())
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const { data: page } = await useAsyncData<any>('home', () => queryCollection('pages').path('/').first())
 
 useSeoMeta({
   titleTemplate: '',
-  title: page.value.title,
-  ogTitle: page.value.title,
-  description: page.value.description,
-  ogDescription: page.value.description
+  title: page.value?.title,
+  ogTitle: page.value?.title,
+  description: page.value?.description,
+  ogDescription: page.value?.description
 })
 
 definePageMeta({
@@ -23,28 +24,28 @@ definePageMeta({
   <div>
     <HomeHero />
     <div class="bg-primary/5 dark:bg-feature/65">
-      <ULandingSection
-        :links="page.features.links"
+      <UPageSection
+        :links="page?.features?.links"
         :ui="{ wrapper: 'py-16 sm:py-20 mb-20 sm:mb-24' }"
       >
         <template
-          v-if="page.features.title"
+          v-if="page?.features?.title"
           #title
         >
-          <MDC :value="page.features?.title" />
+          <MDC :value="page?.features?.title" />
         </template>
-        <UPageGrid :ui="{ wrapper: 'grid-cols-1 sm:grid-cols-1 lg:grid-cols-3' }">
-          <ULandingCard
-            v-for="(item, index) of page.features.items"
+        <UPageGrid class="grid-cols-1 sm:grid-cols-1 lg:grid-cols-3">
+          <UPageFeature
+            v-for="(item, index) of page?.features?.items"
             :key="index"
             v-bind="item"
           />
         </UPageGrid>
-      </ULandingSection>
+      </UPageSection>
     </div>
 
-    <ULandingSection
-      v-for="(section, index) in page.benefits.sections"
+    <UPageSection
+      v-for="(section, index) in page?.benefits?.sections"
       :key="index"
       v-bind="section"
       class="!pt-0"
@@ -62,7 +63,7 @@ definePageMeta({
           class="w-full max-w-md"
         />
       </div>
-    </ULandingSection>
+    </UPageSection>
 
     <HomeCode class="mb-24" />
 

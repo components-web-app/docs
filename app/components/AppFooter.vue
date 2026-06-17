@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import type { FooterLink } from '#ui-pro/types'
-
 const { footer } = useAppConfig()
 
 const props = defineProps<{
-  isVip: boolean
-  links: FooterLink[]
+  isVip?: boolean
+  links?: { label?: string, icon?: string, to: string, target?: string }[]
 }>()
 
 const footerClass = computed(() => {
@@ -14,7 +12,7 @@ const footerClass = computed(() => {
 </script>
 
 <template>
-  <UFooter :links="links">
+  <UFooter :class="footerClass">
     <template #left>
       {{ footer.credits }}
     </template>
@@ -26,7 +24,7 @@ const footerClass = computed(() => {
         <UButton
           v-for="(link, index) of footer?.links"
           :key="index"
-          v-bind="{ color: 'gray', variant: 'ghost', ...link }"
+          v-bind="{ color: 'neutral', variant: 'ghost', ...link }"
         />
       </template>
     </template>
@@ -38,11 +36,11 @@ const footerClass = computed(() => {
       >
         With thanks to
         <NuxtLink
-          to="https://ui.nuxt.com/pro"
+          to="https://ui.nuxt.com"
           target="_blank"
           class="hover:text-gray-600 dark:hover:text-gray-300 font-semibold"
         >
-          Nuxt UI Pro
+          Nuxt UI
         </NuxtLink> for sponsoring our OSS project
       </div>
     </template>

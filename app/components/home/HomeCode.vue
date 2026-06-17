@@ -1,53 +1,22 @@
 <script setup lang="ts">
 import BuildComponentFrontEndScreenshot from '~/components/home/BuildComponentFrontEndScreenshot.vue'
 
-const { data: page } = await useAsyncData('home', () => queryContent('/').findOne())
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const { data: page } = await useAsyncData<any>('home', () => queryCollection('pages').path('/').first())
 
-const codeTabsUI = {
-  list: {
-    height: 'h-16',
-    tab: {
-      size: 'text-lg',
-      height: 'h-12',
-      padding: 'px-6',
-      font: 'font-semibold',
-      active: 'text-gray-900 dark:text-white',
-      inactive: 'text-gray-500 dark:text-gray-400'
-    }
-  }
-}
-
-const frontEndTabsUI = {
-  list: {
-    height: 'h-10',
-    background: 'bg-primary-100 dark:bg-primary-800',
-    marker: {
-      background: 'bg-white dark:bg-gray-900/70'
-    },
-    tab: {
-      size: 'text-base',
-      height: 'h-8',
-      padding: 'px-2',
-      font: 'font-semibold',
-      active: 'text-gray-900 dark:text-white',
-      inactive: 'text-gray-500 dark:text-gray-400'
-    }
-  }
-}
-
-const selectedFrontEnd = ref(page.value.code.frontEnd.tabs[0])
+const selectedFrontEnd = ref(page.value?.code?.frontEnd?.tabs?.[0])
 function onFrontEndChange(index: number) {
-  selectedFrontEnd.value = page.value.code.frontEnd.tabs[index]
+  selectedFrontEnd.value = page.value?.code?.frontEnd?.tabs?.[index]
 }
 
 const currentCodeBlock = computed(() => {
-  return (key: string) => key === 'back-end' ? page.value.code.backEnd.code : selectedFrontEnd.value.code
+  return (key: string) => key === 'back-end' ? page.value?.code?.backEnd?.code : selectedFrontEnd.value?.code
 })
 </script>
 
 <template>
   <div class="bg-primary/5 dark:bg-feature/65">
-    <ULandingSection
+    <UPageSection
       align="center"
       :ui="{ container: 'gap-6 sm:gap-y-10 flex flex-col' }"
     >
@@ -56,31 +25,29 @@ const currentCodeBlock = computed(() => {
       </template>
 
       <UTabs
-        :items="page.code.tabs"
+        :items="page?.code?.tabs"
         class="w-full"
-        :ui="codeTabsUI"
       >
-        <template #item="{ item }">
-          <ULandingSection
+        <template #content="{ item }">
+          <UPageSection
             align="left"
             :ui="{ wrapper: 'py-0 sm:py-10', container: 'gap-16 sm:gap-y-24 flex flex-col grid lg:grid-cols-2 lg:items-start' }"
           >
             <template #description>
               <div v-if="item.key === 'front-end'">
                 <div class="px-4 md:px-0">
-                  <BuildComponentFrontEndScreenshot :highlight="selectedFrontEnd.key" />
+                  <BuildComponentFrontEndScreenshot :highlight="selectedFrontEnd?.key" />
                 </div>
                 <UTabs
-                  :items="page.code.frontEnd.tabs"
+                  :items="page?.code?.frontEnd?.tabs"
                   class="mb-6 -mx-5 sm:mx-0"
-                  :ui="frontEndTabsUI"
-                  @change="onFrontEndChange"
+                  @update:model-value="onFrontEndChange"
                 />
               </div>
               <div
                 class="font-semibold"
               >
-                <MDC :value="item.key === 'back-end' ? page.code.backEnd.description : selectedFrontEnd.description" />
+                <MDC :value="item.key === 'back-end' ? page?.code?.backEnd?.description : selectedFrontEnd?.description" />
                 <div class="text-primary opacity-60 flex justify-center items-center space-x-6 mt-10">
                   <template v-if="item.key === 'back-end'">
                     <div>
@@ -121,10 +88,10 @@ const currentCodeBlock = computed(() => {
                 :value="currentCodeBlock(item.key)"
               />
             </div>
-          </ULandingSection>
+          </UPageSection>
         </template>
       </UTabs>
-    </ULandingSection>
+    </UPageSection>
   </div>
 </template>
 

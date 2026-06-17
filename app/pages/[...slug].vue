@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { ContentNavigationItem } from '@nuxt/content'
+import { findPageHeadline } from '@nuxt/content/utils'
 import { withoutTrailingSlash } from 'ufo'
 
 definePageMeta({
@@ -9,15 +11,18 @@ definePageMeta({
 const route = useRoute()
 const { toc, seo } = useAppConfig()
 
-const { data: page } = await useAsyncData(route.path, () => queryContent(route.path).findOne())
+const navigation = inject<Ref<ContentNavigationItem[]>>('navigation')
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const { data: page } = await useAsyncData<any>(route.path, () => queryCollection('docs').path(route.path).first())
 if (!page.value) {
   throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
 }
 
-const { data: surround } = await useAsyncData(`${route.path}-surround`, () => queryContent()
-  .where({ _extension: 'md', navigation: { $ne: false } })
-  .only(['title', 'description', '_path'])
-  .findSurround(withoutTrailingSlash(route.path))
+const { data: surround } = await useAsyncData(`${route.path}-surround`, () =>
+  queryCollectionItemSurroundings('docs', withoutTrailingSlash(route.path), {
+    fields: ['title', 'description']
+  })
 )
 
 useSeoMeta({
@@ -27,18 +32,17 @@ useSeoMeta({
   ogDescription: page.value.description
 })
 
-defineOgImage({
-  component: 'Docs',
+defineOgImage('Docs.satori', {
   title: page.value.title,
   description: page.value.description
 })
 
-const headline = computed(() => findPageHeadline(page.value))
+const headline = computed(() => findPageHeadline(navigation?.value, page.value?.path))
 
 const links = computed(() => [toc?.bottom?.edit && {
   icon: 'i-heroicons-pencil-square',
   label: 'Edit this page',
-  to: `${toc.bottom.edit}/${page?.value?._file}`,
+  to: `${toc.bottom.edit}/${page?.value?.stem}.md`,
   target: '_blank'
 }, ...(toc?.bottom?.links || [])].filter(Boolean))
 </script>
@@ -47,7 +51,7 @@ const links = computed(() => [toc?.bottom?.edit && {
   <UPage>
     <UAlert
       icon="i-heroicons-exclamation-triangle"
-      color="orange"
+      color="warning"
       variant="subtle"
       title="The CWA is in heavy development"
       description="The CWA is still in alpha and not ready for production - some code and implementations are likely to change. If you would like to try out the CWA, please enjoy what we have provided and feel free to provide feedback, or get involved on GitHub."
@@ -88,7 +92,7 @@ const links = computed(() => [toc?.bottom?.edit && {
             class="hidden lg:block space-y-6"
             :class="{ '!mt-6': page.body?.toc?.links?.length }"
           >
-            <UDivider
+            <USeparator
               v-if="page.body?.toc?.links?.length"
               type="dashed"
             />

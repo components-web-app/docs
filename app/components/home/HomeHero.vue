@@ -1,13 +1,14 @@
 <script lang="ts" setup>
 import BackgroundParticles from '~/components/home/BackgroundParticles.vue'
 
-const { data: page } = await useAsyncData(`home`, () => queryContent('/').findOne())
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const { data: page } = await useAsyncData<any>('home', () => queryCollection('pages').path('/').first())
 </script>
 
 <template>
   <div class="relative overflow-hidden">
-    <ULandingHero
-      v-if="page.hero"
+    <UPageHero
+      v-if="page?.hero"
       v-bind="page.hero"
       :ui="{
         container: 'mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl gap-8 sm:gap-y-14 flex flex-col dark:[text-shadow:_0_1px_40px_rgb(0_0_0_/_90%)]'
@@ -74,7 +75,7 @@ const { data: page } = await useAsyncData(`home`, () => queryContent('/').findOn
         tag="pre"
         class="prose prose-primary dark:prose-invert mx-auto"
       />
-    </ULandingHero>
+    </UPageHero>
   </div>
 </template>
 

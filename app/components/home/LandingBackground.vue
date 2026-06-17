@@ -23,7 +23,10 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="bg absolute inset-0 -z-10 transform-gpu overflow-hidden blur-3xl" aria-hidden="true">
+  <div
+    class="bg absolute inset-0 -z-10 transform-gpu overflow-hidden blur-3xl"
+    aria-hidden="true"
+  >
     <div
       class="h-full w-full bg-gradient-to-l from-[rgb(var(--color-primary-DEFAULT))] to-transparent opacity-20"
       :style="{ 'clip-path': `polygon(${poly})` }"

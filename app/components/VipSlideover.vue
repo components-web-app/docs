@@ -16,16 +16,9 @@ onMounted(async () => {
   <div>
     <div class="fixed bottom-5 right-5 z-10">
       <UButton
-        :ui="{
-          rounded: 'rounded-full',
-          inline: 'justify-center w-20 h-20',
-          color: {
-            gray: {
-              solid: 'transition shadow-sm ring-1 ring-inset ring-gray-500 dark:ring-gray-700 text-gray-200 bg-gray-900/60 dark:bg-gray-800/60 hover:bg-gray-900 dark:hover:bg-gray-900 disabled:bg-gray-800 aria-disabled:bg-gray-800 backdrop-blur-sm'
-            }
-          }
-        }"
-        color="gray"
+        color="neutral"
+        variant="solid"
+        class="rounded-full w-20 h-20 justify-center shadow-sm ring-1 ring-inset ring-gray-500 dark:ring-gray-700 text-gray-200 bg-gray-900/60 dark:bg-gray-800/60 hover:bg-gray-900 dark:hover:bg-gray-900 backdrop-blur-sm"
         @click="isOpen = true"
       >
         <SvgoVipCrown
@@ -37,40 +30,22 @@ onMounted(async () => {
     </div>
 
     <USlideover
-      v-model="isOpen"
-      :ui="{ background: 'bg-transparent dark:bg-transparent backdrop-blur-sm', base: 'overflow-auto' }"
+      v-model:open="isOpen"
+      :ui="{ content: 'overflow-auto bg-transparent dark:bg-transparent backdrop-blur-sm' }"
     >
       <UCard
-        class="flex flex-col flex-1"
-        :ui="{
-          body: {
-            base: 'flex-1'
-          },
-          ring: '',
-          rounded: 'rounded-none',
-          divide: 'divide-y divide-gray-100 dark:divide-gray-800',
-          background: 'bg-white/70 dark:bg-gray-900/70',
-          header: {
-            background: 'bg-gray-900/90'
-          }
-        }"
+        class="flex flex-col flex-1 rounded-none divide-y divide-gray-100 dark:divide-gray-800 bg-white/70 dark:bg-gray-900/70"
+        :ui="{ body: 'flex-1', header: 'bg-gray-900/90' }"
       >
         <template #header>
           <UButton
-            color="gray"
+            color="neutral"
             variant="ghost"
             size="sm"
             icon="i-heroicons-x-mark-20-solid"
-            class="flex absolute end-5 top-5 z-10"
+            class="flex absolute end-5 top-5 z-10 text-gray-200 hover:text-white hover:bg-gray-800"
             square
             padded
-            :ui="{
-              color: {
-                gray: {
-                  ghost: 'text-gray-200 hover:text-white hover:bg-gray-800 focus-visible:ring-inset focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400'
-                }
-              }
-            }"
             @click="isOpen = false"
           />
           <div class="flex flex-col pt-10 space-y-4">

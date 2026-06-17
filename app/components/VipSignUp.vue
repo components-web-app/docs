@@ -93,7 +93,7 @@ async function addSubscriber() {
           <UButton
             :disabled="submitting"
             type="submit"
-            color="white"
+            color="neutral"
             size="xl"
             block
             class="mt-4 font-bold"

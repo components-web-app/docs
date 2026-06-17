@@ -1,11 +1,12 @@
 <script setup lang="ts">
-const { data: page } = await useAsyncData('about', () => queryContent('/about').findOne())
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const { data: page } = await useAsyncData<any>('about', () => queryCollection('pages').path('/about').first())
 
 useSeoMeta({
-  title: page.value.title,
-  ogTitle: page.value.title,
-  description: page.value.description,
-  ogDescription: page.value.description
+  title: page.value?.title,
+  ogTitle: page.value?.title,
+  description: page.value?.description,
+  ogDescription: page.value?.description
 })
 
 const props = defineProps<{
@@ -17,7 +18,7 @@ const vimeoUrl = computed(() => {
 })
 
 const title = computed(() => {
-  return props.isVip ? page.value.hero.title.vip : page.value.hero.title.default
+  return props.isVip ? page.value?.hero?.title?.vip : page.value?.hero?.title?.default
 })
 
 definePageMeta({
@@ -57,17 +58,6 @@ definePageMeta({
               </div>
             </div>
           </div>
-          <div
-            v-if="false && isVip"
-            class="flex justify-center"
-          >
-            <UButton
-              size="xl"
-              color="gray"
-            >
-              Become a VIP
-            </UButton>
-          </div>
         </UPageHero>
       </UContainer>
     </div>
@@ -91,7 +81,7 @@ definePageMeta({
             </template>
           </UPageHero>
 
-          <UPageGrid :ui="{ wrapper: 'xl:grid-cols-2' }">
+          <UPageGrid class="xl:grid-cols-2">
             <UPageCard
               v-for="(item, index) of page.pageCards.items"
               :key="index"
@@ -99,11 +89,11 @@ definePageMeta({
             />
           </UPageGrid>
 
-          <ULandingSection
+          <UPageSection
             v-for="(section, index) of page.sections"
             :key="index"
             v-bind="section"
-            :ui="!section.imageFirstMobile ? null : { base: `order-last ${section.align === 'left' ? 'lg:order-first' : ''}` }"
+            :class="!section.imageFirstMobile ? undefined : `order-last ${section.align === 'left' ? 'lg:order-first' : ''}`"
           >
             <template #title>
               <MDC
@@ -171,27 +161,27 @@ definePageMeta({
                 </div>
               </div>
             </template>
-          </ULandingSection>
+          </UPageSection>
         </UPageBody>
       </UPage>
     </UContainer>
     <div class="bg-primary/5 dark:bg-feature/65">
-      <ULandingSection
+      <UPageSection
         :title="page.faq.title"
         :description="page.faq.description"
       >
-        <ULandingFAQ
+        <UPageAccordion
           :items="page.faq.items"
-          multiple
+          type="multiple"
         >
-          <template #item="{ item }">
+          <template #content="{ item }">
             <MDC
               :value="item.content"
               class="prose prose-primary dark:prose-invert max-w-none text-gray-500 dark:text-gray-400"
             />
           </template>
-        </ULandingFAQ>
-      </ULandingSection>
+        </UPageAccordion>
+      </UPageSection>
     </div>
   </div>
 </template>

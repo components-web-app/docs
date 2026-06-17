@@ -1,10 +1,9 @@
 <template>
   <UContainer>
     <div class="flex justify-center">
-      <ULandingLogos
+      <UPageLogos
         title="Special thanks to our sponsors"
-        align="center"
-        :ui="{ images: 'mx-auto mt-10 flex flex-wrap items-center justify-between gap-8 flex-col sm:flex-row' }"
+        :ui="{ logos: 'mx-auto mt-10 flex flex-wrap items-center justify-between gap-8 flex-col sm:flex-row' }"
       >
         <div class="md:px-4">
           <SvgoLogoSwa
@@ -23,11 +22,11 @@
         <div class="md:px-4">
           <SvgoLogoNuxtUi
             class="opacity-50 h-7 md:h-9"
-            alt="Sponsored by Nuxt UI Pro"
+            alt="Sponsored by Nuxt UI"
             :font-controlled="false"
           />
         </div>
-      </ULandingLogos>
+      </UPageLogos>
     </div>
   </UContainer>
 </template>

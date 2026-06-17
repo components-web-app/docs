@@ -1,11 +1,12 @@
 <script setup lang="ts">
-const { data: page } = await useAsyncData('built-for-business', () => queryContent('/built-for-business').findOne())
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const { data: page } = await useAsyncData<any>('built-for-business', () => queryCollection('pages').path('/built-for-business').first())
 
 useSeoMeta({
-  title: page.value.title,
-  ogTitle: page.value.title,
-  description: page.value.description,
-  ogDescription: page.value.description
+  title: page.value?.title,
+  ogTitle: page.value?.title,
+  description: page.value?.description,
+  ogDescription: page.value?.description
 })
 
 definePageMeta({
@@ -40,7 +41,7 @@ definePageMeta({
     <UContainer>
       <UPage>
         <UPageBody>
-          <UPageGrid :ui="{ wrapper: 'grid-cols-1 sm:grid-cols-1 lg:grid-cols-3' }">
+          <UPageGrid class="grid-cols-1 sm:grid-cols-1 lg:grid-cols-3">
             <UPageCard
               v-for="(item, index) of page.pageCards.items"
               :key="index"
@@ -48,9 +49,8 @@ definePageMeta({
             />
           </UPageGrid>
 
-          <ULandingCTA
-            card
-            :ui="{ wrapper: 'mt-8 bg-primary/5 dark:bg-feature/65', body: { base: 'flex flex-col gap-10 sm:gap-y-14', padding: 'py-20 sm:py-28 sm:px-16' } }"
+          <UPageCTA
+            class="mt-8 bg-primary/5 dark:bg-feature/65"
           >
             <template #title>
               <MDC :value="page.businessSizes.title" />
@@ -58,14 +58,14 @@ definePageMeta({
             <template #description>
               <MDC :value="page.businessSizes.description" />
             </template>
-            <UPageGrid :ui="{ wrapper: 'grid-cols-1 sm:grid-cols-1 lg:grid-cols-3' }">
+            <UPageGrid class="grid-cols-1 sm:grid-cols-1 lg:grid-cols-3">
               <UPageCard
                 v-for="(item, index) of page.businessSizes.cards"
                 :key="index"
                 v-bind="item"
               />
             </UPageGrid>
-          </ULandingCTA>
+          </UPageCTA>
 
           <UPageHero
             v-bind="page.teamwork"
@@ -90,7 +90,7 @@ definePageMeta({
           </UPageHero>
 
           <div>
-            <UContainer :ui="{ constrained: 'max-w-4xl' }">
+            <UContainer class="max-w-4xl">
               <div class="h-[18px] w-0.5 bg-gray-200 dark:bg-gray-800 inset-x-0 rounded-t-full" />
 
               <div
@@ -106,7 +106,7 @@ definePageMeta({
                   <div
                     class="h-8 w-8 -ml-3 -mt-1 bg-primary-400 dark:bg-primary-400 rounded-full z-[1] ring-2 ring-gray-300 dark:ring-gray-600 flex-shrink-0 flex justify-center items-center text-black font-bold"
                   >
-                    {{ index+1 }}
+                    {{ Number(index) + 1 }}
                   </div>
                   <div>
                     <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl mb-4 -mt-2">
@@ -118,7 +118,7 @@ definePageMeta({
                     />
                     <UPageGrid
                       v-if="item.features"
-                      :ui="{ wrapper: 'mt-8 gap-4 xl:grid-cols-2' }"
+                      class="mt-8 gap-4 xl:grid-cols-2"
                     >
                       <UPageCard
                         v-for="(feature, featureIndex) of item.features"
@@ -143,25 +143,22 @@ definePageMeta({
       </UPage>
     </UContainer>
     <div class="bg-primary/5 dark:bg-feature/65">
-      <ULandingSection
+      <UPageSection
         :title="page.faq.title"
         :description="page.faq.description"
       >
-        <ULandingFAQ
+        <UPageAccordion
           :items="page.faq.items"
-          multiple
+          type="multiple"
         >
-          <template #item="{ item }">
+          <template #content="{ item }">
             <MDC
               :value="item.content"
               class="prose prose-primary dark:prose-invert max-w-none text-gray-500 dark:text-gray-400"
             />
           </template>
-        </ULandingFAQ>
-      </ULandingSection>
+        </UPageAccordion>
+      </UPageSection>
     </div>
   </div>
 </template>
-
-<style scoped lang="postcss">
-</style>

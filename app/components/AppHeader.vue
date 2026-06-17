@@ -1,13 +1,8 @@
 <script setup lang="ts">
-// import type { NavItem } from '@nuxt/content'
-
-// const navigation = inject<NavItem[]>('navigation', [])
-import type { HeaderLink } from '#ui-pro/types'
-
-const { data: navigation } = await useAsyncData('navigation', () => fetchContentNavigation())
+const { data: navigation } = await useAsyncData('navigation', () => queryCollectionNavigation('docs'))
 
 defineProps<{
-  links: HeaderLink[]
+  links?: { label: string, icon?: string, to: string, target?: string }[]
 }>()
 
 const { header } = useAppConfig()
@@ -16,8 +11,8 @@ provide('navigation', navigation)
 </script>
 
 <template>
-  <UHeader :links="links">
-    <template #logo>
+  <UHeader>
+    <template #title>
       <div
         v-if="header?.logo?.dark || header?.logo?.light"
         class="flex items-center"
@@ -33,23 +28,17 @@ provide('navigation', navigation)
       </template>
     </template>
 
-    <template
-      v-if="!['/', '/about', '/built-for-business'].includes($route.path)"
-      #panel
-    >
-      <LazyUContentSearchButton
-        size="md"
-        class="mb-4 w-full"
-      />
-      <LazyUNavigationTree
-        :links="mapContentNavigation(navigation!)"
-        default-open
-        :multiple="false"
-      />
-    </template>
+    <UNavigationMenu
+      v-if="links?.length"
+      :items="links"
+      class="hidden lg:flex"
+    />
 
     <template #right>
-      <UColorModeToggle v-if="header?.colorMode" size="sm" />
+      <UColorModeButton
+        v-if="header?.colorMode"
+        size="sm"
+      />
 
       <div
         v-if="header?.links"
@@ -58,7 +47,7 @@ provide('navigation', navigation)
         <UButton
           v-for="(link, index) of header.links"
           :key="index"
-          v-bind="{ color: 'gray', variant: 'ghost', ...link }"
+          v-bind="{ color: 'neutral', variant: 'ghost', ...link }"
         />
       </div>
 
@@ -73,6 +62,23 @@ provide('navigation', navigation)
           />
         </NuxtLink>
       </div>
+    </template>
+
+    <template #body>
+      <UNavigationMenu
+        v-if="links?.length"
+        :items="links"
+        orientation="vertical"
+        class="mb-4"
+      />
+      <LazyUContentSearchButton
+        size="md"
+        class="mb-4 w-full"
+      />
+      <LazyUContentNavigation
+        v-if="!['/', '/about', '/built-for-business'].includes($route.path)"
+        :navigation="navigation"
+      />
     </template>
   </UHeader>
 </template>
