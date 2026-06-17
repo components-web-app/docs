@@ -7,6 +7,7 @@ const ROUTES = [
   { path: '/getting-started', name: 'getting-started' },
   { path: '/getting-started/installation', name: 'installation' },
   { path: '/basic-usage/pages-and-layouts', name: 'pages-and-layouts' },
+  { path: '/basic-usage/create-your-first-component', name: 'create-your-first-component' },
 ]
 
 for (const route of ROUTES) {
