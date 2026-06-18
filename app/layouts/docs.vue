@@ -46,10 +46,10 @@ const bottomNavigation = computed<ContentNavigationItem[]>(() =>
             :navigation="topNavigation"
             :default-open="topNavDefaultOpen"
           />
-          <!-- Always collapsed — defaultOpen: false propagates to sub-menus via recursive render -->
+          <!-- defaultOpen: true uses isRouteInTree to open only the path to the current page -->
           <UContentNavigation
             :navigation="bottomNavigation"
-            :default-open="false"
+            :default-open="true"
           />
         </UPageAside>
       </template>
