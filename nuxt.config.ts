@@ -73,21 +73,23 @@ export default defineNuxtConfig({
     strict: false
   },
 
-  components: [
-    { path: '~/components', pathPrefix: true },
-    // content/Diagram/* components registered without pathPrefix so markdown can reference
-    // them as <DiagramXxx /> while @nuxt/content v3 still recognises them as safe block elements
-    { path: '~/components/content', pathPrefix: false, global: true }
-  ],
-
   hooks: {
     // Define components as global to use them in `.md` (feel free to add those you need)
     'components:extend': (components) => {
-      const globals = components.filter(c => [
-        'UButton', 'UIcon'
-      ].includes(c.pascalName))
+      components
+        .filter(c => ['UButton', 'UIcon'].includes(c.pascalName))
+        .forEach(c => { c.global = true })
 
-      globals.forEach(c => c.global = true)
+      // Components in components/content/Diagram/ are auto-discovered as ContentDiagramXxx.
+      // Strip the Content prefix so MDCRenderer can resolve them as DiagramXxx, while keeping
+      // them in components/content/ so @nuxt/content treats them as safe block-level elements.
+      components
+        .filter(c => c.pascalName.startsWith('ContentDiagram'))
+        .forEach(c => {
+          c.pascalName = c.pascalName.slice(7)
+          c.kebabName = c.kebabName.slice(8)
+          c.global = true
+        })
     }
   },
 
