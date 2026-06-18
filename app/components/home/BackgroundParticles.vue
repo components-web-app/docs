@@ -814,31 +814,19 @@ onMounted(() => {
   }
 
   layout.addEventListener('mousemove', (e) => {
-    const eventClientY = e.clientY - 60
+    const rect = canvas.getBoundingClientRect()
+    const x = e.clientX - rect.left
+    const y = e.clientY - rect.top
+    const inBounds = x >= 0 && x <= rect.width && y >= 0 && y <= rect.height
+    if (!inBounds) {
+      pointers[0].down = false
+      return
+    }
     pointers[0].moved = pointers[0].down
-    pointers[0].dx = (e.clientX - pointers[0].x) * 10.0
-    pointers[0].dy = (eventClientY - pointers[0].y) * 10.0
-    pointers[0].x = e.clientX
-    pointers[0].y = eventClientY
-  })
-
-  layout.addEventListener(
-    'touchmove',
-    (e) => {
-      const touches = e.targetTouches
-      for (let i = 0; i < touches.length; i++) {
-        const pointer = pointers[i]
-        pointer.moved = pointer.down
-        pointer.dx = (touches[i].clientX - pointer.x) * 10.0
-        pointer.dy = (touches[i].clientY - pointer.y) * 10.0
-        pointer.x = touches[i].clientX
-        pointer.y = touches[i].clientY
-      }
-    },
-    false
-  )
-
-  layout.addEventListener('mousemove', () => {
+    pointers[0].dx = (x - pointers[0].x) * 10.0
+    pointers[0].dy = (y - pointers[0].y) * 10.0
+    pointers[0].x = x
+    pointers[0].y = y
     pointers[0].down = true
     pointers[0].color = [
       Math.random() + 0.2,
@@ -847,15 +835,34 @@ onMounted(() => {
     ]
   })
 
+  layout.addEventListener(
+    'touchmove',
+    (e) => {
+      const rect = canvas.getBoundingClientRect()
+      const touches = e.targetTouches
+      for (let i = 0; i < touches.length; i++) {
+        const pointer = pointers[i]
+        pointer.moved = pointer.down
+        const x = touches[i].clientX - rect.left
+        const y = touches[i].clientY - rect.top
+        pointer.dx = (x - pointer.x) * 10.0
+        pointer.dy = (y - pointer.y) * 10.0
+        pointer.x = x
+        pointer.y = y
+      }
+    },
+    false
+  )
+
   layout.addEventListener('touchstart', (e) => {
+    const rect = canvas.getBoundingClientRect()
     const touches = e.targetTouches
     for (let i = 0; i < touches.length; i++) {
       if (i >= pointers.length) pointers.push(new pointerPrototype())
-
       pointers[i].id = touches[i].identifier
       pointers[i].down = true
-      pointers[i].x = touches[i].clientX
-      pointers[i].y = touches[i].clientY
+      pointers[i].x = touches[i].clientX - rect.left
+      pointers[i].y = touches[i].clientY - rect.top
       pointers[i].color = [
         Math.random() + 0.2,
         Math.random() + 0.2,
