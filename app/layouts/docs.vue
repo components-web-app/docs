@@ -7,6 +7,17 @@ const navigation = inject<Ref<ContentNavigationItem[]>>('navigation')
 const breakpoints = useBreakpoints(breakpointsTailwind)
 const isDesktop = breakpoints.greaterOrEqual('lg')
 
+// After mount we know the real breakpoint; before mount (SSR) we assume desktop
+// so the server renders the top sections open — correct for the majority of docs readers.
+const mounted = ref(false)
+onMounted(() => { mounted.value = true })
+
+// Key only changes when we need to force a remount: mobile client closing the top sections.
+// Desktop: key stays 'open' (no remount, no flash).
+// Mobile: key changes to 'mobile' on mount, triggering remount with defaultOpen: false.
+const topNavKey = computed(() => (!mounted.value || isDesktop.value) ? 'open' : 'mobile')
+const topNavDefaultOpen = computed(() => (!mounted.value || isDesktop.value) ? undefined : false)
+
 const ALWAYS_OPEN_ON_DESKTOP = ['/getting-started', '/guides', '/core-concepts']
 
 const topNavigation = computed<ContentNavigationItem[]>(() =>
@@ -30,11 +41,10 @@ const bottomNavigation = computed<ContentNavigationItem[]>(() =>
           <template #top>
             <UContentSearchButton size="md" :collapsed="false" />
           </template>
-          <!-- Key forces remount after SSR hydration so desktop breakpoint is applied correctly -->
           <UContentNavigation
-            :key="String(isDesktop)"
+            :key="topNavKey"
             :navigation="topNavigation"
-            :default-open="isDesktop ? undefined : false"
+            :default-open="topNavDefaultOpen"
           />
           <!-- Always collapsed — defaultOpen: false propagates to sub-menus via recursive render -->
           <UContentNavigation
