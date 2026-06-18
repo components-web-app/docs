@@ -1,5 +1,55 @@
 # CWA Docs - Claude Context
 
+## ⚑ Priority: Track changes from other CWA projects for documentation
+
+Whenever work is done in the other CWA projects, a summary is logged below under **Pending Documentation Review**. Before starting any docs work, scan that section and decide whether each change warrants new or updated documentation.
+
+Source projects and their local paths:
+- **API bundle** (`api-components-bundle`) — `/Users/danielwest/Documents/GitHub/_CWA/api-components-bundle`
+- **Nuxt module** (`@cwa/nuxt`) — `/Users/danielwest/Documents/GitHub/_CWA/cwa-nuxt-3-module`
+
+If a change is documented, move it to **Documented** below. If it is intentionally not documented (internal, not user-facing), mark it **Skipped** with a reason.
+
+---
+
+## Pending Documentation Review
+
+*(nothing pending)*
+
+---
+
+## Documented
+
+### Nuxt module (`@cwa/nuxt`) — 2026-06-18
+
+| Change | Documented in |
+|---|---|
+| **Nested sub-pages / `<CwaPage />`** — depth-aware rendering, `cwa-page-depth` / `cwa-page-own-depth` provide/inject | `content/5.nuxt-module/3.creating-page-templates.md` — full `<CwaPage />` section |
+| **`pageIriAtDepth()` / `pageDataIriAtDepth()` no-arg form** — injects `cwa-page-own-depth` automatically | `content/5.nuxt-module/3.creating-page-templates.md` + `content/5.nuxt-module/10.cwa-api.md` |
+| **`pageAtDepth()` / `pageDataAtDepth()`** — convenience wrappers | `content/5.nuxt-module/10.cwa-api.md` — Nested Pages section |
+| **`depthCount`** — computed depth level count | `content/5.nuxt-module/10.cwa-api.md` + breadcrumb pattern in `3.creating-page-templates.md` |
+| **`cwa-page-data-iri` inject key** — ComputedRef<string\|undefined> from `<CwaPage />` | `content/5.nuxt-module/3.creating-page-templates.md` + `10.cwa-api.md` |
+| **`resource_iris: string[][]` manifest format** | `content/4.api/3.dynamic-pages.md` — manifest section |
+| **Race condition fixes** | Skipped — internal |
+
+### API bundle — 2026-06-18
+
+| Change | Documented in |
+|---|---|
+| **Nested sub-pages** — `parentPage`/`parentPageData` on `AbstractPage`; depth-grouped manifest | `content/4.api/3.dynamic-pages.md` — Nested Pages section |
+| **Cascade child path update** — `cascadeChildPaths: true` on PATCH route | `content/4.api/3.dynamic-pages.md` — Cascading Route Changes section |
+| **Route children endpoint** — `GET /_/routes/{id}/children` | `content/4.api/3.dynamic-pages.md` — Fetching a Route's Children section |
+| **CwaFixtureBuilder scaffold tools** (`AbstractCwaScaffold`, builders, fluent API) | `content/4.api/5.data-fixtures.md` (written in prior session) |
+| **`locationReference` on groups** | `content/4.api/5.data-fixtures.md` |
+| **`component()` on CwaFixtureBuilder** | `content/4.api/5.data-fixtures.md` |
+| **Auto-tag `AbstractCwaScaffold` subclasses** | `content/4.api/5.data-fixtures.md` |
+
+## Skipped
+
+*(nothing)*
+
+---
+
 ## Project Overview
 Nuxt docs site migrating from `@nuxt/ui-pro` v1 + Nuxt 3 + `@nuxt/content` v2 → `@nuxt/ui` v4 + Nuxt 4 + `@nuxt/content` v3.
 
