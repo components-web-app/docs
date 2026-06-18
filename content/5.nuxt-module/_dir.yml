@@ -1,1 +1,3 @@
 title: Nuxt Module (Front-End)
+navigation:
+  collapsed: true
