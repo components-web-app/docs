@@ -10,12 +10,13 @@ const isDesktop = breakpoints.greaterOrEqual('lg')
 const EXPANDED_ON_DESKTOP = ['/getting-started', '/guides', '/core-concepts']
 
 const mappedNavigation = computed<ContentNavigationItem[]>(() => {
-  return navigation?.value?.map(item => ({
-    ...item,
-    collapsed: isDesktop.value
-      ? !EXPANDED_ON_DESKTOP.some(p => item.path?.startsWith(p))
-      : true
-  })) ?? []
+  return navigation?.value?.map(item => {
+    const alwaysOpenOnDesktop = EXPANDED_ON_DESKTOP.some(p => item.path?.startsWith(p))
+    if (isDesktop.value && alwaysOpenOnDesktop) {
+      return item
+    }
+    return { ...item, defaultOpen: false }
+  }) ?? []
 })
 </script>
 
