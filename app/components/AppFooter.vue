@@ -29,4 +29,10 @@ const footerClass = computed(() => {
       </template>
     </template>
   </UFooter>
+  <div
+    v-if="isVip"
+    class="h-28"
+  >
+&nbsp;
+  </div>
 </template>
