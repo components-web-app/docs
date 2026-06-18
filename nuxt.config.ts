@@ -73,6 +73,13 @@ export default defineNuxtConfig({
     strict: false
   },
 
+  components: [
+    { path: '~/components', pathPrefix: true },
+    // content/Diagram/* components registered without pathPrefix so markdown can reference
+    // them as <DiagramXxx /> while @nuxt/content v3 still recognises them as safe block elements
+    { path: '~/components/content', pathPrefix: false, global: true }
+  ],
+
   hooks: {
     // Define components as global to use them in `.md` (feel free to add those you need)
     'components:extend': (components) => {
