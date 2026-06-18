@@ -77,9 +77,7 @@ export default defineNuxtConfig({
     // Define components as global to use them in `.md` (feel free to add those you need)
     'components:extend': (components) => {
       const globals = components.filter(c => [
-        'UButton', 'UIcon',
-        'DiagramStaticPage', 'DiagramDynamicPage', 'DiagramNestedPages',
-        'DiagramArchitecture', 'DiagramCiPipeline', 'DiagramResourceChain', 'DiagramBlogExample'
+        'UButton', 'UIcon'
       ].includes(c.pascalName))
 
       globals.forEach(c => c.global = true)

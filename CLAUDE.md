@@ -14,7 +14,11 @@ If a change is documented, move it to **Documented** below. If it is intentional
 
 ## Pending Documentation Review
 
-*(nothing pending)*
+### API bundle — 2026-06-19
+
+| Change | Commit | Needs docs? |
+|---|---|---|
+| **Filter `componentPositions` by `allowedComponents`** — non-allowed component positions hidden from API response; components kept in DB for template-switch reversibility | `c6964304` | Maybe — security behaviour worth noting in component group docs |
 
 ---
 
