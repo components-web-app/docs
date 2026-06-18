@@ -28,7 +28,7 @@ const mappedNavigation = computed<ContentNavigationItem[]>(() => {
           <template #top>
             <UContentSearchButton size="md" :collapsed="false" />
           </template>
-          <UContentNavigation :navigation="mappedNavigation" />
+          <UContentNavigation :key="String(isDesktop)" :navigation="mappedNavigation" />
         </UPageAside>
       </template>
 

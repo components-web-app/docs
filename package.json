@@ -39,5 +39,6 @@
     "@vite-pwa/nuxt": "^1.1.1",
     "eslint": "^10.5.0",
     "vue-tsc": "^3.3.5"
-  }
+  },
+  "packageManager": "pnpm@11.7.0"
 }
