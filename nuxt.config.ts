@@ -7,7 +7,6 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxt/ui',
     '@comark/nuxt',
-    '@nuxthq/studio',
     'nuxt-og-image',
     'nuxt-svgo',
     '@vite-pwa/nuxt',
