@@ -78,7 +78,8 @@ export default defineNuxtConfig({
     'components:extend': (components) => {
       const globals = components.filter(c => [
         'UButton', 'UIcon',
-        'DiagramStaticPage', 'DiagramDynamicPage', 'DiagramNestedPages'
+        'DiagramStaticPage', 'DiagramDynamicPage', 'DiagramNestedPages',
+        'DiagramArchitecture', 'DiagramCiPipeline', 'DiagramResourceChain', 'DiagramBlogExample'
       ].includes(c.pascalName))
 
       globals.forEach(c => c.global = true)
