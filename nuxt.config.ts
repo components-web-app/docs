@@ -6,6 +6,7 @@ export default defineNuxtConfig({
     '@nuxt/fonts',
     '@nuxt/image',
     '@nuxt/ui',
+    '@comark/nuxt',
     '@nuxthq/studio',
     'nuxt-og-image',
     'nuxt-svgo',
@@ -153,7 +154,20 @@ export default defineNuxtConfig({
 
   scripts: {
     registry: {
-      cloudflareWebAnalytics: true
+      cloudflareWebAnalytics: { trigger: 'onNuxtReady' }
     }
+  },
+
+  vite: {
+    optimizeDeps: {
+      include: [
+        '@chenfengyuan/vue-countdown',
+        '@vue/devtools-core',
+        '@vue/devtools-kit'
+      ]
+    }
+  },
+  ui: {
+    prose: true
   }
 })

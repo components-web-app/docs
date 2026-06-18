@@ -1,13 +1,18 @@
 <script setup lang="ts">
-const { data: navigation } = await useAsyncData('navigation', () => queryCollectionNavigation('docs'))
+const { data: navigation } = useNuxtData<any>('navigation')
 
-defineProps<{
+const props = defineProps<{
   links?: { label: string, icon?: string, to: string, target?: string }[]
 }>()
 
 const { header } = useAppConfig()
+const route = useRoute()
 
-provide('navigation', navigation)
+const isDocsPage = computed(() => !['/', '/about', '/built-for-business'].includes(route.path))
+
+const linksWithoutIcons = computed(() =>
+  (props.links || []).map(({ icon: _icon, ...link }) => link)
+)
 </script>
 
 <template>
@@ -29,13 +34,14 @@ provide('navigation', navigation)
     </template>
 
     <UNavigationMenu
-      v-if="links?.length"
-      :items="links"
+      v-if="linksWithoutIcons?.length"
+      :items="linksWithoutIcons"
       class="hidden lg:flex"
+      :ui="{ link: 'font-semibold hover:text-primary', list: 'gap-x-3' }"
     />
 
     <template #right>
-      <UColorModeButton
+      <UColorModeSwitch
         v-if="header?.colorMode"
         size="sm"
       />
@@ -65,18 +71,19 @@ provide('navigation', navigation)
     </template>
 
     <template #body>
+      <LazyUContentSearchButton
+        v-if="isDocsPage"
+        size="md"
+        class="mb-4 w-full"
+      />
       <UNavigationMenu
         v-if="links?.length"
         :items="links"
         orientation="vertical"
         class="mb-4"
       />
-      <LazyUContentSearchButton
-        size="md"
-        class="mb-4 w-full"
-      />
       <LazyUContentNavigation
-        v-if="!['/', '/about', '/built-for-business'].includes($route.path)"
+        v-if="isDocsPage"
         :navigation="navigation"
       />
     </template>

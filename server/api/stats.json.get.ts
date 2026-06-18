@@ -51,9 +51,10 @@ export default cachedEventHandler(async () => {
   const repos = ['components-web-app', 'api-components-bundle', 'cwa-nuxt-module', 'docs']
 
   const getContributors = async (repo: string) => {
-    const { data: contributors } = await octokit.rest.repos.listContributors({
+    const contributors = await octokit.paginate(octokit.rest.repos.listContributors, {
       owner,
-      repo
+      repo,
+      per_page: 100
     })
 
     const repoContributors = contributors
@@ -77,19 +78,24 @@ export default cachedEventHandler(async () => {
   }
 
   const getStargazers = async (repo: string) => {
-    const { data: stargazers } = await octokit.rest.activity.listStargazersForRepo({
+    const stargazers = await octokit.paginate(octokit.rest.activity.listStargazersForRepo, {
       owner,
-      repo
+      repo,
+      per_page: 100
     })
     allStats.stargazers += stargazers.length
   }
 
-  const promises: Promise<void>[] = []
-  for (const repo of repos) {
-    promises.push(getContributors(repo))
-    promises.push(getStargazers(repo))
+  try {
+    const promises: Promise<void>[] = []
+    for (const repo of repos) {
+      promises.push(getContributors(repo))
+      promises.push(getStargazers(repo))
+    }
+    await Promise.all(promises)
+  } catch {
+    // GitHub API unavailable or credentials invalid — return pre-seeded fallback
   }
-  await Promise.all(promises)
 
   return allStats
 }, {

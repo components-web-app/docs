@@ -35,12 +35,15 @@ features:
     - title: 'Draft & Published Components'
       description: 'As a user updates a component it will become a private draft, so they can make changes freely and only publish it when they are ready.'
       icon: 'i-heroicons-newspaper-20-solid'
+      spotlight: true
     - title: 'Lightning fast'
       description: 'Improve visitors'' UX and increase conversions, the CWA is built to be fast! We implement tactics for the fastest First Contentful Paint, and smart caching.'
       icon: 'i-heroicons-bolt-20-solid'
+      spotlight: true
     - title: 'Stay in sync'
       description: 'Learn how your website users will get realtime updates and never miss a beat with our integration of Mercure.'
       icon: 'i-heroicons-arrow-path-20-solid'
+      spotlight: true
 
 benefits:
   sections:
@@ -181,7 +184,7 @@ code:
         contentDoc: '_partials/front-end-component'
         description: |
           With a few composables and very little code you can quickly create your CWA components.
-          :br :br
+          <br><br>
           Load the data provided by the API and add any functionality you need just like any other Vue component.
         code: |
           ```vue [app/cwa/components/Title/Title.vue]
@@ -215,7 +218,7 @@ code:
         contentDoc: '_partials/front-end-admin'
         description: |
           Once you have your data and component setup, all that’s left is to add your own custom tabs into our Components Manager Toolbar.
-          :br :br
+          <br><br>
           With very little code (using our composables and pre-built Vue components) the end-user will be able to manage this new component using the component manager toolbar.
         code: |
           ```vue [app/cwa/components/Title/admin/Title.vue]

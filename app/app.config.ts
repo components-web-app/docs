@@ -1,8 +1,41 @@
 export default defineAppConfig({
   ui: {
+    variables: {
+      dark: {
+        foreground: 'var(--color-gray-200)'
+      }
+    },
     colors: {
       primary: 'teal',
       neutral: 'zinc'
+    },
+    pageSection: {
+      slots: {
+        description: 'text-base sm:text-lg/8 text-gray-600 dark:text-gray-300'
+      }
+    },
+    pageHero: {
+      slots: {
+        container: 'flex flex-col lg:grid py-8 sm:py-16 lg:py-16 gap-8 sm:gap-y-16',
+        title: 'text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-highlighted',
+        description: 'mt-6 text-lg sm:text-lg tracking-tight text-gray-600 dark:text-muted flex justify-center'
+      }
+    },
+    pageCard: {
+      slots: {
+        leadingIcon: 'size-8 shrink-0'
+      }
+    },
+    page: {
+      slots: {
+        root: 'lg:gap-8'
+      }
+    },
+    footer: {
+      slots: {
+        left: 'text-sm text-gray-500 dark:text-gray-400'
+      },
+      wrapper: 'border-t border-gray-200 dark:border-gray-800'
     }
   },
   seo: {
@@ -24,7 +57,7 @@ export default defineAppConfig({
     }]
   },
   footer: {
-    credits: 'Copyright © 2024',
+    credits: 'Copyright © 2026',
     colorMode: false,
     links: [{
       'icon': 'i-simple-icons-instagram',
@@ -38,7 +71,7 @@ export default defineAppConfig({
       'aria-label': 'CWA on X'
     }, {
       'icon': 'i-simple-icons-github',
-      'to': 'https://github.com/components-web-app',
+      'to': 'https://github.com/components-web-app/components-web-app',
       'target': '_blank',
       'aria-label': 'CWA on GitHub'
     }]

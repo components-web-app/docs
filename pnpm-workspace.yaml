@@ -9,3 +9,4 @@ shamefullyHoist: true
 
 overrides:
   "@nuxtjs/tailwindcss": "6.12.2-20241014-164133-9d42549"
+

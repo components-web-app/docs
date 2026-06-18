@@ -6,18 +6,21 @@ const { data: stats } = await useFetch('/api/stats.json', {
 })
 
 const orderedContributors = computed(() => {
-  return Object.values(stats.value.contributors).sort((a, b) => (b.contributions - a.contributions))
+  if (!stats.value?.contributors) return []
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return Object.values(stats.value.contributors).sort((a: any, b: any) => (b.contributions - a.contributions))
 })
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const { data: page } = await useAsyncData<any>('home', () => queryCollection('pages').path('/').first())
+const { data: page } = useNuxtData<any>('home')
 </script>
 
 <template>
-  <UPageSection>
+  <UPageSection :ui="{ container: 'flex flex-col lg:grid py-24 sm:py-32 lg:py-32 gap-8 sm:gap-16' }">
     <UPageCTA
-      align="left"
+      orientation="horizontal"
+      variant="naked"
       :ui="{
+        container: 'p-0 gap-8 sm:gap-16 sm:px-0 lg:px-0',
         title: 'text-center lg:text-left lg:text-5xl',
         description: 'mt-10 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-8 lg:gap-16',
         links: '-ml-3 justify-center lg:justify-start flex-wrap gap-y-3'
@@ -103,7 +106,7 @@ const { data: page } = await useAsyncData<any>('home', () => queryCollection('pa
             <UAvatar
               :src="contributor.image"
               :alt="contributor.username"
-              size="3xl"
+              class="size-20"
             />
           </NuxtLink>
         </div>

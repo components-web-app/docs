@@ -32,11 +32,11 @@ businessSizes:
       description: 'With a focus on the professional web development workflow, the CWA helps you to streamline your workflow; from discovery to delivery and beyond.'
       icon: 'i-heroicons-building-office-2'
 teamwork:
-  title: Built with :br<span class="text-primary-400 font-semibold">teamwork</span> in mind
+  title: Built with <br><span class="text-primary-400 font-semibold">teamwork</span> in mind
   align: center
   description: |
     The CWA has been built with first-hand knowledge of the agile web development workflow, from concept and discovery to delivery, monitoring and maintenance.
-    :br :br
+    <br><br>
     Streamline your team's scrum workflow from building company branding and UI kits, to how the website and product managers interact with the developers and clients. The CWA gives a clear structure of building individual UI components and provides flexibility to for the right people in the right teams who can work in their areas of expertise.
 timeline:
   - title: Built for <span class="text-primary-400 font-semibold">structured planning</span>
@@ -131,4 +131,4 @@ faq:
     - label: Can CWA scale?
       content: Yes. We have designed the CWA to work with server cluster autoscaling (both HPA and VPA) - we recommend not mounting volumes to your containers for the most flexibility. We have also load-tested the CWA with the tech stack provided, and get impressive results with very little resources allocated.
     - label: Do you provide support?
-      content: Yes, in relation to bug fixes and development of core project – via GitHub. Support for individual projects and development of components your developers can contact [Silverback Web Apps](https://silverbackwebapps.com/).
+      content: Yes, in relation to bug fixes and development of core project – via GitHub. Support for individual projects and development of components your developers can contact <a href="https://silverbackwebapps.com/">Silverback Web Apps</a>.

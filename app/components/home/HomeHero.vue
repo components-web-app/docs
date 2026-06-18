@@ -1,8 +1,26 @@
 <script lang="ts" setup>
 import BackgroundParticles from '~/components/home/BackgroundParticles.vue'
+import bash from '@shikijs/langs/bash'
+import highlight, { getHighlighter } from '@comark/nuxt/plugins/highlight'
+import githubLight from '@shikijs/themes/github-light'
+import githubDark from '@shikijs/themes/github-dark'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const { data: page } = await useAsyncData<any>('home', () => queryCollection('pages').path('/').first())
+const { data: page } = useNuxtData<any>('home')
+
+const highlightOptions = {
+  registerDefaultLanguages: false,
+  languages: [bash],
+  registerDefaultThemes: false,
+  themes: { light: githubLight, dark: githubDark }
+}
+const highlightPlugin = highlight(highlightOptions)
+const highlighterReady = ref(false)
+
+onMounted(async () => {
+  await getHighlighter(highlightOptions)
+  highlighterReady.value = true
+})
 </script>
 
 <template>
@@ -11,7 +29,8 @@ const { data: page } = await useAsyncData<any>('home', () => queryCollection('pa
       v-if="page?.hero"
       v-bind="page.hero"
       :ui="{
-        container: 'mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl gap-8 sm:gap-y-14 flex flex-col dark:[text-shadow:_0_1px_40px_rgb(0_0_0_/_90%)]'
+        container: 'mx-auto px-4 sm:px-6 lg:px-8 lg:py-40 max-w-7xl gap-8 sm:gap-y-14 flex flex-col dark:[text-shadow:_0_1px_40px_rgb(0_0_0_/_90%)]',
+        title: 'lg:text-7xl'
       }"
     >
       <template #top>
@@ -53,11 +72,11 @@ const { data: page } = await useAsyncData<any>('home', () => queryCollection('pa
             :font-controlled="false"
           />
         </div>
-        <MDC :value="page.hero.title" />
+        <span v-html="page.hero.title" />
       </template>
 
       <template #description>
-        <MDC :value="page.hero.description" />
+        <Comark>{{ page.hero.description }}</Comark>
       </template>
 
       <template #links>
@@ -70,11 +89,13 @@ const { data: page } = await useAsyncData<any>('home', () => queryCollection('pa
         />
       </template>
 
-      <MDC
-        :value="page.hero.code"
-        tag="pre"
-        class="prose prose-primary dark:prose-invert mx-auto"
-      />
+      <ClientOnly>
+        <Comark
+          v-if="highlighterReady"
+          :plugins="[highlightPlugin]"
+          class="prose prose-primary dark:prose-invert mx-auto"
+        >{{ page.hero.code }}</Comark>
+      </ClientOnly>
     </UPageHero>
   </div>
 </template>

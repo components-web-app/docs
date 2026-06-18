@@ -3,17 +3,17 @@ description: Hello about page
 navigation: false
 hero:
   title:
-    default: 'Welcome to :br<span class="text-primary-400 font-semibold">the CWA</span>'
-    vip: '<span class="text-vip">Your VIP introduction</span> :br<span class="text-primary-400 font-semibold">to the CWA</span>'
+    default: 'Welcome to <br><span class="text-primary-400 font-semibold">the CWA</span>'
+    vip: '<span class="text-vip">Your VIP introduction</span> <br><span class="text-primary-400 font-semibold">to the CWA</span>'
   align: center
 cta:
-  title: 'The power of a :br <span class="text-primary-400 font-semibold">predictable data structure</span>'
+  title: 'The power of a <br><span class="text-primary-400 font-semibold">predictable data structure</span>'
   class: 'mb-8'
   icon: 'i-ph-barbell-fill'
   align: center
   description: |
     With the rise in decoupled websites and the power of front-end frameworks, we began to think about a data structure that would fit for every website; <span class="text-primary-400 font-semibold">what did every website need?</span>
-    :br :br
+    <br><br>
     We didn't want to have to re-make common functionality for each website every time, and if we had a predictable data structure, it would be possible to have a powerful website builder and advanced functionality, while enabling a developer to <span class="text-primary-400 font-semibold">create any website with complete flexibility</span>.
 pageCards:
   items:
@@ -193,20 +193,20 @@ faq:
     - label: Why did you choose these frameworks?
       content: |
         With a background in PHP and Symfony, and the API Platform framework being well maintained by great developers, we decided to use these advanced features and give stability to the project as we knew development of this concept could take some time.
-        :br :br
+        <br><br>
         We found VueJS and Nuxt to be incredibly fun frameworks for the front-end and well maintained. In both instances we wanted to create a system that was built on the shoulders of giants; we didn't want to re-invent the wheel.
-        :br :br
+        <br><br>
         The strong vibrant community behind these frameworks gives confidence and re-assurance your project will be secure and stable going on into the future.
       defaultOpen: false
     - label: How is the data loaded?
       content: |
         Each individual resource is loaded with a separate request. It results in a lot of HTTP requests, however each part has very small, and most importantly, cacheable, chunks of data.
-        :br :br
+        <br><br>
         We only need to load in the data that is required for each individual page which can result in incredibly fast load times.
 #    - label: What does “Unlimited minor & patch updates” include?
 #      content: The CWA is free and open source forever. You will always be able to upgrade to the latest version without warranty or guarantees.
     - label: Do you offer technical support?
       content: |
         Contact us at hello@cwa.rocks or raise issues in our GitHub repositories and we will be happy to help.
-        :br :br
-        If you need more personal technical help, [Silverback Web Apps](https://www.silverbackwebapps.com) will be able to assist.
+        <br><br>
+        If you need more personal technical help, <a href=”https://www.silverbackwebapps.com”>Silverback Web Apps</a> will be able to assist.

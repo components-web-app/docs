@@ -17,33 +17,34 @@ definePageMeta({
 <template>
   <div>
     <div class="bg-primary/5 dark:bg-feature/65">
-      <UContainer>
-        <UPageHero
-          v-bind="page.hero"
-        >
-          <template #title>
-            <MDC :value="page.hero.title" />
-          </template>
-          <template #description>
-            <MDC :value="page.hero.description" />
-          </template>
-          <div class="flex justify-center">
-            <NuxtImg
-              src="/images/business/business-hero.svg"
-              class="w-full max-w-[340px]"
-              width="640"
-              height="640"
-            />
-          </div>
-        </UPageHero>
-      </UContainer>
+      <UPageHero
+        orientation="horizontal"
+        :title="page?.hero?.title"
+        :description="page?.hero?.description"
+        :links="page?.hero?.links"
+      >
+        <template #title>
+          <span v-html="page?.hero?.title" />
+        </template>
+        <template #description>
+          <span v-html="page?.hero?.description" />
+        </template>
+        <div class="flex justify-center">
+          <NuxtImg
+            src="/images/business/business-hero.svg"
+            class="w-full max-w-85"
+            width="640"
+            height="640"
+          />
+        </div>
+      </UPageHero>
     </div>
     <UContainer>
       <UPage>
         <UPageBody>
-          <UPageGrid class="grid-cols-1 sm:grid-cols-1 lg:grid-cols-3">
+          <UPageGrid :ui="{ base: 'relative grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 gap-8' }">
             <UPageCard
-              v-for="(item, index) of page.pageCards.items"
+              v-for="(item, index) of page?.pageCards?.items"
               :key="index"
               v-bind="item"
             />
@@ -51,25 +52,24 @@ definePageMeta({
 
           <UPageCTA
             class="mt-8 bg-primary/5 dark:bg-feature/65"
+            :ui="{ container: 'px-6 py-20 sm:px-16 sm:py-28 flex flex-col gap-10 sm:gap-y-14' }"
           >
             <template #title>
-              <MDC :value="page.businessSizes.title" />
+              <span v-html="page?.businessSizes?.title" />
             </template>
             <template #description>
-              <MDC :value="page.businessSizes.description" />
+              <span v-html="page?.businessSizes?.description" />
             </template>
-            <UPageGrid class="grid-cols-1 sm:grid-cols-1 lg:grid-cols-3">
+            <UPageGrid :ui="{ base: 'relative grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 gap-8' }">
               <UPageCard
-                v-for="(item, index) of page.businessSizes.cards"
+                v-for="(item, index) of page?.businessSizes?.cards"
                 :key="index"
                 v-bind="item"
               />
             </UPageGrid>
           </UPageCTA>
 
-          <UPageHero
-            v-bind="page.teamwork"
-          >
+          <UPageHero>
             <template #title>
               <div class="flex justify-center mb-4">
                 <SvgoBusinessTeamwork
@@ -79,13 +79,14 @@ definePageMeta({
                 />
               </div>
               <div class="flex justify-center">
-                <MDC :value="page.teamwork.title" />
+                <span v-html="page?.teamwork?.title" />
               </div>
             </template>
             <template #description>
-              <div class="max-w-4xl">
-                <MDC :value="page.teamwork.description" />
-              </div>
+              <div
+                class="max-w-4xl"
+                v-html="page?.teamwork?.description"
+              />
             </template>
           </UPageHero>
 
@@ -94,7 +95,7 @@ definePageMeta({
               <div class="h-[18px] w-0.5 bg-gray-200 dark:bg-gray-800 inset-x-0 rounded-t-full" />
 
               <div
-                v-for="(item, index) in page.timeline"
+                v-for="(item, index) in page?.timeline"
                 :key="`timeline-${index}`"
                 class="relative py-3 min-h-[24px] flex items-center justify-center"
               >
@@ -110,15 +111,15 @@ definePageMeta({
                   </div>
                   <div>
                     <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl mb-4 -mt-2">
-                      <MDC :value="item.title" />
+                      <span v-html="item.title" />
                     </h2>
-                    <MDC
+                    <div
                       class="prose prose-primary dark:prose-invert max-w-none"
-                      :value="item.description"
+                      v-html="item.description"
                     />
                     <UPageGrid
                       v-if="item.features"
-                      class="mt-8 gap-4 xl:grid-cols-2"
+                      :ui="{ base: 'relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 mt-8' }"
                     >
                       <UPageCard
                         v-for="(feature, featureIndex) of item.features"
@@ -144,21 +145,29 @@ definePageMeta({
     </UContainer>
     <div class="bg-primary/5 dark:bg-feature/65">
       <UPageSection
-        :title="page.faq.title"
-        :description="page.faq.description"
+        :title="page?.faq?.title"
+        :description="page?.faq?.description"
+        :ui="{ title: 'text-3xl sm:text-4xl', description: 'text-base sm:text-lg mt-4' }"
       >
-        <UPageAccordion
-          :items="page.faq.items"
+        <UAccordion
+          :items="page?.faq?.items"
           type="multiple"
+          :ui="{
+            trigger: 'text-lg py-6 font-medium',
+            label: 'text-gray-900 dark:text-white'
+          }"
         >
           <template #content="{ item }">
-            <MDC
-              :value="item.content"
+            <div
               class="prose prose-primary dark:prose-invert max-w-none text-gray-500 dark:text-gray-400"
+              v-html="item.content"
             />
           </template>
-        </UPageAccordion>
+        </UAccordion>
       </UPageSection>
     </div>
   </div>
 </template>
+
+<style scoped lang="postcss">
+</style>

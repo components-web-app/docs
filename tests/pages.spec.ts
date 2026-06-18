@@ -6,8 +6,8 @@ const ROUTES = [
   { path: '/built-for-business', name: 'built-for-business' },
   { path: '/getting-started', name: 'getting-started' },
   { path: '/getting-started/installation', name: 'installation' },
-  { path: '/basic-usage/pages-and-layouts', name: 'pages-and-layouts' },
-  { path: '/basic-usage/create-your-first-component', name: 'create-your-first-component' },
+  { path: '/guides/your-first-layout', name: 'your-first-layout' },
+  { path: '/guides/your-first-component', name: 'your-first-component' },
 ]
 
 for (const route of ROUTES) {

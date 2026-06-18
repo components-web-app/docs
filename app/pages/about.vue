@@ -1,6 +1,16 @@
 <script setup lang="ts">
+import highlight from '@comark/nuxt/plugins/highlight'
+import { transformerNotationFocus, transformerNotationHighlight } from '@shikijs/transformers'
+import githubDark from '@shikijs/themes/github-dark'
+import githubLight from '@shikijs/themes/github-light'
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const { data: page } = await useAsyncData<any>('about', () => queryCollection('pages').path('/about').first())
+
+const highlightPlugin = highlight({
+  themes: { light: githubLight, dark: githubDark },
+  transformers: [transformerNotationFocus(), transformerNotationHighlight()]
+})
 
 useSeoMeta({
   title: page.value?.title,
@@ -21,6 +31,15 @@ const title = computed(() => {
   return props.isVip ? page.value?.hero?.title?.vip : page.value?.hero?.title?.default
 })
 
+const heroProps = computed(() => {
+  const { title: _t, ...rest } = page.value?.hero || {}
+  return rest
+})
+
+function mapFeatures(features: any[]) {
+  return features?.map((f: any) => ({ ...f, title: f.name })) ?? []
+}
+
 definePageMeta({
   scrollToTop: true
 })
@@ -31,18 +50,18 @@ definePageMeta({
     <div class="bg-primary/5 dark:bg-feature/65">
       <UContainer>
         <UPageHero
-          v-bind="page.hero"
+          v-bind="heroProps"
         >
           <template #title>
-            <MDC
+            <span
               v-if="title"
-              :value="title"
+              v-html="title"
             />
           </template>
           <template #description>
-            <MDC
-              v-if="page.hero.description"
-              :value="page.hero.description"
+            <span
+              v-if="page?.hero?.description"
+              v-html="page.hero.description"
             />
           </template>
           <div class="flex justify-center">
@@ -64,63 +83,77 @@ definePageMeta({
     <UContainer>
       <UPage>
         <UPageBody>
-          <UPageHero v-bind="page.cta">
+          <UPageHero
+            v-bind="page?.cta"
+          >
             <template #title>
-              <MDC
-                v-if="page.cta.title"
-                :value="page.cta.title"
+              <div>
+                <UIcon
+                  v-if="page?.cta?.icon"
+                  :name="page?.cta?.icon"
+                  class="ml-1 size-10 pointer-events-none text-primary"
+                />
+              </div>
+              <span
+                v-if="page?.cta?.title"
+                v-html="page.cta.title"
               />
             </template>
             <template #description>
-              <div class="max-w-4xl">
-                <MDC
-                  v-if="page.cta.description"
-                  :value="page.cta.description"
-                />
-              </div>
+              <div
+                v-if="page?.cta?.description"
+                class="max-w-4xl"
+                v-html="page.cta.description"
+              />
             </template>
           </UPageHero>
 
-          <UPageGrid class="xl:grid-cols-2">
+          <UPageGrid :ui="{ base: 'relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8' }">
             <UPageCard
-              v-for="(item, index) of page.pageCards.items"
+              v-for="(item, index) of page?.pageCards?.items"
               :key="index"
               v-bind="item"
             />
           </UPageGrid>
 
           <UPageSection
-            v-for="(section, index) of page.sections"
+            v-for="(section, index) of page?.sections"
             :key="index"
-            v-bind="section"
-            :class="!section.imageFirstMobile ? undefined : `order-last ${section.align === 'left' ? 'lg:order-first' : ''}`"
+            orientation="horizontal"
+            :reverse="section.align === 'right'"
+            :features="mapFeatures(section.features)"
+            :ui="{
+              container: 'flex flex-col lg:grid py-8 sm:py-12 lg:py-12 gap-8 sm:gap-16',
+              wrapper: section.imageFirstMobile && section.align === 'left' ? 'order-last lg:order-none' : ''
+            }"
           >
             <template #title>
-              <MDC
+              <span
                 v-if="section.title"
-                :value="section.title"
+                v-html="section.title"
               />
             </template>
 
             <template #description>
-              <MDC
+              <span
                 v-if="section.description"
-                :value="section.description"
+                v-html="section.description"
               />
             </template>
 
-            <template #component>
+            <template #default>
               <Component
                 v-bind="section.component"
                 :is="section.component.is"
+                v-if="section.slot === 'component' && section.component"
                 :font-controlled="false"
                 filled
                 class="w-full max-h-96"
               />
-            </template>
-
-            <template #image>
-              <div class="flex justify-center">
+              <div
+                v-else-if="section.slot === 'image' && section.image"
+                class="flex justify-center"
+              >
                 <NuxtImg
                   width="448"
                   height="448"
@@ -128,18 +161,18 @@ definePageMeta({
                   class="w-full max-w-md"
                 />
               </div>
-            </template>
-
-            <template #code>
-              <MDC
-                :value="section.code"
-                tag="pre"
-                class="prose prose-primary dark:prose-invert max-w-none"
-              />
-            </template>
-
-            <template #grid>
-              <div class="flex justify-center">
+              <ClientOnly v-else-if="section.slot === 'code' && section.code">
+                <Comark
+                  :plugins="[highlightPlugin]"
+                  class="prose prose-primary dark:prose-invert max-w-none"
+                >
+                  {{ section.code }}
+                </Comark>
+              </ClientOnly>
+              <div
+                v-else-if="section.slot === 'grid' && section.iconGrid"
+                class="flex justify-center"
+              >
                 <div class="grid grid-cols-3 gap-8 md:gap-12 w-full max-w-md">
                   <NuxtLink
                     v-for="(item, gridIndex) in section.iconGrid"
@@ -167,20 +200,25 @@ definePageMeta({
     </UContainer>
     <div class="bg-primary/5 dark:bg-feature/65">
       <UPageSection
-        :title="page.faq.title"
-        :description="page.faq.description"
+        :title="page?.faq?.title"
+        :description="page?.faq?.description"
+        :ui="{ container: 'flex flex-col lg:grid py-8 sm:py-12 lg:py-12 gap-8 sm:gap-16' }"
       >
-        <UPageAccordion
-          :items="page.faq.items"
+        <UAccordion
+          :items="page?.faq?.items"
           type="multiple"
+          :ui="{
+            trigger: 'text-lg py-6 font-medium',
+            label: 'text-gray-900 dark:text-white'
+          }"
         >
           <template #content="{ item }">
-            <MDC
-              :value="item.content"
-              class="prose prose-primary dark:prose-invert max-w-none text-gray-500 dark:text-gray-400"
+            <div
+              class="prose prose-primary dark:prose-invert max-w-none text-gray-500 dark:text-gray-400 pb-6"
+              v-html="item.content"
             />
           </template>
-        </UPageAccordion>
+        </UAccordion>
       </UPageSection>
     </div>
   </div>
@@ -190,18 +228,18 @@ definePageMeta({
 html.dark .shiki code {
   width: 100%;
 }
-html pre[class*=language-] code .highlighted {
+html .shiki code .highlighted {
   background-color: rgba(255,255,255,0.1);
   transition: background-color .5s;
   margin: 0 -24px;
   padding: 0 24px;
   width: calc(100% + 48px);
-  display: inline-block
+  display: inline-block;
 }
-html pre[class*=language-].has-focused .line:not(.focus) {
+html .shiki.has-focused .line:not(.focused) {
   transition: filter .35s, opacity .35s;
 }
-html pre[class*=language-]:not(:hover).has-focused .line:not(.focused) {
+html .shiki:not(:hover).has-focused .line:not(.focused) {
   filter: blur(.095rem);
   opacity: .7;
 }
