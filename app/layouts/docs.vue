@@ -7,17 +7,19 @@ const navigation = inject<Ref<ContentNavigationItem[]>>('navigation')
 const breakpoints = useBreakpoints(breakpointsTailwind)
 const isDesktop = breakpoints.greaterOrEqual('lg')
 
-const EXPANDED_ON_DESKTOP = ['/getting-started', '/guides', '/core-concepts']
+const ALWAYS_OPEN_ON_DESKTOP = ['/getting-started', '/guides', '/core-concepts']
 
-const mappedNavigation = computed<ContentNavigationItem[]>(() => {
-  return navigation?.value?.map(item => {
-    const alwaysOpenOnDesktop = EXPANDED_ON_DESKTOP.some(p => item.path?.startsWith(p))
-    if (isDesktop.value && alwaysOpenOnDesktop) {
-      return item
-    }
-    return { ...item, defaultOpen: false }
-  }) ?? []
-})
+const topNavigation = computed<ContentNavigationItem[]>(() =>
+  navigation?.value?.filter(item =>
+    ALWAYS_OPEN_ON_DESKTOP.some(p => item.path?.startsWith(p))
+  ) ?? []
+)
+
+const bottomNavigation = computed<ContentNavigationItem[]>(() =>
+  navigation?.value?.filter(item =>
+    !ALWAYS_OPEN_ON_DESKTOP.some(p => item.path?.startsWith(p))
+  ) ?? []
+)
 </script>
 
 <template>
@@ -28,7 +30,17 @@ const mappedNavigation = computed<ContentNavigationItem[]>(() => {
           <template #top>
             <UContentSearchButton size="md" :collapsed="false" />
           </template>
-          <UContentNavigation :key="String(isDesktop)" :navigation="mappedNavigation" />
+          <!-- Key forces remount after SSR hydration so desktop breakpoint is applied correctly -->
+          <UContentNavigation
+            :key="String(isDesktop)"
+            :navigation="topNavigation"
+            :default-open="isDesktop ? undefined : false"
+          />
+          <!-- Always collapsed — defaultOpen: false propagates to sub-menus via recursive render -->
+          <UContentNavigation
+            :navigation="bottomNavigation"
+            :default-open="false"
+          />
         </UPageAside>
       </template>
 
