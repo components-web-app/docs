@@ -38,6 +38,7 @@ If a change is documented, move it to **Documented** below. If it is intentional
 - 2026-06-20 | api-components-bundle | `pageDataClass` required on `ComponentPosition` alongside `pageDataProperty`; `pageDataPosition()` signature updated (`c09c7bb9`) — documented in `4.api/3.dynamic-pages.md`, `4.api/5.data-fixtures.md`, and `3.core-concepts/4.dynamic-pages.md`.
 - 2026-06-20 | @cwa/nuxt | `cwa.pageData[TypeName].properties` config key (`4d35130b`) — documented in `5.nuxt-module/2.configuration/1.nuxt-config.md`.
 - 2026-06-20 | @cwa/nuxt | Admin two-step position picker for `pageDataClass`/`pageDataProperty` (`4d35130b`) — **Skipped**: admin UI behaviour, no developer configuration change.
+- 2026-06-20 | @cwa/nuxt | Two families of page/pageData getters on `$cwa.resources` — documented in `5.nuxt-module/5.cwa-api.md` under `cwa.resources`.
 
 ---
 
