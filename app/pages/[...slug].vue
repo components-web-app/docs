@@ -64,8 +64,10 @@ const links = computed(() => [toc?.bottom?.edit && {
       :links="page.links"
     >
       <template #headline>
-        <UBadge v-if="page.badge" v-bind="{ variant: 'subtle', size: 'sm', ...page.badge }" class="mb-1" />
-        <span v-if="headline" class="block">{{ headline }}</span>
+        <div class="flex flex-col items-start gap-1.5">
+          <UBadge v-if="page.badge" :label="page.badge.label" variant="solid" size="sm" color="warning" />
+          <span v-if="headline">{{ headline }}</span>
+        </div>
       </template>
     </UPageHeader>
 
