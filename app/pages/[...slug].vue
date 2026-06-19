@@ -63,6 +63,7 @@ const links = computed(() => [toc?.bottom?.edit && {
       :description="page.description"
       :links="page.links"
       :headline="headline"
+      :badge="page.badge"
     />
 
     <UPageBody prose>
