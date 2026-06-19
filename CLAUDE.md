@@ -21,12 +21,16 @@ If a change is documented, move it to **Documented** below. If it is intentional
 | **Filter `componentPositions` by `allowedComponents`** — non-allowed component positions hidden from API response; components kept in DB for template-switch reversibility | `c6964304` | Maybe — security behaviour worth noting in component group docs |
 | **Route path auto-prefixed with `/`** — `Route::setPath()` prepends `/` if missing; no error thrown, path just works | `da82d8e1` | No — transparent normalisation, nothing for users to know |
 | **Security docs (#132, #133, #134)** — topics to cover: securing component collections via Doctrine extension, custom route security logic, `routable_security` config | — | Yes — `content/4.api/9.users-and-security.md` or new security section |
+| **`user:create` default role correction** — command creates `ROLE_USER` by default (NOT `ROLE_SUPER_ADMIN`). `--admin` flag → `ROLE_ADMIN`, `--super-admin` flag → `ROLE_SUPER_ADMIN`. `content/4.api/4.users-and-security.md` line 244 currently says "created with `ROLE_SUPER_ADMIN` by default" — **this is wrong and must be corrected**. | `8a495b16` | **Yes — fix incorrect claim in users-and-security.md** |
 
 ### Nuxt module (`@cwa/nuxt`) — 2026-06-19
 
 | Change | Needs docs? |
 |---|---|
 | **Auto-fallback `<CwaPage />`** (Step 10, pending) — once implemented, `CwaPage.vue` auto-appends a child `<CwaPage />` if the template omits one and a child depth exists; new `autoFallback` prop | Yes — update `creating-page-templates.md` `<CwaPage />` section once shipped |
+| **Mercure null safety fixes** — `getPublishedResourceState` missing `?.` before `.publishable` caused TypeError on delete events; `isMessageForCurrentResource` null guard added; `isCwaResourceSame` strips `@context` to prevent false-positive 'content outdated' notices | No — internal bug fixes |
+| **Route slug fixes** (#209 #210) — suffix `.trim()` before path assembly; `slugify` strict mode strips dots/punctuation | No — internal bug fix |
+| **OutdatedContentNotice on add/delete fix (#198)** — `saveResource` (non-`isNew` path) was unconditionally calling `initResource({ isCurrent: true })`, adding every CRUD-saved IRI to `current.currentIds`. Mercure notifications for those IRIs then passed `isMessageForCurrentResource` and triggered the notice. Fix: only set `isCurrent: true` when the IRI was already in `currentIds` before save. The fetch path is unaffected — it adds to `currentIds` via `setResourceFetchStatus` before `saveResource` is called. | No — internal bug fix |
 
 ---
 
