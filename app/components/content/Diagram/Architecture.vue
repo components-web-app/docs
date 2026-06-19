@@ -22,14 +22,14 @@
       <!-- Backend box -->
       <rect x="20" y="32" width="264" height="186" rx="7"
         :fill="col.stoneFill" :stroke="col.stoneStroke" stroke-width="1.5" />
-      <text x="152" y="60" text-anchor="middle"
+      <text x="152" y="95" text-anchor="middle"
         font-family="system-ui,sans-serif" font-size="14" font-weight="700"
         :fill="col.stoneText">Backend</text>
-      <text x="152" y="84" text-anchor="middle"
+      <text x="152" y="116" text-anchor="middle"
         font-family="system-ui,sans-serif" font-size="12" :fill="col.stoneSubtext">Your entities &amp; PageData</text>
-      <text x="152" y="102" text-anchor="middle"
+      <text x="152" y="134" text-anchor="middle"
         font-family="system-ui,sans-serif" font-size="12" :fill="col.stoneSubtext">+ API Components Bundle</text>
-      <text x="152" y="120" text-anchor="middle"
+      <text x="152" y="152" text-anchor="middle"
         font-family="system-ui,sans-serif" font-size="12" :fill="col.stoneSubtext">+ API Platform / Symfony</text>
 
       <!-- Arrow -->
@@ -41,14 +41,14 @@
       <!-- Frontend box -->
       <rect x="376" y="32" width="264" height="186" rx="7"
         :fill="col.blueFill" :stroke="col.blueStroke" stroke-width="1.5" />
-      <text x="508" y="60" text-anchor="middle"
+      <text x="508" y="95" text-anchor="middle"
         font-family="system-ui,sans-serif" font-size="14" font-weight="700"
         :fill="col.blueText">Frontend</text>
-      <text x="508" y="84" text-anchor="middle"
+      <text x="508" y="116" text-anchor="middle"
         font-family="system-ui,sans-serif" font-size="12" :fill="col.blueSubtext">Your Vue UI templates</text>
-      <text x="508" y="102" text-anchor="middle"
+      <text x="508" y="134" text-anchor="middle"
         font-family="system-ui,sans-serif" font-size="12" :fill="col.blueSubtext">+ @cwa/nuxt module</text>
-      <text x="508" y="120" text-anchor="middle"
+      <text x="508" y="152" text-anchor="middle"
         font-family="system-ui,sans-serif" font-size="12" :fill="col.blueSubtext">+ Nuxt / Vue / Pinia</text>
     </svg>
   </div>
@@ -62,30 +62,30 @@ const colorMode = useColorMode()
 const dark = computed(() => colorMode.value === 'dark')
 
 const col = computed(() => dark.value ? {
-  outerBorder: '#44403c',
-  outerLabel:  '#78716c',
-  stoneFill:   '#1c1917',
-  stoneStroke: '#57534e',
-  stoneText:   '#e7e5e4',
-  stoneSubtext:'#a8a29e',
-  blueFill:    '#172554',
+  outerBorder: '#57534e',
+  outerLabel:  '#a8a29e',
+  stoneFill:   '#292524',
+  stoneStroke: '#78716c',
+  stoneText:   '#f5f5f4',
+  stoneSubtext:'#d6d3d1',
+  blueFill:    '#1e3a8a',
   blueStroke:  '#3b82f6',
-  blueText:    '#bfdbfe',
-  blueSubtext: '#93c5fd',
-  arrow:       '#6b7280',
-  arrowLabel:  '#6b7280',
+  blueText:    '#dbeafe',
+  blueSubtext: '#bfdbfe',
+  arrow:       '#9ca3af',
+  arrowLabel:  '#9ca3af',
 } : {
-  outerBorder: '#d1d5db',
-  outerLabel:  '#6b7280',
-  stoneFill:   '#e7e5e4',
-  stoneStroke: '#a8a29e',
-  stoneText:   '#292524',
-  stoneSubtext:'#57534e',
-  blueFill:    '#dbeafe',
-  blueStroke:  '#93c5fd',
+  outerBorder: '#9ca3af',
+  outerLabel:  '#4b5563',
+  stoneFill:   '#d6d3d1',
+  stoneStroke: '#78716c',
+  stoneText:   '#1c1917',
+  stoneSubtext:'#44403c',
+  blueFill:    '#bfdbfe',
+  blueStroke:  '#60a5fa',
   blueText:    '#1e3a8a',
-  blueSubtext: '#1e40af',
-  arrow:       '#6b7280',
-  arrowLabel:  '#6b7280',
+  blueSubtext: '#1d4ed8',
+  arrow:       '#4b5563',
+  arrowLabel:  '#4b5563',
 })
 </script>
