@@ -20,7 +20,8 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
 
   colorMode: {
-    disableTransition: true
+    disableTransition: true,
+    preference: 'dark',
   },
 
   content: {
