@@ -79,17 +79,6 @@ export default defineNuxtConfig({
       components
         .filter(c => ['UButton', 'UIcon'].includes(c.pascalName))
         .forEach(c => { c.global = true })
-
-      // Components in components/content/Diagram/ are auto-discovered as ContentDiagramXxx.
-      // Strip the Content prefix so MDCRenderer can resolve them as DiagramXxx, while keeping
-      // them in components/content/ so @nuxt/content treats them as safe block-level elements.
-      components
-        .filter(c => c.pascalName.startsWith('ContentDiagram'))
-        .forEach(c => {
-          c.pascalName = c.pascalName.slice(7)
-          c.kebabName = c.kebabName.slice(8)
-          c.global = true
-        })
     }
   },
 
