@@ -34,6 +34,10 @@ If a change is documented, move it to **Documented** below. If it is intentional
 - 2026-06-19 | api-components-bundle | Fix #182: `initializeObject()` before publishable field read (PHP 8.4 lazy ghost) — **Skipped**: internal bug fix.
 - 2026-06-19 | api-components-bundle | `_metadata.publishable.locationCount` (`b438d60d`) — documented in `4.api/2.components/2.annotations/1.publishable.md` under API Response Metadata.
 - 2026-06-19 | api-components-bundle | `ComponentPosition` sort collision fix (`b438d60d`) — **Skipped**: internal behaviour fix, no user-facing config change.
+- 2026-06-19 | api-components-bundle | `locationCount` extended to include PageData property usages (`65de12f1`) — updated description in `4.api/2.components/2.annotations/1.publishable.md`.
+- 2026-06-20 | api-components-bundle | `pageDataClass` required on `ComponentPosition` alongside `pageDataProperty`; `pageDataPosition()` signature updated (`c09c7bb9`) — documented in `4.api/3.dynamic-pages.md`, `4.api/5.data-fixtures.md`, and `3.core-concepts/4.dynamic-pages.md`.
+- 2026-06-20 | @cwa/nuxt | `cwa.pageData[TypeName].properties` config key (`4d35130b`) — documented in `5.nuxt-module/2.configuration/1.nuxt-config.md`.
+- 2026-06-20 | @cwa/nuxt | Admin two-step position picker for `pageDataClass`/`pageDataProperty` (`4d35130b`) — **Skipped**: admin UI behaviour, no developer configuration change.
 
 ---
 
@@ -142,7 +146,7 @@ $cwa->flush(): void
 **`GroupBuilder`** — returned by any `->group()` call
 ```php
 ->add(AbstractComponent $component, ?int $sort = null): self
-->pageDataPosition(string $propertyName, ?int $sort = null): self  // creates a slot resolved from PageData at render time
+->pageDataPosition(string $pageDataClass, string $propertyName, ?int $sort = null): self  // creates a slot resolved from PageData at render time
 ```
 
 ### `locationReference` — stable group references
