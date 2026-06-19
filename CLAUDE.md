@@ -14,7 +14,10 @@ If a change is documented, move it to **Documented** below. If it is intentional
 
 ## Pending Documentation Review
 
-*(nothing pending)*
+| Date | Project | Change | Notes |
+|------|---------|--------|-------|
+| 2026-06-19 | api-components-bundle | Fix #129: Multipart file upload now correctly fires exactly one Mercure realtime notification. Root cause was a re-entrant `em->flush()` triggered during Mercure message serialization causing double-publish. Fixed with an `isPropagating` guard in `MercureResourcePublisher`. | Internal fix — probably **Skipped** (Mercure already documented; this is a bug fix not a new feature) |
+| 2026-06-19 | api-components-bundle | Fix #163 / #159: Removed `fileExists()` check in `MediaObjectFactory.createMediaObjects()`. Cloud storage files (S3 etc.) no longer incur an HTTP HEAD request per file on every uncached component fetch. Missing files are handled by catching `UnableToRetrieveMetadata`. | Internal perf fix — probably **Skipped** (no user-facing config change) |
 
 ---
 
