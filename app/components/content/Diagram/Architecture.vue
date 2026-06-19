@@ -1,17 +1,36 @@
 <template>
-  <DiagramChart :definition="definition" />
+  <DiagramChart :options="options" />
 </template>
 
 <script setup lang="ts">
-const definition = `flowchart LR
-  subgraph YourProject["Your Project"]
-    direction LR
-    subgraph Backend["Backend"]
-      API["Your entities &amp; PageData<br/>+ API Components Bundle<br/>+ API Platform / Symfony"]
-    end
-    subgraph Frontend["Frontend"]
-      MOD["Your Vue UI templates<br/>visual shells for layouts, pages &amp; components<br/>+ @cwa/nuxt module<br/>+ Nuxt / Vue / Pinia"]
-    end
-    Backend -->|"REST + Mercure"| Frontend
-  end`
+import type Highcharts from 'highcharts'
+import { diagramBase, diagramChart, diagramSeries, nodeColor } from '~/utils/diagram'
+
+const options: Highcharts.Options = {
+  ...diagramBase,
+  chart: { ...diagramChart, inverted: false, height: 220 },
+  series: [{
+    type: 'organization',
+    ...diagramSeries,
+    nodeWidth: 100,
+    keys: ['from', 'to'],
+    data: [
+      ['backend', 'frontend'],
+    ],
+    nodes: [
+      {
+        id: 'backend',
+        name: 'Backend',
+        ...nodeColor.stone,
+        description: 'Your entities & PageData\n+ API Components Bundle\n+ API Platform / Symfony',
+      },
+      {
+        id: 'frontend',
+        name: 'Frontend',
+        ...nodeColor.blue,
+        description: 'Your Vue UI templates\n+ @cwa/nuxt module\n+ Nuxt / Vue / Pinia',
+      },
+    ],
+  }],
+}
 </script>

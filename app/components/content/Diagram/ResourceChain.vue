@@ -1,23 +1,35 @@
 <template>
-  <DiagramChart :definition="definition" />
+  <DiagramChart :options="options" />
 </template>
 
 <script setup lang="ts">
-const definition = `flowchart TD
-  URL["URL"] --> Route
-  Route -->|static| Page
-  Route -->|dynamic| PageData
-  PageData -->|page field| Page
-  Page --> Layout
-  Page --> ComponentGroup
-  ComponentGroup --> ComponentPosition
-  ComponentPosition --> Component
+import type Highcharts from 'highcharts'
+import { diagramBase, diagramChart, diagramSeries, nodeColor } from '~/utils/diagram'
 
-  style Route             fill:#fafaf9,stroke:#a8a29e,color:#292524
-  style ComponentGroup    fill:#fafaf9,stroke:#a8a29e,color:#292524
-  style ComponentPosition fill:#fafaf9,stroke:#a8a29e,color:#292524
-  style Layout            fill:#eff6ff,stroke:#60a5fa,color:#1e3a8a
-  style Page              fill:#eff6ff,stroke:#60a5fa,color:#1e3a8a
-  style Component         fill:#eff6ff,stroke:#60a5fa,color:#1e3a8a
-  style PageData          fill:#f5f3ff,stroke:#8b5cf6,color:#2e1065`
+const options: Highcharts.Options = {
+  ...diagramBase,
+  chart: { ...diagramChart, height: 620 },
+  series: [{
+    type: 'organization',
+    ...diagramSeries,
+    keys: ['from', 'to'],
+    data: [
+      ['url',               'route'],
+      ['route',             'page'],
+      ['page',              'layout'],
+      ['page',              'componentgroup'],
+      ['componentgroup',    'componentposition'],
+      ['componentposition', 'component'],
+    ],
+    nodes: [
+      { id: 'url',               name: 'URL',               ...nodeColor.neutral },
+      { id: 'route',             name: 'Route',             ...nodeColor.stone,  description: 'also targets PageData for dynamic pages' },
+      { id: 'page',              name: 'Page',              ...nodeColor.blue,   description: 'uiComponent → your Vue template' },
+      { id: 'layout',            name: 'Layout',            ...nodeColor.blue,   description: 'uiComponent → your Vue template' },
+      { id: 'componentgroup',    name: 'ComponentGroup',    ...nodeColor.stone,  description: 'named region in Layout or Page' },
+      { id: 'componentposition', name: 'ComponentPosition', ...nodeColor.stone,  description: 'one ordered slot' },
+      { id: 'component',         name: 'Component',         ...nodeColor.blue,   description: 'uiComponent → your Vue template' },
+    ],
+  }],
+}
 </script>

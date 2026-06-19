@@ -162,8 +162,14 @@ export default defineNuxtConfig({
       include: [
         '@chenfengyuan/vue-countdown',
         '@vue/devtools-core',
-        '@vue/devtools-kit'
+        '@vue/devtools-kit',
+        'highcharts/esm/highcharts.js',
+        'highcharts/esm/modules/sankey.js',
+        'highcharts/esm/modules/organization.js'
       ]
+    },
+    ssr: {
+      noExternal: ['highcharts']
     }
   },
   ui: {

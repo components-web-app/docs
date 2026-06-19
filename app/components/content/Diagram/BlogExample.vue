@@ -1,35 +1,31 @@
 <template>
-  <DiagramChart :definition="definition" />
+  <DiagramChart :options="options" />
 </template>
 
 <script setup lang="ts">
-const definition = `flowchart TD
-  Route[Route]
-  Layout["Layout"]
+import type Highcharts from 'highcharts'
+import { diagramBase, diagramChart, diagramSeries, nodeColor } from '~/utils/diagram'
 
-  subgraph PageDataRecord["BlogArticle — PageData"]
-    BA["BlogArticle"]
-    HC["htmlContent\n(HtmlContent component)"]
-    BA --> HC
-  end
-
-  subgraph PageTemplate["BlogTemplate — Page (isTemplate)"]
-    BT["BlogTemplate"]
-    CG["ComponentGroup"]
-    CP["ComponentPosition\npageDataProperty: htmlContent"]
-    BT --> CG --> CP
-  end
-
-  Route --> BA
-  BA -->|"page field"| BT
-  BT --> Layout
-  HC -.->|"resolves at render time"| CP
-
-  style Route fill:#fafaf9,stroke:#a8a29e,color:#292524
-  style Layout fill:#eff6ff,stroke:#60a5fa,color:#1e3a8a
-  style BT     fill:#eff6ff,stroke:#60a5fa,color:#1e3a8a
-  style CG     fill:#fafaf9,stroke:#a8a29e,color:#292524
-  style CP     fill:#fafaf9,stroke:#a8a29e,color:#292524
-  style BA     fill:#f5f3ff,stroke:#8b5cf6,color:#2e1065
-  style HC     fill:#eff6ff,stroke:#60a5fa,color:#1e3a8a`
+const options: Highcharts.Options = {
+  ...diagramBase,
+  chart: { ...diagramChart, height: 500 },
+  series: [{
+    type: 'organization',
+    ...diagramSeries,
+    keys: ['from', 'to'],
+    data: [
+      ['route',          'blogarticle'],
+      ['blogarticle',    'blogtemplate'],
+      ['blogtemplate',   'componentgroup'],
+      ['componentgroup', 'componentposition'],
+    ],
+    nodes: [
+      { id: 'route',             name: 'Route',             ...nodeColor.stone },
+      { id: 'blogarticle',       name: 'BlogArticle',       ...nodeColor.violet, description: 'PageData — carries title, body, htmlContent' },
+      { id: 'blogtemplate',      name: 'BlogTemplate',      ...nodeColor.blue,   description: 'Page — isTemplate: true, shared across all articles' },
+      { id: 'componentgroup',    name: 'ComponentGroup',    ...nodeColor.stone },
+      { id: 'componentposition', name: 'ComponentPosition', ...nodeColor.stone,  description: "pageDataProperty: 'htmlContent' — resolves BlogArticle's component at render time" },
+    ],
+  }],
+}
 </script>

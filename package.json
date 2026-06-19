@@ -29,6 +29,8 @@
     "@nuxt/ui": "^4.9.0",
     "@octokit/rest": "^22.0.1",
     "better-sqlite3": "^12.11.1",
+    "highcharts": "^13.0.0",
+    "highcharts-vue": "^2.0.1",
     "mermaid": "^11.15.0",
     "nuxt": "^4.4.8",
     "nuxt-og-image": "^6.6.0",

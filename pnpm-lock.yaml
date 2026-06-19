@@ -45,6 +45,12 @@ importers:
       better-sqlite3:
         specifier: ^12.11.1
         version: 12.11.1
+      highcharts:
+        specifier: ^13.0.0
+        version: 13.0.0
+      highcharts-vue:
+        specifier: ^2.0.1
+        version: 2.0.1(highcharts@13.0.0)(vue@3.5.38(typescript@5.9.3))
       mermaid:
         specifier: ^11.15.0
         version: 11.15.0
@@ -5864,6 +5870,23 @@ packages:
 
   hey-listen@1.0.8:
     resolution: {integrity: sha512-COpmrF2NOg4TBWUJ5UVyaCU2A88wEMkUPK4hNqyCkqHbxT92BbvfjoSozkAIIm6XhicGlJHhFdullInrdhwU8Q==}
+
+  highcharts-vue@2.0.1:
+    resolution: {integrity: sha512-7yVaKvsWlx7OgmKFXE2D99fi/0tr2A85H4KUz3jL7CRQhAwvEvXgtDIyTBGLHJsOC5L9VlppAI7k6KfIi0j0hg==}
+    peerDependencies:
+      highcharts: '>=5.0.0'
+      vue: '>=3.0.0'
+
+  highcharts@13.0.0:
+    resolution: {integrity: sha512-AoFXei9hSnVXo8X5PmXzSiNXwPMgA+NzyN35uRRy0N1XwbJbRI1laTCaaFci9QB9Wyv9ZFWlgF0xzgivavJpDA==}
+    peerDependencies:
+      jspdf: ^4.1.0
+      svg2pdf.js: ^2.7.0
+    peerDependenciesMeta:
+      jspdf:
+        optional: true
+      svg2pdf.js:
+        optional: true
 
   hookable@5.5.3:
     resolution: {integrity: sha512-Yc+BQe8SvoXH1643Qez1zqLRmbA5rCL+sSmk6TVos0LWVfNIB7PGncdlId77WzLGSIB5KaWgTaNTs2lNVEI6VQ==}
@@ -14874,6 +14897,13 @@ snapshots:
   hex-rgb@4.3.0: {}
 
   hey-listen@1.0.8: {}
+
+  highcharts-vue@2.0.1(highcharts@13.0.0)(vue@3.5.38(typescript@5.9.3)):
+    dependencies:
+      highcharts: 13.0.0
+      vue: 3.5.38(typescript@5.9.3)
+
+  highcharts@13.0.0: {}
 
   hookable@5.5.3: {}
 
