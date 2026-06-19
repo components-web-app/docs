@@ -14,7 +14,8 @@ If a change is documented, move it to **Documented** below. If it is intentional
 
 ## Pending Documentation Review
 
-*(nothing pending)*
+- 2026-06-19 | api-components-bundle | #170 read-side: pageDataProperty ComponentPosition now skips populating the component if the resolved type is not in componentGroup.allowedComponents. (commit `2305ad89`)
+- 2026-06-19 | api-components-bundle | #86: All ~320 bundle services now have stable `silverback.api_components.*` string IDs with FQCN aliases for decoration/override. Bundle CHANGELOG updated. (commits `3b96d1c2`, `59a3837f`, `0ba0e135`)
 
 ---
 
