@@ -14,10 +14,7 @@ If a change is documented, move it to **Documented** below. If it is intentional
 
 ## Pending Documentation Review
 
-| Date | Project | Change | Notes |
-|------|---------|--------|-------|
-| 2026-06-19 | api-components-bundle | Fix #129: Multipart file upload now correctly fires exactly one Mercure realtime notification. Root cause was a re-entrant `em->flush()` triggered during Mercure message serialization causing double-publish. Fixed with an `isPropagating` guard in `MercureResourcePublisher`. | Internal fix — probably **Skipped** (Mercure already documented; this is a bug fix not a new feature) |
-| 2026-06-19 | api-components-bundle | Fix #163 / #159: Removed `fileExists()` check in `MediaObjectFactory.createMediaObjects()`. Cloud storage files (S3 etc.) no longer incur an HTTP HEAD request per file on every uncached component fetch. Missing files are handled by catching `UnableToRetrieveMetadata`. | Internal perf fix — probably **Skipped** (no user-facing config change) |
+*(nothing pending)*
 
 ---
 
@@ -31,6 +28,10 @@ If a change is documented, move it to **Documented** below. If it is intentional
 - 2026-06-19 | api-components-bundle | Fix #178: `routable_security` now also applies to POST (create) for Page/PageData — documented in `4.api/4.users-and-security.md` under `routable_security`.
 - 2026-06-19 | api-components-bundle | `ComponentGroup.allowedComponents` in Layout:read/Page:read — documented in `5.nuxt-module/4.cwa-components/1.cwa-component-group.md`.
 - 2026-06-19 | api-components-bundle | PropagateUpdatesListener cache purge (#167) — **Skipped**: internal HTTP cache optimization, not user-facing configuration.
+- 2026-06-19 | api-components-bundle | Fix #129: Mercure double-publish guard — **Skipped**: internal bug fix, Mercure already documented.
+- 2026-06-19 | api-components-bundle | Fix #163/#159: Removed `fileExists()` check in `MediaObjectFactory` — **Skipped**: internal perf fix, no user-facing config change.
+- 2026-06-19 | api-components-bundle | Fix #181: Doctrine proxy class name in `allowedComponents` IRI check — **Skipped**: internal bug fix.
+- 2026-06-19 | api-components-bundle | Fix #182: `initializeObject()` before publishable field read (PHP 8.4 lazy ghost) — **Skipped**: internal bug fix.
 
 ---
 
