@@ -1,18 +1,14 @@
 <script setup lang="ts">
 const { footer } = useAppConfig()
 
-const props = defineProps<{
+defineProps<{
   isVip?: boolean
   links?: { label?: string, icon?: string, to: string, target?: string }[]
 }>()
-
-const footerClass = computed(() => {
-  return props.isVip ? 'pb-20' : ''
-})
 </script>
 
 <template>
-  <UFooter :class="footerClass">
+  <UFooter>
     <template #left>
       {{ footer.credits }}
     </template>
