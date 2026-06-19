@@ -14,14 +14,16 @@ If a change is documented, move it to **Documented** below. If it is intentional
 
 ## Pending Documentation Review
 
-- 2026-06-19 | api-components-bundle | #170 read-side: pageDataProperty ComponentPosition now skips populating the component if the resolved type is not in componentGroup.allowedComponents. (commit `2305ad89`)
-- 2026-06-19 | api-components-bundle | #86: All ~320 bundle services now have stable `silverback.api_components.*` string IDs with FQCN aliases for decoration/override. Bundle CHANGELOG updated. (commits `3b96d1c2`, `59a3837f`, `0ba0e135`)
+*(nothing pending)*
 
 ---
 
 ## Documented
 
 *(see git history for full log)*
+
+- 2026-06-19 | api-components-bundle | #170: `allowedComponents` read-side enforcement — `ComponentPosition` entries of disallowed types are now omitted from the API response. Documented in `5.nuxt-module/4.cwa-components/1.cwa-component-group.md` under Allowed Components.
+- 2026-06-19 | api-components-bundle | #86: Stable `silverback.api_components.*` service IDs — documented in `4.api/6.configuration.md` under Services You Can Override.
 
 - 2026-06-19 | api-components-bundle | Fix #178: `routable_security` now also applies to POST (create) for Page/PageData — documented in `4.api/4.users-and-security.md` under `routable_security`.
 - 2026-06-19 | api-components-bundle | `ComponentGroup.allowedComponents` in Layout:read/Page:read — documented in `5.nuxt-module/4.cwa-components/1.cwa-component-group.md`.
