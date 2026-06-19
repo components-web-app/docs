@@ -22,6 +22,10 @@ If a change is documented, move it to **Documented** below. If it is intentional
 
 *(see git history for full log)*
 
+- 2026-06-19 | api-components-bundle | Fix #178: `routable_security` now also applies to POST (create) for Page/PageData — documented in `4.api/4.users-and-security.md` under `routable_security`.
+- 2026-06-19 | api-components-bundle | `ComponentGroup.allowedComponents` in Layout:read/Page:read — documented in `5.nuxt-module/4.cwa-components/1.cwa-component-group.md`.
+- 2026-06-19 | api-components-bundle | PropagateUpdatesListener cache purge (#167) — **Skipped**: internal HTTP cache optimization, not user-facing configuration.
+
 ---
 
 ## Project Overview
