@@ -32,6 +32,8 @@ If a change is documented, move it to **Documented** below. If it is intentional
 - 2026-06-19 | api-components-bundle | Fix #163/#159: Removed `fileExists()` check in `MediaObjectFactory` — **Skipped**: internal perf fix, no user-facing config change.
 - 2026-06-19 | api-components-bundle | Fix #181: Doctrine proxy class name in `allowedComponents` IRI check — **Skipped**: internal bug fix.
 - 2026-06-19 | api-components-bundle | Fix #182: `initializeObject()` before publishable field read (PHP 8.4 lazy ghost) — **Skipped**: internal bug fix.
+- 2026-06-19 | api-components-bundle | `_metadata.publishable.locationCount` (`b438d60d`) — documented in `4.api/2.components/2.annotations/1.publishable.md` under API Response Metadata.
+- 2026-06-19 | api-components-bundle | `ComponentPosition` sort collision fix (`b438d60d`) — **Skipped**: internal behaviour fix, no user-facing config change.
 
 ---
 
