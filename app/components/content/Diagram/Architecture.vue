@@ -55,11 +55,16 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { ref, computed, watch, onMounted } from 'vue'
 import { useColorMode } from '#imports'
 
 const colorMode = useColorMode()
-const dark = computed(() => colorMode.value === 'dark')
+const dark = ref(false)
+
+onMounted(() => {
+  dark.value = colorMode.value === 'dark'
+})
+watch(() => colorMode.value, v => { dark.value = v === 'dark' })
 
 const col = computed(() => dark.value ? {
   outerBorder: '#57534e',
