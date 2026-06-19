@@ -55,15 +55,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watch, onMounted } from 'vue'
+import { ref, computed, watch } from 'vue'
 import { useColorMode } from '#imports'
 
 const colorMode = useColorMode()
-const dark = ref(false)
-
-onMounted(() => {
-  dark.value = colorMode.value === 'dark'
-})
+const dark = ref(colorMode.value === 'dark')
 watch(() => colorMode.value, v => { dark.value = v === 'dark' })
 
 const col = computed(() => dark.value ? {
