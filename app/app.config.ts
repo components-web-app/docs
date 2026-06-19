@@ -26,9 +26,6 @@ export default defineAppConfig({
         leadingIcon: 'size-8 shrink-0'
       }
     },
-    main: {
-      base: 'flex-1'
-    },
     page: {
       slots: {
         root: 'lg:gap-8'

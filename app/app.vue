@@ -65,7 +65,7 @@ provide('navigation', navigation)
 
       <AppHeader :links="links" />
 
-      <UMain class="flex-1">
+      <UMain class="flex-1 min-h-0">
         <NuxtLayout>
           <NuxtPage :is-vip="isVip" />
         </NuxtLayout>
