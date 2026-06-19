@@ -4,9 +4,14 @@
 
 <script setup lang="ts">
 const definition = `flowchart LR
-  API["API Bundle<br/>Symfony + API Platform<br/>Your entities &amp; PageData"]
-  MOD["Nuxt Module<br/>@cwa/nuxt"]
-  APP["Your App<br/>Vue components &amp; templates"]
-  API -->|"REST + Mercure"| MOD
-  MOD -->|"useCwa() + composables"| APP`
+  subgraph YourProject["Your Project"]
+    direction LR
+    subgraph Backend["Backend"]
+      API["Your entities &amp; PageData<br/>+ API Components Bundle<br/>+ API Platform / Symfony"]
+    end
+    subgraph Frontend["Frontend"]
+      MOD["Your layouts, pages &amp; components<br/>+ @cwa/nuxt module<br/>+ Nuxt / Vue / Pinia"]
+    end
+    Backend -->|"REST + Mercure"| Frontend
+  end`
 </script>
