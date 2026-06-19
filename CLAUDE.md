@@ -19,6 +19,14 @@ If a change is documented, move it to **Documented** below. If it is intentional
 | Change | Commit | Needs docs? |
 |---|---|---|
 | **Filter `componentPositions` by `allowedComponents`** — non-allowed component positions hidden from API response; components kept in DB for template-switch reversibility | `c6964304` | Maybe — security behaviour worth noting in component group docs |
+| **Route path auto-prefixed with `/`** — `Route::setPath()` prepends `/` if missing; no error thrown, path just works | `da82d8e1` | No — transparent normalisation, nothing for users to know |
+| **Security docs (#132, #133, #134)** — topics to cover: securing component collections via Doctrine extension, custom route security logic, `routable_security` config | — | Yes — `content/4.api/9.users-and-security.md` or new security section |
+
+### Nuxt module (`@cwa/nuxt`) — 2026-06-19
+
+| Change | Needs docs? |
+|---|---|
+| **Auto-fallback `<CwaPage />`** (Step 10, pending) — once implemented, `CwaPage.vue` auto-appends a child `<CwaPage />` if the template omits one and a child depth exists; new `autoFallback` prop | Yes — update `creating-page-templates.md` `<CwaPage />` section once shipped |
 
 ---
 
