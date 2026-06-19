@@ -12,11 +12,10 @@ const options: Highcharts.Options = {
   series: [{
     type: 'organization',
     ...diagramSeries,
-    keys: ['from', 'to'],
     data: [
-      ['eventlist', 'cwapage'],
-      ['cwapage',   'eventdata'],
-      ['eventdata', 'eventdetail'],
+      { from: 'eventlist', to: 'cwapage' },
+      { from: 'cwapage', to: 'eventdata' },
+      { from: 'eventdata', to: 'eventdetail' },
     ],
     nodes: [
       { id: 'eventlist',   name: 'EventList',   ...nodeColor.blue,   description: 'Page — /events' },

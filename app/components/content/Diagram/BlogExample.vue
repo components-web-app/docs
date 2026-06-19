@@ -12,12 +12,11 @@ const options: Highcharts.Options = {
   series: [{
     type: 'organization',
     ...diagramSeries,
-    keys: ['from', 'to'],
     data: [
-      ['route',          'blogarticle'],
-      ['blogarticle',    'blogtemplate'],
-      ['blogtemplate',   'componentgroup'],
-      ['componentgroup', 'componentposition'],
+      { from: 'route', to: 'blogarticle' },
+      { from: 'blogarticle', to: 'blogtemplate' },
+      { from: 'blogtemplate', to: 'componentgroup' },
+      { from: 'componentgroup', to: 'componentposition' },
     ],
     nodes: [
       { id: 'route',             name: 'Route',             ...nodeColor.stone },

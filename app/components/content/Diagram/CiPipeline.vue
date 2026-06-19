@@ -12,13 +12,12 @@ const options: Highcharts.Options = {
   series: [{
     type: 'organization',
     ...diagramSeries,
-    keys: ['from', 'to'],
     data: [
-      ['build',   'test'],
-      ['test',    'review'],
-      ['test',    'staging'],
-      ['staging', 'canary'],
-      ['canary',  'production'],
+      { from: 'build', to: 'test' },
+      { from: 'test', to: 'review' },
+      { from: 'test', to: 'staging' },
+      { from: 'staging', to: 'canary' },
+      { from: 'canary', to: 'production' },
     ],
     nodes: [
       { id: 'build',      name: 'Build',       ...nodeColor.stone, description: 'docker buildx' },
