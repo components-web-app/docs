@@ -62,9 +62,12 @@ const links = computed(() => [toc?.bottom?.edit && {
       :title="page.title"
       :description="page.description"
       :links="page.links"
-      :headline="headline"
-      :badge="page.badge"
-    />
+    >
+      <template #headline>
+        <span v-if="headline">{{ headline }}</span>
+        <UBadge v-if="page.badge" v-bind="page.badge" size="sm" :class="{ 'ml-2': !!headline }" />
+      </template>
+    </UPageHeader>
 
     <UPageBody prose>
       <ContentRenderer

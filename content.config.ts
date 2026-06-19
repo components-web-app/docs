@@ -6,7 +6,15 @@ export default defineContentConfig({
       type: 'page',
       source: {
         include: '**/*.md'
-      }
+      },
+      schema: z.object({
+        badge: z.object({
+          label: z.string(),
+          color: z.string().optional(),
+          variant: z.string().optional()
+        }).optional(),
+        links: z.array(z.record(z.string(), z.any())).optional()
+      })
     }),
     pages: defineCollection({
       type: 'page',
