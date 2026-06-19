@@ -24,63 +24,19 @@ If a change is documented, move it to **Documented** below. If it is intentional
 
 ## Documented
 
-### API bundle — 2026-06-19
-
-| Change | Documented in |
-|---|---|
-| **Security docs (#132, #133, #134)** — route security, `routable_security`, component security via `ComponentVoter` | `content/4.api/4.users-and-security.md` — Route Security, `routable_security`, Component Security sections |
-| **`user:create` default role correction** — `ROLE_USER` by default, not `ROLE_SUPER_ADMIN` | `content/4.api/4.users-and-security.md` — Creating the First Admin User section |
-| **Filter `componentPositions` by `allowedComponents`** | `content/5.nuxt-module/4.cwa-components/1.cwa-component-group.md` — Allowed Components section; `content/4.api/7.console-commands.md` rewritten with real commands only |
-| **Route path auto-prefixed with `/`** | Skipped — transparent normalisation |
-| **Console commands** — rewritten to document only real commands (`user:create`, `refresh-tokens:expire`, `clean-orphaned`) | `content/4.api/7.console-commands.md` |
-
-### Nuxt module (`@cwa/nuxt`) — 2026-06-19 (skipped)
-
-| Change | Reason |
-|---|---|
-| Mercure null safety fixes, route slug fixes, OutdatedContentNotice fix | Internal bug fixes — no user-facing change |
-
-### Nuxt module (`@cwa/nuxt`) — 2026-06-18
-
-| Change | Documented in |
-|---|---|
-| **Nested sub-pages / `<CwaPage />`** — depth-aware rendering, `cwa-page-depth` / `cwa-page-own-depth` provide/inject | `content/5.nuxt-module/3.creating-page-templates.md` — full `<CwaPage />` section |
-| **`pageIriAtDepth()` / `pageDataIriAtDepth()` no-arg form** — injects `cwa-page-own-depth` automatically | `content/5.nuxt-module/3.creating-page-templates.md` + `content/5.nuxt-module/10.cwa-api.md` |
-| **`pageAtDepth()` / `pageDataAtDepth()`** — convenience wrappers | `content/5.nuxt-module/10.cwa-api.md` — Nested Pages section |
-| **`depthCount`** — computed depth level count | `content/5.nuxt-module/10.cwa-api.md` + breadcrumb pattern in `3.creating-page-templates.md` |
-| **`cwa-page-data-iri` inject key** — ComputedRef<string\|undefined> from `<CwaPage />` | `content/5.nuxt-module/3.creating-page-templates.md` + `10.cwa-api.md` |
-| **`resource_iris: string[][]` manifest format** | `content/4.api/3.dynamic-pages.md` — manifest section |
-| **Race condition fixes** | Skipped — internal |
-
-### API bundle — 2026-06-18
-
-| Change | Documented in |
-|---|---|
-| **Nested sub-pages** — `parentPage`/`parentPageData` on `AbstractPage`; depth-grouped manifest | `content/4.api/3.dynamic-pages.md` — Nested Pages section |
-| **Cascade child path update** — `cascadeChildPaths: true` on PATCH route | `content/4.api/3.dynamic-pages.md` — Cascading Route Changes section |
-| **Route children endpoint** — `GET /_/routes/{id}/children` | `content/4.api/3.dynamic-pages.md` — Fetching a Route's Children section |
-| **CwaFixtureBuilder scaffold tools** (`AbstractCwaScaffold`, builders, fluent API) | `content/4.api/5.data-fixtures.md` (written in prior session) |
-| **`locationReference` on groups** | `content/4.api/5.data-fixtures.md` |
-| **`component()` on CwaFixtureBuilder** | `content/4.api/5.data-fixtures.md` |
-| **Auto-tag `AbstractCwaScaffold` subclasses** | `content/4.api/5.data-fixtures.md` |
-
-## Skipped
-
-*(nothing)*
+*(see git history for full log)*
 
 ---
 
 ## Project Overview
-Nuxt docs site migrating from `@nuxt/ui-pro` v1 + Nuxt 3 + `@nuxt/content` v2 → `@nuxt/ui` v4 + Nuxt 4 + `@nuxt/content` v3.
 
-**Active branch**: `feature/nuxt-ui-v4-migration`
-**Dev server**: `http://localhost:3003` (run `pnpm run dev --port 3003`)
-**Visual tests**: `npx playwright test tests/pages.spec.ts --grep "home - visual" --reporter=list`
-**Update snapshot**: `PLAYWRIGHT_UPDATE_SNAPSHOTS=1 npx playwright test tests/pages.spec.ts --grep "home - visual"`
+Docs site built on Nuxt 4 + `@nuxt/ui` v4 + `@nuxt/content` v3. Migration from v1 stack complete.
+
+**Branch**: `main`
+**Dev server**: `pnpm run dev --port 3000`
 
 ## Rules
 - NEVER add `Co-Authored-By` to git commits
-- Visual test snapshot threshold: `maxDiffPixelRatio: 0.02`
 
 ## Key Technical Notes
 
@@ -103,29 +59,12 @@ ui: {
 - Docs: https://comark.dev/
 
 ### @nuxt/content v3 content refresh
-If you see "no such table: _content_docs": `rm -rf .nuxt && pnpm run dev --port 3003`
+If you see "no such table: _content_docs": `rm -rf .nuxt && pnpm run dev --port 3000`
 
-### Tailwind v4 changes
-- `text-*` classes no longer include line-height — elements inherit from `html { line-height: 1.5 }`
-- Don't add `leading-*` overrides to app.config unless specifically needed for a component
-
-### V1 → V4 size differences (key reference)
-| Component | V1 defaults | V4 defaults |
-|-----------|-------------|-------------|
-| UPageHero container | `py-8 sm:py-16, gap-8 sm:gap-y-16` | `py-24 sm:py-32 lg:py-40, gap-16 sm:gap-y-24` |
-| UPageHero title | `text-3xl sm:text-4xl lg:text-5xl` | `text-5xl sm:text-7xl` |
-| UPageCard icon | `w-8 h-8` (v1 ULandingCard) | `size-5` |
-| UPage layout | `lg:gap-8` | `lg:gap-10` |
-| Header nav links | `gap-x-8` | `gap-1.5` |
-| Header nav link weight | `font-semibold` | `font-medium` |
-| FAQ trigger | `text-lg py-6` | `text-sm py-3.5` |
-| Warning color | `color="orange"` | needs `color="orange"` explicitly |
-
-All fixed via `app.config.ts` `slots` overrides + per-component `:ui` props.
-
-## Migration Issues Backlog
-
-Migration complete as of 2026-06-19. All items resolved.
+### Badge frontmatter in docs pages
+- Must be declared in `content.config.ts` schema or Nuxt Content v3 strips it at query time
+- `UPageHeader` in v4 has no `badge` prop — render via `#headline` slot with `<UBadge>`
+- Valid color tokens: `primary`, `secondary`, `success`, `info`, `warning`, `error`, `neutral` (not `amber`)
 
 ## CWA API Scaffold Tools
 
@@ -220,18 +159,3 @@ The front-end `<CwaComponentGroup>` component matches by `fullReference = "{refe
 | no `route:` on a Page | `RouteGenerator::create()` from title slug |
 | `->pageData()` inside `->nested()`, no route | `RouteGenerator` called → `/parent-path/slug` |
 | no `route:`, no title, top-level | no Route (draft) |
-
-## Component Migration Map (v1 → v4)
-- `ULandingSection` → `UPageSection` (v1 used `align` prop; v4 uses `orientation` + `reverse`)
-- `ULandingCard` → `UPageCard` (`color: 'gray'` → `color: 'neutral'`)
-- `ULandingGrid` → `UPageGrid`
-- `ULandingCTA` → `UPageCTA` (v1 had `:card="false"`; v4 use `variant="naked"`)
-- `ULandingLogos` → `UPageLogos`
-- `ULandingHero` → `UPageHero`
-- `UAside` → `UPageAside`
-- `UNavigationTree` → `UContentNavigation`
-- `UDivider` → `USeparator`
-- `UColorModeToggle` → `UColorModeSwitch`
-- `<MDC :value="..." />` → `<Comark>{{ value }}</Comark>` OR `v-html` for HTML content
-- UTabs: slot `#item` → `#content`
-- UHeader: v1 `:links` prop → v4 `UNavigationMenu :items`
