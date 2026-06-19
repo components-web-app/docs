@@ -6,7 +6,7 @@ export const nodeColor = {
   blue: { color: '#dbeafe', dataLabels: { color: '#1e3a8a' } },
   violet: { color: '#ede9fe', dataLabels: { color: '#2e1065' } },
   neutral: { color: '#f5f5f4', dataLabels: { color: '#44403c' } },
-} satisfies Record<string, Partial<Highcharts.SeriesOrganizationDataOptions>>
+} satisfies Record<string, Partial<Highcharts.SeriesSankeyNodesOptionsObject>>
 
 export const diagramChart = {
   inverted: true,
