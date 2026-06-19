@@ -36,6 +36,13 @@ export default defineAppConfig({
         left: 'text-sm text-zinc-500 dark:text-zinc-400',
         root: 'border-t border-t-zinc-200 dark:border-t-zinc-800'
       }
+    },
+    contentToc: {
+      slots: {
+        // Remove the viewport-proportional max-h on desktop so the TOC's natural
+        // height doesn't force the CSS Grid row (and UMain) to be 100vh-header tall.
+        root: 'lg:max-h-none'
+      }
     }
   },
   seo: {

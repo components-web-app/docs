@@ -37,21 +37,26 @@ const bottomNavigation = computed<ContentNavigationItem[]>(() =>
   <UContainer>
     <UPage>
       <template #left>
-        <UPageAside>
-          <template #top>
-            <UContentSearchButton size="md" :collapsed="false" />
-          </template>
-          <UContentNavigation
-            :key="topNavKey"
-            :navigation="topNavigation"
-            :default-open="topNavDefaultOpen"
-          />
-          <!-- defaultOpen: true uses isRouteInTree to open only the path to the current page -->
-          <UContentNavigation
-            :navigation="bottomNavigation"
-            :default-open="true"
-          />
-        </UPageAside>
+        <!-- lg:h-0 makes this wrapper contribute zero height to the CSS Grid row,
+             preventing the sidebar's max-h from forcing UMain to be 100vh-header tall.
+             The absolute UPageAside overflows from the 0px sticky container. -->
+        <div class="lg:sticky lg:top-(--ui-header-height) lg:h-0">
+          <UPageAside class="lg:absolute lg:top-0 lg:left-0 lg:right-0">
+            <template #top>
+              <UContentSearchButton size="md" :collapsed="false" />
+            </template>
+            <UContentNavigation
+              :key="topNavKey"
+              :navigation="topNavigation"
+              :default-open="topNavDefaultOpen"
+            />
+            <!-- defaultOpen: true uses isRouteInTree to open only the path to the current page -->
+            <UContentNavigation
+              :navigation="bottomNavigation"
+              :default-open="true"
+            />
+          </UPageAside>
+        </div>
       </template>
 
       <slot />

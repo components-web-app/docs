@@ -60,22 +60,20 @@ provide('navigation', navigation)
 
 <template>
   <UApp>
-    <div class="flex flex-col min-h-screen">
-      <NuxtLoadingIndicator />
+    <NuxtLoadingIndicator />
 
-      <AppHeader :links="links" />
+    <AppHeader :links="links" />
 
-      <UMain class="flex-1 min-h-0">
-        <NuxtLayout>
-          <NuxtPage :is-vip="isVip" />
-        </NuxtLayout>
-      </UMain>
+    <UMain class="min-h-0">
+      <NuxtLayout>
+        <NuxtPage :is-vip="isVip" />
+      </NuxtLayout>
+    </UMain>
 
-      <AppFooter
-        :is-vip="isVip"
-        :links="links"
-      />
-    </div>
+    <AppFooter
+      :is-vip="isVip"
+      :links="links"
+    />
 
     <ClientOnly>
       <LazyUContentSearch
