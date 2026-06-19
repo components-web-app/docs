@@ -36,7 +36,7 @@ onMounted(async () => {
       <template #content>
         <UCard
           class="flex flex-col flex-1 rounded-none divide-y divide-gray-100 dark:divide-gray-800 bg-white/70 dark:bg-gray-900/70"
-          :ui="{ body: 'flex-1', header: 'bg-gray-900/90' }"
+          :ui="{ body: 'flex-1 overflow-y-auto', header: 'bg-gray-900/90' }"
         >
           <template #header>
             <UButton
