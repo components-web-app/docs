@@ -14,11 +14,7 @@ If a change is documented, move it to **Documented** below. If it is intentional
 
 ## Pending Documentation Review
 
-### Nuxt module (`@cwa/nuxt`) — 2026-06-19
-
-| Change | Needs docs? |
-|---|---|
-| **Auto-fallback `<CwaPage />`** (Step 10, pending) — once implemented, `CwaPage.vue` auto-appends a child `<CwaPage />` if the template omits one and a child depth exists; new `autoFallback` prop | Yes — update `content/5.nuxt-module/3.building-your-ui/2.creating-page-templates.md` `<CwaPage />` section once shipped |
+*(nothing pending)*
 
 ---
 
