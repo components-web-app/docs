@@ -37,25 +37,34 @@ const bottomNavigation = computed<ContentNavigationItem[]>(() =>
   <UContainer>
     <UPage>
       <template #left>
-        <!-- lg:h-0 makes this wrapper contribute zero height to the CSS Grid row,
-             preventing the sidebar's max-h from forcing UMain to be 100vh-header tall.
-             The absolute UPageAside overflows from the 0px sticky container. -->
-        <div class="lg:sticky lg:top-(--ui-header-height) lg:h-0">
-          <UPageAside class="lg:absolute lg:top-0 lg:left-0 lg:right-0">
-            <template #top>
-              <UContentSearchButton size="md" :collapsed="false" />
-            </template>
-            <UContentNavigation
-              :key="topNavKey"
-              :navigation="topNavigation"
-              :default-open="topNavDefaultOpen"
-            />
-            <!-- defaultOpen: true uses isRouteInTree to open only the path to the current page -->
-            <UContentNavigation
-              :navigation="bottomNavigation"
-              :default-open="true"
-            />
-          </UPageAside>
+        <!--
+          position:fixed takes this sidebar completely out of document flow so it
+          contributes zero height to the CSS Grid row — preventing the sidebar's
+          max-h from forcing UMain to be 100vh-header tall on short-content pages.
+
+          left/width use CSS max()/min()/calc() to align exactly with the grid's
+          col-span-2 area inside the UContainer at all lg+ viewport widths:
+            left  = max(lg:px-8, (100vw - --ui-container) / 2 + lg:px-8)
+            width = col-span-2 of grid-cols-10 with gap-8
+                  = (container-content-width - 9*gap) / 10 * 2 + gap
+                  = (min(100vw, --ui-container) - 4rem - 9*2rem) / 10 * 2 + 2rem
+                  = (min(100vw, --ui-container) - 12rem) / 5
+        -->
+        <div
+          class="hidden lg:flex lg:flex-col fixed top-(--ui-header-height) bottom-0 overflow-y-auto py-8 px-4 bg-default z-10"
+          style="left: max(2rem, calc((100vw - var(--ui-container)) / 2 + 2rem)); width: calc((min(100vw, var(--ui-container)) - 12rem) / 5);"
+        >
+          <UContentSearchButton size="md" :collapsed="false" />
+          <UContentNavigation
+            :key="topNavKey"
+            :navigation="topNavigation"
+            :default-open="topNavDefaultOpen"
+          />
+          <!-- defaultOpen: true uses isRouteInTree to open only the path to the current page -->
+          <UContentNavigation
+            :navigation="bottomNavigation"
+            :default-open="true"
+          />
         </div>
       </template>
 
