@@ -39,6 +39,8 @@ If a change is documented, move it to **Documented** below. If it is intentional
 - 2026-06-20 | @cwa/nuxt | `cwa.pageData[TypeName].properties` config key (`4d35130b`) — documented in `5.nuxt-module/2.configuration/1.nuxt-config.md`.
 - 2026-06-20 | @cwa/nuxt | Admin two-step position picker for `pageDataClass`/`pageDataProperty` (`4d35130b`) — **Skipped**: admin UI behaviour, no developer configuration change.
 - 2026-06-20 | @cwa/nuxt | Two families of page/pageData getters on `$cwa.resources` — documented in `5.nuxt-module/5.cwa-api.md` under `cwa.resources`.
+- 2026-06-20 | api-components-bundle | `make:api-component` Maker command (`942c192c`) — documented in `4.api/7.console-commands.md` under Maker Commands.
+- 2026-06-20 | @cwa/nuxt | SEO title concatenation for nested pages (leaf-first ` | ` join) and deepest-layer meta description — documented in `4.api/3.dynamic-pages.md` under SEO Titles and Meta Descriptions for Nested Pages.
 
 ---
 
