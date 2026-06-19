@@ -14,27 +14,31 @@ If a change is documented, move it to **Documented** below. If it is intentional
 
 ## Pending Documentation Review
 
-### API bundle — 2026-06-19
-
-| Change | Commit | Needs docs? |
-|---|---|---|
-| **Filter `componentPositions` by `allowedComponents`** — non-allowed component positions hidden from API response; components kept in DB for template-switch reversibility | `c6964304` | Maybe — security behaviour worth noting in component group docs |
-| **Route path auto-prefixed with `/`** — `Route::setPath()` prepends `/` if missing; no error thrown, path just works | `da82d8e1` | No — transparent normalisation, nothing for users to know |
-| **Security docs (#132, #133, #134)** — topics to cover: securing component collections via Doctrine extension, custom route security logic, `routable_security` config | — | Yes — `content/4.api/9.users-and-security.md` or new security section |
-| **`user:create` default role correction** — command creates `ROLE_USER` by default (NOT `ROLE_SUPER_ADMIN`). `--admin` flag → `ROLE_ADMIN`, `--super-admin` flag → `ROLE_SUPER_ADMIN`. `content/4.api/4.users-and-security.md` line 244 currently says "created with `ROLE_SUPER_ADMIN` by default" — **this is wrong and must be corrected**. | `8a495b16` | **Yes — fix incorrect claim in users-and-security.md** |
-
 ### Nuxt module (`@cwa/nuxt`) — 2026-06-19
 
 | Change | Needs docs? |
 |---|---|
-| **Auto-fallback `<CwaPage />`** (Step 10, pending) — once implemented, `CwaPage.vue` auto-appends a child `<CwaPage />` if the template omits one and a child depth exists; new `autoFallback` prop | Yes — update `creating-page-templates.md` `<CwaPage />` section once shipped |
-| **Mercure null safety fixes** — `getPublishedResourceState` missing `?.` before `.publishable` caused TypeError on delete events; `isMessageForCurrentResource` null guard added; `isCwaResourceSame` strips `@context` to prevent false-positive 'content outdated' notices | No — internal bug fixes |
-| **Route slug fixes** (#209 #210) — suffix `.trim()` before path assembly; `slugify` strict mode strips dots/punctuation | No — internal bug fix |
-| **OutdatedContentNotice on add/delete fix (#198)** — `saveResource` (non-`isNew` path) was unconditionally calling `initResource({ isCurrent: true })`, adding every CRUD-saved IRI to `current.currentIds`. Mercure notifications for those IRIs then passed `isMessageForCurrentResource` and triggered the notice. Fix: only set `isCurrent: true` when the IRI was already in `currentIds` before save. The fetch path is unaffected — it adds to `currentIds` via `setResourceFetchStatus` before `saveResource` is called. | No — internal bug fix |
+| **Auto-fallback `<CwaPage />`** (Step 10, pending) — once implemented, `CwaPage.vue` auto-appends a child `<CwaPage />` if the template omits one and a child depth exists; new `autoFallback` prop | Yes — update `content/5.nuxt-module/3.building-your-ui/2.creating-page-templates.md` `<CwaPage />` section once shipped |
 
 ---
 
 ## Documented
+
+### API bundle — 2026-06-19
+
+| Change | Documented in |
+|---|---|
+| **Security docs (#132, #133, #134)** — route security, `routable_security`, component security via `ComponentVoter` | `content/4.api/4.users-and-security.md` — Route Security, `routable_security`, Component Security sections |
+| **`user:create` default role correction** — `ROLE_USER` by default, not `ROLE_SUPER_ADMIN` | `content/4.api/4.users-and-security.md` — Creating the First Admin User section |
+| **Filter `componentPositions` by `allowedComponents`** | `content/5.nuxt-module/4.cwa-components/1.cwa-component-group.md` — Allowed Components section; `content/4.api/7.console-commands.md` rewritten with real commands only |
+| **Route path auto-prefixed with `/`** | Skipped — transparent normalisation |
+| **Console commands** — rewritten to document only real commands (`user:create`, `refresh-tokens:expire`, `clean-orphaned`) | `content/4.api/7.console-commands.md` |
+
+### Nuxt module (`@cwa/nuxt`) — 2026-06-19 (skipped)
+
+| Change | Reason |
+|---|---|
+| Mercure null safety fixes, route slug fixes, OutdatedContentNotice fix | Internal bug fixes — no user-facing change |
 
 ### Nuxt module (`@cwa/nuxt`) — 2026-06-18
 
@@ -121,37 +125,7 @@ All fixed via `app.config.ts` `slots` overrides + per-component `:ui` props.
 
 ## Migration Issues Backlog
 
-### Global / App-wide
-- [ ] **Typography text colors darker**: v1 `tailwind.config.ts` had `colors: { gray: { 400: colors.gray['300'] } }` making text-gray-400 lighter. v4 uses standard zinc palette which is darker.
-- [x] **Code syntax highlighting**: Migrated to Comark (`@comark/nuxt`), removes @nuxtjs/mdc API route dependency.
-- [x] **Dark mode button**: Changed to `UColorModeSwitch` in `AppHeader.vue`.
-- [x] **Desktop nav icons**: Stripped via `linksWithoutIcons` computed in AppHeader.
-- [x] **Mobile nav search**: Shows only on docs pages via `isDocsPage` computed.
-- [x] **Spotlight on page cards**: Fixed by adding `spotlight: true` to the YAML props.
-
-### Home Page
-- [ ] **HomeContributors looks wrong**: Spacing/sizing differences remain
-- [x] **HomeCode UTabs height**: `:ui="{ list: 'h-16' }"` applied
-- [ ] **Home page visual snapshot**: Target 5697px
-
-### About Page
-- [x] **Docker and Kubernetes logos**: Added `@source "../../../content/**/*.yml"` in main.css
-- [x] **Grid columns**: Fixed to 2-column via `:ui` override
-- [x] **imageFirstMobile**: Fixed via `ui.wrapper = 'order-last lg:order-none'`
-- [ ] **Font sizes/spacing**: App.config overrides reduce UPageHero title/padding
-
-### Built-for-Business Page
-- [x] **Hero alignment**: Added `orientation="horizontal"` explicitly
-- [x] **Grid columns**: Fixed to 2-column via `:ui` override
-- [x] **FAQ accordion**: Fixed via `:ui` trigger/label overrides
-- [ ] **"Built with teamwork in mind" text/margins**: App.config reduces UPageHero sizes
-
-### Docs Pages
-- [x] **Warning notice color**: Changed `color="orange"` (v1 value) in `[...slug].vue`
-- [x] **Docs layout gap**: `page.slots.root: 'lg:gap-8'` in app.config
-- [x] **Search button collapsed**: Added `:collapsed="false"` in docs.vue
-- [ ] **Search button styling**: May still differ from v1's input style
-- [ ] **TOC padding**: May differ from v1
+Migration complete as of 2026-06-19. All items resolved.
 
 ## CWA API Scaffold Tools
 
