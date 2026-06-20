@@ -22,6 +22,11 @@ If a change is documented, move it to **Documented** below. If it is intentional
 
 *(see git history for full log)*
 
+- 2026-06-20 | @cwa/nuxt | Checkbox unchecked value is `null` — updated `5.nuxt-module/7.component-helpers/5.forms.md` checkbox pattern (setter now `v ? '1' : null`).
+- 2026-06-20 | @cwa/nuxt | `useCwaFormRepeated` three bug fixes (duplicate entry, already documented in previous commit) — **Skipped**: already covered.
+- 2026-06-20 | @cwa/nuxt | `forms.ts` ChoiceType and multi-select fixes (duplicate entry, already documented) — **Skipped**: already covered.
+- 2026-06-20 | @cwa/nuxt | Form component renamed `Form` → `ExampleForm` — **Skipped**: docs use generic example names (`ContactForm.vue`), no `Form/Form.vue` or `CwaComponentForm` references in docs.
+
 - 2026-06-20 | api-components-bundle | Fix form submit `@id` (`fcef2c6f`) — documented in `4.api/2.components/3.built-ins/2.form-component.md` Submission Endpoint section.
 - 2026-06-20 | @cwa/nuxt | `useCwaFormRepeated` both-blurred gate (`3877dbc8`) — documented in `6.composables/1.component/6.use-cwa-form-repeated.md` under Error display gate.
 - 2026-06-20 | @cwa/nuxt | Per-field validation response normalisation (`c20e6074`) — documented in `5.nuxt-module/7.component-helpers/5.forms.md` under Validation internals.
