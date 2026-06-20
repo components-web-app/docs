@@ -22,6 +22,13 @@ If a change is documented, move it to **Documented** below. If it is intentional
 
 *(see git history for full log)*
 
+- 2026-06-20 | api-components-bundle | Fix form submit `@id` (`fcef2c6f`) — documented in `4.api/2.components/3.built-ins/2.form-component.md` Submission Endpoint section.
+- 2026-06-20 | @cwa/nuxt | `useCwaFormRepeated` both-blurred gate (`3877dbc8`) — documented in `6.composables/1.component/6.use-cwa-form-repeated.md` under Error display gate.
+- 2026-06-20 | @cwa/nuxt | Per-field validation response normalisation (`c20e6074`) — documented in `5.nuxt-module/7.component-helpers/5.forms.md` under Validation internals.
+- 2026-06-20 | @cwa/nuxt | `forms.ts` ChoiceType `full_name` fixes (expanded radio / multi-select `[]` strip) — documented in `5.nuxt-module/7.component-helpers/5.forms.md` under `full_name` convention.
+- 2026-06-20 | @cwa/nuxt | `useCwaFormRepeated` three bug fixes (no `__FAKE__`, `valid` reads parent node, pair-mismatch redirect) — updated `6.composables/1.component/6.use-cwa-form-repeated.md`.
+- 2026-06-20 | @cwa/nuxt | Playground collection entry components (`FormChildEntry.vue`, `FormTextEntry.vue`) — label fallback note added to `5.nuxt-module/7.component-helpers/5.forms.md` CollectionType section.
+
 - 2026-06-20 | api-components-bundle | Fix `RouteNormalizer` entity mutation (`d8da04f4`) — **Skipped**: internal serializer bug fix, no user-facing change.
 - 2026-06-20 | @cwa/nuxt | Route redirect admin UI (`RoutesTabView`, `RoutesTabForwardTo`) — documented in `3.core-concepts/7.admin-panel.md` under Managing Routes.
 - 2026-06-20 | @cwa/nuxt | Form composable bug fixes: checkbox getter now `!!field.value.value`; validation endpoint corrected to `{iri}/submit` — updated `5.nuxt-module/7.component-helpers/5.forms.md` checkbox pattern.
