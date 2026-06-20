@@ -22,6 +22,8 @@ If a change is documented, move it to **Documented** below. If it is intentional
 
 *(see git history for full log)*
 
+- 2026-06-20 | @cwa/nuxt | Form composables (#172 steps 1–5): `useCwaFormRepeated`, `useCwaFormCollection`, `unregisteredFieldErrors` on `useCwaForm` — documented in new `5.nuxt-module/7.component-helpers/5.forms.md` (guide with all field types), new `6.composables/1.component/6.use-cwa-form-repeated.md`, new `6.composables/1.component/7.use-cwa-form-collection.md`, and updated `6.composables/1.component/4.use-cwa-form.md`.
+
 - 2026-06-19 | api-components-bundle | #170: `allowedComponents` read-side enforcement — `ComponentPosition` entries of disallowed types are now omitted from the API response. Documented in `5.nuxt-module/4.cwa-components/1.cwa-component-group.md` under Allowed Components.
 - 2026-06-19 | api-components-bundle | #86: Stable `silverback.api_components.*` service IDs — documented in `4.api/6.configuration.md` under Services You Can Override.
 
