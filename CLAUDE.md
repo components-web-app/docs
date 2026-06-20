@@ -47,6 +47,9 @@ If a change is documented, move it to **Documented** below. If it is intentional
 - 2026-06-20 | api-components-bundle | Profiler panel four new sections: publishable ORM queries, pageDataProperty resolutions, write invalidation fan-out, private Mercure upgrades (`3797fdd5`) — updated `4.api/8.debugging.md`.
 - 2026-06-20 | @cwa/nuxt | Default OG image via `CwaDefault.satori.vue` and nuxt-og-image — documented in `5.nuxt-module/2.configuration/2.site-config-and-seo.md` under Default OG Image.
 - 2026-06-20 | @cwa/nuxt | `<CwaLink>` defaults `prefetch: false` — documented in `5.nuxt-module/4.cwa-components/3.cwa-link.md` under Props.
+- 2026-06-20 | api-components-bundle | #183: `flush()` idempotency — updated `4.api/5.data-fixtures.md` flush() description, Flush Phases table, and Tips.
+- 2026-06-20 | api-components-bundle | #184: `make:page-data` Maker command — documented in `4.api/7.console-commands.md` under Maker Commands.
+- 2026-06-20 | components-web-app | `CwaPlaceholderProvider` for seeding HTML content in fixtures — documented in `4.api/5.data-fixtures.md` under Seeding HTML Content.
 - 2026-06-20 | @cwa/nuxt | `/_/site_config_parameters` single-fetch per SSR request — **Skipped**: internal H3 event context caching, no user-facing configuration change.
 
 ---
