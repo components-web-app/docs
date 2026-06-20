@@ -22,6 +22,8 @@ If a change is documented, move it to **Documented** below. If it is intentional
 
 *(see git history for full log)*
 
+- 2026-06-20 | api-components-bundle | `make:cwa-scaffold` maker (`ecfc8dee`) — documented in `4.api/7.console-commands.md` under Maker Commands.
+
 - 2026-06-20 | @cwa/nuxt | Checkbox unchecked value is `null` — updated `5.nuxt-module/7.component-helpers/5.forms.md` checkbox pattern (setter now `v ? '1' : null`).
 - 2026-06-20 | @cwa/nuxt | `useCwaFormRepeated` three bug fixes (duplicate entry, already documented in previous commit) — **Skipped**: already covered.
 - 2026-06-20 | @cwa/nuxt | `forms.ts` ChoiceType and multi-select fixes (duplicate entry, already documented) — **Skipped**: already covered.
