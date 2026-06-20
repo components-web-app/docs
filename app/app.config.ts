@@ -28,15 +28,15 @@ export default defineAppConfig({
     },
     page: {
       slots: {
-        root: 'lg:gap-8',
-        left: 'lg:col-span-3',
-        center: 'lg:col-span-7',
+        root: 'lg:gap-8 lg:grid-cols-8',
+        left: 'lg:col-span-2',
+        center: 'lg:col-span-6',
       },
       compoundVariants: [{
         left: true,
         right: true,
         class: {
-          center: 'lg:col-span-5'
+          center: 'lg:col-span-4'
         }
       }]
     },
