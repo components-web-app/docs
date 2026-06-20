@@ -1,0 +1,3 @@
+{
+  "buildCommand": "pnpm rebuild better-sqlite3 && pnpm run build"
+}
