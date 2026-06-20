@@ -41,6 +41,10 @@ If a change is documented, move it to **Documented** below. If it is intentional
 - 2026-06-20 | @cwa/nuxt | Two families of page/pageData getters on `$cwa.resources` — documented in `5.nuxt-module/5.cwa-api.md` under `cwa.resources`.
 - 2026-06-20 | api-components-bundle | `make:api-component` Maker command (`942c192c`) — documented in `4.api/7.console-commands.md` under Maker Commands.
 - 2026-06-20 | @cwa/nuxt | SEO title concatenation for nested pages (leaf-first ` | ` join) and deepest-layer meta description — documented in `4.api/3.dynamic-pages.md` under SEO Titles and Meta Descriptions for Nested Pages.
+- 2026-06-20 | api-components-bundle | `#[UploadableField(urlGenerator: 'public'|'temporary')]` with fallback behaviour — documented in `4.api/2.components/2.annotations/2.uploadable.md` under urlGenerator values.
+- 2026-06-20 | api-components-bundle | `mercure.secure_subscriptions` config option (`5ec68934`) — documented in `4.api/6.configuration.md` under Mercure Secure Subscriptions.
+- 2026-06-20 | api-components-bundle | Symfony profiler CWA panel (`8a7c95cf`) — documented in new `4.api/8.debugging.md`.
+- 2026-06-20 | @cwa/nuxt | Default OG image via `CwaDefault.satori.vue` and nuxt-og-image — documented in `5.nuxt-module/2.configuration/2.site-config-and-seo.md` under Default OG Image.
 
 ---
 
