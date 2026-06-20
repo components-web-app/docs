@@ -28,8 +28,17 @@ export default defineAppConfig({
     },
     page: {
       slots: {
-        root: 'lg:gap-8'
-      }
+        root: 'lg:gap-8',
+        left: 'lg:col-span-3',
+        center: 'lg:col-span-7',
+      },
+      compoundVariants: [{
+        left: true,
+        right: true,
+        class: {
+          center: 'lg:col-span-5'
+        }
+      }]
     },
     footer: {
       slots: {
