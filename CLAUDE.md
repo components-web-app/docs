@@ -22,6 +22,11 @@ If a change is documented, move it to **Documented** below. If it is intentional
 
 *(see git history for full log)*
 
+- 2026-06-20 | api-components-bundle | Fix `RouteNormalizer` entity mutation (`d8da04f4`) — **Skipped**: internal serializer bug fix, no user-facing change.
+- 2026-06-20 | @cwa/nuxt | Route redirect admin UI (`RoutesTabView`, `RoutesTabForwardTo`) — documented in `3.core-concepts/7.admin-panel.md` under Managing Routes.
+- 2026-06-20 | @cwa/nuxt | Form composable bug fixes: checkbox getter now `!!field.value.value`; validation endpoint corrected to `{iri}/submit` — updated `5.nuxt-module/7.component-helpers/5.forms.md` checkbox pattern.
+- 2026-06-20 | api-components-bundle | Form `/submit` endpoint and security (`FormViewFactory` sets `vars.action`) — documented in `4.api/2.components/3.built-ins/2.form-component.md` under Submission Endpoint.
+
 - 2026-06-20 | @cwa/nuxt | Form composables (#172 steps 1–5): `useCwaFormRepeated`, `useCwaFormCollection`, `unregisteredFieldErrors` on `useCwaForm` — documented in new `5.nuxt-module/7.component-helpers/5.forms.md` (guide with all field types), new `6.composables/1.component/6.use-cwa-form-repeated.md`, new `6.composables/1.component/7.use-cwa-form-collection.md`, and updated `6.composables/1.component/4.use-cwa-form.md`.
 
 - 2026-06-19 | api-components-bundle | #170: `allowedComponents` read-side enforcement — `ComponentPosition` entries of disallowed types are now omitted from the API response. Documented in `5.nuxt-module/4.cwa-components/1.cwa-component-group.md` under Allowed Components.
