@@ -14,7 +14,7 @@ If a change is documented, move it to **Documented** below. If it is intentional
 
 ## Pending Documentation Review
 
-*(nothing pending)*
+*(none)*
 
 ---
 
@@ -22,6 +22,10 @@ If a change is documented, move it to **Documented** below. If it is intentional
 
 *(see git history for full log)*
 
+- 2026-06-20 | @cwa/nuxt | Collection cross-entry validation clearing fix + Nuxt UI `:value-key`/`:label-key` requirement + `displayErrors` validating guard — documented in `5.nuxt-module/7.component-helpers/5.forms.md`: added `label-key="label"` to all choice components, added `value-key`+`label-key` to `USelectMenu`, updated Validation internals section.
+- 2026-06-20 | @cwa/nuxt | Collection entry realtime validation + label fixes — updated `5.nuxt-module/7.component-helpers/5.forms.md` CollectionType callout and entry component layout (button inside `UFormField` with `flex items-center`).
+- 2026-06-20 | @cwa/nuxt | RoutesTab forward-redirect fixes — **Skipped**: internal normalisation (`redirectIri` computed) and UI polish; admin panel docs already describe forward-redirect behaviour at user level. No developer-facing config change.
+- 2026-06-20 | api-components-bundle | Form submit `@id` fix now uses IriConverter (`7ceddfdc`) — **Skipped**: internal refactor, same user-facing behaviour.
 - 2026-06-20 | api-components-bundle | `make:cwa-scaffold` maker (`ecfc8dee`) — documented in `4.api/7.console-commands.md` under Maker Commands.
 
 - 2026-06-20 | @cwa/nuxt | Checkbox unchecked value is `null` — updated `5.nuxt-module/7.component-helpers/5.forms.md` checkbox pattern (setter now `v ? '1' : null`).
