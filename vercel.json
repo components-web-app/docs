@@ -1,4 +1,6 @@
 {
-  "installCommand": "npm_config_build_from_source=true pnpm install",
-  "buildCommand": "pnpm run build"
+  "buildCommand": "pnpm run generate",
+  "rewrites": [
+    { "source": "/vip", "destination": "/api/vip" }
+  ]
 }

@@ -64,7 +64,10 @@ export default defineNuxtConfig({
   nitro: {
     prerender: {
       routes: [
-        '/'
+        '/',
+        '/llms.txt',
+        '/llms-full.txt',
+        '/api/stats.json'
       ],
       crawlLinks: true
     }
