@@ -1,5 +1,26 @@
 # CWA Docs - Claude Context
 
+## Daniel made these notes on a plane.
+- Comments like "The location must be one of either a layout, page or component IRI." should be highlighted as a key point.
+- Added "Class names are intentionally restricted and defined by the developer and designer to prevent unintentional style drifts when passed to clients." Perhaps useful to note this
+- Some of these comments I'm making as key points in the getting started section to help onboard developers but we need to make sure what I wrote was clear and is also in the specific documentation for the feature/property
+- It may be a nice feature whereby we can automatically apply classnames defined to the root html entity of a component/page etc. Resource with a uiTrait. But we would need this to be configured to be able to be disabled
+- "Create the Layout in the API" we should introduce the idea of the structure of the CWA before this. Explaining what we have as opinionated resources in the API and then which parts the user is defining. Nice graphs/visuals.
+- When talking about the Fixture scaffold tool, we can say it's easy to reset data for feature branches or to initialise a new app when they first deploy it for a client as well.
+- An idea for a tool - PHP command which can create fixtures from the currently populated database. We could also have tools then which find component groups that aren't actually used, and other orphaned data. That could be a bit difficult to do and maybe needs a combined effort with npx scripts to figure out which locations and references are still in use in the front-end application. This is important and easy enough for orphaned components. We can also add an admin page for server maintenance - application maintence. Discuss if we could potentially clean up data in a more automtaed way, or migrate components with the front end when we change a component group reference
+- Also worth discussing how we change component names, a command could be useful which can create migrations to update discriminator mapping?
+- i want consistent reliable structures for information. If we are addressing both how to populate an internal resource like we do here /guides/your-first-page-template#create-a-page-record - we should be uniform in the layout getting started too. These initial docs bring a few ideas and parts of the system together into a single page. Clear headers like in layout page are good, Clear sections on how to create, either via the admin or via the fixtures.
+- We are talking about page templates here /guides/your-first-page-template#template-pages-for-dynamic-content before we have introduced the idea of static and dynamic pages and the blue and yellow colouring. The admin signifies static as blue, dynamic page templates as yellow and data pages as green.
+- The getting started guides should be intentionally simplified introductions, introducing each concept to build up a developer's knowledge. They need to feel like they are learning, interested and achieving wonderful things. Let's look at Behaviour Driven approach with Com-B and WPP marketing styles of behaviour approach so we can really engage new users to onboard. Think up ideas and how we can excite this specific market of web developers, agencies who would want to use it, designers as well - this isn't really a customer/client facing docs. But the main part of the website could entice a prospective client to get a developer to check it out.
+- We need to work on adding the visuals for each of the website sections, so we visualise the layout, page, admin tab etc. We have some of this in the main website. But we need to document where these would be, add placeholders for them explaining the image that needs adding as we go through and populate these docs.
+- In code blocks, where we are homing in on one idea but are showing context with a bigger block of text, use the ablity to focus on lines like we do on /about page.
+- Maybe videos we could add of trying things when we give steps, add placeholders for this.
+- File structure summary can be prettier visuals. Like http://localhost:3001/guides/your-first-component#file-structure-summary and multiple admin tabs, should just look nicer and break the text heavy pages up a bit.
+- Your first component links to something that wsa a guide before in the simple section and now is more detailed. We should link there.
+- http://localhost:3001/guides/alternative-ui-variants#conditional-rendering-based-on-style - not recommended, prone to maintainability issues when class names could change. If we want a different HTML structure, use a new UI, if it's just styles use classes.
+- Getting started can also describe the alternative component types briefly too. Getting started for Alt UI and style classes is a big long. Getting started should be simple intros, the detailed information should come later and be linked to from the simpler information.
+- I usually introduce people to the CWA with a simple idea of us abstracting out a data structure. Every website needs a layout, the area with header and footer, when you click those headers and footers we get pages, so every website needs pages, and within those pages and layout we needs areas for UI/visual items to go, we call the items the components, and the areas they will display component groups. The developer is responsible for creating the visual layout and the data structure for the websites is set, but the developer just decides how they look and the individual components data structure and visuals that go into it. By making it a predictable layout we can then provide powerful features out of the box, such as X Y and Z, and idempotent small cachable requests for a decoupled website etc. and only loading data we need for each page, reusing data wherever we can. And so CWA is born. But you can be more elegant and user friendly introcuding with diagrams and visuals.
+
 ## ⚑ Priority: Track changes from other CWA projects for documentation
 
 Whenever work is done in the other CWA projects, a summary is logged below under **Pending Documentation Review**. Before starting any docs work, scan that section and decide whether each change warrants new or updated documentation.
@@ -212,3 +233,5 @@ The front-end `<CwaComponentGroup>` component matches by `fullReference = "{refe
 | no `route:` on a Page | `RouteGenerator::create()` from title slug |
 | `->pageData()` inside `->nested()`, no route | `RouteGenerator` called → `/parent-path/slug` |
 | no `route:`, no title, top-level | no Route (draft) |
+
+
