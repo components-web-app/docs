@@ -19,7 +19,7 @@ hero:
 #      target: _blank
   code: |
     ```bash [Terminal]
-    npm create cwa my-project
+    pnpm create cwa my-project
     ```
 features:
   title: 'That feeling when<br><span class="text-primary-400">all the hard work is done for you</span>'
