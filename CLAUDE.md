@@ -16,6 +16,7 @@ Whenever work is done in the other CWA projects, a summary is logged below under
 Source projects and their local paths:
 - **API bundle** (`api-components-bundle`) — `/Users/danielwest/Documents/GitHub/_CWA/api-components-bundle`
 - **Nuxt module** (`@cwa/nuxt`) — `/Users/danielwest/Documents/GitHub/_CWA/cwa-nuxt-3-module`
+- **Template app** (`components-web-app`) — `/Users/danielwest/Documents/GitHub/_CWA/components-web-app`
 
 If a change is documented, move it to **Documented** below. If it is intentionally not documented (internal, not user-facing), mark it **Skipped** with a reason.
 
@@ -103,7 +104,7 @@ $cwa->getRoute(string $routeName): Route
 // Explicit persist (for app-specific entities not managed by the builder)
 $cwa->persist(object $entity): static
 
-// Trigger all phases (phases 1–3 run once; phase 4 runs on every call)
+// Trigger the full persistence sequence — all phases are idempotent; only new work runs
 $cwa->flush(): void
 ```
 
@@ -149,11 +150,13 @@ The front-end `<CwaComponentGroup>` component matches by `fullReference = "{refe
 
 ### Internal flush ordering
 
-1. **Phase 1** — persist layouts, pages, pageData, components (registered via `->component()`); create all component groups; `flush()`
-2. **evaluateNested** — evaluate `->nested()` closures; persist new nested entities; `flush()` if any added
-3. **Phase 3** — call `RouteGenerator::create()` for all auto-routed entities in parent-before-child order; `flush()`
-4. **phaseThreePointFive** — fire `onRoutesCreated` callbacks; `flush()` if any registered
-5. **Phase 4** — create `ComponentPosition` entities for all group builders (layout, page, component); `flush()` if any created. Runs on every `flush()` call so nav links added after routes exist are picked up.
+Every `flush()` call runs all phases; each is idempotent (tracks already-processed entities/closures/callbacks and skips them):
+
+1. **Phase 1** — persist layouts, pages, pageData, components; create ComponentGroups. Skips already-persisted. `EntityManager::flush()` only if new work.
+2. **evaluateNested** — evaluate `->nested()` closures once each (tracked by object ID). `flush()` if new entities added.
+3. **Phase 3** — call `RouteGenerator::create()` for entities without a route, parent-before-child order.
+4. **phaseThreePointFive** — fire `onRoutesCreated` callbacks once each (tracked by ID).
+5. **Phase 4** — create `ComponentPosition` entities for all group builders; picks up positions added since last call.
 
 ### Route auto-generation rules
 
