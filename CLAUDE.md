@@ -24,36 +24,7 @@ If a change is documented, move it to **Documented** below. If it is intentional
 
 ## Pending Documentation Review
 
-### Auto-apply `uiClassNames` to component root element (#243) — 2026-06-26
-
-`useCwaResource` (and `useCwaComponent`) now automatically applies the resource's `uiClassNames` array to the component's root element. Previously every developer had to wire `:class="resource?.data?.uiClassNames"` manually.
-
-**Behaviour:**
-- Enabled by default — no code changes needed in existing components
-- **Passive detection:** if all target classes are already present on the root element (e.g. the developer has an existing `:class="resource?.data?.uiClassNames"` binding), the feature stays completely passive and does not touch the element
-- On style change: removes classes it previously applied, adds the new ones — never touches classes it didn't apply
-- Skipped for fragment roots (comment nodes) and detached elements
-
-**Opt-out (per component):**
-```ts
-// Disable auto-apply; uiClassNames still returned for manual placement
-const { resource, exposeMeta, uiClassNames } = useCwaComponent(props, [], { autoClass: false })
-```
-```html
-<!-- Apply manually on an inner element instead of the root -->
-<template>
-  <div>
-    <span :class="uiClassNames">content</span>
-  </div>
-</template>
-```
-
-**`uiClassNames`** is now returned from both `useCwaResource` and `useCwaComponent` as a `ComputedRef<string[] | undefined>`.
-
-**Needs documenting:**
-- Component reference page: note that style classes are now applied automatically; document `autoClass: false` opt-out and the `uiClassNames` return value
-- Getting started / component guide: remove the `:class="resource?.data?.uiClassNames"` boilerplate step (or note it's no longer required)
-- If there's a styles/UI variants guide: update to reflect that classes appear without any extra wiring
+*(none)*
 
 ---
 
