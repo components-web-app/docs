@@ -24,7 +24,36 @@ If a change is documented, move it to **Documented** below. If it is intentional
 
 ## Pending Documentation Review
 
-*(none)*
+### Auto-apply `uiClassNames` to component root element (#243) — 2026-06-26
+
+`useCwaResource` (and `useCwaComponent`) now automatically applies the resource's `uiClassNames` array to the component's root element. Previously every developer had to wire `:class="resource?.data?.uiClassNames"` manually.
+
+**Behaviour:**
+- Enabled by default — no code changes needed in existing components
+- **Passive detection:** if all target classes are already present on the root element (e.g. the developer has an existing `:class="resource?.data?.uiClassNames"` binding), the feature stays completely passive and does not touch the element
+- On style change: removes classes it previously applied, adds the new ones — never touches classes it didn't apply
+- Skipped for fragment roots (comment nodes) and detached elements
+
+**Opt-out (per component):**
+```ts
+// Disable auto-apply; uiClassNames still returned for manual placement
+const { resource, exposeMeta, uiClassNames } = useCwaComponent(props, [], { autoClass: false })
+```
+```html
+<!-- Apply manually on an inner element instead of the root -->
+<template>
+  <div>
+    <span :class="uiClassNames">content</span>
+  </div>
+</template>
+```
+
+**`uiClassNames`** is now returned from both `useCwaResource` and `useCwaComponent` as a `ComputedRef<string[] | undefined>`.
+
+**Needs documenting:**
+- Component reference page: note that style classes are now applied automatically; document `autoClass: false` opt-out and the `uiClassNames` return value
+- Getting started / component guide: remove the `:class="resource?.data?.uiClassNames"` boilerplate step (or note it's no longer required)
+- If there's a styles/UI variants guide: update to reflect that classes appear without any extra wiring
 
 ---
 
@@ -72,7 +101,9 @@ If you see "no such table: _content_docs": `rm -rf .nuxt && pnpm run dev`
 - `UPageHeader` in v4 has no `badge` prop — render via `#headline` slot with `<UBadge>`
 - Valid color tokens: `primary`, `secondary`, `success`, `info`, `warning`, `error`, `neutral` (not `amber`)
 
+### `npx cwa make:component` — what it does and doesn't do
+Source: `bin/cwa.mjs` in `cwa-nuxt-3-module`. It **only creates the Vue file** and **prints** the matching `php bin/console make:api-component` command — it does NOT run it. The PHP command must be run manually in the API project. Guide order: npx first (scaffolds Vue + outputs the PHP command to copy), then run that printed command in the API project.
+
 ## CWA API Scaffold Tools
 
 Full reference in `content/4.api/5.data-fixtures.md`. Builder entry points: `AbstractCwaScaffold`, `CwaFixtureBuilder`. Sub-builders: `LayoutBuilder`, `PageBuilder`, `PageDataBuilder`, `ComponentBuilder`, `GroupBuilder`.
-
