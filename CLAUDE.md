@@ -24,10 +24,6 @@ If a change is documented, move it to **Documented** below. If it is intentional
 
 ## Pending Documentation Review
 
-*(none)*
-
----
-
 ## Documented
 
 *(see git history for full log)*
