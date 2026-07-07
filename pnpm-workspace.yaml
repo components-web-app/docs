@@ -10,4 +10,7 @@ shamefullyHoist: true
 overrides:
   "@nuxtjs/tailwindcss": "6.12.2-20241014-164133-9d42549"
   h3: "1.x"
+  # Security: force patched transitive build-time deps (Dependabot alerts)
+  esbuild: ">=0.28.1"              # alerts #8, #148 — dev-server file read / cross-origin requests
+  serialize-javascript: ">=7.0.5" # alerts #84, #136 — XSS / CPU-exhaustion DoS
 
