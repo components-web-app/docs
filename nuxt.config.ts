@@ -52,7 +52,9 @@ export default defineNuxtConfig({
   },
 
   routeRules: {
-    '/api/search.json': { prerender: true }
+    '/api/search.json': { prerender: true },
+    // cwa-api was one page until it was split into per-service sub-pages
+    '/nuxt-module/cwa-api': { redirect: { to: '/nuxt-module/cwa-api/overview', statusCode: 301 } }
   },
 
   future: {
