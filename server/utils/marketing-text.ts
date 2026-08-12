@@ -13,7 +13,9 @@
 const SKIP_KEYS = new Set([
   'icon', 'trailingIcon', 'leadingIcon', 'trailing', 'leading',
   'to', 'target', 'rel', 'href',
-  'image', 'img', 'src', 'avatar', 'srcset', 'width', 'height', 'loading',
+  // Note: `image`/`img` are deliberately NOT skipped — they wrap `{ src, alt }`,
+  // and the `alt` text is real descriptive copy. `src` below drops the path.
+  'src', 'avatar', 'srcset', 'width', 'height', 'loading',
   'color', 'size', 'variant', 'orientation', 'align', 'class', 'ui', 'id',
   'spotlight', 'navigation', 'reverse', 'external',
 ])
