@@ -13,4 +13,23 @@ overrides:
   # Security: force patched transitive build-time deps (Dependabot alerts)
   esbuild: ">=0.28.1"              # alerts #8, #148 — dev-server file read / cross-origin requests
   serialize-javascript: ">=7.0.5" # alerts #84, #136 — XSS / CPU-exhaustion DoS
+  # 2026-08-12 audit sweep. The site is prerendered (`nuxt generate`), so none of these
+  # reach a production runtime — they are build-machine, dev-server and CI exposure.
+  # NOTE: every range is upper-bounded to the installed major. A bare ">=x" lets pnpm pull
+  # the newest major instead of the patch — linkify-it jumped 5 -> 6 that way and broke the
+  # build (markdown-exit imports its dropped default export).
+  "@nuxt/devtools": ">=3.3.1 <4"   # CRITICAL — unauthenticated DevTools RPC → RCE on the dev host
+  tar: ">=7.5.21 <8"               # CRITICAL — decompression/parse DoS (package extraction)
+  brace-expansion: ">=5.0.9 <6"    # ReDoS — every consumer (all minimatch) is on the 5.x line
+  dompurify: ">=3.4.13 <4"         # XSS bypass — only reachable via mermaid's client render
+  fast-uri: ">=3.1.5 <4"
+  js-yaml: ">=4.3.1 <5"
+  linkify-it: ">=5.0.2 <6"
+  nanoid: ">=3.3.17 <4"
+  postcss: ">=8.5.23 <9"
+  sharp: ">=0.35.0 <1"
+  shell-quote: ">=1.9.0 <2"
+  socket.io-parser: ">=4.2.7 <5"   # dev-server HMR transport only
+  svgo: ">=4.0.2 <5"
+  valibot: ">=1.4.2 <2"
 

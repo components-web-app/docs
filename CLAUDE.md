@@ -24,6 +24,9 @@ If a change is documented, move it to **Documented** below. If it is intentional
 
 ## Pending Documentation Review
 
+### 2026-08-12 — cwa-nuxt-module: deleting the page you are on now redirects to the admin listing
+Admin UX fix, no API surface. Deleting a page from the **header page-settings modal** used to leave the admin on a 404 — the redirect ran from `saveCompleteFn`, i.e. *after* the resource (and its cascade) had already been removed from the store. `PageResourceAdminModal` now navigates from `requestCompleteFn` (before the removal) and awaits it: a **Page → `/_cwa/pages`**, a **PageData → its data-type listing `/_cwa/data/{type}`** (falling back to `/_cwa/data`). Only applies when the modal is for the page currently on screen; deleting from `/_cwa/routes/[iri]` still returns to the routes list. *Docs impact: low — if any admin-panel page describes what happens after deleting a page, it can now say you are returned to the relevant listing rather than left on a missing page.*
+
 ### 2026-08-12 — components-web-app: 4 code findings from the docs audit that could NOT be filed (GitLab, no `gh` access)
 Raise these manually on GitLab. (1) **`create-cwa` writes a non-existent `/admin` URL** into every generated README *and* its final CLI output — the module's admin pages are all under `/_cwa`, there is no `/admin` route. (2) **`publish-create-cwa.yml` is copied into every scaffolded project** — it is absent from the manifest's `alwaysExclude` and the github-CI exclude list, so users inherit a workflow that publishes the CLI. (3) **`security.yaml` `access_control` guards `/_api/password/update`, a route that does not exist** (dead rule). (4) **Helm chart runs migrations from the entrypoint while autoscaling is on by default** → concurrent migration runs on scale-up. *No docs impact for 2–4; #1 was already corrected in the installation page's URL table.*
 
