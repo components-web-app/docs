@@ -6,10 +6,16 @@ const SITE_URL = 'https://cwa.rocks'
 export default defineEventHandler(async (event) => {
   setResponseHeader(event, 'Content-Type', 'text/plain; charset=utf-8')
 
-  const docs = await queryCollection(event, 'docs')
-    .select('title', 'description', 'path')
-    .order('path', 'ASC')
-    .all()
+  const [docs, marketing] = await Promise.all([
+    queryCollection(event, 'docs')
+      .select('title', 'description', 'path')
+      .order('path', 'ASC')
+      .all(),
+    queryCollection(event, 'pages')
+      .select('title', 'description', 'path')
+      .order('path', 'ASC')
+      .all(),
+  ])
 
   const sections: Record<string, typeof docs> = {}
   for (const doc of docs) {
@@ -38,6 +44,15 @@ export default defineEventHandler(async (event) => {
     `Full text for AI ingestion: ${SITE_URL}/llms-full.txt`,
     '',
   ]
+
+  if (marketing.length) {
+    lines.push('## Overview', '')
+    for (const page of marketing) {
+      const desc = page.description ? `: ${page.description}` : ''
+      lines.push(`- [${page.title}](${SITE_URL}${page.path})${desc}`)
+    }
+    lines.push('')
+  }
 
   for (const [key, label] of Object.entries(sectionLabels)) {
     const pages = sections[key]

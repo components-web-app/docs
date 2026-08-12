@@ -7,12 +7,15 @@ const SITE_URL = 'https://cwa.rocks'
 export default defineEventHandler(async (event) => {
   setResponseHeader(event, 'Content-Type', 'text/plain; charset=utf-8')
 
-  const [docs, sections] = await Promise.all([
+  const [docs, sections, marketing] = await Promise.all([
     queryCollection(event, 'docs')
       .select('title', 'description', 'path')
       .order('path', 'ASC')
       .all(),
     queryCollectionSearchSections(event, 'docs'),
+    // Marketing/landing pages (content/*.yml) — structured YAML, not markdown, so
+    // they carry the "what is CWA and who is it for" copy the docs never state.
+    queryCollection(event, 'pages').order('path', 'ASC').all(),
   ])
 
   // Build a map of path → sections for ordered output
@@ -32,6 +35,19 @@ export default defineEventHandler(async (event) => {
     '---',
     '',
   ]
+
+  // Product/overview pages first — they answer "what is this and is it for me?",
+  // which the reference docs assume you already know.
+  for (const page of marketing) {
+    const body = marketingPageToText(page as Record<string, unknown>)
+    if (!body.length) continue
+
+    lines.push(`# ${page.title}`)
+    if (page.description) lines.push(`> ${page.description}`)
+    lines.push(`URL: ${SITE_URL}${page.path}`, '')
+    lines.push(...body)
+    lines.push('---', '')
+  }
 
   for (const doc of docs) {
     lines.push(`# ${doc.title}`)
