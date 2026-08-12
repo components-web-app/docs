@@ -31,7 +31,6 @@
     "better-sqlite3": "^12.11.1",
     "highcharts": "^13.0.0",
     "highcharts-vue": "^2.0.1",
-    "mermaid": "^11.16.1",
     "nuxt": "^4.5.1",
     "nuxt-og-image": "^6.6.0",
     "nuxt-svgo": "^5.3.0",

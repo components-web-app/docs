@@ -21,7 +21,6 @@ overrides:
   "@nuxt/devtools": ">=3.3.1 <4"   # CRITICAL — unauthenticated DevTools RPC → RCE on the dev host
   tar: ">=7.5.21 <8"               # CRITICAL — decompression/parse DoS (package extraction)
   brace-expansion: ">=5.0.9 <6"    # ReDoS — every consumer (all minimatch) is on the 5.x line
-  dompurify: ">=3.4.13 <4"         # XSS bypass — only reachable via mermaid's client render
   fast-uri: ">=3.1.5 <4"
   js-yaml: ">=4.3.1 <5"
   linkify-it: ">=5.0.2 <6"
