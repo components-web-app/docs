@@ -132,7 +132,7 @@ Admin UX fix, no API surface. Deleting a page from the **header page-settings mo
 
 ## Pending
 
-- **2026-09-21 — docs #43 will soften when the module fix lands.** `cwa-component-group.md` now tells components to use `publishedIri` as `location`, because `iri` points at the draft while editing. The module is being changed so `CwaComponentGroup` resolves the published IRI of `location` itself. When that ships (watch cwa-nuxt-module `dev`), change the callout and the "In a Component" example to say `iri` works too, and keep `publishedIri` as the note for older module builds.
+- **2026-09-21 — waiting on cwa-nuxt-module #317 (and #316) to revert docs #43.** #317 makes `CwaComponentGroup` resolve `location` to the published IRI itself. When it closes, **recommend plain `iri` again** in `cwa-component-group.md`: the Basic Usage sentence, the location callout, and the "In a Component" example. Also change the `publishedIri` row in `use-cwa-component.md`, which currently says to use it as a nested group's `location`. Mention that `publishedIri` still works and is only needed on module builds before #317. #316 (reordering can leave a component in the wrong position): check whether the fix changes anything in the Order-tab description in `3.core-concepts/7.admin-panel.md`.
 - **2026-09-21 — waiting on unmerged bundle PRs (the repo monitor reports each merge):**
   - ~~docs #36~~ — PR #269 merged; documented 2026-09-21.
   - ~~Bundle #251~~ — PR #264 merged; documented 2026-09-21.
