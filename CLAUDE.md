@@ -24,6 +24,22 @@ If a change is documented, move it to **Documented** below. If it is intentional
 
 ## Pending Documentation Review
 
+### 2026-09-21 — api-components-bundle: Resource manifests are now cached per page, not per resource (#227 part 1) — **user-facing, needs documenting**
+
+A manifest response (`GET /_/resource_manifest/{id}`) used to be tagged for cache invalidation with **every** resource IRI it listed, so editing any component anywhere on the page dropped the manifest. A manifest body is nothing but IRIs, so it can only change when the page's **membership** changes — which component sits in which group, which layout a page uses, which page a route publishes. The tags now say exactly that.
+
+**What a manifest response now carries.** Instead of its members' IRIs, a manifest carries one grouping key per rendering depth, of the form `manifest:<page-or-page-data-IRI>` — for example `manifest:/_/pages/8f3c…`. A nested page carries one for each ancestor depth as well as its own, and a page-data manifest also carries the key of the template page it renders through. The same manifest addressed by route path and by UUID emits identical keys, so one purge drops both cache entries.
+
+**Behaviour change worth flagging prominently.** Editing a component's *content* no longer purges any manifest. That is deliberate and correct — the manifest lists the component's IRI and that IRI has not changed — but it means manifests now live much longer than before, so anyone who was relying on a component save to refresh a cached manifest should expect it not to. The component's own IRI is still purged exactly as before, so the component's own response, and any rendered page tagged with it, still refresh immediately.
+
+**What still purges a manifest:** a write to a `Route`, a `Page`, any `AbstractPageData`, a `Layout`, a `ComponentGroup` or a `ComponentPosition`. The bundle walks upward from the written resource to the pages that contain it, so adding a component to a group in a shared layout purges the manifest of every page built from that layout, and a change inside a template page purges the manifests of every page data instance using it.
+
+**Why it matters operationally:** the old tag set made a manifest's `Surrogate-Key` header grow with the size of the page — a 44-resource manifest produced roughly 2.7 KB of header, past Souin's 1500-byte batch and large enough to need an enlarged proxy buffer. It is now a handful of keys regardless of page size.
+
+**Non-manifest responses are unchanged** — every other response is still tagged with its own resource IRIs exactly as before, minus two things that were never purgeable anyway: JSON-LD blank nodes (`/.well-known/genid/…`) and the `/_/resource_metadatas` IRI.
+
+One imprecision to mention if it comes up: a component bound to a page via a `pageDataProperty` is an exception — editing its content still purges the manifests of the page data that references it, because the bundle already treats such a write as a change to the page data itself.
+
 ### 2026-09-21 — api-components-bundle: Cached responses now expire at a scheduled publication (#227) — **user-facing, needs documenting**
 
 Scheduled publishing changes what a response should contain on the clock, with no write behind it, so nothing issues a cache purge at that moment. A long-lived cache entry simply kept serving the pre-publish version. Two things close that.
