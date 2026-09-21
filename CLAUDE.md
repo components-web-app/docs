@@ -135,7 +135,7 @@ Admin UX fix, no API surface. Deleting a page from the **header page-settings mo
 - **2026-09-21 — waiting on unmerged bundle PRs (the repo monitor reports each merge):**
   - ~~docs #36~~ — PR #269 merged; documented 2026-09-21.
   - **Bundle #251** (FormSuccessEvent on validation PATCH) → PR #264. On merge, confirm that `use-cwa-form-input.md`'s "no success event fires" is now true, and check `form-component.md`'s FormSuccessEvent callout.
-  - **Bundle #252** (`requiredOnPublish` with custom validation groups) → PR #267. On merge, remove the caveat in `uploadable.md`.
+  - ~~Bundle #252~~ — PR #267 merged; documented 2026-09-21.
   - **Bundle #253** remainder → PR #265 (allowed_components JSON match). The migration-location part of the `console-commands.md` callout stays until that's fixed too.
 - ~~**2026-07-08 — ChoiceType validation trailing-icon**~~ — **done 2026-09-21 (docs #25).**  — the template app's `FormChildEntry.vue` / `FormTextEntry.vue` add a validation trailing-icon (spinner while `validating`, tick when `valid === true`) to the collection-entry `UInput`. App-side UX polish, not a module API; document under `### CollectionType` in `7.component-helpers/5.forms.md` only if we want the guide's collection example to mirror the template exactly. (The placeholder half of this item was **documented 2026-07-17** — see Documented.)
 
