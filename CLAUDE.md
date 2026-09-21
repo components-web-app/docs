@@ -26,6 +26,18 @@ If a change is documented, move it to **Documented** below. If it is intentional
 
 ## Pending Documentation Review
 
+### 2026-09-21 — api-components-bundle #276 (PR #280): form POST is a full submit
+POST to `/submit` now validates every field, including required fields the request omits (previously a partial submit, so a form with no `data_class` accepted a POST missing required fields). PATCH stays partial and validate-only (#264). The unreachable PUT handling was removed; no PUT operation exists. A client that deliberately POSTed a subset of fields now gets a 422. Filed as docs#49.
+
+### 2026-09-21 — api-components-bundle #253 (PRs #265, #275): make:rename-component IRI prompt
+When the old or new class can't be resolved by API Platform (typically because the PHP class has already been renamed), the maker prompts for the collection IRI, or takes `--old-iri` / `--new-iri` non-interactively. Blank-node IRIs are refused. Not yet documented; filed as docs#48 with a proposed worked example.
+
+### 2026-09-21 — api-components-bundle #270 (PR #281): Mercure is a hard dependency
+`symfony/mercure` (`^0.7.1 || ^0.8`) and `symfony/mercure-bundle` (`^0.4.3 || ^0.5`) are now in the bundle's `require`; they were dev-only before, so an install without them failed to compile. Installation docs should say that Mercure is required, that a `mercure.hub.default` hub must be configured, and which versions are supported (0.6 is no longer supported). Also worth noting: if the hub is unreachable, a write is saved but the response is a 500 (tracked separately, not fixed).
+
+### 2026-09-21 — cwa-nuxt-module #318: page query only reaches Collection fetches
+The page URL's query is now forwarded only to Collection component fetches (for filtering and pagination), not to routes, manifests, layouts, pages, groups, positions or other components. Tracking parameters no longer bypass the shared API cache. Values are URL-encoded and a valueless `?k` arrives as `k=` rather than `k=null`. Worth a line in any docs covering collection filtering or caching: only Collection components see the page query.
+
 ### 2026-09-21 — cwa-nuxt-module #317 / #316: component group location and reordering
 - #317: `<CwaComponentGroup :location>` now resolves to the component's published IRI itself, so a nested group can be given plain `iri` or `publishedIri`. docs#43 can now recommend passing `iri`.
 - #316: reordering positions is reliable again (serialised per-group queue, by-value sort mirror, failed PATCHes not mirrored). No API change for apps; nothing to document unless the reorder UI is described.
@@ -124,7 +136,7 @@ Admin UX fix, no API surface. Deleting a page from the **header page-settings mo
 
 ## Skipped
 
-- **2026-09-21 (monitor) — also no docs change:** bundle `24e36964` (#278 sortValue collisions, internal); template `5cce0fe8` (the cache key uses the Host php sees; Caddy internals, no documented requirement changes); template module and bundle version bumps.
+- **2026-09-21 (monitor) — also no docs change:** module `0fd23d7c` (#318: only collection fetches get the page query; the docs never said otherwise). bundle `24e36964` (#278 sortValue collisions, internal); template `5cce0fe8` (the cache key uses the Host php sees; Caddy internals, no documented requirement changes); template module and bundle version bumps.
 - **2026-09-21 (monitor) — reviewed, no docs change:** module `c0d260d7` (#304 OG `siteName`), `ded4dce5` (#298 dot-path merge), `b17aaab1` (#299 repeated password honours `realtime_validate_disabled`), `80c32cbf` (admin saves send only changed fields). These make the code match what the docs already say, or are internal. Template `50f7288a` (#76 create-cwa instructions): the installation page already says Node 22.13+/pnpm 11 and the `caddy_data` CA path. Template #72 (xkey glue): removed in `d2ed466`, no docs surface.
 - **2026-08-12 — components-web-app: 4 code findings from the first docs audit** — not a docs item. (1) the create-cwa `/admin` URL, (2) the `publish-create-cwa.yml` exclude and (3) the dead `/_api/password` rule were **filed 2026-09-21** as components-web-app #76, #75 and #77. (4) the migration race is resolved by the `maxReplicas: 1` default.
 - **2026-07-17 — cwa-nuxt-module #261 / #263 / #266 (SSR fetcher/typing fixes) — reviewed, no docs** — all internal SSR/fetcher plumbing with no consuming-app API surface. #261 (dynamic position loses its `component` after SSR load of a nested page) + #263 (`[nuxt] instance unavailable` — `useRequestHeaders` in the ofetch `onRequest` interceptor dropped SSR auth cookies) are pure fetcher/context fixes; users just get correct behaviour. #266 (bare-host `apiUrl`) **was** documented (see the config/apiUrl note in Documented) — the fix itself is internal but it prompted a valid config-guidance note. Confirmed with Daniel 2026-07-17: nothing to action for any of the three. (Related open code follow-up #264 — `ResourceTypeFromIri` module-level singleton mutated per request — is a code concern, not docs.)
