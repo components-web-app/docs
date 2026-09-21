@@ -24,6 +24,20 @@ If a change is documented, move it to **Documented** below. If it is intentional
 
 ## Pending Documentation Review
 
+### 2026-09-21 — api-components-bundle: Cached responses now expire at a scheduled publication (#227) — **user-facing, needs documenting**
+
+Scheduled publishing changes what a response should contain on the clock, with no write behind it, so nothing issues a cache purge at that moment. A long-lived cache entry simply kept serving the pre-publish version. Two things close that.
+
+**Route go-live now caps more responses.** The bundle already shortened `s-maxage` on route and page responses so a shared cache cannot serve them past the next `Route.liveAt`. The resource manifest (`GET /_/resource_manifest/{id}`) was left out, which mattered because that is the endpoint a page render starts from. Which responses get the cap is now configurable: `silverback_api_components.http_cache.scheduled_expiry_resource_classes`, default `[Route::class, RoutableInterface::class, ResourceManifest::class]`, beside the two existing lists in the same `http_cache` node.
+
+Worth stating for anyone reasoning about a navigation bar: the cap uses the **soonest go-live date across all routes**, not the ones a given response mentions. A response is therefore shortened whether or not it references the route that is about to appear — which is the point, because a route going live changes pages that never mention it, and no cache-invalidation key can express that.
+
+**A pending publication is now enforced, not merely announced.** A component with a future `publishedAt` already carried an `Expires` header, and deliberately carries it for anonymous requests too, so a front end can see a transition coming without being able to see the draft itself. But `s-maxage` takes precedence over `Expires` in every shared cache, so the header was advisory. `s-maxage` and `max-age` are now capped to `Expires` whenever it is sooner. Anything that sets `Expires` benefits, not only publishable components.
+
+Practical consequence worth documenting: a front end can derive a page's TTL from the responses it fetched — the shortest `s-maxage` among them — rather than reading publication dates it has no access to anonymously. Caching pages for longer than a few minutes is now safe, which it was not before.
+
+One gap to mention if publishable collections come up: a collection response carries no `Expires`, so a collection containing a resource with a pending publication is only capped if its class is in the list above.
+
 ### 2026-09-21 — api-components-bundle: Site-wide resources now purge the rendered page cache (#232) — **user-facing, needs documenting**
 
 The Nuxt module tags each cached page with the API resource IRIs the render touched, so a write to any of them already drops the affected pages. That misses resources which shape every page without entering the module's resource store — site config above all. Changing `siteName` left every cached page showing the old one until its TTL lapsed.
