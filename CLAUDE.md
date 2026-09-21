@@ -124,6 +124,7 @@ Admin UX fix, no API surface. Deleting a page from the **header page-settings mo
 
 ## Skipped
 
+- **2026-09-21 (monitor) — also no docs change:** bundle `24e36964` (#278 sortValue collisions, internal); template `5cce0fe8` (the cache key uses the Host php sees; Caddy internals, no documented requirement changes); template module and bundle version bumps.
 - **2026-09-21 (monitor) — reviewed, no docs change:** module `c0d260d7` (#304 OG `siteName`), `ded4dce5` (#298 dot-path merge), `b17aaab1` (#299 repeated password honours `realtime_validate_disabled`), `80c32cbf` (admin saves send only changed fields). These make the code match what the docs already say, or are internal. Template `50f7288a` (#76 create-cwa instructions): the installation page already says Node 22.13+/pnpm 11 and the `caddy_data` CA path. Template #72 (xkey glue): removed in `d2ed466`, no docs surface.
 - **2026-08-12 — components-web-app: 4 code findings from the first docs audit** — not a docs item. (1) the create-cwa `/admin` URL, (2) the `publish-create-cwa.yml` exclude and (3) the dead `/_api/password` rule were **filed 2026-09-21** as components-web-app #76, #75 and #77. (4) the migration race is resolved by the `maxReplicas: 1` default.
 - **2026-07-17 — cwa-nuxt-module #261 / #263 / #266 (SSR fetcher/typing fixes) — reviewed, no docs** — all internal SSR/fetcher plumbing with no consuming-app API surface. #261 (dynamic position loses its `component` after SSR load of a nested page) + #263 (`[nuxt] instance unavailable` — `useRequestHeaders` in the ofetch `onRequest` interceptor dropped SSR auth cookies) are pure fetcher/context fixes; users just get correct behaviour. #266 (bare-host `apiUrl`) **was** documented (see the config/apiUrl note in Documented) — the fix itself is internal but it prompted a valid config-guidance note. Confirmed with Daniel 2026-07-17: nothing to action for any of the three. (Related open code follow-up #264 — `ResourceTypeFromIri` module-level singleton mutated per request — is a code concern, not docs.)
@@ -141,7 +142,7 @@ Admin UX fix, no API surface. Deleting a page from the **header page-settings mo
   - ~~docs #36~~ — PR #269 merged; documented 2026-09-21.
   - ~~Bundle #251~~ — PR #264 merged; documented 2026-09-21.
   - ~~Bundle #252~~ — PR #267 merged; documented 2026-09-21.
-  - **Bundle #253** — PR #265 merged (the `allowed_components` rewrite is fixed). #253 is still open for the migration location (`src/Migrations` / `App\Migrations`). The `console-commands.md` callout about that stays until it's fixed.
+  - ~~Bundle #253~~ — fully fixed (PR #265, #275); documented 2026-09-21. Nothing left waiting on bundle PRs.
 - ~~**2026-07-08 — ChoiceType validation trailing-icon**~~ — **done 2026-09-21 (docs #25).**  — the template app's `FormChildEntry.vue` / `FormTextEntry.vue` add a validation trailing-icon (spinner while `validating`, tick when `valid === true`) to the collection-entry `UInput`. App-side UX polish, not a module API; document under `### CollectionType` in `7.component-helpers/5.forms.md` only if we want the guide's collection example to mirror the template exactly. (The placeholder half of this item was **documented 2026-07-17** — see Documented.)
 
 ---
