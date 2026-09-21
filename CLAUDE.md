@@ -26,6 +26,10 @@ If a change is documented, move it to **Documented** below. If it is intentional
 
 ## Pending Documentation Review
 
+### 2026-09-21 — cwa-nuxt-module #317 / #316: component group location and reordering
+- #317: `<CwaComponentGroup :location>` now resolves to the component's published IRI itself, so a nested group can be given plain `iri` or `publishedIri`. docs#43 can now recommend passing `iri`.
+- #316: reordering positions is reliable again (serialised per-group queue, by-value sort mirror, failed PATCHes not mirrored). No API change for apps; nothing to document unless the reorder UI is described.
+
 ### 2026-08-14 — api-components-bundle #218 (PR #219): Behat coverage pipeline was producing no data
 Internal CI/tooling only, **no product surface**. `features/bootstrap/CoverageContext.php` passed a *directory* to `Filter::includeFile()` (which takes a single file), so nothing was ever recorded, and it wrote Clover XML to a `.cov` filename that `phpcov merge` could not read. The merge step also had `continue-on-error: true`, so it reported success while producing nothing. Result: Codecov totals were PHPUnit-only and any Behat-only-covered change reported 0% patch coverage. Fixed by enumerating `src/**/*.php` into `includeFiles()` and writing Clover directly (no `phpcov merge` — current phpcov releases only read a serialization format the installed php-code-coverage cannot write). **Codecov project coverage 28.54% → 83.07%.** *Docs impact: none — CI internals. Logged only so the coverage-number jump isn't mistaken for a change in test quality.*
 
@@ -132,12 +136,12 @@ Admin UX fix, no API surface. Deleting a page from the **header page-settings mo
 
 ## Pending
 
-- **2026-09-21 — waiting on cwa-nuxt-module #317 (and #316) to revert docs #43.** #317 makes `CwaComponentGroup` resolve `location` to the published IRI itself. When it closes, **recommend plain `iri` again** in `cwa-component-group.md`: the Basic Usage sentence, the location callout, and the "In a Component" example. Also change the `publishedIri` row in `use-cwa-component.md`, which currently says to use it as a nested group's `location`. Mention that `publishedIri` still works and is only needed on module builds before #317. #316 (reordering can leave a component in the wrong position): check whether the fix changes anything in the Order-tab description in `3.core-concepts/7.admin-panel.md`.
+- ~~Module #317 / #316~~ — #317 landed on `dev` (`43f41d2f`); docs now recommend `iri` again (docs #45). #316 (`42e17f86`) needed no docs change.
 - **2026-09-21 — waiting on unmerged bundle PRs (the repo monitor reports each merge):**
   - ~~docs #36~~ — PR #269 merged; documented 2026-09-21.
   - ~~Bundle #251~~ — PR #264 merged; documented 2026-09-21.
   - ~~Bundle #252~~ — PR #267 merged; documented 2026-09-21.
-  - **Bundle #253** remainder → PR #265 (allowed_components JSON match). The migration-location part of the `console-commands.md` callout stays until that's fixed too.
+  - **Bundle #253** — PR #265 merged (the `allowed_components` rewrite is fixed). #253 is still open for the migration location (`src/Migrations` / `App\Migrations`). The `console-commands.md` callout about that stays until it's fixed.
 - ~~**2026-07-08 — ChoiceType validation trailing-icon**~~ — **done 2026-09-21 (docs #25).**  — the template app's `FormChildEntry.vue` / `FormTextEntry.vue` add a validation trailing-icon (spinner while `validating`, tick when `valid === true`) to the collection-entry `UInput`. App-side UX polish, not a module API; document under `### CollectionType` in `7.component-helpers/5.forms.md` only if we want the guide's collection example to mirror the template exactly. (The placeholder half of this item was **documented 2026-07-17** — see Documented.)
 
 ---
