@@ -133,7 +133,7 @@ Admin UX fix, no API surface. Deleting a page from the **header page-settings mo
 ## Pending
 
 - **2026-09-21 — waiting on unmerged bundle PRs (the repo monitor reports each merge):**
-  - **docs #36** (`urlGenerator: 'public'` honours `public_url`) → PR #269. On merge, apply the replacement suggested in #36 to `uploadable.md` line ~80, and add a release note: fields with `public_url` + `'public'` now get the public URL instead of the API URL.
+  - ~~docs #36~~ — PR #269 merged; documented 2026-09-21.
   - **Bundle #251** (FormSuccessEvent on validation PATCH) → PR #264. On merge, confirm that `use-cwa-form-input.md`'s "no success event fires" is now true, and check `form-component.md`'s FormSuccessEvent callout.
   - **Bundle #252** (`requiredOnPublish` with custom validation groups) → PR #267. On merge, remove the caveat in `uploadable.md`.
   - **Bundle #253** remainder → PR #265 (allowed_components JSON match). The migration-location part of the `console-commands.md` callout stays until that's fixed too.
