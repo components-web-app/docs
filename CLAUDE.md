@@ -24,6 +24,71 @@ If a change is documented, move it to **Documented** below. If it is intentional
 
 ## Pending Documentation Review
 
+### 2026-09-21 — api-components-bundle: Site-wide resources now purge the rendered page cache (#232) — **user-facing, needs documenting**
+
+The Nuxt module tags each cached page with the API resource IRIs the render touched, so a write to any of them already drops the affected pages. That misses resources which shape every page without entering the module's resource store — site config above all. Changing `siteName` left every cached page showing the old one until its TTL lapsed.
+
+A write to a resource class listed in the new `silverback_api_components.http_cache.purge_rendered_html_classes` now also purges the constant surrogate key `cwa-html`, which the module puts on every cacheable page. Default is `[SiteConfigParameter::class]`; the node mirrors the existing `personalised_resource_classes` beside it and matches subclasses.
+
+Two things to state plainly for anyone adding to the list. **This is a deliberate stampede** — purging the key drops every cached page at once and the traffic lands on SSR together, which is fine for a rare admin action and is why the list should stay short. **List only leaf resources**, meaning ones not reachable as a Doctrine association of another resource, or unrelated writes will drop the whole HTML cache. The purge fires once per write request; saving several parameters is several requests and therefore several purges, which is harmless because the key is already gone after the first.
+
+**Behaviour change worth flagging for upgraders:** `POST /_/site_config_parameters` previously required only an authenticated user; it now requires the same permission as updating or deleting one (`publishable.permission`, typically `ROLE_ADMIN`). An application that created site config parameters as a non-admin user will start getting 403.
+
+`cwa-html` is a contract shared with the Nuxt module (cwa-nuxt-module #289) — if the docs name it, name it as one, because a mismatch fails silently by matching nothing.
+
+### 2026-09-21 — api-components-bundle: search filters no longer discard publication gates (#237) — **user-facing behavioural change, needs a release note**
+
+`OrSearchFilter` (used by `Route.path`, `Page.title`/`reference`/`uiComponent`/`layout.reference`, `Layout.reference`/`uiComponent`, and by any application resource that declares it) built its clauses with Doctrine's `orWhere()`, which ORs against the **entire accumulated WHERE** rather than among the filter's own clauses. API Platform runs query extensions before filters, so every extension predicate already on the query was ORed away the moment a filter parameter was supplied.
+
+**What this meant in practice.** Supplying a filter parameter bypassed the publication gating:
+
+- Anonymous `GET /_/routes?path=<path>` returned routes whose `liveAt` was in the future, routes with no `liveAt` at all (drafts), and routes gated by a scheduled or draft ancestor - all of which `GET /_/routes/<path>` correctly 404s.
+- A filtered collection of any `#[Publishable]` resource returned **drafts** to callers with no draft permission, e.g. `GET /component/my_components?reference=foo`.
+- The same applied to any application-registered Doctrine query extension.
+
+The filter parameter is supplied by the caller, so this was a security issue, not just a correctness one.
+
+**What changes for an API consumer.** The filter still ORs among its own clauses - multi-value (`?field[]=a&field[]=b`) and multi-field (`?field1=a&field2=a`) search semantics are unchanged - but it now ANDs against everything else on the query. **A filtered collection will return fewer rows wherever a predicate was previously being discarded.** An application that (knowingly or not) relied on filtered listings exposing scheduled, draft or unpublished resources will see them disappear. That is the point of the fix, but it is worth an explicit upgrade note.
+
+**No upgrade step, no migration, no config change.** The fix is entirely internal to the filter.
+
+**Worth a general note in any docs page about writing custom filters:** never use `orWhere()` in an API Platform Doctrine filter. Collect the clauses and apply them with a single `andWhere()` wrapping an `Expr\Orx`, which is what API Platform's own `SearchFilter` does.
+
+---
+
+### 2026-09-21 — api-components-bundle: Route and page collections respect the inherited go-live date (#234) — **user-facing, needs documenting**
+
+Completes the `liveAt` story started in #224. Until now, only *resolving* a route honoured the inherited go-live date; *listing* one did not. An anonymous `GET /_/routes` returned a child route whose own `liveAt` had passed even when an ancestor was still scheduled or draft — and fetching that same route 404'd.
+
+**Why it matters for anyone building a sitemap.** `GET /_/routes` is the sitemap source, and a sitemap publishes rather than fetches, so those URLs went to search engines as soft-404s. There was no client-side workaround: both `liveAt` and `_metadata.effectiveLiveAt` are `ROLE_ADMIN`-only, so an anonymous sitemap build had no signal at all to tell a genuinely live route from one gated by its parent.
+
+**What changes for an API consumer.** Anonymous collection responses now match what the item endpoints already did:
+
+- `GET /_/routes` omits any route gated by an ancestor's go-live date, and `totalItems` counts only the routes actually returned, so pagination is correct.
+- `GET /_/pages` and the page-data collections (e.g. `GET /page_data/page_datas`) do the same via the route each resource is attached to.
+- An admin still sees every route, page and page data, scheduled and draft included — nothing changes for the admin UI.
+- **An ancestor with no Route is still not a gate.** A routed child under an unrouted parent (the normal drafting state, and the permanent state for a grouping page) remains listed. This is unchanged and deliberate.
+
+**No upgrade step, no migration, no new column or table.** Nothing is denormalised; the inherited date is resolved per request by a recursive SQL query. (The #225 entry below has been corrected; it previously described a join-table approach that was built and then rejected.)
+
+**Database requirement worth a line in the docs.** The query uses a recursive CTE, so the application database must be SQLite 3.8.3+, MySQL 8.0+, MariaDB 10.2+ or any supported PostgreSQL. Verified on MySQL 8.0, MariaDB 10.11, PostgreSQL 16 and SQLite. **MySQL 5.7 and MariaDB 10.0/10.1 cannot run it** — they have no CTE support.
+
+---
+
+### 2026-09-20 — api-components-bundle: Public access follows page-hierarchy reachability (#225) — **user-facing, needs documenting**
+
+Establishes the rule the security model now works to, which is worth stating plainly in the docs: **a resource is publicly readable if and only if it is reachable from a Route that exists and is live now.** Two behaviour changes follow from it, in opposite directions.
+
+**Nested pages under an unrouted parent now render for the public.** Previously, if a parent page had no Route of its own (the normal state while drafting, and the permanent state for a grouping page that is never addressable itself), a visitor on a routed *child* URL got 401 for the parent's PageData, its template Page and its components — so the parent depth of the page rendered blank while the child rendered fine. The manifest had always listed those resources; only fetching them failed. A child's Route now makes its whole ancestor chain public.
+
+**A page that nothing routes to is now fully private.** Its components used to be publicly readable even though the page itself was not. They are now admin-only, gated by `routable_security`, like the page. This is the part to flag for upgraders: if an application deliberately relied on serving components from an unrouted page, place that page under a routed one or give it a Route. Components that are not placed in any page at all are unchanged (still public), and an application that does not set `routable_security` sees no change at all.
+
+**No upgrade step, no migration, no new column or table.** Reachability is resolved per request by walking the page hierarchy, the same way component reachability has always been answered. An earlier implementation denormalised it into join tables with a rebuild command; that was built and then rejected, so any draft referring to `page_reachable_route`, `page_data_reachable_route` or `silverback:api-components:rebuild-route-reachability` is describing an approach that does not exist.
+
+**Also worth a line:** the `path` request header used to resolve `pageDataProperty` positions accepts a **page data IRI** as well as a route path. That is what lets the front end resolve dynamic slots at a depth whose page has no Route. It was already supported; it is now a pinned contract.
+
+---
+
 ### 2026-09-20 — api-components-bundle: Route-level live / scheduled publication date (#224) — **user-facing, needs documenting**
 
 `Route` gains **`liveAt`** (nullable date-time, readable and writable by `ROLE_ADMIN` only). Three states: a **past date** = live, a **future date** = scheduled (publicly invisible until that moment, then live with no further action), **`null`** = draft / taken offline with the URL reserved. This is the first way to take a page offline without deleting its Route and losing the path, the redirect chain and the children hanging off `cascadeChildPaths`.
