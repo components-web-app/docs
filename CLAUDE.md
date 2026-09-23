@@ -26,19 +26,6 @@ If a change is documented, move it to **Documented** below. If it is intentional
 
 ## Pending Documentation Review
 
-### 2026-09-23 — api-components-bundle #289 (PR #297): filters are API Platform QueryParameters, and search is one `search` parameter
-**Public query API change.** The collections at `/_/layouts`, `/_/pages` and `/_/routes` take a single `search` parameter, case-insensitive and matching part of a value. It is ORed across Layout `reference`/`uiComponent`, Page `title`/`reference`/`uiComponent`, and Route `path`. The old per-field parameters (`?reference=x`) are now ignored.
-- Sorting is unchanged (`order[createdAt]`, `order[reference]`, `order[path]`), but an invalid direction returns 422.
-- Pages accept `isTemplate` or `isTemplate[]` with `true`/`false`.
-- Page search no longer covers `layout.reference`.
-- `OrSearchFilter` is deprecated: applications should declare `QueryParameter`s with `FreeTextQueryFilter(new OrFilter(new PartialSearchFilter()))`.
-- Worth documenting: the bare-`OrFilter` warning (#237), and that nested properties should be kept out of an OR search, because they are joined with an inner join.
-
-The template migration example is in components-web-app#89, and the module change is in cwa-nuxt-module#328. Filed as docs#64, held until module #328 lands. The API Platform 4.4/5 prerequisite half was documented separately as docs#69.
-
-### 2026-09-22 — api-components-bundle #286 (PR #288): OrSearchFilter ignores an invalid integer value
-Sending a value that is not an integer to an `OrSearchFilter` property on an integer column (or on an association with an integer identifier) now drops that clause and logs a `notice` "Invalid filter ignored", as API Platform's `SearchFilter` does. It used to return a 500 with a class-not-found error. The request's other filter clauses still apply. The bundle's own filters are all on string fields, so only applications filtering integer columns are affected. Filed as docs#59.
-
 ### 2026-09-21 — api-components-bundle #276 (PR #280): form POST is a full submit
 POST to `/submit` now validates every field, including required fields the request omits (previously a partial submit, so a form with no `data_class` accepted a POST missing required fields). PATCH stays partial and validate-only (#264). The unreachable PUT handling was removed; no PUT operation exists. A client that deliberately POSTed a subset of fields now gets a 422. Filed as docs#49.
 
@@ -69,6 +56,20 @@ Admin UX fix, no API surface. Deleting a page from the **header page-settings mo
 `GET /_/resource_manifest/{id}`'s `resource_iris` changed from `string[][]` to `NestedJsonStructure[]` — outer array still indexed by rendering depth (root first), but each depth is now a recursive `{ iri, children }` tree preserving component containment (to enable placeholder/skeleton rendering that reduces loader flicker/layout shift). Module migrated: retains the raw tree (`manifest.resourceTree`) and derives the flat `irisByDepth` via a pure `flattenManifestNode` helper — all existing depth/render semantics unchanged, no rendering change yet. Hard swap, no BC window (pre-alpha). **Status:** bundle #197 + module #250 **COMPLETE**; the manifest shape is now settled. Bundle **#198 (extra per-node placeholder metadata) is closed NOT_PLANNED** — the module can build skeletons from the containment tree it already receives, so **no further manifest metadata is coming**. The eventual skeleton/placeholder feature will be **module-side only**, now tracked as **[cwa-nuxt-module #255](https://github.com/components-web-app/cwa-nuxt-module/issues/255)** (raised, **not yet shipped**). Planned user-facing API when it lands: opt-in per-component-type placeholder templates at `app/cwa/components/<Name>/placeholder.vue` (scanned like `admin/`/`ui/`), rendered until the resource resolves, laid out from the `resourceTree` to reserve space (anti-CLS); component type derived from the IRI, no manifest/API metadata. *Docs impact: low, deferred — internal plumbing with no consuming-app surface today. Document the `placeholder.vue` convention when #255 phase 2 ships.*
 
 ## Documented
+
+- **2026-09-23 (second pass) — docs #59–#64 documented and closed.** Four agents did the work in parallel, each checked against source.
+  - **#60 tracking parameters:** a new "Tracking parameters" section in page-caching and a pointer in the docker gotchas. It uses template `7f1c52f` (Caddyfile:116-143, 26 parameters, applied on every path including `/_api`). No page still describes bundle #227 as a limitation. One claim is unverified: that Caddy's access log keeps the original URI.
+  - **#61 hostnames/TLS and #62 Lighthouse audit**, both in `ci-cd.md`. **The source proved #61 wrong in four places:**
+    - The manual fallback's secret needs the `-stable-api` suffix, because the ingress uses `<LETSENCRYPT_SECRET_NAME>-stable-api`.
+    - RBAC also needs patch, watch and list, and cleanup deletes the secrets too.
+    - Users don't set `DOMAIN`. It comes from `KUBE_INGRESS_BASE_DOMAIN`, so changing it also moves staging and review.
+    - Cleanup only removes rotated (labelled) certificates, never the original one.
+    - The #62 artifact is named after the environment, not the track.
+  - **Filed components-web-app#91:** the GitHub workflows never pass `INGRESS_ENABLED` or the TLS variables, so a GitHub deploy gets no ingress. `ci-cd.md` has a warning callout; remove it when #91 is fixed. Per the template's CLAUDE.md, the TLS rotation has only run against a stubbed kubectl.
+  - **#63 `v-cwa-html`:** the module shipped it (`fbe401da`, #333, dev only, edge `0.0.0-29836337.fbe401d`). `useHtmlContent` now returns `{ vCwaHtml }`. It's destructured, not registered globally. **The issue's `beforeMount` was the template's old copy. The module's directive uses `mounted` plus `beforeUpdate`, with `getSSRProps`.** The editor is lazy-loaded with `defineAsyncComponent` plus the template's `build:manifest` hook. **This is unresolved:** module `e7f5d41e` claims a `<Lazy…>` component leaves the editor out of the prefetch set. The template (defineAsyncComponent) says Nuxt still sends a hint and keeps the hook. It's untested; the docs follow the template. Module #329 (layer-page prefetch) is open and not documented.
+  - **#64 QueryParameters and #59:** the `dynamic-pages.md` example now matches template `cc8f57c`. There's a new "Searching and Sorting" section with a core-collections table, and publishable.md and collections-and-pagination (`search` param) are updated. #59 is covered by one line in the `OrSearchFilter` deprecation note. **The 422 for an invalid sort direction happens on 4.4 too, not only on 5.** **Stale claims in the module repo, not fixed here:**
+    - Its CLAUDE.md says #289 "needs API Platform 5" (false) and that "isTemplate did not change" (the implementation changed to ExactFilter+BooleanQueryValue).
+    - DEPRECATIONS.md ties the per-field removal to dropping AP 4 (the real precondition is that apps declare `search`) and cites `ab76fc8b` rather than `c6a4ef0b`.
 
 - **2026-09-23 — docs #65–#69, filed from this log, documented and closed.** Each was checked against source first.
   - **#65 (bundle #290/PR #291, module #326):** full cache flush. `4.api/6.configuration.md` has a new "Flushing the Whole HTTP Cache" section with a command/endpoint outcome table. It flushes `<url>/flush` for each `api_platform.http_cache.invalidation.urls` entry, via `PURGE`. There's a `purge-http-cache` entry in console-commands, `purgeHttpCache()` in site-config, and a "Purging all cached data" section in page-caching. A failed flush from the endpoint is left undocumented as "error response": `HttpCacheFlushFailedException` has no status mapping. The Redis question is still unverified, and template #85 hasn't landed, so the Souin store is still in memory.
@@ -157,6 +158,7 @@ Admin UX fix, no API surface. Deleting a page from the **header page-settings mo
 
 ## Skipped
 
+- **2026-09-23 — cwa-nuxt-module #334 (`27e10201`) and #331 (`c546be68`)**: both are internal. For #334, when a signed-out visitor hydrates a page, the browser no longer requests a component again after a 4xx on the server. A signed-in visitor or a static render still does. #331 moves admin-only code out of the entry chunk and drops luxon, cutting the entry preloads from 36 chunks to 18. Neither has a configuration or API surface.
 - **2026-09-22 — cwa-nuxt-module #322 (Add component dialog recovers from a failed API docs fetch)**: an admin bug fix with no configuration or API change.
 - **2026-09-21 (monitor) — also no docs change:** module `0fd23d7c` (#318: only collection fetches get the page query; the docs never said otherwise). bundle `24e36964` (#278 sortValue collisions, internal); template `5cce0fe8` (the cache key uses the Host php sees; Caddy internals, no documented requirement changes); template module and bundle version bumps.
 - **2026-09-21 (monitor) — reviewed, no docs change:** module `c0d260d7` (#304 OG `siteName`), `ded4dce5` (#298 dot-path merge), `b17aaab1` (#299 repeated password honours `realtime_validate_disabled`), `80c32cbf` (admin saves send only changed fields). These make the code match what the docs already say, or are internal. Template `50f7288a` (#76 create-cwa instructions): the installation page already says Node 22.13+/pnpm 11 and the `caddy_data` CA path. Template #72 (xkey glue): removed in `d2ed466`, no docs surface.
