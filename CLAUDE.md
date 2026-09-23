@@ -57,6 +57,12 @@ Admin UX fix, no API surface. Deleting a page from the **header page-settings mo
 
 ## Documented
 
+- **2026-09-23 — template 3338b9c and d067024 (20 MB photo uploads, 40 MP cap):**
+  - A new "Large Images and PHP Memory" section in uploadable.md: GD needs about 11.7 MB per megapixel, with a table of limits to keep in step and the `Assert\When` + `Assert\Image(maxPixels)` pattern with SVG exempt.
+  - `kubernetes.md`: the php memory limit is now 1Gi (was 500Mi), and the fixed 4-thread pool is `FRANKENPHP_WORKER_NUM`.
+  - `ci-cd.md`: a new `PHP_MEMORY_LIMIT` row.
+  - Browser-side downscaling is proposed in module #335 and not documented yet. `PHP_MEMORY_LIMIT` isn't passed by the GitHub workflows either, the same gap as components-web-app#91.
+
 - **2026-09-23 (third pass) — docs #70 and bundle PR #303.**
   - **#70:** the module exports `./layer` (`6c33a6e6`, edge `0.0.0-29836407.6c33a6e`). `module-setup.md` and `cwa-layer/1.overview.md` now use `extends: ['@cwa/nuxt/layer']`. They explain nuxt/nuxt#36401 (a pnpm symlink path stops Nuxt filtering layer pages out of prefetch: 85 → 24 links) and say the path form still works through the #329 realpath hook (`9a506f81`). The template's switch (#92) was still uncommitted at the time.
   - **PR #303 (`6825d1c3`) removed `OrSearchFilter`.** The second pass had just written "deprecated, still works"; `dynamic-pages.md` and `publishable.md` now say it's removed, with an upgrading callout. The #59 invalid-integer note was dropped along with it, so the filter no longer exists to document. **Also stale again: module DEPRECATIONS.md's "`OrSearchFilter` (bundle-side)" entry, which I corrected in `be7fc51f` an hour before #303.**
