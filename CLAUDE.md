@@ -26,6 +26,19 @@ If a change is documented, move it to **Documented** below. If it is intentional
 
 ## Pending Documentation Review
 
+### 2026-09-23 — api-components-bundle #289 (PR #297): filters are API Platform QueryParameters, and search is one `search` parameter
+**Public query API change.** The collections at `/_/layouts`, `/_/pages` and `/_/routes` take a single `search` parameter, case-insensitive and matching part of a value. It is ORed across Layout `reference`/`uiComponent`, Page `title`/`reference`/`uiComponent`, and Route `path`. The old per-field parameters (`?reference=x`) are now ignored.
+- Sorting is unchanged (`order[createdAt]`, `order[reference]`, `order[path]`), but an invalid direction returns 422.
+- Pages accept `isTemplate` or `isTemplate[]` with `true`/`false`.
+- Page search no longer covers `layout.reference`.
+- `OrSearchFilter` is deprecated: applications should declare `QueryParameter`s with `FreeTextQueryFilter(new OrFilter(new PartialSearchFilter()))`.
+- Worth documenting: the bare-`OrFilter` warning (#237), and that nested properties should be kept out of an OR search, because they are joined with an inner join.
+
+The template migration example is in components-web-app#89, and the module change is in cwa-nuxt-module#328. Filed as docs#64, held until module #328 lands. The API Platform 4.4/5 prerequisite half was documented separately as docs#69.
+
+### 2026-09-22 — api-components-bundle #286 (PR #288): OrSearchFilter ignores an invalid integer value
+Sending a value that is not an integer to an `OrSearchFilter` property on an integer column (or on an association with an integer identifier) now drops that clause and logs a `notice` "Invalid filter ignored", as API Platform's `SearchFilter` does. It used to return a 500 with a class-not-found error. The request's other filter clauses still apply. The bundle's own filters are all on string fields, so only applications filtering integer columns are affected. Filed as docs#59.
+
 ### 2026-09-21 — api-components-bundle #276 (PR #280): form POST is a full submit
 POST to `/submit` now validates every field, including required fields the request omits (previously a partial submit, so a form with no `data_class` accepted a POST missing required fields). PATCH stays partial and validate-only (#264). The unreachable PUT handling was removed; no PUT operation exists. A client that deliberately POSTed a subset of fields now gets a 422. Filed as docs#49.
 
@@ -56,6 +69,14 @@ Admin UX fix, no API surface. Deleting a page from the **header page-settings mo
 `GET /_/resource_manifest/{id}`'s `resource_iris` changed from `string[][]` to `NestedJsonStructure[]` — outer array still indexed by rendering depth (root first), but each depth is now a recursive `{ iri, children }` tree preserving component containment (to enable placeholder/skeleton rendering that reduces loader flicker/layout shift). Module migrated: retains the raw tree (`manifest.resourceTree`) and derives the flat `irisByDepth` via a pure `flattenManifestNode` helper — all existing depth/render semantics unchanged, no rendering change yet. Hard swap, no BC window (pre-alpha). **Status:** bundle #197 + module #250 **COMPLETE**; the manifest shape is now settled. Bundle **#198 (extra per-node placeholder metadata) is closed NOT_PLANNED** — the module can build skeletons from the containment tree it already receives, so **no further manifest metadata is coming**. The eventual skeleton/placeholder feature will be **module-side only**, now tracked as **[cwa-nuxt-module #255](https://github.com/components-web-app/cwa-nuxt-module/issues/255)** (raised, **not yet shipped**). Planned user-facing API when it lands: opt-in per-component-type placeholder templates at `app/cwa/components/<Name>/placeholder.vue` (scanned like `admin/`/`ui/`), rendered until the resource resolves, laid out from the `resourceTree` to reserve space (anti-CLS); component type derived from the IRI, no manifest/API metadata. *Docs impact: low, deferred — internal plumbing with no consuming-app surface today. Document the `placeholder.vue` convention when #255 phase 2 ships.*
 
 ## Documented
+
+- **2026-09-23 — docs #65–#69, filed from this log, documented and closed.** Each was checked against source first.
+  - **#65 (bundle #290/PR #291, module #326):** full cache flush. `4.api/6.configuration.md` has a new "Flushing the Whole HTTP Cache" section with a command/endpoint outcome table. It flushes `<url>/flush` for each `api_platform.http_cache.invalidation.urls` entry, via `PURGE`. There's a `purge-http-cache` entry in console-commands, `purgeHttpCache()` in site-config, and a "Purging all cached data" section in page-caching. A failed flush from the endpoint is left undocumented as "error response": `HttpCacheFlushFailedException` has no status mapping. The Redis question is still unverified, and template #85 hasn't landed, so the Souin store is still in memory.
+  - **#66 (module #325 `636e9247`, #324 `26f06f8d`):** `sharedMaxAge` is unset by default, with an hour as the fallback only when nothing supplied a lifetime. There's a warning callout that non-API output needs `sharedMaxAge`. **#324 was never in this log**; I found it from module commits. A 4xx API response is ignored when building the page's headers. **Correction to #324's summary: a 5xx is not "always uncached"; it's merged like any other response, so it only blocks caching if it's private/no-store.** Updated in page-caching, nuxt-config, pwa, and the docker gotcha, which is now framed as "older module builds". Both are on module `dev` only, and the template runs `636e924`.
+  - **#67 (bundle #293):** a new "Error Status Codes" table in `4.api/8.debugging.md`. **The log missed one default: API Platform also maps DBAL `UniqueConstraintViolationException` → 422** (`vendor/api-platform/core/src/Symfony/Bundle/DependencyInjection/Configuration.php:591`).
+  - **#68 (bundle #299):** a callout in uploadable.md quoting the exact warning text.
+  - **#69 (bundle #287):** the prerequisites say API Platform 4.4+ or 5.x, plus the 422-vs-400 and `/contexts/User` note.
+  - Also moved out of pending: bundle #283 (docs#56) and PR #282 (docs#54), both already documented and closed.
 
 - **2026-09-21 (repo monitor) — docs #28–#32, each filed, documented and closed:**
   - **#28:** an omitted `allowed-components` prop now keeps the stored list (module #303).
@@ -136,6 +157,7 @@ Admin UX fix, no API surface. Deleting a page from the **header page-settings mo
 
 ## Skipped
 
+- **2026-09-22 — cwa-nuxt-module #322 (Add component dialog recovers from a failed API docs fetch)**: an admin bug fix with no configuration or API change.
 - **2026-09-21 (monitor) — also no docs change:** module `0fd23d7c` (#318: only collection fetches get the page query; the docs never said otherwise). bundle `24e36964` (#278 sortValue collisions, internal); template `5cce0fe8` (the cache key uses the Host php sees; Caddy internals, no documented requirement changes); template module and bundle version bumps.
 - **2026-09-21 (monitor) — reviewed, no docs change:** module `c0d260d7` (#304 OG `siteName`), `ded4dce5` (#298 dot-path merge), `b17aaab1` (#299 repeated password honours `realtime_validate_disabled`), `80c32cbf` (admin saves send only changed fields). These make the code match what the docs already say, or are internal. Template `50f7288a` (#76 create-cwa instructions): the installation page already says Node 22.13+/pnpm 11 and the `caddy_data` CA path. Template #72 (xkey glue): removed in `d2ed466`, no docs surface.
 - **2026-08-12 — components-web-app: 4 code findings from the first docs audit** — not a docs item. (1) the create-cwa `/admin` URL, (2) the `publish-create-cwa.yml` exclude and (3) the dead `/_api/password` rule were **filed 2026-09-21** as components-web-app #76, #75 and #77. (4) the migration race is resolved by the `maxReplicas: 1` default.
