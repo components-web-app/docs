@@ -57,6 +57,10 @@ Admin UX fix, no API surface. Deleting a page from the **header page-settings mo
 
 ## Documented
 
+- **2026-09-23 (third pass) — docs #70 and bundle PR #303.**
+  - **#70:** the module exports `./layer` (`6c33a6e6`, edge `0.0.0-29836407.6c33a6e`). `module-setup.md` and `cwa-layer/1.overview.md` now use `extends: ['@cwa/nuxt/layer']`. They explain nuxt/nuxt#36401 (a pnpm symlink path stops Nuxt filtering layer pages out of prefetch: 85 → 24 links) and say the path form still works through the #329 realpath hook (`9a506f81`). The template's switch (#92) was still uncommitted at the time.
+  - **PR #303 (`6825d1c3`) removed `OrSearchFilter`.** The second pass had just written "deprecated, still works"; `dynamic-pages.md` and `publishable.md` now say it's removed, with an upgrading callout. The #59 invalid-integer note was dropped along with it, so the filter no longer exists to document. **Also stale again: module DEPRECATIONS.md's "`OrSearchFilter` (bundle-side)" entry, which I corrected in `be7fc51f` an hour before #303.**
+
 - **2026-09-23 (second pass) — docs #59–#64 documented and closed.** Four agents did the work in parallel, each checked against source.
   - **#60 tracking parameters:** a new "Tracking parameters" section in page-caching and a pointer in the docker gotchas. It uses template `7f1c52f` (Caddyfile:116-143, 26 parameters, applied on every path including `/_api`). No page still describes bundle #227 as a limitation. One claim is unverified: that Caddy's access log keeps the original URI.
   - **#61 hostnames/TLS and #62 Lighthouse audit**, both in `ci-cd.md`. **The source proved #61 wrong in four places:**
