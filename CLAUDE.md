@@ -35,6 +35,14 @@ Researched and recorded on the issue (body + [findings comment](https://github.c
 
 ## Documented
 
+- **2026-09-24 — docs #77–#81.**
+  - **#77 (bundle #306):** a manifest paragraph in dynamic-pages (the layout's groups are embedded, once at the shallowest depth; a template page still repeats per depth).
+  - **#78 (bundle #304):** a callout in real-time-updates. Private updates reach admins only after the cookie is reissued.
+  - **#79 (module #340):** page-caching: **the earlier claim "any non-200 gets no-store" was false until `7a219b76`**, because Nuxt renders errors via an internal 200 `/__nuxt_error` request. There's a warning callout for older builds.
+  - **#80 (module #341):** admin-panel Visibility: Live keeps the go-live date.
+  - **#81 (template #95):** a docker gotcha for `unhead.vite.devtools: false` on Nuxt 4.5 dev.
+  - **Skipped:** module `9a15df53` (#339, internal group-location sync) and template `d58bfda` (charset default).
+
 - **2026-09-23 (evening sweep) — docs #73–#76, module #335, and template/module commits up to template `9f00f41` / module `c74ef41d`.** Four agents did the work, each checked against source.
   - **#73:** new page `6.deployment/4.load-testing.md` for the k6 harness (`bin/load-test`, `7a79437`). It adds two points beyond the issue: entries stay until restart only with the in-memory `otter` store, and the summary has a fourth `no header` bucket.
   - **#75 / module #335 (`87045822`):** documented in use-cwa-resource-upload (`imageDownscale`), nuxt-config (`upload.image`, new `#image-uploads`), uploadable ("Browser-side resizing", paired with the 20 MB / 40 MP server caps) and images-and-uploads. Defaults live only in `image-downscale.ts`, and only `useCwaResourceUpload` resizes. Two claims come from outside the module's code: the Safari <16.4 limitation (from the module's CLAUDE.md, a manual check) and "quality is ignored for PNG" (browser behaviour).
