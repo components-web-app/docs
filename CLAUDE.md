@@ -35,6 +35,8 @@ Researched and recorded on the issue (body + [findings comment](https://github.c
 
 ## Documented
 
+- **2026-09-26 (repo monitor) — docs #111 (bundle PR #352, which fixes filed #350):** a redirect `name:` that clashes with a route created in the same load now throws even when the path exists. The Seeding Redirects text is updated. #352 fixed only the same-load half of #350. When the path already exists, the requested name still aliases the existing route (`CwaFixtureBuilder.php:~727`), even if that route isn't a redirect. I noted this on #350 rather than filing a new issue.
+
 - **2026-09-26 (repo monitor) — docs #109 and #110.**
   - **#109 (module `dca1fb13`/`e09a63f7`, orphaned resources admin):**
     - admin-panel has a new "Orphaned Resources" section, with rows in the layer's route tables and a `cwa.orphanedResources` row in the cwa-api overview. It needs edge `0.0.0-29839606.e09a63f`.
