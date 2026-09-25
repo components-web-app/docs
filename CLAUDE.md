@@ -76,16 +76,10 @@ Researched and recorded on the issue (body + [findings comment](https://github.c
     - #103: no page suggests a shared base class.
     - #107: PR #337 merged today, and no page describes custom user repositories or mixed providers.
     - Module #349: internal.
-  - **Possible code findings, not filed:**
-    - `CwaComponentNames.X` being undefined throws in `resolveAllowedComponents` (module).
-    - `useResendVerifyEmail` and `forgot-password` never reset `success` (module).
-    - `NewEmailAddressType.php:72` still calls the undeclared `find()` (bundle, same bug as #336).
-    - `UserMailer::send()` throws with no logger (bundle).
-    - `generate-fixtures` always names the class `GeneratedScaffold` whatever `-o` is (bundle).
-    - `redirect()` doesn't check the unique route name (bundle).
-    - The shared `CwaFixtureBuilder` keeps its specs across scaffolds (bundle).
-    - The template `compose.yaml` `app` service sets no `NUXT_CWA_API_URL` or warm origin for single-server production.
-    - GitLab's review fixture and warm jobs may run after an exit-3 skip (template).
+  - **Possible code findings, FILED 2026-09-25 as unconfirmed** (read from source only; titles start "Possible:"). Don't re-file them, and check each before assuming the bug is real:
+    - module #354–#356 (undefined `CwaComponentNames` entry throws; `success` never reset; 400 refused-link message);
+    - bundle #339–#345 (`NewEmailAddressType` `find()`; `UserMailer` with no logger; the `GeneratedScaffold` class name; `redirect()` name clash; unrouted pages in generate-fixtures; builder state shared across scaffolds; clean-orphaned vs report rules);
+    - components-web-app #98–#100 (compose `app` env for single-server prod; GitLab review jobs after an exit-3 skip; `Retry-After` not in CORS `expose_headers`).
 
 - **2026-09-24 — template `0170978` and `176fa9d` (docs #87):**
   - Docker gotchas: the Caddy admin API is loopback-only now. Port 2019 is no longer published, and `CACHE_URL` uses localhost. The template's `.dockerignore` keeps the JWT keys, decrypted secrets and uploads out of the image.
