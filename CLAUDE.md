@@ -35,6 +35,58 @@ Researched and recorded on the issue (body + [findings comment](https://github.c
 
 ## Documented
 
+- **2026-09-25 — docs #88–#107, five parallel agents, each claim checked against source** (bundle main `b1fd995c`, module dev `d654ed96`, template main `f13a73a`). Build and every added link and anchor were verified.
+  - **New pages:** `6.deployment/5.faster-behat-tests.md` (#93) and `5.nuxt-module/9.cwa-layer/5.date-pickers.md` (#100).
+  - **Emails (#88, #102, #104, #105):**
+    - `4.api/4.users-and-security.md` gets "Links in Emails", "When a link is refused", and "Throttled and Failed Email Requests" (with "Cancelling a pending change").
+    - The config YAML, bundle-setup and module auth pages are also updated.
+    - **#102 was wrong about which emails can be refused:** the username-changed and password-changed emails carry no link. Only these can be refused: reset, verify, change-email confirmation, enabled (login link), and welcome when it has a verify token.
+    - A `default_redirect_path` that is a full URL needs no origin.
+    - Only the 200, 429 and 503 responses are marked private and no-store.
+  - **Fixtures (#97, #106):** `4.api/5.data-fixtures.md`:
+    - new sections: `redirect()`, `afterRoutes()`, `liveAt()`, `group(allow:)`, `withoutRoute()`, "Appending to an Existing Site" (with the summary line), and "Capturing a Site Before a Purge";
+    - `$cwa->redirect()` is now the recommended redirect form;
+    - the `generatePath()` upgrade callout is in `3.dynamic-pages.md`.
+    - **Source corrections:**
+      - An existing group counts as **kept**, not skipped.
+      - Created items are logged at debug, not notice.
+      - An explicit `route:` only helps if that path is free.
+      - `withoutRoute()` page data with neither a template nor a parent is skipped as unidentifiable.
+  - **Cache and ops (#89, #90, #91, #92, #101):**
+    - The health endpoint is in kubernetes.md. It's `private, no-store`, and the template doesn't use it yet: its readiness probe is still `site_config_parameters`.
+    - Purge failures: a 502 from both endpoints (the flush now maps too, `bc68c8bb`), and `purge-rendered-html` exits 1.
+    - A `default_uri` callout.
+    - page-caching "Choosing the warm origin". **Correction to #92:** template dev sets `NODE_TLS_REJECT_UNAUTHORIZED: 0` and renders over `https://php.local/_api`, so the default origin works in dev.
+    - The orphaned resource report is in console-commands. It lives in `cache.app`, so `cache:clear` or a new container makes GET 404 again.
+  - **CI (#93, #94, #95):** ci-cd.md covers:
+    - review namespaces: orange on exit 3, creating a namespace, and that stopping a review app leaves the namespace behind;
+    - staging deploys into production's namespace;
+    - `FIXTURES_PURGE`, and the flush after a successful load;
+    - that append stops at the first existing route up to bundle alpha.4, which the template pins.
+    - **Corrections to the issues:**
+      - Staging shares production's database only with an external `DATABASE_URL`.
+      - The Behat sequence trap only hits SEQUENCE-strategy entities; CWA entities use UUIDs.
+  - **Module (#96, #98, #99, #100):**
+    - `allowedComponents` by name, plus a table of what the prop's values mean; guide examples use names.
+    - Scheduling in admin-panel. It was rewritten for `d654ed96`, which landed mid-session: a draft gets a **Schedule** toggle and **Publish now**, and the zone and offset moved to the calendar button's hover text.
+    - Changelog links on bundle-setup and module-setup. **The module's CHANGELOG.md is on `dev` only**, so the link uses `blob/dev`.
+  - **module-setup install was stale:** `@cwa/nuxt` is on npm (`2.0.0-alpha.1`, dist-tag `alpha`), and the template depends on `^2.0.0-alpha.1`. The page now says `pnpm add @cwa/nuxt@alpha`, with the edge alias for unreleased `dev` changes. **The earlier note that "npm has no `@cwa/nuxt`" is superseded.**
+  - Everything in #96, #99, #100 and #104 is after module alpha.1, with notes giving the edge versions. The #97, #101, #102, #105 and #106 changes are after bundle alpha.4 (Unreleased).
+  - **No docs change:**
+    - #103: no page suggests a shared base class.
+    - #107: PR #337 merged today, and no page describes custom user repositories or mixed providers.
+    - Module #349: internal.
+  - **Possible code findings, not filed:**
+    - `CwaComponentNames.X` being undefined throws in `resolveAllowedComponents` (module).
+    - `useResendVerifyEmail` and `forgot-password` never reset `success` (module).
+    - `NewEmailAddressType.php:72` still calls the undeclared `find()` (bundle, same bug as #336).
+    - `UserMailer::send()` throws with no logger (bundle).
+    - `generate-fixtures` always names the class `GeneratedScaffold` whatever `-o` is (bundle).
+    - `redirect()` doesn't check the unique route name (bundle).
+    - The shared `CwaFixtureBuilder` keeps its specs across scaffolds (bundle).
+    - The template `compose.yaml` `app` service sets no `NUXT_CWA_API_URL` or warm origin for single-server production.
+    - GitLab's review fixture and warm jobs may run after an exit-3 skip (template).
+
 - **2026-09-24 — template `0170978` and `176fa9d` (docs #87):**
   - Docker gotchas: the Caddy admin API is loopback-only now. Port 2019 is no longer published, and `CACHE_URL` uses localhost. The template's `.dockerignore` keeps the JWT keys, decrypted secrets and uploads out of the image.
   - load-testing now shows the local flush command.
