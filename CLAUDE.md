@@ -42,7 +42,7 @@ Researched and recorded on the issue (body + [findings comment](https://github.c
   - **Filed as unconfirmed:**
     - template #102: GitHub deploys don't pass `ORPHAN_SCAN*`, `MAILER_EMAIL` or `MAILER_DSN`, and a null `MAILER_DSN` may fail `b64enc` in helm;
     - template #103: the CronJob inherits `RESET_DATABASE` and would drop the schema nightly.
-  - Remove the ci-cd warnings when #365 and #102 are fixed.
+  - **Template #102 and #103 were fixed in `70b9802` within minutes.** It uses `string:default::MAILER_EMAIL` and a `null://null` DSN default, GitHub now passes `MAILER_*` and `ORPHAN_SCAN*`, and `RESET_DATABASE` is kept out of the CronJob. The ci-cd warnings became one callout for projects created before `70b9802`. Bundle #365 (the bundle-side null fix) is still open.
   - Also skipped: bundle PR #362 (Infection in CI only).
 
 - **2026-09-26 (morning monitor) — docs #116: bundle 2.0.0-alpha.6 released** (#346, #347, #349, #352–#354, #356, #358). The template pins it along with `@cwa/nuxt` 2.0.0-alpha.3 (`8bab085`). The "after 2.0.0-alpha.5", "a bundle build after…" and "a release containing #353" notes now name 2.0.0-alpha.6, while the "On 2.0.0-alpha.5 …" callouts about the old behaviour stay. Nothing documented is unreleased any more on either side.
