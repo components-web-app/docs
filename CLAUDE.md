@@ -35,6 +35,11 @@ Researched and recorded on the issue (body + [findings comment](https://github.c
 
 ## Documented
 
+- **2026-09-26 (monitor) — docs #118:**
+  - **Bundle 2.0.0-alpha.7** accepts `Name <address>` recipients (#363) and treats null recipients as none (#366, which fixes filed #365). console-commands and ci-cd now limit the bare-address and TypeError warnings to alpha.6.
+  - **Template 2.0.0-alpha.3 `85d3f43`:** `generate_jwt_keys` derives `JWT_PUBLIC_KEY` from a supplied key, and fails the deploy for a key without a passphrase or with the wrong one. **ci-cd's JWT row, "not derived from a secret key you supply", had become wrong** and is fixed.
+  - Skipped: bundle PR #364 (README testing notes).
+
 - **2026-09-26 (monitor) — docs #117 (template `c31d28f`, #101: daily orphan scan).**
   - kubernetes has a new "Daily Orphan Scan" section: `cronjobs.orphanScan`, production only, the 1.27+ `timeZone` caveat, the `cwa.phpEnv` helper and an **Upgrading:** callout for the alpha.6 migration. ci-cd has an "Orphan Scan" variables table.
   - admin-panel's freshness sentence now covers the daily scan. console-commands warns to use bare addresses up to alpha.6 (bundle #361, fix in open PR #363).
