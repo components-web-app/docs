@@ -35,6 +35,8 @@ Researched and recorded on the issue (body + [findings comment](https://github.c
 
 ## Documented
 
+- **2026-09-26 (repo monitor) — docs #114 (bundle PR #356, which fixes filed #355):** `scan-orphaned` compares with a separate last-alert baseline (a new `last_notified` column, covered by the same migration step). An admin scan or delete no longer absorbs a change. The baseline advances on a send or an unchanged result, and not on a failed send, with no recipients, or with `--no-notify`. I rewrote the console-commands callout and the `--no-notify` sentence; both were wrong from the day before.
+
 - **2026-09-26 (repo monitor) — docs #113: bundle PR #354 (closes #348) and module #358 (`519ef3e5`, `d1695b8d`).**
   - **The report is stored in a one-row table**, `orphaned_resource_report`, named `_acb_orphaned_resource_report` with the default `table_prefix`, instead of `cache.app`. There's an **Upgrading:** callout: run `migrations:diff` and migrate, and GET returns 404 until the next scan.
   - `generatedAt` now has microseconds, which fixes filed module #357.
