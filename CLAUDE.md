@@ -35,6 +35,16 @@ Researched and recorded on the issue (body + [findings comment](https://github.c
 
 ## Documented
 
+- **2026-09-26 (monitor) — docs #117 (template `c31d28f`, #101: daily orphan scan).**
+  - kubernetes has a new "Daily Orphan Scan" section: `cronjobs.orphanScan`, production only, the 1.27+ `timeZone` caveat, the `cwa.phpEnv` helper and an **Upgrading:** callout for the alpha.6 migration. ci-cd has an "Orphan Scan" variables table.
+  - admin-panel's freshness sentence now covers the daily scan. console-commands warns to use bare addresses up to alpha.6 (bundle #361, fix in open PR #363).
+  - **The issue was wrong on one point, which I reproduced:** an empty `MAILER_EMAIL` doesn't mean "no email". `%env(default::MAILER_EMAIL)%` gives null, and `scan-orphaned` dies with a TypeError before it scans. Filed as **bundle #365** (bug, reproduced).
+  - **Filed as unconfirmed:**
+    - template #102: GitHub deploys don't pass `ORPHAN_SCAN*`, `MAILER_EMAIL` or `MAILER_DSN`, and a null `MAILER_DSN` may fail `b64enc` in helm;
+    - template #103: the CronJob inherits `RESET_DATABASE` and would drop the schema nightly.
+  - Remove the ci-cd warnings when #365 and #102 are fixed.
+  - Also skipped: bundle PR #362 (Infection in CI only).
+
 - **2026-09-26 (morning monitor) — docs #116: bundle 2.0.0-alpha.6 released** (#346, #347, #349, #352–#354, #356, #358). The template pins it along with `@cwa/nuxt` 2.0.0-alpha.3 (`8bab085`). The "after 2.0.0-alpha.5", "a bundle build after…" and "a release containing #353" notes now name 2.0.0-alpha.6, while the "On 2.0.0-alpha.5 …" callouts about the old behaviour stay. Nothing documented is unreleased any more on either side.
 
 - **2026-09-26 (morning monitor) — docs #115.**
