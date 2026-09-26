@@ -307,6 +307,7 @@ Researched and recorded on the issue (body + [findings comment](https://github.c
 
 ## Skipped
 
+- **2026-09-26 — api-components-bundle PR #360** (Behat shards, bcrypt cost 4 in tests): only the bundle's own test suite changes. The faster-behat-tests guide is for applications and is unaffected.
 - **2026-09-23 — log cleanup, moved from Pending:**
   - Module #318 (only collection fetches get the page query). It was already marked Skipped at `0fd23d7c`; the page-caching tracking-parameter section now covers the cache side.
   - Bundle #218 (Behat coverage, CI only).
