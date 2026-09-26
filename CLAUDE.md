@@ -35,6 +35,14 @@ Researched and recorded on the issue (body + [findings comment](https://github.c
 
 ## Documented
 
+- **2026-09-26 (repo monitor) — docs #113: bundle PR #354 (closes #348) and module #358 (`519ef3e5`, `d1695b8d`).**
+  - **The report is stored in a one-row table**, `orphaned_resource_report`, named `_acb_orphaned_resource_report` with the default `table_prefix`, instead of `cache.app`. There's an **Upgrading:** callout: run `migrations:diff` and migrate, and GET returns 404 until the next scan.
+  - `generatedAt` now has microseconds, which fixes filed module #357.
+  - **`orphaned_resources.notify`** (`recipients`, `admin_page_path`, `subject`; no `enabled` flag) is in the configuration reference. Only `scan-orphaned` emails (`--notify` by default, `--no-notify`). The link needs a *usable* `default_origin`; an invalid one also drops the link.
+  - **Admin bulk delete:** the page shows the exact result texts, and "Delete everything" is `all: true`. It needs edge `0.0.0-29839726.4e89795`, which carries the microsecond parse fix, and a bundle release with #353. In the cwa-api overview, `deleteResource(iri)` is now `deleteOrphans()`.
+  - **Filed as unconfirmed:** bundle #355, a question. An admin HTTP scan or delete refresh absorbs a change, so the scheduled scan never emails about it. The email also says "scheduled scan" for manual runs.
+  - The other session's pending #358 entry is moved here.
+
 - **2026-09-26 (repo monitor) — docs #112 (bundle PR #353, which fixes filed #345/#351, and PR #349, both unreleased after alpha.5).**
   - console-commands:
     - `## scan-orphaned`, with a `### clean-orphaned` alias subsection and an **Upgrading:** callout. The command never deletes now, and it always exits 0.
