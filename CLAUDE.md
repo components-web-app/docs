@@ -35,6 +35,14 @@ Researched and recorded on the issue (body + [findings comment](https://github.c
 
 ## Documented
 
+- **2026-09-26 (repo monitor) — docs #112 (bundle PR #353, which fixes filed #345/#351, and PR #349, both unreleased after alpha.5).**
+  - console-commands:
+    - `## scan-orphaned`, with a `### clean-orphaned` alias subsection and an **Upgrading:** callout. The command never deletes now, and it always exits 0.
+    - A new "Deleting orphans" section for `POST /_/orphaned_resources/delete`: `iris` or `all: true`, 422 rules, a fresh re-scan, one transaction, `deleted`/`rejected` with `not_orphaned`/`not_found`.
+  - admin-panel: the module still deletes one IRI at a time (module #358 open). So deleting a published orphan that has a draft leaves the draft as a new orphan. I added that consequence to #358 rather than filing a new issue.
+  - users-and-security: a parent-typed page data property (#349) now gates access to live routes. There's an **Upgrading:** callout, because these components used to be public.
+  - **Source detail:** the orphan detector always excluded parent-typed properties. Only the old `clean-orphaned` deleted them. `{"iris": []}` is valid and deletes nothing.
+
 - **2026-09-26 (repo monitor) — docs #111 (bundle PR #352, which fixes filed #350):** a redirect `name:` that clashes with a route created in the same load now throws even when the path exists. The Seeding Redirects text is updated. #352 fixed only the same-load half of #350. When the path already exists, the requested name still aliases the existing route (`CwaFixtureBuilder.php:~727`), even if that route isn't a redirect. I noted this on #350 rather than filing a new issue.
 
 - **2026-09-26 (repo monitor) — docs #109 and #110.**
