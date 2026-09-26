@@ -35,6 +35,12 @@ Researched and recorded on the issue (body + [findings comment](https://github.c
 
 ## Documented
 
+- **2026-09-26 (morning monitor) — docs #115.**
+  - **`@cwa/nuxt` 2.0.0-alpha.3** ships #354–#356, the orphans page, bulk delete and microsecond times. The edge-build notes in authentication, component-group, admin-panel, the layer route table and the cwa-api overview now say "2.0.0-alpha.3".
+  - **Bundle PR #358** (unreleased): orphans through an orphaned parent (groups owned only by orphaned components, their positions, a dead draft's groups, unreachable cycles). The rules in console-commands are rewritten.
+  - **Template `b43fd09`, security:** Symfony doesn't anchor `TRUSTED_HOSTS` as a whole, so `^a|b|c$` let the middle alternatives match anywhere (the old default trusted `evil-caddy.attacker.net`). There's a warning callout in ci-cd, `^(?:…)$` in the variable row (the table's `|` is escaped as `\|`), and a comment on the kubernetes `trustedHosts` example.
+  - **Waiting:** bundle release PR #359 (2.0.0-alpha.6). When it merges, the "after 2.0.0-alpha.5" / "a release containing #353" notes should name alpha.6.
+
 - **2026-09-26 (repo monitor) — docs #114 (bundle PR #356, which fixes filed #355):** `scan-orphaned` compares with a separate last-alert baseline (a new `last_notified` column, covered by the same migration step). An admin scan or delete no longer absorbs a change. The baseline advances on a send or an unchanged result, and not on a failed send, with no recipients, or with `--no-notify`. I rewrote the console-commands callout and the `--no-notify` sentence; both were wrong from the day before.
 
 - **2026-09-26 (repo monitor) — docs #113: bundle PR #354 (closes #348) and module #358 (`519ef3e5`, `d1695b8d`).**
