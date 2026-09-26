@@ -35,6 +35,8 @@ Researched and recorded on the issue (body + [findings comment](https://github.c
 
 ## Documented
 
+- **2026-09-26 (morning monitor) — docs #116: bundle 2.0.0-alpha.6 released** (#346, #347, #349, #352–#354, #356, #358). The template pins it along with `@cwa/nuxt` 2.0.0-alpha.3 (`8bab085`). The "after 2.0.0-alpha.5", "a bundle build after…" and "a release containing #353" notes now name 2.0.0-alpha.6, while the "On 2.0.0-alpha.5 …" callouts about the old behaviour stay. Nothing documented is unreleased any more on either side.
+
 - **2026-09-26 (morning monitor) — docs #115.**
   - **`@cwa/nuxt` 2.0.0-alpha.3** ships #354–#356, the orphans page, bulk delete and microsecond times. The edge-build notes in authentication, component-group, admin-panel, the layer route table and the cwa-api overview now say "2.0.0-alpha.3".
   - **Bundle PR #358** (unreleased): orphans through an orphaned parent (groups owned only by orphaned components, their positions, a dead draft's groups, unreachable cycles). The rules in console-commands are rewritten.
