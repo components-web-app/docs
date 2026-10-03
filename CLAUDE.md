@@ -35,6 +35,26 @@ Researched and recorded on the issue (body + [findings comment](https://github.c
 
 ## Documented
 
+- **2026-10-03 — docs #119–#126, four parallel agents, each claim checked against source** (bundle main `dcfd7788`, module dev `4cc4bbf6`, template main `f9a5849`). I filed #124–#126 for pending log entries that had no issue. The build passes and all 98 links in the changed pages resolve.
+  - **#119 (module `5be5b635`, `dd4f8a6d`):** authentication has a new "When the API is on another origin" subsection. The layer's admin-panel page says `cwa-admin` is set on the `/_cwa` parent page. **The commit messages describe a server render of an admin page, but `module.ts:185` sets `ssr: false` for `/_cwa/**`,** so the cross-origin note applies only to the app's own pages.
+  - **#123 (module #360):** core-concepts admin-panel has a new "Hidden Component Groups" section, and cwa-component-group warns that renaming a `reference` leaves the old group attached. **Merge keeps moving the other components after one is refused**, so those have already moved when the group is kept. No edge build contains `94481372` yet.
+  - **#124 (bundle #373, module #362):** console-commands has `## scan-orphaned-files`, with the report and deletion subsections. The configuration reference has `orphaned_files`; admin-panel has the Files report and settings. **Additions to the log:**
+    - There's a fourth rejection reason, `unknown`, alongside `not_orphaned`, `not_found` and `delete_failed`.
+    - `not_orphaned` also covers files younger than `minimum_age` and files under an excluded path.
+    - A field with no prefix scans its whole filesystem.
+    - The orphan email covers resources only, never files.
+  - **#125 (bundle #369, #372):** in bundle-setup, the callout no longer says the bundle forces `use_symfony_listeners`, and there's an upgrade warning. No page named the renamed classes, so it points to the changelog. uploadable has a new "Removing the resource" subsection. **Its post-flush reference check counts only rows of the same class and field** (`UploadableFileDeletionListener.php:66`).
+  - **#120 (template `9b7bca6`, plus `7f84445` from the issue comment):** the php liveness probe is `httpGet`, and the singleflight patch and the `kube-probe/` exclusion are documented. In docker's `@use_cache` notes, only extensionless paths and `.xml` are cached, the check is `".pdf"`, and a warning says not to rely on `max_cacheable_body_bytes`.
+  - **#126 (bundle #375):** "The API's health endpoints" covers `/_/health` for readiness and `/_/health/live` for liveness. **The template's probes use neither yet, and its Caddyfile has no exclusion for the health paths.**
+  - **#122 (template `8f290d8`):** removed the warning that GitHub variables must be added by hand, and noted that secrets still need `env:`. **A variable named like a secret the workflow already maps in `env:` (`DATABASE_URL`, `MAILER_DSN`, `GCLOUD_JSON`, …) is silently ignored.** The `PERFORMANCE_AUDIT_THROTTLING` row no longer says GitLab only.
+  - **#121 (new page `6.deployment/6.cloudflare.md`) stays open,** because Option B is behind an "untested" warning until preview.cwa.rocks is tried. **The page corrects the issue in these places:**
+    - Souin v1.7.9 sends `X-Auth-Email`/`X-Auth-Key`, so it needs the Global API Key. A scoped Cache Purge token can't work.
+    - Purge results are discarded, so a failure leaves no log.
+    - The deploy purge does reach Cloudflare. The `/flush` (purge all) doesn't.
+    - On the Free plan, purge by tag is limited to 5 requests per minute and the minimum Edge TTL is 2 hours.
+    - An Edge TTL override ignores `private, no-store`.
+  - **Possible template finding, not filed:** `api/.env` sets `TRUSTED_PROXIES` to `172.0.0.0/8`, which includes public ranges such as Cloudflare's `172.64.0.0/13`. The chart and compose use `172.16.0.0/12`.
+
 - **2026-09-26 (monitor) — docs #118:**
   - **Bundle 2.0.0-alpha.7** accepts `Name <address>` recipients (#363) and treats null recipients as none (#366, which fixes filed #365). console-commands and ci-cd now limit the bare-address and TypeError warnings to alpha.6.
   - **Template 2.0.0-alpha.3 `85d3f43`:** `generate_jwt_keys` derives `JWT_PUBLIC_KEY` from a supplied key, and fails the deploy for a key without a passphrase or with the wrong one. **ci-cd's JWT row, "not derived from a secret key you supply", had become wrong** and is fixed.
