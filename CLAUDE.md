@@ -53,7 +53,7 @@ Researched and recorded on the issue (body + [findings comment](https://github.c
     - The deploy purge does reach Cloudflare. The `/flush` (purge all) doesn't.
     - On the Free plan, purge by tag is limited to 5 requests per minute and the minimum Edge TTL is 2 hours.
     - An Edge TTL override ignores `private, no-store`.
-  - **Possible template finding, not filed:** `api/.env` sets `TRUSTED_PROXIES` to `172.0.0.0/8`, which includes public ranges such as Cloudflare's `172.64.0.0/13`. The chart and compose use `172.16.0.0/12`.
+  - **Filed 2026-10-03 as unconfirmed, components-web-app #107:** `api/.env` sets `TRUSTED_PROXIES` to `172.0.0.0/8`, which includes public ranges such as Cloudflare's `172.64.0.0/13`. The chart and compose use `172.16.0.0/12`.
 
 - **2026-09-26 (monitor) — docs #118:**
   - **Bundle 2.0.0-alpha.7** accepts `Name <address>` recipients (#363) and treats null recipients as none (#366, which fixes filed #365). console-commands and ci-cd now limit the bare-address and TypeError warnings to alpha.6.
