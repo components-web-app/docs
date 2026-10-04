@@ -35,6 +35,14 @@ Researched and recorded on the issue (body + [findings comment](https://github.c
 
 ## Documented
 
+- **2026-10-04 (night) — docs #121 closed (`d614388`), from the last two comments on #121.**
+  - **The cookie bypass works.** The earlier ❌ was a broken test (zsh quoting), so the open-item warning is removed.
+  - A new optional "API responses (optional)" section gives the tested `/_api` rule. Only the module's exact `Accept` is eligible, and the rule leaves out requests with an `api_component` cookie or an `Authorization` header.
+  - Header fields work on the Free plan.
+  - **The deploy purge clears only `cwa-html`**, so edge-cached API responses survive a deploy. A release that changes API output needs a Purge Everything until the template purges the edge on deploy. There's a callout on the Cloudflare page and a sentence in ci-cd.
+  - The "Cache pages only, never `/_api`" heading became "`/_api` needs its own rule"; nothing linked to the old anchor.
+  - cd99b55 is still unreleased. When the template tags it, the Cloudflare page's "isn't in a release yet" needs updating.
+
 - **2026-10-04 (evening):**
   - **Template `b3b8622` (#110, #111), unreleased:**
     - **`MERCURE_JWT_ISSUER` is gone.** The issuer is fixed to `cwa` in `mercure.yaml` and the Caddyfile. I removed its rows from configuration and ci-cd, rewrote bundle-setup "In the template", and added a callout for projects that have the variable.
