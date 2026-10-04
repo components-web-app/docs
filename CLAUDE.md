@@ -35,6 +35,35 @@ Researched and recorded on the issue (body + [findings comment](https://github.c
 
 ## Documented
 
+- **2026-10-04 (later) — docs #130, #131 and the #121 test results, plus a release audit.** I audited bundle `2.0.0-alpha.5..alpha.8`, module `v2.0.0-alpha.2..alpha.4` and template `v2.0.0-alpha.2..main` (three read-only agents). The build passes, and all 127 links in the changed pages resolve.
+  - **Releases:**
+    - Bundle **2.0.0-alpha.8** and `@cwa/nuxt` **2.0.0-alpha.4** (npm `latest`) are out. Every "after alpha.7", "after alpha.3" or edge-build note for their changes now names the release.
+    - The pre-alpha.1 edge notes (module-setup, use-cwa-resource-upload, html-content, cwa-page) are dropped, because all four commits are in v2.0.0-alpha.1.
+    - **There is no template release after v2.0.0-alpha.3.** Its Mercure 1.0, `cwa_force` and alpha.4 changes are written as "on `main` after template 2.0.0-alpha.3".
+  - **#130 (template `1a9f7a5`, `3f7130f`, `109c3e7`):**
+    - bundle-setup has a new `### In the template` section: modern mode, the `issuer` block, the pinned `resource_identifier`, and `MERCURE_JWT_ISSUER`.
+    - docker documents both provisioning errors.
+    - The `CACHE_QUERY_ALLOWLIST` default is `page search order`, with a warning never to add `cwa_force` back (#366).
+    - module-setup: the module needs Nuxt `>=4.5.2`. **It pins `@pinia/nuxt` to exactly `1.0.2`** but checks the app's copy against `^1.0.2`.
+    - **`MERCURE_JWT_ISSUER` isn't passed to php by compose, the chart or k8s.sh.** Caddy reads it from the container's environment, so setting it only in `.env` gives a 401 on every token. The docs say to leave it unset. This is a possible template bug; it isn't filed.
+  - **#121:**
+    - Option B is now "tested end to end on Free, a supported choice"; Option A stays the default.
+    - The tested Cache Rule is quoted verbatim. Its Edge TTL setting, "use cache-control header if present, bypass if not", is what keeps the origin exclusions working.
+    - I replaced the untested cookie/Authorization bypass expression.
+    - **#121 is still open**, because a request with the cookie still gets an edge HIT (components-web-app #108).
+  - **#131 (release audit gaps):**
+    - The `cwa_force` guard fix: only `true` bypasses, and any other value is stripped. Up to alpha.3 a different value looped SSR.
+    - Orphan View falls back to the draft for a never-published component (#359).
+    - **form-component: `FormSerializeStateProcessor` builds `formView` now**, not `FormApiEventListener` (#369). The closing comment on #125, "no page names the classes", was wrong.
+    - docker's builder modules and the three Souin patches.
+    - **load-testing's "home page never cached" was stale.** Module `26f06f8d` (in alpha.4) fixed it. That's from source only; the template's `bin/load-test/README.md:147-148` still makes the claim.
+    - A `TRUSTED_PROXIES` upgrade note in cloudflare.
+  - **Template READMEs that are stale (not docs):**
+    - `bin/load-test/README.md`: the cold mode at lines 100-104, the rate limit not mentioned, and the home page at lines 147-148.
+    - `api/README.md` links to dead `docs.*.cwa.rocks` hosts.
+    - `app/README.md` is the Nuxt 3 starter.
+    - `helm/cwa/README.md` points to API Platform's docs.
+
 - **2026-10-04 — docs #127, #128, #129 and the #121 corrections, four parallel agents, each claim checked against source** (template main `4565c67`, module dev `6a5652d4`, bundle main `670e23ac`). The build passes and all 83 links in the changed pages resolve.
   - **#127 (template #106):**
     - page-caching has new "Query parameters on pages" and "Rate limit on cache misses" sections, including counting the real visitor.
