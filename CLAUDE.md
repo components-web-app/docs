@@ -35,6 +35,36 @@ Researched and recorded on the issue (body + [findings comment](https://github.c
 
 ## Documented
 
+- **2026-10-04 — docs #127, #128, #129 and the #121 corrections, four parallel agents, each claim checked against source** (template main `4565c67`, module dev `6a5652d4`, bundle main `670e23ac`). The build passes and all 83 links in the changed pages resolve.
+  - **#127 (template #106):**
+    - page-caching has new "Query parameters on pages" and "Rate limit on cache misses" sections, including counting the real visitor.
+    - ci-cd has an "Origin Protection" table; docker has the settings and a gotcha to rebuild the php image.
+    - kubernetes has "Ingress rate limits" and "Load shedding".
+    - load-testing: `CACHE=cold` page requests are now cache hits unless `k6cb` is allowlisted.
+    - **Corrections to the issue:**
+      - `CADDY_EDGE` is set only by `compose.prod.yaml`; it isn't a CI or helm variable.
+      - The allowlist also skips `/__*`, `/.well-known/`, `/_nuxt/`, `/uploads/`, `/bundles/` and `/user-area`.
+      - The ingress limits apply only when `INGRESS_RATE_LIMIT_RPS` is set.
+      - The tracking-parameter denylist still exists, and still runs on `/_api`.
+    - The template's `bin/load-test/README.md:100-104` is stale; it still calls cold page requests misses.
+  - **#121 Cloudflare page corrected (template `cd99b55`, from #108):**
+    - **Unpatched Souin v1.7.9 POSTs to `/purge` instead of `/purge_cache`, so no purge ever reached Cloudflare.** The day-old claim that "the Global API Key works" was wrong.
+    - The patch fixes the endpoint, sends a bearer token when there's no `email`, and logs failures. A Caddyfile rule copies `Surrogate-Key` into `Cache-Tag`.
+    - A new "Turning edge caching on" section gives the order, and when a Purge Everything is needed.
+    - Also added: the Cache Rule specifics and the dashboard locations. The dashboard locations come from Cloudflare's docs, not an account check.
+    - ci-cd has a new "CDN Purging" table (`CADDY_CACHE_CDN_CONFIG`, `CLOUDFLARE_API_TOKEN`).
+    - **#106 restores the visitor IP only for Caddy's rate limit.** Symfony's `getClientIp()` and Caddy's access log still see a Cloudflare address.
+    - #121 stays open until the end-to-end run on preview.cwa.rocks (template #108).
+  - **#128 (bundle #379, module #364, template #67), unreleased after bundle alpha.7 and module alpha.3:**
+    - bundle-setup has a new `## Mercure Hub` section: `mercure.yaml`, the hub Caddyfile, the subscriber cookie, and an upgrade callout.
+    - Also updated: real-time-updates (`match=*`, `last_event_id`, troubleshooting), configuration, and the Mercure lines in docker and kubernetes.
+    - **The template is still in hub compatibility mode** (`protocol_version_compatibility 8`, top-level `publisher_jwt`, no `issuer` block). The docs describe the 1.0 configuration and say the template hasn't switched yet.
+    - **Risk:** the template requires the bundle as `^2.0@alpha`, so a `composer update` to alpha.8 without the `mercure.yaml` change breaks cookie generation. The helm `mercure-public-url` falls back to `http://`, which can't carry a `__Secure-` cookie.
+  - **#129 (module `fee09284`, `0a02879d`, in the unpublished 2.0.0-alpha.4):**
+    - The admin-panel section is renamed **"Stranded Component Groups"**, the new modal title, with anchor `#stranded-component-groups`. It's rewritten around the build-time declaration scan.
+    - cwa-component-group has new guidance, and a callout that `location` must be a layout, page or component IRI (`0a02879d`).
+    - **A wrapper that passes `reference` as a prop turns reporting off for the whole site** (`component-group-declarations.ts:178-202`). So do an unreadable file or a script that fails to parse.
+
 - **2026-10-03 — docs #119–#126, four parallel agents, each claim checked against source** (bundle main `dcfd7788`, module dev `4cc4bbf6`, template main `f9a5849`). I filed #124–#126 for pending log entries that had no issue. The build passes and all 98 links in the changed pages resolve.
   - **#119 (module `5be5b635`, `dd4f8a6d`):** authentication has a new "When the API is on another origin" subsection. The layer's admin-panel page says `cwa-admin` is set on the `/_cwa` parent page. **The commit messages describe a server render of an admin page, but `module.ts:185` sets `ssr: false` for `/_cwa/**`,** so the cross-origin note applies only to the app's own pages.
   - **#123 (module #360):** core-concepts admin-panel has a new "Hidden Component Groups" section, and cwa-component-group warns that renaming a `reference` leaves the old group attached. **Merge keeps moving the other components after one is refused**, so those have already moved when the group is kept. No edge build contains `94481372` yet.
