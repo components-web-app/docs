@@ -8,6 +8,7 @@
 - **Image/video placeholders as you go.** Add `::callout{icon="i-heroicons-photo"}` placeholders describing what each image/video should show. This makes visual gaps explicit.
 - **Consistent structure per guide.** Each guide: brief framing → the file → register in config → create in API (admin + fixtures) → next step.
 - **Code focus.** Use `// [!code focus]` on key lines when showing context-heavy blocks.
+- **Docs track `dev`/`main`, not tags.** Document a change as soon as it lands on the source repo's development branch. Don't hold docs back or leave "update when tagged" follow-ups. Name the commit (or the release once one exists) so readers on older versions can tell what applies.
 
 ## ⚑ Priority: Track changes from other CWA projects for documentation
 
@@ -41,7 +42,6 @@ Researched and recorded on the issue (body + [findings comment](https://github.c
   - Header fields work on the Free plan.
   - **The deploy purge clears only `cwa-html`**, so edge-cached API responses survive a deploy. A release that changes API output needs a Purge Everything until the template purges the edge on deploy. There's a callout on the Cloudflare page and a sentence in ci-cd.
   - The "Cache pages only, never `/_api`" heading became "`/_api` needs its own rule"; nothing linked to the old anchor.
-  - cd99b55 is still unreleased. When the template tags it, the Cloudflare page's "isn't in a release yet" needs updating.
 
 - **2026-10-04 (evening):**
   - **Template `b3b8622` (#110, #111), unreleased:**
