@@ -35,6 +35,14 @@ Researched and recorded on the issue (body + [findings comment](https://github.c
 
 ## Documented
 
+- **2026-10-04 (evening):**
+  - **Template `b3b8622` (#110, #111), unreleased:**
+    - **`MERCURE_JWT_ISSUER` is gone.** The issuer is fixed to `cwa` in `mercure.yaml` and the Caddyfile. I removed its rows from configuration and ci-cd, rewrote bundle-setup "In the template", and added a callout for projects that have the variable.
+    - The chart now **requires** `mercure.publicUrl`, with no `http://127.0.0.1` fallback (kubernetes).
+    - Caddy logs the visitor as **`visitor_ip`**; `client_ip` is still the connecting address. Updated in page-caching, kubernetes and cloudflare. Symfony's `getClientIp()` still returns Cloudflare's address.
+    - **Not addressed by the commit:** #111's unverified PURGE ACL point.
+  - **Module `ceee52b2` (#367), queued for the release after alpha.4:** the build warns once per file and reason that switches stranded-group reporting off. The admin-panel section quotes the message and the five reasons.
+
 - **2026-10-04 (later) — docs #130, #131 and the #121 test results, plus a release audit.** I audited bundle `2.0.0-alpha.5..alpha.8`, module `v2.0.0-alpha.2..alpha.4` and template `v2.0.0-alpha.2..main` (three read-only agents). The build passes, and all 127 links in the changed pages resolve.
   - **Releases:**
     - Bundle **2.0.0-alpha.8** and `@cwa/nuxt` **2.0.0-alpha.4** (npm `latest`) are out. Every "after alpha.7", "after alpha.3" or edge-build note for their changes now names the release.
