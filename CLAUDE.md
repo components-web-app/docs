@@ -53,7 +53,7 @@ Researched and recorded on the issue (body + [findings comment](https://github.c
     - **`MERCURE_JWT_ISSUER` is gone.** The issuer is fixed to `cwa` in `mercure.yaml` and the Caddyfile. I removed its rows from configuration and ci-cd, rewrote bundle-setup "In the template", and added a callout for projects that have the variable.
     - The chart now **requires** `mercure.publicUrl`, with no `http://127.0.0.1` fallback (kubernetes).
     - Caddy logs the visitor as **`visitor_ip`**; `client_ip` is still the connecting address. Updated in page-caching, kubernetes and cloudflare. Symfony's `getClientIp()` still returns Cloudflare's address.
-    - **Not addressed by the commit:** #111's unverified PURGE ACL point.
+    - #111's PURGE ACL point is a non-issue: the template tested it on production, where a public `PURGE`/`BAN` through Cloudflare gets a 400 and the page stays cached. The app's own purges go to `localhost:2019`. #111 is closed.
   - **Module `ceee52b2` (#367), queued for the release after alpha.4:** the build warns once per file and reason that switches stranded-group reporting off. The admin-panel section quotes the message and the five reasons.
 
 - **2026-10-04 (later) — docs #130, #131 and the #121 test results, plus a release audit.** I audited bundle `2.0.0-alpha.5..alpha.8`, module `v2.0.0-alpha.2..alpha.4` and template `v2.0.0-alpha.2..main` (three read-only agents). The build passes, and all 127 links in the changed pages resolve.
@@ -83,7 +83,7 @@ Researched and recorded on the issue (body + [findings comment](https://github.c
     - components-web-app #111: behind Cloudflare, Symfony and the access log see Cloudflare's address. It also notes that the PURGE ACL now resolves `client_ip` from `X-Forwarded-For` (unverified).
     - components-web-app #112: stale template READMEs.
     - cwa-nuxt-module #367: a wrapper passing `reference` as a prop switches stranded-group reporting off site-wide.
-  - **Template READMEs that are stale (not docs), filed as #112:**
+  - **Template READMEs that were stale (not docs), filed as #112, fixed in template `3d38d3a` and closed:**
     - `bin/load-test/README.md`: the cold mode at lines 100-104, the rate limit not mentioned, and the home page at lines 147-148.
     - `api/README.md` links to dead `docs.*.cwa.rocks` hosts.
     - `app/README.md` is the Nuxt 3 starter.
