@@ -36,6 +36,11 @@ Researched and recorded on the issue (body + [findings comment](https://github.c
 
 ## Documented
 
+- **2026-10-05 — docs #132 (template `6a8c898`): every Cloudflare purge now reaches the edge.** Checked against the commit (`k8s.sh` `purge_rendered_html`, the patch's `Destruct()`).
+  - A full flush (**Purge all cached data**, `purge-http-cache`, every fixture load) sends `purge_everything` to the zone. It needs the patched image but no `Cache-Tag`. Failures log `Cloudflare purge everything failed…`.
+  - With `provider cloudflare` in `CADDY_CACHE_CDN_CONFIG`, the deploy runs `purge-http-cache` instead of `purge-rendered-html`, so edge-cached `/_api` responses no longer survive a release. Staging shares the variable, so a staging deploy empties production's edge too.
+  - cloudflare: purge table, the first-deploy Purge Everything and the API-rule deploy warning are now limited to templates before `6a8c898`; the two "team knows to Purge Everything" checklist items are replaced. ci-cd's deploy-purge section and page-caching's flush paragraph are updated. Upgrading needs the regenerated patch, the `k8s.sh` change and an API image rebuild.
+
 - **2026-10-04 (night) — docs #121 closed (`d614388`), from the last two comments on #121.**
   - **The cookie bypass works.** The earlier ❌ was a broken test (zsh quoting), so the open-item warning is removed.
   - A new optional "API responses (optional)" section gives the tested `/_api` rule. Only the module's exact `Accept` is eligible, and the rule leaves out requests with an `api_component` cookie or an `Authorization` header.
