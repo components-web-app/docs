@@ -54,7 +54,9 @@ export default defineNuxtConfig({
   routeRules: {
     '/api/search.json': { prerender: true },
     // cwa-api was one page until it was split into per-service sub-pages
-    '/nuxt-module/cwa-api': { redirect: { to: '/nuxt-module/cwa-api/overview', statusCode: 301 } }
+    '/nuxt-module/cwa-api': { redirect: { to: '/nuxt-module/cwa-api/overview', statusCode: 301 } },
+    // The template replaced Behat with PHPUnit functional tests
+    '/deployment/faster-behat-tests': { redirect: { to: '/deployment/faster-functional-tests', statusCode: 301 } }
   },
 
   future: {

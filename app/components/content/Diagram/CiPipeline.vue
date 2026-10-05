@@ -21,7 +21,7 @@ const options: Highcharts.Options = {
     ],
     nodes: [
       { id: 'build',      name: 'Build',       ...nodeColor.stone, description: 'docker buildx' },
-      { id: 'test',       name: 'Test',        ...nodeColor.stone, description: 'PHPUnit + Behat' },
+      { id: 'test',       name: 'Test',        ...nodeColor.stone, description: 'PHPUnit unit + functional' },
       { id: 'review',     name: 'Review App',  ...nodeColor.blue,  description: 'per-branch — all branches' },
       { id: 'staging',    name: 'Staging',     ...nodeColor.blue,  description: 'auto on merge to main' },
       { id: 'canary',     name: 'Canary',      ...nodeColor.blue,  description: 'manual promotion' },
