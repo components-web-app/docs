@@ -36,6 +36,8 @@ Researched and recorded on the issue (body + [findings comment](https://github.c
 
 ## Documented
 
+- **2026-10-05 — docs #134: the Cloudflare API rule excludes `/_api/_/component_positions/`.** Positions bound to a page-data property return a different component per page, chosen by the `path` request header, and the bundle sends `Vary: path` (`ComponentPositionEventListener.php:31`). Cloudflare ignores `Vary`, so every page-data page showed one article's body after client-side navigation (verified by the template on preview.cwa.rocks). Updated the expression, added the reason and an upgrade callout (update the rule, then Purge Everything once), and two checklist items.
+
 - **2026-10-05 — docs #135 (module `dev` after alpha.4: `1e76b367` #368, `05f4611e`, `bf37fd73`, `3938a1f3`).** dynamic-pages' shared-template-page callout now says each depth renders its own dynamic components, and only a change to the parent's page data waits for the next navigation; the "use different template pages" advice is limited to alpha.4 and earlier. real-time-updates lists the page-data re-fetch of bound positions. #368 (navigation flash) and `bf37fd73` (page-data tab at the position's depth) fix behaviour no page described. The module's working tree had uncommitted changes, so I read `origin/dev` without pulling.
 
 - **2026-10-05 — docs #132 (template `6a8c898`): every Cloudflare purge now reaches the edge.** Checked against the commit (`k8s.sh` `purge_rendered_html`, the patch's `Destruct()`).
