@@ -36,6 +36,8 @@ Researched and recorded on the issue (body + [findings comment](https://github.c
 
 ## Documented
 
+- **2026-10-05 — docs #135 (module `dev` after alpha.4: `1e76b367` #368, `05f4611e`, `bf37fd73`, `3938a1f3`).** dynamic-pages' shared-template-page callout now says each depth renders its own dynamic components, and only a change to the parent's page data waits for the next navigation; the "use different template pages" advice is limited to alpha.4 and earlier. real-time-updates lists the page-data re-fetch of bound positions. #368 (navigation flash) and `bf37fd73` (page-data tab at the position's depth) fix behaviour no page described. The module's working tree had uncommitted changes, so I read `origin/dev` without pulling.
+
 - **2026-10-05 — docs #132 (template `6a8c898`): every Cloudflare purge now reaches the edge.** Checked against the commit (`k8s.sh` `purge_rendered_html`, the patch's `Destruct()`).
   - A full flush (**Purge all cached data**, `purge-http-cache`, every fixture load) sends `purge_everything` to the zone. It needs the patched image but no `Cache-Tag`. Failures log `Cloudflare purge everything failed…`.
   - With `provider cloudflare` in `CADDY_CACHE_CDN_CONFIG`, the deploy runs `purge-http-cache` instead of `purge-rendered-html`, so edge-cached `/_api` responses no longer survive a release. Staging shares the variable, so a staging deploy empties production's edge too.
