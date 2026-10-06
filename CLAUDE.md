@@ -36,6 +36,12 @@ Researched and recorded on the issue (body + [findings comment](https://github.c
 
 ## Documented
 
+- **2026-10-06 — docs #137: releases and a release sweep.** Bundle: nothing after 2.0.0-alpha.8 (no open PRs). Open "Possible" issues: only bundle #259 (Flex recipe, deferred to stable 2.x; bundle-setup already says the recipe doesn't run). Bundle #325 and template #84 wait on upstream (api-platform/core#8591, darkweak/souin#868).
+  - **`@cwa/nuxt` 2.0.0-alpha.5** (npm `latest`): the #367 build warning, the shared-depth callout and the live page-data note now name it.
+  - **Template v2.0.0-alpha.4** contains every template commit the docs linked by hash (cd99b55, 6a8c898, b3b8622, b5aa360, 1a9f7a5, 3f7130f, 8f290d8, 8885b3c, fc0afb7, e919d06, 4cbe05a, 7f84445, 9b7bca6). Each note now names `2.0.0-alpha.4`; the Cloudflare page's "cd99b55, or better 6a8c898" collapses to "2.0.0-alpha.4 or later".
+  - **Template v2.0.0-alpha.5 (`51ea465`, #113):** `name cwa` in the `mercure` block. bundle-setup's Hub Caddyfile has it, with the reason; docker has a gotcha with the exact error.
+  - **Template `main` after alpha.5 (`843082a`, `f3912b0`):** `bin/test/caddy-validate.sh` in the unit-tests job; docker gotcha with the local command from the template's CLAUDE.md (`docker compose exec -T php sh -s < bin/test/caddy-validate.sh`, which checks the image's `/etc/caddy/Caddyfile`).
+
 - **2026-10-05 — docs #133 (template `8885b3c`, `fc0afb7`, `e919d06`, heading for template alpha.4).**
   - **Behat is gone.** ci-cd: the `functional tests` job (GitHub `functional-tests`), `run_test_functional` (JUnit at `api/build/logs/phpunit/functional.xml`), the "database name must contain `test`" guard, hand-set `createdAt`/`modifiedAt`, and a callout for projects that keep Behat. The pipeline diagram says "PHPUnit unit + functional".
   - **`faster-behat-tests` is now `5.faster-functional-tests.md`**, with a 301 from the old URL in `nuxt.config.ts`. The reset, sequence and measurement advice carries over (the numbers stay labelled as a Behat project's). Sharding now uses PHPUnit 13's `--list-test-ids` and `--test-id-filter-file`, and the order check uses `--order-by reverse|random` with `--random-order-seed` (all checked in the template's vendor PHPUnit 13.4; PHPUnit has no built-in sharding). **Not run by anyone:** the static-flag `FunctionalTestCase` example and the sharding script.
