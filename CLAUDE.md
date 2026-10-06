@@ -43,6 +43,12 @@ Researched and recorded on the issue (body + [findings comment](https://github.c
 
 ## Documented
 
+- **2026-10-06 — docs #138 (module `dev` after alpha.5: `6bb0743a` #361, `11f72946` #340).**
+  - module-setup: the package name is still recommended, the path form works on Nuxt 4.6.0, and the old #329 workaround is history in a callout. Requirements: `>=4.6.0` on `dev`; alpha.4 and alpha.5 declare `>=4.5.2`.
+  - pwa: `cacheWillUpdate` is a single expression, with a callout (Workbox one-lines functions; Nuxt 4.6 keeps the config source untranspiled, so the build fails with `Missing semicolon`).
+  - page-caching: a callout that Nuxt 4.6 with module alpha.5 or earlier can cache a 500, because Nuxt 4.6 stopped sending `x-nuxt-error`; `11f72946` uses `ssrContext.error`. The issue said "no change for users", but the commit message says a throwing page "went out as a cacheable 500".
+  - **The template's own `app/nuxt.config.ts:253-257` has the multi-statement `cacheWillUpdate`**, so it breaks when the template moves to Nuxt 4.6. I told the user and didn't file it.
+
 - **2026-10-06 — docs #137 and #136: releases and a release sweep.** #136 (filed separately for the named hub) also got a line in the alpha.8 Mercure upgrade steps and a `SERVER_NAME` pointer in docker's production compose section. Bundle: nothing after 2.0.0-alpha.8 (no open PRs). Open "Possible" issues: only bundle #259 (Flex recipe, deferred to stable 2.x; bundle-setup already says the recipe doesn't run). Bundle #325 and template #84 wait on upstream (api-platform/core#8591, darkweak/souin#868).
   - **`@cwa/nuxt` 2.0.0-alpha.5** (npm `latest`): the #367 build warning, the shared-depth callout and the live page-data note now name it.
   - **Template v2.0.0-alpha.4** contains every template commit the docs linked by hash (cd99b55, 6a8c898, b3b8622, b5aa360, 1a9f7a5, 3f7130f, 8f290d8, 8885b3c, fc0afb7, e919d06, 4cbe05a, 7f84445, 9b7bca6). Each note now names `2.0.0-alpha.4`; the Cloudflare page's "cd99b55, or better 6a8c898" collapses to "2.0.0-alpha.4 or later".
