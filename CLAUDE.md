@@ -47,7 +47,9 @@ Researched and recorded on the issue (body + [findings comment](https://github.c
     - `e7d1be3`: GitLab has no production fixtures job while production is off.
     - The upgrade page's "Unreleased on main" section is now `## 2.0.0-alpha.16`, and the `main after alpha.15` markers now name alpha.16. The page also has an extra step the changelog leaves out: edit `CoreScaffoldPart.php` itself.
   - **#185, alpha.17 (`c1d2581`, template #130):** the functional tests job unsets `JWT_SECRET_KEY`, `JWT_PUBLIC_KEY` and `JWT_PASSPHRASE`. The upgrade step says to erase the job log or rotate the keypair.
-  - **Not done:** `CWA_CI_PERFORMANCE_AUDIT_INSECURE`/`_OUTPUT` exist in source but aren't documented. Whether a key rotation signs users out isn't confirmed.
+  - **Follow-up (same day):**
+    - `CWA_CI_PERFORMANCE_AUDIT_INSECURE` (curl `--insecure` plus Chrome `--ignore-certificate-errors`) and `_OUTPUT` (default `performance-report`; the CI artifacts hard-code that path) are documented.
+    - **A new JWT keypair signs every user out on the deploy that brings it in.** This came from Daniel, not source. It's noted in the ci-cd JWT intro and in the alpha.17 rotation step.
 
 - **2026-10-09 (afternoon) — docs #181, #182, #183: template environment-variable changes and Cloudflare per track.** Checked against template `origin/main` `2686b98`. The build passes and all 358 links resolve.
   - **#182 (template #125, `497e8ac`, `75a416b`):** ci-cd has a new `## Site settings` section:
