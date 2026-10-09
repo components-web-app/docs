@@ -27,9 +27,6 @@ If a change is documented, move it to **Documented** below. If it is intentional
 
 ## Pending Documentation Review
 
-### 2026-10-09 — template work not yet on `origin/main` (watch for it)
-- **In-cluster PostgreSQL persistence switches** (`7675190`, `cc33044`, `75599a7`): committed on the local template `main`, not pushed. When it lands, revisit the ci-cd Database text and the upgrade page callout, which currently say the in-cluster database has no persistence and restarts empty (docs #183).
-- **The `CWA_CI_*` rename of the template's CI switches, and `CWA_API_*` runtime settings delivered differently** (`6f4fbb3`…`2e86e09`, `dac3270`, `947489d`, `06ae488`, `431d231`): in an agent worktree branch. When it lands, it renames most rows in ci-cd's variable tables and may change docs #182's Site settings section. File a docs issue then.
 - Template #129 (admin-editable site settings) is a proposal only.
 
 ### 2026-08-12 — docs #1 (AI chat assistant): provider decided, not yet built
@@ -40,6 +37,17 @@ Researched and recorded on the issue (body + [findings comment](https://github.c
 `GET /_/resource_manifest/{id}`'s `resource_iris` changed from `string[][]` to `NestedJsonStructure[]` — outer array still indexed by rendering depth (root first), but each depth is now a recursive `{ iri, children }` tree preserving component containment (to enable placeholder/skeleton rendering that reduces loader flicker/layout shift). Module migrated: retains the raw tree (`manifest.resourceTree`) and derives the flat `irisByDepth` via a pure `flattenManifestNode` helper — all existing depth/render semantics unchanged, no rendering change yet. Hard swap, no BC window (pre-alpha). **Status:** bundle #197 + module #250 **COMPLETE**; the manifest shape is now settled. Bundle **#198 (extra per-node placeholder metadata) is closed NOT_PLANNED** — the module can build skeletons from the containment tree it already receives, so **no further manifest metadata is coming**. The eventual skeleton/placeholder feature will be **module-side only**, now tracked as **[cwa-nuxt-module #255](https://github.com/components-web-app/cwa-nuxt-module/issues/255)** (raised, **not yet shipped**). Planned user-facing API when it lands: opt-in per-component-type placeholder templates at `app/cwa/components/<Name>/placeholder.vue` (scanned like `admin/`/`ui/`), rendered until the resource resolves, laid out from the `resourceTree` to reserve space (anti-CLS); component type derived from the IRI, no manifest/API metadata. *Docs impact: low, deferred — internal plumbing with no consuming-app surface today. Document the `placeholder.vue` convention when #255 phase 2 ships.*
 
 ## Documented
+
+- **2026-10-10 — docs #184 and #185: template 2.0.0-alpha.16 and alpha.17.** Checked against template `origin/main` `182799a`. The build passes and all 361 links resolve.
+  - **#184, alpha.16:**
+    - **CI switches are now `CWA_CI_*`/`CWA_CI_API_*`, and the old names are ignored without a warning.** Every page uses the new names. The upgrade page has the rename table, plus the names that stay the same, which the changelog doesn't list: `KUBERNETES_VERSION`/`HELM_VERSION`, `ADMIN_*`, `CORS_ALLOW_ORIGIN`, `TRUSTED_HOSTS`, `MERCURE_CORS_ORIGIN`, `DATABASE_SSL_MODE` and `CADDY_CACHE_EXTRA_CONFIG`.
+    - **The API's optional settings are set as `CWA_API_<NAME>` (`d64c278`)**, and an empty value is left out. The chart's values keys for them were removed (`php.caddy.rateLimit`, `queryAllowlist`, `cloudflarePurge`, `maxWaitTime`, `globalConfig`, `php.jwt.samesite`), so kubernetes' `samesite` example was dropped. ci-cd has a table of the nine settings, and its reserved API list was rebuilt from `SITE_ENV_RESERVED_API` (41 names).
+    - **In-cluster PostgreSQL persistence (`7675190`):** ci-cd and kubernetes cover the `CWA_CI_POSTGRES_PERSISTENCE*` and `_STORAGE_CLASS` rows and what `check_postgres_persistence` does on a live release. Only review apps lose their volume on `delete`; staging and canary keep theirs. A storage class of `-` turns off dynamic provisioning.
+    - #126 and #127 are fixed (`6c0b9d8`, `78478ed`). Guide 1's warning is now a short note for older projects. Parts are wired by `#[AutoconfigureTag]`, so the `LandingScaffoldPart` example still works. Without fixtures, `create-cwa` removes `api/src/DataFixtures/`.
+    - `e7d1be3`: GitLab has no production fixtures job while production is off.
+    - The upgrade page's "Unreleased on main" section is now `## 2.0.0-alpha.16`, and the `main after alpha.15` markers now name alpha.16. The page also has an extra step the changelog leaves out: edit `CoreScaffoldPart.php` itself.
+  - **#185, alpha.17 (`c1d2581`, template #130):** the functional tests job unsets `JWT_SECRET_KEY`, `JWT_PUBLIC_KEY` and `JWT_PASSPHRASE`. The upgrade step says to erase the job log or rotate the keypair.
+  - **Not done:** `CWA_CI_PERFORMANCE_AUDIT_INSECURE`/`_OUTPUT` exist in source but aren't documented. Whether a key rotation signs users out isn't confirmed.
 
 - **2026-10-09 (afternoon) — docs #181, #182, #183: template environment-variable changes and Cloudflare per track.** Checked against template `origin/main` `2686b98`. The build passes and all 358 links resolve.
   - **#182 (template #125, `497e8ac`, `75a416b`):** ci-cd has a new `## Site settings` section:
