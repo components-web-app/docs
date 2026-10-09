@@ -102,16 +102,17 @@ const flatNodes = computed((): FlatNode[] => {
 
 // ── Inline icon components ────────────────────────────────────────────────────
 
+// Render functions, not `template:` strings: the site has no runtime compiler.
 const FolderIcon = {
-  template: `<svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="w-4 h-4">
-    <path d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"/>
-  </svg>`
+  render: () => h('svg', { viewBox: '0 0 20 20', fill: 'currentColor', 'aria-hidden': 'true', class: 'w-4 h-4' }, [
+    h('path', { d: 'M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z' })
+  ])
 }
 
 const FileIcon = {
-  template: `<svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="w-4 h-4">
-    <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clip-rule="evenodd"/>
-  </svg>`
+  render: () => h('svg', { viewBox: '0 0 20 20', fill: 'currentColor', 'aria-hidden': 'true', class: 'w-4 h-4' }, [
+    h('path', { 'fill-rule': 'evenodd', d: 'M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z', 'clip-rule': 'evenodd' })
+  ])
 }
 
 const VueBadge = {
@@ -129,10 +130,10 @@ const VueBadge = {
 }
 
 const PhpBadge = {
-  template: `<span class="inline-flex items-center justify-center w-5 h-5 rounded text-[8px] font-bold bg-violet-100 dark:bg-violet-950 text-violet-700 dark:text-violet-300">PHP</span>`
+  render: () => h('span', { class: 'inline-flex items-center justify-center w-5 h-5 rounded text-[8px] font-bold bg-violet-100 dark:bg-violet-950 text-violet-700 dark:text-violet-300' }, 'PHP')
 }
 
 const TsBadge = {
-  template: `<span class="inline-flex items-center justify-center w-5 h-5 rounded text-[9px] font-bold bg-sky-100 dark:bg-sky-950 text-sky-700 dark:text-sky-300">TS</span>`
+  render: () => h('span', { class: 'inline-flex items-center justify-center w-5 h-5 rounded text-[9px] font-bold bg-sky-100 dark:bg-sky-950 text-sky-700 dark:text-sky-300' }, 'TS')
 }
 </script>

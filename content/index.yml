@@ -139,13 +139,13 @@ code:
 
       #[Silverback\Publishable]
       #[ApiResource(mercure: true)]
-      #[Orm\Entity]
+      #[ORM\Entity]
       class Title extends AbstractComponent
       {
         use PublishableTrait;
 
         #[Assert\NotBlank(groups: ['Title:published'])]
-        #[Orm\Column(type: 'text', nullable: true)]
+        #[ORM\Column(type: 'text', nullable: true)]
         public ?string $title = null;
       }
 
@@ -154,7 +154,6 @@ code:
     tabs:
       - key: page
         label: 'Page'
-        contentDoc: '_partials/front-end-page'
         description: |
           The CWA Nuxt module means you have nearly all the functionality you need right from the start.
           <br><br>
@@ -171,15 +170,13 @@ code:
           </template>
 
           <script setup lang="ts">
-            import type { IriProp }
-              from '#cwa/runtime/composables/cwa-resource'
+          import type { IriProp } from '#cwa/composables/cwa-resource'
 
-            const props = defineProps<IriProp>()
+          const props = defineProps<IriProp>()
           </script>
           ```
       - key: component
         label: 'Component'
-        contentDoc: '_partials/front-end-component'
         description: |
           With a few composables and very little code you can quickly create your CWA components.
           <br><br>
@@ -193,27 +190,17 @@ code:
           </template>
 
           <script setup lang="ts">
-            import { toRef } from 'vue'
-            import {
-              useCwaResource
-            } from '#imports'
-            import type { IriProp }
-              from '#cwa/runtime/composables/cwa-resource'
+          import type { IriProp } from '#cwa/composables/cwa-resource'
+          import { useCwaComponent } from '#imports'
 
-            const props = defineProps<IriProp>()
-
-            const { getResource, exposeMeta } =
-              useCwaResource(toRef(props, 'iri'))
-
-            const resource = getResource()
-
-            defineExpose(exposeMeta)
+          const props = defineProps<IriProp>()
+          const { resource, exposeMeta } = useCwaComponent(props)
+          defineExpose(exposeMeta)
           </script>
           ```
 
       - key: admin
         label: 'Admin'
-        contentDoc: '_partials/front-end-admin'
         description: |
           Once you have your data and component setup, all that’s left is to add your own custom tabs into our Components Manager Toolbar.
           <br><br>
@@ -229,18 +216,18 @@ code:
           </template>
 
           <script setup lang="ts">
-            import {
-              useCwaResourceManagerTab,
-              useCwaResourceModel
-            } from '#imports'
+          import {
+            useCwaResourceManagerTab,
+            useCwaResourceModel
+          } from '#imports'
 
-            const { exposeMeta, iri } =
-              useCwaResourceManagerTab({ name: 'Title' })
+          const { exposeMeta, iri } =
+            useCwaResourceManagerTab({ name: 'Title' })
 
-            const titleModel =
-              useCwaResourceModel<string>(iri, 'title')
+          const titleModel =
+            useCwaResourceModel<string>(iri, 'title')
 
-            defineExpose(exposeMeta)
+          defineExpose(exposeMeta)
           </script>
           ```
 
