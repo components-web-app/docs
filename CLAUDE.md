@@ -36,6 +36,36 @@ Researched and recorded on the issue (body + [findings comment](https://github.c
 
 ## Documented
 
+- **2026-10-09 — audit issues #152, #154, #162, #169, #149 (first pass) and #180, six parallel workers.** Each was checked against source; the build passes and all 349 internal links and anchors resolve. Issues #149–#179 come from the 2026-10-08 structure, front-end and positioning audit.
+  - **#152:** the diagram plugin registers every file in `Diagram/` through `import.meta.glob`. **FileTree's and ComponentFiles' icons were `template:` strings, which render nothing without Vue's runtime compiler**, so they're now `h()` render functions. ComponentFiles is placed under core concepts' "The Admin Tab".
+  - **#169:** the home code samples import from `#cwa/composables/...` (`#cwa` is already `./runtime`) and use `useCwaComponent(props)`. The unused `contentDoc` keys are gone.
+  - **#154:** the guides build `landing`, `TwoColumnPageTemplate` and `Quote` beside the shipped primary/PrimaryPageTemplate/Title. Fixtures go in a new `Parts/LandingScaffoldPart.php`, because the template's fixtures are tagged parts and `AppScaffold` only runs them.
+    - Paths start at the repo root, and PHP runs through `docker compose exec php`.
+    - Installation drops the JWT step (the dev entrypoint generates the keys) and gains "Where things live" and a path for projects without fixtures.
+    - Bundle Setup loads fixtures before `user:create`, and its env block gains `JWT_COOKIE_SAMESITE`. Docker's local setup links to Installation, and its JWT section is renamed `#jwt-keys`.
+    - **Found in source, filed:** template #126 (`CoreScaffoldPart` passes `'CwaLayoutPrimary'` and the builder prefixes it again, giving `CwaLayoutCwaLayoutPrimary`, so the seeded home page never uses `primary.vue`; I confirmed it in the template's copy of the bundle, and guide 1 now has a callout). Template #127 is a Possible: declining fixtures deletes `Parts/`, but `AppScaffold` still imports from it.
+  - **#162:** each contradiction now has one canonical page.
+    - `authentication` is the auth page.
+    - **`cwa: { disabled: true }` is required** on every non-CWA page, except one that uses `fetch` (`route-middleware.ts:48`, `fetcher.ts:81-101`).
+    - `signedIn`/`status` are SSR-safe; `user`/`roles`/`isAdmin` are not.
+    - A custom login page needs no `layout`.
+    - The uiComponent naming rule is in `creating-layouts#how-uicomponent-names-resolve`: layouts store the full name, while pages and components accept either form. **"File name must match uiComponent" was wrong.**
+    - nuxt-config is the complete reference: `fetch`, `auth.clearCachesOnSessionEnd`, and **`sitemapCache`, which was never documented**.
+    - The complete `withCollection` table is on use-cwa-component.
+    - **`useQueryBoundModel('order', { defaultValue: 'desc' })` was wrong:** it writes `?order=desc`.
+    - **The issue's "403 on anonymous registration" is a 401:** the template's catch-all POST `access_control` rule rejects the request first.
+  - **#180 (template !12, `095c074`, on `main` after alpha.15):** ci-cd has the composer `GITHUB_TOKEN` build secret, a `### Composer` variables section, the functional tests' null mail transport (both halves needed), `kubectl apply` for the pull secret, and `PWA_AUTOSCALE_MIN` 2 for production and 1 for everything else. No page mentioned `VARNISH_TOKEN`. GitLab passes the token to every job, not only the build.
+  - **#149 first pass:** new `api/upgrading` and `deployment/upgrading-the-template` pages. About 105 history notes moved out of `4.api` (except bundle-setup) and `6.deployment` (except docker). The marker is `*Since bundle|template 2.0.0-alpha.N · [upgrade notes](…)*`, used only for the last three releases. **Headings that start with a digit get a `_` slug prefix**, so the anchors are `#_200-alpha9`.
+  - **Still open:**
+    - **#149's second pass:** getting-started, guides, core-concepts, nuxt-module, bundle-setup and docker. It also needs a `nuxt-module/upgrading` page for three notes (the module alpha.5–7 dynamic-position history, `26f06f8d` home-page caching, and module alpha.8 needed with bundle alpha.9).
+    - **Unchecked release attributions** placed under bundle alpha.2: the site_config permission, resend-verify 404, multi-file `UnsupportedAnnotationException`, Imagine skipping non-images.
+    - About 23 module and API pages still use `app/cwa/...` paths that don't start at the repo root.
+    - Docker's env block lists `NUXT_PUBLIC_CWA_API_URL`, while the template's compose override sets `NUXT_CWA_API_URL`.
+    - users-and-security needs a `PUBLIC_ACCESS` rule for `POST ^/_api/users` if registration is open.
+    - Module `bin/cwa.mjs:152` prints the nuxt.config step as required.
+    - The module's `fd3b4d97` ("Delete Draft / Delete Live" label) has no issue yet.
+    - The build's GitHub stars/contributors fetch gets a 401 (an expired token on this machine).
+
 - **2026-10-08 (afternoon) — docs #145–#148: bundle 2.0.0-alpha.9, `@cwa/nuxt` 2.0.0-alpha.8, template alpha.13–alpha.15.** Each claim was checked against source.
   - **#148 (filed by me, template `5f3f785`, alpha.14): `CLUSTER_ISSUER` defaults to `letsencrypt-staging` again.** It flipped four times on 2026-10-08. Only alpha.12 really defaulted to prod, because alpha.11's default was pre-empted by `setup.sh`. Production sites must set `letsencrypt-prod`, and an empty value (`${CLUSTER_ISSUER+x}`) turns cert-manager off. ci-cd now says so. **The #144 entry below was right for alpha.12 only.**
   - **#145 (template `4add7fe` alpha.13, `e4ebb26` alpha.14, #120):**
