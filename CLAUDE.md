@@ -38,6 +38,37 @@ Researched and recorded on the issue (body + [findings comment](https://github.c
 
 ## Documented
 
+- **2026-10-11 — docs #189–#206: bundle 2.0.0-alpha.11–13, `@cwa/nuxt` alpha.9–10, template alpha.19–22, four parallel workers.** Checked against bundle `origin/main` `05723abd`, module `v2.0.0-alpha.10` and template `origin/main` `338b3c7`. The build passes and all 423 links resolve. **I filed #206 for changes that had no issue**, including the upgrade sections and the new `nuxt-module/upgrading` page (`99.upgrading.md`; it's `99` because the sidebar sorts stems as strings).
+  - **API (#191–#194, #197, #198, #200, #202):**
+    - uploadable's "Large Images and PHP Memory" section is rewritten around the imagine budget: per-driver estimates of GD 12, Imagick 14, vips 8 and other drivers 14 MB/MP, with the default 320M from alpha.12 (512M in alpha.11).
+    - New sections: "Replacing a Stored File", WebP/`format:` variants, and clearing variants.
+    - console-commands: `deduplicate-file-info`, `invalidFiles`, and `purge-http-cache --path`/`--tag`.
+    - publishable's "Publishing now".
+    - api/upgrading has alpha.11–13 sections.
+    - **Corrections:**
+      - Tag purging works with any purger; only the bare flush is Souin-only.
+      - The chart's deployment is `<release>-cwa`, not the release name.
+      - A plain `migrations:diff` for `invalid_files` fails on a table with a row; it needs a `'[]'` default, as the template's migration has.
+    - The #393 recovery step (files whose rows were nulled show up as orphaned) is reasoned from source; no changelog states it.
+  - **Module (#199, #204, #205, the module side of #191):**
+    - `srcset`, and images-and-uploads following the template's `Image.vue` (srcset, `sizes`, the `large` 2400px filter).
+    - Delete Draft / Delete Live.
+    - `publishedAt: "now"` with module alpha.10 needing bundle alpha.13.
+    - Invalid files in the admin.
+    - **`26f06f8d` is in module `v2.0.0-alpha.1`, not alpha.4** (checked with `merge-base`), so the "older module builds" caching notes in page-caching and docker are removed.
+    - **Filed components-web-app #146 (Possible):** `Image.vue` fades its placeholder on `loaded` but passes no `imageRef`, so a cached SSR image may stay covered.
+  - **Deployment (#189, #195, #196, #201, #203, the rest of #206):**
+    - ci-cd: `### Secrets`. Deploys keep `APP_SECRET`, `MERCURE_JWT_SECRET` and the JWT pair from the live Secret, and `generate_jwt_keys` is gone. **To rotate, set a new CI value; removing the variable doesn't rotate.** An uninstalled release loses its Secret.
+    - ci-cd's `#### php memory budget`. **Uploads are capped at 30 MP with vips and 20 MP with GD; #196 said 20.**
+    - The `_EXTRA` reserved names and `CWA_API_WEBSITE_NAME`. **`WEBSITE_NAME` needs the `api/.env` default, or Symfony won't boot.**
+    - `NUXT_SITE_URL` is reserved; `externalTrafficPolicy: Local`.
+    - The chart's `appSecret` uses `randAlphaNum` on every render, so a manual `helm upgrade` without it rotates it. The kubernetes comment is fixed.
+    - docker: libvips over FFI (`preload_vips.php`, or worker-mode segfaults), the fifth Souin patch, compressed cache entries (`order cache before encode`, br/gzip/none, no zstd), `app/.dockerignore`, and `PURGE`/`BAN` returning 405.
+    - page-caching has "Purging one page".
+    - installation and guide 1: without fixtures, `UsersFixture.php` stays (#142).
+    - The template upgrade page has alpha.19–22 sections.
+  - **Moved from Pending:** the other session's "cwa-nuxt-module changes since 2.0.0-alpha.7" table. Its "Yes" rows are documented here. Skipped as not user-facing: #373–#375 and #378–#380.
+
 - **2026-10-10 (afternoon) — docs #186, #187, #188: bundle 2.0.0-alpha.10 and template 2.0.0-alpha.18.** Checked against bundle `origin/main` `4acbaaf3`, template `origin/main` `e4f94a2`, and mercure-bundle `v0.6.0` / mercure `v0.9.0` tag source. The template's installed vendor copy is still 0.5/0.8. The build passes and all 366 links resolve.
   - **#186 (bundle #385):** `symfony/mercure` ^0.8 || ^0.9 and `mercure-bundle` ^0.5 || ^0.6.
     - **0.6 defaults to protocol 1.0.** A `jwt.secret` hub now needs `iss`/`sub`/`client_id` even without `protocol_version`. That isn't new in 0.6; 0.5 did it too with `protocol_version: '1.0'`.
