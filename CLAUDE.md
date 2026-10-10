@@ -38,6 +38,23 @@ Researched and recorded on the issue (body + [findings comment](https://github.c
 
 ## Documented
 
+- **2026-10-10 (afternoon) — docs #186, #187, #188: bundle 2.0.0-alpha.10 and template 2.0.0-alpha.18.** Checked against bundle `origin/main` `4acbaaf3`, template `origin/main` `e4f94a2`, and mercure-bundle `v0.6.0` / mercure `v0.9.0` tag source. The template's installed vendor copy is still 0.5/0.8. The build passes and all 366 links resolve.
+  - **#186 (bundle #385):** `symfony/mercure` ^0.8 || ^0.9 and `mercure-bundle` ^0.5 || ^0.6.
+    - **0.6 defaults to protocol 1.0.** A `jwt.secret` hub now needs `iss`/`sub`/`client_id` even without `protocol_version`. That isn't new in 0.6; 0.5 did it too with `protocol_version: '1.0'`.
+    - **With `kernel.debug` on and no `cookie_name`, 0.6 names the cookie `mercure_access_token`** (`MercureExtension.php:85`). The template pins `cookie_name: '__Secure-mercure_access_token'` from alpha.18 (`b71fd4d`).
+    - `Publisher`/`StaticJwtProvider` are gone. `url`/`public_url` default to null.
+    - Updated: bundle-setup, api/upgrading (`## 2.0.0-alpha.10`), the real-time-updates troubleshooting, and docker's cookie gotcha.
+  - **#187 (template !14):** ci-cd has a new `### Project hooks` section.
+    - `project.sh` is sourced after setup.sh's defaults, before `DOMAIN`.
+    - **`project_values` output is helm's last `-f`, but the four `--set` keys (JWT, Mercure) still win** (`k8s.sh:916-932`). A non-zero exit stops the deploy.
+    - Production's track is `stable`. `persist_environment_url` now writes `https://$DOMAIN`, and nothing in the template reads `environment_url.env`.
+    - **Template gaps, not filed:**
+      - `warm_cache`/`performance_audit` still get `$KUBE_INGRESS_BASE_DOMAIN` URLs from `.gitlab-ci.yml`, so a `project.sh` `DOMAIN` doesn't reach them (the docs say so).
+      - `SITE_ENV_RESERVED_*` is set when k8s.sh is sourced, after `project.sh`, so a hook can't extend it.
+      - `check_kube_domain` can't fail, because setup.sh defaults `CI_ENVIRONMENT_URL` to `test-domain.com`.
+  - **#188 (template !13):** load-testing covers `MAX_RESOURCES` (20), `RANDOM_SEED`, `ORIGIN_IP` (k6 `hosts`, so Host and SNI stay the site's), page views and the `cf-cache-status` line. It also has the README's point that behind Cloudflare the Souin line misleads. **Not documented:** `COLD_API` doesn't cache-bust the manifest resource fetches.
+  - Template alpha.18 upgrade section added. Skipped: the #131 comment trims and the dependency bumps (Nuxt 4.6.1, API Platform 5.0.3); there's a no-action line on the upgrade page.
+
 - **2026-10-10 — docs #184 and #185: template 2.0.0-alpha.16 and alpha.17.** Checked against template `origin/main` `182799a`. The build passes and all 361 links resolve.
   - **#184, alpha.16:**
     - **CI switches are now `CWA_CI_*`/`CWA_CI_API_*`, and the old names are ignored without a warning.** Every page uses the new names. The upgrade page has the rename table, plus the names that stay the same, which the changelog doesn't list: `KUBERNETES_VERSION`/`HELM_VERSION`, `ADMIN_*`, `CORS_ALLOW_ORIGIN`, `TRUSTED_HOSTS`, `MERCURE_CORS_ORIGIN`, `DATABASE_SSL_MODE` and `CADDY_CACHE_EXTRA_CONFIG`.
