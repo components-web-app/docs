@@ -48,7 +48,7 @@ Researched and recorded on the issue (body + [findings comment](https://github.c
     - `project.sh` is sourced after setup.sh's defaults, before `DOMAIN`.
     - **`project_values` output is helm's last `-f`, but the four `--set` keys (JWT, Mercure) still win** (`k8s.sh:916-932`). A non-zero exit stops the deploy.
     - Production's track is `stable`. `persist_environment_url` now writes `https://$DOMAIN`, and nothing in the template reads `environment_url.env`.
-    - **Template gaps, not filed:**
+    - **Template gaps, filed as components-web-app #132–#134 (each confirmed in source):**
       - `warm_cache`/`performance_audit` still get `$KUBE_INGRESS_BASE_DOMAIN` URLs from `.gitlab-ci.yml`, so a `project.sh` `DOMAIN` doesn't reach them (the docs say so).
       - `SITE_ENV_RESERVED_*` is set when k8s.sh is sourced, after `project.sh`, so a hook can't extend it.
       - `check_kube_domain` can't fail, because setup.sh defaults `CI_ENVIRONMENT_URL` to `test-domain.com`.
