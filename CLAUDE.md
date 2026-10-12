@@ -38,6 +38,8 @@ Researched and recorded on the issue (body + [findings comment](https://github.c
 
 ## Documented
 
+- **2026-10-12 — docs #219 (developer report: couldn't seed image assets in fixtures).** Checked against bundle `origin/main` `c0452670` and template `a2c045e`. The mechanism works (`persistWithAssociations()` → `persistFiles()`). The example was the problem: it used `$cwa->component($image)` alone, so the image was in no group and showed on no page. It also never called `setPublishedAt()` (the template's `Image` is publishable, and the builder publishes nothing), didn't mention that `--append` creates nothing in an existing group, and didn't say where `assets/` goes. The section is rewritten with a warning callout for these. **The fixture path skips `storeFilesMetadata()`**, so variants are generated on the first read. Docker wasn't running, so this wasn't tried in a real load.
+
 - **2026-10-11 — docs #189–#206: bundle 2.0.0-alpha.11–13, `@cwa/nuxt` alpha.9–10, template alpha.19–22, four parallel workers.** Checked against bundle `origin/main` `05723abd`, module `v2.0.0-alpha.10` and template `origin/main` `338b3c7`. The build passes and all 423 links resolve. **I filed #206 for changes that had no issue**, including the upgrade sections and the new `nuxt-module/upgrading` page (`99.upgrading.md`; it's `99` because the sidebar sorts stems as strings).
   - **API (#191–#194, #197, #198, #200, #202):**
     - uploadable's "Large Images and PHP Memory" section is rewritten around the imagine budget: per-driver estimates of GD 12, Imagick 14, vips 8 and other drivers 14 MB/MP, with the default 320M from alpha.12 (512M in alpha.11).
