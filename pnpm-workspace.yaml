@@ -31,4 +31,8 @@ overrides:
   socket.io-parser: ">=4.2.7 <5"   # dev-server HMR transport only
   svgo: ">=4.0.2 <5"
   valibot: ">=1.4.2 <2"
+  fflate: ">=0.7.5 <0.8"            # 2026-10-13: satori 0.33 pins 0.7.3 (malformed-ZIP infinite loop)
+  # Not overridden (2026-10-13): simple-git's fixes are only in 4.x, which @nuxt/devtools 3.x can't
+  # import (no default export, so `nuxt prepare` fails). DevTools 4 drops simple-git but is still beta.
+  # node-forge (listhen, dev HTTPS) and braces (fast-glob) have no patched release yet.
 
