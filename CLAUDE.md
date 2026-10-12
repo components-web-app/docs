@@ -59,7 +59,7 @@ Researched and recorded on the issue (body + [findings comment](https://github.c
     - `@vite-pwa/nuxt` is removed from the docs site (#173);
     - the alpha notice is one line that can be dismissed;
     - version markers cover only the last three releases.
-  - **Not yet done:** bundle 2.0.0-alpha.14–17, `@cwa/nuxt` 2.0.0-alpha.11 and template 2.0.0-alpha.23–28 have no docs issues. The positioning rewrite of `content/index.yml` targets agencies and clients, and Daniel may want it reframed for developers.
+  - **Not yet done:** bundle 2.0.0-alpha.14–17, `@cwa/nuxt` 2.0.0-alpha.11 and template 2.0.0-alpha.23–28 are filed as docs #220, #221 and #222. The audit issues are closed. The positioning rewrite of `content/index.yml` targets agencies and clients, and Daniel may want it reframed for developers.
 
 - **2026-10-12 — docs #219 (developer report: couldn't seed image assets in fixtures).** Checked against bundle `origin/main` `c0452670` and template `a2c045e`. The mechanism works (`persistWithAssociations()` → `persistFiles()`). The example was the problem: it used `$cwa->component($image)` alone, so the image was in no group and showed on no page. It also never called `setPublishedAt()` (the template's `Image` is publishable, and the builder publishes nothing), didn't mention that `--append` creates nothing in an existing group, and didn't say where `assets/` goes. The section is rewritten with a warning callout for these. **The fixture path skips `storeFilesMetadata()`**, so variants are generated on the first read. Docker wasn't running, so this wasn't tried in a real load.
 
