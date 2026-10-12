@@ -38,6 +38,26 @@ Researched and recorded on the issue (body + [findings comment](https://github.c
 
 ## Documented
 
+- **2026-10-13 — docs #220, #221, #222: bundle 2.0.0-alpha.14–17, `@cwa/nuxt` 2.0.0-alpha.11, template 2.0.0-alpha.23–28.** Checked against bundle `origin/main` `9561e753`, module `v2.0.0-alpha.11` (`633c871d`) and template `origin/main` `b8ee2b4`. The build passes, and 875 links resolve. No upgrade sections were written, because the Releases page carries them.
+  - **API (#220):**
+    - uploadable: the WebP fallback for AVIF/HEIC/HEIF, failing filters skipped and logged, the new "Cache-Control on Stored Files" section, generating variants ahead of time, and stale file-info rows.
+    - console-commands: `## imagine:generate`, with its options and exit codes 0/1/2/3.
+    - configuration: the `uploadable.cache_control` block.
+    - **Source details:**
+      - Variants get `Cache-Control` only through `FlysystemCacheResolver`, and only on GCS or the two S3 adapters.
+      - A run stopped by `--limit`/`--max-memory` exits 3 even after a failure.
+      - `--dry-run` ignores both flags.
+      - The filter catch is `\Exception`, so a PHP `Error` still escapes.
+  - **Template (#222):**
+    - Image variants jobs: the CronJob is suspended and run as one-off Jobs; ci-cd's loop and result banners; the variables table.
+    - preStop `sleep 5` on both pods, the Redis store (built but unused), `precompressBuildAssets` replacing `compressPublicAssets`, `Image.vue` matching the template (#146 fix), and WebP filter sets.
+    - **Correction to the issue and the alpha.26 notes:** the image variants job is **on by default on production from alpha.27** (opt-out with `CWA_CI_IMAGE_VARIANTS_PRODUCTION="false"`); it was opt-in only in alpha.26.
+    - `_MAX_MEMORY` (1G), `_MAX_RUNS` (50) and `_TIMEOUT` (1900 s) aren't in any release note.
+  - **Module (#221):**
+    - real-time-updates: the Mercure client loads after hydration.
+    - site-config-and-seo: the OG image is 1200×630 and has a `siteName` prop.
+    - Nothing else needed changing.
+
 - **2026-10-13 — the 2026-10-08 audit issues (#149, #150, #151, #153, #155–#170, #172–#174, #176–#179), worked by an 8-agent workflow, plus Daniel's follow-up decisions.** #171 and #175 were left out on purpose. The build passes (396 routes), and 845 links resolve.
   - **Structure:**
     - The sections are restructured: users/, data-fixtures/ and form composables are split into folders, there's a deployment variables page, and a troubleshooting page.
