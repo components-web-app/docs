@@ -1,5 +1,5 @@
 title: 'About'
-description: Hello about page
+description: 'Why the CWA exists: a predictable data structure for every website, an API in Symfony and API Platform, and a Nuxt front end with page building and editing on the page.'
 navigation: false
 hero:
   title:
