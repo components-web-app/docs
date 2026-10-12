@@ -9,6 +9,12 @@ useSeoMeta({
   ogDescription: page.value?.description
 })
 
+// Its own share card instead of the site-wide social-card.png.
+defineOgImage('Docs.satori', {
+  title: page.value?.title,
+  description: page.value?.description
+})
+
 definePageMeta({
   scrollToTop: true
 })
@@ -30,12 +36,14 @@ definePageMeta({
           <span v-html="page?.hero?.description" />
         </template>
         <div class="flex justify-center">
-          <NuxtImg
+          <!-- Decorative illustration, so an empty alt. A plain <img>: an SVG gains nothing from /_ipx. -->
+          <img
             src="/images/business/business-hero.svg"
+            alt=""
             class="w-full max-w-85"
             width="640"
             height="640"
-          />
+          >
         </div>
       </UPageHero>
     </div>
@@ -69,26 +77,26 @@ definePageMeta({
             </UPageGrid>
           </UPageCTA>
 
-          <UPageHero>
+          <!-- A section, not a second UPageHero: the page keeps a single <h1>. -->
+          <UPageSection :ui="{ container: 'py-8 sm:py-16 lg:py-16 gap-8 sm:gap-y-16' }">
+            <template #leading>
+              <SvgoBusinessTeamwork
+                :font-controlled="false"
+                filled
+                aria-hidden="true"
+                class="h-24"
+              />
+            </template>
             <template #title>
-              <div class="flex justify-center mb-4">
-                <SvgoBusinessTeamwork
-                  :font-controlled="false"
-                  filled
-                  class="h-24"
-                />
-              </div>
-              <div class="flex justify-center">
-                <span v-html="page?.teamwork?.title" />
-              </div>
+              <span v-html="page?.teamwork?.title" />
             </template>
             <template #description>
               <div
-                class="max-w-4xl"
+                class="max-w-4xl mx-auto"
                 v-html="page?.teamwork?.description"
               />
             </template>
-          </UPageHero>
+          </UPageSection>
 
           <div>
             <UContainer class="max-w-4xl">
@@ -109,8 +117,8 @@ definePageMeta({
                   >
                     {{ Number(index) + 1 }}
                   </div>
-                  <div>
-                    <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl mb-4 -mt-2">
+                  <div class="min-w-0">
+                    <h2 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl mb-4 -mt-2 break-words">
                       <span v-html="item.title" />
                     </h2>
                     <div

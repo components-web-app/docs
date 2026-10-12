@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { ContentNavigationItem } from '@nuxt/content'
-import { findPageHeadline } from '@nuxt/content/utils'
+import { findPageBreadcrumb, findPageHeadline } from '@nuxt/content/utils'
 import { withoutTrailingSlash } from 'ufo'
 
 definePageMeta({
@@ -39,6 +39,57 @@ defineOgImage('Docs.satori', {
 
 const headline = computed(() => findPageHeadline(navigation?.value, page.value?.path))
 
+// Breadcrumb structured data: the parent pages, then this page. Folders with no page
+// of their own (`page: false`) are left out, because their URL doesn't exist.
+useHead({
+  script: computed(() => {
+    const trail = [
+      ...findPageBreadcrumb(navigation?.value, page.value?.path)
+        .filter(item => item.page !== false)
+        .map(item => ({ title: item.title, path: item.path })),
+      { title: page.value?.title, path: page.value?.path }
+    ]
+    return [{
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        'itemListElement': trail.map((item, index) => ({
+          '@type': 'ListItem',
+          'position': index + 1,
+          'name': item.title,
+          'item': absoluteUrl(item.path)
+        }))
+      })
+    }]
+  })
+})
+
+// The alpha notice is shown until the reader dismisses it. The choice is kept in this
+// browser only; storage can be unavailable (private windows), so every access is guarded.
+const ALPHA_NOTICE_KEY = 'cwa-docs-alpha-notice-dismissed'
+const showAlphaNotice = ref(true)
+onMounted(() => {
+  try {
+    if (localStorage.getItem(ALPHA_NOTICE_KEY) === '1') {
+      showAlphaNotice.value = false
+    }
+  } catch {
+    // storage unavailable: keep showing the notice
+  }
+})
+function dismissAlphaNotice(open: boolean) {
+  if (open) {
+    return
+  }
+  showAlphaNotice.value = false
+  try {
+    localStorage.setItem(ALPHA_NOTICE_KEY, '1')
+  } catch {
+    // storage unavailable: the notice comes back on the next page load
+  }
+}
+
 const links = computed(() => [toc?.bottom?.edit && {
   icon: 'i-heroicons-pencil-square',
   label: 'Edit this page',
@@ -50,13 +101,19 @@ const links = computed(() => [toc?.bottom?.edit && {
 <template>
   <UPage>
     <UAlert
-      icon="i-heroicons-exclamation-triangle"
+      v-if="showAlphaNotice"
+      icon="i-heroicons-beaker"
       color="warning"
       variant="subtle"
-      title="The CWA is in heavy development"
-      description="The CWA is still in alpha and not ready for production - some code and implementations are likely to change. If you would like to try out the CWA, please enjoy what we have provided and feel free to provide feedback, or get involved on GitHub."
-      class="mt-8"
-    />
+      close
+      class="mt-6"
+      :ui="{ root: 'py-2 px-3', title: 'text-sm font-normal', icon: 'size-4' }"
+      @update:open="dismissAlphaNotice"
+    >
+      <template #title>
+        CWA 2.0 is in alpha: try it, build with it, give feedback. APIs can still change between releases; see <NuxtLink to="/getting-started/releases" class="underline">Releases</NuxtLink>.
+      </template>
+    </UAlert>
 
     <UPageHeader
       :title="page.title"
@@ -65,7 +122,13 @@ const links = computed(() => [toc?.bottom?.edit && {
     >
       <template #headline>
         <div class="flex flex-col items-start gap-1.5">
-          <UBadge v-if="page.badge" :label="page.badge.label" variant="solid" size="sm" color="warning" />
+          <UBadge
+            v-if="page.badge"
+            :label="page.badge.label"
+            :color="page.badge.color || 'warning'"
+            :variant="page.badge.variant || 'solid'"
+            size="sm"
+          />
           <span v-if="headline">{{ headline }}</span>
         </div>
       </template>

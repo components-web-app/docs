@@ -35,14 +35,14 @@ definePageMeta({
           <span v-html="page?.features?.title" />
         </template>
         <div class="flex flex-col gap-y-24">
-          <UPageGrid class="grid-cols-1 sm:grid-cols-1 lg:grid-cols-3">
+          <UPageGrid class="grid-cols-1 sm:grid-cols-2 lg:grid-cols-2">
             <UPageCard
               v-for="(item, index) of page?.features?.items"
               :key="index"
               v-bind="item"
             />
           </UPageGrid>
-          <div class="flex justify-center">
+          <div class="flex flex-wrap justify-center gap-4">
             <UButton
               v-for="link in page?.features?.links"
               :key="link.label"
@@ -53,6 +53,7 @@ definePageMeta({
         </div>
       </UPageSection>
     </div>
+
 
     <UPageSection
       v-for="(section, index) in page?.benefits?.sections"
@@ -79,6 +80,30 @@ definePageMeta({
     </UPageSection>
 
     <HomeCode class="mb-24" />
+
+    <UPageSection
+      v-for="(section, index) in page?.benefits?.afterCode"
+      :key="`after-${index}`"
+      orientation="horizontal"
+      :reverse="section.align === 'left'"
+      :description="section.description"
+      :features="section.features?.map((f: any) => ({ ...f, title: f.name }))"
+      :links="section.links"
+      :ui="{ container: 'flex flex-col lg:grid pt-0 sm:pt-0 lg:pt-0 pb-32 sm:pb-32 lg:pb-32 gap-8 sm:gap-16' }"
+    >
+      <template #title>
+        <span v-html="section.title" />
+      </template>
+      <div class="flex justify-center">
+        <NuxtImg
+          width="448"
+          height="448"
+          :src="section.image"
+          :alt="section.title"
+          class="w-full max-w-md"
+        />
+      </div>
+    </UPageSection>
 
     <HomeContributors />
 

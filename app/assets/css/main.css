@@ -21,3 +21,15 @@ html.dark .shiki span{
   --color-vip: #D3BB75;
   --color-feature: #0A3640;
 }
+
+/* Respect the visitor's "reduce motion" setting: no animations, transitions or smooth scrolling. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

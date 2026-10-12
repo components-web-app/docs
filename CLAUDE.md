@@ -38,6 +38,29 @@ Researched and recorded on the issue (body + [findings comment](https://github.c
 
 ## Documented
 
+- **2026-10-13 — the 2026-10-08 audit issues (#149, #150, #151, #153, #155–#170, #172–#174, #176–#179), worked by an 8-agent workflow, plus Daniel's follow-up decisions.** #171 and #175 were left out on purpose. The build passes (396 routes), and 845 links resolve.
+  - **Structure:**
+    - The sections are restructured: users/, data-fixtures/ and form composables are split into folders, there's a deployment variables page, and a troubleshooting page.
+    - The Core Concepts admin-panel page is now a tour, with the maintenance material moved to `cwa-layer/maintenance`.
+    - New pages: Key Ideas, guide 5 (Your First Dynamic Page, using `NewsArticleData`; Daniel said keep it), a glossary, `core-concepts/caching` and `deployment/origin-protection`.
+    - Redirects are in `nuxt.config.ts`.
+    - **Core Concepts now sorts before Guides** (directories `2.core-concepts`, `3.guides`; URLs unchanged).
+  - **Releases (Daniel's call): the hand-written upgrade pages are gone.**
+    - `/api/upgrading`, `/nuxt-module/upgrading` and `/deployment/upgrading-the-template` 301 to `/getting-started/releases`.
+    - That page's `::release-notes` component (`app/components/content/ReleaseNotes.vue`) lists GitHub releases of all three repos. It shows 5 at a time with "Show more" and a filter for each part. The data comes from the prerendered `/api/releases.json`, then is refreshed from GitHub in the browser, so new releases appear without a deploy.
+    - Links to a version's notes now go to that release on GitHub. **Don't write new upgrade pages: the release notes are the upgrade notes.**
+  - **This is a framework site for developers (Daniel):**
+    - No commercial-services pitch, no proof placeholders (screenshots, "Built with CWA", load-test figures); the playground is enough.
+    - The playground login is `admin`/`admin`, shown on its sign-in page.
+    - "Why CWA" is a standalone page at `/why-cwa`, not a docs page. It and `/privacy` are in the new `standalone` collection (`content/standalone/*.md`, rendered by `StandalonePage.vue`).
+  - **The privacy page and footer:** the owner is **Silverback Internet Services Limited**. `/privacy` lists only what the code shows: Cloudflare Web Analytics, Vercel logs, the VIP sign-up to Campaign Monitor, the `vip*` cookies, two local-storage keys, the Vimeo embed, and GitHub avatars via ipx.nuxt.com.
+  - **Workers' calls kept:**
+    - the Draft badge is removed from every page (rendering kept);
+    - `@vite-pwa/nuxt` is removed from the docs site (#173);
+    - the alpha notice is one line that can be dismissed;
+    - version markers cover only the last three releases.
+  - **Not yet done:** bundle 2.0.0-alpha.14–17, `@cwa/nuxt` 2.0.0-alpha.11 and template 2.0.0-alpha.23–28 have no docs issues. The positioning rewrite of `content/index.yml` targets agencies and clients, and Daniel may want it reframed for developers.
+
 - **2026-10-12 — docs #219 (developer report: couldn't seed image assets in fixtures).** Checked against bundle `origin/main` `c0452670` and template `a2c045e`. The mechanism works (`persistWithAssociations()` → `persistFiles()`). The example was the problem: it used `$cwa->component($image)` alone, so the image was in no group and showed on no page. It also never called `setPublishedAt()` (the template's `Image` is publishable, and the builder publishes nothing), didn't mention that `--append` creates nothing in an existing group, and didn't say where `assets/` goes. The section is rewritten with a warning callout for these. **The fixture path skips `storeFilesMetadata()`**, so variants are generated on the first read. Docker wasn't running, so this wasn't tried in a real load.
 
 - **2026-10-11 — docs #189–#206: bundle 2.0.0-alpha.11–13, `@cwa/nuxt` alpha.9–10, template alpha.19–22, four parallel workers.** Checked against bundle `origin/main` `05723abd`, module `v2.0.0-alpha.10` and template `origin/main` `338b3c7`. The build passes and all 423 links resolve. **I filed #206 for changes that had no issue**, including the upgrade sections and the new `nuxt-module/upgrading` page (`99.upgrading.md`; it's `99` because the sidebar sorts stems as strings).

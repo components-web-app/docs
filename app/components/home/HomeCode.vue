@@ -1,29 +1,11 @@
 <script setup lang="ts">
 import BuildComponentFrontEndScreenshot from '~/components/home/BuildComponentFrontEndScreenshot.vue'
-import highlight, { getHighlighter } from '@comark/nuxt/plugins/highlight'
-import { transformerNotationFocus, transformerNotationHighlight } from '@shikijs/transformers'
-import php from '@shikijs/langs/php'
-import vue from '@shikijs/langs/vue'
-import githubLight from '@shikijs/themes/github-light'
-import githubDark from '@shikijs/themes/github-dark'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const { data: page } = useNuxtData<any>('home')
 
-const highlightOptions = {
-  registerDefaultLanguages: false,
-  languages: [php, vue],
-  registerDefaultThemes: false,
-  themes: { light: githubLight, dark: githubDark },
-  transformers: [transformerNotationFocus(), transformerNotationHighlight()]
-}
-const highlightPlugin = highlight(highlightOptions)
-const highlighterReady = ref(false)
-
-onMounted(async () => {
-  await getHighlighter(highlightOptions)
-  highlighterReady.value = true
-})
+// Highlighted at prerender time, so the snippets are in the HTML and Shiki never ships.
+const { data: highlightedCode } = await useHighlightedCode('index')
 
 const selectedFrontEndIndex = ref(0)
 const selectedFrontEnd = computed(() => page.value?.code?.frontEnd?.tabs?.[selectedFrontEndIndex.value])
@@ -119,15 +101,11 @@ const frontEndTabsUI = {
             <div
               class="flex justify-center max-w-full overflow-hidden"
             >
-              <ClientOnly>
-                <Comark
-                  v-if="highlighterReady"
-                  :plugins="[highlightPlugin]"
-                  class="nowrap overflow-auto w-full max-w-full"
-                >
-                  {{ currentCodeBlock(item.key) }}
-                </Comark>
-              </ClientOnly>
+              <CodeBlock
+                :code="currentCodeBlock(item.key)"
+                :trees="highlightedCode"
+                class="nowrap overflow-auto w-full max-w-full"
+              />
             </div>
           </UPageSection>
         </template>

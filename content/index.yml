@@ -1,99 +1,128 @@
-title: 'CWA - Components Web App Documentation'
-description: With the CWA you will create feature-rich, totally custom web apps with surprisingly little code
+title: 'CWA - Components Web App'
+description: 'Open-source Symfony + Nuxt platform for bespoke websites. Developers build the components; clients edit, draft, schedule and publish on the live page.'
 navigation: false
 hero:
-  title: 'Components Web App'
-  description: 'Your new <span class="text-primary-400 font-semibold">low-code solution</span> for creating feature-rich, totally <span class="text-primary-400 font-semibold">custom decoupled web apps</span> including an <span class="text-primary-400 font-semibold">intuitive website builder</span> interface'
+  title: 'Bespoke websites your clients can <span class="text-primary-400 font-semibold">edit on the page</span>'
+  description: 'Components Web App (CWA) is open-source Symfony + Nuxt for agencies and development teams. **Your developers build the components. Your clients draft, schedule and publish on the live site**, with no SaaS bill, no separate CMS, and the production stack included.'
   orientation: vertical
-#  links:
-#    - label: Get started
-#      icon: i-heroicons-arrow-right-20-solid
-#      trailing: true
-#      to: '/getting-started'
-#      size: lg
-#    - label: Use this template
-#      icon: i-simple-icons-github
-#      size: lg
-#      color: gray
-#      to: https://github.com/nuxt-ui-pro/docs
-#      target: _blank
+  headline:
+    label: '2.0 alpha: try it, build with it, give feedback'
+    icon: i-heroicons-arrow-right-20-solid
+    to: '/why-cwa#project-status'
+  links:
+    - label: Open the playground
+      icon: i-heroicons-play-circle
+      to: 'https://preview.cwa.rocks/login'
+      target: _blank
+      size: xl
+    - label: Get started
+      icon: i-ph-rocket-launch-duotone
+      to: '/getting-started'
+      size: xl
+      color: neutral
+      variant: subtle
+    - label: GitHub
+      icon: i-simple-icons-github
+      to: 'https://github.com/components-web-app'
+      target: _blank
+      size: xl
+      color: neutral
+      variant: ghost
   code: |
     ```bash [Terminal]
     pnpm create cwa my-project
     ```
 features:
-  title: 'That feeling when<br><span class="text-primary-400">all the hard work is done for you</span>'
+  title: 'What your clients get<br><span class="text-primary-400">and what you no longer build</span>'
   links:
+    - label: 'Why CWA, and when not to choose it'
+      trailingIcon: 'i-heroicons-arrow-right-20-solid'
+      color: 'primary'
+      to: '/why-cwa'
+      size: xl
     - label: 'More about the CWA'
       trailingIcon: 'i-heroicons-eye-20-solid'
-      color: 'primary'
+      color: 'neutral'
+      variant: 'subtle'
       to: '/about'
       size: xl
   items:
-    - title: 'Draft & Published Components'
-      description: 'As a user updates a component it will become a private draft, so they can make changes freely and only publish it when they are ready.'
+    - title: 'Edit on the page'
+      description: 'Editors switch to edit mode on the live site and change the page they are looking at. There is no separate CMS to learn, and no preview to keep in step.'
+      icon: 'i-heroicons-cursor-arrow-rays-20-solid'
+      to: '/core-concepts/admin-panel'
+      spotlight: true
+    - title: 'Change the live site without breaking it'
+      description: 'An edit becomes a private draft. Publish it now, or schedule it for a date and time. Visitors keep seeing the live version until then.'
       icon: 'i-heroicons-newspaper-20-solid'
+      to: '/core-concepts/draft-and-publish'
       spotlight: true
-    - title: 'Lightning fast'
-      description: 'Improve visitors'' UX and increase conversions, the CWA is built to be fast! We implement tactics for the fastest First Contentful Paint, and smart caching.'
+    - title: 'Clients edit content, not your design'
+      description: 'You decide which components each area of a page accepts, and which preset styles editors can pick. The site stays on brand, whoever updates it.'
+      icon: 'i-heroicons-paint-brush-20-solid'
+      to: '/core-concepts/components'
+      spotlight: true
+    - title: 'Fast pages, instant updates'
+      description: 'Pages are cached and purged by tag when content changes. Every open browser hears about a publish straight away, and readers update with one click.'
       icon: 'i-heroicons-bolt-20-solid'
-      spotlight: true
-    - title: 'Stay in sync'
-      description: 'Learn how your website users will get realtime updates and never miss a beat with our integration of Mercure.'
-      icon: 'i-heroicons-arrow-path-20-solid'
+      to: '/nuxt-module/component-helpers/real-time-updates'
       spotlight: true
 
 benefits:
   sections:
-    - title: 'Supercharge your<br><span class="text-primary-400">business</span>'
-      description: The CWA reduces your team's workload and increases productivity.
-      id: supercharge
+    - title: 'Built for<br><span class="text-primary-400">the people who build websites</span>'
+      description: 'CWA is for teams that write code for their clients. A developer or agency builds the site; the client runs it day to day.'
+      id: audiences
       align: right
       image: '/images/home/home-supercharge.svg'
       features:
-        - name: For Agencies
-          description: Streamline workflows, increase output and impress your clients.
+        - name: Agencies and freelancers
+          description: Build one component library and reuse it across clients. Self-hosted and MIT licensed, so there are no per-seat CMS fees to pass on.
           icon: i-heroicons-presentation-chart-line
-        - name: For Developers
-          description: A DX which will keep developers smiling as they realise how simple it can be to add advanced functionality, while staying in control.
+        - name: Symfony and API Platform teams
+          description: Your API stays Symfony. Add a Nuxt front end with page building, editing on the page and draft/publish.
           icon: i-heroicons-code-bracket
-        - name: For Web Admins
-          description: In-line and intuitive website and content management makes updating the website or creating new pages impressively easy.
-          icon: i-heroicons-device-phone-mobile
+        - name: Teams that must self-host
+          description: Run it on your own servers or Kubernetes cluster. Your content stays in your own database.
+          icon: i-heroicons-server-stack
       links:
         - label: Built for business
           to: /built-for-business
-          color: gray
+          color: neutral
+          variant: subtle
           icon: i-heroicons-arrow-right-20-solid
           trailing: true
           size: xl
           class: ml-0
-    - title: 'The missing link in<br><span class="text-primary-400">website builders</span>'
-      description: Traditional website builders take control and crucial decisions away from the professionals while increasing complexity for users.
+    - title: 'Clients edit content,<br><span class="text-primary-400">not your design</span>'
+      description: Many website builders hand every design decision to the person editing. CWA keeps those decisions with your designers and developers.
       id: professionals
       align: left
       image: '/images/home/home-builders.svg'
       features:
         - name: Build the website you want
-          description: No need to hack other website builders to work for you - components are built by professionals, custom to users' needs.
+          description: Components are written by your developers in Vue and PHP, to your design. CWA doesn't impose HTML or a CSS framework.
           icon: i-heroicons-computer-desktop
-        - name: Easy to make, easy to use
-          description: Using the CWA, styles can manually pre-configured to match branding. No more endless choices for administrators resulting in off brand styling.
+        - name: Preset styles, not endless choices
+          description: Designers define the styles an editor can choose for each component, so updates stay on brand.
           icon: i-heroicons-paint-brush
-        - name: Seamless integration of new pages
-          description: With our balance of flexibility and restrictions, new pages are easy to integrate seamlessly and beautifully into the website.
+        - name: New pages fit in
+          description: Page templates and allowed components mean a new page uses the same building blocks as the rest of the site.
           icon: i-heroicons-puzzle-piece
       links:
         - label: More about the CWA
           to: /about
-          color: gray
+          color: neutral
+          variant: subtle
           icon: i-heroicons-arrow-right-20-solid
           trailing: true
           size: xl
           class: ml-0
+  # Shown after the code example, lower on the page.
+  afterCode:
     - title: 'Built on the<br><span class="text-primary-400">shoulders of giants</span>'
       description: |
-        The CWA has been built on the shoulders of giants providing maximum flexibility and extensibility.
+        The CWA is built on well-known frameworks, so your developers keep the tools and extensions they already use.
       id: shoulders
       align: right
       image: '/images/home/home-giants.svg'
@@ -104,14 +133,18 @@ benefits:
         - name: Front-end Nuxt module
           description: Nuxt and VueJS are one of the most enjoyable front-end frameworks to use. Our CWA Nuxt module provides easy to use composables along with a full management system.
           icon: i-simple-icons-nuxtdotjs
-#      links:
-#        - label: Discover more
-#          to: /
-#          color: gray
-#          icon: i-heroicons-arrow-right-20-solid
-#          trailing: true
-#          size: xl
-#          class: ml-0
+        - name: The production stack included
+          description: The template ships Docker, a Helm chart for Kubernetes, GitLab and GitHub CI, a tag-purged page cache with optional Cloudflare purges, and Mercure for real-time updates.
+          icon: i-heroicons-server-stack-20-solid
+      links:
+        - label: Deployment
+          to: /deployment
+          color: neutral
+          variant: subtle
+          icon: i-heroicons-arrow-right-20-solid
+          trailing: true
+          size: xl
+          class: ml-0
 
 code:
   tabs:

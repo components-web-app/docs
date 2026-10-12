@@ -1,36 +1,43 @@
 title: 'Built for Business'
-description: Built for Business
+description: 'Who CWA is for, what it costs to run, and the project''s alpha status.'
 navigation: false
 hero:
   title: 'Built for <span class="text-primary-400 font-semibold">Business</span>'
-  description: 'Streamline your business, whether you create websites or you want a flexible website management solution'
+  description: 'For agencies, Symfony teams and organisations that self-host. Your developers build the site once; your clients and editors run it on the page.'
   align: left
   ui:
     base: 'order-last lg:order-first'
+  links:
+    - label: Why CWA
+      icon: i-heroicons-scale
+      to: '/why-cwa'
+      size: xl
+      color: neutral
+      variant: subtle
 pageCards:
   items:
-    - title: 'Time saving'
-      description: 'In business, time is money and productivity is power. Whether you are building a website, or managing it, we know the importance of great DX and UX'
-      icon: 'i-heroicons-clock-20-solid'
-    - title: 'Improve your workflows'
-      description: 'From building to managing websites. Streamline the discovery phase and building an MVP. Content writers can create with confidence with our publishable components.'
-      icon: 'i-heroicons-light-bulb-20-solid'
-    - title: 'Surpass clients'' expectations'
-      description: 'We designed the CWA so your website admins, editors and users to say "wow, that was so fast and intuitive". Now you can provide more than they bargained for within their budget.'
-      icon: 'i-heroicons-star-20-solid'
+    - title: 'Free and MIT licensed'
+      description: 'The API bundle and the Nuxt module are MIT licensed. There are no per-seat or per-site fees, so there is nothing to pass on to your clients.'
+      icon: 'i-simple-icons-opensourceinitiative'
+    - title: 'Your servers, your data'
+      description: 'You host it: on your own servers or your own Kubernetes cluster. Your content stays in your own database, with no vendor lock-in.'
+      icon: 'i-heroicons-server-stack'
+    - title: 'Editing on the page'
+      description: 'Editors change the page they are looking at, on the live site. There is no separate CMS to learn, and they can only use the components and styles your developers provide.'
+      icon: 'i-heroicons-cursor-arrow-rays'
 businessSizes:
-  title: Designed for businesses of <span class="text-primary-400 font-semibold">all sizes</span>
-  description: Whether you are a business user, freelance developer, agency or have an in-house team of developers, the CWA has been designed to provide you with cutting-edge technologies while helping your business run smoothly and efficiently.
+  title: Who CWA <span class="text-primary-400 font-semibold">is for</span>
+  description: CWA is for teams that write code for a website and hand it to the people who run it. Editors need no code knowledge, but a developer or agency builds each site.
   cards:
-    - title: 'Small businesses'
-      description: 'The website builder interface allows admins with no code knowledge to create, edit and extend any CWA website once it’s been created by your developers.'
-      icon: 'i-heroicons-home-modern'
-    - title: 'Organisations'
-      description: 'Business operations are critical, and when your website is powered by an API, the automation and API extensibility can be a huge productivity boost.'
-      icon: 'i-heroicons-building-office'
-    - title: 'Agencies'
-      description: 'With a focus on the professional web development workflow, the CWA helps you to streamline your workflow; from discovery to delivery and beyond.'
+    - title: 'Agencies and freelancers'
+      description: 'Build one component library and reuse it across clients. Each client edits their own site on the page, and there are no per-seat CMS fees to pass on.'
       icon: 'i-heroicons-building-office-2'
+    - title: 'Symfony and API Platform teams'
+      description: 'Your API stays Symfony. Get a Nuxt front end with page building, editing on the page, draft and publish, and real-time updates.'
+      icon: 'i-heroicons-code-bracket'
+    - title: 'Teams that must self-host'
+      description: 'Data residency, no lock-in, MIT licensed. Run the whole stack on infrastructure you control.'
+      icon: 'i-heroicons-lock-closed'
 teamwork:
   title: Built with <br><span class="text-primary-400 font-semibold">teamwork</span> in mind
   align: center
@@ -62,7 +69,7 @@ timeline:
         description: Extend functionality as you would with any other application built on these frameworks. Documentation on functionality is abundant.
         icon: i-ph-puzzle-piece
       - title: Devops configured
-        description: No need to spend endless hours working out how to best deploy. We have provided a working CI pipeline for GitLab and it is simple to adjust to be specific for your vendors.
+        description: No need to spend endless hours working out how to deploy. The template has working GitLab and GitHub pipelines that build, test and deploy to Kubernetes with Helm.
         icon: i-ph-dev-to-logo
       - title: Building for the admin
         description: We created an advanced in-line content management toolbar for resources, instead of a separate CMS. Our system is intuitive for both users and developers.
@@ -72,7 +79,7 @@ timeline:
       Managers or clients will find it easy and intuitive to begin working with the website once the developers have the components ready. Simply add the pages required using the website builder, knowing exactly where they need to go to create and update their custom website.
     features:
       - title: Stand-alone pages
-        description: Your website can include standalone pages or even mini websites for targeted PPC landing pages, A/B testing or promotional marketing.
+        description: Your website can include standalone pages or even mini websites for targeted PPC landing pages or promotional marketing.
         icon: i-ph-file
       - title: Search Engine Optimisation
         description: Built-in management of your page titles and meta descriptions while leaving you in control of on-page SEO.
@@ -80,6 +87,9 @@ timeline:
       - title: Route management
         description: Search, sort and manage routes so you can easily audit your public web pages and manage any redirects.
         icon: i-ph-signpost
+      - title: Schedule a page
+        description: A route can be live, not live, or scheduled to go live at a date and time. Until then, visitors get a 404 and the page stays out of the sitemap, while admins can still preview and edit it.
+        icon: i-ph-calendar-check
       - title: Page management
         description: Easily search, sort, filter and edit settings on your pages reducing workload on page management.
         icon: i-heroicons-document-duplicate
@@ -88,10 +98,13 @@ timeline:
       Writing content is not an easy or simple task. It requires development, review from other team members and collaboration. The CWA has features which helps to streamline this workflow.
     features:
       - title: Drafting changes
-        description: Writing draft content has required external tools until now. Say hello to on-site content writing with draft components.
+        description: Write on the site itself. Changes to a component become a private draft until you publish it.
         icon: i-ph-pencil-ruler
+      - title: Scheduled publishing
+        description: Publish a draft now, or pick a date and time. Visitors keep seeing the live version until then.
+        icon: i-ph-clock
       - title: Real-time collaboration
-        description: You can easily work on content together at the same time because changes are pushed in real-time to other users.
+        description: Work on content together. When someone saves or publishes a change, other signed-in editors are told straight away.
         icon: i-ph-arrows-in-cardinal
       - title: Live editing
         description: If you are in the middle of drafting changes, but you notice the live version needs an update, no problem - switch to edit the live version and continue with your draft when you are done.
@@ -99,36 +112,50 @@ timeline:
       - title: Template pages
         description: For repetitive content structures, such as articles, news or blogs, the CWA has you covered. Create your dynamic page for structure and add content for each entry.
         icon: i-ph-file-dashed
-      - title: Unified brand visibility
-        description: Because your content is driven by an API, if some content should be loaded from preferred sources for specific components, no problem. You can keep data written for different mediums in sync.
-        icon: i-ph-intersect-three
-      - title: Automate AI content
-        description: API driven websites can also integrate modern content writing tools to implement modern content writing strategies. Automatically create new blog entries for human content writers to review on a schedule.
+      - title: Content from other services
+        description: Content lives behind a REST API. Another service, signed in with an admin account, can create draft components through the API, and editors review and publish them on the page.
         icon: i-ph-robot
   - title: Built for <span class="text-primary-400 font-semibold">the future</span>
     description: |
       Websites evolve and grow, and we aim to make the process of keeping up to date with changes easy. As your business grows requirements will change, so you can easily create new components which can fit the needs of ever evolving business.
 faq:
   title: Business FAQs
-  description: Some common business related questions we have about the CWA
+  description: Common questions about cost, skills, support and the project's status
   items:
     - label: How much does it cost?
       content: |
-        It is free and Open Source.
+        The software is free and open source, under the MIT licence. There are no per-seat or per-site fees.
+        <br><br>
+        You pay for hosting, and for the developers who build and maintain your components. A small business normally gets a CWA site through a developer or an agency.
+    - label: What skills does it need?
+      content: |
+        A CWA site needs <strong>PHP</strong> (Symfony and API Platform) for the API, <strong>Vue</strong> (Nuxt) for the front end, and <strong>Docker</strong> and <strong>Kubernetes</strong> to run it in production.
+        <br><br>
+        You don't start from nothing. <code>pnpm create cwa</code> generates a project from the template, which already has the Docker setup, a Helm chart for Kubernetes, and GitLab or GitHub pipelines that build, test and deploy. See <a href="/getting-started/installation">Installation</a> and <a href="/deployment">Deployment</a>.
+        <br><br>
+        Editors need no code knowledge. They work on the page, once your developers have built the components.
+    - label: What is the project's status?
+      content: |
+        CWA 2.0 is in <strong>alpha</strong>: try it, build with it, and give feedback. The API bundle and the Nuxt module are released as <code>2.0.0-alpha</code> versions, and the template follows them.
+        <br><br>
+        The core model (layouts, pages, component groups, components, routes, draft and publish) is in place. Configuration, APIs and behaviour can still change between alpha releases, and some changes need manual upgrade steps. Read each release's upgrade notes on the <a href="/getting-started/releases">Releases</a> page before you update.
+        <br><br>
+        Release notes: <a href="https://github.com/components-web-app/api-components-bundle/blob/main/CHANGELOG.md">API bundle</a>, <a href="https://github.com/components-web-app/cwa-nuxt-module/blob/main/CHANGELOG.md">Nuxt module</a>, <a href="https://github.com/components-web-app/components-web-app/blob/main/CHANGELOG.md">template</a>.
     - label: What guarantees are given?
       content: |
-        It is licenced under the MIT licence, no guarantees are given. The project is created and maintained by the community.
-#    - label: How long have you been using the CWA?
-#      content: Ongoing and is in version 3 ready for beta users. In production sites.
-#    - label: How long is it maintained for?
-#      content: Details of API and NUXT releases and continued support
+        The code is MIT licensed and provided as is, with no warranty. While it is in alpha, plan for upgrade work between releases.
+        <br><br>
+        Report bugs and ask about the core project in the <a href="https://github.com/components-web-app">GitHub repositories</a>.
     - label: What developers do I need?
-      content: Most developers with some experience will be able to pick up the basic concepts from both the API and front-end quickly. Developers with experience with Symfony, API Platform or just PHP will gravitate more to the back-end. Those with experience and interest with VueJS and Nuxt front-end javascript frameworks.
-#    - label: How frequent are updates?
-#      content: Currently working continuously. View roadmap. (We do not have a roadmap)
+      content: Most developers with some experience will be able to pick up the basic concepts from both the API and front-end quickly. Developers with experience with Symfony, API Platform or just PHP will gravitate more to the back-end. Those with experience and interest with VueJS and Nuxt will gravitate to the front-end.
     - label: Can we commission you to make a website?
-      content: Yes, if you would like a website built using the CWA, please contact the creators and primary sponsors of the CWA, Silverback Web Apps.
+      content: Yes. If you would like a website built using the CWA, contact <a href="https://silverbackwebapps.com/">Silverback Web Apps</a>, the creators and primary sponsors of the CWA.
     - label: Can CWA scale?
-      content: Yes. We have designed the CWA to work with server cluster autoscaling (both HPA and VPA) - we recommend not mounting volumes to your containers for the most flexibility. We have also load-tested the CWA with the tech stack provided, and get impressive results with very little resources allocated.
+      content: |
+        The Nuxt front end scales out: the template's Helm chart autoscales it, up to 6 pods by default.
+        <br><br>
+        The API runs as one pod by default. The template's page cache store and Mercure transport are kept inside that pod, so a second pod would not see the first pod's cache purges. Running more than one API pod needs a shared cache store and Mercure transport. See <a href="/deployment/kubernetes#autoscaling">Autoscaling</a>.
+        <br><br>
+        The template includes a k6 load-testing harness so you can measure your own site. See <a href="/deployment/load-testing">Load testing</a>.
     - label: Do you provide support?
-      content: Yes, in relation to bug fixes and development of core project – via GitHub. Support for individual projects and development of components your developers can contact <a href="https://silverbackwebapps.com/">Silverback Web Apps</a>.
+      content: Yes. Bug fixes and development of the core project happen on <a href="https://github.com/components-web-app">GitHub</a>. For support with your own project or its components, contact <a href="https://silverbackwebapps.com/">Silverback Web Apps</a>.

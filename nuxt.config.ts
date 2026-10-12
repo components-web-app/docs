@@ -9,9 +9,21 @@ export default defineNuxtConfig({
     '@comark/nuxt',
     'nuxt-og-image',
     'nuxt-svgo',
-    '@vite-pwa/nuxt',
     '@nuxt/scripts'
   ],
+
+  // Used by nuxt-og-image (absolute og:image URLs). Canonical URLs, the sitemap and
+  // structured data use the same origin (app/utils/site.ts).
+  site: {
+    url: 'https://cwa.rocks',
+    name: 'CWA (Components Web App)'
+  },
+
+  // The site is prerendered (nuxt generate), so OG images are generated at build time
+  // only. There is no runtime image endpoint to abuse, so no signing secret is needed.
+  ogImage: {
+    zeroRuntime: true
+  },
 
   devtools: {
     enabled: true
@@ -56,7 +68,21 @@ export default defineNuxtConfig({
     // cwa-api was one page until it was split into per-service sub-pages
     '/nuxt-module/cwa-api': { redirect: { to: '/nuxt-module/cwa-api/overview', statusCode: 301 } },
     // The template replaced Behat with PHPUnit functional tests
-    '/deployment/faster-behat-tests': { redirect: { to: '/deployment/faster-functional-tests', statusCode: 301 } }
+    '/deployment/faster-behat-tests': { redirect: { to: '/deployment/faster-functional-tests', statusCode: 301 } },
+    // The API section was restructured: users-and-security split into users/*, data-fixtures into data-fixtures/*,
+    // and the overview became the section's index page
+    '/api/users-and-security': { redirect: { to: '/api/users/authentication', statusCode: 301 } },
+    '/api/data-fixtures': { redirect: { to: '/api/data-fixtures/getting-started', statusCode: 301 } },
+    '/api/overview': { redirect: { to: '/api', statusCode: 301 } },
+    // The form composables moved out of component/ into their own form/ folder
+    '/nuxt-module/composables/component/use-cwa-form': { redirect: { to: '/nuxt-module/composables/form/use-cwa-form', statusCode: 301 } },
+    '/nuxt-module/composables/component/use-cwa-form-input': { redirect: { to: '/nuxt-module/composables/form/use-cwa-form-input', statusCode: 301 } },
+    '/nuxt-module/composables/component/use-cwa-form-repeated': { redirect: { to: '/nuxt-module/composables/form/use-cwa-form-repeated', statusCode: 301 } },
+    '/nuxt-module/composables/component/use-cwa-form-collection': { redirect: { to: '/nuxt-module/composables/form/use-cwa-form-collection', statusCode: 301 } },
+    // The hand-written upgrade pages were replaced by the Releases page, which shows each release's notes from GitHub
+    '/api/upgrading': { redirect: { to: '/getting-started/releases', statusCode: 301 } },
+    '/nuxt-module/upgrading': { redirect: { to: '/getting-started/releases', statusCode: 301 } },
+    '/deployment/upgrading-the-template': { redirect: { to: '/getting-started/releases', statusCode: 301 } }
   },
 
   future: {
@@ -71,7 +97,13 @@ export default defineNuxtConfig({
         '/',
         '/llms.txt',
         '/llms-full.txt',
-        '/api/stats.json'
+        '/sitemap.xml',
+        '/robots.txt',
+        '/api/stats.json',
+        '/api/releases.json',
+        // Server-highlighted snippets for the marketing pages (useHighlightedCode)
+        '/api/highlighted-code/index.json',
+        '/api/highlighted-code/about.json'
       ],
       crawlLinks: true
     }
@@ -126,37 +158,6 @@ export default defineNuxtConfig({
         dir: './app/assets/custom-icons'
       }
     ]
-  },
-
-  pwa: {
-    manifest: {
-      name: 'CWA',
-      short_name: 'CWA',
-      theme_color: '#000000',
-      icons: [
-        {
-          src: 'pwa-64x64.png',
-          sizes: '64x64',
-          type: 'image/png'
-        },
-        {
-          src: 'pwa-192x192.png',
-          sizes: '192x192',
-          type: 'image/png'
-        },
-        {
-          src: 'pwa-512x512.png',
-          sizes: '512x512',
-          type: 'image/png'
-        },
-        {
-          src: 'maskable-icon-512x512.png',
-          sizes: '512x512',
-          type: 'image/png',
-          purpose: 'maskable'
-        }
-      ]
-    }
   },
 
   scripts: {

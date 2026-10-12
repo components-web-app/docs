@@ -1,19 +1,45 @@
 <template>
-  <div id="particles-container">
-    <canvas />
+  <div
+    class="particles-container"
+    aria-hidden="true"
+  >
+    <canvas ref="canvasEl" />
     <div class="particles-overlay" />
   </div>
 </template>
 
 <script setup>
 // effect from https://codepen.io/DedaloD/pen/PoJGKOb
-import { onMounted } from 'vue'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
+
+const canvasEl = ref(null)
+
+// Everything the effect starts is stopped here when the component unmounts: the
+// animation frame, the observer, the event listeners and the WebGL context. Without
+// this, each visit to the home page started another loop on a detached canvas.
+let rafId = null
+let observer = null
+let destroyed = false
+const listeners = new AbortController()
+let loseContext = null
+
+onBeforeUnmount(() => {
+  destroyed = true
+  if (rafId !== null) cancelAnimationFrame(rafId)
+  rafId = null
+  observer?.disconnect()
+  listeners.abort()
+  loseContext?.()
+})
 
 onMounted(() => {
   'use strict'
 
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
   const layout = document.body
-  const canvas = document.getElementsByTagName('canvas')[0]
+  const canvas = canvasEl.value
+  if (!canvas) return
   canvas.width = canvas.clientWidth
   canvas.height = canvas.clientHeight
 
@@ -30,7 +56,10 @@ onMounted(() => {
   const pointers = []
   const splatStack = []
 
-  const { gl, ext } = getWebGLContext(canvas)
+  const context = getWebGLContext(canvas)
+  if (!context) return
+  const { gl, ext } = context
+  loseContext = () => gl.getExtension('WEBGL_lose_context')?.loseContext()
 
   function getWebGLContext(canvas) {
     const params = {
@@ -46,6 +75,8 @@ onMounted(() => {
       gl
         = canvas.getContext('webgl', params)
           || canvas.getContext('experimental-webgl', params)
+    // No WebGL (old browser, or hardware acceleration off): skip the decoration.
+    if (!gl) return null
 
     let halfFloat
     let supportLinearFiltering
@@ -639,9 +670,22 @@ onMounted(() => {
 
   let lastTime = Date.now()
   multipleSplats(parseInt(Math.random() * 20) + 5)
-  update()
+
+  // Only animate while the hero is on screen.
+  let visible = true
+  observer = new IntersectionObserver(([entry]) => {
+    visible = entry.isIntersecting
+    if (visible && rafId === null && !destroyed) {
+      lastTime = Date.now()
+      rafId = requestAnimationFrame(update)
+    }
+  })
+  observer.observe(canvas)
+  rafId = requestAnimationFrame(update)
 
   function update() {
+    rafId = null
+    if (destroyed || !visible) return
     resizeCanvas()
 
     const dt = Math.min((Date.now() - lastTime) / 1000, 0.016)
@@ -756,7 +800,7 @@ onMounted(() => {
     gl.uniform1i(displayProgram.uniforms.uTexture, density.read[2])
     blit(null)
 
-    requestAnimationFrame(update)
+    rafId = requestAnimationFrame(update)
   }
 
   function splat(x, y, dx, dy, color) {
@@ -813,6 +857,8 @@ onMounted(() => {
     }
   }
 
+  const listenerOptions = { signal: listeners.signal, passive: true }
+
   layout.addEventListener('mousemove', (e) => {
     const rect = canvas.getBoundingClientRect()
     const x = e.clientX - rect.left
@@ -833,7 +879,7 @@ onMounted(() => {
       Math.random() + 0.2,
       Math.random() + 0.2
     ]
-  })
+  }, listenerOptions)
 
   layout.addEventListener(
     'touchmove',
@@ -851,7 +897,7 @@ onMounted(() => {
         pointer.y = y
       }
     },
-    false
+    listenerOptions
   )
 
   layout.addEventListener('touchstart', (e) => {
@@ -869,30 +915,30 @@ onMounted(() => {
         Math.random() + 0.2
       ]
     }
-  })
+  }, listenerOptions)
 
   window.addEventListener('mouseleave', () => {
     pointers[0].down = false
-  })
+  }, listenerOptions)
 
   window.addEventListener('touchend', (e) => {
     const touches = e.changedTouches
     for (let i = 0; i < touches.length; i++)
       for (let j = 0; j < pointers.length; j++)
         if (touches[i].identifier === pointers[j].id) pointers[j].down = false
-  })
+  }, listenerOptions)
 })
 </script>
 
 <style>
-#particles-container canvas {
+.particles-container canvas {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
 }
-#particles-container .particles-overlay {
+.particles-container .particles-overlay {
   position: absolute;
   top: 0;
   left: 0;

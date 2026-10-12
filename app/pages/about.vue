@@ -1,22 +1,21 @@
 <script setup lang="ts">
-import highlight from '@comark/nuxt/plugins/highlight'
-import { transformerNotationFocus, transformerNotationHighlight } from '@shikijs/transformers'
-import githubDark from '@shikijs/themes/github-dark'
-import githubLight from '@shikijs/themes/github-light'
-
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const { data: page } = await useAsyncData<any>('about', () => queryCollection('pages').path('/about').first())
 
-const highlightPlugin = highlight({
-  themes: { light: githubLight, dark: githubDark },
-  transformers: [transformerNotationFocus(), transformerNotationHighlight()]
-})
+// Highlighted at prerender time, so the snippets are in the HTML and Shiki never ships.
+const { data: highlightedCode } = await useHighlightedCode('about')
 
 useSeoMeta({
   title: page.value?.title,
   ogTitle: page.value?.title,
   description: page.value?.description,
   ogDescription: page.value?.description
+})
+
+// Its own share card instead of the site-wide social-card.png.
+defineOgImage('Docs.satori', {
+  title: page.value?.title,
+  description: page.value?.description
 })
 
 const props = defineProps<{
@@ -83,17 +82,13 @@ definePageMeta({
     <UContainer>
       <UPage>
         <UPageBody>
-          <UPageHero
-            v-bind="page?.cta"
+          <!-- A section, not a second UPageHero: the page keeps a single <h1>. -->
+          <UPageSection
+            :icon="page?.cta?.icon"
+            :class="page?.cta?.class"
+            :ui="{ container: 'py-8 sm:py-16 lg:py-16 gap-8 sm:gap-y-16' }"
           >
             <template #title>
-              <div>
-                <UIcon
-                  v-if="page?.cta?.icon"
-                  :name="page?.cta?.icon"
-                  class="ml-1 size-10 pointer-events-none text-primary"
-                />
-              </div>
               <span
                 v-if="page?.cta?.title"
                 v-html="page.cta.title"
@@ -102,11 +97,11 @@ definePageMeta({
             <template #description>
               <div
                 v-if="page?.cta?.description"
-                class="max-w-4xl"
+                class="max-w-4xl mx-auto"
                 v-html="page.cta.description"
               />
             </template>
-          </UPageHero>
+          </UPageSection>
 
           <UPageGrid :ui="{ base: 'relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8' }">
             <UPageCard
@@ -161,37 +156,37 @@ definePageMeta({
                   class="w-full max-w-md"
                 />
               </div>
-              <ClientOnly v-else-if="section.slot === 'code' && section.code">
-                <Comark
-                  :plugins="[highlightPlugin]"
-                  class="prose prose-primary dark:prose-invert max-w-none"
-                >
-                  {{ section.code }}
-                </Comark>
-              </ClientOnly>
+              <CodeBlock
+                v-else-if="section.slot === 'code' && section.code"
+                :code="section.code"
+                :trees="highlightedCode"
+                class="prose prose-primary dark:prose-invert max-w-none"
+              />
               <div
                 v-else-if="section.slot === 'grid' && section.iconGrid"
                 class="flex justify-center"
               >
-                <div class="grid grid-cols-3 gap-8 md:gap-12 w-full max-w-md">
-                  <NuxtLink
+                <!-- Logos with no link: a list, each item named for screen readers. -->
+                <ul class="grid grid-cols-3 gap-8 md:gap-12 w-full max-w-md">
+                  <li
                     v-for="(item, gridIndex) in section.iconGrid"
                     :key="`grid-${gridIndex}-${item.name}`"
-                    :title="item"
-                    class="block lg:hover:scale-110 transition aspect-[1/1] opacity-90 hover:opacity-100"
+                    :title="item.name"
+                    class="block lg:hover:scale-110 motion-reduce:lg:hover:scale-100 transition aspect-[1/1] opacity-90 hover:opacity-100"
                   >
                     <div
+                      role="img"
+                      :aria-label="item.name"
                       class="rounded-xl bg-slate-100 w-full h-full p-4 ring-1 ring-gray-300 dark:ring-gray-700"
                     >
                       <UIcon
                         :name="item.icon"
-                        :title="item.name"
                         class="w-full h-full"
                         :class="item.class"
                       />
                     </div>
-                  </NuxtLink>
-                </div>
+                  </li>
+                </ul>
               </div>
             </template>
           </UPageSection>

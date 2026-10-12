@@ -25,12 +25,15 @@ const { data: files } = useLazyFetch('/api/search.json', {
   server: false
 })
 
+// The 404 page keeps the site navigation
+const links = siteLinks
+
 provide('navigation', navigation)
 </script>
 
 <template>
   <UApp>
-    <AppHeader />
+    <AppHeader :links="links" />
 
     <UMain>
       <UContainer>
@@ -40,7 +43,7 @@ provide('navigation', navigation)
       </UContainer>
     </UMain>
 
-    <AppFooter />
+    <AppFooter :links="links" />
 
     <ClientOnly>
       <LazyUContentSearch

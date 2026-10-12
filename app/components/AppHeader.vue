@@ -1,8 +1,10 @@
 <script setup lang="ts">
+import type { SiteLink } from '~/utils/site'
+
 const { data: navigation } = useNuxtData<any>('navigation')
 
 const props = defineProps<{
-  links?: { label: string, icon?: string, to: string, target?: string }[]
+  links?: SiteLink[]
 }>()
 
 const { header } = useAppConfig()
@@ -41,9 +43,18 @@ const linksWithoutIcons = computed(() =>
     />
 
     <template #right>
+      <!-- Search on every page, not only in the docs sidebar -->
+      <UContentSearchButton
+        v-if="header?.search"
+        :collapsed="true"
+        aria-label="Search the docs"
+      />
+
+      <!-- Below sm, the colour switch and the SWA logo move into the menu -->
       <UColorModeSwitch
         v-if="header?.colorMode"
         size="sm"
+        class="hidden sm:inline-flex"
       />
 
       <div
@@ -57,13 +68,15 @@ const linksWithoutIcons = computed(() =>
         />
       </div>
 
-      <div class="text-center pl-1.5 md:pl-3 py-1.5 md:ml-1 border-l border-black/30 dark:border-white/30">
+      <div class="hidden sm:block text-center pl-1.5 md:pl-3 py-1.5 md:ml-1 border-l border-black/30 dark:border-white/30">
         <NuxtLink
           to="https://silverbackwebapps.com"
           target="_blank"
+          aria-label="Silverback Web Apps (opens in a new tab)"
         >
           <SvgoLogoSwa
             :font-controlled="false"
+            aria-hidden="true"
             class="h-5 md:h-6"
           />
         </NuxtLink>
@@ -72,7 +85,7 @@ const linksWithoutIcons = computed(() =>
 
     <template #body>
       <LazyUContentSearchButton
-        v-if="isDocsPage"
+        v-if="header?.search"
         size="md"
         class="mb-4 w-full"
       />
@@ -86,6 +99,23 @@ const linksWithoutIcons = computed(() =>
         v-if="isDocsPage"
         :navigation="navigation"
       />
+      <div class="sm:hidden mt-6 pt-4 flex items-center justify-between border-t border-default">
+        <UColorModeSwitch
+          v-if="header?.colorMode"
+          size="sm"
+        />
+        <NuxtLink
+          to="https://silverbackwebapps.com"
+          target="_blank"
+          aria-label="Silverback Web Apps (opens in a new tab)"
+        >
+          <SvgoLogoSwa
+            :font-controlled="false"
+            aria-hidden="true"
+            class="h-5"
+          />
+        </NuxtLink>
+      </div>
     </template>
   </UHeader>
 </template>

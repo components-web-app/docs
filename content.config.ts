@@ -5,7 +5,9 @@ export default defineContentConfig({
     docs: defineCollection({
       type: 'page',
       source: {
-        include: '**/*.md'
+        include: '**/*.md',
+        // Pages outside the docs (privacy, why CWA) are their own collection, so they stay out of the sidebar and search.
+        exclude: ['standalone/**']
       },
       schema: z.object({
         badge: z.object({
@@ -15,6 +17,14 @@ export default defineContentConfig({
         }).optional(),
         links: z.array(z.record(z.string(), z.any())).optional()
       })
+    }),
+    // content/standalone/<name>.md is served at /<name> by app/pages/<name>.vue.
+    standalone: defineCollection({
+      type: 'page',
+      source: {
+        include: 'standalone/*.md',
+        prefix: '/'
+      }
     }),
     pages: defineCollection({
       type: 'page',

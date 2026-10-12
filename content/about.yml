@@ -20,7 +20,7 @@ pageCards:
     - title: 'Decoupled web apps'
       description: 'Decoupled/headless web apps are data driven. This opens up a world of possibilities - data can be shared between other web services, create API abstraction layers, and so much more.'
       icon: 'i-heroicons-circle-stack'
-    - title: 'Low-code, great DX'
+    - title: 'Less code, great DX'
       description: 'Easily use abstract classes, traits, and PHP annotations for the API. The front-end module builds on top of a UI layer and has ready-to-use components and powerful composables to get you up and running quickly.'
       icon: 'i-heroicons-face-smile'
     - title: 'Convention over configuration'
@@ -40,9 +40,9 @@ sections:
       - name: 'Add state-specific validation'
         description: 'Use pre-defined validation groups to apply validation specific to the component state. In the example, the Title resource cannot have a blank title property when it is in a published state.'
         icon: 'i-heroicons-document-check'
-#      - name: 'Set a time to publish'
-#        description: 'Set a date and time that you want to your draft component to become published automatically.'
-#        icon: 'i-heroicons-clock'
+      - name: 'Set a time to publish'
+        description: 'Publish a draft now, or schedule it for a date and time. Visitors keep seeing the live version until then.'
+        icon: 'i-heroicons-clock'
     slot: code
     code: |
       ```php [api/src/Entity/Title.php]
@@ -155,13 +155,13 @@ sections:
         description: 'We have built the tech stack into Docker containers and Docker Compose configurations so it is vendor agnostic and can be easily deployed.'
         icon: 'i-simple-icons-docker'
       - name: 'Kubernetes & Helm'
-        description: 'Deploy to your own Kubernetes cluster and take advantage of HPA and VPA with easy to customise templates using our included Helm chart.'
+        description: 'Deploy to your own Kubernetes cluster with the included Helm chart. The Nuxt front end autoscales out of the box, and the templates are easy to customise.'
         icon: 'i-simple-icons-kubernetes'
       - name: 'Bash scripts for CI'
-        description: 'Although we have a vendor specific GitLab configuration, it is easy to create your own for other CI providers as we have created a bash script with functions to carry out the common tasks.'
+        description: 'The template has pipelines for GitLab and GitHub. Both call a bash script with functions for the common tasks, so it is easy to create your own for other CI providers.'
         icon: i-ph-terminal-window-fill
       - name: 'Optimised tech stack'
-        description: 'We use a Caddy server with FrankenPHP in our tech stack for optimal performance. We noted a 95% reduced latency vs a previous FPM configuration when under heavy loads. The Caddy modules for Mercure, Vulcain and Souin are also pre-configured.'
+        description: 'We use a Caddy server with FrankenPHP in worker mode, and the Caddy modules for Mercure, Vulcain and Souin are pre-configured. The template includes a k6 load-testing harness and a Lighthouse audit, so you can measure your own site.'
         icon: i-heroicons-server-stack-20-solid
     iconGrid:
       - name: 'Docker'
@@ -209,4 +209,4 @@ faq:
       content: |
         Contact us at hello@cwa.rocks or raise issues in our GitHub repositories and we will be happy to help.
         <br><br>
-        If you need more personal technical help, <a href=”https://www.silverbackwebapps.com”>Silverback Web Apps</a> will be able to assist.
+        If you need more personal technical help, <a href="https://silverbackwebapps.com/">Silverback Web Apps</a> will be able to assist.

@@ -67,12 +67,29 @@ export default defineAppConfig({
   },
   footer: {
     credits: 'Copyright © 2026',
+    owner: {
+      label: 'Silverback Internet Services Limited',
+      to: 'https://silverbackwebapps.com'
+    },
     colorMode: false,
+    // Shown after the main navigation in the footer
+    extraLinks: [{
+      label: 'Privacy',
+      to: '/privacy'
+    }, {
+      label: 'MIT licence',
+      to: 'https://github.com/components-web-app/api-components-bundle/blob/main/LICENSE',
+      target: '_blank'
+    }, {
+      label: 'GitHub',
+      to: 'https://github.com/components-web-app',
+      target: '_blank'
+    }],
     links: [{
       'icon': 'i-simple-icons-instagram',
       'to': 'https://www.instagram.com/cwa.rocks',
       'target': '_blank',
-      'aria-label': 'CWA Website'
+      'aria-label': 'CWA on Instagram'
     }, {
       'icon': 'i-simple-icons-x',
       'to': 'https://x.com/cwa_rocks',

@@ -31,18 +31,16 @@ const { data: page } = useNuxtData<any>('home')
       </template>
 
       <template #description>
+        <!-- No star count while the project is in alpha (docs #178): show the licence instead. -->
         <NuxtLink
           class="text-center lg:text-left group"
-          to="https://github.com/components-web-app"
+          to="https://github.com/components-web-app/api-components-bundle/blob/main/LICENSE"
           target="_blank"
         >
-          <p
-            v-if="stats"
-            class="text-5xl font-semibold text-gray-900 dark:text-white group-hover:text-primary-500 dark:group-hover:text-primary-400"
-          >
-            {{ format(stats.stargazers) }}
+          <p class="text-5xl font-semibold text-gray-900 dark:text-white group-hover:text-primary-500 dark:group-hover:text-primary-400">
+            MIT
           </p>
-          <p>GitHub stars</p>
+          <p>open-source licence</p>
         </NuxtLink>
         <NuxtLink
           class="text-center lg:text-left group"

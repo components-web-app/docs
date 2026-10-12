@@ -39,7 +39,7 @@ export default defineEventHandler(async (event) => {
   // Product/overview pages first — they answer "what is this and is it for me?",
   // which the reference docs assume you already know.
   for (const page of marketing) {
-    const body = marketingPageToText(page as Record<string, unknown>)
+    const body = marketingPageToText(page as unknown as Record<string, unknown>)
     if (!body.length) continue
 
     lines.push(`# ${page.title}`)
