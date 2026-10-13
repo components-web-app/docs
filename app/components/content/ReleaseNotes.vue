@@ -58,16 +58,21 @@ function formatDate(iso: string) {
       class="text-sm text-muted"
     >
       The release list couldn't be loaded. See the releases on GitHub:
-      <template
-        v-for="(repo, index) in CWA_RELEASE_REPOS"
-        :key="repo.repo"
-      >
-        <ULink
-          :to="`https://github.com/components-web-app/${repo.repo}/releases`"
-          target="_blank"
-          class="underline"
-        >{{ repo.label }}</ULink>{{ index < CWA_RELEASE_REPOS.length - 1 ? ', ' : '.' }}
-      </template>
+      <ULink
+        to="https://github.com/components-web-app/api-components-bundle/releases"
+        target="_blank"
+        class="underline"
+      >API bundle</ULink>,
+      <ULink
+        to="https://github.com/components-web-app/cwa-nuxt-module/releases"
+        target="_blank"
+        class="underline"
+      >Nuxt module</ULink>,
+      <ULink
+        to="https://github.com/components-web-app/components-web-app/releases"
+        target="_blank"
+        class="underline"
+      >template</ULink>.
     </p>
 
     <article

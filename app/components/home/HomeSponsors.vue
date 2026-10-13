@@ -19,13 +19,6 @@
             :font-controlled="false"
           />
         </div>
-        <div class="md:px-4">
-          <SvgoLogoNuxtUi
-            class="opacity-50 h-7 md:h-9"
-            alt="Sponsored by Nuxt UI"
-            :font-controlled="false"
-          />
-        </div>
       </UPageLogos>
     </div>
   </UContainer>

@@ -42,59 +42,54 @@ export default cachedEventHandler(async () => {
     stargazers: 0
   }
 
-  if (!process.env.NUXT_GITHUB_TOKEN) {
-    return allStats
-  }
-
-  const octokit = new Octokit({ auth: process.env.NUXT_GITHUB_TOKEN })
   const owner = 'components-web-app'
   const repos = ['components-web-app', 'api-components-bundle', 'cwa-nuxt-module', 'docs']
 
-  const getContributors = async (repo: string) => {
-    const contributors = await octokit.paginate(octokit.rest.repos.listContributors, {
-      owner,
-      repo,
-      per_page: 100
-    })
-
-    const repoContributors = contributors
-      .filter(contributor => contributor.login)
-      .filter(contributor => contributor.type === 'User')
-      .filter(contributor => !isUserABot(contributor))
-
-    for (const repoContributor of repoContributors) {
-      const username = repoContributor.login || 'unknown'
-      if (!allStats.contributors[username]) {
-        allStats.contributors[username] = {
-          username,
-          link: repoContributor.html_url,
-          image: repoContributor.avatar_url,
-          contributions: repoContributor.contributions
+  // Public data, so a token is optional: it only raises GitHub's rate limit (60 requests an hour
+  // per IP without one; this makes 8). An expired or invalid token gets a 401, so try again without it.
+  const collect = async (octokit: Octokit) => {
+    const contributors: Contributors = {}
+    let stargazers = 0
+    await Promise.all(repos.map(async (repo) => {
+      const [{ data: repoData }, repoContributors] = await Promise.all([
+        octokit.rest.repos.get({ owner, repo }),
+        octokit.paginate(octokit.rest.repos.listContributors, { owner, repo, per_page: 100 })
+      ])
+      stargazers += repoData.stargazers_count
+      for (const contributor of repoContributors) {
+        if (!contributor.login || contributor.type !== 'User' || isUserABot(contributor)) {
+          continue
         }
-      } else {
-        allStats.contributors[username].contributions += repoContributor.contributions
+        const existing = contributors[contributor.login]
+        if (existing) {
+          existing.contributions += contributor.contributions
+        } else {
+          contributors[contributor.login] = {
+            username: contributor.login,
+            link: contributor.html_url,
+            image: contributor.avatar_url,
+            contributions: contributor.contributions
+          }
+        }
       }
-    }
+    }))
+    return { contributors, stargazers }
   }
 
-  const getStargazers = async (repo: string) => {
-    const stargazers = await octokit.paginate(octokit.rest.activity.listStargazersForRepo, {
-      owner,
-      repo,
-      per_page: 100
-    })
-    allStats.stargazers += stargazers.length
-  }
-
-  try {
-    const promises: Promise<void>[] = []
-    for (const repo of repos) {
-      promises.push(getContributors(repo))
-      promises.push(getStargazers(repo))
+  const token = process.env.NUXT_GITHUB_TOKEN
+  for (const auth of token ? [token, undefined] : [undefined]) {
+    try {
+      const fetched = await collect(new Octokit({ auth }))
+      // Keep the seeded contributors (people whose work isn't in the GitHub history) and add GitHub's counts.
+      for (const [username, contributor] of Object.entries(fetched.contributors)) {
+        const seeded = allStats.contributors[username]
+        allStats.contributors[username] = seeded ? { ...contributor, contributions: contributor.contributions + seeded.contributions } : contributor
+      }
+      allStats.stargazers = fetched.stargazers
+      break
+    } catch {
+      // GitHub unavailable, rate limited or the token is invalid: try the next option, else keep the seeded list
     }
-    await Promise.all(promises)
-  } catch {
-    // GitHub API unavailable or credentials invalid — return pre-seeded fallback
   }
 
   return allStats

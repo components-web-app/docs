@@ -38,6 +38,24 @@ Researched and recorded on the issue (body + [findings comment](https://github.c
 
 ## Documented
 
+- **2026-10-13 (evening) — docs #207–#218, #223–#225, #210, #211, plus site fixes.**
+  - **Duplicates:** #207–#209 and #212–#218 were filed by other sessions and mostly covered by #220–#222. The remaining gaps are filled:
+    - a regenerated variant can stay cached up to 30 days, and renaming the filter set gives new URLs;
+    - `imagine:generate` walks drafts and skips SVGs;
+    - stale rows make `srcset` serve the original;
+    - large downloads belong in the media bucket, not `public/`.
+  - **#223/#224/#225 (bundle #431/#429/#430, merged, unreleased after 2.0.0-alpha.17):**
+    - A page `uiComponent` is always `CwaPage<Name>`, and there's a new `prefix-page-ui-components` command. **Layouts are not prefixed by the API**, only pages.
+    - PUT on a user merges, because `standard_put: false` is forced.
+    - The 255-character `Assert\Length` limits are a 422. The list in source is longer than the issue's. Your own string columns need `Length` or `type: 'text'`.
+  - **#210:** Cloudflare "Moving a zone to another Cloudflare account".
+  - **#211:** the new page `/deployment/reading-lighthouse-scores`. The template's audit uses real devtools throttling, not simulation. Highcharts and edge caching aren't template defaults.
+  - **Home page:** Daniel disliked the audit's positioning copy, so all of `content/index.yml` is back to `f6cfbf6`. Kept: the shorter page title (no "Documentation") and the hero's playground/Get started/GitHub buttons. The GitHub stars stat is restored. **Don't rewrite the home copy again without asking.**
+  - **Sponsors:** Nuxt UI is removed (it's free now). The header's `aria-label` read "Nuxt UI" (UHeader's default `title`); it's now `CWA`.
+  - **Contributors:** prod `/api/stats.json` was the seeded fallback, because the Vercel `NUXT_GITHUB_TOKEN` 401s (expired). The endpoint now uses `repos.get` for stars (8 requests) and retries without the token. A fresh token on Vercel makes it reliable.
+  - **vue-tsc:** a link component (`ULink`/`UButton`/`NuxtLink`) with a dynamic `to`/`href` inside a `v-for` makes vue-tsc 3.3.13 lose the loop variable in what's nested in it ("Cannot find name"). `:class` is fine, and `v-bind` doesn't help. The workaround is a per-item component (`HomeContributorButton.vue`) or static links. `pnpm typecheck` is clean.
+  - **Open with Daniel:** how to word the HPA/VPA scaling claim in about.yml and built-for-business. The chart has two HPAs (Nuxt 1–6, php max 1) and no VPA.
+
 - **2026-10-13 — docs #220, #221, #222: bundle 2.0.0-alpha.14–17, `@cwa/nuxt` 2.0.0-alpha.11, template 2.0.0-alpha.23–28.** Checked against bundle `origin/main` `9561e753`, module `v2.0.0-alpha.11` (`633c871d`) and template `origin/main` `b8ee2b4`. The build passes, and 875 links resolve. No upgrade sections were written, because the Releases page carries them.
   - **API (#220):**
     - uploadable: the WebP fallback for AVIF/HEIC/HEIF, failing filters skipped and logged, the new "Cache-Control on Stored Files" section, generating variants ahead of time, and stale file-info rows.

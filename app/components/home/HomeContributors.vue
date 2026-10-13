@@ -31,16 +31,18 @@ const { data: page } = useNuxtData<any>('home')
       </template>
 
       <template #description>
-        <!-- No star count while the project is in alpha (docs #178): show the licence instead. -->
         <NuxtLink
           class="text-center lg:text-left group"
-          to="https://github.com/components-web-app/api-components-bundle/blob/main/LICENSE"
+          to="https://github.com/components-web-app"
           target="_blank"
         >
-          <p class="text-5xl font-semibold text-gray-900 dark:text-white group-hover:text-primary-500 dark:group-hover:text-primary-400">
-            MIT
+          <p
+            v-if="stats"
+            class="text-5xl font-semibold text-gray-900 dark:text-white group-hover:text-primary-500 dark:group-hover:text-primary-400"
+          >
+            {{ format(stats.stargazers) }}
           </p>
-          <p>open-source licence</p>
+          <p>GitHub stars</p>
         </NuxtLink>
         <NuxtLink
           class="text-center lg:text-left group"
@@ -58,34 +60,11 @@ const { data: page } = useNuxtData<any>('home')
       </template>
 
       <template #links>
-        <UButton
+        <HomeContributorButton
           v-for="user in page?.contributors?.users"
           :key="user.username"
-          :to="user.to"
-          size="md"
-          color="neutral"
-          variant="ghost"
-          target="_blank"
-        >
-          <UAvatar
-            :alt="user.username"
-            :src="`https://ipx.nuxt.com/s_80x80/gh_avatar/${user.username}`"
-            :srcset="`https://ipx.nuxt.com/s_160x160/gh_avatar/${user.username} 2x`"
-            width="80"
-            height="80"
-            size="md"
-            loading="lazy"
-          />
-
-          <div class="text-left">
-            <p class="font-medium">
-              {{ user.name }}
-            </p>
-            <p class="text-gray-500 dark:text-gray-400 leading-4">
-              {{ `@${user.username}` }}
-            </p>
-          </div>
-        </UButton>
+          :user="user"
+        />
       </template>
 
       <div

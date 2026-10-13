@@ -18,7 +18,7 @@ const linksWithoutIcons = computed(() =>
 </script>
 
 <template>
-  <UHeader>
+  <UHeader title="CWA">
     <template #title>
       <div
         v-if="header?.logo?.dark || header?.logo?.light"
