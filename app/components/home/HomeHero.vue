@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-
 // The WebGL background is decoration: load it in its own chunk, in the browser only.
 const BackgroundParticles = defineAsyncComponent(() => import('~/components/home/BackgroundParticles.vue'))
 
@@ -86,7 +85,7 @@ const { data: highlightedCode } = await useHighlightedCode('index')
       </template>
 
       <template #description>
-        <Comark>{{ page.hero.description }}</Comark>
+        <Markdown :value="page.hero.description" />
       </template>
 
       <template #links>

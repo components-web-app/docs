@@ -1,6 +1,6 @@
 import { queryCollection } from '@nuxt/content/server'
 import { createError, getRouterParam } from 'h3'
-import { parse } from '@comark/nuxt/parse'
+import { parseMarkdown } from '@comark/nuxt/parse'
 import highlight from '@comark/nuxt/plugins/highlight'
 import { transformerNotationFocus, transformerNotationHighlight } from '@shikijs/transformers'
 import bash from '@shikijs/langs/bash'
@@ -19,7 +19,7 @@ import githubLight from '@shikijs/themes/github-light'
  * shipped Shiki and its grammars to every visitor and left the blocks out of the
  * prerendered HTML (they popped in after hydration). This route parses each snippet
  * with Comark + Shiki at prerender time and returns the parsed trees, keyed by the
- * snippet's trimmed markdown. The page renders them with <ComarkRenderer>, so the
+ * snippet's trimmed markdown. The page renders them with <MarkdownDocument>, so the
  * browser never loads Shiki.
  *
  * URL: /api/highlighted-code/<page>.json, where <page> is `index` for `/` or the
@@ -78,7 +78,7 @@ export default defineEventHandler(async (event) => {
   const trees: Record<string, unknown> = {}
   for (const markdown of snippets) {
     const plugin = markdown.includes('[!code') ? notationPlugin : plainPlugin
-    trees[markdown] = await parse(markdown, { plugins: [plugin] })
+    trees[markdown] = await parseMarkdown(markdown, { plugins: [plugin] })
   }
   return trees
 })

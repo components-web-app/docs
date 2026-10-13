@@ -689,7 +689,7 @@ ui: {
 
 ### Comark (replaces @nuxtjs/mdc)
 - Module: `@comark/nuxt` (installed, added to nuxt.config.ts modules)
-- Component: `<Comark>{{ content }}</Comark>` — content goes in the DEFAULT SLOT not a prop
+- Components (0.7+): `<Markdown :value="text" />` renders a markdown string; `<MarkdownDocument :value="tree" />` renders a tree parsed on the server with `parseMarkdown` from `@comark/nuxt/parse`. The tree type is `MarkdownDocument` from `comark`. **0.7 renamed these:** they were `<Comark>` (default slot), `<ComarkRenderer :tree>`, `parse` and `ComarkTree`.
 - HTML content (with `<br>`, `<span>` etc.): use `v-html` instead of Comark
 - Syntax highlighting: import `highlight` from `@comark/nuxt/plugins/highlight`, pass via `:plugins="[highlightPlugin]"`
 - Theme config: `highlight({ themes: { light: 'github-light', dark: 'github-dark' }, languages: [...] })`

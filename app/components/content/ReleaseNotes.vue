@@ -95,7 +95,10 @@ function formatDate(iso: string) {
         >{{ formatDate(release.publishedAt) }}</time>
       </header>
       <div class="prose prose-sm prose-primary dark:prose-invert max-w-none break-words">
-        <Comark v-if="release.body">{{ release.body }}</Comark>
+        <Markdown
+          v-if="release.body"
+          :value="release.body"
+        />
         <p v-else>
           No notes for this release.
         </p>

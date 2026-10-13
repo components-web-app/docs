@@ -1,4 +1,4 @@
-import type { ComarkTree } from 'comark'
+import type { MarkdownDocument } from 'comark'
 
 /**
  * Fetches the server-highlighted code snippets for a marketing page
@@ -10,7 +10,7 @@ import type { ComarkTree } from 'comark'
  */
 export function useHighlightedCode(page: 'index' | 'about') {
   const key = `highlighted-code-${page}`
-  return useFetch<Record<string, ComarkTree>>(`/api/highlighted-code/${page}.json`, {
+  return useFetch<Record<string, MarkdownDocument>>(`/api/highlighted-code/${page}.json`, {
     key,
     default: () => ({}),
     getCachedData: (cacheKey, nuxtApp) => nuxtApp.payload.data[cacheKey] ?? nuxtApp.static.data[cacheKey]

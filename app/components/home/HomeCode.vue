@@ -65,7 +65,7 @@ const frontEndTabsUI = {
               <div
                 class="font-semibold"
               >
-                <Comark>{{ item.key === 'back-end' ? page?.code?.backEnd?.description : selectedFrontEnd?.description }}</Comark>
+                <Markdown :value="item.key === 'back-end' ? page?.code?.backEnd?.description : selectedFrontEnd?.description" />
                 <div class="text-primary opacity-60 flex justify-center items-center space-x-6 mt-10">
                   <template v-if="item.key === 'back-end'">
                     <div>
