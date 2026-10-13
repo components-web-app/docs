@@ -14,7 +14,9 @@ type Contributors = {
   [username: string]: Contributor
 }
 
-export default cachedEventHandler(async () => {
+// Prerendered once per build (nuxt.config.ts), so there's no runtime cache. A cachedEventHandler served a stale
+// fallback from Vercel's restored build cache while the real fetch ran in the background, too late to be written.
+export default defineEventHandler(async () => {
   const allStats: {
     contributors: Contributors
     stargazers: number
@@ -86,13 +88,13 @@ export default cachedEventHandler(async () => {
         allStats.contributors[username] = seeded ? { ...contributor, contributions: contributor.contributions + seeded.contributions } : contributor
       }
       allStats.stargazers = fetched.stargazers
+      console.info(`[stats] GitHub stats fetched ${auth ? 'with' : 'without'} a token`)
       break
-    } catch {
+    } catch (error) {
       // GitHub unavailable, rate limited or the token is invalid: try the next option, else keep the seeded list
+      console.warn(`[stats] GitHub stats failed ${auth ? 'with' : 'without'} a token: ${(error as Error).message}`)
     }
   }
 
   return allStats
-}, {
-  maxAge: 60 * 60
 })
