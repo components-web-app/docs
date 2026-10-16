@@ -1,0 +1,40 @@
+# Glossary questions: "Which term does this describe?" for each `###` term in
+# content/2.core-concepts/9.glossary.md. The other options are terms from the same `##` group.
+# `pnpm quiz:generate` writes them to quiz/bank/generated/glossary.yml.
+#
+# Terms are keyed by their heading exactly as written, backticks included. A term not listed here
+# uses `defaults`. Set `exclude: true` to leave a term out, and say why in a comment.
+
+defaults: { level: beginner, area: core-concepts, tags: [architecture] }
+
+terms:
+  Layout: { tags: [layouts-and-pages] }
+  Page: { tags: [layouts-and-pages] }
+  # Both share a family with the hand-written core.pages.page-template-vs-template-page, which tests the
+  # same pair, so a quiz never shows two of them.
+  Page template: { tags: [layouts-and-pages], family: page-template-vs-template-page }
+  Template page: { level: intermediate, tags: [dynamic-pages], family: page-template-vs-template-page }
+  Page data: { tags: [dynamic-pages] }
+  Route: { tags: [routes] }
+  Component: { tags: [components] }
+  Component group: { tags: [components] }
+  Component position: { tags: [data-model] }
+  Dynamic position: { level: intermediate, tags: [dynamic-pages] }
+  '`uiComponent`': { level: intermediate, tags: [layouts-and-pages] }
+  # Left out: each definition names its own answer ("a group still attached…", "a record that nothing
+  # uses"), so the question tests reading, not CWA.
+  Stranded component group: { level: intermediate, tags: [admin], exclude: true }
+  Orphan: { level: intermediate, tags: [admin], exclude: true }
+  IRI: { tags: [data-model] }
+  Manifest: { level: intermediate, tags: [routes] }
+  Draft and published: { tags: [draft-and-publish] }
+  Edit mode: { tags: [admin] }
+  Layer: { level: intermediate, area: nuxt-module, tags: [module-setup] }
+  Scaffold: { level: intermediate, area: api, tags: [fixtures] }
+  Souin: { level: advanced, area: deployment, tags: [page-caching] }
+  Cache tag: { level: advanced, area: api, tags: [http-caching] }
+  # A cache tag itself, so as an option it is a second right answer to "Cache tag".
+  '`cwa-html`': { exclude: true }
+  Purge: { level: intermediate, tags: [http-caching] }
+  Mercure: { level: intermediate, tags: [real-time] }
+  Track: { level: advanced, area: deployment, tags: [deployment] }

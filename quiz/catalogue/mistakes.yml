@@ -1,0 +1,245 @@
+# Realistic mistakes for spot-the-mistake questions. Validated by MistakeCatalogueSchema (quiz/schema.ts).
+# `pnpm quiz:generate` looks for docs code blocks where `match` hits exactly one line, applies `replace`
+# to that line, and writes a question to quiz/bank/generated/spot-the-mistake.yml.
+#
+# Rules for an entry:
+# - It must be wrong for a reason the docs state. Point `readMore` at the section that says so, if the
+#   block's own section doesn't.
+# - The changed line must be wrong in every block it can match. Narrow `match` or use `pages`, or list a
+#   block in `exclude` as `/page#anchor/block`, when a block would make the change valid or obvious.
+# - One entry is one fact (one family). Don't add a second entry that tests the same fact.
+# - `replace` is a JavaScript replacement string: `$1` is a capture group, `$$` is a literal `$`.
+
+mistakes:
+  - id: builder-get-entity
+    status: live
+    title: A generic getEntity() on a fixture builder
+    level: intermediate
+    area: api
+    tags: [fixtures]
+    langs: [php]
+    match: '->getPage\(\)'
+    replace: '->getEntity()'
+    prompt: One line in this fixture code is wrong. Click it.
+    explanation: >-
+      The builders have no generic `getEntity()`. Each one has its own getter: `getPage()`, `getPageData()`,
+      `getLayout()` and `getComponent()`.
+    readMore: { page: /api/data-fixtures/seeding-content, anchor: getting-the-iri-of-a-persisted-entity }
+    limit: 4
+
+  - id: is-editing-value
+    status: live
+    title: .value on $cwa.admin.isEditing
+    level: intermediate
+    area: nuxt-module
+    tags: [cwa-api, admin]
+    langs: [vue, ts]
+    match: '\$cwa\.admin\.isEditing(?![\w.])'
+    replace: '$$cwa.admin.isEditing.value'
+    explanation: >-
+      `$cwa.admin.isEditing` is a plain boolean on a reactive object, not a ref. Reading `.value` on it
+      gives `undefined`, so the check never sees edit mode.
+    readMore: { page: /nuxt-module/cwa-layer/admin-panel, anchor: edit-mode }
+    limit: 4
+
+  - id: signed-in-value
+    status: live
+    title: signedIn read without .value
+    level: intermediate
+    area: nuxt-module
+    tags: [auth, cwa-api]
+    langs: [vue, ts]
+    match: 'auth\.signedIn\.value'
+    replace: 'auth.signedIn'
+    # These blocks list the API with a comment per line, so the change reads as documentation.
+    exclude:
+      - /nuxt-module/module-setup#what-you-get/0
+      - /nuxt-module/authentication#reading-auth-state/0
+    explanation: >-
+      `signedIn` is a `ComputedRef<boolean>`, and it isn't unwrapped inside `$cwa` either. Without `.value`
+      the code tests the ref object, which is always truthy, so signed-out visitors get the signed-in branch.
+    readMore: { page: /nuxt-module/cwa-api/auth, anchor: state }
+    limit: 4
+
+  - id: script-dollar-cwa
+    status: live
+    title: $cwa used in <script setup>
+    level: beginner
+    area: nuxt-module
+    tags: [cwa-api]
+    langs: [vue, ts]
+    match: 'const cwa = useCwa\(\)'
+    replace: 'const cwa = $$cwa'
+    prompt: One line in this code is wrong. It runs in `<script setup>` or a composable. Click it.
+    # This block uses `resource` and `path` that it never defines, which reads as a second mistake.
+    exclude:
+      - /nuxt-module/component-helpers/real-time-updates#advanced-acting-on-other-updates/0
+    explanation: >-
+      `$cwa` is a global only inside templates. In `<script setup>` and composables, call `useCwa()` to
+      get the same object.
+    readMore: { page: /core-concepts/dynamic-pages, anchor: reading-pagedata-in-your-vue-component }
+    limit: 3
+
+  - id: cwa-disabled-false
+    status: live
+    title: A page of your own with CWA route fetching left on
+    level: intermediate
+    area: nuxt-module
+    tags: [module-setup]
+    langs: [vue, ts]
+    match: 'cwa: \{ disabled: true \}'
+    replace: 'cwa: { disabled: false }'
+    explanation: >-
+      Every page of your own that isn't CWA content must set `cwa: { disabled: true }`. Otherwise the
+      route middleware asks the API for a route at the page's path, finds none, and shows the error page.
+    readMore: { page: /nuxt-module/module-setup, anchor: disable-cwa-route-fetching }
+    limit: 5
+
+  - id: subpath-import
+    status: live
+    title: Importing from a @cwa/nuxt subpath instead of #cwa
+    level: intermediate
+    area: nuxt-module
+    tags: [module-setup, composables]
+    langs: [vue, ts]
+    match: "from '#cwa/"
+    replace: "from '@cwa/nuxt/runtime/"
+    explanation: >-
+      Import the module's types and helpers through the `#cwa` alias. The `@cwa/nuxt` package only exports
+      its root entry, so a `@cwa/nuxt/...` subpath doesn't resolve.
+    readMore: { page: /nuxt-module/module-setup, anchor: typescript-support }
+    limit: 6
+
+  # Retired: module commit 698e89fe (2026-07-17) trims a trailing slash, so it isn't a mistake.
+  - id: api-url-trailing-slash
+    status: retired
+    title: A trailing slash on the API URL
+    level: intermediate
+    area: nuxt-module
+    tags: [module-setup]
+    langs: [ts]
+    match: "(apiUrlBrowser: '[^']*[^/'])'"
+    replace: "$1/'"
+    explanation: >-
+      Write the API URL without a trailing slash. A URL such as `https://api.example.com/` is mishandled
+      and breaks resource resolution.
+    readMore: { page: /nuxt-module/configuration/nuxt-config, anchor: runtime-config }
+    limit: 3
+
+  - id: static-layout-nuxt-name
+    status: live
+    title: A Nuxt layout name in staticLayout
+    level: advanced
+    area: nuxt-module
+    tags: [module-setup, layouts-and-pages]
+    langs: [vue, ts]
+    match: "staticLayout: 'CwaLayoutPrimary'"
+    replace: "staticLayout: 'primary'"
+    explanation: >-
+      `staticLayout` takes a registered component name, such as `CwaLayoutPrimary` for
+      `app/app/cwa/layouts/primary.vue`. It renders inside `cwa-root-layout`, so it isn't a Nuxt layout name.
+    readMore: { page: /nuxt-module/module-setup, anchor: use-a-static-layout-component }
+    limit: 2
+
+  - id: layout-builder-prefix
+    status: live
+    title: The full component name passed to the fixture layout() builder
+    level: intermediate
+    area: api
+    tags: [fixtures, layouts-and-pages]
+    langs: [php]
+    match: "->layout\\('(\\w+)', '((?!CwaLayout)\\w+)'\\)"
+    replace: "->layout('$1', 'CwaLayout$2')"
+    prompt: One line in this fixture code is wrong. Click it.
+    explanation: >-
+      `layout()` takes the suffix of the layout's component name and adds `CwaLayout` itself. Passing the
+      full name doubles the prefix, such as `CwaLayoutCwaLayoutPrimary`, which no Vue file registers.
+    readMore: { page: /api/data-fixtures/builder-reference, anchor: layout }
+    limit: 4
+
+  - id: page-title-property
+    status: live
+    title: Assigning a page data title directly
+    level: intermediate
+    area: api
+    tags: [fixtures, dynamic-pages]
+    langs: [php]
+    # Only a whole statement: a chained setTitle() would leave a broken chain on the next line.
+    match: "\\$(\\w+)->setTitle\\('([^']*)'\\);"
+    replace: "$$$1->title = '$2';"
+    prompt: One line in this fixture code is wrong. Click it.
+    explanation: >-
+      `title` and `metaDescription` are `protected` on `AbstractPage` and `AbstractPageData`. Set them with
+      `setTitle()` and `setMetaDescription()`: assigning the property is a fatal error.
+    readMore: { page: /api/data-fixtures/builder-reference, anchor: pagebuilder-from-cwa-page }
+    limit: 3
+
+  - id: user-factory-overwrite
+    status: live
+    title: Seeding a user without overwrite
+    level: advanced
+    area: api
+    tags: [fixtures, security]
+    langs: [php]
+    match: 'overwrite: true,'
+    replace: 'overwrite: false,'
+    prompt: One line in this fixture breaks the second time the fixtures load with `--append`. Click it.
+    explanation: >-
+      `UserFactory::create()` only looks up an existing user when `overwrite` is `true`. With `false`, a
+      second `--append` run builds a duplicate user and fails the `#[UniqueEntity]` check. A plain load
+      empties the database first, so it doesn't notice.
+    readMore: { page: /api/data-fixtures/getting-started, anchor: seeding-users }
+    limit: 1
+
+  - id: layout-slot
+    status: live
+    title: <NuxtPage /> in place of the layout's slot
+    level: beginner
+    area: nuxt-module
+    tags: [layouts-and-pages]
+    langs: [vue]
+    match: '^(\s*)<slot />'
+    replace: '$1<NuxtPage />'
+    # Shared with the hand-written pick-the-line question nuxt.layout.slot.
+    family: mistake:layout-slot
+    pages: [/core-concepts/layouts-and-pages, /guides/your-first-layout, /nuxt-module/building-your-ui/creating-layouts]
+    prompt: One line in this CWA layout is wrong. Click it.
+    explanation: >-
+      A CWA layout is a component, and the module passes the page into its default slot. `<slot />` marks
+      where the page renders. With `<NuxtPage />` there, the page passed in is never shown.
+    readMore: { page: /core-concepts/layouts-and-pages, anchor: layouts }
+    limit: 4
+
+  - id: component-without-props
+    status: live
+    title: useCwaComponent() called without the props
+    level: beginner
+    area: nuxt-module
+    tags: [components, composables]
+    langs: [vue, ts]
+    match: 'useCwaComponent\(props\)'
+    replace: 'useCwaComponent()'
+    prompt: One line in this component is wrong. Click it.
+    explanation: >-
+      `useCwaComponent()` needs the component's props. The module passes each component an `iri` prop, and
+      the composable reads it to find the resource. Called with nothing, it has no resource to load.
+    readMore: { page: /nuxt-module/composables/component/use-cwa-component, anchor: return-values }
+    limit: 6
+
+  - id: publish-group-name
+    status: live
+    title: A bare `published` validation group
+    level: beginner
+    area: api
+    tags: [draft-and-publish]
+    langs: [php]
+    match: "groups: \\['(\\w+):published'\\]"
+    replace: "groups: ['published']"
+    # Shared with the pick-the-line entry publish-validation-group: the same fact.
+    family: target:publish-validation-group
+    prompt: One line in this component class is wrong. Click it.
+    explanation: >-
+      The publish-time group is named after the class: `<ClassName>:published`, such as `Title:published`.
+      A constraint in a bare `published` group never runs, so the field can be published empty.
+    readMore: { page: /core-concepts/draft-and-publish, anchor: validation-groups }
+    limit: 4

@@ -1,0 +1,78 @@
+# Quiz settings. Validated by QuizConfigSchema in quiz/schema.ts.
+# Pass marks are shown in v1. A future exam's placement uses them.
+
+quizLength: 10
+
+# The start page offers a topic only when it has this many families (distinct facts) at the level.
+minTopicFamilies: 8
+
+levels:
+  - id: beginner
+    title: Beginner
+    blurb: What CWA is. Layouts, pages, components, draft and publish.
+    passMark: 0.7
+    ranks:
+      - { min: 0, title: Fresh install }
+      - { min: 0.5, title: First layout }
+      - { min: 0.7, title: Page builder }
+      - { min: 0.9, title: Component wrangler }
+  - id: intermediate
+    title: Intermediate
+    blurb: Building with the module and the bundle. Composables, fixtures, dynamic pages, the admin.
+    passMark: 0.7
+    ranks:
+      - { min: 0, title: Reading the docs }
+      - { min: 0.5, title: Fixture loader }
+      - { min: 0.7, title: Site builder }
+      - { min: 0.9, title: Admin power user }
+  - id: advanced
+    title: Advanced
+    blurb: Caching, deployment, security, real-time updates and uploads.
+    passMark: 0.7
+    ranks:
+      - { min: 0, title: Cache miss }
+      - { min: 0.5, title: Cache warm }
+      - { min: 0.7, title: Edge cached }
+      - { min: 0.9, title: Production ready }
+  - id: expert
+    title: Expert
+    blurb: How it works inside. Questions come from the source of the bundle, the Nuxt module and the template, and some cover behaviour the docs don't describe.
+    # Shorter while the expert bank is small, so two quizzes share fewer questions. Back to 10 at 40+ families.
+    quizLength: 8
+    passMark: 0.6
+    ranks:
+      - { min: 0, title: Curious reader }
+      - { min: 0.5, title: Source diver }
+      - { min: 0.6, title: Core contributor material }
+      - { min: 0.9, title: "You wrote it, didn't you?" }
+
+areas:
+  - { id: core-concepts, label: Core concepts }
+  - { id: api, label: API }
+  - { id: nuxt-module, label: Nuxt module }
+  - { id: deployment, label: Deployment }
+
+# Tags drive "read next" on the result screen. Add one here before using it on a question.
+tags:
+  - { id: architecture, label: How CWA fits together, read: { page: /core-concepts/architecture } }
+  - { id: data-model, label: The data model, read: { page: /core-concepts/the-data-model } }
+  - { id: layouts-and-pages, label: Layouts and pages, read: { page: /core-concepts/layouts-and-pages } }
+  - { id: components, label: Components, read: { page: /core-concepts/components } }
+  - { id: draft-and-publish, label: Draft and publish, read: { page: /core-concepts/draft-and-publish } }
+  - { id: dynamic-pages, label: Dynamic pages, read: { page: /core-concepts/dynamic-pages } }
+  - { id: admin, label: The admin panel, read: { page: /core-concepts/admin-panel } }
+  - { id: module-setup, label: Module setup, read: { page: /nuxt-module/module-setup } }
+  - { id: composables, label: Composables, read: { page: /nuxt-module/composables/overview } }
+  - { id: cwa-api, label: The $cwa API, read: { page: /nuxt-module/cwa-api/overview } }
+  - { id: auth, label: Authentication, read: { page: /nuxt-module/authentication } }
+  - { id: fixtures, label: Data fixtures, read: { page: /api/data-fixtures/getting-started } }
+  - { id: routes, label: Routes and redirects, read: { page: /api/routes } }
+  - { id: security, label: Users and access, read: { page: /api/users/access-control } }
+  - { id: uploads, label: Uploads, read: { page: /api/components/annotations/uploadable } }
+  - { id: real-time, label: Real-time updates, read: { page: /api/real-time } }
+  - { id: http-caching, label: API caching, read: { page: /api/http-caching } }
+  - { id: page-caching, label: Page caching, read: { page: /nuxt-module/page-caching } }
+  - { id: deployment, label: Deploying, read: { page: /deployment/ci-cd } }
+  - { id: kubernetes, label: Kubernetes, read: { page: /deployment/kubernetes } }
+  - { id: cloudflare, label: Cloudflare, read: { page: /deployment/cloudflare } }
+  - { id: internals, label: Inside the module, read: { page: /core-concepts/architecture } }

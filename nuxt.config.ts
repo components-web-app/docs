@@ -1,3 +1,5 @@
+import { fileURLToPath } from 'node:url'
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: [
@@ -92,6 +94,10 @@ export default defineNuxtConfig({
   compatibilityDate: '2024-07-11',
 
   nitro: {
+    // The quiz bank (quiz/config.yml and quiz/bank/**) for the /api/quiz/* routes (server/utils/quiz-bank.ts)
+    serverAssets: [
+      { baseName: 'quiz', dir: fileURLToPath(new URL('./quiz', import.meta.url)), pattern: '**/*.yml' }
+    ],
     prerender: {
       routes: [
         '/',
@@ -103,7 +109,15 @@ export default defineNuxtConfig({
         '/api/releases.json',
         // Server-highlighted snippets for the marketing pages (useHighlightedCode)
         '/api/highlighted-code/index.json',
-        '/api/highlighted-code/about.json'
+        '/api/highlighted-code/about.json',
+        // The quiz: two page shells, and its data, which no page links to
+        '/quiz',
+        '/quiz/play',
+        '/api/quiz/config.json',
+        ...['beginner', 'intermediate', 'advanced', 'expert'].flatMap(level => [
+          `/api/quiz/questions/${level}.json`,
+          `/api/quiz/keys/${level}.json`
+        ])
       ],
       crawlLinks: true
     }

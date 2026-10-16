@@ -1,0 +1,165 @@
+# Hand-written beginner questions about the API bundle.
+# Format: quiz/README.md. Run `pnpm quiz:stamp <id>` to fill in or refresh the hashes.
+
+questions:
+  - id: api.publishable.never-published
+    version: 1
+    status: live
+    level: beginner
+    area: api
+    tags: [draft-and-publish]
+    type: multiple-choice
+    difficulty: 2
+    prompt: An anonymous visitor requests a publishable component that has never been published. What do they get?
+    options:
+      - { id: a, text: The draft version }
+      - { id: b, text: An empty `200` response }
+      - { id: c, text: A `404` }
+      - { id: d, text: A redirect to `/login` }
+    answer:
+      correct: c
+      explanation: >-
+        Anonymous visitors only ever get the published version, and a component with none is a 404 for them.
+        Callers who may publish get the draft.
+    sources:
+      - { kind: docs, page: /api/components/annotations/publishable, anchor: how-it-works-at-the-api-level, sectionHash: 'sha256:68cbf9ebf349a3cd' }
+    author: llm-draft
+
+  - id: api.page-data.base-class
+    version: 1
+    status: live
+    level: beginner
+    area: api
+    tags: [dynamic-pages, data-model]
+    type: multiple-choice
+    difficulty: 1
+    prompt: A blog article type is a page data entity. Which class does it extend?
+    options:
+      - { id: a, text: '`AbstractPageData`' }
+      - { id: b, text: '`AbstractComponent`' }
+      - { id: c, text: '`AbstractLayout`' }
+      - { id: d, text: '`AbstractRoute`' }
+    answer:
+      correct: a
+      explanation: >-
+        Page data extends `AbstractPageData`, which already provides `title` and `metaDescription` for SEO.
+        You add your own fields, such as a component a template region binds to.
+    sources:
+      - { kind: docs, page: /core-concepts/dynamic-pages, anchor: creating-pagedata-in-php, sectionHash: 'sha256:e68334a429ee630b' }
+    author: llm-draft
+
+  - id: api.components.endpoint-prefix
+    version: 1
+    status: live
+    level: beginner
+    area: api
+    tags: [components]
+    type: multiple-choice
+    difficulty: 1
+    prompt: You add a `Title` component entity. Where does the API serve its records?
+    options:
+      - { id: a, text: '`/titles`, from the class name alone' }
+      - { id: b, text: '`/component/titles`' }
+      - { id: c, text: '`/_/components/title`' }
+      - { id: d, text: '`/api/title`, set in the entity' }
+    answer:
+      correct: b
+      explanation: >-
+        The bundle puts every component's endpoints under `/component/`, so `Title` is at `/component/titles`.
+        You don't set a route prefix yourself.
+    sources:
+      - { kind: docs, page: /api/components/creating-components, anchor: url-prefix-convention, sectionHash: 'sha256:672dca2173f72b0d' }
+    author: llm-draft
+
+  - id: api.components.migrations
+    version: 1
+    status: live
+    level: beginner
+    area: api
+    tags: [components]
+    type: multiple-choice
+    difficulty: 2
+    prompt: You've written a new component entity. What must you run before the API can store one?
+    options:
+      - { id: a, text: 'Nothing: the bundle creates its table when the API boots' }
+      - { id: b, text: '`cache:clear`, so the API reads the new class' }
+      - { id: c, text: '`doctrine:migrations:diff`, then `doctrine:migrations:migrate`' }
+      - { id: d, text: '`make:api-component` again, to register the class' }
+    answer:
+      correct: c
+      explanation: >-
+        The diff writes a migration that creates the component's table, and `migrate` runs it. Review it first,
+        and delete its `down()`: CWA's migrations only go up.
+    sources:
+      - { kind: docs, page: /api/components/creating-components, anchor: step-2-run-migrations, sectionHash: 'sha256:f2d4689b46fc8902' }
+    author: llm-draft
+
+  - id: api.components.inherited-properties
+    version: 1
+    status: live
+    level: beginner
+    area: api
+    tags: [components, data-model]
+    type: multiple-choice
+    difficulty: 2
+    prompt: Which property does every component already get from `AbstractComponent`, so you shouldn't add it yourself?
+    options:
+      - { id: a, text: '`title`' }
+      - { id: b, text: '`publishedAt`' }
+      - { id: c, text: '`htmlContent`' }
+      - { id: d, text: '`uiClassNames`' }
+    answer:
+      correct: d
+      explanation: >-
+        `AbstractComponent` gives every component `id`, `uiComponent`, `uiClassNames`, `componentGroups` and
+        `componentPositions`. Fields such as a title are yours to add, and `publishedAt` comes from the
+        publishable trait.
+    sources:
+      - { kind: docs, page: /api/components/creating-components, anchor: what-abstractcomponent-gives-you, sectionHash: 'sha256:81118f548996b5fb' }
+    author: llm-draft
+
+  - id: api.real-time.draft-updates
+    version: 1
+    status: live
+    level: beginner
+    area: api
+    tags: [real-time, draft-and-publish]
+    type: multiple-choice
+    difficulty: 2
+    prompt: An editor saves a draft of a publishable component. Whose open browsers get the change in real time?
+    options:
+      - { id: a, text: 'Everyone who has the page open, visitors too' }
+      - { id: b, text: 'Signed-in users who may see drafts' }
+      - { id: c, text: 'Nobody: drafts are never sent in real time' }
+      - { id: d, text: 'Only the browser of the editor who saved it' }
+    answer:
+      correct: b
+      explanation: >-
+        The bundle publishes a draft to Mercure as a private update, so only signed-in users who may see drafts
+        receive it. Visitors get the change once it is published.
+    sources:
+      - { kind: docs, page: /api/components/annotations/publishable, anchor: interaction-with-mercure, sectionHash: 'sha256:e92e7c91a3bbe2a0' }
+    author: llm-draft
+
+  - id: api.publishable.what-it-adds
+    version: 1
+    status: live
+    level: beginner
+    area: api
+    tags: [draft-and-publish]
+    type: multiple-choice
+    difficulty: 1
+    prompt: What does adding `#[Silverback\Publishable]` to a component class give it?
+    options:
+      - { id: a, text: 'A route of its own, so it has a URL' }
+      - { id: b, text: 'Real-time updates to every open browser' }
+      - { id: c, text: 'A draft and a published version, and a publish step' }
+      - { id: d, text: 'File uploads, with image variants made for each one it stores' }
+    answer:
+      correct: c
+      explanation: >-
+        A publishable component has a draft that editors change and a published version that visitors see.
+        Publishing copies the draft over the live version. Real-time updates come from `mercure: true`.
+    sources:
+      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:57d5bc6ed14a51f7' }
+    author: llm-draft

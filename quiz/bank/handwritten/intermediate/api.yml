@@ -1,0 +1,238 @@
+# Hand-written intermediate questions about the API bundle.
+# Format: quiz/README.md. Run `pnpm quiz:stamp <id>` to fill in or refresh the hashes.
+
+questions:
+  - id: api.publishable.publish-now
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [draft-and-publish]
+    type: multiple-choice
+    difficulty: 3
+    prompt: 'Why does the admin publish by sending `"publishedAt": "now"` rather than the current time?'
+    options:
+      - { id: a, text: 'It skips validation, so an incomplete draft can be published at once' }
+      - { id: b, text: It publishes the draft and every component nested in it }
+      - { id: c, text: It tells Mercure to push the change before it is saved }
+      - { id: d, text: 'The API uses its own clock, so a fast client clock can''t delay it' }
+    answer:
+      correct: d
+      explanation: >-
+        The server replaces `now` with its own time. A client's current time can still be in the future when it
+        arrives, which would leave the resource scheduled instead of published.
+    sources:
+      - { kind: docs, page: /api/components/annotations/publishable, anchor: publishing-now, sectionHash: 'sha256:3648cbb8f27a8655' }
+    author: llm-draft
+
+  - id: api.publishable.take-offline
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [draft-and-publish]
+    type: multiple-choice
+    difficulty: 3
+    prompt: How do you take a published component offline through the API?
+    options:
+      - { id: a, text: '`PATCH` it with `"publishedAt": null`' }
+      - { id: b, text: '`DELETE` it with `?published=true`' }
+      - { id: c, text: '`PATCH` it with a past `publishedAt`' }
+      - { id: d, text: '`PUT` it with `"published": false`' }
+    answer:
+      correct: b
+      explanation: >-
+        There is no unpublish switch. `DELETE ?published=true` removes the published version and keeps any
+        draft. A `PATCH` to a live resource only creates or updates a draft.
+      optionNotes:
+        a: That creates or updates a draft and leaves the published version live.
+        c: A past date on a live resource is ignored.
+    sources:
+      - { kind: docs, page: /api/components/annotations/publishable, anchor: publishing-a-resource, sectionHash: 'sha256:b5f4197d5ee863fa' }
+    author: llm-draft
+
+  - id: api.routes.redirect-storage
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [routes]
+    type: multiple-choice
+    difficulty: 2
+    prompt: How is a redirect stored in the API?
+    options:
+      - { id: a, text: As a `Route` whose `redirect` points at another route }
+      - { id: b, text: As a rule in the template's Caddyfile }
+      - { id: c, text: As a `redirectPath` column on the page }
+      - { id: d, text: 'As a `Redirect` entity, with `from` and `to` path fields' }
+    answer:
+      correct: a
+      explanation: >-
+        There is no separate redirect entity. A redirect is a `Route` whose `redirect` property points at
+        another `Route`. The API resolves the chain and exposes the final destination as `redirectPath`.
+    sources:
+      - { kind: docs, page: /api/routes, anchor: redirects, sectionHash: 'sha256:2d0b3542c184189f' }
+    author: llm-draft
+
+  - id: api.routes.redirect-status
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [routes]
+    type: multiple-choice
+    difficulty: 3
+    prompt: A visitor opens a route that redirects. Which status does the module's route middleware send?
+    options:
+      - { id: a, text: '`301`' }
+      - { id: b, text: '`302`' }
+      - { id: c, text: '`308`' }
+      - { id: d, text: '`307`' }
+    answer:
+      correct: c
+      explanation: >-
+        The middleware issues a `308` to the route's `redirectPath`. It holds back while an admin is in edit
+        mode, so redirecting routes stay navigable.
+    sources:
+      - { kind: docs, page: /api/routes, anchor: redirects, sectionHash: 'sha256:2d0b3542c184189f' }
+    author: llm-draft
+
+  - id: api.routes.live-at-null
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [routes]
+    type: multiple-choice
+    difficulty: 2
+    prompt: A route's `liveAt` is `null`. What do anonymous visitors get at its path?
+    options:
+      - { id: a, text: 'A `404`, and the path stays reserved' }
+      - { id: b, text: 'The page''s last published version, read-only' }
+      - { id: c, text: A redirect to the parent route }
+      - { id: d, text: A `401` until they sign in }
+    answer:
+      correct: a
+      explanation: >-
+        `null` means not live: visitors get a 404, while the route keeps its path, its redirects and its
+        children. Admins can still preview and edit the page.
+    sources:
+      - { kind: docs, page: /api/routes, anchor: scheduling-and-taking-routes-offline, sectionHash: 'sha256:5545c6ea561bc03e' }
+    author: llm-draft
+
+  - id: api.routes.live-at-inheritance
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [routes]
+    type: multiple-choice
+    difficulty: 4
+    prompt: A parent route is scheduled for 1 November. Its child route's own `liveAt` has already passed. When does the child go live?
+    options:
+      - { id: a, text: 'Now, from its own date' }
+      - { id: b, text: 'On 1 November, with its parent' }
+      - { id: c, text: Only once its own date is changed }
+      - { id: d, text: When an editor publishes the parent }
+    answer:
+      correct: b
+      explanation: >-
+        The effective date is the latest of the route's own `liveAt` and those of its routed ancestors, so a
+        scheduled parent holds back its whole subtree.
+    sources:
+      - { kind: docs, page: /api/routes, anchor: inheritance, sectionHash: 'sha256:b6cba5ba8038fe72' }
+    author: llm-draft
+
+  - id: api.routes.cascade-child-paths
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [routes]
+    type: multiple-choice
+    difficulty: 3
+    prompt: 'An admin renames `/events` to `/happenings` with `cascadeChildPaths: true`. What happens to `/events/2024`?'
+    options:
+      - { id: a, text: 'It becomes `/happenings/2024`, and the old path redirects' }
+      - { id: b, text: It is deleted along with the page it publishes }
+      - { id: c, text: 'It becomes `/happenings/2024`, and the old path is now a 404' }
+      - { id: d, text: 'It keeps `/events/2024`, and nothing redirects to it' }
+    answer:
+      correct: a
+      explanation: >-
+        `cascadeChildPaths` updates the whole subtree and creates a redirect from every old path. Without it,
+        only the one route changes and the children keep their old paths.
+    sources:
+      - { kind: docs, page: /api/routes, anchor: cascading-route-changes, sectionHash: 'sha256:93e0e69507b6bbb7' }
+    author: llm-draft
+
+  - id: api.routes.page-data-without-route
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [routes, dynamic-pages]
+    type: multiple-choice
+    difficulty: 3
+    prompt: You create a page data record with `POST` through the REST API. What route does it get?
+    options:
+      - { id: a, text: None until you create or generate one }
+      - { id: b, text: 'One made from its title''s slug, under the root' }
+      - { id: c, text: One under its template page's path }
+      - { id: d, text: A temporary `/unnamed-page` route }
+    answer:
+      correct: a
+      explanation: >-
+        Creating page data through the API or the admin never creates a route. Create one with `POST /_/routes`,
+        or generate it from the title with `POST /_/routes/generate`.
+    sources:
+      - { kind: docs, page: /api/routes, anchor: route-generation, sectionHash: 'sha256:d75613602e69bada' }
+    author: llm-draft
+
+  - id: api.fixtures.after-routes
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [fixtures, routes]
+    type: multiple-choice
+    difficulty: 3
+    prompt: In a scaffold, where do you set a navigation link's `route` to a page's route?
+    options:
+      - { id: a, text: 'Straight after `$cwa->page()`, with `getRoute()`' }
+      - { id: b, text: 'In an `afterRoutes()` callback, with `getRoute()`' }
+      - { id: c, text: 'In the scaffold''s constructor, before `build()`' }
+      - { id: d, text: 'After `load()` returns, in a second fixture class' }
+    answer:
+      correct: b
+      explanation: >-
+        `afterRoutes()` runs during `flush()`, once every route exists and before any position is created, so
+        `getRoute()` works inside it and the link is saved with its route.
+    sources:
+      - { kind: docs, page: /api/data-fixtures/builder-reference, anchor: afterroutes, sectionHash: 'sha256:1d375f6fc68386c3' }
+    author: llm-draft
+
+  - id: api.fixtures.page-group-allow
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [fixtures, components]
+    type: multiple-choice
+    difficulty: 4
+    prompt: On a page builder, how do you limit the `primary` group to `HtmlContent` components?
+    options:
+      - { id: a, text: "`->group('primary', [HtmlContent::class])`" }
+      - { id: b, text: "`->group('primary')->allow([HtmlContent::class])`" }
+      - { id: c, text: "`->group('primary', allow: [HtmlContent::class])`" }
+      - { id: d, text: "`->group('primary', only: HtmlContent::class)`" }
+    answer:
+      correct: c
+      explanation: >-
+        On `PageBuilder`, `allow` is the fourth argument of `group()`, so pass it by name. On `LayoutBuilder` and
+        `ComponentBuilder` it is the second.
+      optionNotes:
+        a: On a page builder the second argument is the `configure` closure.
+    sources:
+      - { kind: docs, page: /api/data-fixtures/builder-reference, anchor: pagebuilder-from-cwa-page, sectionHash: 'sha256:a93b39b9fc0a54e5' }
+    author: llm-draft

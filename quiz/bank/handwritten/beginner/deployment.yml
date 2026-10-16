@@ -1,0 +1,193 @@
+# Hand-written beginner questions on installing and running the template.
+# Format: quiz/README.md. Run `pnpm quiz:stamp <id>` to fill in or refresh the hashes.
+
+questions:
+  - id: deploy.install.vue-files-path
+    version: 1
+    status: live
+    level: beginner
+    area: deployment
+    tags: [architecture]
+    type: multiple-choice
+    difficulty: 2
+    prompt: From the root of a project made with `pnpm create cwa`, where do CWA's Vue files go?
+    options:
+      - { id: a, text: '`app/app/cwa/`' }
+      - { id: b, text: '`app/cwa/`' }
+      - { id: c, text: '`api/src/cwa/`' }
+      - { id: d, text: '`src/cwa/`' }
+    answer:
+      correct: a
+      explanation: >-
+        The Nuxt app is `app/`, and its source directory is `app/` too. Nuxt only looks in `app/app/cwa/`, so
+        a file at `app/cwa/` is never found.
+    sources:
+      - { kind: docs, page: /getting-started/installation, anchor: where-things-live, sectionHash: 'sha256:567f995785fc4015' }
+    author: llm-draft
+
+  - id: deploy.install.fixtures-append
+    version: 1
+    status: live
+    level: beginner
+    area: deployment
+    tags: [fixtures]
+    type: multiple-choice
+    difficulty: 2
+    family: fixtures-load-append
+    prompt: Why does the installation guide load the fixtures with `doctrine:fixtures:load --append`?
+    options:
+      - { id: a, text: It keeps existing data and creates what's missing }
+      - { id: b, text: It adds the admin pages to the Nuxt app }
+      - { id: c, text: It skips the admin account if one exists }
+      - { id: d, text: 'It loads the fixtures in parallel, so it''s faster' }
+    answer:
+      correct: a
+      explanation: >-
+        Without `--append`, `doctrine:fixtures:load` empties the database first. With it, the load is safe to
+        run again. It still resets the admin's password to `admin`.
+      optionNotes:
+        c: It creates the admin account, and resets its password each time it runs.
+    sources:
+      - { kind: docs, page: /getting-started/installation, anchor: _2-load-the-sample-content, sectionHash: 'sha256:176954d8459ea97b' }
+      - { kind: docs, page: /api/data-fixtures/getting-started, anchor: setup, sectionHash: 'sha256:5962ef29b3d24a08' }
+    author: llm-draft
+
+  - id: deploy.install.dev-server
+    version: 1
+    status: live
+    level: beginner
+    area: deployment
+    tags: [architecture]
+    type: multiple-choice
+    difficulty: 2
+    prompt: After `docker compose up -d`, how do you start the Nuxt dev server?
+    options:
+      - { id: a, text: 'Run `pnpm dev` on your own machine, in `app/`' }
+      - { id: b, text: Run `nuxt dev` in the `php` container }
+      - { id: c, text: 'You don''t: the `app` container runs it' }
+      - { id: d, text: Run `pnpm create cwa` with `--dev` }
+    answer:
+      correct: c
+      explanation: >-
+        The `app` container already runs the Nuxt dev server, and Caddy proxies it at `https://localhost`.
+        Running `pnpm dev` on your machine starts a second Nuxt that `https://localhost` never reaches.
+    sources:
+      - { kind: docs, page: /getting-started/installation, anchor: _3-open-the-site, sectionHash: 'sha256:25e00037eb801378' }
+    author: llm-draft
+
+  - id: deploy.install.admin-role
+    version: 1
+    status: live
+    level: beginner
+    area: deployment
+    tags: [security, admin]
+    type: multiple-choice
+    difficulty: 1
+    # Easy to guess from the name alone, so it is shown half as often.
+    exposure: { weight: 0.5 }
+    prompt: Which role does an account need to open the admin panel?
+    options:
+      - { id: a, text: '`ROLE_EDITOR`' }
+      - { id: b, text: '`ROLE_USER`' }
+      - { id: c, text: '`ROLE_CMS`' }
+      - { id: d, text: '`ROLE_ADMIN`' }
+    answer:
+      correct: d
+      explanation: >-
+        Editors sign in with `ROLE_ADMIN`. `silverback:api-components:user:create --admin` gives a new account
+        that role; without it you can't open the admin panel.
+    sources:
+      - { kind: docs, page: /getting-started/installation, anchor: _2-load-the-sample-content, sectionHash: 'sha256:176954d8459ea97b' }
+      - { kind: docs, page: /getting-started/key-ideas, anchor: editing, sectionHash: 'sha256:56ff4c5739a87e28' }
+    author: llm-draft
+
+  - id: deploy.install.admin-url
+    version: 1
+    status: live
+    level: beginner
+    area: deployment
+    tags: [admin]
+    type: multiple-choice
+    difficulty: 1
+    prompt: On a new local project, where is the CWA admin panel?
+    options:
+      - { id: a, text: '`https://localhost/admin`' }
+      - { id: b, text: '`https://localhost/_api/admin`' }
+      - { id: c, text: '`https://localhost/_cwa`' }
+      - { id: d, text: '`http://localhost:3001/cwa`' }
+    answer:
+      correct: c
+      explanation: >-
+        The admin panel is at `/_cwa` on the site's own host. The API is at `/_api`, and you sign in at `/login`.
+    sources:
+      - { kind: docs, page: /getting-started/installation, anchor: _3-open-the-site, sectionHash: 'sha256:25e00037eb801378' }
+    author: llm-draft
+
+  - id: deploy.install.certificate-warning
+    version: 1
+    status: live
+    level: beginner
+    area: deployment
+    tags: [architecture]
+    type: multiple-choice
+    difficulty: 2
+    prompt: Your browser warns about the certificate when you open `https://localhost`. Why?
+    options:
+      - { id: a, text: 'The stack makes its own self-signed certificate' }
+      - { id: b, text: 'Let''s Encrypt can''t issue one for `localhost`' }
+      - { id: c, text: 'The certificate is for `php.local`, not `localhost`' }
+      - { id: d, text: 'The `app` container serves plain HTTP on port 443' }
+    answer:
+      correct: a
+      explanation: >-
+        Caddy makes a self-signed certificate for local use. Accept the warning, or trust Caddy's local CA,
+        which is in the `caddy_data` volume.
+    sources:
+      - { kind: docs, page: /getting-started/installation, anchor: _3-open-the-site, sectionHash: 'sha256:25e00037eb801378' }
+    author: llm-draft
+
+  - id: deploy.install.empty-home
+    version: 1
+    status: live
+    level: beginner
+    area: deployment
+    tags: [routes]
+    type: multiple-choice
+    difficulty: 2
+    prompt: You installed without the sample content, and `https://localhost` shows an error page saying the page can't be found. What does that mean?
+    options:
+      - { id: a, text: 'The Nuxt dev server hasn''t started yet' }
+      - { id: b, text: 'No page has the route `/` yet' }
+      - { id: c, text: 'The database migrations failed to run' }
+      - { id: d, text: 'You need to sign in to see any page' }
+    answer:
+      correct: b
+      explanation: >-
+        It's expected. The database starts empty, so nothing answers at `/` until you build a page with that
+        route. Sign in and start with your first layout.
+    sources:
+      - { kind: docs, page: /getting-started/installation, anchor: _2-load-the-sample-content, sectionHash: 'sha256:176954d8459ea97b' }
+    author: llm-draft
+
+  - id: deploy.install.console-commands
+    version: 1
+    status: live
+    level: beginner
+    area: deployment
+    tags: [architecture]
+    type: multiple-choice
+    difficulty: 1
+    prompt: You need to run a Symfony console command in a template project. Where do you run it?
+    options:
+      - { id: a, text: 'In the `php` container, with `docker compose exec php bin/console …`' }
+      - { id: b, text: 'On your own machine, with `php bin/console …` in `api/`' }
+      - { id: c, text: 'In the `app` container, with `pnpm exec bin/console …`' }
+      - { id: d, text: 'In the `database` container, with `psql` and then `bin/console`' }
+    answer:
+      correct: a
+      explanation: >-
+        PHP and Composer run only inside Docker, so PHP commands go through the `php` container. Commands run
+        from the project root.
+    sources:
+      - { kind: docs, page: /getting-started/installation, anchor: where-things-live, sectionHash: 'sha256:567f995785fc4015' }
+    author: llm-draft

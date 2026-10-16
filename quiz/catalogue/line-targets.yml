@@ -1,0 +1,124 @@
+# Pick-the-line questions. Validated by LineTargetCatalogueSchema (quiz/schema.ts).
+# `pnpm quiz:generate` looks for docs code blocks with at least 4 non-blank lines where `match` hits
+# exactly one line, and asks the reader to pick that line.
+#
+# Rules for an entry:
+# - Only one line in the block may fairly be "the line that does X". If another line could be the answer
+#   too, narrow `match` or exclude the block (`/page#anchor/block`).
+# - One entry is one fact (one family). A mistake entry on the same fact would give this one away, so give
+#   it the same `family`.
+# - Ask about the effect, not the API's own words, so the reader needs to know CWA, not to match a keyword.
+
+targets:
+  - id: define-expose
+    status: live
+    level: beginner
+    area: nuxt-module
+    tags: [components]
+    langs: [vue]
+    match: '^\s*defineExpose\(exposeMeta\)'
+    # Admin tabs call defineExpose too, but for the manager tab, not to make the component selectable.
+    pages: [/core-concepts/components, /guides, /nuxt-module/composables/component, /nuxt-module/building-your-ui/creating-components]
+    exclude:
+      - /core-concepts/components#the-admin-tab/0
+      - /guides/your-first-component#the-admin-tab/0
+      - /nuxt-module/building-your-ui/creating-components#one-tab/0
+      - /nuxt-module/building-your-ui/creating-components#read-only-admin-tab/0
+      # Its comment says what the line does.
+      - /nuxt-module/building-your-ui/creating-components#the-mandatory-pattern/0
+    prompt: Without which line would clicking this component in edit mode do nothing?
+    explanation: >-
+      `defineExpose(exposeMeta)` hands the component's metadata to the admin manager. Without it, the admin
+      can't select the component.
+    readMore: { page: /nuxt-module/composables/component/use-cwa-component, anchor: return-values }
+    limit: 6
+
+  - id: page-data-position
+    status: live
+    level: intermediate
+    area: api
+    tags: [dynamic-pages, fixtures]
+    langs: [php]
+    match: '->pageDataPosition\('
+    prompt: Which line makes a region show the component held by each page data record?
+    explanation: >-
+      `pageDataPosition()` creates a position bound to a field of a page data class. Each record that renders
+      through the template page shows its own component in that slot.
+    readMore: { page: /api/data-fixtures/builder-reference, anchor: groupbuilder-from-any-group-call }
+    limit: 3
+
+  - id: template-page-flag
+    status: live
+    level: intermediate
+    area: api
+    tags: [dynamic-pages, fixtures]
+    langs: [php]
+    match: 'isTemplate: true'
+    prompt: Which line means this page has no URL of its own, and every record of one type renders through it?
+    explanation: >-
+      `isTemplate: true` makes a template page. It gets no route; every page data record of one type renders
+      through it.
+    readMore: { page: /core-concepts/layouts-and-pages, anchor: template-pages-istemplate-true }
+    limit: 4
+
+  - id: mercure-flag
+    status: live
+    level: intermediate
+    area: api
+    tags: [real-time]
+    langs: [php]
+    match: 'mercure: true'
+    # These blocks show only the attribute, with nothing else to choose from.
+    exclude:
+      - /nuxt-module/component-helpers/real-time-updates#php-side/0
+    prompt: An editor changes this resource, and visitors who have the page open see it change without reloading. Which line makes that happen?
+    explanation: >-
+      `mercure: true` on `#[ApiResource]` makes the API publish each change to the Mercure hub, and every
+      browser that loaded the resource applies it without a reload.
+    readMore: { page: /api/components/annotations/publishable, anchor: interaction-with-mercure }
+    limit: 6
+
+  - id: publish-validation-group
+    status: live
+    level: beginner
+    area: api
+    tags: [draft-and-publish]
+    langs: [php]
+    match: "groups: \\['\\w+:published'\\]"
+    prompt: An editor can save this component as an empty draft, but gets an error when publishing it. Which line causes that?
+    explanation: >-
+      A constraint in the `<ClassName>:published` group, such as `Title:published`, runs only at publish time.
+      Editors can still save an incomplete draft.
+    readMore: { page: /core-concepts/draft-and-publish, anchor: validation-groups }
+    limit: 4
+
+  - id: allowed-components
+    status: live
+    level: beginner
+    area: nuxt-module
+    tags: [components]
+    langs: [vue]
+    match: ':allowed-components='
+    prompt: An editor opens this region's add dialog, and some component types aren't offered. Which line causes that?
+    explanation: >-
+      The `allowed-components` prop restricts the component types an editor can add to the group, by
+      component name.
+    readMore: { page: /nuxt-module/cwa-components/cwa-component-group, anchor: allowed-components }
+    limit: 3
+
+  - id: fixture-redirect
+    status: live
+    level: intermediate
+    area: api
+    tags: [fixtures, routes]
+    langs: [php]
+    match: '\$cwa->redirect\('
+    # Its comment names the redirect.
+    exclude:
+      - /api/data-fixtures/getting-started#complete-example/0
+    prompt: Which line sends visitors from an old URL to a page's current route?
+    explanation: >-
+      `$cwa->redirect($path, to: $routeName)` declares a redirect route. The builder creates it during
+      `flush()`, straight after the page routes.
+    readMore: { page: /api/data-fixtures/builder-reference, anchor: seeding-redirects }
+    limit: 3

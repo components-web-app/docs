@@ -1,0 +1,346 @@
+# Hand-written expert questions from the Nuxt module's source.
+# Each one cites the repo, path, line range and a full commit SHA.
+
+questions:
+  - id: nuxt.internals.ssr-401
+    version: 1
+    status: live
+    level: expert
+    area: nuxt-module
+    tags: [internals, auth]
+    type: multiple-choice
+    difficulty: 3
+    docsCoverage: undocumented
+    prompt: >-
+      During a server render, the page's own route request fails with a 401, and the API's response sets
+      cookies (for example, to clear an expired session). What does the module do?
+    options:
+      - id: a
+        text: Renders the error page with a 401 status and sends no cookies.
+      - id: b
+        text: Sends the API's cookies with a 302 redirect back to the same URL.
+      - id: c
+        text: Retries the API request on the server without the visitor's cookies.
+      - id: d
+        text: Sends the API's cookies with a 302 redirect to the `/login` page.
+    answer:
+      correct: b
+      explanation: >-
+        The browser stores the cookies the API sent, such as a cleared session, and then loads the same URL
+        again with them. This happens only for the page's primary fetch, with a 401 or 403, during a server render.
+        A failed component fetch doesn't do it.
+      optionNotes:
+        a: For a 401 or 403 on the server, the error page shows only when the API's response sets no cookies.
+        d: It reloads the same URL. It doesn't send the visitor to sign in.
+    sources:
+      - kind: code
+        repo: cwa-nuxt-module
+        path: src/runtime/storage/stores/resources/actions.ts
+        lines: [582, 592]
+        commit: ccc7bbcd145adda34f45b0e137c2bad945e89316
+        linesHash: sha256:23f72f170cfb7b8c
+
+  - id: nuxt.internals.redirect-base-url
+    version: 1
+    status: live
+    level: expert
+    area: nuxt-module
+    tags: [internals, routes]
+    type: spot-the-mistake
+    difficulty: 5
+    docsCoverage: light
+    prompt: >-
+      The route middleware has fetched a route that redirects. The app is served under a `baseURL` such as
+      `/site/`. One line sends visitors to the wrong URL. Click it.
+    code:
+      lang: ts
+      text: |-
+        if (isClient && nuxtApp._processingMiddleware) {
+          await waitForMiddleware()
+        }
+        logger.info(`Handling route redirect to: '${resource.redirectPath}'`)
+        if (!isClient) {
+          const baseURL = nuxtApp.$config.app.baseURL.replace(/\/+$/, '')
+          return navigateTo(`${baseURL}${resource.redirectPath}`, { redirectCode: 308 })
+        }
+        return navigateTo(resource.redirectPath, { redirectCode: 308 })
+    answer:
+      line: 7
+      fix: '  return navigateTo(`${baseURL}${resource.redirectPath}`, { redirectCode: 308, external: true })'
+      explanation: >-
+        On the server the path already has `baseURL` in front, and `external: true` sends it as it is, with the
+        308 at once. Without it, `navigateTo()` treats the path as an app route and adds `baseURL` again, so an
+        app under `/site` would redirect to `/site/site/…`.
+    sources:
+      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/route-middleware.ts, lines: [69, 77], commit: ccc7bbcd145adda34f45b0e137c2bad945e89316, linesHash: 'sha256:180e28509b404eee' }
+    author: llm-draft
+
+  - id: nuxt.internals.disabled-page-fetch
+    version: 1
+    status: live
+    level: expert
+    area: nuxt-module
+    tags: [internals, module-setup]
+    type: multiple-choice
+    difficulty: 3
+    docsCoverage: light
+    prompt: 'The route middleware reaches a page with `cwa: { disabled: true }`. What does it do with the module''s fetch state before it returns?'
+    options:
+      - { id: a, text: Leaves the previous page's resources in place as the primary fetch }
+      - { id: b, text: 'Clears the primary fetch, so page and layout resolve to nothing' }
+      - { id: c, text: 'Fetches the site config and the layout, but no route' }
+      - { id: d, text: 'Marks the primary fetch as failed, with a 404' }
+    answer:
+      correct: b
+      explanation: >-
+        It calls `clearPrimaryFetch()` and returns. The admin navigation guard and, in the browser, the client
+        set-up still run before that check.
+    sources:
+      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/route-middleware.ts, lines: [26, 51], commit: ccc7bbcd145adda34f45b0e137c2bad945e89316, linesHash: 'sha256:995e77df2ebeeea1' }
+    author: llm-draft
+
+  - id: nuxt.internals.hydration-middleware
+    version: 1
+    status: live
+    level: expert
+    area: nuxt-module
+    tags: [internals]
+    type: multiple-choice
+    difficulty: 4
+    docsCoverage: undocumented
+    prompt: A page was rendered on the server. As it hydrates in the browser, the route middleware runs for the same path. What does it do?
+    options:
+      - { id: a, text: 'Fetches the route again, to pick up changes made since the render' }
+      - { id: b, text: 'Returns without fetching, because the server run loaded the route' }
+      - { id: c, text: 'Fetches only the manifest, because the payload has no resources' }
+      - { id: d, text: 'Skips only if the payload''s primary fetch matches, else fetches' }
+    answer:
+      correct: b
+      explanation: >-
+        While hydrating a server-rendered payload, with `from` and `to` the same path, the middleware returns
+        early. It compares the two paths, not the payload's fetch.
+      optionNotes:
+        a: Changes after the render arrive over Mercure. The middleware doesn't fetch again on hydration.
+        d: It checks that `from` and `to` are the same path, and nothing in the payload.
+    sources:
+      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/route-middleware.ts, lines: [95, 105], commit: ccc7bbcd145adda34f45b0e137c2bad945e89316, linesHash: 'sha256:d3eaab0bdf60df73' }
+    author: llm-draft
+
+  - id: nuxt.internals.stale-redirect
+    version: 1
+    status: live
+    level: expert
+    area: nuxt-module
+    tags: [internals, routes]
+    type: multiple-choice
+    difficulty: 5
+    docsCoverage: undocumented
+    prompt: In the browser, a visitor clicks a link and then a second link before the first route has loaded. The first route turns out to be a redirect. What happens?
+    options:
+      - { id: a, text: 'The redirect is ignored, because a newer navigation started' }
+      - { id: b, text: 'The visitor is redirected, then sent on to the second link' }
+      - { id: c, text: Both navigations are cancelled and the error page shows }
+      - { id: d, text: The second navigation waits until the redirect completes }
+    answer:
+      correct: a
+      explanation: >-
+        Each run of the middleware takes a new token. When the first route resolves, its token is no longer the
+        current one, so a redirect it carries is dropped.
+    sources:
+      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/route-middleware.ts, lines: [107, 118], commit: ccc7bbcd145adda34f45b0e137c2bad945e89316, linesHash: 'sha256:4274538ab20a44e5' }
+      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/route-middleware.ts, lines: [26, 28], commit: ccc7bbcd145adda34f45b0e137c2bad945e89316, linesHash: 'sha256:31b0ff80c9ca159b' }
+    author: llm-draft
+
+  - id: nuxt.internals.response-cache-directives
+    version: 1
+    status: live
+    level: expert
+    area: nuxt-module
+    tags: [internals, page-caching]
+    type: spot-the-mistake
+    difficulty: 4
+    docsCoverage: light
+    family: nuxt-internals-response-directives
+    prompt: >-
+      This reads an API response's cache headers while the module renders a page. With the template's API
+      settings, one line stops every page from being cached. Click it.
+    code:
+      lang: ts
+      text: |-
+        export function readResponseCacheDirectives(headers: ResponseHeadersLike): ApiCacheDirectives {
+          const directives = parseDirectives(headers.get('cache-control') || '')
+          const storable = !directives.has('no-store') && !directives.has('private')
+          const freshness = parseSeconds(directives.get('max-age')) ?? parseSeconds(directives.get('s-maxage'))
+
+          return {
+            storable,
+            sharedMaxAge: lowest(freshness, expiresDuration(headers)),
+          }
+        }
+    answer:
+      line: 4
+      fix: "  const freshness = parseSeconds(directives.get('s-maxage')) ?? parseSeconds(directives.get('max-age'))"
+      explanation: >-
+        `s-maxage` is the lifetime for shared caches, so it is read first and `max-age` is the fallback. The
+        template's API sends `max-age=0`, so reading `max-age` first gives every page a lifetime of 0, and a
+        page with no lifetime gets no cache headers.
+    sources:
+      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/api/http-cache.ts, lines: [86, 95], commit: ccc7bbcd145adda34f45b0e137c2bad945e89316, linesHash: 'sha256:2cedcd5fcd2332e5' }
+      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/api/http-cache.ts, lines: [114, 117], commit: ccc7bbcd145adda34f45b0e137c2bad945e89316, linesHash: 'sha256:5d32c9cb5d7dea8d' }
+    author: llm-draft
+
+  - id: nuxt.internals.expires-lifetime
+    version: 1
+    status: live
+    level: expert
+    area: nuxt-module
+    tags: [internals, page-caching]
+    type: multiple-choice
+    difficulty: 4
+    docsCoverage: light
+    # Shares a family with nuxt.internals.response-cache-directives, whose code shows the answer.
+    family: nuxt-internals-response-directives
+    prompt: 'An API response used in a render has `Cache-Control: public, s-maxage=600` and an `Expires` 120 seconds after its `Date`. What lifetime does the module take from it?'
+    options:
+      - { id: a, text: '600 seconds, because `s-maxage` beats `Expires`' }
+      - { id: b, text: '120 seconds, the lower of the two' }
+      - { id: c, text: 'None: a response with `Expires` is not storable' }
+      - { id: d, text: '360 seconds, the average of the two' }
+    answer:
+      correct: b
+      explanation: >-
+        The module takes `s-maxage` (or `max-age`), and the seconds from `Date` to `Expires`, and keeps the lower.
+        The page's own `s-maxage` is the lowest across every response it used.
+    sources:
+      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/api/http-cache.ts, lines: [72, 95], commit: ccc7bbcd145adda34f45b0e137c2bad945e89316, linesHash: 'sha256:5a340a4b3c53446b' }
+    author: llm-draft
+
+  - id: nuxt.internals.no-cwa-resources
+    version: 1
+    status: live
+    level: expert
+    area: nuxt-module
+    tags: [internals, page-caching]
+    type: multiple-choice
+    difficulty: 3
+    docsCoverage: light
+    prompt: A page's render fetched only IDs that aren't CWA resource IRIs, and every response was storable. Which headers does the module's page cache decision give the page?
+    options:
+      - { id: a, text: '`private, no-store`, to be safe' }
+      - { id: b, text: '`s-maxage=3600` and the `cwa-html` key' }
+      - { id: c, text: 'No cache headers at all' }
+      - { id: d, text: '`max-age=0` with no `s-maxage`' }
+    answer:
+      correct: c
+      explanation: >-
+        `buildPageCacheHeaders()` keeps only IDs that are CWA resource IRIs. With none left it returns an empty
+        decision, so the module sets no `Cache-Control` and no `Surrogate-Key`.
+    sources:
+      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/api/http-cache.ts, lines: [104, 128], commit: ccc7bbcd145adda34f45b0e137c2bad945e89316, linesHash: 'sha256:ab0b3bfe7de5aa0b' }
+    author: llm-draft
+
+  - id: nuxt.internals.site-config-on-server
+    version: 1
+    status: live
+    level: expert
+    area: nuxt-module
+    tags: [internals, module-setup]
+    type: multiple-choice
+    difficulty: 4
+    docsCoverage: undocumented
+    prompt: During a server render, the route middleware needs the site config and the route. In what order does it get them?
+    options:
+      - { id: a, text: 'It awaits the site config, then fetches the route' }
+      - { id: b, text: 'It starts loading the config, and fetches the route without waiting' }
+      - { id: c, text: 'It fetches the route first, then loads the config if the route is found' }
+      - { id: d, text: 'It reads the config from the route''s manifest, in one request' }
+    answer:
+      correct: b
+      explanation: >-
+        On the server it starts `siteConfig.loadConfig()` and doesn't await it: a failure is only logged. Then
+        it awaits the route fetch, so a redirect can go out without waiting for the config.
+    sources:
+      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/route-middleware.ts, lines: [86, 93], commit: ccc7bbcd145adda34f45b0e137c2bad945e89316, linesHash: 'sha256:7eb0e48ffdf5d468' }
+    author: llm-draft
+
+  - id: nuxt.internals.navigate-while-adding
+    version: 1
+    status: live
+    level: expert
+    area: nuxt-module
+    tags: [internals, admin]
+    type: multiple-choice
+    difficulty: 3
+    docsCoverage: undocumented
+    prompt: An editor has started adding a new component but hasn't saved it, then clicks a link to another page. What does the route middleware do?
+    options:
+      - { id: a, text: 'Saves the new component as a draft, then goes to the page' }
+      - { id: b, text: 'Goes to the page and keeps the new component for when they return' }
+      - { id: c, text: 'Asks to discard it, and stays on the page if they cancel' }
+      - { id: d, text: 'Goes to the page and drops the new component without asking' }
+    answer:
+      correct: c
+      explanation: >-
+        The middleware asks the resources manager to confirm. A "Discard new resource?" dialog opens: cancel
+        aborts the navigation, and confirm clears the unsaved component and carries on.
+    sources:
+      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/route-middleware.ts, lines: [35, 38], commit: ccc7bbcd145adda34f45b0e137c2bad945e89316, linesHash: 'sha256:41d40238906ac0f0' }
+      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/resources/resources-manager.ts, lines: [473, 491], commit: ccc7bbcd145adda34f45b0e137c2bad945e89316, linesHash: 'sha256:bfcd9d1e40da8528' }
+    author: llm-draft
+
+  - id: nuxt.internals.page-cache-fallback
+    version: 1
+    status: live
+    level: expert
+    area: nuxt-module
+    tags: [internals, page-caching]
+    type: multiple-choice
+    difficulty: 3
+    docsCoverage: documented
+    prompt: >-
+      The page cache is on with no `sharedMaxAge` set. Every API response in a render was storable, but none
+      gave a lifetime. What does the page get?
+    options:
+      - { id: a, text: 'No cache headers, since nothing gave a lifetime' }
+      - { id: b, text: '`s-maxage=60`, the API Platform default' }
+      - { id: c, text: '`s-maxage=3600`, the module''s fallback' }
+      - { id: d, text: '`s-maxage` of one year, the template''s value' }
+    answer:
+      correct: c
+      explanation: >-
+        `buildPageCacheHeaders()` takes the lower of `sharedMaxAge` and the APIs' lifetime, and falls back to
+        3600 seconds only when neither gave one.
+    sources:
+      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/api/http-cache.ts, lines: [114, 119], commit: ccc7bbcd145adda34f45b0e137c2bad945e89316, linesHash: 'sha256:3f396d0339e12fdc' }
+      - { kind: docs, page: /nuxt-module/page-caching, anchor: how-long-a-page-is-kept, sectionHash: 'sha256:118538e80ad6a936' }
+    author: llm-draft
+
+  - id: nuxt.internals.page-cache-defaults
+    version: 1
+    status: live
+    level: expert
+    area: nuxt-module
+    tags: [internals, page-caching]
+    type: pick-the-line
+    difficulty: 3
+    docsCoverage: documented
+    prompt: These are the page cache's defaults. Which line means a page is kept as long as the API responses it used allow, with no cap of the module's own?
+    code:
+      lang: ts
+      text: |-
+        export function resolvePageCacheOptions(options?: Partial<PageCacheOptions>): PageCacheOptions {
+          return {
+            enabled: options?.enabled ?? true,
+            sharedMaxAge: options?.sharedMaxAge,
+            staleWhileRevalidate: options?.staleWhileRevalidate ?? 0,
+          }
+        }
+    answer:
+      lines: [4]
+      explanation: >-
+        `sharedMaxAge` has no default, so unless you set one, a page's lifetime is the lowest the API responses
+        gave: a year in the template's production API. Set it when a page renders anything the API can't purge.
+    sources:
+      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/api/http-cache.ts, lines: [130, 136], commit: ccc7bbcd145adda34f45b0e137c2bad945e89316, linesHash: 'sha256:1d07438b19c5235e' }
+      - { kind: docs, page: /nuxt-module/page-caching, anchor: how-long-a-page-is-kept, sectionHash: 'sha256:118538e80ad6a936' }
+    author: llm-draft

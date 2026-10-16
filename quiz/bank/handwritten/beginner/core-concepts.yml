@@ -1,0 +1,382 @@
+# Hand-written beginner questions on CWA's core concepts.
+# Format: quiz/README.md. Run `pnpm quiz:stamp <id>` to fill in or refresh the hashes.
+
+questions:
+  - id: core.architecture.what-you-write
+    version: 1
+    status: live
+    level: beginner
+    area: core-concepts
+    tags: [architecture]
+    type: multiple-choice
+    difficulty: 1
+    prompt: In a CWA project, which of these do you write yourself?
+    options:
+      - { id: a, text: 'The URL routing, written into your Vue files' }
+      - { id: b, text: The admin screens for editing content }
+      - { id: c, text: The sign-in and password reset pages }
+      - { id: d, text: The Vue components that display content }
+    answer:
+      correct: d
+      explanation: >-
+        You write the UI: layouts, page templates and components, with the admin tabs that edit them. Routing,
+        the admin CMS and the auth pages come with CWA.
+      optionNotes:
+        a: Routes belong to the API. You never define them in Vue files.
+        c: The module ships the auth pages. You can override them, but you don't have to.
+    sources:
+      - { kind: docs, page: /core-concepts/architecture, anchor: what-you-never-write, sectionHash: 'sha256:1b43f41f0f1125b5' }
+      - { kind: docs, page: /core-concepts/architecture, anchor: the-nuxt-module, sectionHash: 'sha256:8c01b275fd349b30' }
+    author: llm-draft
+
+  - id: core.request.first-requests
+    version: 1
+    status: live
+    level: beginner
+    area: core-concepts
+    tags: [architecture, routes]
+    type: multiple-choice
+    difficulty: 2
+    prompt: A visitor opens `/about-us`. What does the module ask the API for first?
+    options:
+      - { id: a, text: The layout named in the site settings }
+      - { id: b, text: 'The route at that path, and its resource manifest' }
+      - { id: c, text: 'Every page record, to find one whose title matches the path' }
+      - { id: d, text: The page's Vue file for that path }
+    answer:
+      correct: b
+      explanation: >-
+        The middleware requests `GET /_/routes//about-us` and, in parallel, the resource manifest, which lists
+        every resource the page renders. The route points to a page or a page data record.
+    sources:
+      - { kind: docs, page: /core-concepts/architecture, anchor: the-request-lifecycle, sectionHash: 'sha256:b8b584459c4889d1' }
+    author: llm-draft
+
+  - id: core.data-model.route-target
+    version: 1
+    status: live
+    level: beginner
+    area: core-concepts
+    tags: [data-model, routes]
+    type: multiple-choice
+    difficulty: 1
+    prompt: What can a Route point to?
+    options:
+      - { id: a, text: A page or a page data record }
+      - { id: b, text: A component group or a position }
+      - { id: c, text: A layout or a component }
+      - { id: d, text: A Vue file in `app/app/cwa/pages/` }
+    answer:
+      correct: a
+      explanation: >-
+        A route maps a URL path to a Page, for a static page, or to a PageData record, for a dynamic page. A
+        route can also redirect to another route.
+    sources:
+      - { kind: docs, page: /core-concepts/the-data-model, anchor: route, sectionHash: 'sha256:48c85cc1328f40b5' }
+    author: llm-draft
+
+  - id: core.data-model.layouts-per-page
+    version: 1
+    status: live
+    level: beginner
+    area: core-concepts
+    tags: [layouts-and-pages, data-model]
+    type: multiple-choice
+    difficulty: 1
+    prompt: How many layouts does a page have?
+    options:
+      - { id: a, text: Exactly one }
+      - { id: b, text: One per component group }
+      - { id: c, text: None until an editor adds one }
+      - { id: d, text: As many as it needs }
+    answer:
+      correct: a
+      explanation: >-
+        Every page has exactly one layout, the outer shell with the header, footer and navigation. A site can
+        have several layouts, and each page picks one.
+    sources:
+      - { kind: docs, page: /core-concepts/the-data-model, anchor: layout, sectionHash: 'sha256:00ed5406b2443767' }
+    author: llm-draft
+
+  - id: core.pages.page-template-vs-template-page
+    version: 1
+    status: live
+    # Shares a family with the glossary questions on both terms.
+    family: page-template-vs-template-page
+    level: beginner
+    area: core-concepts
+    tags: [layouts-and-pages, dynamic-pages]
+    type: multiple-choice
+    difficulty: 2
+    prompt: What is the difference between a _page template_ and a _template page_?
+    options:
+      - { id: a, text: A page template is a page record; a template page is a Vue file }
+      - { id: b, text: A page template is a Vue file; a template page is a shared page record }
+      - { id: c, text: They are two names for the same page record }
+      - { id: d, text: A page template is a layout; a template page is a component group }
+    answer:
+      correct: b
+      explanation: >-
+        A page template is the Vue file a page renders through, in `app/app/cwa/pages/`. A template page is a
+        page record with `isTemplate: true`, shared by many page data records.
+    sources:
+      - { kind: docs, page: /getting-started/key-ideas, anchor: repeating-content, sectionHash: 'sha256:16c50ea3e83daff7' }
+    author: llm-draft
+
+  - id: core.draft.who-sees-drafts
+    version: 1
+    status: live
+    level: beginner
+    area: core-concepts
+    tags: [draft-and-publish]
+    type: multiple-choice
+    difficulty: 1
+    prompt: An editor changes a publishable component and doesn't publish it. Who sees the change?
+    options:
+      - { id: a, text: 'Every visitor, straight away' }
+      - { id: b, text: Nobody until the next deploy }
+      - { id: c, text: Signed-in users with publish rights }
+      - { id: d, text: Any visitor who adds `?published=false` to the URL }
+    answer:
+      correct: c
+      explanation: >-
+        Anonymous visitors get the published version. Signed-in users with publish rights get the draft, on
+        every page view, whether or not edit mode is on.
+    sources:
+      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:57d5bc6ed14a51f7' }
+    author: llm-draft
+
+  - id: core.draft.reorder-timing
+    version: 1
+    status: live
+    level: beginner
+    area: core-concepts
+    tags: [draft-and-publish, admin]
+    type: multiple-choice
+    difficulty: 2
+    prompt: An editor reorders the components in a group. When do visitors see the new order?
+    options:
+      - { id: a, text: When the editor publishes the moved components }
+      - { id: b, text: 'Straight away, because positions have no draft' }
+      - { id: c, text: After the next deploy clears the page cache }
+      - { id: d, text: When the cached page reaches its `s-maxage` }
+    answer:
+      correct: b
+      explanation: >-
+        Reordering changes each position's `sortValue` at once. Adding or removing a position is immediate
+        too. Only the components themselves have a draft and a published version.
+      optionNotes:
+        a: The components have drafts, but their positions in the group don't. Moving one changes the live order.
+    sources:
+      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: adding-removing-and-reordering-are-immediate, sectionHash: 'sha256:8f9e3b04c320c9e4' }
+    author: llm-draft
+
+  - id: core.admin.link-in-edit-mode
+    version: 1
+    status: live
+    level: beginner
+    area: core-concepts
+    tags: [admin]
+    type: multiple-choice
+    difficulty: 2
+    prompt: In edit mode, an editor clicks a link to another page. What happens?
+    options:
+      - { id: a, text: The admin asks them to publish first }
+      - { id: b, text: The link opens in a new tab }
+      - { id: c, text: The next page opens and drafts are discarded }
+      - { id: d, text: 'Nothing, so an edit in progress isn''t lost' }
+    answer:
+      correct: d
+      explanation: >-
+        The navigation guard stops links while editing. Click **Done** first. The browser's back and forward
+        buttons still work.
+    sources:
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: edit-mode, sectionHash: 'sha256:e892011c277f17fe' }
+    author: llm-draft
+
+  - id: core.admin.reorder-where
+    version: 1
+    status: live
+    level: beginner
+    area: core-concepts
+    tags: [admin]
+    type: multiple-choice
+    difficulty: 1
+    prompt: Where does an editor reorder the components in a group?
+    options:
+      - { id: a, text: The Order tab in the manager panel }
+      - { id: b, text: By dragging the component on the page }
+      - { id: c, text: The `/_cwa/pages` admin page }
+      - { id: d, text: The page's route settings }
+    answer:
+      correct: a
+      explanation: >-
+        Select a component, open the manager panel's **Order** tab and turn on **Enable reordering**. Then use
+        **Move Up**, **Move Down** or a position number.
+    sources:
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: reordering, sectionHash: 'sha256:c61a684ec630d1d2' }
+    author: llm-draft
+
+  - id: core.caching.save-refreshes-pages
+    version: 1
+    status: live
+    level: beginner
+    area: core-concepts
+    tags: [http-caching, page-caching]
+    type: multiple-choice
+    difficulty: 2
+    prompt: An editor saves a component. How do the cached pages that show it get refreshed?
+    options:
+      - { id: a, text: 'Nothing: they wait until their `s-maxage` runs out' }
+      - { id: b, text: The next deploy clears every page }
+      - { id: c, text: The API purges the cache tag for its IRI }
+      - { id: d, text: The browser reloads them every minute }
+    answer:
+      correct: c
+      explanation: >-
+        Every cached response and page is tagged with the IRIs of the resources in it. Saving a resource
+        purges its IRI, so everything that used it is dropped.
+    sources:
+      - { kind: docs, page: /core-concepts/caching, anchor: purges, sectionHash: 'sha256:41e0c77665a2d9d5' }
+    author: llm-draft
+
+  - id: core.caching.editors-get-fresh-pages
+    version: 1
+    status: live
+    level: beginner
+    area: core-concepts
+    tags: [http-caching]
+    type: multiple-choice
+    difficulty: 3
+    prompt: Why does a signed-in editor never get a cached page?
+    options:
+      - { id: a, text: They browse the site on a separate admin hostname }
+      - { id: b, text: Their browser adds `?nocache` to every request }
+      - { id: c, text: The whole cache is switched off for everyone while any editor is signed in }
+      - { id: d, text: 'Their responses can hold drafts, so they''re marked `private, no-store`' }
+    answer:
+      correct: d
+      explanation: >-
+        Drafts and published content share the same URLs, and the API tells them apart by the auth cookie. So
+        an editor's responses are never stored, and a cache only holds what anonymous visitors see.
+    sources:
+      - { kind: docs, page: /core-concepts/caching, anchor: signed-in-editors-never-get-a-cached-page, sectionHash: 'sha256:77665ddad4825fb4' }
+    author: llm-draft
+
+  - id: core.components.two-sides
+    version: 1
+    status: live
+    level: beginner
+    area: core-concepts
+    tags: [components]
+    type: multiple-choice
+    difficulty: 1
+    prompt: What does each component type need?
+    options:
+      - { id: a, text: A PHP entity for its data and a Vue file to display it }
+      - { id: b, text: A Vue file only; the API stores any fields it's sent }
+      - { id: c, text: A PHP entity only; the module renders a default view }
+      - { id: d, text: A JSON schema in `nuxt.config` and a Vue file }
+    answer:
+      correct: a
+      explanation: >-
+        A component type is a PHP entity that holds the data, and a Vue file that displays it. Admin tabs in
+        its `admin/` folder edit it.
+    sources:
+      - { kind: docs, page: /core-concepts/components, anchor: a-component-has-two-sides, sectionHash: 'sha256:3bc630a33960fae8' }
+    author: llm-draft
+
+  - id: core.components.admin-tab-saving
+    version: 1
+    status: live
+    level: beginner
+    area: core-concepts
+    tags: [components, admin]
+    type: multiple-choice
+    difficulty: 2
+    prompt: An editor types into a field in a component's admin tab. How is the change saved?
+    options:
+      - { id: a, text: When they click Save at the foot of the tab }
+      - { id: b, text: When they turn edit mode off again }
+      - { id: c, text: It's sent to the API a moment after typing stops }
+      - { id: d, text: It stays in the browser until they publish }
+    answer:
+      correct: c
+      explanation: >-
+        The field's `v-model` is bound to `useCwaResourceModel`'s `model`, and each change sends a debounced
+        PATCH to the API. There is no save button. The PATCH changes the draft.
+      optionNotes:
+        a: There is no Save button. Each change is sent on its own, shortly after typing stops.
+    sources:
+      - { kind: docs, page: /core-concepts/components, anchor: the-admin-tab, sectionHash: 'sha256:4b979741549a18fa' }
+    author: llm-draft
+
+  - id: core.identity.group-location
+    version: 1
+    status: live
+    level: beginner
+    area: core-concepts
+    tags: [components, data-model]
+    type: multiple-choice
+    difficulty: 2
+    prompt: What do you pass to `<CwaComponentGroup>` as its `location`?
+    options:
+      - { id: a, text: The URL path of the page the group appears on }
+      - { id: b, text: 'The group''s name, such as `main`' }
+      - { id: c, text: The layout's Vue file name }
+      - { id: d, text: The IRI of the record that owns the group }
+    answer:
+      correct: d
+      explanation: >-
+        `location` says which record owns the group: a layout, a page or a component. Its name goes in
+        `reference`.
+    sources:
+      - { kind: docs, page: /getting-started/key-ideas, anchor: how-records-are-identified, sectionHash: 'sha256:136fd1a524073c73' }
+    author: llm-draft
+
+  - id: core.identity.layout-ui-component
+    version: 1
+    status: live
+    level: beginner
+    area: core-concepts
+    tags: [layouts-and-pages]
+    type: multiple-choice
+    difficulty: 2
+    prompt: A layout's Vue file is `app/app/cwa/layouts/Landing.vue`. What does the layout record's `uiComponent`
+      hold?
+    options:
+      - { id: a, text: '`CwaLayoutLanding`' }
+      - { id: b, text: '`Landing`' }
+      - { id: c, text: '`landing.vue`' }
+      - { id: d, text: '`CwaLayoutsLanding`' }
+    answer:
+      correct: a
+      explanation: >-
+        The module registers layouts with the `CwaLayout` prefix, and a layout's `uiComponent` holds that full
+        name. It is rendered as stored, so `Landing` wouldn't resolve.
+    sources:
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: how-uicomponent-names-resolve, sectionHash: 'sha256:5dc45450ae61e9df' }
+    author: llm-draft
+
+  - id: core.architecture.template-app
+    version: 1
+    status: live
+    level: beginner
+    area: core-concepts
+    tags: [architecture]
+    type: multiple-choice
+    difficulty: 1
+    prompt: What is `components-web-app`?
+    options:
+      - { id: a, text: The npm package for the Nuxt module }
+      - { id: b, text: The Symfony bundle that holds the data model }
+      - { id: c, text: A starter project that wires both together }
+      - { id: d, text: A hosted service that runs CWA sites }
+    answer:
+      correct: c
+      explanation: >-
+        The template app is a complete working site that wires the API bundle and the Nuxt module together
+        with Docker Compose. `pnpm create cwa` scaffolds new projects from it.
+    sources:
+      - { kind: docs, page: /core-concepts/architecture, anchor: the-template-app, sectionHash: 'sha256:91b682d9a3dcf672' }
+    author: llm-draft

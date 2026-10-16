@@ -26,6 +26,11 @@ export const siteLinks: SiteLink[] = [
     to: '/getting-started'
   },
   {
+    label: 'Quiz',
+    icon: 'i-heroicons-academic-cap-solid',
+    to: '/quiz'
+  },
+  {
     label: 'Try It Out',
     icon: 'i-ph-play-duotone',
     to: 'https://preview.cwa.rocks/login',

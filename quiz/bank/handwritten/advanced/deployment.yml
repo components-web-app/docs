@@ -1,0 +1,192 @@
+# Hand-written advanced questions about deploying the template.
+# Format: quiz/README.md. Run `pnpm quiz:stamp <id>` to fill in or refresh the hashes.
+
+questions:
+  - id: deploy.k8s.php-replicas
+    version: 1
+    status: live
+    level: advanced
+    area: deployment
+    tags: [kubernetes, http-caching]
+    type: multiple-choice
+    difficulty: 4
+    prompt: Why does the Helm chart keep php at one replica by default?
+    options:
+      - { id: a, text: FrankenPHP can only run one worker per cluster }
+      - { id: b, text: The database accepts one connection per release }
+      - { id: c, text: Kubernetes can't balance traffic across php pods }
+      - { id: d, text: 'Its HTTP cache and Mercure state live in the pod' }
+    answer:
+      correct: d
+      explanation: >-
+        Souin's cache store and Mercure's `bolt` transport are local to the pod. A purge only reaches its own
+        pod, so a second pod would keep serving stale responses.
+    sources:
+      - { kind: docs, page: /deployment/kubernetes, anchor: php-stays-at-one-replica, sectionHash: 'sha256:a474db71bf39f921' }
+    author: llm-draft
+
+  - id: deploy.k8s.nuxt-hpa-target
+    version: 1
+    status: live
+    level: advanced
+    area: deployment
+    tags: [kubernetes]
+    type: multiple-choice
+    difficulty: 4
+    prompt: The Nuxt HPA targets 175% CPU. How can a target be over 100%?
+    options:
+      - { id: a, text: 'Usage is measured against the request, and the limit is higher' }
+      - { id: b, text: The HPA averages CPU across nodes rather than pods }
+      - { id: c, text: Kubernetes reads values over 100% as memory targets }
+      - { id: d, text: Kubernetes quietly caps the target at 100% whenever it applies it }
+    answer:
+      correct: a
+      explanation: >-
+        The target is a share of the 100m CPU request, and the limit is 1000m. At 175% a pod is using about 175m,
+        roughly one 150ms render a second, before renders start to queue.
+    sources:
+      - { kind: docs, page: /deployment/kubernetes, anchor: nuxt-scales-out, sectionHash: 'sha256:a8e538571408aad4' }
+    author: llm-draft
+
+  - id: deploy.cicd.purge-after-deploy
+    version: 1
+    status: live
+    level: advanced
+    area: deployment
+    tags: [deployment, page-caching]
+    type: multiple-choice
+    difficulty: 3
+    prompt: Why does every deploy purge the cached pages?
+    options:
+      - { id: a, text: Souin can't read pages that an older php image cached on disk }
+      - { id: b, text: 'Cached pages link to the old build''s files, which are gone' }
+      - { id: c, text: Every release gives the API's resources new IRIs }
+      - { id: d, text: The new Nuxt pods need the cache empty to start }
+    answer:
+      correct: b
+      explanation: >-
+        A new front-end build renames its JavaScript and CSS files and deletes the old ones. Cached pages would
+        point at files that no longer exist, so visitors would get an unstyled page.
+    sources:
+      - { kind: docs, page: /deployment/ci-cd, anchor: why-every-deploy-clears-the-page-cache, sectionHash: 'sha256:a535bdc75c8f0bab' }
+    author: llm-draft
+
+  - id: deploy.cicd.purge-waits-for-rollout
+    version: 1
+    status: live
+    level: advanced
+    area: deployment
+    tags: [deployment, page-caching]
+    type: multiple-choice
+    difficulty: 4
+    prompt: Why does `purge_rendered_html` wait until the new Nuxt pods have replaced the old ones?
+    options:
+      - { id: a, text: The purge command runs inside a Nuxt pod }
+      - { id: b, text: The purge needs the new pods' build ID }
+      - { id: c, text: An old pod could cache an old page again }
+      - { id: d, text: Kubernetes blocks `kubectl exec` during a rollout }
+    answer:
+      correct: c
+      explanation: >-
+        While an old pod is still serving, it could render a page that points at the old build and put it back
+        in the cache. The purge then runs `purge-rendered-html` in the php pod.
+    sources:
+      - { kind: docs, page: /deployment/ci-cd, anchor: why-every-deploy-clears-the-page-cache, sectionHash: 'sha256:a535bdc75c8f0bab' }
+    author: llm-draft
+
+  - id: deploy.cloudflare.option-a-rules
+    version: 1
+    status: live
+    level: advanced
+    area: deployment
+    tags: [cloudflare]
+    type: multiple-choice
+    difficulty: 3
+    prompt: With Cloudflare as a proxy only (Option A), which Cache Rules should the zone have?
+    options:
+      - { id: a, text: A rule that caches every page for two hours }
+      - { id: b, text: A rule that bypasses the cache for everything }
+      - { id: c, text: A rule that caches `/_api` responses at the edge }
+      - { id: d, text: 'None: the defaults never cache HTML or JSON' }
+    answer:
+      correct: d
+      explanation: >-
+        Cloudflare's defaults cache only static files, never HTML, JSON or a `private` response. Purges don't
+        reach Cloudflare in Option A, so it must not keep pages.
+      optionNotes:
+        b: A bypass-everything rule sends every `/_nuxt` request to php.
+    sources:
+      - { kind: docs, page: /deployment/cloudflare, anchor: leave-cloudflares-cache-alone, sectionHash: 'sha256:f263ccb3398c8784' }
+    author: llm-draft
+
+  - id: deploy.cloudflare.always-use-https
+    version: 1
+    status: live
+    level: advanced
+    area: deployment
+    tags: [cloudflare, kubernetes]
+    type: multiple-choice
+    difficulty: 5
+    prompt: Why should **Always Use HTTPS** stay off in Cloudflare for a CWA site?
+    options:
+      - { id: a, text: It breaks the Mercure hub's server-sent event stream }
+      - { id: b, text: 'It redirects Let''s Encrypt''s HTTP-01 challenge' }
+      - { id: c, text: It strips the `Surrogate-Key` header }
+      - { id: d, text: It sends every request to php uncached }
+    answer:
+      correct: b
+      explanation: >-
+        ingress-nginx already redirects to HTTPS, except for `/.well-known/acme-challenge/`. Cloudflare's
+        redirect makes no exception, so while the origin's certificate is missing or expired, the challenge
+        fails and no certificate can be issued.
+    sources:
+      - { kind: docs, page: /deployment/cloudflare, anchor: each-deploy-track, sectionHash: 'sha256:7a1ff302b8717771' }
+    author: llm-draft
+
+  - id: deploy.origin.query-allowlist
+    version: 1
+    status: live
+    level: advanced
+    area: deployment
+    tags: [page-caching, deployment]
+    type: multiple-choice
+    difficulty: 4
+    prompt: A page filters by `?category=` through `useQueryBoundModel('category')`. Server rendering never sees the value. What do you change?
+    options:
+      - { id: a, text: Add `category` to `CACHE_QUERY_ALLOWLIST` }
+      - { id: b, text: Add `category` to `pageCache` in `nuxt.config` }
+      - { id: c, text: Add `cwa_force` to `CACHE_QUERY_ALLOWLIST` }
+      - { id: d, text: Set `CACHE_QUERY_ALLOWLIST` to an empty value }
+    answer:
+      correct: a
+      explanation: >-
+        The template's Caddyfile keeps only the listed query parameters on cacheable pages, `page search order`
+        by default, and drops the rest before the cache and Nuxt see the request.
+      optionNotes:
+        c: Never add `cwa_force`. Made-up values would all miss the cache.
+    sources:
+      - { kind: docs, page: /deployment/origin-protection, anchor: query-parameters-on-pages, sectionHash: 'sha256:88d1767e2f8cba7c' }
+    author: llm-draft
+
+  - id: deploy.origin.rate-limit-counts
+    version: 1
+    status: live
+    level: advanced
+    area: deployment
+    tags: [deployment, http-caching]
+    type: multiple-choice
+    difficulty: 3
+    prompt: Which requests count towards the template's per-visitor rate limit in Caddy?
+    options:
+      - { id: a, text: 'Every request, cache hits included' }
+      - { id: b, text: Only requests from signed-in users }
+      - { id: c, text: Only requests that reach php or Nuxt }
+      - { id: d, text: Only requests for `/_nuxt/*` files }
+    answer:
+      correct: c
+      explanation: >-
+        The limit runs inside the cache, so cache hits are never counted or refused. Over the limit, a visitor
+        gets a `429` with `Retry-After`.
+    sources:
+      - { kind: docs, page: /deployment/origin-protection, anchor: rate-limit-on-cache-misses, sectionHash: 'sha256:8aa9c63e6a8937bc' }
+    author: llm-draft

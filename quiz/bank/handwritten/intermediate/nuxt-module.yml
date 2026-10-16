@@ -1,0 +1,257 @@
+# Hand-written intermediate questions about the Nuxt module.
+# Format: quiz/README.md. Run `pnpm quiz:stamp <id>` to fill in or refresh the hashes.
+
+questions:
+  - id: nuxt.setup.extends-layer
+    version: 1
+    status: live
+    level: intermediate
+    area: nuxt-module
+    tags: [module-setup]
+    type: pick-the-line
+    difficulty: 1
+    prompt: Which line gives this app the CWA sign-in pages, the `/_cwa` admin panel and the root layout?
+    code:
+      lang: ts
+      text: |-
+        // app/nuxt.config.ts
+        export default defineNuxtConfig({
+            extends: ['@cwa/nuxt/layer'],
+            modules: [
+                '@nuxt/ui',   // optional — for your own components; CWA doesn't require it
+                '@nuxt/image' // optional — only if you use <NuxtImg>
+            ]
+        })
+    answer:
+      lines: [3]
+      explanation: >-
+        CWA ships as a Nuxt layer. Extending `@cwa/nuxt/layer` registers the module and adds the auth pages,
+        the admin panel and `cwa-root-layout`. Adding the module to `modules` instead skips the layer.
+    sources:
+      - kind: docs
+        page: /nuxt-module/module-setup
+        anchor: install
+        sectionHash: sha256:be07d232ea5ebdc5
+        block: 1
+        blockHash: sha256:4452d03e14874b65
+
+  - id: nuxt.admin.add-page-data-link
+    version: 1
+    status: live
+    level: intermediate
+    area: nuxt-module
+    tags: [admin, dynamic-pages]
+    type: spot-the-mistake
+    difficulty: 3
+    prompt: This link should open the add form with the module as the parent and the lesson template chosen. One line is wrong. Click it.
+    code:
+      lang: vue
+      text: |-
+        <template>
+            <NuxtLink
+                :to="{
+                    path: '/_cwa/data/trainingModuleData/add',
+                    query: { parentPageData: moduleIri, page: lessonTemplateIri },
+                }"
+            >
+                Add a lesson
+            </NuxtLink>
+        </template>
+    answer:
+      line: 5
+      fix: "            query: { parentPageData: moduleIri, template: lessonTemplateIri },"
+      explanation: >-
+        The template's query parameter is `template`. `?page=` is the page number of the list behind the form,
+        so the template is never filled in.
+    sources:
+      - { kind: docs, page: /nuxt-module/cwa-layer/admin-panel, anchor: linking-to-the-add-page-data-form, sectionHash: 'sha256:bbbd5de70f36bcfd', block: 0, blockHash: 'sha256:d9603cc46401ab23' }
+    author: llm-draft
+
+  - id: nuxt.page-data.read-in-computed
+    version: 1
+    status: live
+    level: intermediate
+    area: nuxt-module
+    tags: [cwa-api, dynamic-pages]
+    type: multiple-choice
+    difficulty: 3
+    prompt: In `<script setup>`, why read `cwa.resources.pageData.value` inside a `computed`?
+    options:
+      - { id: a, text: '`useCwa()` only works when it''s called inside a `computed`' }
+      - { id: b, text: 'A direct read sends a second request for the page data on every render' }
+      - { id: c, text: 'It changes after setup, and a setup-time read keeps the first value' }
+      - { id: d, text: 'Values read outside a `computed` can''t be edited in the admin' }
+    answer:
+      correct: c
+      explanation: >-
+        `pageData` is empty until the page data fetch resolves, and it changes on client-side navigation between
+        records that share the template page, which reuses the component. A setup-time read keeps the first
+        value; a `computed` follows it.
+    sources:
+      - { kind: docs, page: /core-concepts/dynamic-pages, anchor: reading-pagedata-in-your-vue-component, sectionHash: 'sha256:76c2ecae76dda115' }
+    author: llm-draft
+
+  - id: nuxt.auth.ssr-safe-state
+    version: 1
+    status: live
+    level: intermediate
+    area: nuxt-module
+    tags: [auth]
+    type: multiple-choice
+    difficulty: 3
+    prompt: Which auth values can a layout render on the server without `<ClientOnly>`?
+    options:
+      - { id: a, text: '`signedIn` and `status`' }
+      - { id: b, text: '`isAdmin` and `user`' }
+      - { id: c, text: '`roles` and `isAdmin`' }
+      - { id: d, text: '`signedIn` and `isAdmin`' }
+    answer:
+      correct: a
+      explanation: >-
+        `signedIn` and `status` come from a cookie, so the server can render them. `isAdmin`, `user` and `roles`
+        need the user loaded from `/me`, so wrap UI that reads them in `<ClientOnly>`.
+    sources:
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: auth-conditional-ui, sectionHash: 'sha256:d00d8d10438fee63' }
+    author: llm-draft
+
+  - id: nuxt.auth.roles-access
+    version: 1
+    status: live
+    level: intermediate
+    area: nuxt-module
+    tags: [auth, cwa-api]
+    type: multiple-choice
+    difficulty: 3
+    prompt: In a script, how do you read the signed-in user's roles?
+    options:
+      - { id: a, text: '`cwa.auth.roles.value`' }
+      - { id: b, text: '`cwa.auth.roles`' }
+      - { id: c, text: '`await cwa.auth.roles()`' }
+      - { id: d, text: '`cwa.auth.user.value.roles`' }
+    answer:
+      correct: b
+      explanation: >-
+        `user` and `roles` are plain reactive getters, not refs, so `.value` on them gives `undefined`.
+        `roles` is `undefined` when nobody is signed in.
+    sources:
+      - { kind: docs, page: /nuxt-module/cwa-api/auth, anchor: state, sectionHash: 'sha256:8e7fd8e732d171f5' }
+    author: llm-draft
+
+  - id: nuxt.config.layout-classes
+    version: 1
+    status: live
+    level: intermediate
+    area: nuxt-module
+    tags: [layouts-and-pages, module-setup]
+    type: multiple-choice
+    difficulty: 3
+    prompt: How do you declare the styles an editor can pick for a layout?
+    options:
+      - { id: a, text: 'A list of `{ value, label }` objects under `cwa.resources`' }
+      - { id: b, text: A `styles` prop on the layout's `<CwaComponentGroup>` }
+      - { id: c, text: A `uiClassNames` default in the Layout PHP entity }
+      - { id: d, text: A label → class map under `cwa.layouts` in `nuxt.config` }
+    answer:
+      correct: d
+      explanation: >-
+        `cwa.layouts.<Name>.classes` maps the label the admin sees to a class string. A "Default" option with no
+        classes is added for you.
+    sources:
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: registering-layout-options, sectionHash: 'sha256:260fe9e4c1275e6b' }
+    author: llm-draft
+
+  - id: nuxt.component.style-variants-where
+    version: 1
+    status: live
+    family: component-style-variants
+    level: intermediate
+    area: nuxt-module
+    tags: [components]
+    type: multiple-choice
+    difficulty: 3
+    prompt: Where do you declare the style variants an editor can pick for a component?
+    options:
+      - { id: a, text: 'In its Vue file, with `useCwaComponent`''s `styles` option' }
+      - { id: b, text: Under `cwa.resources.<Name>.classes` in your `nuxt.config.ts` }
+      - { id: c, text: 'In the component''s PHP entity, with an attribute' }
+      - { id: d, text: 'In an admin tab, with `useCwaResourceModel`' }
+    answer:
+      correct: a
+      explanation: >-
+        Component styles live in the Vue file: `useCwaComponent(props, [], { styles: { classes } })`. `classes`
+        in `nuxt.config` exists on `layouts` and `pages` only.
+      optionNotes:
+        b: '`cwa.resources` has no `classes` key.'
+    sources:
+      - { kind: docs, page: /nuxt-module/configuration/nuxt-config, anchor: full-cwa-reference, sectionHash: 'sha256:82d041df3e604929' }
+      - { kind: docs, page: /nuxt-module/composables/component/use-cwa-component, anchor: style-variants, sectionHash: 'sha256:73b5fa696d55a19d' }
+    author: llm-draft
+
+  - id: nuxt.component.nested-group-location
+    version: 1
+    status: live
+    level: intermediate
+    area: nuxt-module
+    tags: [components]
+    type: multiple-choice
+    difficulty: 3
+    prompt: A component contains its own `<CwaComponentGroup>`. What do you pass as the group's `location`?
+    options:
+      - { id: a, text: The page's IRI from `$cwa.resources` }
+      - { id: b, text: The component's own `iri` prop }
+      - { id: c, text: The layout's IRI from `$cwa.resources` }
+      - { id: d, text: The group's `reference` string }
+    answer:
+      correct: b
+      explanation: >-
+        Pass the component's `iri`. A nested group resolves its `location` to the component's published IRI
+        itself, so you rarely need `publishedIri`.
+    sources:
+      - { kind: docs, page: /nuxt-module/composables/component/use-cwa-component, anchor: return-values, sectionHash: 'sha256:db39379ae980b37e' }
+    author: llm-draft
+
+  - id: nuxt.component.resource-states
+    version: 1
+    status: live
+    level: intermediate
+    area: nuxt-module
+    tags: [composables]
+    type: multiple-choice
+    difficulty: 3
+    prompt: From `useCwaComponent`, `resource.value` is an object with no `data`. What does that mean?
+    options:
+      - { id: a, text: The store has no entry for this IRI yet }
+      - { id: b, text: The component is a draft nobody published }
+      - { id: c, text: The component was deleted in the admin }
+      - { id: d, text: 'The fetch is still running, or it failed' }
+    answer:
+      correct: d
+      explanation: >-
+        `undefined` means the store has no entry. An object without `data` means the fetch is in progress or
+        failed; `apiState.status` says which. With `data`, it's ready.
+    sources:
+      - { kind: docs, page: /nuxt-module/composables/component/use-cwa-component, anchor: example, sectionHash: 'sha256:df121ccdabd91158' }
+    author: llm-draft
+
+  - id: nuxt.admin.instant-add
+    version: 1
+    status: live
+    level: intermediate
+    area: nuxt-module
+    tags: [admin, module-setup]
+    type: multiple-choice
+    difficulty: 2
+    prompt: 'What does `instantAdd: true` on a component type in `nuxt.config` change?'
+    options:
+      - { id: a, text: 'It''s added at once, with no config panel first' }
+      - { id: b, text: 'Editors can add it to any group, whatever its allowed list' }
+      - { id: c, text: It's added to every new page automatically }
+      - { id: d, text: The component is published as soon as it's added }
+    answer:
+      correct: a
+      explanation: >-
+        In the Add Component dialog, a type with `instantAdd: true` is added straight away. Otherwise a config
+        panel appears first.
+    sources:
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: adding-a-component, sectionHash: 'sha256:698f27565d8cc73f' }
+    author: llm-draft

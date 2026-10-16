@@ -1,0 +1,149 @@
+# Hand-written advanced questions about the Nuxt module: page caching and pages of your own.
+# Format: quiz/README.md. Run `pnpm quiz:stamp <id>` to fill in or refresh the hashes.
+
+questions:
+  - id: nuxt.page-cache.lifetime
+    version: 1
+    status: live
+    level: advanced
+    area: nuxt-module
+    tags: [page-caching]
+    type: multiple-choice
+    difficulty: 3
+    prompt: With `pageCache.sharedMaxAge` unset, what decides how long a shared cache keeps a rendered page?
+    options:
+      - { id: a, text: 'One hour, the module''s fixed lifetime for pages' }
+      - { id: b, text: The lowest `s-maxage` of the API responses it used }
+      - { id: c, text: The `s-maxage` of the page's route response alone }
+      - { id: d, text: 'Nothing: pages stay until the next deploy' }
+    answer:
+      correct: b
+      explanation: >-
+        A page's `s-maxage` is the lowest of the API responses' lifetimes (and the time to any `Expires`),
+        capped by `sharedMaxAge` if you set it. Only when nothing supplies a value is it one hour.
+      optionNotes:
+        a: One hour applies only when no API response supplies a lifetime.
+    sources:
+      - { kind: docs, page: /nuxt-module/page-caching, anchor: how-long-a-page-is-kept, sectionHash: 'sha256:118538e80ad6a936' }
+    author: llm-draft
+
+  - id: nuxt.page-cache.max-age-zero
+    version: 1
+    status: live
+    level: advanced
+    area: nuxt-module
+    tags: [page-caching, deployment]
+    type: multiple-choice
+    difficulty: 4
+    prompt: Cached pages always send `max-age=0` to browsers, whatever their `s-maxage`. Why?
+    options:
+      - { id: a, text: 'A browser cache can''t be purged, and old pages load old builds' }
+      - { id: b, text: Browsers refuse to cache any HTML that carries a `Surrogate-Key` header }
+      - { id: c, text: It makes Souin ask Nuxt to re-render every page }
+      - { id: d, text: Cloudflare needs it to pass purges on to the edge }
+    answer:
+      correct: a
+      explanation: >-
+        Nothing can purge a visitor's browser cache, and a stale page that points at an old build's `/_nuxt`
+        files loads blank. So only the shared cache, which the API purges, keeps pages.
+    sources:
+      - { kind: docs, page: /nuxt-module/page-caching, anchor: what-a-cached-page-carries, sectionHash: 'sha256:9b5744fff106a59c' }
+    author: llm-draft
+
+  - id: nuxt.page-cache.shared-max-age-when
+    version: 1
+    status: live
+    level: advanced
+    area: nuxt-module
+    tags: [page-caching]
+    type: multiple-choice
+    difficulty: 4
+    prompt: When should you set `pageCache.sharedMaxAge`?
+    options:
+      - { id: a, text: 'Always, or pages are never stored by the shared cache' }
+      - { id: b, text: Only when the site runs behind Cloudflare's edge cache }
+      - { id: c, text: When pages render data the API doesn't provide }
+      - { id: d, text: When the API responses carry no `Expires` header }
+    answer:
+      correct: c
+      explanation: >-
+        Only CWA resources are tagged for purging. A date rendered on the server or a third-party fetch is never
+        purged, so with the default lifetime it can stay for up to a year. `sharedMaxAge` caps every page.
+    sources:
+      - { kind: docs, page: /nuxt-module/page-caching, anchor: how-long-a-page-is-kept, sectionHash: 'sha256:118538e80ad6a936' }
+    author: llm-draft
+
+  - id: nuxt.page-cache.unpublished-component
+    version: 1
+    status: live
+    level: advanced
+    area: nuxt-module
+    tags: [page-caching, draft-and-publish]
+    type: multiple-choice
+    difficulty: 5
+    prompt: A page places a component that has never been published. An anonymous visitor loads it. Is the page cached?
+    options:
+      - { id: a, text: 'No: any `private` API response makes the page `no-store`' }
+      - { id: b, text: 'Yes, and the component appears once it is published' }
+      - { id: c, text: 'No: a `404` from the API marks the page as failed' }
+      - { id: d, text: 'Yes, and it shows only after a purge by hand' }
+    answer:
+      correct: b
+      explanation: >-
+        The component's private 404 is a 4xx, and a 4xx API response doesn't count towards the page's headers.
+        Publishing purges the component's IRI, which drops the page.
+    sources:
+      - { kind: docs, page: /nuxt-module/page-caching, anchor: when-a-page-is-not-cached, sectionHash: 'sha256:507016c8de7e1673' }
+    author: llm-draft
+
+  - id: nuxt.setup.load-by-iri-public
+    version: 1
+    status: live
+    level: advanced
+    area: nuxt-module
+    tags: [module-setup, security]
+    type: multiple-choice
+    difficulty: 4
+    prompt: A Nuxt page of your own loads a CWA page by IRI with `cwa.fetch`. The API sets `routable_security`. What makes it work for visitors?
+    options:
+      - { id: a, text: 'Add `cwa: { disabled: true }` to the Nuxt page''s meta' }
+      - { id: b, text: Request the page with `?published=true` }
+      - { id: c, text: Add a `route_security` rule for its path }
+      - { id: d, text: Turn on **Public without a route** for the CWA page }
+    answer:
+      correct: d
+      explanation: >-
+        A page without a route is private under `routable_security`, so visitors get a `401`. The flag,
+        `isReachableWithoutRoute`, makes it readable as though a live route reached it.
+      optionNotes:
+        a: A page that loads a CWA page by IRI must leave `disabled` off.
+    sources:
+      - { kind: docs, page: /nuxt-module/module-setup, anchor: load-a-cwa-page-by-iri, sectionHash: 'sha256:aca777ce426bdb22' }
+    author: llm-draft
+
+  - id: nuxt.setup.own-pages-error
+    version: 1
+    status: live
+    level: advanced
+    area: nuxt-module
+    tags: [module-setup]
+    type: multiple-choice
+    difficulty: 3
+    family: 'mistake:cwa-disabled-false'
+    prompt: You add `app/app/pages/status.vue` with no `definePageMeta`. Visitors to `/status` get the error page. Why?
+    options:
+      - { id: a, text: The route middleware asks the API for a route at `/status` }
+      - { id: b, text: CWA's catch-all route takes precedence over your own page file }
+      - { id: c, text: Pages of your own must live in `app/app/cwa/pages/` }
+      - { id: d, text: The layer blocks pages that don't use `cwa-root-layout` }
+    answer:
+      correct: a
+      explanation: >-
+        The middleware runs on every navigation and looks up a `Route` for the path. There isn't one, so the
+        visitor gets the error page. Set `cwa: { disabled: true }` on every page of your own.
+      optionNotes:
+        b: Your `app/app/pages/` files take precedence over CWA's catch-all route.
+    sources:
+      - { kind: docs, page: /nuxt-module/module-setup, anchor: disable-cwa-route-fetching, sectionHash: 'sha256:7d2c3f9a44902a9a' }
+      - { kind: docs, page: /nuxt-module/module-setup, anchor: mixing-your-own-pages-with-cwa, sectionHash: 'sha256:ff0c746c5a55f2d3' }
+    author: llm-draft

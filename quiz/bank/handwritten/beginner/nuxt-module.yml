@@ -1,0 +1,175 @@
+# Hand-written beginner questions about the Nuxt module.
+# Format: quiz/README.md. Run `pnpm quiz:stamp <id>` to fill in or refresh the hashes.
+
+questions:
+  - id: nuxt.component.reads-resource
+    version: 1
+    status: live
+    level: beginner
+    area: nuxt-module
+    tags: [components, composables]
+    type: pick-the-line
+    difficulty: 1
+    prompt: Which line gives this component its data from the module's store?
+    code:
+      lang: vue
+      text: |-
+        <!-- app/app/cwa/components/Title/Title.vue -->
+        <template>
+          <h1>{{ resource?.data?.title || 'No Title' }}</h1>
+        </template>
+
+        <script setup lang="ts">
+        import type { IriProp } from '#cwa/composables/cwa-resource'
+        import { useCwaComponent } from '#imports'
+
+        const props = defineProps<IriProp>()
+        const { resource, exposeMeta } = useCwaComponent(props)
+        defineExpose(exposeMeta)
+        </script>
+    answer:
+      lines: [11]
+      explanation: >-
+        `useCwaComponent(props)` reads the resource for the component's IRI from the store. The module has
+        already fetched it, and `resource` stays reactive to updates.
+    sources:
+      - { kind: docs, page: /core-concepts/components, anchor: _2-the-vue-component-the-display, sectionHash: 'sha256:cc87dc88884ee7f5', block: 0, blockHash: 'sha256:58f142cdf2cf43cb' }
+    author: llm-draft
+
+  - id: nuxt.component.iri-prop
+    version: 1
+    status: live
+    level: beginner
+    area: nuxt-module
+    tags: [components]
+    type: multiple-choice
+    difficulty: 1
+    prompt: What does the module pass to every CWA component's Vue file as a prop?
+    options:
+      - { id: a, text: The component's full API response }
+      - { id: b, text: The component's IRI }
+      - { id: c, text: The current route's path }
+      - { id: d, text: The layout's `uiComponent` }
+    answer:
+      correct: b
+      explanation: >-
+        Each component receives its IRI as the `iri` prop (`defineProps<IriProp>()`), and reads its data from
+        the store with `useCwaComponent(props)`.
+    sources:
+      - { kind: docs, page: /getting-started/key-ideas, anchor: how-records-are-identified, sectionHash: 'sha256:136fd1a524073c73' }
+    author: llm-draft
+
+  - id: nuxt.layout.slot
+    version: 1
+    status: live
+    level: beginner
+    area: nuxt-module
+    tags: [layouts-and-pages]
+    type: pick-the-line
+    difficulty: 1
+    # Shares a family with the generated layout-slot spot-the-mistake questions: the same fact.
+    family: mistake:layout-slot
+    prompt: Remove one line of this layout, and every page shows only the header and footer. Which line?
+    code:
+      lang: vue
+      text: |-
+        <!-- app/app/cwa/layouts/primary.vue -->
+        <template>
+            <div>
+                <header>
+                    <NuxtLink to="/">Home</NuxtLink>
+                </header>
+
+                <main>
+                    <slot />
+                </main>
+
+                <footer>
+                    <p>© 2024 My Site</p>
+                </footer>
+            </div>
+        </template>
+
+        <script setup lang="ts">
+        useCwaLayout()
+        </script>
+    answer:
+      lines: [9]
+      explanation: >-
+        The module passes the page into the layout's default slot, so `<slot />` is where the page renders.
+        Without it, the page passed in is never shown. A layout needs no special props.
+    sources:
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: minimal-layout, sectionHash: 'sha256:2b8dc7ad2252926d', block: 0, blockHash: 'sha256:184da2bd305e9d07' }
+    author: llm-draft
+
+  - id: nuxt.layout.where-files-go
+    version: 1
+    status: live
+    level: beginner
+    area: nuxt-module
+    tags: [layouts-and-pages]
+    type: multiple-choice
+    difficulty: 2
+    prompt: Where do the Vue files for CWA layouts go?
+    options:
+      - { id: a, text: '`app/layouts/`, Nuxt''s own layouts folder' }
+      - { id: b, text: '`app/app/cwa/layouts/`' }
+      - { id: c, text: '`app/app/cwa/pages/`, beside the page templates' }
+      - { id: d, text: '`app/app/layouts/cwa/`' }
+    answer:
+      correct: b
+      explanation: >-
+        The module registers the files in `app/app/cwa/layouts/` as global components with the `CwaLayout`
+        prefix. Nuxt's own layouts are something else: a CWA layout renders inside the module's root layout.
+    sources:
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: how-uicomponent-names-resolve, sectionHash: 'sha256:5dc45450ae61e9df' }
+    author: llm-draft
+
+  - id: nuxt.admin.start-editing
+    version: 1
+    status: live
+    level: beginner
+    area: nuxt-module
+    tags: [admin]
+    type: multiple-choice
+    difficulty: 1
+    prompt: You've signed in as an admin on your site. How do you start changing a page's content?
+    options:
+      - { id: a, text: 'Open the page''s Vue file and edit the text in it' }
+      - { id: b, text: 'Add `?edit=1` to the page''s URL and reload it' }
+      - { id: c, text: 'Click **Edit** to turn on edit mode, on the page itself' }
+      - { id: d, text: 'Send a `PATCH` to the page''s route with the new text' }
+    answer:
+      correct: c
+      explanation: >-
+        Editing happens on the site itself. Click **Edit** to enter edit mode, then click a component to select
+        it and change it.
+    sources:
+      - { kind: docs, page: /getting-started/installation, anchor: _3-open-the-site, sectionHash: 'sha256:25e00037eb801378' }
+    author: llm-draft
+
+  - id: nuxt.component.style-variants-beginner
+    version: 1
+    status: live
+    # Shares a family with nuxt.component.style-variants-where, which this one would give away.
+    family: component-style-variants
+    level: beginner
+    area: nuxt-module
+    tags: [components]
+    type: multiple-choice
+    difficulty: 2
+    prompt: An editor wants the same Title component in a large style on one page and a small style on another. What does CWA give them?
+    options:
+      - { id: a, text: 'Two component types, one for each style' }
+      - { id: b, text: 'A style picker, from styles your Vue file names' }
+      - { id: c, text: 'A CSS field where they write their own rules' }
+      - { id: d, text: 'Nothing: one component has one look everywhere' }
+    answer:
+      correct: b
+      explanation: >-
+        A component's Vue file can name styles, each a set of CSS classes. Editors pick one in the admin, and it
+        is stored on that component as `uiClassNames`.
+    sources:
+      - { kind: docs, page: /nuxt-module/composables/component/use-cwa-component, anchor: style-variants, sectionHash: 'sha256:73b5fa696d55a19d' }
+      - { kind: docs, page: /api/components/creating-components, anchor: what-abstractcomponent-gives-you, sectionHash: 'sha256:81118f548996b5fb' }
+    author: llm-draft
