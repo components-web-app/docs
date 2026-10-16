@@ -2,6 +2,7 @@
 
 ## Docs writing principles
 
+- **Only the three source projects.** Never document or mention internal tooling, dashboards or processes that sit outside the bundle, the module and the template, even where a template file mentions them.
 - **Getting started guides = simple introductions.** One concept per guide, minimum viable code, link out to the detailed reference for everything else. Readers should feel like they're learning and building, not reading a reference manual.
 - **Don't repeat the intro.** Each guide should build on what the previous page established — not re-explain the same concept.
 - **Callouts for key constraints.** Constraints like "location must be a layout, page, or component IRI" belong in a callout, not buried in prose.
@@ -29,6 +30,9 @@ If a change is documented, move it to **Documented** below. If it is intentional
 
 - Template #129 (admin-editable site settings) is a proposal only.
 
+### Waiting
+- **docs #236** (readable scaffold style, new fixture builder API): bundle PR #453 is still open. Document it when it merges to `main`.
+
 ### 2026-08-12 — docs #1 (AI chat assistant): provider decided, not yet built
 Researched and recorded on the issue (body + [findings comment](https://github.com/components-web-app/docs/issues/1#issuecomment-5268193154)). **NotebookLM — the original inspiration — cannot be the backend:** no consumer API, and the Gemini Notebook Enterprise API (`v1alpha` preview) is notebook/source **management only** (`notebooks.create/get/listRecentlyViewed/batchDelete/share` + podcasts) with **no query or chat endpoint**. Only free NotebookLM path is a public shared notebook linked out to. **Decision: lexical retrieval + Claude Haiku 4.5 (paid) behind an `/api/chat` edge function** (~$0.012/turn, ~$6/mo at 500 turns; Groq free tier was the earlier pick and is superseded). Key reasoning worth keeping: (1) **`llms-full.txt` is ~165–190k tokens** — full-context stuffing costs ~$0.45 per *cold* prompt-cache write and the 5-min TTL means low traffic goes cold nearly every time, so **low traffic makes full-context worse, not cheaper**; retrieval (~8k tokens/turn) sidesteps it and BM25 over our own docs needs no embeddings service. (2) **The Gemini free tier trains on submitted content and human reviewers may read inputs/outputs** ([official terms](https://ai.google.dev/gemini-api/terms)) — the exposure is *visitor* questions, not our public docs, so it needs a privacy notice; Groq retains nothing by default with ZDR on all tiers. Being FOSS doesn't disqualify us from any free tier — Google's "professional or business purposes" wording is about who uses it, not commerciality. (3) **Self-hosting costs more, not less** (~$100–300/mo GPU VPS vs ~$24/mo hosted Haiku 4.5 at ~$0.012/turn); the docs site is prerendered to Vercel with nowhere to run inference. (4) **Pricing shape worth remembering: Haiku 4.5 sits *between* Gemini Flash-Lite and Flash** — Gemini 3.1 Flash-Lite $0.25/$1.50, Haiku $1/$5, Gemini 3.5/3.6 Flash $1.50/$7.50–9.00 — so "Gemini is cheaper" only holds at the Flash-**Lite** tier. Chose Haiku over Flash-Lite because the gap is ~$4.50/mo at our traffic while Google's model churn is much faster (2.5 Flash-Lite retires Oct 2026; 3.1/3.5/3.6 already out) for a widget nobody maintains. (5) **Gemini context caching bills ~$1.00/hour storage** (~$720/mo held continuously) on top of token cost — kills any "cache `llms-full.txt`" idea there outright; Anthropic caching has no storage fee. (6) **Persona design:** the RAG grounding rule and the "use metaphors" instruction actively conflict — must split the permission explicitly (*metaphors are the model's to invent, facts are not*) or it improvises product behaviour from WordPress/Strapi. Starter system prompt + seed metaphors (picture frame with labelled slots, one blueprint many houses, shop window vs stockroom, kitchen vs dining room) are in the issue comment; explicitly forbid "it's like WordPress". Note **prompt caching won't fire on Haiku 4.5** for a persona prompt — 4096-token minimum prefix. *Docs impact: none yet — this is a site feature, not documentation. Still open: chat UI placement, and including `content/*.yml` marketing copy in the retrieval corpus (it is absent from `llms-full.txt`).*
 
@@ -37,6 +41,30 @@ Researched and recorded on the issue (body + [findings comment](https://github.c
 `GET /_/resource_manifest/{id}`'s `resource_iris` changed from `string[][]` to `NestedJsonStructure[]` — outer array still indexed by rendering depth (root first), but each depth is now a recursive `{ iri, children }` tree preserving component containment (to enable placeholder/skeleton rendering that reduces loader flicker/layout shift). Module migrated: retains the raw tree (`manifest.resourceTree`) and derives the flat `irisByDepth` via a pure `flattenManifestNode` helper — all existing depth/render semantics unchanged, no rendering change yet. Hard swap, no BC window (pre-alpha). **Status:** bundle #197 + module #250 **COMPLETE**; the manifest shape is now settled. Bundle **#198 (extra per-node placeholder metadata) is closed NOT_PLANNED** — the module can build skeletons from the containment tree it already receives, so **no further manifest metadata is coming**. The eventual skeleton/placeholder feature will be **module-side only**, now tracked as **[cwa-nuxt-module #255](https://github.com/components-web-app/cwa-nuxt-module/issues/255)** (raised, **not yet shipped**). Planned user-facing API when it lands: opt-in per-component-type placeholder templates at `app/cwa/components/<Name>/placeholder.vue` (scanned like `admin/`/`ui/`), rendered until the resource resolves, laid out from the `resourceTree` to reserve space (anti-CLS); component type derived from the IRI, no manifest/API metadata. *Docs impact: low, deferred — internal plumbing with no consuming-app surface today. Document the `placeholder.vue` convention when #255 phase 2 ships.*
 
 ## Documented
+
+- **2026-10-16 — docs #227–#235, three parallel workers, plus release markers.** Checked against bundle `origin/main` `5cd2edf0` (2.0.0-alpha.21), module `origin/dev` `ccc7bbcd` (2.0.0-alpha.17) and template `origin/main` `ecb5ee9` (after 2.0.0-alpha.35). The build passes (402 routes), and all 411 links in the changed pages resolve.
+  - **API (#227, #229):** a page/page data `title` is null by default (bundle alpha.19). dynamic-pages called it "Required", which #440 made false. `routes/generate` without a usable title is a 422. Builder: an untitled entity with no `route:` gets no route. **A title that slugifies to nothing still reaches `RouteGenerator`, so `flush()` fails with the 422** (`CwaFixtureBuilder.php:696` only checks null). New `## warm-http-cache` in console-commands, and "Warming the Cache" in http-caching.
+  - **Module (#230, #231, #234, plus #388):**
+    - admin-panel "Linking to the add page data form" (`/_cwa/data/<type>/add`; `parentPage` wins over `parentPageData`).
+    - creating-page-templates "Loading Bar" (`<CwaLoadingIndicator>`).
+    - module-setup "Nuxt SEO v6", and site-config-and-seo "The OG image secret" plus "Your own sitemap sources".
+    - **Corrections:** the module registers the individual Nuxt SEO modules, never `@nuxtjs/seo`, so skew protection and AI Ready only apply to apps that register the bundle themselves. The OG image is generated only when `satori` and `@resvg/resvg-js` are both installed (the page said "no setup required"). `/__og-image__/…` doesn't exist in og-image 7. #231 and #234 shipped in alpha.16, not "after alpha.15".
+  - **Deployment (#228, #232, #233, #235):**
+    - New page `6.deployment/7.browser-tests.md`.
+    - ci-cd "Which build a deploy runs" and "One job for variants and the warm".
+    - kubernetes "Warming the API cache on start" and "Logs".
+    - New variables rows.
+    - Troubleshooting entries.
+    - **Corrections:**
+      - Kubernetes rollback was wrong after alpha.35 (pinned digest with `IfNotPresent` now).
+      - On GitHub, re-running an old production run deploys `:main`'s current build; only `helm rollback` restores it.
+      - The postStart hook waits for `site_config_parameters` to answer, not just Caddy.
+      - Prod logs are `fingers_crossed` (written only when a request logs an error).
+      - The error mail also needs `MAILER_EMAIL`.
+      - `fixtures.ts` also fails on an uncaught page error.
+  - **Markers:** the "main after bundle alpha.17" markers now say bundle 2.0.0-alpha.18; module #384 now says `@cwa/nuxt` 2.0.0-alpha.12; the template's dropped `Put` now says 2.0.0-alpha.29.
+  - **Reviewed, no docs:** bundle #433 (already documented), #437, #438, #445, #449, #450; module #386, #387, #391, #393–#395, #397; template #155, #156, #158, #159, #161, dependency bumps.
+  - **Not changed:** the CI pipeline diagram (`Diagram/CiPipeline.vue`) still labels Test "PHPUnit unit + functional", and doesn't show browser tests.
 
 - **2026-10-13 (evening) — docs #207–#218, #223–#225, #210, #211, plus site fixes.**
   - **Duplicates:** #207–#209 and #212–#218 were filed by other sessions and mostly covered by #220–#222. The remaining gaps are filled:
