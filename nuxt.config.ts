@@ -114,7 +114,7 @@ export default defineNuxtConfig({
         '/quiz',
         '/quiz/play',
         '/api/quiz/config.json',
-        ...['beginner', 'intermediate', 'advanced', 'expert'].flatMap(level => [
+        ...['beginner', 'intermediate', 'advanced', 'expert', 'whats-new'].flatMap(level => [
           `/api/quiz/questions/${level}.json`,
           `/api/quiz/keys/${level}.json`
         ])

@@ -5,7 +5,7 @@
  * No Math.random() here except in newSeed(). Everything else is a pure function of
  * (seed, level, area, the pool), so a shared link reproduces a quiz exactly.
  */
-import type { AreaFilter, Level, PublicQuestion } from '../schema'
+import { WHATS_NEW, type AreaFilter, type PublicQuestion, type QuizSet } from '../core.ts'
 
 /** cyrb53: a fast, well-mixed 53-bit string hash. Not cryptographic, which is fine here. */
 export function hash53(input: string, salt = 0): number {
@@ -50,7 +50,8 @@ export function newSeed(): string {
 
 export type SelectOptions = {
   seed: string
-  level: Level
+  /** A level, or What's new, whose pool is already only new questions (from every level). */
+  level: QuizSet
   area: AreaFilter
   count: number
   /**
@@ -104,7 +105,7 @@ type Selectable = Pick<PublicQuestion, 'id' | 'level' | 'area' | 'type' | 'famil
 export function selectQuestions<T extends Selectable>(pool: T[], options: SelectOptions): Selection<T> {
   const { seed, level, area, count, maxTypeShare = 0.6, groupCaps = DEFAULT_GROUP_CAPS, excludeFamilies } = options
   const familyOf = (q: T) => q.family ?? `q:${q.id}`
-  const eligible = pool.filter(q => q.level === level && (area === 'all' || q.area === area) && !excludeFamilies?.has(familyOf(q)))
+  const eligible = pool.filter(q => (level === WHATS_NEW || q.level === level) && (area === 'all' || q.area === area) && !excludeFamilies?.has(familyOf(q)))
   const familySize = new Map<string, number>()
   for (const q of eligible) familySize.set(familyOf(q), (familySize.get(familyOf(q)) ?? 0) + 1)
   const groupOf = (q: T) => q.family?.includes(':') ? q.family.slice(0, q.family.indexOf(':')) : undefined

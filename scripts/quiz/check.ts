@@ -6,9 +6,9 @@
  */
 import { existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { REPOS, type Question, type Source } from '../../quiz/schema.ts'
+import { compareVersions, isWhatsNew, REPOS, whatsNewWindow, type Question, type Repo, type Source } from '../../quiz/schema.ts'
 import { readAllPages, dedent, locateRun, ROOT, type DocsPage } from './lib/docs.ts'
-import { fetchRepo, findMoved, linesHash, readAt, sliceLines, trackedHead } from './lib/source.ts'
+import { fetchRepo, findMoved, linesHash, readAt, releaseTags, sliceLines, trackedHead } from './lib/source.ts'
 import { fingerprint, loadBank, loadConfig, loadLock, LOCK_FILE, rel, type LoadedQuestion } from './lib/bank.ts'
 import { bracketsBalance, endsOnOpenTag, stripTrailingComment } from './generators/common.ts'
 
@@ -163,7 +163,7 @@ function checkFairness(lq: LoadedQuestion) {
 /** Markdown links to docs pages in the prompt, options and answer must resolve. */
 function checkLinks(lq: LoadedQuestion, pages: Map<string, DocsPage>) {
   const q = lq.question
-  const texts = [q.prompt, q.answer.explanation, ...(q.type === 'multiple-choice' ? q.options.map(o => o.text) : []), ...Object.values((q.answer as { optionNotes?: Record<string, string> }).optionNotes ?? {})]
+  const texts = [q.prompt, q.answer.explanation, ...(q.why ? [q.why] : []), ...(q.type === 'multiple-choice' ? q.options.map(o => o.text) : []), ...Object.values((q.answer as { optionNotes?: Record<string, string> }).optionNotes ?? {})]
   const targets = [...texts.flatMap(t => [...t.matchAll(/\]\((\/[^)\s]*)\)/g)].map(m => m[1])), ...(q.answer.links ?? []).map(l => l.to).filter(to => to.startsWith('/'))]
   for (const t of texts) {
     if (/\]\(#/.test(t)) add('error', lq, 'a link starts with `#`. Write the page path too: the quiz is on another page')
@@ -176,6 +176,36 @@ function checkLinks(lq: LoadedQuestion, pages: Map<string, DocsPage>) {
       continue
     }
     if (anchor && !page.sections.some(s => s.anchor === anchor)) add('error', lq, `link to ${to}: ${path} has no heading #${anchor}`)
+  }
+}
+
+/** Levels whose hand-written questions must say why the fact matters. */
+const WHY_LEVELS = new Set(['intermediate', 'advanced', 'expert'])
+
+function checkWhy(lq: LoadedQuestion) {
+  const q = lq.question
+  if (q.status === 'live' && !q.generator && !q.why && WHY_LEVELS.has(q.level)) {
+    add('error', lq, `a hand-written ${q.level} question needs \`why\`: one sentence on when the fact matters in practice`)
+  }
+}
+
+/** `since` and `until` name real releases, and an unreleased change is resolved once it ships. */
+function checkVersions(lq: LoadedQuestion) {
+  const q = lq.question
+  for (const [field, refs] of [['since', q.since], ['until', q.until]] as const) {
+    for (const r of refs ?? []) {
+      const tags = releaseTags(r.repo as Repo)
+      if (!tags) continue
+      const released = tags.some(t => compareVersions(t, r.version) === 0)
+      if (!released) {
+        add('error', lq, `${field}: ${r.repo} has no release ${r.version}`)
+        continue
+      }
+      if (field === 'since' && 'unreleased' in r && r.unreleased) {
+        const later = tags.filter(t => compareVersions(t, r.version) > 0).sort(compareVersions)
+        if (later.length) add('warning', lq, `since: ${r.repo} has released ${later[0]} since ${r.version}. If the change is in it, set version: ${later[0].replace(/^v/, '')} and drop unreleased`)
+      }
+    }
   }
 }
 
@@ -213,6 +243,8 @@ async function main() {
     }
     checkFairness(lq)
     checkLinks(lq, pages)
+    checkWhy(lq)
+    checkVersions(lq)
   }
 
   // The lock file: live ids never vanish, versions never go down, a changed meaning bumps the version.
@@ -246,7 +278,7 @@ async function main() {
     }
   }
 
-  printReports(questions, config.levels.map(l => l.id))
+  printReports(questions, config.levels.map(l => l.id), config.whatsNew)
 
   const errors = findings.filter(f => f.severity === 'error' || STRICT)
   const warnings = findings.filter(f => f.severity === 'warning' && !STRICT)
@@ -258,9 +290,15 @@ async function main() {
   if (errors.length) process.exitCode = 1
 }
 
-function printReports(questions: LoadedQuestion[], levels: string[]) {
+function printReports(questions: LoadedQuestion[], levels: string[], whatsNew: { releases: number, minFamilies: number }) {
   const live = questions.filter(lq => lq.question.status === 'live').map(lq => lq.question)
   const lines: string[] = [...report]
+
+  const window = whatsNewWindow(live, whatsNew.releases)
+  const fresh = live.filter(q => isWhatsNew(q, window))
+  const freshFamilies = new Set(fresh.map(q => q.family ?? `q:${q.id}`)).size
+  lines.push(`What's new: ${fresh.length} questions in ${freshFamilies} families, on ${[...window].map(([repo, v]) => `${repo} ${[...v].join(', ')}`).join('; ') || 'no releases yet'}`)
+  if (freshFamilies < whatsNew.minFamilies) findings.push({ severity: 'warning', id: '-', file: 'quiz/config.yml', message: `What's new has ${freshFamilies} families, under minFamilies (${whatsNew.minFamilies}), so the start page hides it. Write questions on the latest releases` })
 
   lines.push('Live questions per level and type:')
   for (const level of levels) {

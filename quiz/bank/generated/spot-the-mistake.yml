@@ -14,6 +14,8 @@ questions:
     type: spot-the-mistake
     family: mistake:builder-get-entity
     prompt: One line in this fixture code is wrong. Click it.
+    why: You need these getters to read the IRI of something you seeded, and a `getEntity()` call stops the
+      fixture load with an undefined method error.
     code:
       lang: php
       text: |-
@@ -49,6 +51,8 @@ questions:
     type: spot-the-mistake
     family: mistake:is-editing-value
     prompt: One line in this code is wrong. Click it.
+    why: Read `$cwa.admin.isEditing` with `.value` and your edit-only UI never appears, with no error to tell you
+      why.
     code:
       lang: vue
       text: |-
@@ -96,6 +100,8 @@ questions:
     type: spot-the-mistake
     family: mistake:is-editing-value
     prompt: One line in this code is wrong. Click it.
+    why: Read `$cwa.admin.isEditing` with `.value` and your edit-only UI never appears, with no error to tell you
+      why.
     code:
       lang: vue
       text: |-
@@ -134,6 +140,8 @@ questions:
     type: spot-the-mistake
     family: mistake:is-editing-value
     prompt: One line in this code is wrong. Click it.
+    why: Read `$cwa.admin.isEditing` with `.value` and your edit-only UI never appears, with no error to tell you
+      why.
     code:
       lang: ts
       text: |-
@@ -181,6 +189,8 @@ questions:
     type: spot-the-mistake
     family: mistake:signed-in-value
     prompt: One line in this code is wrong. Click it.
+    why: This is how a sign-out link ends up shown to visitors who aren't signed in, with nothing in the console
+      to say why.
     code:
       lang: vue
       text: |-
@@ -221,6 +231,8 @@ questions:
     type: spot-the-mistake
     family: mistake:signed-in-value
     prompt: One line in this code is wrong. Click it.
+    why: This is how a sign-out link ends up shown to visitors who aren't signed in, with nothing in the console
+      to say why.
     code:
       lang: ts
       text: |-
@@ -266,6 +278,8 @@ questions:
     type: spot-the-mistake
     family: mistake:script-dollar-cwa
     prompt: One line in this code is wrong. It runs in `<script setup>` or a composable. Click it.
+    why: "This bites when you move code from a template into `<script setup>` or a composable: `$cwa` isn't
+      defined there."
     code:
       lang: vue
       text: |-
@@ -299,6 +313,8 @@ questions:
     type: spot-the-mistake
     family: mistake:script-dollar-cwa
     prompt: One line in this code is wrong. It runs in `<script setup>` or a composable. Click it.
+    why: "This bites when you move code from a template into `<script setup>` or a composable: `$cwa` isn't
+      defined there."
     code:
       lang: ts
       text: |-
@@ -336,6 +352,8 @@ questions:
     type: spot-the-mistake
     family: mistake:script-dollar-cwa
     prompt: One line in this code is wrong. It runs in `<script setup>` or a composable. Click it.
+    why: "This bites when you move code from a template into `<script setup>` or a composable: `$cwa` isn't
+      defined there."
     code:
       lang: ts
       text: |-
@@ -373,6 +391,8 @@ questions:
     type: spot-the-mistake
     family: mistake:cwa-disabled-false
     prompt: One line in this code is wrong. Click it.
+    why: "You'll meet this the first time you add a plain Nuxt page, such as a contact or account page: it shows
+      the error page instead of your content."
     code:
       lang: vue
       text: |-
@@ -407,6 +427,8 @@ questions:
     type: spot-the-mistake
     family: mistake:cwa-disabled-false
     prompt: One line in this code is wrong. Click it.
+    why: "You'll meet this the first time you add a plain Nuxt page, such as a contact or account page: it shows
+      the error page instead of your content."
     code:
       lang: vue
       text: |-
@@ -445,6 +467,8 @@ questions:
     type: spot-the-mistake
     family: mistake:cwa-disabled-false
     prompt: One line in this code is wrong. Click it.
+    why: "You'll meet this the first time you add a plain Nuxt page, such as a contact or account page: it shows
+      the error page instead of your content."
     code:
       lang: vue
       text: |-
@@ -489,6 +513,8 @@ questions:
     type: spot-the-mistake
     family: mistake:cwa-disabled-false
     prompt: One line in this code is wrong. Click it.
+    why: "You'll meet this the first time you add a plain Nuxt page, such as a contact or account page: it shows
+      the error page instead of your content."
     code:
       lang: ts
       text: |-
@@ -526,6 +552,8 @@ questions:
     type: spot-the-mistake
     family: mistake:cwa-disabled-false
     prompt: One line in this code is wrong. Click it.
+    why: "You'll meet this the first time you add a plain Nuxt page, such as a contact or account page: it shows
+      the error page instead of your content."
     code:
       lang: vue
       text: |-
@@ -584,6 +612,8 @@ questions:
     type: spot-the-mistake
     family: mistake:subpath-import
     prompt: One line in this code is wrong. Click it.
+    why: A package path doesn't resolve, so code copied with one fails the build or the type check. Change any
+      `@cwa/nuxt/...` import you paste in to `#cwa/...`.
     code:
       lang: vue
       text: |-
@@ -630,6 +660,8 @@ questions:
     type: spot-the-mistake
     family: mistake:subpath-import
     prompt: One line in this code is wrong. Click it.
+    why: A package path doesn't resolve, so code copied with one fails the build or the type check. Change any
+      `@cwa/nuxt/...` import you paste in to `#cwa/...`.
     code:
       lang: vue
       text: |-
@@ -685,6 +717,8 @@ questions:
     type: spot-the-mistake
     family: mistake:subpath-import
     prompt: One line in this code is wrong. Click it.
+    why: A package path doesn't resolve, so code copied with one fails the build or the type check. Change any
+      `@cwa/nuxt/...` import you paste in to `#cwa/...`.
     code:
       lang: vue
       text: |-
@@ -739,6 +773,8 @@ questions:
     type: spot-the-mistake
     family: mistake:subpath-import
     prompt: One line in this code is wrong. Click it.
+    why: A package path doesn't resolve, so code copied with one fails the build or the type check. Change any
+      `@cwa/nuxt/...` import you paste in to `#cwa/...`.
     code:
       lang: vue
       text: |-
@@ -796,6 +832,8 @@ questions:
     type: spot-the-mistake
     family: mistake:subpath-import
     prompt: One line in this code is wrong. Click it.
+    why: A package path doesn't resolve, so code copied with one fails the build or the type check. Change any
+      `@cwa/nuxt/...` import you paste in to `#cwa/...`.
     code:
       lang: vue
       text: |-
@@ -849,6 +887,8 @@ questions:
     type: spot-the-mistake
     family: mistake:subpath-import
     prompt: One line in this code is wrong. Click it.
+    why: A package path doesn't resolve, so code copied with one fails the build or the type check. Change any
+      `@cwa/nuxt/...` import you paste in to `#cwa/...`.
     code:
       lang: vue
       text: |-
@@ -901,6 +941,8 @@ questions:
     type: spot-the-mistake
     family: mistake:static-layout-nuxt-name
     prompt: One line in this code is wrong. Click it.
+    why: Both are called layouts, so the names are easy to mix up. With a Nuxt layout name, the page shows the
+      default layout and a warning that the layout component can't be resolved.
     code:
       lang: vue
       text: |-
@@ -939,6 +981,8 @@ questions:
     type: spot-the-mistake
     family: mistake:static-layout-nuxt-name
     prompt: One line in this code is wrong. Click it.
+    why: Both are called layouts, so the names are easy to mix up. With a Nuxt layout name, the page shows the
+      default layout and a warning that the layout component can't be resolved.
     code:
       lang: ts
       text: |-
@@ -986,6 +1030,8 @@ questions:
     type: spot-the-mistake
     family: mistake:layout-builder-prefix
     prompt: One line in this fixture code is wrong. Click it.
+    why: The page still renders, with the default layout and a console warning that the layout component can't be
+      resolved, so it's easy to miss.
     code:
       lang: php
       text: |-
@@ -1039,6 +1085,8 @@ questions:
     type: spot-the-mistake
     family: mistake:layout-builder-prefix
     prompt: One line in this fixture code is wrong. Click it.
+    why: The page still renders, with the default layout and a console warning that the layout component can't be
+      resolved, so it's easy to miss.
     code:
       lang: php
       text: |-
@@ -1079,6 +1127,8 @@ questions:
     type: spot-the-mistake
     family: mistake:layout-builder-prefix
     prompt: One line in this fixture code is wrong. Click it.
+    why: The page still renders, with the default layout and a console warning that the layout component can't be
+      resolved, so it's easy to miss.
     code:
       lang: php
       text: |-
@@ -1129,6 +1179,8 @@ questions:
     type: spot-the-mistake
     family: mistake:layout-builder-prefix
     prompt: One line in this fixture code is wrong. Click it.
+    why: The page still renders, with the default layout and a console warning that the layout component can't be
+      resolved, so it's easy to miss.
     code:
       lang: php
       text: |-
@@ -1165,6 +1217,8 @@ questions:
     type: spot-the-mistake
     family: mistake:page-title-property
     prompt: One line in this fixture code is wrong. Click it.
+    why: The fixture load stops on that line with PHP's `Cannot access protected property` error, so you'll see it
+      on the first run.
     code:
       lang: php
       text: |-
@@ -1203,6 +1257,8 @@ questions:
     type: spot-the-mistake
     family: mistake:page-title-property
     prompt: One line in this fixture code is wrong. Click it.
+    why: The fixture load stops on that line with PHP's `Cannot access protected property` error, so you'll see it
+      on the first run.
     code:
       lang: php
       text: |-
@@ -1239,6 +1295,8 @@ questions:
     type: spot-the-mistake
     family: mistake:user-factory-overwrite
     prompt: One line in this fixture breaks the second time the fixtures load with `--append`. Click it.
+    why: You won't see it if you always load fixtures into an empty database. It shows up the first time you
+      append to a seeded one, as a `ValidationFailedException`.
     code:
       lang: php
       text: |-
@@ -1288,6 +1346,7 @@ questions:
     type: spot-the-mistake
     family: mistake:layout-slot
     prompt: One line in this CWA layout is wrong. Click it.
+    why: If a layout shows its header and footer but none of the page's content, look for this line.
     code:
       lang: vue
       text: |-
@@ -1334,6 +1393,7 @@ questions:
     type: spot-the-mistake
     family: mistake:layout-slot
     prompt: One line in this CWA layout is wrong. Click it.
+    why: If a layout shows its header and footer but none of the page's content, look for this line.
     code:
       lang: vue
       text: |-
@@ -1389,6 +1449,7 @@ questions:
     type: spot-the-mistake
     family: mistake:layout-slot
     prompt: One line in this CWA layout is wrong. Click it.
+    why: If a layout shows its header and footer but none of the page's content, look for this line.
     code:
       lang: vue
       text: |-
@@ -1441,6 +1502,7 @@ questions:
     type: spot-the-mistake
     family: mistake:layout-slot
     prompt: One line in this CWA layout is wrong. Click it.
+    why: If a layout shows its header and footer but none of the page's content, look for this line.
     code:
       lang: vue
       text: |-
@@ -1493,6 +1555,7 @@ questions:
     type: spot-the-mistake
     family: mistake:component-without-props
     prompt: One line in this component is wrong. Click it.
+    why: If a new component renders empty while its resource has data in the API, check this call first.
     code:
       lang: vue
       text: |-
@@ -1539,6 +1602,7 @@ questions:
     type: spot-the-mistake
     family: mistake:component-without-props
     prompt: One line in this component is wrong. Click it.
+    why: If a new component renders empty while its resource has data in the API, check this call first.
     code:
       lang: vue
       text: |-
@@ -1593,6 +1657,7 @@ questions:
     type: spot-the-mistake
     family: mistake:component-without-props
     prompt: One line in this component is wrong. Click it.
+    why: If a new component renders empty while its resource has data in the API, check this call first.
     code:
       lang: vue
       text: |-
@@ -1642,6 +1707,7 @@ questions:
     type: spot-the-mistake
     family: mistake:component-without-props
     prompt: One line in this component is wrong. Click it.
+    why: If a new component renders empty while its resource has data in the API, check this call first.
     code:
       lang: vue
       text: |-
@@ -1686,6 +1752,7 @@ questions:
     type: spot-the-mistake
     family: mistake:component-without-props
     prompt: One line in this component is wrong. Click it.
+    why: If a new component renders empty while its resource has data in the API, check this call first.
     code:
       lang: vue
       text: |-
@@ -1740,6 +1807,7 @@ questions:
     type: spot-the-mistake
     family: mistake:component-without-props
     prompt: One line in this component is wrong. Click it.
+    why: If a new component renders empty while its resource has data in the API, check this call first.
     code:
       lang: vue
       text: |-
@@ -1788,6 +1856,7 @@ questions:
     type: spot-the-mistake
     family: target:publish-validation-group
     prompt: One line in this component class is wrong. Click it.
+    why: "A misnamed group fails silently: nothing errors, and empty fields reach the live site."
     code:
       lang: php
       text: |-
@@ -1832,6 +1901,7 @@ questions:
     type: spot-the-mistake
     family: target:publish-validation-group
     prompt: One line in this component class is wrong. Click it.
+    why: "A misnamed group fails silently: nothing errors, and empty fields reach the live site."
     code:
       lang: php
       text: |-
@@ -1891,6 +1961,7 @@ questions:
     type: spot-the-mistake
     family: target:publish-validation-group
     prompt: One line in this component class is wrong. Click it.
+    why: "A misnamed group fails silently: nothing errors, and empty fields reach the live site."
     code:
       lang: php
       text: |-
@@ -1947,6 +2018,7 @@ questions:
     type: spot-the-mistake
     family: target:publish-validation-group
     prompt: One line in this component class is wrong. Click it.
+    why: "A misnamed group fails silently: nothing errors, and empty fields reach the live site."
     code:
       lang: php
       text: |-

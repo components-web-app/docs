@@ -40,6 +40,7 @@ export function generatePickTheLine(targets: LineTarget[], pages: Map<string, Do
           type: 'pick-the-line',
           family: entry.family ?? `target:${entry.id}`,
           prompt: entry.prompt,
+          why: entry.why,
           // Comments at the end of lines go: they often say what the line does.
           code: { lang: lang as never, text: win.lines.map(l => stripTrailingComment(l, lang)).join('\n') },
           answer: { lines: [win.answer], explanation: entry.explanation },

@@ -1,4 +1,4 @@
-import type { AreaFilter, Level, PublicQuestion } from '~~/quiz/core'
+import type { AreaFilter, PublicQuestion, QuizSet } from '~~/quiz/core'
 import type { QuizManifest, Rendered, RenderedDisplay } from '~~/quiz/lib/render'
 import { selectQuestions, shuffleOptions } from '~~/quiz/lib/select'
 
@@ -9,7 +9,8 @@ import { selectQuestions, shuffleOptions } from '~~/quiz/lib/select'
 export type QuizItem = RenderedDisplay & { ref: string }
 
 export type QuizSettings = {
-  level: Level
+  /** A level, or What's new. */
+  level: QuizSet
   topic: AreaFilter
   seed: string
   length: number
@@ -43,8 +44,8 @@ export function parseLocalRef(ref: string): { questionId: string, version: numbe
 
 /** v1: the JSON prerendered by server/api/quiz/questions/[level].get.ts, selected with the seed. */
 export function createStaticQuizSource(): QuizSource {
-  const cache = new Map<Level, Promise<Rendered<PublicQuestion>[]>>()
-  function pool(level: Level) {
+  const cache = new Map<QuizSet, Promise<Rendered<PublicQuestion>[]>>()
+  function pool(level: QuizSet) {
     let request = cache.get(level)
     if (!request) {
       request = $fetch<Rendered<PublicQuestion>[]>(`/api/quiz/questions/${level}.json`)

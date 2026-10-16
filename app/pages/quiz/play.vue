@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { AREAS, LEVELS, quizLengthFor, type AreaFilter, type Level } from '~~/quiz/core'
+import { AREAS, LEVELS, QUIZ_SETS, quizLengthFor, setConfigFor, WHATS_NEW, type AreaFilter, type Level, type QuizSet } from '~~/quiz/core'
 import { newSeed, SEED_PATTERN } from '~~/quiz/lib/select'
 import type { QuizChoice } from '~/composables/useQuiz'
 
 /**
- * /quiz/play?level=advanced&topic=all&seed=k3j9x2ab
+ * /quiz/play?level=advanced&topic=all&seed=k3j9x2ab, or level=whats-new for the latest releases
  *
  * The URL holds the level, topic and seed only, never answers or a score, so it is the share link.
  * The page is a prerendered shell: everything that depends on the query runs after mount, so the
@@ -24,8 +24,8 @@ const toast = useToast()
 const { recordOutcome, wasStarted, markStarted } = useQuizProgress()
 
 const source = createStaticQuizSource()
-const graders = new Map<Level, ReturnType<typeof createLocalGrader>>()
-function graderFor(level: Level) {
+const graders = new Map<QuizSet, ReturnType<typeof createLocalGrader>>()
+function graderFor(level: QuizSet) {
   let grader = graders.get(level)
   if (!grader) {
     grader = createLocalGrader(level)
@@ -35,7 +35,7 @@ function graderFor(level: Level) {
 }
 
 // The grader is chosen per level; the quiz always grades through whichever is current.
-const currentLevel = ref<Level>('beginner')
+const currentLevel = ref<QuizSet>('beginner')
 const quiz = useQuiz(source, { grade: answer => graderFor(currentLevel.value).grade(answer) })
 
 const mounted = ref(false)
@@ -43,17 +43,18 @@ const invalidLevel = ref(false)
 const passRecorded = ref(false)
 /** False when this browser answered this exact quiz before, such as after a reload. */
 const firstAttempt = ref(true)
-const quizKey = (s: { level: Level, topic: AreaFilter, seed: string }) => `${s.level}|${s.topic}|${s.seed}`
+const quizKey = (s: { level: QuizSet, topic: AreaFilter, seed: string }) => `${s.level}|${s.topic}|${s.seed}`
 
 const settings = computed(() => quiz.settings.value)
-const levelConfig = computed(() => manifest.value?.config.levels.find(l => l.id === settings.value?.level))
+const levelConfig = computed(() => manifest.value && settings.value ? setConfigFor(manifest.value.config, settings.value.level) : undefined)
 const topicLabel = computed(() => {
   const topic = settings.value?.topic
   return !topic || topic === 'all' ? 'Everything' : manifest.value?.config.areas.find(a => a.id === topic)?.label ?? topic
 })
 const nextLevel = computed<Level | undefined>(() => {
   const level = settings.value?.level
-  return level ? LEVELS[LEVELS.indexOf(level) + 1] : undefined
+  // What's new has no next level.
+  return level && level !== WHATS_NEW ? LEVELS[LEVELS.indexOf(level) + 1] : undefined
 })
 
 function readQuery() {
@@ -61,8 +62,9 @@ function readQuery() {
   const topic = String(route.query.topic ?? 'all')
   const seed = String(route.query.seed ?? '')
   return {
-    level: (LEVELS as readonly string[]).includes(level) ? level as Level : undefined,
-    topic: (topic === 'all' || (AREAS as readonly string[]).includes(topic) ? topic : 'all') as AreaFilter,
+    level: (QUIZ_SETS as readonly string[]).includes(level) ? level as QuizSet : undefined,
+    // What's new is one short quiz across every topic.
+    topic: (level !== WHATS_NEW && (topic === 'all' || (AREAS as readonly string[]).includes(topic)) ? topic : 'all') as AreaFilter,
     seed: SEED_PATTERN.test(seed) ? seed : undefined
   }
 }
@@ -204,7 +206,7 @@ function restart(level?: Level) {
 
 async function share() {
   const url = window.location.href
-  const text = `Try this CWA quiz: ${levelConfig.value?.title ?? ''} level`
+  const text = settings.value?.level === WHATS_NEW ? 'Try this CWA quiz on what\'s new' : `Try this CWA quiz: ${levelConfig.value?.title ?? ''} level`
   try {
     if (navigator.share) {
       await navigator.share({ title: 'CWA quiz', text, url })

@@ -14,6 +14,7 @@ questions:
     type: pick-the-line
     family: target:define-expose
     prompt: Without which line would clicking this component in edit mode do nothing?
+    why: If clicking a new component in edit mode does nothing, this missing line is the first thing to check.
     code:
       lang: vue
       text: |-
@@ -59,6 +60,7 @@ questions:
     type: pick-the-line
     family: target:define-expose
     prompt: Without which line would clicking this component in edit mode do nothing?
+    why: If clicking a new component in edit mode does nothing, this missing line is the first thing to check.
     code:
       lang: vue
       text: |-
@@ -112,6 +114,7 @@ questions:
     type: pick-the-line
     family: target:define-expose
     prompt: Without which line would clicking this component in edit mode do nothing?
+    why: If clicking a new component in edit mode does nothing, this missing line is the first thing to check.
     code:
       lang: vue
       text: |-
@@ -168,6 +171,7 @@ questions:
     type: pick-the-line
     family: target:define-expose
     prompt: Without which line would clicking this component in edit mode do nothing?
+    why: If clicking a new component in edit mode does nothing, this missing line is the first thing to check.
     code:
       lang: vue
       text: |-
@@ -219,6 +223,7 @@ questions:
     type: pick-the-line
     family: target:define-expose
     prompt: Without which line would clicking this component in edit mode do nothing?
+    why: If clicking a new component in edit mode does nothing, this missing line is the first thing to check.
     code:
       lang: vue
       text: |-
@@ -270,6 +275,7 @@ questions:
     type: pick-the-line
     family: target:define-expose
     prompt: Without which line would clicking this component in edit mode do nothing?
+    why: If clicking a new component in edit mode does nothing, this missing line is the first thing to check.
     code:
       lang: vue
       text: |-
@@ -317,6 +323,8 @@ questions:
     type: pick-the-line
     family: target:page-data-position
     prompt: Which line makes a region show the component held by each page data record?
+    why: Use it when each article needs its own body or hero in a shared template, rather than one component that
+      every record shows.
     code:
       lang: php
       text: |-
@@ -356,6 +364,8 @@ questions:
     type: pick-the-line
     family: target:page-data-position
     prompt: Which line makes a region show the component held by each page data record?
+    why: Use it when each article needs its own body or hero in a shared template, rather than one component that
+      every record shows.
     code:
       lang: php
       text: |-
@@ -412,6 +422,8 @@ questions:
     type: pick-the-line
     family: target:page-data-position
     prompt: Which line makes a region show the component held by each page data record?
+    why: Use it when each article needs its own body or hero in a shared template, rather than one component that
+      every record shows.
     code:
       lang: php
       text: |-
@@ -460,6 +472,8 @@ questions:
     type: pick-the-line
     family: target:template-page-flag
     prompt: Which line means this page has no URL of its own, and every record of one type renders through it?
+    why: One template page serves every record of its type, so a change to its regions shows on all of them at
+      once.
     code:
       lang: php
       text: |-
@@ -499,6 +513,8 @@ questions:
     type: pick-the-line
     family: target:template-page-flag
     prompt: Which line means this page has no URL of its own, and every record of one type renders through it?
+    why: One template page serves every record of its type, so a change to its regions shows on all of them at
+      once.
     code:
       lang: php
       text: |-
@@ -555,6 +571,8 @@ questions:
     type: pick-the-line
     family: target:template-page-flag
     prompt: Which line means this page has no URL of its own, and every record of one type renders through it?
+    why: One template page serves every record of its type, so a change to its regions shows on all of them at
+      once.
     code:
       lang: php
       text: |-
@@ -592,6 +610,8 @@ questions:
     family: target:mercure-flag
     prompt: An editor changes this resource, and visitors who have the page open are told the content is outdated,
       without reloading. Which line makes that happen?
+    why: If published changes never reach visitors who already have the page open, check the resource's
+      `#[ApiResource]` for this.
     code:
       lang: php
       text: |-
@@ -635,6 +655,8 @@ questions:
     family: target:mercure-flag
     prompt: An editor changes this resource, and visitors who have the page open are told the content is outdated,
       without reloading. Which line makes that happen?
+    why: If published changes never reach visitors who already have the page open, check the resource's
+      `#[ApiResource]` for this.
     code:
       lang: php
       text: |-
@@ -679,6 +701,8 @@ questions:
     family: target:mercure-flag
     prompt: An editor changes this resource, and visitors who have the page open are told the content is outdated,
       without reloading. Which line makes that happen?
+    why: If published changes never reach visitors who already have the page open, check the resource's
+      `#[ApiResource]` for this.
     code:
       lang: php
       text: |-
@@ -724,6 +748,8 @@ questions:
     family: target:mercure-flag
     prompt: An editor changes this resource, and visitors who have the page open are told the content is outdated,
       without reloading. Which line makes that happen?
+    why: If published changes never reach visitors who already have the page open, check the resource's
+      `#[ApiResource]` for this.
     code:
       lang: php
       text: |-
@@ -784,6 +810,8 @@ questions:
     family: target:mercure-flag
     prompt: An editor changes this resource, and visitors who have the page open are told the content is outdated,
       without reloading. Which line makes that happen?
+    why: If published changes never reach visitors who already have the page open, check the resource's
+      `#[ApiResource]` for this.
     code:
       lang: php
       text: |-
@@ -837,6 +865,8 @@ questions:
     family: target:mercure-flag
     prompt: An editor changes this resource, and visitors who have the page open are told the content is outdated,
       without reloading. Which line makes that happen?
+    why: If published changes never reach visitors who already have the page open, check the resource's
+      `#[ApiResource]` for this.
     code:
       lang: php
       text: |-
@@ -887,6 +917,8 @@ questions:
     family: target:publish-validation-group
     prompt: An editor can save this component as an empty draft, but gets an error when publishing it. Which line
       causes that?
+    why: Use it for fields an editor may fill in over several sittings, so drafts save but nothing goes live
+      half-finished.
     code:
       lang: php
       text: |-
@@ -931,6 +963,8 @@ questions:
     family: target:publish-validation-group
     prompt: An editor can save this component as an empty draft, but gets an error when publishing it. Which line
       causes that?
+    why: Use it for fields an editor may fill in over several sittings, so drafts save but nothing goes live
+      half-finished.
     code:
       lang: php
       text: |-
@@ -990,6 +1024,8 @@ questions:
     family: target:publish-validation-group
     prompt: An editor can save this component as an empty draft, but gets an error when publishing it. Which line
       causes that?
+    why: Use it for fields an editor may fill in over several sittings, so drafts save but nothing goes live
+      half-finished.
     code:
       lang: php
       text: |-
@@ -1046,6 +1082,8 @@ questions:
     family: target:allowed-components
     prompt: An editor opens this region's add dialog, and some component types aren't offered. Which line causes
       that?
+    why: When an editor asks why a component type is missing from one region, check this prop before the
+      component's registration.
     code:
       lang: vue
       text: |-
@@ -1093,6 +1131,8 @@ questions:
     family: target:allowed-components
     prompt: An editor opens this region's add dialog, and some component types aren't offered. Which line causes
       that?
+    why: When an editor asks why a component type is missing from one region, check this prop before the
+      component's registration.
     code:
       lang: vue
       text: |-
@@ -1149,6 +1189,8 @@ questions:
     family: target:allowed-components
     prompt: An editor opens this region's add dialog, and some component types aren't offered. Which line causes
       that?
+    why: When an editor asks why a component type is missing from one region, check this prop before the
+      component's registration.
     code:
       lang: vue
       text: |-
@@ -1183,6 +1225,8 @@ questions:
     type: pick-the-line
     family: target:fixture-redirect
     prompt: Which line sends visitors from an old URL to a page's current route?
+    why: When a rebuilt site changes its URLs, seed the old paths as redirects so existing links and search
+      results still land.
     code:
       lang: php
       text: |-
@@ -1236,6 +1280,8 @@ questions:
     type: pick-the-line
     family: target:fixture-redirect
     prompt: Which line sends visitors from an old URL to a page's current route?
+    why: When a rebuilt site changes its URLs, seed the old paths as redirects so existing links and search
+      results still land.
     code:
       lang: php
       text: |-
@@ -1271,6 +1317,8 @@ questions:
     type: pick-the-line
     family: target:fixture-redirect
     prompt: Which line sends visitors from an old URL to a page's current route?
+    why: When a rebuilt site changes its URLs, seed the old paths as redirects so existing links and search
+      results still land.
     code:
       lang: php
       text: |-

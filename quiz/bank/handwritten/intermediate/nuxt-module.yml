@@ -11,6 +11,9 @@ questions:
     type: pick-the-line
     difficulty: 1
     prompt: Which line gives this app the CWA sign-in pages, the `/_cwa` admin panel and the root layout?
+    why: >-
+      If `/login` or `/_cwa` gives a 404 in a new app, check that the config extends the layer rather than
+      listing the module.
     code:
       lang: ts
       text: |-
@@ -44,6 +47,8 @@ questions:
     type: spot-the-mistake
     difficulty: 3
     prompt: This link should open the add form with the module as the parent and the lesson template chosen. One line is wrong. Click it.
+    why: >-
+      The form still opens, so the mistake is easy to miss: editors just have to pick the template themselves.
     code:
       lang: vue
       text: |-
@@ -63,6 +68,7 @@ questions:
       explanation: >-
         The template's query parameter is `template`. `?page=` is the page number of the list behind the form,
         so the template is never filled in.
+    since: [{ repo: cwa-nuxt-module, version: '2.0.0-alpha.15' }]
     sources:
       - { kind: docs, page: /nuxt-module/cwa-layer/admin-panel, anchor: linking-to-the-add-page-data-form, sectionHash: 'sha256:bbbd5de70f36bcfd', block: 0, blockHash: 'sha256:d9603cc46401ab23' }
     author: llm-draft
@@ -76,6 +82,9 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: In `<script setup>`, why read `cwa.resources.pageData.value` inside a `computed`?
+    why: >-
+      This bites on client-side navigation: move from one article to another and a setup-time read still shows
+      the first article's data.
     options:
       - { id: a, text: '`useCwa()` only works when it''s called inside a `computed`' }
       - { id: b, text: 'A direct read sends a second request for the page data on every render' }
@@ -100,6 +109,9 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: Which auth values can a layout render on the server without `<ClientOnly>`?
+    why: >-
+      This decides which parts of a header can be in the first HTML a visitor gets, and which must wait for
+      the browser.
     options:
       - { id: a, text: '`signedIn` and `status`' }
       - { id: b, text: '`isAdmin` and `user`' }
@@ -123,6 +135,9 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: In a script, how do you read the signed-in user's roles?
+    why: >-
+      Add `.value` and a role check fails for a signed-in user and throws when nobody is signed in, so the UI
+      it guards never appears.
     options:
       - { id: a, text: '`cwa.auth.roles.value`' }
       - { id: b, text: '`cwa.auth.roles`' }
@@ -146,6 +161,8 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: How do you declare the styles an editor can pick for a layout?
+    why: >-
+      Don't add a "Default" entry yourself. One is already there, so editors would see two.
     options:
       - { id: a, text: 'A list of `{ value, label }` objects under `cwa.resources`' }
       - { id: b, text: A `styles` prop on the layout's `<CwaComponentGroup>` }
@@ -170,6 +187,9 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: Where do you declare the style variants an editor can pick for a component?
+    why: >-
+      Styles declared for a component in `nuxt.config` are never offered to editors, so when a style picker is
+      missing, look in the Vue file.
     options:
       - { id: a, text: 'In its Vue file, with `useCwaComponent`''s `styles` option' }
       - { id: b, text: Under `cwa.resources.<Name>.classes` in your `nuxt.config.ts` }
@@ -196,6 +216,9 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: A component contains its own `<CwaComponentGroup>`. What do you pass as the group's `location`?
+    why: >-
+      Each component then gets a group of its own, so two components of the same type on one page can hold
+      different content.
     options:
       - { id: a, text: The page's IRI from `$cwa.resources` }
       - { id: b, text: The component's own `iri` prop }
@@ -219,6 +242,9 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: From `useCwaComponent`, `resource.value` is an object with no `data`. What does that mean?
+    why: >-
+      This is the state your loading placeholder and error message handle. Treat it as not ready, not as an
+      empty component.
     options:
       - { id: a, text: The store has no entry for this IRI yet }
       - { id: b, text: The component is a draft nobody published }
@@ -242,6 +268,9 @@ questions:
     type: multiple-choice
     difficulty: 2
     prompt: 'What does `instantAdd: true` on a component type in `nuxt.config` change?'
+    why: >-
+      Use it for components with nothing to set up, such as a divider or spacer. Anything editors must fill in
+      is better added through the panel.
     options:
       - { id: a, text: 'It''s added at once, with no config panel first' }
       - { id: b, text: 'Editors can add it to any group, whatever its allowed list' }

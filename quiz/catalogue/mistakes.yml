@@ -24,6 +24,9 @@ mistakes:
     explanation: >-
       The builders have no generic `getEntity()`. Each one has its own getter: `getPage()`, `getPageData()`,
       `getLayout()` and `getComponent()`.
+    why: >-
+      You need these getters to read the IRI of something you seeded, and a `getEntity()` call stops the
+      fixture load with an undefined method error.
     readMore: { page: /api/data-fixtures/seeding-content, anchor: getting-the-iri-of-a-persisted-entity }
     limit: 4
 
@@ -39,6 +42,9 @@ mistakes:
     explanation: >-
       `$cwa.admin.isEditing` is a plain boolean on a reactive object, not a ref. Reading `.value` on it
       gives `undefined`, so the check never sees edit mode.
+    why: >-
+      Read `$cwa.admin.isEditing` with `.value` and your edit-only UI never appears, with no error to tell you
+      why.
     readMore: { page: /nuxt-module/cwa-layer/admin-panel, anchor: edit-mode }
     limit: 4
 
@@ -58,6 +64,9 @@ mistakes:
     explanation: >-
       `signedIn` is a `ComputedRef<boolean>`, and it isn't unwrapped inside `$cwa` either. Without `.value`
       the code tests the ref object, which is always truthy, so signed-out visitors get the signed-in branch.
+    why: >-
+      This is how a sign-out link ends up shown to visitors who aren't signed in, with nothing in the console
+      to say why.
     readMore: { page: /nuxt-module/cwa-api/auth, anchor: state }
     limit: 4
 
@@ -77,6 +86,9 @@ mistakes:
     explanation: >-
       `$cwa` is a global only inside templates. In `<script setup>` and composables, call `useCwa()` to
       get the same object.
+    why: >-
+      This bites when you move code from a template into `<script setup>` or a composable: `$cwa` isn't
+      defined there.
     readMore: { page: /core-concepts/dynamic-pages, anchor: reading-pagedata-in-your-vue-component }
     limit: 3
 
@@ -92,6 +104,9 @@ mistakes:
     explanation: >-
       Every page of your own that isn't CWA content must set `cwa: { disabled: true }`. Otherwise the
       route middleware asks the API for a route at the page's path, finds none, and shows the error page.
+    why: >-
+      You'll meet this the first time you add a plain Nuxt page, such as a contact or account page: it shows
+      the error page instead of your content.
     readMore: { page: /nuxt-module/module-setup, anchor: disable-cwa-route-fetching }
     limit: 5
 
@@ -107,6 +122,9 @@ mistakes:
     explanation: >-
       Import the module's types and helpers through the `#cwa` alias. The `@cwa/nuxt` package only exports
       its root entry, so a `@cwa/nuxt/...` subpath doesn't resolve.
+    why: >-
+      A package path doesn't resolve, so code copied with one fails the build or the type check. Change any
+      `@cwa/nuxt/...` import you paste in to `#cwa/...`.
     readMore: { page: /nuxt-module/module-setup, anchor: typescript-support }
     limit: 6
 
@@ -123,6 +141,8 @@ mistakes:
     explanation: >-
       Write the API URL without a trailing slash. A URL such as `https://api.example.com/` is mishandled
       and breaks resource resolution.
+    why: >-
+      Module builds before `698e89fe` still mishandle the slash, so trim it if you're on one of those.
     readMore: { page: /nuxt-module/configuration/nuxt-config, anchor: runtime-config }
     limit: 3
 
@@ -138,6 +158,9 @@ mistakes:
     explanation: >-
       `staticLayout` takes a registered component name, such as `CwaLayoutPrimary` for
       `app/app/cwa/layouts/primary.vue`. It renders inside `cwa-root-layout`, so it isn't a Nuxt layout name.
+    why: >-
+      Both are called layouts, so the names are easy to mix up. With a Nuxt layout name, the page shows the
+      default layout and a warning that the layout component can't be resolved.
     readMore: { page: /nuxt-module/module-setup, anchor: use-a-static-layout-component }
     limit: 2
 
@@ -154,6 +177,9 @@ mistakes:
     explanation: >-
       `layout()` takes the suffix of the layout's component name and adds `CwaLayout` itself. Passing the
       full name doubles the prefix, such as `CwaLayoutCwaLayoutPrimary`, which no Vue file registers.
+    why: >-
+      The page still renders, with the default layout and a console warning that the layout component can't be
+      resolved, so it's easy to miss.
     readMore: { page: /api/data-fixtures/builder-reference, anchor: layout }
     limit: 4
 
@@ -171,6 +197,9 @@ mistakes:
     explanation: >-
       `title` and `metaDescription` are `protected` on `AbstractPage` and `AbstractPageData`. Set them with
       `setTitle()` and `setMetaDescription()`: assigning the property is a fatal error.
+    why: >-
+      The fixture load stops on that line with PHP's `Cannot access protected property` error, so you'll see
+      it on the first run.
     readMore: { page: /api/data-fixtures/builder-reference, anchor: pagebuilder-from-cwa-page }
     limit: 3
 
@@ -188,6 +217,9 @@ mistakes:
       `UserFactory::create()` only looks up an existing user when `overwrite` is `true`. With `false`, a
       second `--append` run builds a duplicate user and fails the `#[UniqueEntity]` check. A plain load
       empties the database first, so it doesn't notice.
+    why: >-
+      You won't see it if you always load fixtures into an empty database. It shows up the first time you
+      append to a seeded one, as a `ValidationFailedException`.
     readMore: { page: /api/data-fixtures/getting-started, anchor: seeding-users }
     limit: 1
 
@@ -207,6 +239,8 @@ mistakes:
     explanation: >-
       A CWA layout is a component, and the module passes the page into its default slot. `<slot />` marks
       where the page renders. With `<NuxtPage />` there, the page passed in is never shown.
+    why: >-
+      If a layout shows its header and footer but none of the page's content, look for this line.
     readMore: { page: /core-concepts/layouts-and-pages, anchor: layouts }
     limit: 4
 
@@ -223,6 +257,8 @@ mistakes:
     explanation: >-
       `useCwaComponent()` needs the component's props. The module passes each component an `iri` prop, and
       the composable reads it to find the resource. Called with nothing, it has no resource to load.
+    why: >-
+      If a new component renders empty while its resource has data in the API, check this call first.
     readMore: { page: /nuxt-module/composables/component/use-cwa-component, anchor: return-values }
     limit: 6
 
@@ -241,5 +277,7 @@ mistakes:
     explanation: >-
       The publish-time group is named after the class: `<ClassName>:published`, such as `Title:published`.
       A constraint in a bare `published` group never runs, so the field can be published empty.
+    why: >-
+      A misnamed group fails silently: nothing errors, and empty fields reach the live site.
     readMore: { page: /core-concepts/draft-and-publish, anchor: validation-groups }
     limit: 4

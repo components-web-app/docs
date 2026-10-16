@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { AreaFilter, Link, QuizConfig } from '~~/quiz/schema'
+import type { AreaFilter, Link, QuizConfig, SetConfig } from '~~/quiz/schema'
 import type { QuizRecord, QuizSummary } from '~/composables/useQuiz'
 
 /**
@@ -9,7 +9,8 @@ import type { QuizRecord, QuizSummary } from '~/composables/useQuiz'
  */
 const props = defineProps<{
   config: QuizConfig
-  level: QuizConfig['levels'][number]
+  /** A level, or What's new. */
+  level: SetConfig
   topic: AreaFilter
   summary: QuizSummary
   shortBy: number
@@ -201,7 +202,7 @@ const notCountedReason = computed(() => {
         @click="emit('nextLevel')"
       />
       <UButton
-        label="Try this level again"
+        :label="level.id === 'whats-new' ? 'Try another' : 'Try this level again'"
         icon="i-heroicons-arrow-path"
         size="lg"
         :color="hasNextLevel && reached ? 'neutral' : 'primary'"

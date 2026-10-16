@@ -41,6 +41,11 @@ this repo (`../api-components-bundle`, `../cwa-nuxt-3-module`, `../components-we
 3. Run `pnpm quiz:stamp <id>`, then `pnpm quiz:check`.
 4. Ask someone else to review it. They add `reviewed: { by: <name>, version: <version> }`.
 
+Every hand-written question from intermediate up needs a `why`: one sentence on when the fact matters
+in practice, such as the bug it explains or the setting it tells you to change. It's shown after the
+answer, under the explanation. If the question is about a recent change, add `since` with the release
+that brought it in, so it joins the What's new quiz (see below).
+
 ### Multiple choice
 
 ```yaml
@@ -53,6 +58,8 @@ this repo (`../api-components-bundle`, `../cwa-nuxt-3-module`, `../components-we
     type: multiple-choice
     difficulty: 3                         # your guess, 1 to 5, within the level
     prompt: A visitor opens a route that redirects. Which status does the module's route middleware send?
+    why: >-                               # intermediate and up: when this matters in practice
+      Redirect codes decide whether browsers and search engines remember the move and keep the method.
     options:                              # 3 to 5. The ids stay; the order is shuffled for each reader
       - { id: a, text: '`301`' }
       - { id: b, text: '`302`' }
@@ -171,6 +178,26 @@ These rules are for every question, generated or not. `pnpm quiz:check` tests th
 - **`family`** groups questions that test the same fact, and a quiz shows at most one of them. Generated
   questions get `mistake:<id>`, `target:<id>` or `term:<code>`. A hand-written question on the same fact as a
   catalogue entry uses that entry's family, such as `mistake:cwa-disabled-false`.
+
+## What's new and versions
+
+`since` says which release brought in the behaviour a question tests, one entry per repo involved:
+
+```yaml
+    since:
+      - { repo: api-components-bundle, version: 2.0.0-alpha.22 }
+      - { repo: cwa-nuxt-module, version: 2.0.0-alpha.17, unreleased: true }  # on dev after alpha.17
+```
+
+Find the version with `git tag --contains <commit> --sort=v:refname | head -1` in the source repo. Store it
+without a leading `v`. A question joins the What's new quiz while its version is one of the repo's three
+newest in the bank (`whatsNew.releases` in `config.yml`), so writing questions for a new release moves What's
+new on by itself. When an unreleased change ships, `quiz:check` warns; set the release's version and drop
+`unreleased`.
+
+When a question stops being true because the behaviour changed, retire it with
+`retired: { reason: superseded … }` and add `until` with the first release that changed it. Exams for older
+versions can still use it.
 
 ## Stale questions
 

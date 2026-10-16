@@ -11,6 +11,9 @@ questions:
     type: multiple-choice
     difficulty: 2
     prompt: A blog article is a page data record with a title. Where does its page's `<title>` come from?
+    why: >-
+      Leave `title` empty on seeded or imported records and they fall back to the template page's title, so
+      search results show one title for every article.
     options:
       - { id: a, text: The page template's `uiComponent` name }
       - { id: b, text: The layout's `siteName` alone }
@@ -35,6 +38,9 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: When can the public see a page and everything on it?
+    why: >-
+      Publishing every component isn't enough. When content you published doesn't show for visitors, check its
+      route's visibility first.
     options:
       - { id: a, text: When a live route leads to it }
       - { id: b, text: When all its components are published }
@@ -59,6 +65,9 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: An editor selects a published component's draft and clicks **Delete Draft**. What is removed?
+    why: >-
+      Removing a component completely takes two deletes, so check the other version is gone too before you
+      assume it has left the site.
     options:
       - { id: a, text: The draft and the live version together }
       - { id: b, text: Only the draft; the live version stays }
@@ -82,6 +91,9 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: An editor changes a parent route's path and confirms **Update child routes?**. What happens to the child routes?
+    why: >-
+      Confirm it when you restructure a section, so old links and search results for its child pages keep
+      landing.
     options:
       - { id: a, text: 'They keep their old paths, and the old URLs stop working' }
       - { id: b, text: 'They are set to **Not live** until an editor reviews each one' }

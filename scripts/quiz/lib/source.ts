@@ -45,6 +45,18 @@ export function trackedHead(repo: Repo): string | undefined {
   return dir ? git(dir, ['rev-parse', `origin/${REPOS[repo].track}`])?.trim() : undefined
 }
 
+const tagCache = new Map<Repo, string[] | undefined>()
+
+/** The repo's release tags (`2.0.0-alpha.22` or `v2.0.0-alpha.17`), from the local clone. */
+export function releaseTags(repo: Repo): string[] | undefined {
+  if (!tagCache.has(repo)) {
+    const dir = repoDir(repo)
+    const out = dir ? git(dir, ['tag', '--list']) : undefined
+    tagCache.set(repo, out?.split('\n').map(t => t.trim()).filter(t => /^v?\d+\.\d+\.\d+/.test(t)))
+  }
+  return tagCache.get(repo)
+}
+
 const fileCache = new Map<string, string | undefined>()
 
 /** A file's text at `ref` (a SHA or `origin/<track>`), or undefined when it can't be read. */

@@ -11,6 +11,9 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: 'A signed-in admin''s `GET /_/routes//about-us` comes back `Cache-Control: private, no-store`. Why?'
+    why: >-
+      When you check caching while signed in, these responses never hit the cache, so test as a signed-out
+      visitor to see what the public gets.
     options:
       - { id: a, text: 'Routes are never cached, whoever asks for them' }
       - { id: b, text: The admin's view can hold drafts at the public URL }
@@ -37,6 +40,9 @@ questions:
     type: multiple-choice
     difficulty: 4
     prompt: 'Why doesn''t the bundle send `Vary: Cookie` on resources that differ for signed-in users?'
+    why: >-
+      Adding `Vary: Cookie` yourself to be safe would cut the anonymous hit rate and send more requests to
+      php, and it would make nothing safer.
     options:
       - { id: a, text: 'Souin ignores `Vary`, so the header would do nothing at all' }
       - { id: b, text: Browsers drop cookies from cached responses anyway }
@@ -60,6 +66,9 @@ questions:
     type: multiple-choice
     difficulty: 4
     prompt: An editor saves new text in a component on a static page. Which cached responses does the API purge?
+    why: >-
+      If a page's structure looks stale after an edit, check whether a group, position, page or route was
+      written, because a component save alone never refreshes a manifest.
     options:
       - { id: a, text: 'Every response tagged with the component''s IRI, and no manifest' }
       - { id: b, text: 'The manifests of every page that shows the component, and nothing else' }
@@ -83,6 +92,9 @@ questions:
     type: multiple-choice
     difficulty: 4
     prompt: Nothing is written when a scheduled publish time arrives. How do shared caches avoid serving the old version after it?
+    why: >-
+      It's why a long cache lifetime is safe with scheduled content: you don't need a short `s-maxage` or a
+      job of your own to make a scheduled publish show on time.
     options:
       - { id: a, text: A scheduled job purges the component at that moment }
       - { id: b, text: Mercure tells Souin to drop the component then }
@@ -106,6 +118,9 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: Saving site config changes every page. Which cache tag does the API purge so every rendered page is dropped?
+    why: >-
+      If you add a resource of your own that changes every page without being rendered on it, list its class
+      in `purge_rendered_html_classes`, or cached pages keep the old output until they expire.
     options:
       - { id: a, text: '`site-config`' }
       - { id: b, text: '`/_/pages`' }
@@ -129,6 +144,9 @@ questions:
     type: multiple-choice
     difficulty: 5
     prompt: With `routable_security` set, who can read a component that sits in no group, no page data and no template?
+    why: >-
+      A component you create ahead of time and haven't placed yet, such as an embargoed announcement, can be
+      read by anyone who is sent its IRI.
     options:
       - { id: a, text: Only users who pass `routable_security` }
       - { id: b, text: Anyone who knows its IRI }
@@ -152,6 +170,9 @@ questions:
     type: multiple-choice
     difficulty: 4
     prompt: A parent page has no route. Its child page has a live route. Can an anonymous visitor read the parent page by its IRI?
+    why: >-
+      Leaving a page without a route doesn't hide it: once any child page has a live route, the parent and the
+      components on it are public.
     options:
       - { id: a, text: 'No: a page without a route is always private' }
       - { id: b, text: 'Only if the parent itself is flagged as public without a route' }
@@ -178,6 +199,9 @@ questions:
     difficulty: 4
     family: safe-filter-and-where
     prompt: In a Doctrine filter of your own, what goes wrong if you add conditions with `orWhere()`?
+    why: >-
+      The bug is quiet: the search still returns the right matches, plus drafts and scheduled records that
+      anonymous visitors should never see.
     options:
       - { id: a, text: API Platform throws an exception for any custom filter that uses it }
       - { id: b, text: 'It ORs past the draft and go-live conditions, so they leak' }
@@ -202,6 +226,9 @@ questions:
     difficulty: 4
     family: safe-filter-and-where
     prompt: This is part of a custom search filter on a publishable resource. One line lets drafts into the results. Click it.
+    why: >-
+      Admins can see drafts anyway, so testing the search while signed in won't show the leak. Try it as a
+      signed-out visitor.
     code:
       lang: php
       text: |-
@@ -231,6 +258,9 @@ questions:
     type: multiple-choice
     difficulty: 4
     prompt: A user who fails `publishable.permission` sends a `PATCH` to a publishable component. What changes?
+    why: >-
+      Before you give a role write access, decide whether it should also pass `publishable.permission`, or its
+      edits reach visitors with no chance to review them.
     options:
       - { id: a, text: 'Its draft, which an admin must publish' }
       - { id: b, text: 'Nothing: the API answers `403`' }
@@ -254,6 +284,9 @@ questions:
     type: pick-the-line
     difficulty: 3
     prompt: Which line makes the bundle talk to the hub with the Mercure 1.0 protocol, whatever mercure-bundle's default?
+    why: >-
+      Leave it out and the config works on mercure-bundle 0.6, but on 0.5, which the bundle also accepts,
+      sign-in and `/me` fail when the bundle builds the Mercure cookie.
     code:
       lang: yaml
       text: |-
@@ -290,6 +323,9 @@ questions:
     type: pick-the-line
     difficulty: 5
     prompt: On mercure-bundle 0.6, admins get no private updates in development unless one line is set. Which line?
+    why: >-
+      If admins get no live draft updates in development while production works, a mismatched cookie name is
+      the likely cause.
     code:
       lang: yaml
       text: |-
@@ -322,6 +358,9 @@ questions:
     type: pick-the-line
     difficulty: 3
     prompt: Your own resource looks different for each signed-in user. Which line keeps its responses for signed-in users out of shared caches?
+    why: >-
+      Leave a per-user resource off this list and its responses to signed-in users go out as `public`, which
+      tells any shared cache it may store one user's view.
     code:
       lang: yaml
       text: |-
@@ -352,6 +391,10 @@ questions:
     prompt: >-
       In a scaffold, `->linkIri('featured', pageData: …)` writes a page data record's IRI into a field. What does
       the `pageData:` argument name?
+    why: >-
+      A generated route is named after the slug of the title, so changing the title in the scaffold renames the
+      route. A `linkIri()` that still names the old route then stops the load with a `LogicException`, so give
+      linked page data a `routeName:`.
     options:
       - { id: a, text: 'The page data''s class, such as `BlogArticleData`' }
       - { id: b, text: 'The reference of the template page it renders through' }
@@ -364,6 +407,7 @@ questions:
         `layout:` take a reference, and `route:` a route name.
       optionNotes:
         b: A template page's reference names the page itself, with `linkIri(page:)`. Many records render through one template.
+    since: [{ repo: api-components-bundle, version: '2.0.0-alpha.22' }]
     sources:
       - { kind: docs, page: /api/data-fixtures/writing-a-scaffold, anchor: linking-routes-and-iris, sectionHash: 'sha256:3940b189955e0261' }
       - { kind: docs, page: /api/data-fixtures/writing-a-scaffold, anchor: references-route-names-and-paths, sectionHash: 'sha256:48b81afe39fd089c' }

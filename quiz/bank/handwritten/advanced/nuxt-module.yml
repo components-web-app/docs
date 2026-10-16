@@ -11,6 +11,9 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: With `pageCache.sharedMaxAge` unset, what decides how long a shared cache keeps a rendered page?
+    why: >-
+      When a page stays cached for longer or shorter than you expected, look at the lifetimes of the API
+      responses it used before you look at the module's settings.
     options:
       - { id: a, text: 'One hour, the module''s fixed lifetime for pages' }
       - { id: b, text: The lowest `s-maxage` of the API responses it used }
@@ -36,6 +39,9 @@ questions:
     type: multiple-choice
     difficulty: 4
     prompt: Cached pages always send `max-age=0` to browsers, whatever their `s-maxage`. Why?
+    why: >-
+      Don't raise the browser `max-age` on pages to save requests: after a deploy, visitors with the old page
+      cached would load it blank.
     options:
       - { id: a, text: 'A browser cache can''t be purged, and old pages load old builds' }
       - { id: b, text: Browsers refuse to cache any HTML that carries a `Surrogate-Key` header }
@@ -59,6 +65,9 @@ questions:
     type: multiple-choice
     difficulty: 4
     prompt: When should you set `pageCache.sharedMaxAge`?
+    why: >-
+      Add it as soon as a page renders something from outside CWA, such as a `useAsyncData` call to another
+      API, not after visitors report stale data.
     options:
       - { id: a, text: 'Always, or pages are never stored by the shared cache' }
       - { id: b, text: Only when the site runs behind Cloudflare's edge cache }
@@ -82,6 +91,9 @@ questions:
     type: multiple-choice
     difficulty: 5
     prompt: A page places a component that has never been published. An anonymous visitor loads it. Is the page cached?
+    why: >-
+      You can prepare a component on a live page ahead of time without losing the page cache, and publishing
+      it is all you need to do to show it.
     options:
       - { id: a, text: 'No: any `private` API response makes the page `no-store`' }
       - { id: b, text: 'Yes, and the component appears once it is published' }
@@ -105,6 +117,9 @@ questions:
     type: multiple-choice
     difficulty: 4
     prompt: A Nuxt page of your own loads a CWA page by IRI with `cwa.fetch`. The API sets `routable_security`. What makes it work for visitors?
+    why: >-
+      Test the page as a signed-out visitor: users who pass `routable_security` can read the CWA page anyway,
+      so an admin session hides the `401`.
     options:
       - { id: a, text: 'Add `cwa: { disabled: true }` to the Nuxt page''s meta' }
       - { id: b, text: Request the page with `?published=true` }
@@ -131,6 +146,9 @@ questions:
     difficulty: 3
     family: 'mistake:cwa-disabled-false'
     prompt: You add `app/app/pages/status.vue` with no `definePageMeta`. Visitors to `/status` get the error page. Why?
+    why: >-
+      You'll meet this each time you add a Nuxt page for something CWA doesn't manage, such as a status or
+      search page, so add the meta when you create the file.
     options:
       - { id: a, text: The route middleware asks the API for a route at `/status` }
       - { id: b, text: CWA's catch-all route takes precedence over your own page file }

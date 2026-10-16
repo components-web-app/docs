@@ -1,5 +1,5 @@
 import { parse } from 'yaml'
-import { BankFileSchema, LEVELS, QuizConfigSchema, splitQuestion, type AnswerKey, type Level, type PublicQuestion, type Question, type QuizConfig } from '../../quiz/schema'
+import { BankFileSchema, isWhatsNew, QUIZ_SETS, QuizConfigSchema, splitQuestion, whatsNewWindow, WHATS_NEW, type AnswerKey, type PublicQuestion, type Question, type QuizConfig, type QuizSet } from '../../quiz/schema'
 
 /**
  * Reads the quiz bank from quiz/ (a Nitro server asset, see nuxt.config.ts) at prerender time.
@@ -74,18 +74,27 @@ export function loadQuizBank(): Promise<Question[]> {
   return bankCache
 }
 
-/** Live questions for one level, split into what the client sees and the answer keys. */
-export async function loadLevel(level: Level): Promise<{ questions: PublicQuestion[], keys: AnswerKey[] }> {
-  const live = (await loadQuizBank()).filter(q => q.status === 'live' && q.level === level)
-  const split = live.map(splitQuestion)
+/** The live questions in a set: one level, or What's new (every level, newest releases only). */
+export async function liveInSet(set: QuizSet): Promise<Question[]> {
+  const live = (await loadQuizBank()).filter(q => q.status === 'live')
+  if (set !== WHATS_NEW) {
+    return live.filter(q => q.level === set)
+  }
+  const window = whatsNewWindow(live, (await loadQuizConfig()).whatsNew.releases)
+  return live.filter(q => isWhatsNew(q, window))
+}
+
+/** Live questions in a set, split into what the client sees and the answer keys. */
+export async function loadSet(set: QuizSet): Promise<{ questions: PublicQuestion[], keys: AnswerKey[] }> {
+  const split = (await liveInSet(set)).map(splitQuestion)
   return { questions: split.map(s => s.question), keys: split.map(s => s.key) }
 }
 
-/** `beginner.json` → `beginner`, or a 404. */
-export function levelParam(param: string | undefined): Level {
-  const level = (param || '').replace(/\.json$/, '')
-  if (!(LEVELS as readonly string[]).includes(level)) {
+/** `beginner.json` → `beginner`, `whats-new.json` → `whats-new`, or a 404. */
+export function setParam(param: string | undefined): QuizSet {
+  const set = (param || '').replace(/\.json$/, '')
+  if (!(QUIZ_SETS as readonly string[]).includes(set)) {
     throw createError({ statusCode: 404, statusMessage: 'Not found' })
   }
-  return level as Level
+  return set as QuizSet
 }

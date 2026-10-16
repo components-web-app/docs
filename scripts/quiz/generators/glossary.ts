@@ -22,7 +22,9 @@ const TermSettings = z.object({
   /** Leave the term out, for example when its definition gives it away. Say why in a comment. */
   exclude: z.boolean().optional(),
   /** Share a family with a hand-written question on the same fact, so a quiz never shows both. */
-  family: z.string().regex(/^[a-z0-9:._/#-]+$/).optional()
+  family: z.string().regex(/^[a-z0-9:._/#-]+$/).optional(),
+  /** "Why it matters" for the term's question. Optional: a definition is often its own reason. */
+  why: z.string().min(1).max(300).optional()
 }).strict()
 
 export const GlossaryCatalogueSchema = z.object({
@@ -97,6 +99,7 @@ export function generateGlossary(pages: Map<string, DocsPage>): GeneratedDraft[]
           type: 'multiple-choice',
           family: settings.family ?? `term:${term.anchor}`,
           prompt: `Which term does this describe? “${definition}”`,
+          ...(settings.why ? { why: settings.why } : {}),
           options,
           answer: { correct, explanation: body.length > 500 ? firstSentence(body) : body },
           sources: [{ kind: 'docs', page: page.path, anchor: term.anchor, sectionHash: term.hash }],

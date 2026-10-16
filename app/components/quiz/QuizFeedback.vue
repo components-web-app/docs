@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { QuizGradeResult } from '~/composables/useQuizGrader'
 
-/** Shown after each answer: right, wrong or not scored, the explanation, and where to read more. */
+/** Shown after each answer: right, wrong or not scored, the explanation, why it matters, and where to read more. */
 const props = defineProps<{
   result: QuizGradeResult
 }>()
@@ -49,6 +49,22 @@ const state = computed(() => {
       class="mt-2 text-default [&_p]:my-2"
     >
       <MarkdownDocument :value="result.feedback.explanation" />
+    </div>
+    <div
+      v-if="result.feedback?.why"
+      class="mt-3 flex gap-2 rounded-md bg-elevated/60 p-3 text-default"
+    >
+      <UIcon
+        name="i-heroicons-light-bulb"
+        class="mt-0.5 size-5 shrink-0 text-primary"
+        aria-hidden="true"
+      />
+      <div class="[&_p]:my-0">
+        <p class="font-semibold text-highlighted">
+          Why it matters
+        </p>
+        <MarkdownDocument :value="result.feedback.why" />
+      </div>
     </div>
     <ul
       v-if="result.key?.links?.length"

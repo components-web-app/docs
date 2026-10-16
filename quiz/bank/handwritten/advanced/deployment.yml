@@ -11,6 +11,9 @@ questions:
     type: multiple-choice
     difficulty: 4
     prompt: Why does the Helm chart keep php at one replica by default?
+    why: >-
+      If you add php replicas for capacity, saves in the admin seem to work but some visitors keep seeing old
+      content. Move to a shared cache store and a clustered Mercure hub first.
     options:
       - { id: a, text: FrankenPHP can only run one worker per cluster }
       - { id: b, text: The database accepts one connection per release }
@@ -34,6 +37,9 @@ questions:
     type: multiple-choice
     difficulty: 4
     prompt: The Nuxt HPA targets 175% CPU. How can a target be over 100%?
+    why: >-
+      If you change the Nuxt CPU request and leave the target alone, the HPA either adds pods for ordinary
+      traffic or waits until renders queue.
     options:
       - { id: a, text: 'Usage is measured against the request, and the limit is higher' }
       - { id: b, text: The HPA averages CPU across nodes rather than pods }
@@ -57,6 +63,9 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: Why does every deploy purge the cached pages?
+    why: >-
+      If visitors see unstyled pages straight after a release, suspect a cached page from the previous build
+      first.
     options:
       - { id: a, text: Souin can't read pages that an older php image cached on disk }
       - { id: b, text: 'Cached pages link to the old build''s files, which are gone' }
@@ -80,6 +89,9 @@ questions:
     type: multiple-choice
     difficulty: 4
     prompt: Why does `purge_rendered_html` wait until the new Nuxt pods have replaced the old ones?
+    why: >-
+      If you write your own deploy steps, purge only once the rollout has finished, or unstyled pages can come
+      back after the purge.
     options:
       - { id: a, text: The purge command runs inside a Nuxt pod }
       - { id: b, text: The purge needs the new pods' build ID }
@@ -104,6 +116,9 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: With Cloudflare as a proxy only (Option A), which Cache Rules should the zone have?
+    why: >-
+      Add a rule that caches pages in Option A and edits in the admin stop reaching visitors served from the
+      edge, because nothing tells Cloudflare to drop the old page.
     options:
       - { id: a, text: A rule that caches every page for two hours }
       - { id: b, text: A rule that bypasses the cache for everything }
@@ -129,6 +144,9 @@ questions:
     type: multiple-choice
     difficulty: 5
     prompt: Why should **Always Use HTTPS** stay off in Cloudflare for a CWA site?
+    why: >-
+      If a proxied hostname can't get or renew its certificate, check this setting before you dig into
+      cert-manager.
     options:
       - { id: a, text: It breaks the Mercure hub's server-sent event stream }
       - { id: b, text: 'It redirects Let''s Encrypt''s HTTP-01 challenge' }
@@ -153,6 +171,9 @@ questions:
     type: multiple-choice
     difficulty: 4
     prompt: A page filters by `?category=` through `useQueryBoundModel('category')`. Server rendering never sees the value. What do you change?
+    why: >-
+      Until you list it, every `?category=` value shares the cached entry for the unfiltered page, so the
+      server-rendered HTML ignores the filter.
     options:
       - { id: a, text: Add `category` to `CACHE_QUERY_ALLOWLIST` }
       - { id: b, text: Add `category` to `pageCache` in `nuxt.config` }
@@ -178,6 +199,9 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: Which requests count towards the template's per-visitor rate limit in Caddy?
+    why: >-
+      When you size `RATE_LIMIT_EVENTS`, think about signed-in editors and visitors sharing an office address,
+      because their requests miss the cache. Cached browsing costs nothing.
     options:
       - { id: a, text: 'Every request, cache hits included' }
       - { id: b, text: Only requests from signed-in users }

@@ -48,6 +48,7 @@ export function generateSpotTheMistake(mistakes: Mistake[], pages: Map<string, D
           type: 'spot-the-mistake',
           family: entry.family ?? `mistake:${entry.id}`,
           prompt: entry.prompt,
+          why: entry.why,
           code: { lang: lang as never, text: lines.join('\n') },
           answer: { line: win.answer, fix, explanation: entry.explanation },
           sources,

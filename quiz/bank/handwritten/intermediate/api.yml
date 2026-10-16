@@ -11,6 +11,9 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: 'Why does the admin publish by sending `"publishedAt": "now"` rather than the current time?'
+    why: >-
+      If your own client code publishes with the browser's time, a clock running ahead leaves the resource
+      scheduled, and it looks as if publishing failed.
     options:
       - { id: a, text: 'It skips validation, so an incomplete draft can be published at once' }
       - { id: b, text: It publishes the draft and every component nested in it }
@@ -34,6 +37,9 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: How do you take a published component offline through the API?
+    why: >-
+      Any client of yours that takes content down over the API, such as an integration, must send this
+      `DELETE`. A `PATCH` succeeds but leaves the live version up.
     options:
       - { id: a, text: '`PATCH` it with `"publishedAt": null`' }
       - { id: b, text: '`DELETE` it with `?published=true`' }
@@ -60,6 +66,9 @@ questions:
     type: multiple-choice
     difficulty: 2
     prompt: How is a redirect stored in the API?
+    why: >-
+      When you import old URLs from another site, there's no redirects table to fill: each old URL becomes a
+      route of its own.
     options:
       - { id: a, text: As a `Route` whose `redirect` points at another route }
       - { id: b, text: As a rule in the template's Caddyfile }
@@ -83,6 +92,9 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: A visitor opens a route that redirects. Which status does the module's route middleware send?
+    why: >-
+      A `308` is permanent and keeps the request method, so browsers may cache it. Check a redirect's target
+      before you save it, as a mistaken one can stick.
     options:
       - { id: a, text: '`301`' }
       - { id: b, text: '`302`' }
@@ -106,6 +118,9 @@ questions:
     type: multiple-choice
     difficulty: 2
     prompt: A route's `liveAt` is `null`. What do anonymous visitors get at its path?
+    why: >-
+      Use it to take a page down for a while. Deleting the route instead frees the path, and you'd have to set
+      it up again.
     options:
       - { id: a, text: 'A `404`, and the path stays reserved' }
       - { id: b, text: 'The page''s last published version, read-only' }
@@ -129,6 +144,9 @@ questions:
     type: multiple-choice
     difficulty: 4
     prompt: A parent route is scheduled for 1 November. Its child route's own `liveAt` has already passed. When does the child go live?
+    why: >-
+      If a page you set live still 404s for visitors, look at its parent routes: one that is scheduled or not
+      live holds it back.
     options:
       - { id: a, text: 'Now, from its own date' }
       - { id: b, text: 'On 1 November, with its parent' }
@@ -152,6 +170,9 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: 'An admin renames `/events` to `/happenings` with `cascadeChildPaths: true`. What happens to `/events/2024`?'
+    why: >-
+      When your own code renames a section's route, pass it, or the child pages keep URLs under the old
+      prefix.
     options:
       - { id: a, text: 'It becomes `/happenings/2024`, and the old path redirects' }
       - { id: b, text: It is deleted along with the page it publishes }
@@ -175,6 +196,9 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: You create a page data record with `POST` through the REST API. What route does it get?
+    why: >-
+      Records you import through the API can't be visited until they have routes, so add that step to any
+      import script.
     options:
       - { id: a, text: None until you create or generate one }
       - { id: b, text: 'One made from its title''s slug, under the root' }
@@ -198,6 +222,9 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: In a scaffold, a navigation link's `route` field must point to the page route named `about`. How do the docs say to set it?
+    why: >-
+      Navigation links are where you'll meet this: a menu points at pages whose routes don't exist until the
+      scaffold flushes.
     options:
       - { id: a, text: "`$link->route = $cwa->getRoute('about')`, straight after `$cwa->page()`" }
       - { id: b, text: "`$cwa->afterRoutes(fn ($cwa) => $link->route = $cwa->getRoute('about'))`" }
@@ -213,6 +240,7 @@ questions:
         a: The route doesn't exist until `flush()` creates it, so `getRoute()` throws there.
         b: That runs, but the docs keep `afterRoutes()` for values worked out from a route. A route field takes `linkRoute()`.
         d: '`linkIri()` writes an IRI string, for a string or array field. A `route` field holds the `Route` itself.'
+    since: [{ repo: api-components-bundle, version: '2.0.0-alpha.22' }]
     sources:
       - { kind: docs, page: /api/data-fixtures/writing-a-scaffold, anchor: linking-routes-and-iris, sectionHash: 'sha256:3940b189955e0261' }
       - { kind: docs, page: /api/data-fixtures/builder-reference, anchor: afterroutes, sectionHash: 'sha256:675501e7417f2840' }
@@ -227,6 +255,9 @@ questions:
     type: multiple-choice
     difficulty: 4
     prompt: On a page builder, how do you limit the `primary` group to `HtmlContent` components?
+    why: >-
+      The argument order differs between builders, so a `group()` call copied from a layout or component
+      builder breaks on a page builder.
     options:
       - { id: a, text: "`->group('primary', [HtmlContent::class])`" }
       - { id: b, text: "`->group('primary')->allow([HtmlContent::class])`" }
@@ -254,6 +285,9 @@ questions:
     prompt: >-
       A scaffold declares `$cwa->page('about-team', uiComponent: 'Primary', layout: 'main', route: '/about/team',
       routeName: 'team')`. What does `$cwa->redirect('/our-team', to: …)` take to send visitors to that page?
+    why: >-
+      Each page in a scaffold has a reference, a route name and a path, so check which one a method expects
+      before you pass it a string.
     options:
       - { id: a, text: "`'about-team'`" }
       - { id: b, text: "`'team'`" }
@@ -281,6 +315,9 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: An image field has `#[UploadedImage]` with no options. An editor uploads an SVG to it. What happens?
+    why: >-
+      If a field's front end needs raster variants, such as a `srcset`, set `allowSvg: false`, or editors can
+      upload SVGs that get none.
     options:
       - { id: a, text: 'It''s refused with a `422`, because an SVG has no pixel size' }
       - { id: b, text: 'It''s accepted, and the field''s imagine filters make raster variants of it' }
@@ -295,6 +332,7 @@ questions:
         a: That is what a plain `Assert\Image` does. `#[UploadedImage]` lets SVGs through.
         b: Imagine filters only run on raster images. An SVG returns its primary media object with no variants.
         d: '`allowSvg` is `true` by default. Set it to `false` to refuse SVGs.'
+    since: [{ repo: api-components-bundle, version: '2.0.0-alpha.23' }]
     sources:
       - { kind: docs, page: /api/components/annotations/uploadable, anchor: capping-uploads-to-fit-the-budget, sectionHash: 'sha256:eb971951d8a651cf' }
       - { kind: docs, page: /api/components/annotations/uploadable, anchor: liipimaginebundle-integration, sectionHash: 'sha256:27ee53328388ecf2' }

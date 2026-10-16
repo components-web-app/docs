@@ -1,4 +1,4 @@
-import type { AreaFilter, Level } from '~~/quiz/core'
+import type { AreaFilter, QuizSet } from '~~/quiz/core'
 
 /**
  * What the quiz remembers in this browser, under one key. Nothing is sent anywhere.
@@ -9,10 +9,10 @@ const STORAGE_KEY = 'cwa-quiz:v1'
 export type QuizBest = { score: number, total: number, at: string }
 
 export type QuizProgress = {
-  best: Partial<Record<Level, QuizBest>>
-  /** Levels passed on a full quiz on "Everything" with every answer graded. */
-  passed: Level[]
-  last?: { level: Level, topic: AreaFilter }
+  best: Partial<Record<QuizSet, QuizBest>>
+  /** Levels (and What's new) passed on a full quiz on "Everything" with every answer graded. */
+  passed: QuizSet[]
+  last?: { level: QuizSet, topic: AreaFilter }
   /**
    * Quizzes (`level|topic|seed`) answered at least once, newest last. A pass counts only on the first
    * attempt at a quiz, so reloading a quiz after seeing its answers can't record one.
@@ -54,7 +54,7 @@ function write(progress: QuizProgress) {
 }
 
 export type QuizOutcome = {
-  level: Level
+  level: QuizSet
   topic: AreaFilter
   score: number
   total: number
@@ -81,7 +81,7 @@ export function useQuizProgress() {
     progress.value = next
   }
 
-  function rememberChoice(level: Level, topic: AreaFilter) {
+  function rememberChoice(level: QuizSet, topic: AreaFilter) {
     remember((p) => {
       p.last = { level, topic }
     })

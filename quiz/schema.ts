@@ -7,7 +7,7 @@
  * directly (type stripping) and Vite/Nitro can bundle it.
  */
 import { z } from 'zod'
-import { AREAS, LEVELS, REPOS, STATUSES, type AnswerKey, type Link, type PublicQuestion, type Repo } from './core.ts'
+import { AREAS, LEVELS, REPOS, STATUSES, VERSION_PATTERN, type AnswerKey, type Link, type PublicQuestion, type Repo } from './core.ts'
 
 // The vocabulary, the client-side types and the grader live in core.ts, which has no zod in it, so
 // the quiz pages can import them without shipping zod to the browser. Everything is re-exported here.
@@ -119,6 +119,23 @@ const ExposureSchema = z.object({
 
 const ExplanationSchema = z.string().min(1).max(500)
 
+/**
+ * One sentence on when the fact matters in practice: the bug it explains, the decision it informs.
+ * Shown under the explanation as "Why it matters". Never shown before the answer, since it can give
+ * the answer away.
+ */
+const WhySchema = z.string().min(1).max(300)
+
+/** A release of one repo. Stored without a leading `v`. */
+const VersionRefSchema = z.object({
+  repo: z.enum(REPO_IDS),
+  version: z.string().regex(VERSION_PATTERN).refine(v => !v.startsWith('v'), 'no leading v'),
+  /** The change is on the repo's tracked branch after `version`, not yet released. */
+  unreleased: z.boolean().optional()
+}).strict()
+
+const oneRefPerRepo = (refs: { repo?: string }[] | undefined) => !refs || new Set(refs.map(r => r.repo)).size === refs.length
+
 const BaseQuestion = z.object({
   /** Never changes after the question is first live. */
   id: QuestionId,
@@ -142,6 +159,15 @@ const BaseQuestion = z.object({
   /** Questions in one family are variants of each other. A quiz shows at most one per family. */
   family: z.string().regex(/^[a-z0-9:._/#-]+$/).optional(),
   prompt: InlineMarkdown,
+  /** Required for hand-written questions from intermediate up (`quiz:check`). Generated ones copy their catalogue entry's. */
+  why: WhySchema.optional(),
+  /**
+   * The release that brought in the behaviour tested, one per repo involved. A question with `since`
+   * in the newest releases is in the What's new quiz; an exam for given versions uses it too.
+   */
+  since: z.array(VersionRefSchema).min(1).max(3).refine(oneRefPerRepo, 'one entry per repo').optional(),
+  /** The first release where the answer no longer holds. Set it when retiring a question for a change. */
+  until: z.array(VersionRefSchema.omit({ unreleased: true })).min(1).max(3).refine(oneRefPerRepo, 'one entry per repo').optional(),
   sources: z.array(SourceSchema).min(1).max(3),
   generator: GeneratorSchema.optional(),
   author: z.string().optional(),
@@ -258,6 +284,8 @@ const CatalogueBase = z.object({
    */
   exclude: z.array(z.string().regex(/^\/[a-z0-9/-]*#[a-z0-9_-]+\/\d+$/)).optional(),
   explanation: ExplanationSchema,
+  /** Copied to every question made from the entry. */
+  why: WhySchema,
   /** Where "Read more" goes, in place of the block's own section. */
   readMore: z.object({ page: DocsPath, anchor: z.string() }).strict().optional(),
   /** At most this many questions from this entry. */
@@ -308,6 +336,18 @@ export const QuizConfigSchema = z.object({
     /** Fun titles for the result screen, by minimum score share. */
     ranks: z.array(z.object({ min: z.number().min(0).max(1), title: z.string() }).strict()).min(1)
   }).strict()).length(LEVELS.length),
+  /** The What's new quiz: questions from every level whose `since` is one of a repo's newest releases. */
+  whatsNew: z.object({
+    title: z.string(),
+    blurb: z.string(),
+    /** How many of each repo's newest releases count as new. */
+    releases: z.number().int().min(1).max(10),
+    /** The start page offers the quiz once it has this many families. */
+    minFamilies: z.number().int().min(1).max(30),
+    quizLength: z.number().int().min(3).max(30).optional(),
+    passMark: z.number().min(0).max(1),
+    ranks: z.array(z.object({ min: z.number().min(0).max(1), title: z.string() }).strict()).min(1)
+  }).strict(),
   areas: z.array(z.object({ id: z.enum(AREAS), label: z.string() }).strict()),
   tags: z.array(z.object({
     id: z.string().regex(/^[a-z0-9-]+$/),
@@ -352,7 +392,7 @@ export function splitQuestion(q: Question): { question: PublicQuestion, key: Ans
     ...(q.code ? { code: { lang: q.code.lang, text: q.code.text } } : {})
   }
   const links: Link[] = [...q.sources.map(sourceLink), ...(q.answer.links ?? []).map(l => ({ label: l.label, to: l.to }))]
-  const base = { id: q.id, version: q.version, type: q.type, explanation: q.answer.explanation, links, tags: [...q.tags] }
+  const base = { id: q.id, version: q.version, type: q.type, explanation: q.answer.explanation, ...(q.why ? { why: q.why } : {}), links, tags: [...q.tags] }
   let key: AnswerKey
   if (q.type === 'multiple-choice') {
     key = { ...base, correct: { optionId: q.answer.correct }, ...(q.answer.optionNotes ? { optionNotes: q.answer.optionNotes } : {}) }

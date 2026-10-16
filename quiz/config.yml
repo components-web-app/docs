@@ -9,7 +9,7 @@ minTopicFamilies: 8
 levels:
   - id: beginner
     title: Beginner
-    blurb: What CWA is. Layouts, pages, components, draft and publish.
+    blurb: What CWA is and how a site is put together. Layouts, pages, components, and draft and publish, the ideas everything else builds on.
     passMark: 0.7
     ranks:
       - { min: 0, title: Fresh install }
@@ -18,7 +18,7 @@ levels:
       - { min: 0.9, title: Component wrangler }
   - id: intermediate
     title: Intermediate
-    blurb: Building with the module and the bundle. Composables, fixtures, dynamic pages, the admin.
+    blurb: What you need to build a site. Composables, fixtures, dynamic pages and the admin, and the mistakes that cost an afternoon.
     passMark: 0.7
     ranks:
       - { min: 0, title: Reading the docs }
@@ -27,7 +27,7 @@ levels:
       - { min: 0.9, title: Admin power user }
   - id: advanced
     title: Advanced
-    blurb: Caching, deployment, security, real-time updates and uploads.
+    blurb: What you need to run a site in production. Caching, deployment, security, real-time updates and uploads, and why each one behaves as it does.
     passMark: 0.7
     ranks:
       - { min: 0, title: Cache miss }
@@ -36,7 +36,7 @@ levels:
       - { min: 0.9, title: Production ready }
   - id: expert
     title: Expert
-    blurb: How it works inside. Questions come from the source of the bundle, the Nuxt module and the template, and some cover behaviour the docs don't describe.
+    blurb: How the bundle, the module and the template work inside, for when you're debugging caching, redirects or a deploy. The questions come from the source, and some cover behaviour the docs don't describe.
     # Shorter while the expert bank is small, so two quizzes share fewer questions. Back to 10 at 40+ families.
     quizLength: 8
     passMark: 0.6
@@ -45,6 +45,22 @@ levels:
       - { min: 0.5, title: Source diver }
       - { min: 0.6, title: Core contributor material }
       - { min: 0.9, title: "You wrote it, didn't you?" }
+
+# Questions from every level on the latest releases, so you can keep up with what changed.
+# A question joins when its `since` names one of a repo's newest `releases` versions in the bank.
+whatsNew:
+  title: What's new
+  blurb: Questions on the latest releases of the bundle, the Nuxt module and the template, from every level. Take it after an upgrade to see what changed.
+  releases: 3
+  # Hidden on the start page until it has this many families, so two quizzes don't repeat each other.
+  minFamilies: 10
+  quizLength: 8
+  passMark: 0.6
+  ranks:
+    - { min: 0, title: Still on the last release }
+    - { min: 0.5, title: Read the changelog }
+    - { min: 0.6, title: Up to date }
+    - { min: 0.9, title: Living on main }
 
 areas:
   - { id: core-concepts, label: Core concepts }

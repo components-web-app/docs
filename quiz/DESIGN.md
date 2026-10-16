@@ -218,7 +218,10 @@ The schema is `QuestionSchema` in `quiz/schema.ts`; it is strict, so a misspelt 
 | `exposure` | no | `{ weight, maxRate }`. `weight` (default 1) scales how often selection picks the question. `maxRate` is for exam mode. |
 | `docsCoverage` | expert only | `undocumented`, `light` or `documented`. Lets the check report that most expert questions cover behaviour the docs don't (criterion 8). |
 | `family` | no | Questions that test **the same fact** share a family, and a quiz shows at most one per family. Generated questions get `mistake:<id>` or `target:<id>`. A hand-written question on the same fact as a catalogue entry uses that entry's family (a multiple choice on `isEditing` being a plain boolean is `mistake:is-editing-value`), otherwise one question gives the other away. The family, not the question, is the unit a candidate can memorise, so bank sizes are counted in families (section 7). |
-| `prompt` | yes | Inline markdown, one or two sentences. |
+| `prompt` | yes | Inline markdown, one or two sentences. Start from a situation the reader would meet (a symptom, a decision), then ask one plain question. |
+| `why` | intermediate and up, hand-written | One sentence (up to 300 characters) on when the fact matters in practice: the bug it explains, the decision it informs. Shown after the answer, under the explanation, as "Why it matters". Never before the answer, since it can give the answer away. Generated questions copy their catalogue entry's `why` (required on mistakes and line targets, optional on glossary terms). Not part of the version fingerprint, like the explanation. |
+| `since` | no | The release that brought in the behaviour tested, one `{ repo, version }` per repo involved, with `unreleased: true` for a change on the tracked branch after `version`. It puts the question in What's new while that version is one of the repo's newest (section 7), and lets an exam pick questions that hold for given versions (section 11). `quiz:check` errors on a version with no tag, and warns when an unreleased change has a newer release to check. |
+| `until` | no | The first release where the answer no longer holds. Set it when retiring a question because the behaviour changed, so an exam for an older version can still use it. |
 | `sources` | yes | 1–3 provenance entries (below). The first is the main "Read more" link. |
 | `generator` | generated only | `{ name, ref }`: which generator and catalogue entry made it. `quiz:generate` uses it, with the source, to keep the id. |
 | `author`, `reviewed` | no | Who wrote it, and `{ by, version }`: who checked it and at which version (a version bump makes the review stale). The reviewer is a person other than the author. A question drafted with an LLM offline still needs a human `reviewed`; the hashes prove where a question came from, not that its answer is right. |
@@ -494,6 +497,15 @@ Implemented in `quiz/lib/select.ts`.
 - **Short pool:** the result carries `shortBy`. The UI says "There are only 7 questions for this
   level and topic so far" and runs those 7. A question never repeats within a quiz.
 - **Options:** `shuffleOptions(options, seed, id)`, seeded per question.
+
+### What's new
+
+What's new is a quiz beside the levels (`level=whats-new` in a play link, `/api/quiz/questions/whats-new.json`).
+Its pool is every live question, from any level, whose `since` names one of its repo's newest
+`whatsNew.releases` versions in the bank (`whatsNewWindow()` in `quiz/core.ts`; an unreleased change sorts
+just after its version). The window comes from the bank alone: writing questions for a new release moves
+it on, with no config change and no network at build time. The start page shows it once it has
+`whatsNew.minFamilies` families. Selection is the same as for a level, with no topic filter.
 
 ### A note on criterion 10 (overlap)
 
@@ -791,6 +803,7 @@ v1 is built so an exam can reuse the bank and the UI without a rewrite. Nothing 
 | Stable ids, versions, the lock file, retired not deleted | Responses stay valid over time. |
 | `calibration`, `exposure`, `difficulty`, `tags` | Calibration, exposure control, per-skill reports. |
 | `levels[].passMark` in config | Placement. |
+| `since` and `until`, `appliesAt()` in `quiz/core.ts` | An exam on given versions (say module 2.0.0-alpha.17 and bundle 2.0.0-alpha.22) draws only questions that hold for them, retired ones included when `until` is past those versions. |
 
 ---
 

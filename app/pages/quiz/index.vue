@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { LEVELS, type AreaFilter, type Level } from '~~/quiz/core'
+import { LEVELS, WHATS_NEW, type AreaFilter, type Level } from '~~/quiz/core'
 import { newSeed } from '~~/quiz/lib/select'
 
 const { data: manifest } = await useQuizManifest()
@@ -29,7 +29,7 @@ const topic = ref<AreaFilter>('all')
 
 onMounted(() => {
   const last = progress.value.last
-  if (last && LEVELS.includes(last.level)) {
+  if (last && last.level !== WHATS_NEW) {
     level.value = last.level
     topic.value = last.topic
   } else {
@@ -77,6 +77,17 @@ function onCardKeydown(event: KeyboardEvent, id: Level) {
 function start() {
   rememberChoice(level.value, topic.value)
   return navigateTo({ path: '/quiz/play', query: { level: level.value, topic: topic.value, seed: newSeed() } })
+}
+
+// What's new: questions from every level on the latest releases. Offered once it has enough families
+// that two quizzes don't repeat each other.
+const whatsNew = computed(() => manifest.value?.config.whatsNew)
+const whatsNewFamilies = computed(() => manifest.value?.counts[WHATS_NEW]?.all ?? 0)
+const whatsNewOpen = computed(() => !!whatsNew.value && whatsNewFamilies.value >= whatsNew.value.minFamilies)
+const isDev = import.meta.dev
+
+function startWhatsNew() {
+  return navigateTo({ path: '/quiz/play', query: { level: WHATS_NEW, topic: 'all', seed: newSeed() } })
 }
 
 const QUESTION_TYPES = [
@@ -186,6 +197,46 @@ const QUESTION_TYPES = [
         >
           No questions for this level and topic yet.
         </p>
+      </div>
+    </section>
+
+    <section
+      v-if="whatsNew && (whatsNewOpen || isDev)"
+      aria-labelledby="quiz-whats-new-heading"
+      class="-mt-8 pb-20"
+    >
+      <div class="flex flex-col gap-4 rounded-lg border border-primary/40 bg-primary/5 p-5 sm:flex-row sm:items-center">
+        <UIcon
+          name="i-heroicons-sparkles"
+          class="size-8 shrink-0 text-primary"
+          aria-hidden="true"
+        />
+        <div class="flex-1">
+          <h2
+            id="quiz-whats-new-heading"
+            class="text-lg font-semibold text-highlighted"
+          >
+            {{ whatsNew.title }}
+          </h2>
+          <p class="text-sm text-muted">
+            {{ whatsNew.blurb }}
+          </p>
+          <p
+            v-if="isDev"
+            class="mt-1 text-xs text-dimmed"
+          >
+            {{ whatsNewFamilies }} questions in the bank (shown from {{ whatsNew.minFamilies }})
+          </p>
+        </div>
+        <UButton
+          label="Start What's new"
+          size="lg"
+          color="neutral"
+          variant="outline"
+          trailing-icon="i-heroicons-arrow-right"
+          :disabled="!whatsNewFamilies"
+          @click="startWhatsNew"
+        />
       </div>
     </section>
   </UContainer>

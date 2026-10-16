@@ -1,4 +1,4 @@
-import { gradeAgainstKey, type GradeResult, type Level, type QuizGrader, type QuizResponse } from '~~/quiz/core'
+import { gradeAgainstKey, type GradeResult, type QuizGrader, type QuizResponse, type QuizSet } from '~~/quiz/core'
 import type { RenderedFeedback, RenderedKey } from '~~/quiz/lib/render'
 import { parseLocalRef } from './useQuizBank'
 
@@ -17,7 +17,7 @@ export interface QuizFeedbackGrader extends QuizGrader {
  * An exam swaps this for a grader that posts the response to a server, which maps the token to a
  * question and version and calls the same `gradeAgainstKey()`. Nothing else in the UI changes.
  */
-export function createLocalGrader(level: Level): QuizFeedbackGrader {
+export function createLocalGrader(level: QuizSet): QuizFeedbackGrader {
   const keys = $fetch<RenderedKey[]>(`/api/quiz/keys/${level}.json`)
     .then(list => new Map(list.map(k => [k.key.id, k])))
   // Avoid an unhandled rejection before the first grade; grade() rethrows it.
@@ -35,7 +35,7 @@ export function createLocalGrader(level: Level): QuizFeedbackGrader {
         ? { questionId, version, optionId: response.optionId }
         : { questionId, version, line: response.line }
       const result = gradeAgainstKey(answer, entry.key)
-      return { ...result, feedback: { explanation: entry.explanation, ...(entry.optionNotes ? { optionNotes: entry.optionNotes } : {}) } }
+      return { ...result, feedback: { explanation: entry.explanation, ...(entry.why ? { why: entry.why } : {}), ...(entry.optionNotes ? { optionNotes: entry.optionNotes } : {}) } }
     }
   }
 }

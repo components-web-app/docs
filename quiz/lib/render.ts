@@ -24,7 +24,7 @@ import vue from '@shikijs/langs/vue'
 import yaml from '@shikijs/langs/yaml'
 import githubDark from '@shikijs/themes/github-dark'
 import githubLight from '@shikijs/themes/github-light'
-import type { AnswerKey, AreaFilter, Level, QuestionDisplay, QuizConfig } from '../schema'
+import type { AnswerKey, AreaFilter, QuestionDisplay, QuizConfig, QuizSet } from '../schema'
 
 // ---------------------------------------------------------------------------
 // Output types (the UI's contract)
@@ -62,6 +62,7 @@ export type RenderedDisplay = Rendered<QuestionDisplay>
 export type RenderedKey = {
   key: AnswerKey
   explanation: MarkdownDocument
+  why?: MarkdownDocument
   optionNotes?: Record<string, MarkdownDocument>
 }
 
@@ -71,7 +72,7 @@ export type RenderedFeedback = Omit<RenderedKey, 'key'>
 /** `/api/quiz/config.json`: the parsed config plus the number of live families per level and topic. */
 export type QuizManifest = {
   config: QuizConfig
-  counts: Record<Level, Record<AreaFilter, number>>
+  counts: Record<QuizSet, Record<AreaFilter, number>>
 }
 
 // ---------------------------------------------------------------------------
@@ -174,12 +175,13 @@ export async function renderQuestion<T extends QuestionDisplay>(question: T): Pr
   } as Rendered<T>
 }
 
-/** Renders a key's explanation and option notes. The key itself is kept as it is, for grading. */
+/** Renders a key's explanation, why line and option notes. The key itself is kept as it is, for grading. */
 export async function renderKey(key: AnswerKey): Promise<RenderedKey> {
-  const explanation = await renderMarkdown(key.explanation)
+  const [explanation, why] = await Promise.all([renderMarkdown(key.explanation), key.why ? renderMarkdown(key.why) : undefined])
+  const base = { key, explanation, ...(why ? { why } : {}) }
   if (!key.optionNotes) {
-    return { key, explanation }
+    return base
   }
   const notes = await Promise.all(Object.entries(key.optionNotes).map(async ([id, note]) => [id, await renderMarkdown(note)] as const))
-  return { key, explanation, optionNotes: Object.fromEntries(notes) }
+  return { ...base, optionNotes: Object.fromEntries(notes) }
 }
