@@ -64,7 +64,7 @@ Researched and recorded on the issue (body + [findings comment](https://github.c
       - `fixtures.ts` also fails on an uncaught page error.
   - **Markers:** the "main after bundle alpha.17" markers now say bundle 2.0.0-alpha.18; module #384 now says `@cwa/nuxt` 2.0.0-alpha.12; the template's dropped `Put` now says 2.0.0-alpha.29.
   - **Reviewed, no docs:** bundle #433 (already documented), #437, #438, #445, #449, #450; module #386, #387, #391, #393–#395, #397; template #155, #156, #158, #159, #161, dependency bumps.
-  - **Not changed:** the CI pipeline diagram (`Diagram/CiPipeline.vue`) still labels Test "PHPUnit unit + functional", and doesn't show browser tests.
+  - **Follow-up:** the CI pipeline diagram (`Diagram/CiPipeline.vue`) has a violet opt-in **Browser Tests** node beside Test, both feeding review and staging (every deploy job `needs:` it; checked in `.gitlab-ci.yml`).
 
 - **2026-10-13 (evening) — docs #207–#218, #223–#225, #210, #211, plus site fixes.**
   - **Duplicates:** #207–#209 and #212–#218 were filed by other sessions and mostly covered by #220–#222. The remaining gaps are filled:
