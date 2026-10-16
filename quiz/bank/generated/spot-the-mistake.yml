@@ -1976,6 +1976,8 @@ questions:
   - id: gen.mistake.page-title-property.1
     version: 1
     status: retired
+    retired:
+      reason: "stale-source: the source block is gone or no longer matches the catalogue entry"
     level: intermediate
     area: api
     tags:
@@ -2008,8 +2010,6 @@ questions:
       fix: "        $article->setTitle('First Post');"
       explanation: "`title` and `metaDescription` are `protected` on `AbstractPage` and `AbstractPageData`. Set them
         with `setTitle()` and `setMetaDescription()`: assigning the property is a fatal error."
-    retired:
-      reason: "stale-source: the source block is gone or no longer matches the catalogue entry"
   - id: gen.mistake.script-dollar-cwa.4
     version: 1
     status: retired

@@ -1310,6 +1310,8 @@ questions:
   - id: gen.target.template-page-flag.3
     version: 2
     status: retired
+    retired:
+      reason: "stale-source: the source block is gone or no longer matches the catalogue entry"
     level: intermediate
     area: api
     tags:
@@ -1346,5 +1348,3 @@ questions:
         - 1
       explanation: "`isTemplate: true` makes a template page. It gets no route; every page data record of one type
         renders through it."
-    retired:
-      reason: "stale-source: the source block is gone or no longer matches the catalogue entry"

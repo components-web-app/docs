@@ -476,13 +476,14 @@ questions:
         text: Cache tag
     answer:
       correct: b
-      explanation: The real-time hub, inside Caddy in the template. The API publishes every change to it, and each
-        open browser applies the change without a reload. See [Real-Time Updates](/api/real-time).
+      explanation: The real-time hub, inside Caddy in the template. The API publishes every change to it. Each open
+        browser is told about the change and shows an **Update** notice that applies it without a reload. See
+        [Real-Time Updates](/api/real-time).
     sources:
       - kind: docs
         page: /core-concepts/glossary
         anchor: mercure
-        sectionHash: sha256:dff42226b4272cd0
+        sectionHash: sha256:11f10e68284bca9b
     generator:
       name: glossary
       ref: mercure
