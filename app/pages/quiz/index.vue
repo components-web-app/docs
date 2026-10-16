@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { LEVELS, quizLengthFor, type AreaFilter, type Level } from '~~/quiz/core'
+import { LEVELS, type AreaFilter, type Level } from '~~/quiz/core'
 import { newSeed } from '~~/quiz/lib/select'
 
 const { data: manifest } = await useQuizManifest()
@@ -41,7 +41,6 @@ onMounted(() => {
 const levels = computed(() => manifest.value?.config.levels ?? [])
 const counts = computed(() => manifest.value?.counts[level.value])
 const poolSize = computed(() => counts.value?.[topic.value] ?? 0)
-const quizLength = computed(() => manifest.value ? quizLengthFor(manifest.value.config, level.value) : 10)
 const minTopicFamilies = computed(() => manifest.value?.config.minTopicFamilies ?? 8)
 const someTopicsClosed = computed(() => manifest.value?.config.areas.some(a => (counts.value?.[a.id] ?? 0) < minTopicFamilies.value))
 
@@ -181,16 +180,11 @@ const QUESTION_TYPES = [
           :disabled="!poolSize"
           @click="start"
         />
-        <p class="text-sm text-muted">
-          <template v-if="!poolSize">
-            No questions for this level and topic yet.
-          </template>
-          <template v-else-if="poolSize < quizLength">
-            {{ poolSize === 1 ? 'There is only 1 question' : `There are only ${poolSize} questions` }} for this level and topic so far.
-          </template>
-          <template v-else>
-            {{ quizLength }} questions. Your answers stay in this browser.
-          </template>
+        <p
+          v-if="!poolSize"
+          class="text-sm text-muted"
+        >
+          No questions for this level and topic yet.
         </p>
       </div>
     </section>

@@ -20,6 +20,9 @@ const LEVEL_ICONS: Record<string, string> = {
 }
 
 const passMark = computed(() => `${Math.round(props.level.passMark * 100)}%`)
+
+// The bank size is a dev aid; visitors don't need it.
+const isDev = import.meta.dev
 </script>
 
 <template>
@@ -56,7 +59,7 @@ const passMark = computed(() => `${Math.round(props.level.passMark * 100)}%`)
     </div>
     <p class="mt-auto flex flex-wrap gap-x-3 gap-y-1 text-xs text-dimmed">
       <span>Pass mark {{ passMark }}</span>
-      <span>{{ count }} {{ count === 1 ? 'question' : 'questions' }} in the bank</span>
+      <span v-if="isDev">{{ count }} {{ count === 1 ? 'question' : 'questions' }} in the bank</span>
       <span v-if="best">Best {{ best.score }}/{{ best.total }}</span>
     </p>
   </div>

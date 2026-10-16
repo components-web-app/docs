@@ -18,7 +18,8 @@ const items = computed(() => [
   ...props.areas.map(a => ({ value: a.id as AreaFilter, label: a.label }))
 ].map(item => ({
   ...item,
-  label: props.counts ? `${item.label} (${props.counts[item.value] ?? 0})` : item.label,
+  // The count is a dev aid for building the bank; visitors see just the topic.
+  label: import.meta.dev && props.counts ? `${item.label} (${props.counts[item.value] ?? 0})` : item.label,
   disabled: props.counts ? (props.counts[item.value] ?? 0) < (item.value === 'all' ? 1 : props.min) : false
 })))
 </script>
