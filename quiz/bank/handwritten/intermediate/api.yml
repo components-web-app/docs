@@ -334,6 +334,6 @@ questions:
         d: '`allowSvg` is `true` by default. Set it to `false` to refuse SVGs.'
     since: [{ repo: api-components-bundle, version: '2.0.0-alpha.23' }]
     sources:
-      - { kind: docs, page: /api/components/annotations/uploadable, anchor: capping-uploads-to-fit-the-budget, sectionHash: 'sha256:eb971951d8a651cf' }
+      - { kind: docs, page: /api/components/annotations/uploadable, anchor: capping-uploads-to-fit-the-budget, sectionHash: 'sha256:44a8df06f40989a6' }
       - { kind: docs, page: /api/components/annotations/uploadable, anchor: liipimaginebundle-integration, sectionHash: 'sha256:27ee53328388ecf2' }
     author: llm-draft

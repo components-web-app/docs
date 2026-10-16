@@ -128,8 +128,8 @@ questions:
       optionNotes:
         d: 'Older bundles refused every data-URI upload to a field with a `File` or `Image` constraint, valid or not, with a `422` saying "The file could not be uploaded."'
     sources:
-      - { kind: docs, page: /api/components/annotations/uploadable, anchor: uploading-a-file, sectionHash: 'sha256:64655300dbaf948f' }
-      - { kind: docs, page: /api/components/annotations/uploadable, anchor: capping-uploads-to-fit-the-budget, sectionHash: 'sha256:eb971951d8a651cf' }
+      - { kind: docs, page: /api/components/annotations/uploadable, anchor: uploading-a-file, sectionHash: 'sha256:24eb1019fe531e53' }
+      - { kind: docs, page: /api/components/annotations/uploadable, anchor: capping-uploads-to-fit-the-budget, sectionHash: 'sha256:44a8df06f40989a6' }
     author: llm-draft
 
   - id: api.uploads.image-max-pixels-config
@@ -162,7 +162,7 @@ questions:
         the limit has to fit. The 30,000,000 default fits that budget with vips, so on GD or Imagick the docs set
         it to 20,000,000.
     sources:
-      - { kind: docs, page: /api/components/annotations/uploadable, anchor: capping-uploads-to-fit-the-budget, sectionHash: 'sha256:eb971951d8a651cf', block: 1, blockHash: 'sha256:9e4c03469999e83f' }
+      - { kind: docs, page: /api/components/annotations/uploadable, anchor: capping-uploads-to-fit-the-budget, sectionHash: 'sha256:44a8df06f40989a6', block: 1, blockHash: 'sha256:9e4c03469999e83f' }
     author: llm-draft
 
   - id: api.orphans.invalid-files-groups
@@ -193,5 +193,5 @@ questions:
       optionNotes:
         d: Older bundles checked only `Default`. A row with a publication date now gets its publish groups too.
     sources:
-      - { kind: docs, page: /api/orphaned-data, anchor: how-invalid-files-are-checked, sectionHash: 'sha256:78232cbf885511ac' }
+      - { kind: docs, page: /api/orphaned-data, anchor: how-invalid-files-are-checked, sectionHash: 'sha256:685126440c7e6ce9' }
     author: llm-draft
