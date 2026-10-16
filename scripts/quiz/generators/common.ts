@@ -125,6 +125,18 @@ export function bracketsBalance(code: string): boolean {
 export type Window = { lines: string[], answer: number }
 
 /**
+ * True when the last non-blank line opens an HTML or Vue tag that the shown lines never close, such as a
+ * bare `<template>`. A window cut there looks unfinished, like a second mistake.
+ */
+export function endsOnOpenTag(lines: string[]): boolean {
+  const last = [...lines].reverse().find(l => l.trim() !== '')?.trim()
+  if (!last) return false
+  const open = /^<([A-Za-z][\w.-]*)(?:\s[^<>]*)?>$/.exec(last)
+  if (!open || last.endsWith('/>')) return false
+  return !last.includes(`</${open[1]}`)
+}
+
+/**
  * The shown code for a block and the 1-based answer line in it. A block of up to 30 lines is shown
  * whole. A longer one gets a window of 20 lines (down to 12) around the line. Windows whose first and
  * last lines sit at the block's outer indentation and whose brackets balance are tried first, so the
@@ -156,7 +168,14 @@ export function windowFor(display: string, lineIndex: number): Window | undefine
     }
   }
   const clean = ([from, to]: [number, number]) => indentOf(all[from]) === outer && indentOf(all[to - 1]) === outer
+  // A window must not end on an unclosed tag (`<template>`) or on a declaration whose body starts on
+  // the next line (`private function x(): void` followed by `{`).
+  const opensNext = (to: number) => {
+    const next = all.slice(to).find(l => l.trim() !== '')
+    return next !== undefined && /^[{[(]/.test(next.trim()) && indentOf(next) === indentOf(all[to - 1])
+  }
   const balanced = ([from, to]: [number, number]) => bracketsBalance(all.slice(from, to).join('\n'))
+    && !endsOnOpenTag(all.slice(from, to)) && !opensNext(to)
   const pick = candidates.find(c => clean(c) && balanced(c)) ?? candidates.find(balanced)
   if (!pick) return undefined
   const lines = dedent(all.slice(pick[0], pick[1]))

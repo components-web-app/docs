@@ -1069,7 +1069,7 @@ questions:
       name: spot-the-mistake
       ref: layout-builder-prefix
   - id: gen.mistake.layout-builder-prefix.3
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: api
@@ -1093,7 +1093,7 @@ questions:
             $quote = new Quote();
             $quote->text = 'Content is king.';
             $quote->author = 'Bill Gates';
-            $quote->setPublishedAt(new \DateTime());
+            $cwa->publish($quote);
 
             $cwa->page('landing-page', 'TwoColumnPageTemplate', layout: 'landing', route: '/landing')
                 ->title('Landing')
@@ -1112,9 +1112,9 @@ questions:
       - kind: docs
         page: /guides/your-first-component
         anchor: via-fixtures
-        sectionHash: sha256:5ddab2c7e6c601da
+        sectionHash: sha256:e1c9ba97c217434a
         block: 0
-        blockHash: sha256:a60910e0c1fc3b7c
+        blockHash: sha256:825d8146891df7f1
     generator:
       name: spot-the-mistake
       ref: layout-builder-prefix
@@ -1154,7 +1154,7 @@ questions:
     generator:
       name: spot-the-mistake
       ref: layout-builder-prefix
-  - id: gen.mistake.page-title-property.1
+  - id: gen.mistake.page-title-property.3
     version: 1
     status: live
     level: intermediate
@@ -1168,24 +1168,27 @@ questions:
     code:
       lang: php
       text: |-
-        $cwa->page('blog-template', 'BlogPageTemplate', layout: 'main', isTemplate: true)
-            ->nested(function (CwaFixtureBuilder $child): void {
-                $article = new BlogArticleData();
-                $article->title = 'First Post';
-                $child->pageData($article, template: 'blog-template', route: '/blog/first-post');
-            });
+        $pageData = new ConferenceData();
+        $pageData->title = 'CWA Conference';
+        $pageData->component = new Hero();
+
+        $cwa->pageData($pageData, template: 'conference', route: '/cwa-conference');
     answer:
-      line: 4
-      fix: "        $article->setTitle('First Post');"
+      line: 2
+      fix: $pageData->setTitle('CWA Conference');
       explanation: "`title` and `metaDescription` are `protected` on `AbstractPage` and `AbstractPageData`. Set them
         with `setTitle()` and `setMetaDescription()`: assigning the property is a fatal error."
     sources:
       - kind: docs
         page: /api/data-fixtures/builder-reference
         anchor: pagebuilder-from-cwa-page
-        sectionHash: sha256:a93b39b9fc0a54e5
-        block: 2
-        blockHash: sha256:5dbe50fa081c07e4
+        sectionHash: sha256:6549a43071bfc877
+      - kind: docs
+        page: /api/data-fixtures/writing-a-scaffold
+        anchor: components-on-page-data
+        sectionHash: sha256:1bbe8b30034943a4
+        block: 0
+        blockHash: sha256:acb32b0c1a027ec2
     generator:
       name: spot-the-mistake
       ref: page-title-property
@@ -1215,11 +1218,11 @@ questions:
       - kind: docs
         page: /api/data-fixtures/builder-reference
         anchor: pagebuilder-from-cwa-page
-        sectionHash: sha256:a93b39b9fc0a54e5
+        sectionHash: sha256:6549a43071bfc877
       - kind: docs
         page: /api/data-fixtures/builder-reference
         anchor: pagedatabuilder-from-cwa-pagedata
-        sectionHash: sha256:427fba44975635b8
+        sectionHash: sha256:ac3f01becf252ae3
         block: 1
         blockHash: sha256:af420ca9b5622e29
     generator:
@@ -1727,7 +1730,7 @@ questions:
       name: spot-the-mistake
       ref: component-without-props
   - id: gen.mistake.component-without-props.6
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: nuxt-module
@@ -1756,8 +1759,6 @@ questions:
         const email   = useCwaFormInput(iriRef, 'contact_form[email]')
         const message = useCwaFormInput(iriRef, 'contact_form[message]')
         </script>
-
-        <template>
     answer:
       line: 7
       fix: const { exposeMeta } = useCwaComponent(props)
@@ -1972,6 +1973,43 @@ questions:
     generator:
       name: spot-the-mistake
       ref: publish-group-name
+  - id: gen.mistake.page-title-property.1
+    version: 1
+    status: retired
+    level: intermediate
+    area: api
+    tags:
+      - fixtures
+      - dynamic-pages
+    family: mistake:page-title-property
+    prompt: One line in this fixture code is wrong. Click it.
+    sources:
+      - kind: docs
+        page: /api/data-fixtures/builder-reference
+        anchor: pagebuilder-from-cwa-page
+        sectionHash: sha256:a93b39b9fc0a54e5
+        block: 2
+        blockHash: sha256:5dbe50fa081c07e4
+    generator:
+      name: spot-the-mistake
+      ref: page-title-property
+    type: spot-the-mistake
+    code:
+      lang: php
+      text: |-
+        $cwa->page('blog-template', 'BlogPageTemplate', layout: 'main', isTemplate: true)
+            ->nested(function (CwaFixtureBuilder $child): void {
+                $article = new BlogArticleData();
+                $article->title = 'First Post';
+                $child->pageData($article, template: 'blog-template', route: '/blog/first-post');
+            });
+    answer:
+      line: 4
+      fix: "        $article->setTitle('First Post');"
+      explanation: "`title` and `metaDescription` are `protected` on `AbstractPage` and `AbstractPageData`. Set them
+        with `setTitle()` and `setMetaDescription()`: assigning the property is a fatal error."
+    retired:
+      reason: "stale-source: the source block is gone or no longer matches the catalogue entry"
   - id: gen.mistake.script-dollar-cwa.4
     version: 1
     status: retired

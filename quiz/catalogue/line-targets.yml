@@ -54,6 +54,9 @@ targets:
     tags: [dynamic-pages, fixtures]
     langs: [php]
     match: 'isTemplate: true'
+    # The comment above the line gives the answer away.
+    exclude:
+      - /api/data-fixtures/getting-started#complete-example/0
     prompt: Which line means this page has no URL of its own, and every record of one type renders through it?
     explanation: >-
       `isTemplate: true` makes a template page. It gets no route; every page data record of one type renders
@@ -71,10 +74,11 @@ targets:
     # These blocks show only the attribute, with nothing else to choose from.
     exclude:
       - /nuxt-module/component-helpers/real-time-updates#php-side/0
-    prompt: An editor changes this resource, and visitors who have the page open see it change without reloading. Which line makes that happen?
+    prompt: An editor changes this resource, and visitors who have the page open are told the content is outdated, without reloading. Which line makes that happen?
     explanation: >-
-      `mercure: true` on `#[ApiResource]` makes the API publish each change to the Mercure hub, and every
-      browser that loaded the resource applies it without a reload.
+      `mercure: true` on `#[ApiResource]` makes the API publish each change to the Mercure hub. Every browser
+      that loaded the resource receives it; the module stages it behind a "content is outdated" notice, and
+      the reader's Update click applies it.
     readMore: { page: /api/components/annotations/publishable, anchor: interaction-with-mercure }
     limit: 6
 

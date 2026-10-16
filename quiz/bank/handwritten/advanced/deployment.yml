@@ -89,7 +89,8 @@ questions:
       correct: c
       explanation: >-
         While an old pod is still serving, it could render a page that points at the old build and put it back
-        in the cache. The purge then runs `purge-rendered-html` in the php pod.
+        in the cache. Only then does the deploy purge the cached pages from the php pod (`purge-rendered-html`,
+        or `purge-http-cache` when Cloudflare is configured).
     sources:
       - { kind: docs, page: /deployment/ci-cd, anchor: why-every-deploy-clears-the-page-cache, sectionHash: 'sha256:a535bdc75c8f0bab' }
     author: llm-draft

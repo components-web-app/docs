@@ -894,10 +894,10 @@ them is built in v1.
   retired for this reason once module commit `698e89fe` fixed it).
 - **`drafted` field.** `author` mixes who wrote a question with how. An optional
   `drafted: person | llm | generator` would let the check count LLM drafts that reach an exam.
-- **Docs disagree on what visitors see on a real-time update.** `/core-concepts/draft-and-publish`
-  says visitors see new content without a refresh; `/nuxt-module/component-helpers/real-time-updates`
-  says updates are staged behind an "outdated" notice; module `ccc7bbcd` renders that notice only in
-  the admin header. Settle it in the docs before writing a question on it.
+- **What visitors see on a real-time update: resolved** on `main` in `0df716a` (docs #240). Module
+  `ccc7bbcd`'s `CwaRootLayout.vue` renders `OutdatedContentNotice` as the `v-else` of the admin header, so
+  visitors get the notice too (admins get it in the header). Nothing applies by itself: the reader clicks
+  Update. `/nuxt-module/component-helpers/real-time-updates#the-visitor-notification` says so.
 
 ### The pipeline
 

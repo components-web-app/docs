@@ -112,11 +112,25 @@
     },
     "api.fixtures.after-routes": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:c8c5dd65002c9e9f",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:2fe6ae780879f945",
+          "docsCommit": "a1056e349c0674125d27aa7e59429f1d171722cf+dirty"
+        }
+      }
+    },
+    "api.fixtures.link-iri-page-data": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:17a72bdc1ebdcddf",
+          "docsCommit": "a1056e349c0674125d27aa7e59429f1d171722cf+dirty"
         }
       }
     },
@@ -127,6 +141,16 @@
         "1": {
           "fingerprint": "sha256:1f2b2a912ed3273d",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        }
+      }
+    },
+    "api.fixtures.redirect-target-name": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:4751f0057ae287a9",
+          "docsCommit": "a1056e349c0674125d27aa7e59429f1d171722cf+dirty"
         }
       }
     },
@@ -367,6 +391,16 @@
         "1": {
           "fingerprint": "sha256:7f664f0ab408892d",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        }
+      }
+    },
+    "api.uploads.uploaded-image-svg": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:01b76ec919cfceeb",
+          "docsCommit": "a1056e349c0674125d27aa7e59429f1d171722cf+dirty"
         }
       }
     },
@@ -862,11 +896,15 @@
     },
     "gen.mistake.component-without-props.6": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:e2d76cf4d405a837",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:507fb3c687b1c397",
+          "docsCommit": "a1056e349c0674125d27aa7e59429f1d171722cf+dirty"
         }
       }
     },
@@ -972,11 +1010,15 @@
     },
     "gen.mistake.layout-builder-prefix.3": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:f779cbe1185871e7",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:f98d91566a0def78",
+          "docsCommit": "a1056e349c0674125d27aa7e59429f1d171722cf+dirty"
         }
       }
     },
@@ -1031,7 +1073,7 @@
       }
     },
     "gen.mistake.page-title-property.1": {
-      "status": "live",
+      "status": "retired",
       "version": 1,
       "versions": {
         "1": {
@@ -1047,6 +1089,16 @@
         "1": {
           "fingerprint": "sha256:779271f24abeeb65",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        }
+      }
+    },
+    "gen.mistake.page-title-property.3": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:f01494a77d012138",
+          "docsCommit": "a1056e349c0674125d27aa7e59429f1d171722cf+dirty"
         }
       }
     },
@@ -1370,63 +1422,97 @@
         }
       }
     },
+    "gen.target.fixture-redirect.3": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:5ea9f16ab00d7f11",
+          "docsCommit": "a1056e349c0674125d27aa7e59429f1d171722cf+dirty"
+        }
+      }
+    },
     "gen.target.mercure-flag.1": {
       "status": "live",
-      "version": 2,
+      "version": 3,
       "versions": {
         "2": {
           "fingerprint": "sha256:ab9a159f5c86f640",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "3": {
+          "fingerprint": "sha256:d6d50b90d44acf4f",
+          "docsCommit": "a1056e349c0674125d27aa7e59429f1d171722cf+dirty"
         }
       }
     },
     "gen.target.mercure-flag.2": {
       "status": "live",
-      "version": 2,
+      "version": 3,
       "versions": {
         "2": {
           "fingerprint": "sha256:16b85f1f5b53bbda",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "3": {
+          "fingerprint": "sha256:70e218f0ce792e26",
+          "docsCommit": "a1056e349c0674125d27aa7e59429f1d171722cf+dirty"
         }
       }
     },
     "gen.target.mercure-flag.3": {
       "status": "live",
-      "version": 2,
+      "version": 3,
       "versions": {
         "2": {
           "fingerprint": "sha256:2bf568632b20fdd8",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "3": {
+          "fingerprint": "sha256:860c164c2cd1d149",
+          "docsCommit": "a1056e349c0674125d27aa7e59429f1d171722cf+dirty"
         }
       }
     },
     "gen.target.mercure-flag.4": {
       "status": "live",
-      "version": 2,
+      "version": 3,
       "versions": {
         "2": {
           "fingerprint": "sha256:20a58dacf95a167b",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "3": {
+          "fingerprint": "sha256:cfcb665de145b9ff",
+          "docsCommit": "a1056e349c0674125d27aa7e59429f1d171722cf+dirty"
         }
       }
     },
     "gen.target.mercure-flag.5": {
       "status": "live",
-      "version": 2,
+      "version": 3,
       "versions": {
         "2": {
           "fingerprint": "sha256:3bf982a4fde935db",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "3": {
+          "fingerprint": "sha256:8bb5a26d4cd19a31",
+          "docsCommit": "a1056e349c0674125d27aa7e59429f1d171722cf+dirty"
         }
       }
     },
     "gen.target.mercure-flag.6": {
       "status": "live",
-      "version": 2,
+      "version": 3,
       "versions": {
         "2": {
           "fingerprint": "sha256:3f84e0a51a2c0d04",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "3": {
+          "fingerprint": "sha256:8c51bc63c2fef4c2",
+          "docsCommit": "a1056e349c0674125d27aa7e59429f1d171722cf+dirty"
         }
       }
     },
@@ -1442,21 +1528,29 @@
     },
     "gen.target.page-data-position.2": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:8e60f5583d352dce",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:da6848fce0a457f8",
+          "docsCommit": "a1056e349c0674125d27aa7e59429f1d171722cf+dirty"
         }
       }
     },
     "gen.target.page-data-position.3": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:18e2586c62842aea",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:3985f67c865fb26b",
+          "docsCommit": "a1056e349c0674125d27aa7e59429f1d171722cf+dirty"
         }
       }
     },
@@ -1502,16 +1596,20 @@
     },
     "gen.target.template-page-flag.2": {
       "status": "live",
-      "version": 2,
+      "version": 3,
       "versions": {
         "2": {
           "fingerprint": "sha256:7c624548159ead5e",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "3": {
+          "fingerprint": "sha256:802c07d6ad96b276",
+          "docsCommit": "a1056e349c0674125d27aa7e59429f1d171722cf+dirty"
         }
       }
     },
     "gen.target.template-page-flag.3": {
-      "status": "live",
+      "status": "retired",
       "version": 2,
       "versions": {
         "2": {
@@ -2017,6 +2115,16 @@
         "1": {
           "fingerprint": "sha256:5fb21ba09b4c9fdf",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        }
+      }
+    },
+    "nuxt.real-time.visitor-notice": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:a915eb183e00593c",
+          "docsCommit": "a1056e349c0674125d27aa7e59429f1d171722cf+dirty"
         }
       }
     },

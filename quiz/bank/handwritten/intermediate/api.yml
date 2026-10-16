@@ -190,26 +190,32 @@ questions:
     author: llm-draft
 
   - id: api.fixtures.after-routes
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: api
     tags: [fixtures, routes]
     type: multiple-choice
     difficulty: 3
-    prompt: In a scaffold, where do you set a navigation link's `route` to a page's route?
+    prompt: In a scaffold, a navigation link's `route` field must point to the page route named `about`. How do the docs say to set it?
     options:
-      - { id: a, text: 'Straight after `$cwa->page()`, with `getRoute()`' }
-      - { id: b, text: 'In an `afterRoutes()` callback, with `getRoute()`' }
-      - { id: c, text: 'In the scaffold''s constructor, before `build()`' }
-      - { id: d, text: 'After `load()` returns, in a second fixture class' }
+      - { id: a, text: "`$link->route = $cwa->getRoute('about')`, straight after `$cwa->page()`" }
+      - { id: b, text: "`$cwa->afterRoutes(fn ($cwa) => $link->route = $cwa->getRoute('about'))`" }
+      - { id: c, text: "`$cwa->component($link)->linkRoute('route', routeName: 'about')`" }
+      - { id: d, text: "`$cwa->component($link)->linkIri('route', route: 'about')`" }
     answer:
-      correct: b
+      correct: c
       explanation: >-
-        `afterRoutes()` runs during `flush()`, once every route exists and before any position is created, so
-        `getRoute()` works inside it and the link is saved with its route.
+        `linkRoute()` sets a field that holds a `Route`, by the route's name, once the routes exist during
+        `flush()`. Keep `afterRoutes()` for anything else that needs a route, such as a value your own code works
+        out from it.
+      optionNotes:
+        a: The route doesn't exist until `flush()` creates it, so `getRoute()` throws there.
+        b: That runs, but the docs keep `afterRoutes()` for values worked out from a route. A route field takes `linkRoute()`.
+        d: '`linkIri()` writes an IRI string, for a string or array field. A `route` field holds the `Route` itself.'
     sources:
-      - { kind: docs, page: /api/data-fixtures/builder-reference, anchor: afterroutes, sectionHash: 'sha256:1d375f6fc68386c3' }
+      - { kind: docs, page: /api/data-fixtures/writing-a-scaffold, anchor: linking-routes-and-iris, sectionHash: 'sha256:3940b189955e0261' }
+      - { kind: docs, page: /api/data-fixtures/builder-reference, anchor: afterroutes, sectionHash: 'sha256:675501e7417f2840' }
     author: llm-draft
 
   - id: api.fixtures.page-group-allow
@@ -234,5 +240,62 @@ questions:
       optionNotes:
         a: On a page builder the second argument is the `configure` closure.
     sources:
-      - { kind: docs, page: /api/data-fixtures/builder-reference, anchor: pagebuilder-from-cwa-page, sectionHash: 'sha256:a93b39b9fc0a54e5' }
+      - { kind: docs, page: /api/data-fixtures/builder-reference, anchor: pagebuilder-from-cwa-page, sectionHash: 'sha256:6549a43071bfc877' }
+    author: llm-draft
+
+  - id: api.fixtures.redirect-target-name
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [fixtures, routes]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      A scaffold declares `$cwa->page('about-team', uiComponent: 'Primary', layout: 'main', route: '/about/team',
+      routeName: 'team')`. What does `$cwa->redirect('/our-team', to: …)` take to send visitors to that page?
+    options:
+      - { id: a, text: "`'about-team'`" }
+      - { id: b, text: "`'team'`" }
+      - { id: c, text: "`'/about/team'`" }
+      - { id: d, text: "`'about'`" }
+    answer:
+      correct: b
+      explanation: >-
+        `redirect(to:)` takes a route name, and `routeName:` sets it. The first argument of `page()` is the
+        page's reference, and `route:` is the path visitors open.
+      optionNotes:
+        a: That is the page's reference, used by `page(layout:)`, `pageData(template:)` and `linkIri(page:)`. Without `routeName:` the route would be named after its path, `about-team`, but this one is named `team`.
+        c: That is the route's path. A path is the first argument of `redirect()`, the URL it redirects from.
+    sources:
+      - { kind: docs, page: /api/data-fixtures/writing-a-scaffold, anchor: references-route-names-and-paths, sectionHash: 'sha256:48b81afe39fd089c' }
+      - { kind: docs, page: /api/data-fixtures/builder-reference, anchor: redirect, sectionHash: 'sha256:ad6364c1c729865f' }
+    author: llm-draft
+
+  - id: api.uploads.uploaded-image-svg
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [uploads]
+    type: multiple-choice
+    difficulty: 3
+    prompt: An image field has `#[UploadedImage]` with no options. An editor uploads an SVG to it. What happens?
+    options:
+      - { id: a, text: 'It''s refused with a `422`, because an SVG has no pixel size' }
+      - { id: b, text: 'It''s accepted, and the field''s imagine filters make raster variants of it' }
+      - { id: c, text: 'It''s accepted; the pixel checks are skipped, and `maxSize` still applies' }
+      - { id: d, text: 'It''s refused unless the field sets `allowSvg: true`' }
+    answer:
+      correct: c
+      explanation: >-
+        `#[UploadedImage]` accepts an SVG and skips the width, height, pixel, ratio and corruption checks, because
+        an SVG has no pixel size. `maxSize` and `mimeTypes` still apply. `allowSvg: false` refuses SVGs.
+      optionNotes:
+        a: That is what a plain `Assert\Image` does. `#[UploadedImage]` lets SVGs through.
+        b: Imagine filters only run on raster images. An SVG returns its primary media object with no variants.
+        d: '`allowSvg` is `true` by default. Set it to `false` to refuse SVGs.'
+    sources:
+      - { kind: docs, page: /api/components/annotations/uploadable, anchor: capping-uploads-to-fit-the-budget, sectionHash: 'sha256:eb971951d8a651cf' }
+      - { kind: docs, page: /api/components/annotations/uploadable, anchor: liipimaginebundle-integration, sectionHash: 'sha256:27ee53328388ecf2' }
     author: llm-draft

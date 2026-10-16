@@ -81,7 +81,7 @@ questions:
         d: That leaves out the imagine headroom. One request at a time may use the imagine limit in place of a worker's.
     sources:
       - { kind: code, repo: components-web-app, path: bin/devops/k8s.sh, lines: [880, 911], commit: 9ff42840b7da0f747320de601c5952258d29d5ce, linesHash: 'sha256:0fbedb863b5d2572' }
-      - { kind: docs, page: /deployment/variables, anchor: php-memory-budget, sectionHash: 'sha256:169d3b12774c624a' }
+      - { kind: docs, page: /deployment/variables, anchor: php-memory-budget, sectionHash: 'sha256:e1cae31fe58f5738' }
     author: llm-draft
 
   - id: deploy.internals.fixtures-mercure

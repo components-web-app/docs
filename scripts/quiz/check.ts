@@ -10,7 +10,7 @@ import { REPOS, type Question, type Source } from '../../quiz/schema.ts'
 import { readAllPages, dedent, locateRun, ROOT, type DocsPage } from './lib/docs.ts'
 import { fetchRepo, findMoved, linesHash, readAt, sliceLines, trackedHead } from './lib/source.ts'
 import { fingerprint, loadBank, loadConfig, loadLock, LOCK_FILE, rel, type LoadedQuestion } from './lib/bank.ts'
-import { bracketsBalance, stripTrailingComment } from './generators/common.ts'
+import { bracketsBalance, endsOnOpenTag, stripTrailingComment } from './generators/common.ts'
 
 const args = new Set(process.argv.slice(2))
 const STRICT = args.has('--strict')
@@ -58,6 +58,9 @@ function checkShownCode(lq: LoadedQuestion, sourceText: string, where: string, w
   if (!q.code) return
   const lang = q.code.lang
   const norm = (line: string) => stripTrailingComment(line, lang).trimEnd()
+  if (endsOnOpenTag(q.code.text.split('\n'))) {
+    add('warning', lq, 'the shown code ends on a tag it never closes, which looks unfinished. End the window earlier')
+  }
   if (q.type === 'spot-the-mistake') {
     const exact = locateRun(sourceText, q.code.text, false, norm)
     if (exact) return add('error', lq, `the code is identical to ${where}: no line is wrong`)

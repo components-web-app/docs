@@ -304,7 +304,7 @@ questions:
       correct: c
       explanation: >-
         The field's `v-model` is bound to `useCwaResourceModel`'s `model`, and each change sends a debounced
-        PATCH to the API. There is no save button. The PATCH changes the draft.
+        PATCH to the API. There is no save button. For a publishable component, the PATCH changes the draft.
       optionNotes:
         a: There is no Save button. Each change is sent on its own, shortly after typing stops.
     sources:

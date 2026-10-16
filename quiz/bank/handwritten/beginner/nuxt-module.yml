@@ -173,3 +173,32 @@ questions:
       - { kind: docs, page: /nuxt-module/composables/component/use-cwa-component, anchor: style-variants, sectionHash: 'sha256:73b5fa696d55a19d' }
       - { kind: docs, page: /api/components/creating-components, anchor: what-abstractcomponent-gives-you, sectionHash: 'sha256:81118f548996b5fb' }
     author: llm-draft
+
+  - id: nuxt.real-time.visitor-notice
+    version: 1
+    status: live
+    level: beginner
+    area: nuxt-module
+    tags: [real-time]
+    type: multiple-choice
+    difficulty: 2
+    prompt: >-
+      A visitor has a page open when an editor publishes a change to a component on it, and the component's
+      resource has `mercure: true`. What does the visitor see?
+    options:
+      - { id: a, text: 'The component re-renders with the new content at once' }
+      - { id: b, text: 'A notice that the content is outdated, with an Update button' }
+      - { id: c, text: 'Nothing changes until they reload the page themselves' }
+      - { id: d, text: 'The page reloads itself, and keeps their scroll position' }
+    answer:
+      correct: b
+      explanation: >-
+        The module stages the update and shows *The content on this page is outdated*. Nothing on the page changes
+        until the reader clicks **Update**, which applies the staged resources.
+      optionNotes:
+        a: Updates are staged on purpose, so content never changes under someone mid-read.
+        c: Mercure tells the open page about the change; no reload is needed to apply it.
+    sources:
+      - { kind: docs, page: /nuxt-module/component-helpers/real-time-updates, anchor: the-visitor-notification, sectionHash: 'sha256:51f3ebc984f4fabc' }
+      - { kind: docs, page: /nuxt-module/component-helpers/real-time-updates, anchor: how-it-works, sectionHash: 'sha256:98ccc2cd82f5e7a7' }
+    author: llm-draft

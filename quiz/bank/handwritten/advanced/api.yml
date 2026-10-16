@@ -340,3 +340,31 @@ questions:
     sources:
       - { kind: docs, page: /api/http-caching, anchor: http-cache-safety, sectionHash: 'sha256:f7732bd3730f4608', block: 1, blockHash: 'sha256:4b182f6dadb04642' }
     author: llm-draft
+
+  - id: api.fixtures.link-iri-page-data
+    version: 1
+    status: live
+    level: advanced
+    area: api
+    tags: [fixtures, dynamic-pages]
+    type: multiple-choice
+    difficulty: 4
+    prompt: >-
+      In a scaffold, `->linkIri('featured', pageData: …)` writes a page data record's IRI into a field. What does
+      the `pageData:` argument name?
+    options:
+      - { id: a, text: 'The page data''s class, such as `BlogArticleData`' }
+      - { id: b, text: 'The reference of the template page it renders through' }
+      - { id: c, text: 'The path of its route, such as `/blog/first-post`' }
+      - { id: d, text: 'The name of its route, such as `article-1`' }
+    answer:
+      correct: d
+      explanation: >-
+        `pageData()` takes no reference, so `linkIri()` finds page data by the name of its route. `page:` and
+        `layout:` take a reference, and `route:` a route name.
+      optionNotes:
+        b: A template page's reference names the page itself, with `linkIri(page:)`. Many records render through one template.
+    sources:
+      - { kind: docs, page: /api/data-fixtures/writing-a-scaffold, anchor: linking-routes-and-iris, sectionHash: 'sha256:3940b189955e0261' }
+      - { kind: docs, page: /api/data-fixtures/writing-a-scaffold, anchor: references-route-names-and-paths, sectionHash: 'sha256:48b81afe39fd089c' }
+    author: llm-draft
