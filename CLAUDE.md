@@ -39,6 +39,14 @@ Researched and recorded on the issue (body + [findings comment](https://github.c
 
 ## Documented
 
+- **2026-10-16 (evening) — docs #238: `#[UploadedImage]` (bundle #456, on `main` after 2.0.0-alpha.22).**
+  - uploadable "Capping Uploads to Fit the Budget" now recommends the constraint; the old `Assert\When` + `Assert\Image` pair is a callout for older bundles.
+  - configuration has `uploadable.image_max_pixels`; orphaned-data "How Invalid Files Are Checked" is updated.
+  - The template's `Image` entity still uses the old pair (template `9ff4284`).
+  - **Correction to the issue (and the bundle's config `info`, `Configuration.php:201`):** the 30 MP default fits the 320M imagine budget only with vips (about 240 MiB). GD needs about 360 MiB and Imagick about 420 MiB, so the docs tell GD and Imagick users to set 20,000,000.
+  - Fixed while there: nuxt-config and use-cwa-resource-upload said the template caps images at 40 MP; it's 30 MP.
+  - **docs #239 (bundle PR #459) waits for that PR to merge.**
+
 - **2026-10-16 (afternoon) — docs #236: readable scaffolds and the new builder API (bundle #453, 2.0.0-alpha.22; template 2.0.0-alpha.36 locks it).** Checked against bundle `origin/main` (merge `0a00647c`). The build passes (405 routes).
   - **New page `4.api/08.data-fixtures/2.writing-a-scaffold.md`.** The section's other pages are renumbered (URLs unchanged). It covers the method-per-entity style, modelled on `features/fixtures/scaffolds/SiteScaffold.php`; `publish()`, `draft()`, `linkRoute()` and `linkIri()`; and reference vs route name vs route path.
   - Builder reference, getting started, seeding, appending, generating-fixtures and console-commands are updated. `afterRoutes()` examples are replaced, and so is the claim that `PageBuilder::nested()` returns `void`. Guides 3 and 5 use `$cwa->publish()`.
