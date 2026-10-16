@@ -1,9 +1,10 @@
 # Hand-written expert questions from the API bundle's source.
 # Each one cites the repo, path, line range and a full commit SHA.
+# Each prompt starts from a situation a developer would meet, then asks one plain question.
 
 questions:
   - id: api.internals.next-transition
-    version: 1
+    version: 2
     status: live
     level: expert
     area: api
@@ -13,8 +14,9 @@ questions:
     docsCoverage: light
     family: api-internals-publication-cap
     prompt: >-
-      For an anonymous request, the API caps a response's `s-maxage` at the moment returned here. One line
-      is wrong. Click it.
+      A page is scheduled to go live at 09:00, but anonymous visitors keep getting the old content from the
+      cache until long after 09:00. This function picks the moment a cached response must stop being used.
+      One line is wrong. Click it.
     code:
       lang: php
       text: |-
@@ -40,15 +42,16 @@ questions:
       line: 17
       fix: '    return $transitions ? min($transitions) : null;'
       explanation: >-
-        The cap must be the first change to come: the response's own `Expires`, or the next time a route goes
-        live, whichever is sooner. With `max()`, a response could stay cached after a page went live.
+        The cache must stop at the first change to come: the response's own `Expires` or the next route going
+        live, whichever is sooner. `max()` picks the later one, so the old page outlives the go-live. With
+        `min()`, a scheduled page appears on time with no manual purge.
     sources:
       - { kind: code, repo: api-components-bundle, path: src/EventListener/Api/CacheHeadersEventListener.php, lines: [122, 139], commit: dcf8ce9cbe273f0304f6c57f3ec70e97f935e0d4, linesHash: 'sha256:712348427f1d7d93' }
       - { kind: docs, page: /api/http-caching, anchor: scheduled-publication-and-cache-lifetime, sectionHash: 'sha256:302347fe1fa50302' }
     author: llm-draft
 
   - id: api.internals.unpublished-route-response
-    version: 1
+    version: 2
     status: live
     level: expert
     area: api
@@ -56,7 +59,9 @@ questions:
     type: multiple-choice
     difficulty: 4
     docsCoverage: light
-    prompt: An anonymous visitor asks for `GET /_/routes/{path}` for a route scheduled to go live tomorrow. What response does the API send?
+    prompt: >-
+      A page is scheduled to go live tomorrow. Today, an anonymous visitor requests its route
+      (`GET /_/routes/{path}`). What does the API send back?
     options:
       - { id: a, text: 'A `404`, marked `private, no-store`' }
       - { id: b, text: 'A `404`, with `s-maxage` capped at the go-live' }
@@ -65,18 +70,18 @@ questions:
     answer:
       correct: a
       explanation: >-
-        The route provider flags the request as an unpublished route. A `401` or `403` on a flagged request
-        becomes a `404`, and the cache listener marks it never stored, so no cache keeps the 404 past go-live.
+        The denial becomes a `404`, so nobody can tell the page exists yet, and it's marked never to be stored.
+        That way an early visitor can't leave a cached 404 behind that would hide the page after it goes live.
       optionNotes:
         b: The cap at the next go-live is for responses that can be cached. This one is never stored at all.
-        c: The denial is turned into a `404` on the route and manifest endpoints, so the route's existence doesn't show.
+        c: On the route and manifest endpoints a `401` or `403` is turned into a `404`, so the route's existence doesn't show.
     sources:
       - { kind: code, repo: api-components-bundle, path: src/EventListener/Api/UnpublishedRouteExceptionListener.php, lines: [29, 46], commit: dcf8ce9cbe273f0304f6c57f3ec70e97f935e0d4, linesHash: 'sha256:20efd75041da42d8' }
       - { kind: code, repo: api-components-bundle, path: src/EventListener/Api/CacheHeadersEventListener.php, lines: [63, 69], commit: dcf8ce9cbe273f0304f6c57f3ec70e97f935e0d4, linesHash: 'sha256:f6a1991bcec8d6f4' }
     author: llm-draft
 
   - id: api.internals.persist-before-flush
-    version: 1
+    version: 2
     status: live
     level: expert
     area: api
@@ -84,24 +89,27 @@ questions:
     type: multiple-choice
     difficulty: 4
     docsCoverage: undocumented
-    prompt: In a scaffold's `load()`, you call `$cwa->persist($entity)` before `$cwa->flush()`. What does that call do?
+    prompt: >-
+      Besides pages, your scaffold needs an ordinary Doctrine entity, such as a category. Early in `load()`,
+      before `$cwa->flush()`, you call `$cwa->persist($category)`. When is the category saved?
     options:
-      - { id: a, text: 'Persists it with Doctrine at once, ahead of the pages' }
-      - { id: b, text: 'Queues it, and the builder persists it during `flush()`' }
-      - { id: c, text: 'Throws, because persist is only allowed during a flush' }
-      - { id: d, text: 'Records it for the summary line, but never persists it' }
+      - { id: a, text: 'Straight away, before any of the pages' }
+      - { id: b, text: 'During `flush()`, after the pages and page data' }
+      - { id: c, text: 'Never: `persist()` throws outside a flush' }
+      - { id: d, text: 'Never: it is only counted in the summary' }
     answer:
       correct: b
       explanation: >-
-        Outside a flush, `persist()` only queues the entity. `flush()` persists the queue after the pages and
-        page data, and skips an entity that links to content the load skipped.
+        Outside a flush, `persist()` only queues the entity. `flush()` saves the queue after the pages and page
+        data, and leaves out an entity that links to content the load skipped. So don't expect it in the
+        database before `flush()`.
     sources:
-      - { kind: code, repo: api-components-bundle, path: src/Fixture/CwaFixtureBuilder.php, lines: [290, 306], commit: dcf8ce9cbe273f0304f6c57f3ec70e97f935e0d4, linesHash: 'sha256:a1c646f503ed0f51' }
-      - { kind: code, repo: api-components-bundle, path: src/Fixture/CwaFixtureBuilder.php, lines: [508, 523], commit: dcf8ce9cbe273f0304f6c57f3ec70e97f935e0d4, linesHash: 'sha256:6022bee6f7d2bdf2' }
+      - { kind: code, repo: api-components-bundle, path: src/Fixture/CwaFixtureBuilder.php, lines: [316, 332], commit: 272f4bfdbf7638681358eab856c488092349c1c5, linesHash: 'sha256:a1c646f503ed0f51' }
+      - { kind: code, repo: api-components-bundle, path: src/Fixture/CwaFixtureBuilder.php, lines: [551, 566], commit: 272f4bfdbf7638681358eab856c488092349c1c5, linesHash: 'sha256:6022bee6f7d2bdf2' }
     author: llm-draft
 
   - id: api.internals.authenticated-layout-headers
-    version: 1
+    version: 2
     status: live
     level: expert
     area: api
@@ -109,23 +117,27 @@ questions:
     type: multiple-choice
     difficulty: 4
     docsCoverage: light
-    prompt: A signed-in admin requests a Layout, which isn't publishable or in `personalised_resource_classes`. What does `CacheHeadersEventListener` do to the response?
+    prompt: >-
+      Signed in as an admin, you check the cache headers in the network tab. A page's route comes back
+      `private, no-store`. A Layout isn't publishable and isn't in `personalised_resource_classes`. What does
+      the API do to the headers on your Layout response?
     options:
       - { id: a, text: 'Marks it `private, no-store`' }
       - { id: b, text: Caps `s-maxage` at the next route go-live }
       - { id: c, text: Removes `s-maxage` but keeps it public }
-      - { id: d, text: Nothing at all }
+      - { id: d, text: Leaves them as they are }
     answer:
       correct: d
       explanation: >-
-        For an authenticated user, the listener only marks personalised resources and then returns. The cap at
-        the next publication change is applied to anonymous responses only.
+        For a signed-in user, `CacheHeadersEventListener` only marks personalised resources, which can show an
+        admin drafts, and then returns. The go-live cap is only for anonymous responses. So public headers on a
+        Layout while signed in aren't a leak.
     sources:
       - { kind: code, repo: api-components-bundle, path: src/EventListener/Api/CacheHeadersEventListener.php, lines: [56, 85], commit: e1db48d5166307cbaac8cee6ba2e6f2718b1d56f, linesHash: 'sha256:7237d377c78aeca5' }
     author: llm-draft
 
   - id: api.internals.layout-empty-ui-component
-    version: 1
+    version: 2
     status: live
     level: expert
     area: api
@@ -133,7 +145,9 @@ questions:
     type: multiple-choice
     difficulty: 3
     docsCoverage: undocumented
-    prompt: A scaffold calls `$cwa->layout('main', '')`. What does the new layout's `uiComponent` hold?
+    prompt: >-
+      The fixture builder adds `CwaLayout` in front of the UI name you give a layout. A scaffold creates one
+      with an empty name, `$cwa->layout('main', '')`. What is stored in the layout's `uiComponent`?
     options:
       - { id: a, text: '`CwaLayout`' }
       - { id: b, text: An empty string }
@@ -142,13 +156,14 @@ questions:
     answer:
       correct: c
       explanation: >-
-        The builder adds the `CwaLayout` prefix only to a non-empty suffix. An empty string stores `null`.
+        The prefix is only added to a name that isn't empty. An empty string stores `null`, so the layout
+        really has no UI component, rather than one called `CwaLayout`.
     sources:
-      - { kind: code, repo: api-components-bundle, path: src/Fixture/CwaFixtureBuilder.php, lines: [207, 218], commit: e1db48d5166307cbaac8cee6ba2e6f2718b1d56f, linesHash: 'sha256:a54fee8a4eceea95' }
+      - { kind: code, repo: api-components-bundle, path: src/Fixture/CwaFixtureBuilder.php, lines: [233, 244], commit: 272f4bfdbf7638681358eab856c488092349c1c5, linesHash: 'sha256:a54fee8a4eceea95' }
     author: llm-draft
 
   - id: api.internals.layout-same-ref
-    version: 1
+    version: 2
     status: live
     level: expert
     area: api
@@ -156,23 +171,25 @@ questions:
     type: multiple-choice
     difficulty: 4
     docsCoverage: light
-    prompt: A scaffold calls `$cwa->layout('main', 'Primary')`, and later `$cwa->layout('main', 'Landing')`. What does the layout store?
+    prompt: >-
+      Near the top of a scaffold you call `$cwa->layout('main', 'Primary')`. Further down, you try to switch
+      the same layout with `$cwa->layout('main', 'Landing')`. Which UI component does the layout get?
     options:
       - { id: a, text: '`CwaLayoutPrimary`' }
       - { id: b, text: '`CwaLayoutLanding`' }
       - { id: c, text: 'Two layouts, one for each call' }
-      - { id: d, text: 'Nothing: the second call throws' }
+      - { id: d, text: 'Neither: the second call throws' }
     answer:
       correct: a
       explanation: >-
-        `layout()` creates a builder only the first time it sees a ref. Later calls with the same ref return that
-        builder unchanged, so their `uiComponent` and classes are ignored.
+        `layout()` makes a builder the first time it sees a ref. Later calls with the same ref return that
+        builder unchanged, and their UI name and classes are ignored. To change a layout, change the first call.
     sources:
-      - { kind: code, repo: api-components-bundle, path: src/Fixture/CwaFixtureBuilder.php, lines: [207, 218], commit: e1db48d5166307cbaac8cee6ba2e6f2718b1d56f, linesHash: 'sha256:a54fee8a4eceea95' }
+      - { kind: code, repo: api-components-bundle, path: src/Fixture/CwaFixtureBuilder.php, lines: [233, 244], commit: 272f4bfdbf7638681358eab856c488092349c1c5, linesHash: 'sha256:a54fee8a4eceea95' }
     author: llm-draft
 
   - id: api.internals.route-name-conflict
-    version: 1
+    version: 2
     status: live
     level: expert
     area: api
@@ -180,7 +197,9 @@ questions:
     type: multiple-choice
     difficulty: 5
     docsCoverage: undocumented
-    prompt: The route generator makes a route for a page titled "My Post". No route has the path `/my-post`, but one is already named `my-post`. What path does the new route get?
+    prompt: >-
+      You generate a route for a new page titled "My Post". No route uses the path `/my-post`, but an
+      existing route is named `my-post`. Which path does the new page get?
     options:
       - { id: a, text: '`/my-post`, since only the name clashed' }
       - { id: b, text: '`/my-post-2`, skipping the clashing number' }
@@ -189,8 +208,8 @@ questions:
     answer:
       correct: d
       explanation: >-
-        `resolveConflicts()` adds the same `-1`, `-2`… suffix to the name and the path together, until neither
-        clashes with an existing route.
+        `resolveConflicts()` adds the same `-1`, `-2`… to the name and the path together, until neither clashes.
+        So when a generated URL gets a number although the path looked free, look for a route with that name.
     sources:
       - { kind: code, repo: api-components-bundle, path: src/Helper/Route/RouteGenerator.php, lines: [146, 177], commit: e1db48d5166307cbaac8cee6ba2e6f2718b1d56f, linesHash: 'sha256:676ce15209789418' }
       - { kind: code, repo: api-components-bundle, path: src/Helper/Route/RouteGenerator.php, lines: [80, 102], commit: e1db48d5166307cbaac8cee6ba2e6f2718b1d56f, linesHash: 'sha256:903fd398f535e642' }

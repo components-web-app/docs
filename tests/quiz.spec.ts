@@ -7,6 +7,8 @@ const PLAY = '/quiz/play?level=intermediate&topic=all&seed=test1234'
 async function promptsInOrder(page: Page) {
   const prompts: string[] = []
   await page.goto(PLAY)
+  // Clicks before hydration are lost, so wait for the page to finish loading.
+  await page.waitForLoadState('networkidle')
   for (;;) {
     const prompt = page.locator('#quiz-prompt')
     await expect(prompt).toBeVisible()
@@ -28,6 +30,7 @@ test('quiz - start page lists the levels and starts a seeded quiz', async ({ pag
   const errors: string[] = []
   page.on('pageerror', err => errors.push(err.message))
   await page.goto('/quiz')
+  await page.waitForLoadState('networkidle')
   await expect(page.getByRole('radio', { name: /Beginner/ })).toBeVisible()
   await page.getByRole('radio', { name: /Intermediate/ }).click()
   await page.getByRole('button', { name: 'Start the quiz' }).click()
