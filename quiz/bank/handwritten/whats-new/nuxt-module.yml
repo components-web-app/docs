@@ -96,7 +96,8 @@ questions:
 
   - id: nuxt.seo.skew-protection
     version: 1
-    status: live
+    status: retired
+    retired: { reason: 'trivia: a detail to look up when you need it, not one worth testing' }
     level: intermediate
     area: nuxt-module
     tags: [module-setup]

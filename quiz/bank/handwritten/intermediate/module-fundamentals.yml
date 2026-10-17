@@ -1,0 +1,579 @@
+# Hand-written intermediate questions on the durable fundamentals of the Nuxt module:
+# how components read and edit their resources, collections, nested pages, auth and your own pages.
+# Format: quiz/README.md. Run `pnpm quiz:stamp <id>` to fill in or refresh the hashes.
+
+questions:
+  - id: nuxt.resource-model.saving
+    version: 1
+    status: live
+    level: intermediate
+    area: nuxt-module
+    tags: [composables, admin]
+    type: multiple-choice
+    difficulty: 2
+    prompt: >-
+      An admin tab (the panel an editor uses to change a selected component's fields) binds an input to
+      `useCwaResourceModel(iri, 'title')`. An editor types a whole sentence quickly. What does the composable
+      send to the API?
+    why: >-
+      You don't add a Save button or your own request to an admin tab: the bound model saves for you, and
+      `states.isBusy` is what you show while it does.
+    options:
+      - { id: a, text: 'A `PATCH` for every key press, sent in order' }
+      - { id: b, text: 'One `PATCH` of the field, once the typing pauses' }
+      - { id: c, text: 'Nothing until the editor clicks **Publish**' }
+      - { id: d, text: 'A `PUT` of the whole component when the tab closes' }
+    answer:
+      correct: b
+      explanation: >-
+        Setting `model.value` starts a debounced `PATCH` (250 ms by default), and rapid changes are batched into
+        one request.
+    sources:
+      - { kind: docs, page: /nuxt-module/composables/admin-manager/use-cwa-resource-model, anchor: return-values, sectionHash: 'sha256:c010dd6af72583af' }
+    author: llm-draft
+
+  - id: nuxt.resource-model.iri-argument
+    version: 1
+    status: live
+    level: intermediate
+    area: nuxt-module
+    tags: [composables, admin]
+    type: spot-the-mistake
+    difficulty: 3
+    prompt: >-
+      This admin tab edits the `title` of whichever Title component the editor selects. One line is wrong.
+      Click it.
+    why: >-
+      If an admin field shows no value and an edit never saves, check that the tab passes the `iri` ref itself,
+      not `iri.value`.
+    code:
+      lang: vue
+      text: |-
+        <!-- app/app/cwa/components/Title/admin/Title.vue -->
+        <template>
+            <div class="p-4 space-y-4">
+                <CwaUiFormLabelWrapper label="Title text">
+                    <CwaUiFormInput v-model="titleModel" />
+                </CwaUiFormLabelWrapper>
+            </div>
+        </template>
+
+        <script setup lang="ts">
+        import { useCwaResourceManagerTab, useCwaResourceModel } from '#imports'
+
+        const { exposeMeta, iri } = useCwaResourceManagerTab({ name: 'Content', order: 1 })
+
+        const { model: titleModel } = useCwaResourceModel<string>(iri.value, 'title')
+
+        defineExpose(exposeMeta)
+        </script>
+    answer:
+      line: 15
+      fix: "const { model: titleModel } = useCwaResourceModel<string>(iri, 'title')"
+      explanation: >-
+        Pass `iri` itself, the reactive ref `useCwaResourceManagerTab` returns. The composable reads `iri.value`
+        to follow the selected component, so a plain string gives it no IRI: the field stays empty and nothing
+        is saved.
+    sources:
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-components, anchor: one-tab, sectionHash: 'sha256:4420b05a618dbc39', block: 0, blockHash: 'sha256:a585840b691d476e' }
+      - { kind: docs, page: /nuxt-module/composables/admin-manager/use-cwa-resource-manager-tab, anchor: return-values, sectionHash: 'sha256:3b7270f5ed56e80d' }
+    author: llm-draft
+
+  - id: nuxt.component.style-name-check
+    version: 1
+    status: live
+    level: intermediate
+    area: nuxt-module
+    tags: [components, composables]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      A component declares the styles `Light` and `Dark` with `useCwaComponent`'s `styles.classes`. It should
+      show an extra icon when the editor picks `Dark`. How do you test which style is selected?
+    why: >-
+      Comparing `uiClassNames` with a style's name never matches, so the icon never shows, and renaming a
+      style's classes would break any check on the class string.
+    options:
+      - { id: a, text: '`resource.value.data.uiClassNames.includes(''Dark'')`' }
+      - { id: b, text: '`resource.value.data.style === ''Dark''`' }
+      - { id: c, text: '`getCurrentStyleName(resource.value.data) === ''Dark''`' }
+      - { id: d, text: '`$cwa.admin.selectedStyle === ''Dark''`' }
+    answer:
+      correct: c
+      explanation: >-
+        The resource stores each selected style's class string in `uiClassNames`, never the style's name.
+        `getCurrentStyleName`, returned by `useCwaComponent`, maps it back to the name.
+      optionNotes:
+        a: '`uiClassNames` holds the class string, such as `bg-black text-white`, not `Dark`.'
+    sources:
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-components, anchor: style-variants, sectionHash: 'sha256:f7e26614c2ae0511' }
+    author: llm-draft
+
+  - id: nuxt.component.inner-element-classes
+    version: 1
+    status: live
+    level: intermediate
+    area: nuxt-module
+    tags: [components, composables]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      A Button component's root element is a wrapper `<div>`, and the style classes an editor picks should go on
+      the `<a>` inside it. What do you do?
+    why: >-
+      By default the classes land on the root element, so a style meant for the link styles the wrapper instead
+      and seems to do nothing.
+    options:
+      - { id: a, text: 'Pass `autoClass: false`, then bind `uiClassNames` to the `<a>`' }
+      - { id: b, text: 'Make the `<a>` the first child, and the classes move to it' }
+      - { id: c, text: 'Add a `target` key to each style in `styles.classes`' }
+      - { id: d, text: 'Bind `:class="resource.data.style"` on the `<a>`' }
+    answer:
+      correct: a
+      explanation: >-
+        The selected classes are applied to the root element automatically. `autoClass: false` turns that off,
+        and `useCwaComponent` returns `uiClassNames` for you to bind where you want.
+    sources:
+      - { kind: docs, page: /nuxt-module/composables/component/use-cwa-component, anchor: applying-classes-to-an-inner-element, sectionHash: 'sha256:124bfc6ca5c55993' }
+    author: llm-draft
+
+  - id: nuxt.collection.item-fields
+    version: 1
+    status: live
+    level: intermediate
+    area: nuxt-module
+    tags: [composables]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      A blog list component uses `useCwaComponent(props, [withCollection()])` and loops over `collectionItems`.
+      How does it read each article's `title`?
+    why: >-
+      Reading `.data` off a collection item, as you would off `resource`, gives `undefined` and a list of empty
+      cards.
+    options:
+      - { id: a, text: '`item.data.title`' }
+      - { id: b, text: '`item.value.data.title`' }
+      - { id: c, text: '`$cwa.resources.getResource(item).title`' }
+      - { id: d, text: '`item.title`' }
+    answer:
+      correct: d
+      explanation: >-
+        `collectionItems` holds the response's `member` array. Each item is a raw API resource, so its fields
+        are read directly, not through `data`.
+    sources:
+      - { kind: docs, page: /nuxt-module/composables/component/use-cwa-component, anchor: withcollection, sectionHash: 'sha256:adb42ca3866b32b3' }
+    author: llm-draft
+
+  - id: nuxt.collection.query-change-page
+    version: 1
+    status: live
+    level: intermediate
+    area: nuxt-module
+    tags: [composables]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      A collection component lists articles, with a sort order bound to the URL query by `useQueryBoundModel`.
+      A visitor is on page 3 and changes the sort order. What does the collection do?
+    why: >-
+      You don't write code to reset the page when a filter or sort changes, and you know why a visitor lands on
+      page 1 after changing one.
+    options:
+      - { id: a, text: 'Keeps the old list until the visitor reloads the page' }
+      - { id: b, text: 'Fetches page 3 of the new order' }
+      - { id: c, text: 'Fetches again, back on page 1' }
+      - { id: d, text: 'Sorts the 12 items it already has, in the browser' }
+    answer:
+      correct: c
+      explanation: >-
+        The collection fetches again whenever the URL query changes, and returns to page 1 when anything other
+        than `page` or `perPage` changes.
+    sources:
+      - { kind: docs, page: /nuxt-module/composables/component/use-cwa-component, anchor: withcollection, sectionHash: 'sha256:adb42ca3866b32b3' }
+    author: llm-draft
+
+  - id: nuxt.collection.link-without-route
+    version: 1
+    status: live
+    level: intermediate
+    area: nuxt-module
+    tags: [composables, dynamic-pages]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      A collection lists page data records (one item of repeating content, such as a blog article). An admin
+      sees draft records that have no route yet. What does `resolveResourceLink(item, 'routePath')` return for
+      them?
+    why: >-
+      Draft records in a list stay linkable only if you bind the result to `:to`, because the fallback is a route
+      location object, not a string.
+    options:
+      - { id: a, text: 'An empty string, so the link goes nowhere' }
+      - { id: b, text: 'A route location for CWA''s internal resource page' }
+      - { id: c, text: 'The item''s IRI, as a path string' }
+      - { id: d, text: 'The path the route would get once it is generated' }
+    answer:
+      correct: b
+      explanation: >-
+        It returns `item.routePath` when the item has one, and otherwise a Vue Router location for CWA's
+        internal resource page. That is an object, so bind it to `:to`, not `:href`.
+    sources:
+      - { kind: docs, page: /nuxt-module/component-helpers/collections-and-pagination, anchor: linking-to-a-resources-page, sectionHash: 'sha256:d2f7b8f27ab06d9f' }
+    author: llm-draft
+
+  - id: nuxt.routing.navigate-by-iri
+    version: 1
+    status: live
+    level: intermediate
+    area: nuxt-module
+    tags: [composables, routes]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      After an admin action, your code should open a page data record that has only an IRI to go by. Which call
+      opens it?
+    why: >-
+      `navigateTo(iri)` matches one of the module's catch-all routes, so the module asks the API for a route at
+      that path and the visitor gets a 404 while the URL stays put.
+    options:
+      - { id: a, text: '`navigateTo(iri, { external: false })`' }
+      - { id: b, text: '`navigateTo({ path: iri, replace: true })`' }
+      - { id: c, text: '`navigateTo({ name: ''_cwa'', query: { iri } })`' }
+      - { id: d, text: '`navigateTo(getInternalResourceLink(iri))`' }
+    answer:
+      correct: d
+      explanation: >-
+        `getInternalResourceLink(iri)`, from `useCwaResourceRoute()`, returns a route location for CWA's resource
+        page with the IRI as its `cwaPage0` param. A bare IRI string has no `cwaPage0`, so it can only 404.
+    sources:
+      - { kind: docs, page: /nuxt-module/composables/utilities/use-cwa-resource-route, anchor: getinternalresourcelinkiri, sectionHash: 'sha256:d4de9b25c7d7a7ff' }
+    author: llm-draft
+
+  - id: nuxt.resources.leaf-page
+    version: 1
+    status: live
+    level: intermediate
+    area: nuxt-module
+    tags: [cwa-api, layouts-and-pages]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      A visitor opens `/events/2024/conference`, a page nested two levels below the `/events` page. What does
+      `cwa.resources.page.value` hold?
+    why: >-
+      Reading the page the visitor is on, such as for its title, needs no depth arithmetic; the depth-aware
+      methods are for what renders at one level.
+    options:
+      - { id: a, text: 'The `/events/2024/conference` page itself' }
+      - { id: b, text: 'The `/events` page, at the top of the hierarchy' }
+      - { id: c, text: 'An array of the three pages, from the top down' }
+      - { id: d, text: 'Nothing, because nested pages are read with `pageAtDepth()`' }
+    answer:
+      correct: a
+      explanation: >-
+        `page` is a flat leaf getter: it holds the page the visitor navigated to, the innermost one, and needs
+        no manifest. `pageAtDepth(n)` is for what renders at one depth.
+    sources:
+      - { kind: docs, page: /nuxt-module/cwa-api/resources, anchor: flat-leaf-getters, sectionHash: 'sha256:3a684c1600d8d3b2' }
+    author: llm-draft
+
+  - id: nuxt.cwa-page.no-cwa-page
+    version: 1
+    status: live
+    level: intermediate
+    area: nuxt-module
+    tags: [layouts-and-pages, dynamic-pages]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      The `/blog` page's page template (its Vue file) has no `<CwaPage />`. A visitor opens `/blog/my-first-post`,
+      a page data record nested under `/blog`. Where does the article render?
+    why: >-
+      If a child page renders after everything in its parent's template instead of where you meant it to go, the
+      parent template is missing `<CwaPage />`.
+    options:
+      - { id: a, text: 'Nowhere: the visitor only sees the `/blog` template' }
+      - { id: b, text: 'In place of the `/blog` template, which isn''t rendered' }
+      - { id: c, text: 'In the template''s first component group' }
+      - { id: d, text: 'After the `/blog` template''s own output' }
+    answer:
+      correct: d
+      explanation: >-
+        When the manifest has a child depth and the template registered no `<CwaPage />`, CWA appends one after
+        the template, so no child is dropped. Add `<CwaPage />` yourself to choose where the child goes.
+    sources:
+      - { kind: docs, page: /nuxt-module/cwa-components/cwa-page, anchor: auto-fallback, sectionHash: 'sha256:f9d1075c1a1c4e9c' }
+    author: llm-draft
+
+  - id: nuxt.setup.fetch-and-disabled
+    version: 1
+    status: live
+    level: intermediate
+    area: nuxt-module
+    tags: [module-setup]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      A Nuxt page of your own, `app/app/pages/resources/share/[slug].vue`, renders a CWA page by IRI with
+      `cwa: { fetch: { iri } }` in `definePageMeta`. Should it also set `disabled: true`?
+    why: >-
+      Copying the `disabled: true` rule onto a page that uses `fetch` leaves it rendering no CWA content at all.
+    options:
+      - { id: a, text: 'Yes: every page of your own needs it' }
+      - { id: b, text: 'No: `disabled` stops every fetch, including this one' }
+      - { id: c, text: 'Yes, or the module also fetches a route for the path' }
+      - { id: d, text: 'Only when the page sets its own `layout`' }
+    answer:
+      correct: b
+      explanation: >-
+        A page that uses `fetch` is the one page of your own that leaves `disabled` off. `fetch` already replaces
+        the route lookup for the path with the page you name.
+    sources:
+      - { kind: docs, page: /nuxt-module/configuration/nuxt-config, anchor: definepagemeta-cwa-options, sectionHash: 'sha256:d480ab634e57b325' }
+    author: llm-draft
+
+  - id: nuxt.config.server-api-url
+    version: 1
+    status: live
+    level: intermediate
+    area: nuxt-module
+    tags: [module-setup]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      Server-side rendering should reach the API at an internal Docker address, and browsers at
+      `https://api.example.com`. Where does the internal address go?
+    why: >-
+      Put the internal address in the public config and every page publishes it, and the server logs a
+      deprecation warning.
+    options:
+      - { id: a, text: '`runtimeConfig.public.cwa.apiUrl`' }
+      - { id: b, text: '`cwa.apiUrl` at the top level of `nuxt.config`' }
+      - { id: c, text: '`runtimeConfig.cwa.apiUrl`, set by `NUXT_CWA_API_URL`' }
+      - { id: d, text: '`runtimeConfig.public.cwa.apiUrlBrowser`' }
+    answer:
+      correct: c
+      explanation: >-
+        The private `runtimeConfig.cwa.apiUrl` is used on the server and never sent to the browser. Browsers use
+        `public.cwa.apiUrlBrowser`.
+      optionNotes:
+        a: It still works as a fallback, but it publishes the internal URL in every page, so the server warns.
+    sources:
+      - { kind: docs, page: /nuxt-module/configuration/nuxt-config, anchor: runtime-config, sectionHash: 'sha256:9d3370c64c839364' }
+    author: llm-draft
+
+  - id: nuxt.auth.middleware-and-api
+    version: 1
+    status: live
+    level: intermediate
+    area: nuxt-module
+    tags: [auth, security]
+    type: multiple-choice
+    difficulty: 2
+    prompt: >-
+      Your `/account` page uses the `cwa-auth` middleware. Someone signed out requests the account data from the
+      API directly, without the site. What refuses them?
+    why: >-
+      Middleware only decides where the browser goes. Data that must stay private needs the API's security, not
+      a middleware of your own.
+    options:
+      - { id: a, text: 'The API, which checks access on every request' }
+      - { id: b, text: 'The `cwa-auth` middleware, which also runs on the API' }
+      - { id: c, text: 'Nothing: the middleware only protects the page' }
+      - { id: d, text: 'The `cwa_auth` cookie, which the API reads as a role' }
+    answer:
+      correct: a
+      explanation: >-
+        Route middleware is UX, not security. The API enforces access on every request, whatever the front end
+        does.
+    sources:
+      - { kind: docs, page: /nuxt-module/authentication, anchor: protecting-pages, sectionHash: 'sha256:a39674deb4430c44' }
+    author: llm-draft
+
+  - id: nuxt.auth.after-sign-in
+    version: 1
+    status: live
+    level: intermediate
+    area: nuxt-module
+    tags: [auth, composables]
+    type: multiple-choice
+    difficulty: 2
+    prompt: >-
+      A visitor opens `/account`, which uses the `cwa-auth` middleware, and is sent to the login page. A custom
+      login form signs them in with `signIn()` from `useLogin()`, called with no `redirect` option. Where do
+      they go?
+    why: >-
+      The round trip back to the protected page needs no code of your own, so a custom login form shouldn't
+      navigate after signing in.
+    options:
+      - { id: a, text: 'To `/`, the site''s home page' }
+      - { id: b, text: 'To the admin panel, `/_cwa`' }
+      - { id: c, text: 'To `/account`, via `?redirect=`' }
+      - { id: d, text: 'Nowhere: they stay on the login page' }
+    answer:
+      correct: c
+      explanation: >-
+        The middleware sends them to `/login?redirect=/account`, and `signIn()` follows the `redirect` query
+        parameter, falling back to `/` when there isn't one.
+    sources:
+      - { kind: docs, page: /nuxt-module/authentication, anchor: where-the-user-goes-after-signing-in, sectionHash: 'sha256:9f92ddd49dc9e587' }
+    author: llm-draft
+
+  - id: nuxt.forms.field-name
+    version: 1
+    status: live
+    level: intermediate
+    area: nuxt-module
+    tags: [composables]
+    type: spot-the-mistake
+    difficulty: 3
+    prompt: >-
+      This contact form component renders a Symfony form named `contact_form` with `name`, `email` and
+      `message` fields. One line is wrong. Click it.
+    why: >-
+      A field name that doesn't match the form view binds nothing: the input shows no value, no label and no
+      errors.
+    code:
+      lang: vue
+      text: |-
+        <script setup lang="ts">
+        import { toRef } from 'vue'
+        import type { IriProp } from '#cwa/composables/cwa-resource'
+        import { useCwaComponent, useCwaForm, useCwaFormInput } from '#imports'
+
+        const props = defineProps<IriProp>()
+        const { exposeMeta } = useCwaComponent(props)
+        defineExpose(exposeMeta)
+
+        // the form composables take the IRI as a ref
+        const iriRef = toRef(props, 'iri')
+        const form    = useCwaForm(iriRef)
+        const name    = useCwaFormInput(iriRef, 'contact_form[name]')
+        const email   = useCwaFormInput(iriRef, 'email')
+        const message = useCwaFormInput(iriRef, 'contact_form[message]')
+        </script>
+    answer:
+      line: 14
+      fix: "const email   = useCwaFormInput(iriRef, 'contact_form[email]')"
+      explanation: >-
+        The name passed to `useCwaFormInput` must match the field's `full_name` in the API's form view, in
+        Symfony's bracket notation: `contact_form[email]`.
+    sources:
+      - { kind: docs, page: /nuxt-module/component-helpers/forms, anchor: form-container-component, sectionHash: 'sha256:709b83ce0d041c75', block: 0, blockHash: 'sha256:97365a10ae8306d6' }
+      - { kind: docs, page: /nuxt-module/component-helpers/forms, anchor: full_name-convention, sectionHash: 'sha256:bcb7784b09eaa55f' }
+    author: llm-draft
+
+  - id: nuxt.resources-manager.store-only
+    version: 1
+    status: live
+    level: intermediate
+    area: nuxt-module
+    tags: [cwa-api]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      A custom admin screen saves an edited title with `cwa.resourcesManager.storeResource({ resource })`. The
+      new title shows, but after a reload the old one is back. Why?
+    why: >-
+      Content changed only in the store looks saved to the editor who made it, and is lost for everyone else.
+    options:
+      - { id: a, text: 'It saved a draft, and the reload shows the published version' }
+      - { id: b, text: 'It writes to the local store only, with no API request' }
+      - { id: c, text: 'It needs `await` before the request is sent' }
+      - { id: d, text: 'The page cache served the old version after the save' }
+    answer:
+      correct: b
+      explanation: >-
+        `storeResource` is internal to the module and makes no API request. Save with `updateResource` (or
+        `createResource`, `deleteResource`), or bind a field with `useCwaResourceModel`.
+    sources:
+      - { kind: docs, page: /nuxt-module/cwa-api/resources-manager, anchor: writing-directly-to-the-store, sectionHash: 'sha256:aa6d8385bf1788ee' }
+    author: llm-draft
+
+  - id: nuxt.component.two-file-fields
+    version: 1
+    status: live
+    level: intermediate
+    area: nuxt-module
+    tags: [uploads, composables]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      A component's PHP entity has two uploadable fields, `heroImage` and `thumbnail`. How does its display
+      component read both files' URLs?
+    why: >-
+      A single `withFile()` reads only the field named `file`, so a component with renamed or extra fields
+      shows no images until each field has its own plugin.
+    options:
+      - { id: a, text: 'Call `withFile()` once and read `files[0]` and `files[1]`' }
+      - { id: b, text: 'Call `useCwaComponent` once for each field' }
+      - { id: c, text: 'Read `resource.value.data.heroImage` and `.thumbnail` directly' }
+      - { id: d, text: 'Pass `withFile({ fileProp })` once per field, then read `files.<field>`' }
+    answer:
+      correct: d
+      explanation: >-
+        `withFile()` puts a field under the `files` map keyed by its `fileProp`, which defaults to `file`. Use it
+        once per field, and the plugin merge keeps both: `files.heroImage.contentUrl`,
+        `files.thumbnail.contentUrl`.
+    sources:
+      - { kind: docs, page: /nuxt-module/composables/component/use-cwa-component, anchor: multiple-file-fields, sectionHash: 'sha256:81679c681e508097' }
+    author: llm-draft
+
+  - id: nuxt.group.allowed-hides-existing
+    version: 1
+    status: live
+    level: intermediate
+    area: nuxt-module
+    tags: [components, layouts-and-pages]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      A page template's `main` component group (the named, ordered list of components it shows) already holds a
+      Quote. You add `:allowed-components="[CwaComponentNames.HtmlContent]"` to its `<CwaComponentGroup>`. What
+      happens to the Quote?
+    why: >-
+      If content vanishes after you restrict a group, the list is missing a type that is already placed there.
+    options:
+      - { id: a, text: 'It keeps showing, and only new Quotes are refused' }
+      - { id: b, text: 'The API deletes it the next time an admin signs in' }
+      - { id: c, text: 'Its position is left out of the API response' }
+      - { id: d, text: 'It moves to a new group that has no restriction' }
+    answer:
+      correct: c
+      explanation: >-
+        Once the list is synced to the API (the module does it when a signed-in user loads the page), component
+        positions (the records that place a component in a group) whose type isn't in `allowedComponents` are
+        left out of the response. The Quote silently stops rendering, so the list must name every type already
+        in the group.
+    sources:
+      - { kind: docs, page: /nuxt-module/cwa-components/cwa-component-group, anchor: allowed-components, sectionHash: 'sha256:40f293f36d1ddb62' }
+    author: llm-draft
+
+  - id: nuxt.group.rename-reference
+    version: 1
+    status: live
+    level: intermediate
+    area: nuxt-module
+    tags: [components, layouts-and-pages]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      A page template had `<CwaComponentGroup reference="content" :location="iri" />`, and you change the
+      reference to `"body"`. What do visitors see where the components used to be?
+    why: >-
+      Renaming a reference in code looks like a harmless tidy-up, but it hides a live page's content until the
+      groups are merged.
+    options:
+      - { id: a, text: 'An empty group, while the old group keeps its content out of sight' }
+      - { id: b, text: 'The same components, because the group is renamed in the API' }
+      - { id: c, text: 'An error, until the old group is deleted' }
+      - { id: d, text: 'The old components, moved into `body` on the next save' }
+    answer:
+      correct: a
+      explanation: >-
+        The reference names the stored group, so the page gets a new, empty `body` group, and `content` stays
+        attached with its components. The admin bar warns about the stranded group and lets you merge it.
+    sources:
+      - { kind: docs, page: /nuxt-module/cwa-components/cwa-component-group, anchor: how-it-works, sectionHash: 'sha256:adcb2c0f402b205e' }
+    author: llm-draft

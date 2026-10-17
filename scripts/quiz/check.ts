@@ -33,7 +33,7 @@ function add(severity: Severity, lq: { file: string, question?: { id: string } }
 /** A warning caused by another repo moving on, not by the bank. */
 const drift = (lq: LoadedQuestion, message: string) => add('warning', lq, message, true)
 
-export const RETIRE_REASONS = ['stale-source', 'ambiguous', 'wrong', 'too-easy', 'poor-stats', 'over-exposed', 'leaked', 'superseded'] as const
+export const RETIRE_REASONS = ['stale-source', 'ambiguous', 'wrong', 'too-easy', 'trivia', 'poor-stats', 'over-exposed', 'leaked', 'superseded'] as const
 
 // ---------------------------------------------------------------------------
 // Docs provenance

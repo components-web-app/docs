@@ -543,7 +543,7 @@ questions:
       - kind: docs
         page: /core-concepts/glossary
         anchor: stranded-component-group
-        sectionHash: sha256:c2b47db20fbba3a7
+        sectionHash: sha256:0a9ca1562a31e9df
     generator:
       name: glossary
       ref: stranded-component-group
@@ -578,7 +578,7 @@ questions:
       - kind: docs
         page: /core-concepts/glossary
         anchor: orphan
-        sectionHash: sha256:8df085654337ef05
+        sectionHash: sha256:9c641934ff72bc8f
     generator:
       name: glossary
       ref: orphan

@@ -1385,11 +1385,11 @@ questions:
       - kind: docs
         page: /api/data-fixtures/builder-reference
         anchor: groupbuilder-from-any-group-call
-        sectionHash: sha256:09abbd254d166260
+        sectionHash: sha256:1297bf39d87b7f81
       - kind: docs
         page: /core-concepts/dynamic-pages
         anchor: linking-a-page-data-field-to-a-component-position
-        sectionHash: sha256:2e8edd52a45e53ee
+        sectionHash: sha256:f256699eb9c03426
         block: 0
         blockHash: sha256:d24b319f202e0b32
     generator:
@@ -1428,11 +1428,11 @@ questions:
       - kind: docs
         page: /core-concepts/layouts-and-pages
         anchor: template-pages-istemplate-true
-        sectionHash: sha256:e643423b9bbe3b1b
+        sectionHash: sha256:aa5e8d6598a23a66
       - kind: docs
         page: /core-concepts/dynamic-pages
         anchor: linking-a-page-data-field-to-a-component-position
-        sectionHash: sha256:2e8edd52a45e53ee
+        sectionHash: sha256:f256699eb9c03426
         block: 0
         blockHash: sha256:d24b319f202e0b32
     generator:
@@ -1471,9 +1471,9 @@ questions:
       - kind: docs
         page: /api/data-fixtures/builder-reference
         anchor: seeding-redirects
-        sectionHash: sha256:87de9cea73483195
+        sectionHash: sha256:b79a3bbd3ab8180c
         block: 0
-        blockHash: sha256:9e8f4653cc053285
+        blockHash: sha256:9a291fce9b0fdb20
     generator:
       name: pick-the-line
       ref: fixture-redirect
@@ -1508,13 +1508,13 @@ questions:
       - kind: docs
         page: /core-concepts/layouts-and-pages
         anchor: template-pages-istemplate-true
-        sectionHash: sha256:e643423b9bbe3b1b
+        sectionHash: sha256:aa5e8d6598a23a66
       - kind: docs
         page: /api/data-fixtures/builder-reference
         anchor: pagebuilder-from-cwa-page
-        sectionHash: sha256:a93b39b9fc0a54e5
+        sectionHash: sha256:09fa85294badea1e
         block: 2
-        blockHash: sha256:5dbe50fa081c07e4
+        blockHash: sha256:eaec88680c1e538a
     generator:
       name: pick-the-line
       ref: template-page-flag

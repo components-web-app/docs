@@ -1,0 +1,800 @@
+# Hand-written beginner questions on building a first site: the files, where they go, and the guide steps.
+# Format: quiz/README.md. Run `pnpm quiz:stamp <id>` to fill in or refresh the hashes.
+
+questions:
+  - id: core.guides.layout-record
+    version: 1
+    status: live
+    level: beginner
+    area: core-concepts
+    tags: [layouts-and-pages, data-model]
+    type: multiple-choice
+    difficulty: 2
+    prompt: >-
+      You've written `app/app/cwa/layouts/landing.vue` and added it to `nuxt.config`. Why do you still need to
+      create a layout record in the API?
+    options:
+      - { id: a, text: The Vue file only says how a layout looks; pages and groups need a record to belong to }
+      - { id: b, text: The module copies the Vue file into the database the first time the record is saved }
+      - { id: c, text: The record turns on server-side rendering for every page that uses the file }
+      - { id: d, text: 'The record holds the layout''s CSS, which the Vue file can''t contain' }
+    answer:
+      correct: a
+      explanation: >-
+        The Vue file defines how a layout looks, but it doesn't create a layout record. Pages are assigned to a
+        record, and the layout's component groups need a record as their owner.
+    sources:
+      - { kind: docs, page: /guides/your-first-layout, anchor: create-the-layout-in-the-api, sectionHash: 'sha256:92642accfddde492' }
+    author: llm-draft
+
+  - id: core.guides.layout-then-page-template
+    version: 1
+    status: live
+    level: beginner
+    area: core-concepts
+    tags: [layouts-and-pages]
+    type: multiple-choice
+    difficulty: 1
+    prompt: You've created a layout's Vue file and its layout record. Why can't you see it on the site yet?
+    options:
+      - { id: a, text: Layouts only show after the next deploy }
+      - { id: b, text: 'Nothing uses it yet: no page is assigned to it' }
+      - { id: c, text: It must be published before anyone sees it }
+      - { id: d, text: Layouts are only shown to signed-in editors }
+    answer:
+      correct: b
+      explanation: >-
+        A layout on its own isn't visible, because nothing uses it. The next guide makes a page template and a
+        page at `/landing` that renders inside it.
+    sources:
+      - { kind: docs, page: /guides/your-first-layout, anchor: next-create-a-page-template, sectionHash: 'sha256:1a25a7249eb9724e' }
+    author: llm-draft
+
+  - id: nuxt.page-template.two-groups
+    version: 1
+    status: live
+    level: beginner
+    area: nuxt-module
+    tags: [layouts-and-pages]
+    type: multiple-choice
+    difficulty: 2
+    prompt: >-
+      A page template (the Vue file a page renders through) has two `<CwaComponentGroup>` elements, with the
+      references `main` and `aside`, both with `:location="props.iri"`. What does each page that uses it get?
+    options:
+      - { id: a, text: 'One shared list of components, shown in both places' }
+      - { id: b, text: Two groups that every page using the template shares }
+      - { id: c, text: 'Two separate component groups, stored against that page' }
+      - { id: d, text: 'One group, because a page can only own one' }
+    answer:
+      correct: c
+      explanation: >-
+        Each `<CwaComponentGroup>` with its own `reference` is a separate, independently managed group. With the
+        page's IRI as `location`, the components an editor adds are stored against that page record.
+    sources:
+      - { kind: docs, page: /guides/your-first-page-template, anchor: key-points, sectionHash: 'sha256:f7efd4eb958ff065' }
+    author: llm-draft
+
+  - id: nuxt.page-template.iri-prop
+    version: 1
+    status: live
+    level: beginner
+    area: nuxt-module
+    tags: [layouts-and-pages]
+    type: pick-the-line
+    difficulty: 2
+    prompt: Which line declares the prop through which the module passes this page template its page's IRI?
+    code:
+      lang: vue
+      text: |-
+        <!-- app/app/cwa/pages/Primary.vue -->
+        <template>
+            <main>
+                <CwaComponentGroup reference="content" :location="iri" />
+            </main>
+        </template>
+
+        <script setup lang="ts">
+        import type { IriProp } from '#cwa/composables/cwa-resource'
+        defineProps<IriProp>()
+        </script>
+    answer:
+      lines: [10]
+      explanation: >-
+        Every page template receives its page's IRI (the path that identifies the page record in the API) as
+        the `iri` prop. `defineProps<IriProp>()` declares it, and the template passes it to `<CwaComponentGroup>`
+        as `location`.
+    sources:
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-page-templates, anchor: minimal-page-template, sectionHash: 'sha256:a23206bcf93ad3cc', block: 0, blockHash: 'sha256:54c4076540395e52' }
+    author: llm-draft
+
+  - id: nuxt.config.resources-entry
+    version: 1
+    status: live
+    level: beginner
+    area: nuxt-module
+    tags: [module-setup, components]
+    type: multiple-choice
+    difficulty: 2
+    prompt: >-
+      You add a `Quote` entry with a `name` and `description` under `cwa.resources` in `nuxt.config`. What
+      does the entry do?
+    options:
+      - { id: a, text: Tells the module where the Quote's Vue file is }
+      - { id: b, text: Creates the Quote API resource when the app starts }
+      - { id: c, text: Sets the name and text the Add Component dialog shows }
+      - { id: d, text: Lets the API save Quote records }
+    answer:
+      correct: c
+      explanation: >-
+        The module already finds component Vue files by where they are. The entry only sets the name and
+        description the **Add Component** dialog shows.
+    sources:
+      - { kind: docs, page: /guides/your-first-component, anchor: register-in-nuxtconfig, sectionHash: 'sha256:75a597f24b65f1d0' }
+    author: llm-draft
+
+  - id: nuxt.layout.unregistered
+    version: 1
+    status: live
+    level: beginner
+    area: nuxt-module
+    tags: [module-setup, layouts-and-pages]
+    type: multiple-choice
+    difficulty: 2
+    prompt: A layout's Vue file exists, but you never added it to `cwa.layouts` in `nuxt.config`. What happens?
+    options:
+      - { id: a, text: 'The build fails until you register it' }
+      - { id: b, text: 'Pages using it fall back to the default layout' }
+      - { id: c, text: 'It renders only for signed-in editors' }
+      - { id: d, text: 'It renders, but has no admin name or class options' }
+    answer:
+      correct: d
+      explanation: >-
+        A layout that isn't registered still renders correctly. It just has no name in the admin and no style
+        options for editors to pick.
+    sources:
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: registering-layout-options, sectionHash: 'sha256:260fe9e4c1275e6b' }
+    author: llm-draft
+
+  - id: nuxt.layout.style-classes-applied
+    version: 1
+    status: live
+    level: beginner
+    area: nuxt-module
+    tags: [layouts-and-pages, composables]
+    type: pick-the-line
+    difficulty: 2
+    prompt: >-
+      An editor picks a style for this layout in the admin. Which line applies the style's classes to the
+      layout's root element?
+    code:
+      lang: vue
+      text: |-
+        <template>
+          <div class="min-h-screen flex flex-col">
+            <header class="bg-stone-900 px-6 py-12 text-center text-white">
+              <CwaComponentGroup
+                reference="banner"
+                :location="$cwa.resources.layoutIri.value"
+                :allowed-components="[CwaComponentNames.Title]"
+              />
+            </header>
+
+            <main class="grow">
+              <slot />
+            </main>
+
+            <footer class="px-6 py-4 text-sm text-stone-500">
+              &copy; {{ new Date().getFullYear() }}
+            </footer>
+          </div>
+        </template>
+
+        <script setup lang="ts">
+        useCwaLayout()
+        </script>
+    answer:
+      lines: [22]
+      explanation: >-
+        `useCwaLayout()` applies the classes of the style the editor selected to the layout's root element, so no
+        `:class` binding is needed.
+    sources:
+      - { kind: docs, page: /guides/your-first-layout, anchor: the-file, sectionHash: 'sha256:a1f4ee1da582b30f', block: 0, blockHash: 'sha256:cfdf8a99c2ad44d7' }
+    author: llm-draft
+
+  - id: nuxt.layout.default-style
+    version: 1
+    status: live
+    level: beginner
+    area: nuxt-module
+    tags: [layouts-and-pages, module-setup]
+    type: multiple-choice
+    difficulty: 2
+    prompt: >-
+      A layout's `classes` map in `nuxt.config` lists `'Muted Background'`. Editors should also be able to
+      choose no style at all. What do you add to the map?
+    options:
+      - { id: a, text: 'Nothing: a **Default** option is added for you' }
+      - { id: b, text: 'A `Default` entry whose value is an empty string' }
+      - { id: c, text: 'A `none` entry whose value is `null`, for no classes' }
+      - { id: d, text: 'An `optional: true` key beside the `classes` map' }
+    answer:
+      correct: a
+      explanation: >-
+        A **Default** option with no classes is added for you, so you only list the styles you're adding. Don't
+        declare an empty entry for it.
+    sources:
+      - { kind: docs, page: /guides/your-first-layout, anchor: register-in-nuxtconfig, sectionHash: 'sha256:68efa5cc062d16b1' }
+    author: llm-draft
+
+  - id: nuxt.layout.fixed-class-list
+    version: 1
+    status: live
+    level: beginner
+    area: nuxt-module
+    tags: [layouts-and-pages]
+    type: multiple-choice
+    difficulty: 2
+    prompt: >-
+      Editors can only pick a layout's styles from the class list you write in `nuxt.config`; they can't type
+      their own classes. Why does CWA work this way?
+    options:
+      - { id: a, text: The API can't store free text on a layout record }
+      - { id: b, text: The API rejects any string longer than one class name }
+      - { id: c, text: It keeps your design system intact across pages and projects }
+      - { id: d, text: Typed classes would stop the page from being cached }
+    answer:
+      correct: c
+      explanation: >-
+        The list is defined by you and your designer. It keeps the design system intact when layouts are reused,
+        and stops style drift from ad-hoc values editors type in.
+    sources:
+      - { kind: docs, page: /guides/your-first-layout, anchor: register-in-nuxtconfig, sectionHash: 'sha256:68efa5cc062d16b1' }
+    author: llm-draft
+
+  - id: core.guides.fixtures-for-development
+    version: 1
+    status: live
+    level: beginner
+    area: core-concepts
+    tags: [fixtures]
+    type: multiple-choice
+    difficulty: 2
+    prompt: >-
+      You can create the guides' layouts and pages in the admin, or with fixtures (PHP code that seeds the
+      database). Why do the docs recommend fixtures during development?
+    options:
+      - { id: a, text: 'Records made in the admin are deleted on every deploy' }
+      - { id: b, text: 'They give a consistent, repeatable starting state' }
+      - { id: c, text: 'The admin can only edit records, not create them' }
+      - { id: d, text: 'Fixtures are the only way to set a `uiComponent`' }
+    answer:
+      correct: b
+      explanation: >-
+        Fixtures give you a consistent, repeatable starting state, which helps when you switch feature branches
+        or set up a new environment.
+    sources:
+      - { kind: docs, page: /guides/your-first-layout, anchor: via-fixtures, sectionHash: 'sha256:55e036fee4a219a8' }
+    author: llm-draft
+
+  - id: core.guides.append-existing-group
+    version: 1
+    status: live
+    level: beginner
+    area: core-concepts
+    tags: [fixtures, layouts-and-pages]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      You opened `/landing` while signed in as an admin. Then you add a Quote to the page's `main` component
+      group (a named list of components) in your fixtures and run `doctrine:fixtures:load --append`. The quote
+      doesn't appear. Why?
+    options:
+      - { id: a, text: 'The Quote has no route of its own, so the page can''t show it' }
+      - { id: b, text: 'The page needs a fresh deploy before new components can show' }
+      - { id: c, text: 'Opening the page created `main`, and `--append` keeps it as it is' }
+      - { id: d, text: '`--append` loads only layouts and pages, never any components' }
+    answer:
+      correct: c
+      explanation: >-
+        The module creates a page's groups the first time a signed-in admin opens it, and `--append` never adds
+        to a group that already exists. Add the quote in the admin, or reload from empty without `--append`.
+    sources:
+      - { kind: docs, page: /guides/your-first-component, anchor: via-fixtures, sectionHash: 'sha256:e1c9ba97c217434a' }
+    author: llm-draft
+
+  - id: nuxt.cli.where-to-run
+    version: 1
+    status: live
+    level: beginner
+    area: nuxt-module
+    tags: [components]
+    type: multiple-choice
+    difficulty: 2
+    prompt: Where do you run `npx cwa make:component` in a template project?
+    options:
+      - { id: a, text: 'In `app/`, because it writes the file relative to where you are' }
+      - { id: b, text: 'In the project root, so it can see both `api/` and `app/`' }
+      - { id: c, text: 'Inside the `php` container, through `docker compose exec`' }
+      - { id: d, text: 'In `app/app/cwa/components/`, where the file must end up' }
+    answer:
+      correct: a
+      explanation: >-
+        The generator writes `app/cwa/components/<Name>/` relative to the current directory, so run it in `app/`.
+        From the project root it writes to `app/cwa/components/`, which Nuxt never reads.
+    sources:
+      - { kind: docs, page: /guides/your-first-component, anchor: the-vue-file, sectionHash: 'sha256:89e2acc4057f1248' }
+    author: llm-draft
+
+  - id: nuxt.cli.api-command
+    version: 1
+    status: live
+    level: beginner
+    area: nuxt-module
+    tags: [components]
+    type: multiple-choice
+    difficulty: 2
+    prompt: What does `npx cwa make:component` do about the component's API entity?
+    options:
+      - { id: a, text: 'It writes the PHP entity into `api/src/Entity/`' }
+      - { id: b, text: 'It runs `make:api-component` in the `php` container' }
+      - { id: c, text: 'It sends the new type to the API over HTTP' }
+      - { id: d, text: 'It prints the `make:api-component` command for you to run' }
+    answer:
+      correct: d
+      explanation: >-
+        It writes only the Vue file. Then it prints the matching `php bin/console make:api-component` command,
+        which you run yourself; in the template, through the `php` container.
+    sources:
+      - { kind: docs, page: /nuxt-module/building-your-ui/cwa-cli, anchor: next-steps-printed-after-generation, sectionHash: 'sha256:51aa0a2b56e3021f' }
+      - { kind: docs, page: /guides/your-first-component, anchor: the-api-entity, sectionHash: 'sha256:42656507ceb034bb' }
+    author: llm-draft
+
+  - id: nuxt.component.admin-tab-file
+    version: 1
+    status: live
+    # Same fact as core.naming.admin-tab-folder in stack-and-naming.yml.
+    family: naming-admin-and-ui-folders
+    level: beginner
+    area: nuxt-module
+    tags: [components, admin]
+    type: multiple-choice
+    difficulty: 2
+    prompt: >-
+      Your Quote component should have an admin tab: the form an editor uses in the manager panel to change its
+      fields. Where do you create it, from the project root?
+    options:
+      - { id: a, text: '`app/app/cwa/components/admin/Quote.vue`' }
+      - { id: b, text: '`app/app/cwa/components/Quote/admin/Quote.vue`' }
+      - { id: c, text: '`app/app/cwa/components/Quote/ui/Admin.vue`' }
+      - { id: d, text: '`app/app/cwa/admin/components/Quote.vue`' }
+    answer:
+      correct: b
+      explanation: >-
+        Admin tabs live in the component's `admin/` folder, one file per tab. The CLI doesn't write it, so you
+        create `app/app/cwa/components/Quote/admin/Quote.vue` yourself.
+    sources:
+      - { kind: docs, page: /guides/your-first-component, anchor: the-admin-tab, sectionHash: 'sha256:9a79409981bc2d3e' }
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-components, anchor: file-convention, sectionHash: 'sha256:280282ea4133bd3d' }
+    author: llm-draft
+
+  - id: nuxt.component.multiple-tabs
+    version: 1
+    status: live
+    level: beginner
+    area: nuxt-module
+    tags: [components, admin]
+    type: multiple-choice
+    difficulty: 2
+    prompt: >-
+      An Article component should have three admin tabs in the manager panel: Content, Image and Settings. How
+      do you build them?
+    options:
+      - { id: a, text: 'One file per tab in `admin/`, each naming its tab and order' }
+      - { id: b, text: 'One `admin/Article.vue` file with a `tabs` array of names' }
+      - { id: c, text: 'A `tabs` list under the component''s entry in `nuxt.config`' }
+      - { id: d, text: 'One `ui/` file per tab, beside the component''s display file' }
+    answer:
+      correct: a
+      explanation: >-
+        Each file in `admin/` is one tab. Each calls `useCwaResourceManagerTab({ name, order })`, and lower
+        `order` numbers appear first.
+    sources:
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-components, anchor: multiple-tabs, sectionHash: 'sha256:c2d40e96d099336a' }
+    author: llm-draft
+
+  - id: nuxt.component.admin-tab-model
+    version: 1
+    status: live
+    level: beginner
+    area: nuxt-module
+    tags: [components, admin, composables]
+    type: pick-the-line
+    difficulty: 2
+    prompt: In this admin tab, which line creates the model that reads and saves the Quote's `author` field in the API?
+    code:
+      lang: vue
+      text: |-
+        <template>
+          <CwaUiFormLabelWrapper label="Quote">
+            <CwaUiFormInput v-model="textModel.model.value" />
+          </CwaUiFormLabelWrapper>
+          <CwaUiFormLabelWrapper label="Author">
+            <CwaUiFormInput v-model="authorModel.model.value" />
+          </CwaUiFormLabelWrapper>
+        </template>
+
+        <script setup lang="ts">
+        import { useCwaResourceManagerTab, useCwaResourceModel } from '#imports'
+
+        const { exposeMeta, iri } = useCwaResourceManagerTab({ name: 'Quote' })
+        const textModel = useCwaResourceModel<string>(iri, 'text')
+        const authorModel = useCwaResourceModel<string>(iri, 'author')
+
+        defineExpose(exposeMeta)
+        </script>
+    answer:
+      lines: [15]
+      explanation: >-
+        `useCwaResourceModel(iri, 'author')` returns a model bound to one property of the selected component.
+        Writing to it saves the change to the API, and the input on line 6 is bound to that model.
+    sources:
+      - { kind: docs, page: /guides/your-first-component, anchor: the-admin-tab, sectionHash: 'sha256:9a79409981bc2d3e', block: 0, blockHash: 'sha256:921b3ad3f72ff129' }
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-components, anchor: usecwaresourcemodel, sectionHash: 'sha256:01a1696db9417540' }
+    author: llm-draft
+
+  - id: core.guides.fixture-add-to-group
+    version: 1
+    status: live
+    level: beginner
+    area: core-concepts
+    tags: [fixtures, components]
+    type: pick-the-line
+    difficulty: 2
+    prompt: In this fixture code, which line places the Quote in the page's `main` component group?
+    code:
+      lang: php
+      text: |-
+        public function build(CwaFixtureBuilder $cwa, ScaffoldState $state): void
+        {
+            $cwa->layout('landing', 'Landing');
+
+            $quote = new Quote();
+            $quote->text = 'Content is king.';
+            $quote->author = 'Bill Gates';
+            $cwa->publish($quote);
+
+            $cwa->page('landing-page', 'TwoColumnPageTemplate', layout: 'landing', route: '/landing')
+                ->title('Landing')
+                ->group('main')->add($quote);
+        }
+    answer:
+      lines: [12]
+      explanation: >-
+        `->group('main')->add($quote)` adds the Quote to the page's `main` group. The name matches the
+        `reference` of the `<CwaComponentGroup>` in `TwoColumnPageTemplate.vue`.
+    sources:
+      - { kind: docs, page: /guides/your-first-component, anchor: via-fixtures, sectionHash: 'sha256:e1c9ba97c217434a', block: 0, blockHash: 'sha256:825d8146891df7f1' }
+    author: llm-draft
+
+  - id: nuxt.component.ui-file-location
+    version: 1
+    status: live
+    # Same fact as core.naming.ui-variant-folder in stack-and-naming.yml.
+    family: naming-admin-and-ui-folders
+    level: beginner
+    area: nuxt-module
+    tags: [components]
+    type: multiple-choice
+    difficulty: 2
+    prompt: >-
+      A NavigationLink component needs a second look with completely different markup: a YouTube icon instead of
+      a text link. Where does that Vue file go?
+    options:
+      - { id: a, text: '`components/NavigationLink/admin/YouTube.vue`' }
+      - { id: b, text: '`components/YouTube/YouTube.vue`' }
+      - { id: c, text: '`components/NavigationLink/variants/YouTube.vue`' }
+      - { id: d, text: '`components/NavigationLink/ui/YouTube.vue`' }
+    answer:
+      correct: d
+      explanation: >-
+        An alternative template goes in the component's `ui/` folder, beside the default `NavigationLink.vue`. It
+        uses the same data, and editors pick it in the manager panel.
+    sources:
+      - { kind: docs, page: /guides/alternative-ui-variants, anchor: approach-2-ui-templates-ui-directory, sectionHash: 'sha256:89c55ceb8b7fd102' }
+    author: llm-draft
+
+  - id: nuxt.component.ui-vs-styles
+    version: 1
+    status: live
+    level: beginner
+    area: nuxt-module
+    tags: [components]
+    type: multiple-choice
+    difficulty: 2
+    prompt: >-
+      A component needs two looks. One is the same HTML with a different background colour. Which approach
+      fits that look?
+    options:
+      - { id: a, text: 'A `ui/` template with a copy of the markup' }
+      - { id: b, text: 'A style in the component''s `styles.classes`' }
+      - { id: c, text: 'A second component type with the same fields' }
+      - { id: d, text: 'A `v-if` on a field editors type the colour into' }
+    answer:
+      correct: b
+      explanation: >-
+        Use `styles.classes` when it's the same HTML with different classes. A `ui/` template is for a variant
+        that needs different HTML structure.
+    sources:
+      - { kind: docs, page: /guides/alternative-ui-variants, anchor: when-to-use-ui-vs-stylesclasses, sectionHash: 'sha256:c387c50693891cdd' }
+    author: llm-draft
+
+  - id: nuxt.component.ui-registration
+    version: 1
+    status: live
+    level: beginner
+    area: nuxt-module
+    tags: [components, module-setup]
+    type: multiple-choice
+    difficulty: 2
+    prompt: >-
+      You've written `app/app/cwa/components/NavigationLink/ui/YouTube.vue`. What else must you do before
+      editors can pick it?
+    options:
+      - { id: a, text: 'Add it under the component in `nuxt.config`' }
+      - { id: b, text: 'Add a `YouTube` option to the PHP entity' }
+      - { id: c, text: 'Nothing: the module finds it by its location' }
+      - { id: d, text: 'Run `npx cwa make:component` for the variant' }
+    answer:
+      correct: c
+      explanation: >-
+        The module discovers `ui/YouTube.vue` from where it is and registers it as the `YouTube` variant. When an
+        editor selects it, it renders instead of `NavigationLink.vue`.
+    sources:
+      - { kind: docs, page: /guides/alternative-ui-variants, anchor: the-ui-file, sectionHash: 'sha256:97d0c4346cea8201' }
+    author: llm-draft
+
+  - id: nuxt.component.combine-styles
+    version: 1
+    status: live
+    level: beginner
+    area: nuxt-module
+    tags: [components, composables]
+    type: pick-the-line
+    difficulty: 3
+    prompt: Which line lets an editor apply this style together with other styles, instead of choosing just one?
+    code:
+      lang: ts
+      text: |-
+        const { resource, exposeMeta, $cwa } = useCwaComponent(props, undefined, {
+          styles: {
+            multiple: true,
+            classes: {
+              'Black Background': 'bg-black border border-white p-2',
+            },
+          },
+        })
+    answer:
+      lines: [3]
+      explanation: >-
+        `multiple: true` lets editors combine styles. With `false`, they pick one.
+    sources:
+      - { kind: docs, page: /guides/alternative-ui-variants, anchor: real-example-htmlcontent-in-the-template-app, sectionHash: 'sha256:becd22e7af9638e9', block: 0, blockHash: 'sha256:e1811c714e3c0cba' }
+      - { kind: docs, page: /guides/alternative-ui-variants, anchor: how-it-works, sectionHash: 'sha256:b08f114aa6f21987' }
+    author: llm-draft
+
+  - id: core.dynamic.three-records
+    version: 1
+    status: live
+    family: dynamic-pages-records-needed
+    level: beginner
+    area: core-concepts
+    tags: [dynamic-pages, data-model]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      You're building news articles. Each has its own path and its own content, and a change to the structure
+      should reach every article at once. Which records does CWA use for that?
+    options:
+      - { id: a, text: 'One page per article, each with its own route and its own components' }
+      - { id: b, text: 'One page with one route, and a query parameter that picks the article' }
+      - { id: c, text: 'One layout per article, and one page with a route for the whole list' }
+      - { id: d, text: 'A template page, a page data record for each article, and a route for each' }
+    answer:
+      correct: d
+      explanation: >-
+        A template page (a page record many articles share) holds the structure. Each article is a page data
+        record that names the template page, and each has its own route.
+    sources:
+      - { kind: docs, page: /guides/your-first-dynamic-page, anchor: create-in-the-api, sectionHash: 'sha256:baa52a543c4cb510' }
+    author: llm-draft
+
+  - id: core.dynamic.position-shows
+    version: 1
+    status: live
+    # The glossary question on "dynamic component position" tests the same fact.
+    family: term:2a7460
+    level: beginner
+    area: core-concepts
+    tags: [dynamic-pages]
+    type: multiple-choice
+    difficulty: 2
+    prompt: >-
+      The news template page's `main` component group has a component position (the record that places a
+      component in a group) bound to the articles' `quote` field. A visitor opens one article. What does that
+      position show?
+    options:
+      - { id: a, text: The component held in this article's `quote` field }
+      - { id: b, text: 'The newest article''s quote, on every article' }
+      - { id: c, text: The quote an editor placed on the template page }
+      - { id: d, text: 'Every article''s quote, as a list' }
+    answer:
+      correct: a
+      explanation: >-
+        It's a dynamic component position. Instead of holding one component, it shows whatever component the
+        current article holds in its `quote` field.
+    sources:
+      - { kind: docs, page: /guides/your-first-dynamic-page, anchor: create-in-the-api, sectionHash: 'sha256:baa52a543c4cb510' }
+    author: llm-draft
+
+  - id: core.dynamic.new-file
+    version: 1
+    status: live
+    level: beginner
+    area: core-concepts
+    tags: [dynamic-pages]
+    type: multiple-choice
+    difficulty: 2
+    prompt: >-
+      You add news articles that render through the `TwoColumnPageTemplate.vue` page template you already
+      built. Which new file do you write?
+    options:
+      - { id: a, text: 'A new page template Vue file for articles' }
+      - { id: b, text: 'A PHP entity for the articles'' data' }
+      - { id: c, text: 'A new layout Vue file for articles' }
+      - { id: d, text: 'A Nuxt route file at `app/app/pages/news/[slug].vue`' }
+    answer:
+      correct: b
+      explanation: >-
+        The Vue file already exists: articles render through `TwoColumnPageTemplate.vue`. The new file is the PHP
+        entity, `NewsArticleData`, that holds each article's data.
+    sources:
+      - { kind: docs, page: /guides/your-first-dynamic-page, anchor: the-file, sectionHash: 'sha256:933d9dcc30d23d71' }
+    author: llm-draft
+
+  - id: core.dynamic.component-field-type
+    version: 1
+    status: live
+    level: beginner
+    area: core-concepts
+    tags: [dynamic-pages, components]
+    type: multiple-choice
+    difficulty: 2
+    prompt: >-
+      Each news article's page data entity has a `quote` field, shown by the template page. How must that field
+      be typed?
+    options:
+      - { id: a, text: 'As a string holding the quote''s text' }
+      - { id: b, text: 'As the IRI of a component position' }
+      - { id: c, text: 'As a component class, such as `Quote`' }
+      - { id: d, text: 'As JSON copied from a component' }
+    answer:
+      correct: c
+      explanation: >-
+        The field holds the component each article shows, so it must be typed as a component class. In the guide
+        it's a `ManyToOne` to `Quote`.
+    sources:
+      - { kind: docs, page: /guides/your-first-dynamic-page, anchor: the-file, sectionHash: 'sha256:933d9dcc30d23d71' }
+    author: llm-draft
+
+  - id: core.dynamic.quote-per-article
+    version: 1
+    status: live
+    level: beginner
+    area: core-concepts
+    tags: [dynamic-pages, admin]
+    type: multiple-choice
+    difficulty: 2
+    prompt: >-
+      On `/news/first-article`, an editor selects the dynamic position and adds a Quote from its **Data
+      Placeholder** tab. Which articles show that Quote?
+    options:
+      - { id: a, text: 'Every article that uses the same template page' }
+      - { id: b, text: 'Only this article; the next article gets its own' }
+      - { id: c, text: 'Every article, until each is given its own Quote' }
+      - { id: d, text: 'None until the template page is published' }
+    answer:
+      correct: b
+      explanation: >-
+        The Quote is stored in this article's `quote` field, so it belongs to this article. The next article you
+        create gets its own.
+    sources:
+      - { kind: docs, page: /guides/your-first-dynamic-page, anchor: via-the-admin, sectionHash: 'sha256:c41dcc6bcd14fe43' }
+    author: llm-draft
+
+  - id: core.dynamic.page-data-fixture
+    version: 1
+    status: live
+    level: beginner
+    area: core-concepts
+    tags: [dynamic-pages, fixtures]
+    type: pick-the-line
+    difficulty: 2
+    prompt: Which line saves the article with its own route and names the template page it renders through?
+    code:
+      lang: php
+      text: |-
+        public function build(CwaFixtureBuilder $cwa, ScaffoldState $state): void
+        {
+            // ... the landing layout and page from the earlier guides
+
+            $cwa->page('news-template', 'TwoColumnPageTemplate', layout: 'landing', isTemplate: true)
+                ->group('main')->pageDataPosition(NewsArticleData::class, 'quote');
+
+            $quote = new Quote();
+            $quote->text = 'News is what somebody does not want you to print.';
+            $cwa->publish($quote);
+
+            $article = new NewsArticleData();
+            $article->setTitle('First article')
+                ->setMetaDescription('The first news article.');
+            $article->quote = $quote;
+
+            $cwa->pageData($article, template: 'news-template', route: '/news/first-article');
+        }
+    answer:
+      lines: [17]
+      explanation: >-
+        `pageData()` saves the page data record with its route, and `template:` takes the template page's
+        reference, `news-template`.
+    sources:
+      - { kind: docs, page: /guides/your-first-dynamic-page, anchor: via-fixtures, sectionHash: 'sha256:15ec0a7f9e44973c', block: 0, blockHash: 'sha256:63ed8fac2fd9414d' }
+    author: llm-draft
+
+  - id: deploy.install.not-automatic
+    version: 1
+    status: live
+    level: beginner
+    area: deployment
+    tags: [fixtures, architecture]
+    type: multiple-choice
+    difficulty: 2
+    prompt: The template's containers do several setup steps each time they start. Which step do you always run yourself?
+    options:
+      - { id: a, text: Running pending database migrations }
+      - { id: b, text: Installing the Nuxt dependencies }
+      - { id: c, text: Starting the Nuxt dev server }
+      - { id: d, text: Loading the fixtures }
+    answer:
+      correct: d
+      explanation: >-
+        The `php` container runs migrations, and the `app` container installs the Nuxt dependencies and starts
+        the dev server. Fixtures are the exception: they're never loaded automatically.
+    sources:
+      - { kind: docs, page: /getting-started/installation, anchor: what-docker-handles-automatically, sectionHash: 'sha256:fbbab0c06ccfb985' }
+    author: llm-draft
+
+  - id: nuxt.page.choose-page-ui
+    version: 1
+    status: live
+    level: beginner
+    area: core-concepts
+    tags: [layouts-and-pages, admin]
+    type: multiple-choice
+    difficulty: 1
+    prompt: >-
+      An editor creates a page in `/_cwa/pages` and picks **Two Column Page** as its **Page UI**. What have they
+      chosen?
+    options:
+      - { id: a, text: 'The layout that wraps the page, with its header' }
+      - { id: b, text: The page template the page renders through }
+      - { id: c, text: The first component in the page's `main` group }
+      - { id: d, text: The template page whose components it shares }
+    answer:
+      correct: b
+      explanation: >-
+        The Page UI is the page template, such as `TwoColumnPageTemplate.vue`. The page record stores it as
+        `uiComponent: CwaPageTwoColumnPageTemplate`. The layout is a separate choice on the same form.
+    sources:
+      - { kind: docs, page: /guides/your-first-page-template, anchor: via-the-admin, sectionHash: 'sha256:7a86817c667e2a07' }
+    author: llm-draft

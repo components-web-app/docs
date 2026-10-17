@@ -107,7 +107,8 @@ questions:
 
   - id: nuxt.admin.reorder-versions
     version: 1
-    status: live
+    status: retired
+    retired: { reason: 'trivia: a detail to look up when you need it, not one worth testing' }
     level: advanced
     area: nuxt-module
     tags: [admin, components]

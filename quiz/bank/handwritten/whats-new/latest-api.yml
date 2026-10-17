@@ -5,7 +5,8 @@
 questions:
   - id: api.groups.component-limit
     version: 2
-    status: live
+    status: retired
+    retired: { reason: 'trivia: a detail to look up when you need it, not one worth testing' }
     level: beginner
     area: api
     tags: [components]

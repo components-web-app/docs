@@ -25,35 +25,6 @@ questions:
       - { kind: docs, page: /getting-started/installation, anchor: where-things-live, sectionHash: 'sha256:567f995785fc4015' }
     author: llm-draft
 
-  - id: deploy.install.fixtures-append
-    version: 2
-    status: live
-    level: beginner
-    area: deployment
-    tags: [fixtures]
-    type: multiple-choice
-    difficulty: 2
-    family: fixtures-load-append
-    prompt: >-
-      The installation guide loads the fixtures (the code that seeds the sample content) with
-      `doctrine:fixtures:load --append`. What does `--append` do?
-    options:
-      - { id: a, text: It keeps existing data and creates what's missing }
-      - { id: b, text: It adds the admin pages to the Nuxt app }
-      - { id: c, text: It skips the admin account if one exists }
-      - { id: d, text: 'It loads the fixtures in parallel, so it''s faster' }
-    answer:
-      correct: a
-      explanation: >-
-        Without `--append`, `doctrine:fixtures:load` empties the database first. With it, the load is safe to
-        run again. It still resets the admin's password to `admin`.
-      optionNotes:
-        c: It creates the admin account, and resets its password each time it runs.
-    sources:
-      - { kind: docs, page: /getting-started/installation, anchor: _2-load-the-sample-content, sectionHash: 'sha256:176954d8459ea97b' }
-      - { kind: docs, page: /api/data-fixtures/getting-started, anchor: setup, sectionHash: 'sha256:d5b1955d47c29cc8' }
-    author: llm-draft
-
   - id: deploy.install.dev-server
     version: 1
     status: live
@@ -121,29 +92,6 @@ questions:
       correct: c
       explanation: >-
         The admin panel is at `/_cwa` on the site's own host. The API is at `/_api`, and you sign in at `/login`.
-    sources:
-      - { kind: docs, page: /getting-started/installation, anchor: _3-open-the-site, sectionHash: 'sha256:ea02c7e3b3d3b87c' }
-    author: llm-draft
-
-  - id: deploy.install.certificate-warning
-    version: 1
-    status: live
-    level: beginner
-    area: deployment
-    tags: [architecture]
-    type: multiple-choice
-    difficulty: 2
-    prompt: Your browser warns about the certificate when you open `https://localhost`. Why?
-    options:
-      - { id: a, text: 'The stack makes its own self-signed certificate' }
-      - { id: b, text: 'Let''s Encrypt can''t issue one for `localhost`' }
-      - { id: c, text: 'The certificate is for `php.local`, not `localhost`' }
-      - { id: d, text: 'The `app` container serves plain HTTP on port 443' }
-    answer:
-      correct: a
-      explanation: >-
-        Caddy makes a self-signed certificate for local use. Accept the warning, or trust Caddy's local CA,
-        which is in the `caddy_data` volume.
     sources:
       - { kind: docs, page: /getting-started/installation, anchor: _3-open-the-site, sectionHash: 'sha256:ea02c7e3b3d3b87c' }
     author: llm-draft

@@ -339,3 +339,29 @@ questions:
       - { kind: docs, page: /api/components/annotations/uploadable, anchor: capping-uploads-to-fit-the-budget, sectionHash: 'sha256:44a8df06f40989a6' }
       - { kind: docs, page: /api/components/annotations/uploadable, anchor: liipimaginebundle-integration, sectionHash: 'sha256:27ee53328388ecf2' }
     author: llm-draft
+
+  - id: api.real-time.draft-updates
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [real-time, draft-and-publish]
+    type: multiple-choice
+    difficulty: 2
+    prompt: An editor saves a draft of a publishable component. Whose open browsers get the change in real time?
+    why: >-
+      If a visitor's open page doesn't change when an editor saves a draft, nothing is broken: visitors only
+      get the update once it's published.
+    options:
+      - { id: a, text: 'Everyone who has the page open, visitors too' }
+      - { id: b, text: 'Signed-in users who may see drafts' }
+      - { id: c, text: 'Nobody: drafts are never sent in real time' }
+      - { id: d, text: 'Only the browser of the editor who saved it' }
+    answer:
+      correct: b
+      explanation: >-
+        The bundle publishes a draft to Mercure as a private update, so only signed-in users who may see drafts
+        receive it. Visitors get the change once it is published.
+    sources:
+      - { kind: docs, page: /api/components/annotations/publishable, anchor: interaction-with-mercure, sectionHash: 'sha256:e92e7c91a3bbe2a0' }
+    author: llm-draft

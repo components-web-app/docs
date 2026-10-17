@@ -200,7 +200,7 @@ These rules are for every question, generated or not. `pnpm quiz:check` tests th
 - **Bump `version`** when the prompt's meaning, the options, the code or the answer changes. A typo in the
   explanation doesn't need one. `quiz:check` errors when a locked question changes without a bump.
 - **Retire, never delete.** Set `status: retired` and `retired: { reason: … }`. The reason starts with one of
-  `stale-source`, `ambiguous`, `wrong`, `poor-stats`, `over-exposed`, `leaked`, `superseded`.
+  `stale-source`, `ambiguous`, `wrong`, `too-easy`, `trivia`, `poor-stats`, `over-exposed`, `leaked`, `superseded`.
 - **`family`** groups questions that test the same fact, and a quiz shows at most one of them. Generated
   questions get `mistake:<id>`, `target:<id>` or `term:<code>`. A hand-written question on the same fact as a
   catalogue entry uses that entry's family, such as `mistake:cwa-disabled-false`.

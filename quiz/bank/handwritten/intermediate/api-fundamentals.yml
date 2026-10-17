@@ -1,0 +1,432 @@
+# Hand-written intermediate questions on the durable fundamentals of the API bundle:
+# component and page data entities, routes, nested pages, fixtures, uploads and sign-in.
+# Format: quiz/README.md. Run `pnpm quiz:stamp <id>` to fill in or refresh the hashes.
+
+questions:
+  - id: api.components.string-length
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [components]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      A component entity has `#[ORM\Column(nullable: true)] public ?string $caption = null;` and no validation
+      constraint. On PostgreSQL, an editor saves a 300-character caption. What does the API return?
+    why: >-
+      A 500 on long text is easy to miss in development, because SQLite doesn't enforce the length and a local
+      SQLite setup saves the value.
+    options:
+      - { id: a, text: 'A `422` with a violation on `caption`' }
+      - { id: b, text: 'A `500`, because the database rejects the insert' }
+      - { id: c, text: 'A `200`, with the caption cut to 255 characters' }
+      - { id: d, text: 'A `200`, because Doctrine widens the column' }
+    answer:
+      correct: b
+      explanation: >-
+        A plain string column is `VARCHAR(255)`. Without `#[Assert\Length(max: 255)]`, validation passes and the
+        database refuses the insert, so the client gets a 500. Add the constraint, or map free text as
+        `type: 'text'`.
+    sources:
+      - { kind: docs, page: /api/components/creating-components, anchor: string-columns-need-a-length-limit, sectionHash: 'sha256:83348085c96e8374' }
+    author: llm-draft
+
+  - id: api.page-data.unmapped-property
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [dynamic-pages]
+    type: multiple-choice
+    difficulty: 2
+    prompt: >-
+      You add `public ?string $headline = null;` to a page data entity (one that extends `AbstractPageData`),
+      with no Doctrine attribute. What happens to the field?
+    why: >-
+      If a new field never shows up in the API or the admin, check its Doctrine mapping before anything on the
+      front end.
+    options:
+      - { id: a, text: 'It is saved as a text column by the bundle' }
+      - { id: b, text: 'It is in the API payload but never saved' }
+      - { id: c, text: 'It is never saved and never in the API payload' }
+      - { id: d, text: 'The migration diff fails until you map it' }
+    answer:
+      correct: c
+      explanation: >-
+        Your own properties need an explicit Doctrine mapping, such as `#[ORM\Column]` or `#[ORM\ManyToOne]` for
+        a component. Without one, Doctrine ignores the property.
+    sources:
+      - { kind: docs, page: /api/dynamic-pages, anchor: creating-a-pagedata-entity, sectionHash: 'sha256:fce7ca48fdec004c' }
+    author: llm-draft
+
+  - id: api.page-data.current-record
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [dynamic-pages]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      A template page (the page record that every blog article renders through) has a component position bound
+      to the `image` property of `BlogArticleData`. How does the API know which article's image to return?
+    why: >-
+      When you call the API yourself, such as from a test, you send this header to get the component a bound
+      position shows for one record.
+    options:
+      - { id: a, text: 'From the `path` request header, which the module sends' }
+      - { id: b, text: 'From a `pageData` query parameter on the position''s IRI' }
+      - { id: c, text: 'From the article the editor last selected in the admin' }
+      - { id: d, text: 'It returns every article''s image, and the module picks one' }
+    answer:
+      correct: a
+      explanation: >-
+        The API works out the current page data record from the `path` header, which takes a route path or a
+        page data IRI. The Nuxt module sends it for you.
+    sources:
+      - { kind: docs, page: /api/dynamic-pages, anchor: component-positions-from-pagedata, sectionHash: 'sha256:325ae33d66116561' }
+    author: llm-draft
+
+  - id: api.page-data.per-field-filter
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [dynamic-pages]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      A page data class declares the `search` and `order[:property]` query parameters, with `search` matching
+      `title`. A client requests `/page_data/blog_article_datas?title=news`. What comes back?
+    why: >-
+      A search box bound to the wrong parameter name never narrows the list, and nothing reports an error.
+    options:
+      - { id: a, text: 'The articles whose title contains "news"' }
+      - { id: b, text: 'A `422`, because `title` isn''t a declared parameter' }
+      - { id: c, text: 'An empty list, because no article''s title is exactly "news"' }
+      - { id: d, text: 'Every article, because the parameter is ignored' }
+    answer:
+      correct: d
+      explanation: >-
+        Per-field parameters such as `?title=` are ignored, not refused, so the client gets every record. Send
+        `?search=news`.
+    sources:
+      - { kind: docs, page: /api/dynamic-pages, anchor: searching-and-sorting, sectionHash: 'sha256:50184720c778ca50' }
+      - { kind: docs, page: /nuxt-module/component-helpers/collections-and-pagination, anchor: user-controlled-sorting-and-filtering, sectionHash: 'sha256:03f8634993a92fe2' }
+    author: llm-draft
+
+  - id: api.nested.explicit-path
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [routes, dynamic-pages]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      In a scaffold, a page nested under `/events` (inside its `nested()` closure) is given `route: '/2024'`.
+      Which path does the child's route get?
+    why: >-
+      Give a nested page an explicit route and you must write its parent's segments yourself, or the page ends up
+      at the top level.
+    options:
+      - { id: a, text: '`/events/2024`' }
+      - { id: b, text: '`/2024`, exactly as written' }
+      - { id: c, text: '`/events/2024`, with a redirect from `/2024`' }
+      - { id: d, text: 'None: an explicit route under a parent is a `422`' }
+    answer:
+      correct: b
+      explanation: >-
+        Only generated routes are prefixed with the parent's path. An explicit `route:` is used as written, so
+        include the parent's segments to nest it.
+    sources:
+      - { kind: docs, page: /api/dynamic-pages, anchor: route-auto-prefixing, sectionHash: 'sha256:9b1730643953152f' }
+    author: llm-draft
+
+  - id: api.nested.parent-reference
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [dynamic-pages, data-model]
+    type: multiple-choice
+    difficulty: 2
+    prompt: >-
+      Each blog post is a page data record (one item of repeating content), and so is each category. A post
+      should live under its category. Which field do you set on the post?
+    why: >-
+      The parent field decides the route prefix and the nesting the front end renders, so the wrong one, or both,
+      gives the wrong URL.
+    options:
+      - { id: a, text: '`parentPage`, set to the category''s template page' }
+      - { id: b, text: 'Both `parentPage` and `parentPageData`' }
+      - { id: c, text: '`page`, set to the category record' }
+      - { id: d, text: '`parentPageData`, set to the category record' }
+    answer:
+      correct: d
+      explanation: >-
+        `parentPageData` makes a record a child of a page data record, and `parentPage` a child of a static page.
+        Set one or the other, not both. `page` is the template page the record renders through.
+    sources:
+      - { kind: docs, page: /api/dynamic-pages, anchor: the-php-fields, sectionHash: 'sha256:1161d5294df9ac5e' }
+    author: llm-draft
+
+  - id: api.nested.title-tag
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [dynamic-pages, layouts-and-pages]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      A visitor opens `/conference/programme`: the `Programme` page is nested under the `Conference` page, and
+      both have a `title`. What is the page's HTML `<title>`?
+    why: >-
+      Knowing the order tells you which titles to write: a child's title only needs to name the child, because
+      the parent's is added after it.
+    options:
+      - { id: a, text: '`Conference | Programme`' }
+      - { id: b, text: '`Programme`, the leaf''s title only' }
+      - { id: c, text: '`Programme | Conference`' }
+      - { id: d, text: '`Conference`, the root''s title only' }
+    answer:
+      correct: c
+      explanation: >-
+        `<CwaPage />` collects the titles from every depth, leaf first, joined with ` | `. A flat page's title has
+        no separator.
+    sources:
+      - { kind: docs, page: /api/dynamic-pages, anchor: seo-titles-and-meta-descriptions-for-nested-pages, sectionHash: 'sha256:627d78f24975f4f1' }
+    author: llm-draft
+
+  - id: api.routes.generate-under-unrouted
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [routes]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      A page data record's `parentPage` has no route. You call `POST /_/routes/generate` for the record. What
+      happens?
+    why: >-
+      The same rule makes a fixture throw `UnroutedParentException` on `flush()`, so a scaffold that leaves a
+      grouping parent unrouted must give its children explicit paths.
+    options:
+      - { id: a, text: 'A `422`: the parent needs a route first' }
+      - { id: b, text: 'The record gets a top-level route from its title' }
+      - { id: c, text: 'The parent gets a route too, from its title' }
+      - { id: d, text: 'A route is made, but it stays offline' }
+    answer:
+      correct: a
+      explanation: >-
+        A route can only be generated when the parent has one. Give the parent a route, or give the child an
+        explicit path with `POST /_/routes` or `route:` in a fixture.
+    sources:
+      - { kind: docs, page: /api/routes, anchor: route-generation, sectionHash: 'sha256:d75613602e69bada' }
+    author: llm-draft
+
+  - id: api.routes.generate-replaces
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [routes]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      A page data record already has the route `/blog/old-title`. Its title changes to "New Title", and you call
+      `POST /_/routes/generate` for it. What happens to `/blog/old-title`?
+    why: >-
+      You can regenerate routes after retitling content without breaking links people have shared or search
+      engines have stored.
+    options:
+      - { id: a, text: 'It is deleted, and visitors to it get a 404' }
+      - { id: b, text: 'It becomes a redirect to the new route' }
+      - { id: c, text: 'It stays, and the record has two routes' }
+      - { id: d, text: 'The request fails until you delete it' }
+    answer:
+      correct: b
+      explanation: >-
+        If the record already had a route, the old route becomes a redirect to the new one.
+    sources:
+      - { kind: docs, page: /api/routes, anchor: route-generation, sectionHash: 'sha256:d75613602e69bada' }
+    author: llm-draft
+
+  - id: api.fixtures.template-argument
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [fixtures, dynamic-pages]
+    type: spot-the-mistake
+    difficulty: 3
+    prompt: >-
+      This scaffold builds a blog template page and one article that renders through it. One line is wrong.
+      Click it.
+    why: >-
+      A scaffold names things three ways (reference, route name and path), and passing the wrong one is the most
+      common reason a load can't find what it's linking to.
+    code:
+      lang: php
+      text: |-
+            private function blogPage(CwaFixtureBuilder $cwa): void
+            {
+                // A template page gets no route
+                $cwa->page('blog-template', uiComponent: 'BlogPageTemplate', layout: 'main', isTemplate: true)
+                    ->group('body')
+                    ->pageDataPosition(BlogArticleData::class, 'body');
+            }
+
+            private function firstPostPageData(CwaFixtureBuilder $cwa): void
+            {
+                $pageData = new BlogArticleData();
+                $pageData->setTitle('First Post');
+
+                $cwa->pageData($pageData, template: 'BlogPageTemplate', route: '/blog/first-post', routeName: 'article-1');
+            }
+    answer:
+      line: 14
+      fix: "    $cwa->pageData($pageData, template: 'blog-template', route: '/blog/first-post', routeName: 'article-1');"
+      explanation: >-
+        `pageData(template: …)` takes the template page's reference, the first argument of `page()`:
+        `'blog-template'`. `BlogPageTemplate` is its `uiComponent`, the Vue file it renders through.
+    sources:
+      - { kind: docs, page: /api/data-fixtures/getting-started, anchor: complete-example, sectionHash: 'sha256:bf3d624568ee73b6', block: 0, blockHash: 'sha256:80311eeb89bf5f14' }
+      - { kind: docs, page: /api/data-fixtures/writing-a-scaffold, anchor: references-route-names-and-paths, sectionHash: 'sha256:03d81e735ac1b09c' }
+    author: llm-draft
+
+  - id: api.fixtures.page-data-component
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [fixtures, dynamic-pages]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      A page data class has a `component` property that holds a Hero. In a scaffold, how do you seed the Hero
+      for one record?
+    why: >-
+      You don't place a page data record's component in a group or persist it yourself: the record saves it,
+      as long as the field is set first.
+    options:
+      - { id: a, text: 'Set `$pageData->component` before calling `pageData()`' }
+      - { id: b, text: 'Add the Hero to the template page''s group with `add()`' }
+      - { id: c, text: 'Call `$cwa->component($hero)`, then `persist()` it' }
+      - { id: d, text: 'Set the field in an `afterRoutes()` callback' }
+    answer:
+      correct: a
+      explanation: >-
+        A component set on a page data field is saved with the page data, so it needs no `component()` or
+        `persist()`. Set the field before you call `pageData()`.
+    sources:
+      - { kind: docs, page: /api/data-fixtures/writing-a-scaffold, anchor: components-on-page-data, sectionHash: 'sha256:1bbe8b30034943a4' }
+    author: llm-draft
+
+  - id: api.uploads.original-url
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [uploads]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      An editor uploads `hero.jpg` to an uploadable component's `file` field, which has a `thumbnail` Imagine
+      filter. Where does a client read the URL of the original file?
+    why: >-
+      A URL built from the uploaded file name 404s, because the stored name has a token added and its extension
+      comes from the content.
+    options:
+      - { id: a, text: '`_metadata.mediaObjects.file.original.contentUrl`' }
+      - { id: b, text: '`_metadata.mediaObjects.file[0].contentUrl`' }
+      - { id: c, text: 'The upload path joined with `hero.jpg`' }
+      - { id: d, text: '`_metadata.mediaObjects.thumbnail.contentUrl`' }
+    answer:
+      correct: b
+      explanation: >-
+        Each field maps to an array. Element `[0]` is the stored original, and each Imagine variant is a further
+        element with its own `imagineFilter` name.
+      optionNotes:
+        c: 'The file is stored as `hero-<token>.jpg`, so its name can''t be predicted.'
+    sources:
+      - { kind: docs, page: /api/components/annotations/uploadable, anchor: the-_metadata-response, sectionHash: 'sha256:3f7a3f20bd0abb70' }
+      - { kind: docs, page: /api/components/annotations/uploadable, anchor: stored-filenames, sectionHash: 'sha256:40dc0e354369675f' }
+    author: llm-draft
+
+  - id: api.uploads.remove-file
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [uploads]
+    type: multiple-choice
+    difficulty: 2
+    prompt: An editor wants to remove the image from an uploadable component and keep the component. Which request does it?
+    why: >-
+      A client of your own clears a file with the same `PATCH` it sends for any other field; there's no separate
+      delete endpoint to call.
+    options:
+      - { id: a, text: '`DELETE /component/images/{id}/download/file`' }
+      - { id: b, text: '`PATCH` the component with `{ "filename": "" }`' }
+      - { id: c, text: '`PATCH` the component with `{ "file": null }`' }
+      - { id: d, text: '`DELETE /component/images/{id}`' }
+    answer:
+      correct: c
+      explanation: >-
+        Send `null` for the field's property in a `PATCH`. The bundle removes the file from storage and clears the
+        media object data.
+      optionNotes:
+        d: That removes the whole component, and its files with it.
+    sources:
+      - { kind: docs, page: /api/components/annotations/uploadable, anchor: deleting-a-file, sectionHash: 'sha256:9d391cdd5497c4cc' }
+    author: llm-draft
+
+  - id: api.auth.cookie-extractor
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [auth, security]
+    type: spot-the-mistake
+    difficulty: 3
+    prompt: >-
+      The site's JWT cookie is `api_component`, the same name as the bundle's `refresh_token.cookie_name`. Users
+      sign in, but every request after that is treated as signed out. One line is wrong. Click it.
+    why: >-
+      Lexik writes the cookie under one setting and reads it under another, so a name changed in only one place
+      signs everyone out straight after they sign in.
+    code:
+      lang: yaml
+      text: |-
+        lexik_jwt_authentication:
+            secret_key: '%env(resolve:JWT_SECRET_KEY)%'
+            public_key: '%env(resolve:JWT_PUBLIC_KEY)%'
+            pass_phrase: '%env(JWT_PASSPHRASE)%'
+            token_ttl: 3600
+            set_cookies:
+                api_component:
+                    lifetime: 604800  # 1 week
+                    samesite: '%env(JWT_COOKIE_SAMESITE)%'
+                    secure: true
+                    httpOnly: true
+            token_extractors:
+                authorization_header:
+                    enabled: true
+                    prefix: Bearer
+                    name: Authorization
+                cookie:
+                    enabled: true
+                    name: BEARER
+    answer:
+      line: 19
+      fix: "            name: api_component"
+      explanation: >-
+        The cookie name has to match in three places: `set_cookies.<name>`, `token_extractors.cookie.name` and
+        the bundle's `refresh_token.cookie_name`. Here the extractor looks for a cookie that is never set.
+    sources:
+      - { kind: docs, page: /api/users/authentication, anchor: lexik_jwt_authentication-configuration, sectionHash: 'sha256:9151c9149be3685a', block: 0, blockHash: 'sha256:8f5c05746c1d7ae7' }
+    author: llm-draft

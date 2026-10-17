@@ -53,7 +53,7 @@ questions:
         Nothing can purge a visitor's browser cache, and a stale page that points at an old build's `/_nuxt`
         files loads blank. So only the shared cache, which the API purges, keeps pages.
     sources:
-      - { kind: docs, page: /nuxt-module/page-caching, anchor: what-a-cached-page-carries, sectionHash: 'sha256:9b5744fff106a59c' }
+      - { kind: docs, page: /nuxt-module/page-caching, anchor: what-a-cached-page-carries, sectionHash: 'sha256:33104e6452ead55b' }
     author: llm-draft
 
   - id: nuxt.page-cache.shared-max-age-when

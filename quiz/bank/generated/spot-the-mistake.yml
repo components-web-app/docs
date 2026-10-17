@@ -172,7 +172,7 @@ questions:
       - kind: docs
         page: /nuxt-module/pwa
         anchor: applying-updates
-        sectionHash: sha256:766ca4fdb285fe71
+        sectionHash: sha256:1e1edfcff665dd28
         block: 1
         blockHash: sha256:60c62f519ea31f5a
     generator:
@@ -1690,7 +1690,7 @@ questions:
       - kind: docs
         page: /nuxt-module/building-your-ui/creating-components
         anchor: the-mandatory-pattern
-        sectionHash: sha256:9af993cb2acda392
+        sectionHash: sha256:dd17ace354762d82
         block: 0
         blockHash: sha256:6a5b7ec046544e6c
     generator:
@@ -2061,9 +2061,9 @@ questions:
       - kind: docs
         page: /api/data-fixtures/builder-reference
         anchor: pagebuilder-from-cwa-page
-        sectionHash: sha256:a93b39b9fc0a54e5
+        sectionHash: sha256:09fa85294badea1e
         block: 2
-        blockHash: sha256:5dbe50fa081c07e4
+        blockHash: sha256:eaec88680c1e538a
     generator:
       name: spot-the-mistake
       ref: page-title-property
@@ -2103,7 +2103,7 @@ questions:
       - kind: docs
         page: /core-concepts/dynamic-pages
         anchor: reading-pagedata-in-your-vue-component
-        sectionHash: sha256:e01439f09cecc067
+        sectionHash: sha256:76c2ecae76dda115
     generator:
       name: spot-the-mistake
       ref: script-dollar-cwa
@@ -2141,7 +2141,7 @@ questions:
       - kind: docs
         page: /core-concepts/dynamic-pages
         anchor: reading-pagedata-in-your-vue-component
-        sectionHash: sha256:e01439f09cecc067
+        sectionHash: sha256:76c2ecae76dda115
     generator:
       name: spot-the-mistake
       ref: script-dollar-cwa
@@ -2180,7 +2180,7 @@ questions:
       - kind: docs
         page: /core-concepts/dynamic-pages
         anchor: reading-pagedata-in-your-vue-component
-        sectionHash: sha256:e01439f09cecc067
+        sectionHash: sha256:76c2ecae76dda115
     generator:
       name: spot-the-mistake
       ref: script-dollar-cwa
@@ -2234,7 +2234,7 @@ questions:
       - kind: docs
         page: /nuxt-module/configuration/nuxt-config
         anchor: runtime-config
-        sectionHash: sha256:6e368e0e39bbca94
+        sectionHash: sha256:9d3370c64c839364
     generator:
       name: spot-the-mistake
       ref: api-url-trailing-slash
@@ -2274,7 +2274,7 @@ questions:
       - kind: docs
         page: /nuxt-module/configuration/nuxt-config
         anchor: runtime-config
-        sectionHash: sha256:6e368e0e39bbca94
+        sectionHash: sha256:9d3370c64c839364
         block: 0
         blockHash: sha256:b1625d33d1a97a37
     generator:

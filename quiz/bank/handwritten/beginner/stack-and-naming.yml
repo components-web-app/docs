@@ -1,0 +1,624 @@
+# Hand-written questions on what CWA is built on and its naming conventions.
+# Mostly beginner; the finer prefix rules are intermediate.
+# Format: quiz/README.md. Run `pnpm quiz:stamp <id>` to fill in or refresh the hashes.
+
+questions:
+  # ---------------------------------------------------------------- What CWA is built on
+
+  - id: core.stack.rest-endpoints
+    version: 1
+    status: live
+    level: beginner
+    area: core-concepts
+    tags: [architecture]
+    type: multiple-choice
+    difficulty: 1
+    prompt: Every resource in a CWA site, such as a page or a component, has REST endpoints. Which framework provides them?
+    options:
+      - { id: a, text: Doctrine ORM }
+      - { id: b, text: API Platform }
+      - { id: c, text: Mercure }
+      - { id: d, text: Nuxt server routes }
+    answer:
+      correct: b
+      explanation: >-
+        API Platform serves the REST endpoints for every resource, with JSON-LD/Hydra, filters, pagination and
+        validation. Your component entities are API Platform resources.
+      optionNotes:
+        a: Doctrine maps entities to the database. It doesn't serve HTTP.
+        c: Mercure pushes real-time updates to open browsers.
+    sources:
+      - { kind: docs, page: /core-concepts/architecture, anchor: what-cwa-is-built-on, sectionHash: 'sha256:5a1b8352e317b360' }
+    author: llm-draft
+
+  - id: core.stack.migrations
+    version: 1
+    status: live
+    level: beginner
+    area: core-concepts
+    tags: [architecture]
+    type: multiple-choice
+    difficulty: 1
+    prompt: You add a property to a component's PHP entity, and the database needs a new column. Which project's migrations do you write for it?
+    options:
+      - { id: a, text: API Platform's }
+      - { id: b, text: PostgreSQL's }
+      - { id: c, text: Doctrine's }
+      - { id: d, text: Nuxt's }
+    answer:
+      correct: c
+      explanation: >-
+        Doctrine ORM handles entities and the database, and schema changes are Doctrine migrations. CWA doesn't
+        change how they work, so Doctrine's docs apply.
+      optionNotes:
+        a: API Platform serves the entity over HTTP. It reads Doctrine's mapping but doesn't change the schema.
+        b: PostgreSQL is the template's database server, but you don't write raw SQL migrations for it.
+    sources:
+      - { kind: docs, page: /core-concepts/architecture, anchor: what-cwa-is-built-on, sectionHash: 'sha256:5a1b8352e317b360' }
+    author: llm-draft
+
+  - id: core.stack.real-time
+    version: 1
+    status: live
+    level: beginner
+    area: core-concepts
+    tags: [architecture, real-time]
+    type: multiple-choice
+    difficulty: 1
+    prompt: An editor publishes a change, and browsers that have the page open receive it without reloading. Which tool carries that update?
+    options:
+      - { id: a, text: Pinia }
+      - { id: b, text: Souin }
+      - { id: c, text: Doctrine ORM }
+      - { id: d, text: Mercure }
+    answer:
+      correct: d
+      explanation: >-
+        Mercure handles real-time updates: the API publishes a change and open browsers receive it.
+      optionNotes:
+        a: Pinia is the store in the browser that holds the fetched resources. It doesn't receive anything from the API by itself.
+        b: Souin is the HTTP cache in front of the API.
+    sources:
+      - { kind: docs, page: /core-concepts/architecture, anchor: what-cwa-is-built-on, sectionHash: 'sha256:5a1b8352e317b360' }
+    author: llm-draft
+
+  - id: core.stack.store
+    version: 1
+    status: live
+    level: beginner
+    area: core-concepts
+    tags: [architecture]
+    type: multiple-choice
+    difficulty: 2
+    prompt: The Nuxt module keeps every resource it has fetched in a store in the browser. Which library is that store built on?
+    options:
+      - { id: a, text: Pinia }
+      - { id: b, text: Doctrine ORM }
+      - { id: c, text: Nuxt UI }
+      - { id: d, text: TipTap }
+    answer:
+      correct: a
+      explanation: >-
+        The module's store is a Pinia store, and it holds every resource the module has fetched.
+    sources:
+      - { kind: docs, page: /core-concepts/architecture, anchor: what-cwa-is-built-on, sectionHash: 'sha256:5a1b8352e317b360' }
+    author: llm-draft
+
+  - id: core.stack.vue-files
+    version: 1
+    status: live
+    level: beginner
+    area: core-concepts
+    tags: [architecture, components]
+    type: multiple-choice
+    difficulty: 1
+    prompt: What kind of file is each layout, page template and component that you write for the front end?
+    options:
+      - { id: a, text: A Twig template rendered by Symfony }
+      - { id: b, text: A JSON file read by the admin }
+      - { id: c, text: A Vue single-file component }
+      - { id: d, text: A PHP class with a template method }
+    answer:
+      correct: c
+      explanation: >-
+        Every layout, page template and component you write is a Vue single-file component, rendered by the
+        Nuxt app the module installs into.
+    sources:
+      - { kind: docs, page: /core-concepts/architecture, anchor: what-cwa-is-built-on, sectionHash: 'sha256:5a1b8352e317b360' }
+    author: llm-draft
+
+  - id: core.stack.whose-docs-vue
+    version: 1
+    status: live
+    level: beginner
+    area: core-concepts
+    tags: [architecture]
+    type: multiple-choice
+    difficulty: 2
+    prompt: Inside one of your components you want a `computed` value that formats a date. CWA doesn't change how this works. Whose docs do you read?
+    options:
+      - { id: a, text: Vue's }
+      - { id: b, text: Nuxt UI's }
+      - { id: c, text: Tailwind CSS's }
+      - { id: d, text: Pinia's }
+    answer:
+      correct: a
+      explanation: >-
+        Your components are ordinary Vue single-file components, so Vue's own docs apply to everything CWA
+        doesn't change, such as `computed`.
+    sources:
+      - { kind: docs, page: /core-concepts/architecture, anchor: what-cwa-is-built-on, sectionHash: 'sha256:5a1b8352e317b360' }
+    author: llm-draft
+
+  - id: core.stack.whose-docs-console
+    version: 1
+    status: live
+    level: beginner
+    area: core-concepts
+    tags: [architecture]
+    type: multiple-choice
+    difficulty: 2
+    prompt: You want to add your own console command to the API application, run with `bin/console`. Which framework's docs cover it?
+    options:
+      - { id: a, text: Doctrine ORM }
+      - { id: b, text: Symfony }
+      - { id: c, text: Nuxt }
+      - { id: d, text: Mercure }
+    answer:
+      correct: b
+      explanation: >-
+        The bundle installs into a Symfony application, and Symfony provides its config, services, console
+        commands and security. Symfony's docs apply to anything CWA doesn't change.
+    sources:
+      - { kind: docs, page: /core-concepts/architecture, anchor: what-cwa-is-built-on, sectionHash: 'sha256:5a1b8352e317b360' }
+    author: llm-draft
+
+  - id: core.stack.sign-in
+    version: 1
+    status: live
+    level: beginner
+    area: core-concepts
+    tags: [architecture, auth]
+    type: multiple-choice
+    difficulty: 2
+    prompt: Which package handles signing in to the API, with a JWT (a signed sign-in token) held in a cookie?
+    options:
+      - { id: a, text: The Mercure hub }
+      - { id: b, text: Pinia's auth plugin }
+      - { id: c, text: LexikJWTAuthenticationBundle }
+      - { id: d, text: Doctrine ORM's user entity }
+    answer:
+      correct: c
+      explanation: >-
+        LexikJWTAuthenticationBundle provides sign-in, with the JWT held in a cookie.
+    sources:
+      - { kind: docs, page: /core-concepts/architecture, anchor: what-cwa-is-built-on, sectionHash: 'sha256:5a1b8352e317b360' }
+    author: llm-draft
+
+  - id: core.stack.app-server
+    version: 1
+    status: live
+    level: beginner
+    area: core-concepts
+    tags: [architecture, deployment]
+    type: multiple-choice
+    difficulty: 2
+    prompt: In the template app, what runs the PHP application?
+    options:
+      - { id: a, text: 'FrankenPHP, built on the Caddy web server' }
+      - { id: b, text: 'The Nuxt server, through a PHP plugin' }
+      - { id: c, text: 'Apache with mod_php' }
+      - { id: d, text: 'Souin, as a standalone server' }
+    answer:
+      correct: a
+      explanation: >-
+        The template runs the API on FrankenPHP, a PHP application server built on Caddy.
+      optionNotes:
+        d: Souin is the HTTP cache, and it runs as a module inside Caddy.
+    sources:
+      - { kind: docs, page: /core-concepts/architecture, anchor: what-cwa-is-built-on, sectionHash: 'sha256:5a1b8352e317b360' }
+    author: llm-draft
+
+  - id: core.stack.http-cache
+    version: 1
+    status: live
+    level: beginner
+    area: core-concepts
+    tags: [architecture, http-caching]
+    type: multiple-choice
+    difficulty: 2
+    prompt: In the template app, which tool is the HTTP cache in front of the API?
+    options:
+      - { id: a, text: 'Pinia, as a server-side store' }
+      - { id: b, text: 'PostgreSQL, through a cache table' }
+      - { id: c, text: 'Mercure, as a hub cache' }
+      - { id: d, text: 'Souin, as a Caddy module' }
+    answer:
+      correct: d
+      explanation: >-
+        Souin is the HTTP cache in front of the API. It runs as a module of Caddy, the web server FrankenPHP is
+        built on.
+    sources:
+      - { kind: docs, page: /core-concepts/architecture, anchor: what-cwa-is-built-on, sectionHash: 'sha256:5a1b8352e317b360' }
+    author: llm-draft
+
+  - id: core.stack.api-resource-attribute
+    version: 1
+    status: live
+    level: beginner
+    area: core-concepts
+    family: stack-entity-attributes
+    tags: [architecture, components]
+    type: pick-the-line
+    difficulty: 2
+    prompt: This is a component's PHP entity. Which attribute line makes API Platform serve the class as a REST resource?
+    code:
+      lang: php
+      text: |-
+        use ApiPlatform\Metadata\ApiResource;
+        use Doctrine\ORM\Mapping as ORM;
+        use Silverback\ApiComponentsBundle\Entity\Core\AbstractComponent;
+        use Symfony\Component\Validator\Constraints as Assert;
+
+        #[ORM\Entity]
+        #[ApiResource(mercure: true)]
+        class Title extends AbstractComponent
+        {
+            #[ORM\Column(type: 'text', nullable: true)]
+            #[Assert\NotBlank]
+            public ?string $title = null;
+        }
+    answer:
+      lines: [7]
+      explanation: >-
+        `#[ApiResource]` comes from API Platform and gives the class its REST endpoints. `#[ORM\Entity]` is
+        Doctrine's, and maps the class to the database.
+    sources:
+      - { kind: docs, page: /api/components/creating-components, anchor: step-1-create-the-entity, sectionHash: 'sha256:fd6680f4797a3457', block: 0, blockHash: 'sha256:8eee9ab76bc59a52' }
+      - { kind: docs, page: /core-concepts/architecture, anchor: what-cwa-is-built-on, sectionHash: 'sha256:5a1b8352e317b360' }
+    author: llm-draft
+
+  - id: core.stack.doctrine-entity-attribute
+    version: 1
+    status: live
+    level: beginner
+    area: core-concepts
+    family: stack-entity-attributes
+    tags: [architecture, components]
+    type: pick-the-line
+    difficulty: 2
+    prompt: This is a component's PHP entity. Which attribute line makes the class a Doctrine entity, stored in the database?
+    code:
+      lang: php
+      text: |-
+        use ApiPlatform\Metadata\ApiResource;
+        use Doctrine\ORM\Mapping as ORM;
+        use Silverback\ApiComponentsBundle\Entity\Core\AbstractComponent;
+        use Symfony\Component\Validator\Constraints as Assert;
+
+        #[ORM\Entity]
+        #[ApiResource(mercure: true)]
+        class Title extends AbstractComponent
+        {
+            #[ORM\Column(type: 'text', nullable: true)]
+            #[Assert\NotBlank]
+            public ?string $title = null;
+        }
+    answer:
+      lines: [6]
+      explanation: >-
+        `#[ORM\Entity]` is Doctrine's mapping attribute, imported as `ORM` from `Doctrine\ORM\Mapping`. The
+        `#[ORM\Column]` lower down maps one property to a column of that entity.
+    sources:
+      - { kind: docs, page: /api/components/creating-components, anchor: step-1-create-the-entity, sectionHash: 'sha256:fd6680f4797a3457', block: 0, blockHash: 'sha256:8eee9ab76bc59a52' }
+      - { kind: docs, page: /core-concepts/architecture, anchor: what-cwa-is-built-on, sectionHash: 'sha256:5a1b8352e317b360' }
+    author: llm-draft
+
+  # ---------------------------------------------------------------- Naming conventions
+
+  - id: core.naming.component-display-file
+    version: 1
+    status: live
+    level: beginner
+    area: core-concepts
+    tags: [components]
+    type: multiple-choice
+    difficulty: 1
+    prompt: The API has a component type whose PHP class is `HeroImage`. Where does its Vue display file go, from the repository root?
+    options:
+      - { id: a, text: '`app/app/components/HeroImage/HeroImage.vue`' }
+      - { id: b, text: '`app/app/cwa/layouts/HeroImage/HeroImage.vue`' }
+      - { id: c, text: '`app/app/cwa/pages/HeroImage.vue`' }
+      - { id: d, text: '`app/app/cwa/components/HeroImage/HeroImage.vue`' }
+      - { id: e, text: '`app/cwa/components/HeroImage/HeroImage.vue`' }
+    answer:
+      correct: d
+      explanation: >-
+        The PHP class name, the Vue folder and the display file are the same PascalCase name. The Nuxt app is
+        `app/` and its source directory is `app/` too, so the path starts `app/app/cwa/`.
+      optionNotes:
+        a: Nuxt's own `components/` folder registers it without the `CwaComponent` prefix, so the module can't find it.
+        e: Nuxt only looks in `app/app/cwa/`, so a file at `app/cwa/` from the repository root is never found.
+    sources:
+      - { kind: docs, page: /api/components/creating-components, anchor: the-class-name-vue-component-convention, sectionHash: 'sha256:22b4c3a09af7ba18' }
+      - { kind: docs, page: /getting-started/installation, anchor: where-things-live, sectionHash: 'sha256:567f995785fc4015' }
+    author: llm-draft
+
+  - id: core.naming.endpoint-path
+    version: 1
+    status: live
+    level: beginner
+    area: core-concepts
+    tags: [components]
+    type: multiple-choice
+    difficulty: 2
+    prompt: You add a component entity named `HtmlContent`. At which path does the API serve its collection?
+    options:
+      - { id: a, text: '`/component/HtmlContent`' }
+      - { id: b, text: '`/component/html_contents`' }
+      - { id: c, text: '`/html-contents`' }
+      - { id: d, text: '`/component/html-content`' }
+    answer:
+      correct: b
+      explanation: >-
+        The bundle prefixes every component endpoint with `/component/`, and API Platform makes the plural,
+        snake_case path from the class name.
+    sources:
+      - { kind: docs, page: /core-concepts/architecture, anchor: naming-conventions, sectionHash: 'sha256:e1f7a7979c17cf50' }
+      - { kind: docs, page: /api/components/creating-components, anchor: url-prefix-convention, sectionHash: 'sha256:743ed3871d0aada5' }
+    author: llm-draft
+
+  - id: core.naming.ui-variant-folder
+    version: 1
+    status: live
+    level: beginner
+    area: core-concepts
+    family: naming-admin-and-ui-folders
+    tags: [components]
+    type: multiple-choice
+    difficulty: 2
+    prompt: You want an alternative Vue template for the `HtmlContent` component, one an editor can pick in the admin instead of the default display file. Where does it go?
+    options:
+      - { id: a, text: '`app/app/cwa/components/HtmlContent/admin/AltHtmlContent.vue`' }
+      - { id: b, text: '`app/app/cwa/pages/AltHtmlContent.vue`' }
+      - { id: c, text: '`app/app/cwa/components/HtmlContent/ui/AltHtmlContent.vue`' }
+      - { id: d, text: '`app/app/cwa/components/AltHtmlContent/AltHtmlContent.vue`' }
+    answer:
+      correct: c
+      explanation: >-
+        Alternative templates go in the component's `ui/` folder. Its `admin/` folder holds one file per admin
+        tab.
+      optionNotes:
+        d: A folder of its own makes a new component type named `AltHtmlContent`, not a variant of `HtmlContent`.
+    sources:
+      - { kind: docs, page: /core-concepts/architecture, anchor: naming-conventions, sectionHash: 'sha256:e1f7a7979c17cf50' }
+    author: llm-draft
+
+  - id: core.naming.admin-tab-folder
+    version: 1
+    status: live
+    level: beginner
+    area: core-concepts
+    family: naming-admin-and-ui-folders
+    tags: [components, admin]
+    type: multiple-choice
+    difficulty: 2
+    prompt: You want an admin tab (a panel in the admin where editors change the component's fields) for the `Title` component. Where does its file go?
+    options:
+      - { id: a, text: '`app/app/cwa/components/Title/admin/Title.vue`' }
+      - { id: b, text: '`app/app/cwa/components/Title/ui/Title.vue`' }
+      - { id: c, text: '`app/app/cwa/admin/components/Title.vue`' }
+      - { id: d, text: '`app/app/cwa/components/Title/tabs/Title.vue`' }
+    answer:
+      correct: a
+      explanation: >-
+        Each admin tab is one file in the component's `admin/` folder. The `ui/` folder holds alternative
+        templates.
+    sources:
+      - { kind: docs, page: /core-concepts/architecture, anchor: naming-conventions, sectionHash: 'sha256:e1f7a7979c17cf50' }
+    author: llm-draft
+
+  - id: core.naming.page-template-name
+    version: 1
+    status: live
+    level: beginner
+    area: core-concepts
+    tags: [layouts-and-pages]
+    type: multiple-choice
+    difficulty: 2
+    prompt: A page template (the Vue file a page renders through) is at `app/app/cwa/pages/BlogDetail.vue`. Which name does the module register it under?
+    options:
+      - { id: a, text: '`CwaPageBlogDetail`' }
+      - { id: b, text: '`CwaComponentBlogDetail`' }
+      - { id: c, text: '`PageBlogDetail`' }
+      - { id: d, text: '`BlogDetail`' }
+    answer:
+      correct: a
+      explanation: >-
+        Files in `app/app/cwa/pages/` are registered with the `CwaPage` prefix in front of the PascalCased file
+        name, so `BlogDetail.vue` is `CwaPageBlogDetail`.
+    sources:
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: how-uicomponent-names-resolve, sectionHash: 'sha256:5dc45450ae61e9df' }
+    author: llm-draft
+
+  - id: core.naming.file-name-casing
+    version: 1
+    status: live
+    level: beginner
+    area: core-concepts
+    tags: [layouts-and-pages]
+    type: multiple-choice
+    difficulty: 2
+    prompt: A layout's Vue file is `app/app/cwa/layouts/site-header.vue`. Which name does the module register it under?
+    options:
+      - { id: a, text: '`CwaLayoutsite-header`' }
+      - { id: b, text: '`SiteHeader`' }
+      - { id: c, text: '`CwaLayoutSiteHeader`' }
+      - { id: d, text: '`CwaSiteHeaderLayout`' }
+    answer:
+      correct: c
+      explanation: >-
+        Nuxt builds the name from the `CwaLayout` prefix and the PascalCased file name, so `site-header.vue`
+        becomes `CwaLayoutSiteHeader`.
+    sources:
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: how-uicomponent-names-resolve, sectionHash: 'sha256:5dc45450ae61e9df' }
+    author: llm-draft
+
+  - id: core.naming.nuxt-config-keys
+    version: 1
+    status: live
+    level: beginner
+    area: core-concepts
+    tags: [layouts-and-pages, module-setup]
+    type: multiple-choice
+    difficulty: 2
+    prompt: You register the page template `app/app/cwa/pages/BlogDetail.vue` under `cwa.pages` in `nuxt.config`. Which key do you use for it?
+    options:
+      - { id: a, text: '`CwaPageBlogDetail`' }
+      - { id: b, text: '`BlogDetail`' }
+      - { id: c, text: '`blog-detail`' }
+      - { id: d, text: '`pages/BlogDetail.vue`' }
+    answer:
+      correct: b
+      explanation: >-
+        The keys under `cwa.layouts` and `cwa.pages` in `nuxt.config` are the name without the prefix, such as
+        `Primary` and `BlogDetail`. The record's `uiComponent` is the one that holds the full name.
+    sources:
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: how-uicomponent-names-resolve, sectionHash: 'sha256:5dc45450ae61e9df' }
+      - { kind: docs, page: /core-concepts/architecture, anchor: naming-conventions, sectionHash: 'sha256:e1f7a7979c17cf50' }
+    author: llm-draft
+
+  - id: core.naming.bundle-tables
+    version: 1
+    status: live
+    level: beginner
+    area: core-concepts
+    tags: [data-model]
+    type: multiple-choice
+    difficulty: 1
+    prompt: In the database you find a table named `_acb_component_group`. A component group is the named, ordered list of components, such as `main`, that belongs to a layout, page or component. What does the `_acb_` prefix tell you about the table?
+    options:
+      - { id: a, text: It is one of the bundle's own tables }
+      - { id: b, text: It belongs to your own entities }
+      - { id: c, text: A migration left it behind to delete }
+      - { id: d, text: It holds only draft rows }
+    answer:
+      correct: a
+      explanation: >-
+        The bundle prefixes its own tables with `_acb_` by default (its `table_prefix` setting). Your component entities get tables of their own.
+    sources:
+      - { kind: docs, page: /core-concepts/architecture, anchor: naming-conventions, sectionHash: 'sha256:e1f7a7979c17cf50' }
+    author: llm-draft
+
+  - id: core.naming.layout-file-suffix
+    version: 1
+    status: live
+    level: intermediate
+    area: core-concepts
+    tags: [layouts-and-pages]
+    type: multiple-choice
+    difficulty: 2
+    prompt: A layout's Vue file is `app/app/cwa/layouts/PrimaryLayout.vue`. Which value must the layout record's `uiComponent` (the field naming the Vue file it renders with) hold?
+    why: >-
+      A layout whose `uiComponent` doesn't match the registered name doesn't resolve, so naming the file
+      `primary.vue` keeps the stored name short and readable.
+    options:
+      - { id: a, text: '`PrimaryCwaLayout`' }
+      - { id: b, text: '`CwaLayoutPrimary`' }
+      - { id: c, text: '`CwaLayoutLayoutPrimary`' }
+      - { id: d, text: '`CwaLayoutPrimaryLayout`' }
+    answer:
+      correct: d
+      explanation: >-
+        The `CwaLayout` prefix is added to whatever the file is called, so `PrimaryLayout.vue` registers as
+        `CwaLayoutPrimaryLayout`, and a layout's `uiComponent` stores the full registered name.
+      optionNotes:
+        b: That is the name of `primary.vue`. The module doesn't strip a `Layout` suffix from the file name.
+    sources:
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: how-uicomponent-names-resolve, sectionHash: 'sha256:5dc45450ae61e9df' }
+    author: llm-draft
+
+  - id: core.naming.page-short-name
+    version: 1
+    status: live
+    level: intermediate
+    area: core-concepts
+    tags: [layouts-and-pages]
+    type: multiple-choice
+    difficulty: 3
+    prompt: Your own API call creates a page record with `uiComponent` set to `BlogDetail`, the short name of the page template `BlogDetail.vue`. What does the API store?
+    why: >-
+      The admin, the fixture builder and your own API calls all end up storing the same value, so you can compare
+      or filter pages by `uiComponent` without checking for two forms.
+    since: [{ repo: api-components-bundle, version: '2.0.0-alpha.18' }]
+    options:
+      - { id: a, text: '`BlogDetail`, exactly as sent' }
+      - { id: b, text: '`CwaPageBlogDetail`, with the prefix added' }
+      - { id: c, text: 'Nothing, because the write is refused with a 422' }
+      - { id: d, text: '`CwaComponentBlogDetail`, with the component prefix' }
+    answer:
+      correct: b
+      explanation: >-
+        The API adds the `CwaPage` prefix when a page is written with the short name, so it stores the full
+        registered name, `CwaPageBlogDetail`.
+      optionNotes:
+        a: That is what happens for a layout. Layouts are stored as sent, with no prefix added.
+    sources:
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: how-uicomponent-names-resolve, sectionHash: 'sha256:5dc45450ae61e9df' }
+    author: llm-draft
+
+  - id: core.naming.layout-short-name
+    version: 1
+    status: live
+    level: intermediate
+    area: core-concepts
+    tags: [layouts-and-pages]
+    type: multiple-choice
+    difficulty: 3
+    prompt: A layout record's `uiComponent` is stored as `Primary`, and the layout's Vue file is `app/app/cwa/layouts/primary.vue`. What happens when a page with that layout renders?
+    why: >-
+      Unlike pages, layouts get no prefix added by the API, so a script or fixture that writes the short name
+      leaves a layout that never uses its Vue file.
+    options:
+      - { id: a, text: '`primary.vue`, because the API adds the prefix on save' }
+      - { id: b, text: '`primary.vue`, because the module adds the prefix when rendering' }
+      - { id: c, text: 'The default layout, with a warning that `Primary` can''t be resolved' }
+      - { id: d, text: 'No layout at all, and the page''s content is hidden' }
+    answer:
+      correct: c
+      explanation: >-
+        A layout's `uiComponent` must hold the full registered name, `CwaLayoutPrimary`. Layouts are stored as
+        sent, with no prefix added, and rendered by the name as stored, so `Primary` doesn't resolve. The module
+        falls back to the default layout and logs that the layout component cannot be resolved.
+    sources:
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: how-uicomponent-names-resolve, sectionHash: 'sha256:5dc45450ae61e9df' }
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: renaming-or-deleting-a-layout, sectionHash: 'sha256:a66804030913aff5' }
+    author: llm-draft
+
+  - id: core.naming.component-empty-ui-component
+    version: 1
+    status: live
+    level: intermediate
+    area: core-concepts
+    tags: [components]
+    type: multiple-choice
+    difficulty: 2
+    prompt: A `Title` component record has an empty `uiComponent`. Which Vue component does the module render it with?
+    why: >-
+      A new component type renders with no setup beyond its display file, and when that file is missing or
+      misnamed the module warns that the component cannot be resolved.
+    options:
+      - { id: a, text: 'None: it renders nothing until an editor picks a variant' }
+      - { id: b, text: '`CwaComponentTitle`, found from the record''s `@type`' }
+      - { id: c, text: 'The first file in the `Title/ui/` folder, by name' }
+      - { id: d, text: 'A placeholder from the layout, until one is set' }
+    answer:
+      correct: b
+      explanation: >-
+        The module resolves the component from `uiComponent`, and falls back to the record's `@type` when it is
+        empty. `@type` is the PHP class name, so a `Title` renders with `CwaComponentTitle`, from
+        `Title/Title.vue`.
+    sources:
+      - { kind: docs, page: /api/components/creating-components, anchor: the-class-name-vue-component-convention, sectionHash: 'sha256:22b4c3a09af7ba18' }
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: how-uicomponent-names-resolve, sectionHash: 'sha256:5dc45450ae61e9df' }
+    author: llm-draft
