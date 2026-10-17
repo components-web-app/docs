@@ -15,7 +15,14 @@
     "typecheck": "nuxt typecheck",
     "generate-pwa-assets": "pwa-assets-generator --preset minimal-2023 public/icon.png",
     "test": "playwright test",
-    "test:update": "playwright test --update-snapshots"
+    "test:update": "playwright test --update-snapshots",
+    "quiz:generate": "node scripts/quiz/generate.ts",
+    "quiz:stamp": "node scripts/quiz/stamp.ts",
+    "quiz:check": "node scripts/quiz/check.ts",
+    "quiz:lock": "node scripts/quiz/lock.ts",
+    "quiz:sample": "node scripts/quiz/sample.ts",
+    "quiz:diversity": "node scripts/quiz/diversity.ts",
+    "quiz:no-llm": "node scripts/quiz/no-llm.ts"
   },
   "dependencies": {
     "@chenfengyuan/vue-countdown": "^2.1.3",
@@ -34,7 +41,9 @@
     "nuxt": "^4.6.1",
     "nuxt-og-image": "^6.10.3",
     "nuxt-svgo": "^5.3.0",
-    "satori": "^0.47.1"
+    "satori": "^0.47.1",
+    "yaml": "^2.9.1",
+    "zod": "^3.25.76"
   },
   "devDependencies": {
     "@nuxt/eslint": "^1.17.0",

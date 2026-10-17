@@ -1,0 +1,339 @@
+# Hand-written intermediate questions about the API bundle.
+# Format: quiz/README.md. Run `pnpm quiz:stamp <id>` to fill in or refresh the hashes.
+
+questions:
+  - id: api.publishable.publish-now
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [draft-and-publish]
+    type: multiple-choice
+    difficulty: 3
+    prompt: 'Why does the admin publish by sending `"publishedAt": "now"` rather than the current time?'
+    why: >-
+      If your own client code publishes with the browser's time, a clock running ahead leaves the resource
+      scheduled, and it looks as if publishing failed.
+    options:
+      - { id: a, text: 'It skips validation, so an incomplete draft can be published at once' }
+      - { id: b, text: It publishes the draft and every component nested in it }
+      - { id: c, text: It tells Mercure to push the change before it is saved }
+      - { id: d, text: 'The API uses its own clock, so a fast client clock can''t delay it' }
+    answer:
+      correct: d
+      explanation: >-
+        The server replaces `now` with its own time. A client's current time can still be in the future when it
+        arrives, which would leave the resource scheduled instead of published.
+    sources:
+      - { kind: docs, page: /api/components/annotations/publishable, anchor: publishing-now, sectionHash: 'sha256:3648cbb8f27a8655' }
+    author: llm-draft
+
+  - id: api.publishable.take-offline
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [draft-and-publish]
+    type: multiple-choice
+    difficulty: 3
+    prompt: How do you take a published component offline through the API?
+    why: >-
+      Any client of yours that takes content down over the API, such as an integration, must send this
+      `DELETE`. A `PATCH` succeeds but leaves the live version up.
+    options:
+      - { id: a, text: '`PATCH` it with `"publishedAt": null`' }
+      - { id: b, text: '`DELETE` it with `?published=true`' }
+      - { id: c, text: '`PATCH` it with a past `publishedAt`' }
+      - { id: d, text: '`PUT` it with `"published": false`' }
+    answer:
+      correct: b
+      explanation: >-
+        There is no unpublish switch. `DELETE ?published=true` removes the published version and keeps any
+        draft. A `PATCH` to a live resource only creates or updates a draft.
+      optionNotes:
+        a: That creates or updates a draft and leaves the published version live.
+        c: A past date on a live resource is ignored.
+    sources:
+      - { kind: docs, page: /api/components/annotations/publishable, anchor: publishing-a-resource, sectionHash: 'sha256:b5f4197d5ee863fa' }
+    author: llm-draft
+
+  - id: api.routes.redirect-storage
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [routes]
+    type: multiple-choice
+    difficulty: 2
+    prompt: How is a redirect stored in the API?
+    why: >-
+      When you import old URLs from another site, there's no redirects table to fill: each old URL becomes a
+      route of its own.
+    options:
+      - { id: a, text: As a `Route` whose `redirect` points at another route }
+      - { id: b, text: As a rule in the template's Caddyfile }
+      - { id: c, text: As a `redirectPath` column on the page }
+      - { id: d, text: 'As a `Redirect` entity, with `from` and `to` path fields' }
+    answer:
+      correct: a
+      explanation: >-
+        There is no separate redirect entity. A redirect is a `Route` whose `redirect` property points at
+        another `Route`. The API resolves the chain and exposes the final destination as `redirectPath`.
+    sources:
+      - { kind: docs, page: /api/routes, anchor: redirects, sectionHash: 'sha256:2d0b3542c184189f' }
+    author: llm-draft
+
+  - id: api.routes.redirect-status
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [routes]
+    type: multiple-choice
+    difficulty: 3
+    prompt: A visitor opens a route that redirects. Which status does the module's route middleware send?
+    why: >-
+      A `308` is permanent and keeps the request method, so browsers may cache it. Check a redirect's target
+      before you save it, as a mistaken one can stick.
+    options:
+      - { id: a, text: '`301`' }
+      - { id: b, text: '`302`' }
+      - { id: c, text: '`308`' }
+      - { id: d, text: '`307`' }
+    answer:
+      correct: c
+      explanation: >-
+        The middleware issues a `308` to the route's `redirectPath`. It holds back while an admin is in edit
+        mode, so redirecting routes stay navigable.
+    sources:
+      - { kind: docs, page: /api/routes, anchor: redirects, sectionHash: 'sha256:2d0b3542c184189f' }
+    author: llm-draft
+
+  - id: api.routes.live-at-null
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [routes]
+    type: multiple-choice
+    difficulty: 2
+    prompt: A route's `liveAt` is `null`. What do anonymous visitors get at its path?
+    why: >-
+      Use it to take a page down for a while. Deleting the route instead frees the path, and you'd have to set
+      it up again.
+    options:
+      - { id: a, text: 'A `404`, and the path stays reserved' }
+      - { id: b, text: 'The page''s last published version, read-only' }
+      - { id: c, text: A redirect to the parent route }
+      - { id: d, text: A `401` until they sign in }
+    answer:
+      correct: a
+      explanation: >-
+        `null` means not live: visitors get a 404, while the route keeps its path, its redirects and its
+        children. Admins can still preview and edit the page.
+    sources:
+      - { kind: docs, page: /api/routes, anchor: scheduling-and-taking-routes-offline, sectionHash: 'sha256:5545c6ea561bc03e' }
+    author: llm-draft
+
+  - id: api.routes.live-at-inheritance
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [routes]
+    type: multiple-choice
+    difficulty: 4
+    prompt: A parent route is scheduled for 1 November. Its child route's own `liveAt` has already passed. When does the child go live?
+    why: >-
+      If a page you set live still 404s for visitors, look at its parent routes: one that is scheduled or not
+      live holds it back.
+    options:
+      - { id: a, text: 'Now, from its own date' }
+      - { id: b, text: 'On 1 November, with its parent' }
+      - { id: c, text: Only once its own date is changed }
+      - { id: d, text: When an editor publishes the parent }
+    answer:
+      correct: b
+      explanation: >-
+        The effective date is the latest of the route's own `liveAt` and those of its routed ancestors, so a
+        scheduled parent holds back its whole subtree.
+    sources:
+      - { kind: docs, page: /api/routes, anchor: inheritance, sectionHash: 'sha256:b6cba5ba8038fe72' }
+    author: llm-draft
+
+  - id: api.routes.cascade-child-paths
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [routes]
+    type: multiple-choice
+    difficulty: 3
+    prompt: 'An admin renames `/events` to `/happenings` with `cascadeChildPaths: true`. What happens to `/events/2024`?'
+    why: >-
+      When your own code renames a section's route, pass it, or the child pages keep URLs under the old
+      prefix.
+    options:
+      - { id: a, text: 'It becomes `/happenings/2024`, and the old path redirects' }
+      - { id: b, text: It is deleted along with the page it publishes }
+      - { id: c, text: 'It becomes `/happenings/2024`, and the old path is now a 404' }
+      - { id: d, text: 'It keeps `/events/2024`, and nothing redirects to it' }
+    answer:
+      correct: a
+      explanation: >-
+        `cascadeChildPaths` updates the whole subtree and creates a redirect from every old path. Without it,
+        only the one route changes and the children keep their old paths.
+    sources:
+      - { kind: docs, page: /api/routes, anchor: cascading-route-changes, sectionHash: 'sha256:93e0e69507b6bbb7' }
+    author: llm-draft
+
+  - id: api.routes.page-data-without-route
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [routes, dynamic-pages]
+    type: multiple-choice
+    difficulty: 3
+    prompt: You create a page data record with `POST` through the REST API. What route does it get?
+    why: >-
+      Records you import through the API can't be visited until they have routes, so add that step to any
+      import script.
+    options:
+      - { id: a, text: None until you create or generate one }
+      - { id: b, text: 'One made from its title''s slug, under the root' }
+      - { id: c, text: One under its template page's path }
+      - { id: d, text: A temporary `/unnamed-page` route }
+    answer:
+      correct: a
+      explanation: >-
+        Creating page data through the API or the admin never creates a route. Create one with `POST /_/routes`,
+        or generate it from the title with `POST /_/routes/generate`.
+    sources:
+      - { kind: docs, page: /api/routes, anchor: route-generation, sectionHash: 'sha256:d75613602e69bada' }
+    author: llm-draft
+
+  - id: api.fixtures.after-routes
+    version: 2
+    status: live
+    level: intermediate
+    area: api
+    tags: [fixtures, routes]
+    type: multiple-choice
+    difficulty: 3
+    prompt: In a scaffold, a navigation link's `route` field must point to the page route named `about`. How do the docs say to set it?
+    why: >-
+      Navigation links are where you'll meet this: a menu points at pages whose routes don't exist until the
+      scaffold flushes.
+    options:
+      - { id: a, text: "`$link->route = $cwa->getRoute('about')`, straight after `$cwa->page()`" }
+      - { id: b, text: "`$cwa->afterRoutes(fn ($cwa) => $link->route = $cwa->getRoute('about'))`" }
+      - { id: c, text: "`$cwa->component($link)->linkRoute('route', routeName: 'about')`" }
+      - { id: d, text: "`$cwa->component($link)->linkIri('route', route: 'about')`" }
+    answer:
+      correct: c
+      explanation: >-
+        `linkRoute()` sets a field that holds a `Route`, by the route's name, once the routes exist during
+        `flush()`. Keep `afterRoutes()` for anything else that needs a route, such as a value your own code works
+        out from it.
+      optionNotes:
+        a: The route doesn't exist until `flush()` creates it, so `getRoute()` throws there.
+        b: That runs, but the docs keep `afterRoutes()` for values worked out from a route. A route field takes `linkRoute()`.
+        d: '`linkIri()` writes an IRI string, for a string or array field. A `route` field holds the `Route` itself.'
+    since: [{ repo: api-components-bundle, version: '2.0.0-alpha.22' }]
+    sources:
+      - { kind: docs, page: /api/data-fixtures/writing-a-scaffold, anchor: linking-routes-and-iris, sectionHash: 'sha256:3940b189955e0261' }
+      - { kind: docs, page: /api/data-fixtures/builder-reference, anchor: afterroutes, sectionHash: 'sha256:675501e7417f2840' }
+    author: llm-draft
+
+  - id: api.fixtures.page-group-allow
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [fixtures, components]
+    type: multiple-choice
+    difficulty: 4
+    prompt: On a page builder, how do you limit the `primary` group to `HtmlContent` components?
+    why: >-
+      The argument order differs between builders, so a `group()` call copied from a layout or component
+      builder breaks on a page builder.
+    options:
+      - { id: a, text: "`->group('primary', [HtmlContent::class])`" }
+      - { id: b, text: "`->group('primary')->allow([HtmlContent::class])`" }
+      - { id: c, text: "`->group('primary', allow: [HtmlContent::class])`" }
+      - { id: d, text: "`->group('primary', only: HtmlContent::class)`" }
+    answer:
+      correct: c
+      explanation: >-
+        On `PageBuilder`, `allow` is the fourth argument of `group()`, so pass it by name. On `LayoutBuilder` and
+        `ComponentBuilder` it is the second.
+      optionNotes:
+        a: On a page builder the second argument is the `configure` closure.
+    sources:
+      - { kind: docs, page: /api/data-fixtures/builder-reference, anchor: pagebuilder-from-cwa-page, sectionHash: 'sha256:6549a43071bfc877' }
+    author: llm-draft
+
+  - id: api.fixtures.redirect-target-name
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [fixtures, routes]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      A scaffold declares `$cwa->page('about-team', uiComponent: 'Primary', layout: 'main', route: '/about/team',
+      routeName: 'team')`. What does `$cwa->redirect('/our-team', to: …)` take to send visitors to that page?
+    why: >-
+      Each page in a scaffold has a reference, a route name and a path, so check which one a method expects
+      before you pass it a string.
+    options:
+      - { id: a, text: "`'about-team'`" }
+      - { id: b, text: "`'team'`" }
+      - { id: c, text: "`'/about/team'`" }
+      - { id: d, text: "`'about'`" }
+    answer:
+      correct: b
+      explanation: >-
+        `redirect(to:)` takes a route name, and `routeName:` sets it. The first argument of `page()` is the
+        page's reference, and `route:` is the path visitors open.
+      optionNotes:
+        a: That is the page's reference, used by `page(layout:)`, `pageData(template:)` and `linkIri(page:)`. Without `routeName:` the route would be named after its path, `about-team`, but this one is named `team`.
+        c: That is the route's path. A path is the first argument of `redirect()`, the URL it redirects from.
+    sources:
+      - { kind: docs, page: /api/data-fixtures/writing-a-scaffold, anchor: references-route-names-and-paths, sectionHash: 'sha256:48b81afe39fd089c' }
+      - { kind: docs, page: /api/data-fixtures/builder-reference, anchor: redirect, sectionHash: 'sha256:ad6364c1c729865f' }
+    author: llm-draft
+
+  - id: api.uploads.uploaded-image-svg
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [uploads]
+    type: multiple-choice
+    difficulty: 3
+    prompt: An image field has `#[UploadedImage]` with no options. An editor uploads an SVG to it. What happens?
+    why: >-
+      If a field's front end needs raster variants, such as a `srcset`, set `allowSvg: false`, or editors can
+      upload SVGs that get none.
+    options:
+      - { id: a, text: 'It''s refused with a `422`, because an SVG has no pixel size' }
+      - { id: b, text: 'It''s accepted, and the field''s imagine filters make raster variants of it' }
+      - { id: c, text: 'It''s accepted; the pixel checks are skipped, and `maxSize` still applies' }
+      - { id: d, text: 'It''s refused unless the field sets `allowSvg: true`' }
+    answer:
+      correct: c
+      explanation: >-
+        `#[UploadedImage]` accepts an SVG and skips the width, height, pixel, ratio and corruption checks, because
+        an SVG has no pixel size. `maxSize` and `mimeTypes` still apply. `allowSvg: false` refuses SVGs.
+      optionNotes:
+        a: That is what a plain `Assert\Image` does. `#[UploadedImage]` lets SVGs through.
+        b: Imagine filters only run on raster images. An SVG returns its primary media object with no variants.
+        d: '`allowSvg` is `true` by default. Set it to `false` to refuse SVGs.'
+    since: [{ repo: api-components-bundle, version: '2.0.0-alpha.23' }]
+    sources:
+      - { kind: docs, page: /api/components/annotations/uploadable, anchor: capping-uploads-to-fit-the-budget, sectionHash: 'sha256:44a8df06f40989a6' }
+      - { kind: docs, page: /api/components/annotations/uploadable, anchor: liipimaginebundle-integration, sectionHash: 'sha256:27ee53328388ecf2' }
+    author: llm-draft

@@ -1,0 +1,157 @@
+# Hand-written What's new questions about the Nuxt module: changes in its latest releases.
+# Each one has a `since` naming the release that brought the change in.
+# Format: quiz/README.md. Run `pnpm quiz:stamp <id>` to fill in or refresh the hashes.
+
+questions:
+  - id: nuxt.ui.loading-indicator-bars
+    version: 1
+    status: live
+    level: beginner
+    area: nuxt-module
+    tags: [module-setup]
+    type: multiple-choice
+    difficulty: 2
+    prompt: >-
+      After an upgrade, you put `<CwaLoadingIndicator />` in `app.vue`. Now two loading bars show while a CWA page
+      loads. What do you change?
+    why: >-
+      Layouts copied from an older template still render the old progress bar, so pages show a second bar until
+      you remove it.
+    since: [{ repo: cwa-nuxt-module, version: '2.0.0-alpha.16' }]
+    options:
+      - { id: a, text: 'Move `<CwaLoadingIndicator />` into each layout' }
+      - { id: b, text: 'Remove the `<CwaUiProgressBar>` your layouts render' }
+      - { id: c, text: 'Set `cwa: { disabled: true }` on the CWA pages' }
+      - { id: d, text: 'Pass `:throttle="0"` to `<CwaLoadingIndicator>`' }
+    answer:
+      correct: b
+      explanation: >-
+        Older layouts rendered `<CwaUiProgressBar>`, driven by `pageLoadProgress`. `<CwaLoadingIndicator>` covers
+        CWA pages and your own Nuxt pages with one bar, so remove the old one.
+    sources:
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-page-templates, anchor: loading-bar, sectionHash: 'sha256:b462b57d44f1200b' }
+    author: llm-draft
+
+  - id: nuxt.ui.page-loading-end
+    version: 1
+    status: live
+    level: advanced
+    area: nuxt-module
+    tags: [internals]
+    type: multiple-choice
+    difficulty: 4
+    prompt: >-
+      Your app sends a page view to analytics from Nuxt's `page:loading:end` hook. A visitor clicks a link to
+      another CWA page. When does your hook run?
+    why: >-
+      Code on `page:loading:end`, such as analytics or a scroll handler, now runs when the new page is visible,
+      not while the old one is still on screen.
+    since: [{ repo: cwa-nuxt-module, version: '2.0.0-alpha.16' }]
+    options:
+      - { id: a, text: 'As soon as the new route''s component resolves' }
+      - { id: b, text: 'Before the module fetches the new page''s route' }
+      - { id: c, text: 'When the new CWA page is on screen' }
+      - { id: d, text: 'Only after a full page load, never on navigation' }
+    answer:
+      correct: c
+      explanation: >-
+        The module holds `page:loading:end` until the new CWA page shows, so the loading bar finishes and the page
+        scrolls to the top then. Pages with `cwa: { disabled: true }` are never held.
+    sources:
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-page-templates, anchor: loading-bar, sectionHash: 'sha256:b462b57d44f1200b' }
+    author: llm-draft
+
+  - id: nuxt.seo.og-image-secret
+    version: 1
+    status: live
+    level: advanced
+    area: nuxt-module
+    tags: [module-setup]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      After a module upgrade, production pages render, but social cards are broken and the server logs
+      `URL signing has no valid secret`. What do you set?
+    why: >-
+      Nothing else fails, so a missing secret goes unnoticed until someone shares a link. The template's deploy
+      keeps one for you; any other deployment must set it.
+    since: [{ repo: cwa-nuxt-module, version: '2.0.0-alpha.16' }]
+    options:
+      - { id: a, text: '`NUXT_APP_SECRET`, a new value for each SSR pod' }
+      - { id: b, text: '`NUXT_OG_IMAGE_SECRET`, in the API''s settings' }
+      - { id: c, text: 'The `satori` and `@resvg/resvg-js` packages' }
+      - { id: d, text: '`NUXT_APP_SECRET`, the same on every SSR pod' }
+    answer:
+      correct: d
+      explanation: >-
+        `nuxt-og-image` 7 signs its image URLs with Nuxt's `appSecret`, so without `NUXT_APP_SECRET` (at least 32
+        characters) every `/_og/` image is a 500. One pod renders the signed URL and another may serve the image,
+        so every pod needs the same value.
+      optionNotes:
+        b: '`NUXT_OG_IMAGE_SECRET` is the older, deprecated name, read by Nuxt as a fallback. The API never signs these URLs.'
+        c: Without the renderers the module logs that open graph image generation is disabled, and pages get no OG image at all.
+    sources:
+      - { kind: docs, page: /nuxt-module/configuration/site-config-and-seo, anchor: the-og-image-secret, sectionHash: 'sha256:860cf01d421ad9e3' }
+    author: llm-draft
+
+  - id: nuxt.seo.skew-protection
+    version: 1
+    status: live
+    level: intermediate
+    area: nuxt-module
+    tags: [module-setup]
+    type: pick-the-line
+    difficulty: 3
+    prompt: Your app registers `@nuxtjs/seo` 6 itself. Which line stops every visitor's browser polling for new builds?
+    why: >-
+      `@nuxtjs/seo` 6 turns on two modules that add about 5.5 KB gzip to every visitor's entry, for features a CWA
+      site may not want.
+    since: [{ repo: cwa-nuxt-module, version: '2.0.0-alpha.16' }]
+    code:
+      lang: ts
+      text: |-
+        // app/nuxt.config.ts
+        export default defineNuxtConfig({
+            skewProtection: { enabled: false },
+            aiReady: { enabled: false },
+        })
+    answer:
+      lines: [3]
+      explanation: >-
+        `nuxt-skew-protection` polls for new builds, and `nuxt-ai-ready` serves `llms.txt` and similar files.
+        `@nuxtjs/seo` 6 turns both on. The module doesn't register `@nuxtjs/seo`, so only an app that does needs
+        these lines.
+    sources:
+      - { kind: docs, page: /nuxt-module/module-setup, anchor: nuxt-seo-v6, sectionHash: 'sha256:db486a0b1853bdf7', block: 1, blockHash: 'sha256:869ce22d8f66f1bc' }
+    author: llm-draft
+
+  - id: nuxt.admin.add-page-data-route
+    version: 1
+    status: live
+    level: intermediate
+    area: nuxt-module
+    tags: [admin, routes]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      A button links to `/_cwa/data/trainingModuleData/add` with `parentPageData` and `template` in the query. An
+      editor fills in the form and saves. How does the new record get its route?
+    why: >-
+      A link that pre-fills the add form saves editors choosing the parent and template, but the record has no
+      URL until someone adds its route.
+    since: [{ repo: cwa-nuxt-module, version: '2.0.0-alpha.15' }]
+    options:
+      - { id: a, text: 'The editor adds it in the Routes tab, which opens next' }
+      - { id: b, text: 'From a `route` query parameter on the same link' }
+      - { id: c, text: 'It is generated from the title when the form saves' }
+      - { id: d, text: 'It is copied from the parent page data''s route' }
+    answer:
+      correct: a
+      explanation: >-
+        The path isn't a page data field, so a link can't fill it in. After saving, the form opens the **Routes**
+        tab, where the editor adds the route.
+      optionNotes:
+        c: Creating page data in the admin never creates a route. The editor generates or adds one in the Routes tab.
+    sources:
+      - { kind: docs, page: /nuxt-module/cwa-layer/admin-panel, anchor: linking-to-the-add-page-data-form, sectionHash: 'sha256:bbbd5de70f36bcfd' }
+    author: llm-draft

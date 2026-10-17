@@ -1,0 +1,162 @@
+# Hand-written expert questions from the template's source.
+# Each one cites the repo, path, line range and a full commit SHA.
+# Each prompt starts from a situation a developer would meet, then asks one plain question.
+
+questions:
+  - id: deploy.internals.cloudflare-flush
+    version: 2
+    status: live
+    level: expert
+    area: deployment
+    tags: [internals, cloudflare, deployment]
+    type: multiple-choice
+    difficulty: 3
+    docsCoverage: documented
+    prompt: >-
+      After a release, Cloudflare keeps serving old API responses. At the end of every deploy, the template
+      clears either the rendered pages only, or the whole HTTP cache, which also purges Cloudflare. What
+      decides that it clears everything?
+    why: >-
+      If you cache `/_api` at Cloudflare's edge without that setting, a release that changes API output
+      keeps serving old responses until someone purges by hand.
+    options:
+      - { id: a, text: '`CADDY_CACHE_CDN_CONFIG` contains `provider cloudflare`' }
+      - { id: b, text: '`CLOUDFLARE_API_TOKEN` is set for the deploy job' }
+      - { id: c, text: 'The deploy is to production, not to a review app' }
+      - { id: d, text: 'The release ran a database migration this time' }
+    answer:
+      correct: a
+      explanation: >-
+        `purge_rendered_html` looks for `provider cloudflare` in `CADDY_CACHE_CDN_CONFIG` and then runs
+        `purge-http-cache`, which reaches Cloudflare as a purge of everything.
+      optionNotes:
+        b: The token is what Souin sends to Cloudflare. The deploy decides on the CDN config, not the token.
+    sources:
+      - { kind: code, repo: components-web-app, path: bin/devops/k8s.sh, lines: [1250, 1261], commit: 796f32c8cec65f360e1b3fda25207cfb69592bc3, linesHash: 'sha256:969f72571c14be15' }
+      - { kind: docs, page: /deployment/ci-cd, anchor: why-every-deploy-clears-the-page-cache, sectionHash: 'sha256:a535bdc75c8f0bab' }
+    author: llm-draft
+
+  - id: deploy.internals.fixtures-purge-production
+    version: 2
+    status: live
+    level: expert
+    area: deployment
+    tags: [internals, fixtures, deployment]
+    type: multiple-choice
+    difficulty: 3
+    docsCoverage: documented
+    prompt: >-
+      You want to wipe production and load the seed content again, so you set `CWA_CI_FIXTURES_PURGE` to
+      `"true"` and run the fixture job. What does the job do?
+    why: >-
+      One setting can't wipe a live site's content by mistake. If you really mean to wipe
+      production, you have to say so with `"force"`.
+    options:
+      - { id: a, text: 'Empties every table, then loads the fixtures' }
+      - { id: b, text: 'Fails, because production can never be purged' }
+      - { id: c, text: 'Appends, and says production needs `"force"`' }
+      - { id: d, text: 'Skips the load, because the database has data' }
+    answer:
+      correct: c
+      explanation: >-
+        `"true"` purges review apps only. On production the job logs that it needs `"force"`, and loads
+        with `--append`, keeping existing content.
+    sources:
+      - { kind: code, repo: components-web-app, path: bin/devops/k8s.sh, lines: [1196, 1213], commit: 796f32c8cec65f360e1b3fda25207cfb69592bc3, linesHash: 'sha256:15e9fea9b32a6683' }
+      - { kind: docs, page: /deployment/ci-cd, anchor: purging-before-a-load, sectionHash: 'sha256:bec843d848a1ae81' }
+    author: llm-draft
+
+  - id: deploy.internals.php-memory-budget
+    version: 2
+    status: live
+    level: expert
+    area: deployment
+    tags: [internals, kubernetes]
+    type: multiple-choice
+    difficulty: 4
+    docsCoverage: documented
+    prompt: >-
+      Before it deploys, the template adds up the memory php needs and fails if too little of the pod's limit
+      is left for Go, which runs FrankenPHP itself. With the defaults (a `1Gi` limit, 4 workers at `128Mi`, an
+      imagine limit of `320Mi` and `160Mi` reserved), how much is left for Go?
+    why: >-
+      Adding workers or raising the imagine limit without raising the pod's memory limit can fail the
+      deploy. This sum tells you how much room you have.
+    options:
+      - { id: a, text: '`32Mi`, so the deploy fails' }
+      - { id: b, text: '`64Mi`, the least it allows' }
+      - { id: c, text: '`160Mi`' }
+      - { id: d, text: '`352Mi`' }
+    answer:
+      correct: c
+      explanation: >-
+        Workers × the PHP limit, plus the imagine limit above one worker's (320 − 128 = 192), plus the
+        reserve: 512 + 192 + 160 = 864Mi, leaving 160Mi of 1024Mi. Below 64Mi the deploy fails.
+      optionNotes:
+        d: That leaves out the imagine headroom. One request at a time may use the imagine limit in place of a worker's.
+    sources:
+      - { kind: code, repo: components-web-app, path: bin/devops/k8s.sh, lines: [880, 911], commit: 9ff42840b7da0f747320de601c5952258d29d5ce, linesHash: 'sha256:0fbedb863b5d2572' }
+      - { kind: docs, page: /deployment/variables, anchor: php-memory-budget, sectionHash: 'sha256:e1cae31fe58f5738' }
+    author: llm-draft
+
+  - id: deploy.internals.fixtures-mercure
+    version: 2
+    status: live
+    level: expert
+    area: deployment
+    tags: [internals, real-time, fixtures]
+    type: multiple-choice
+    difficulty: 4
+    docsCoverage: undocumented
+    prompt: >-
+      A deploy loads fixtures into a site that people have open in their browsers. The fixture command runs
+      with `SKIP_MERCURE_PUBLISH=true`. What does that change?
+    why: >-
+      Without it, a fixture load would push an update to open browsers for every change it makes, while
+      people are using the site.
+    options:
+      - { id: a, text: 'The API stops publishing to Mercure until the next deploy' }
+      - { id: b, text: 'Updates are queued and published once the load finishes' }
+      - { id: c, text: 'The load sends no real-time updates to open browsers' }
+      - { id: d, text: 'The load skips purging the HTTP cache after it runs' }
+    answer:
+      correct: c
+      explanation: >-
+        The template wraps the Mercure hub, and its `publish()` sends nothing while the variable is
+        `true`. It's set only on the fixture command, so the running API still publishes as usual.
+    sources:
+      - { kind: code, repo: components-web-app, path: api/src/Mercure/SkipAwareMercureHub.php, lines: [65, 72], commit: 796f32c8cec65f360e1b3fda25207cfb69592bc3, linesHash: 'sha256:b5324028cac06d5d' }
+      - { kind: code, repo: components-web-app, path: bin/devops/k8s.sh, lines: [1212, 1213], commit: 796f32c8cec65f360e1b3fda25207cfb69592bc3, linesHash: 'sha256:e44b35e966be9ca6' }
+    author: llm-draft
+
+  - id: deploy.internals.jwt-from-live-secret
+    version: 2
+    status: live
+    level: expert
+    area: deployment
+    tags: [internals, security, deployment]
+    type: multiple-choice
+    difficulty: 5
+    docsCoverage: light
+    prompt: >-
+      No JWT CI variables are set, so the deploy reuses the JWT key from the release's live Secret. This time
+      the Secret has the key, but its passphrase entry is empty. What does the deploy do?
+    why: >-
+      If everyone was signed out after a deploy and nobody changed the JWT settings, check that the
+      release's Secret still has the passphrase as well as the key.
+    options:
+      - { id: a, text: 'Fails, because a key needs the passphrase it was made with' }
+      - { id: b, text: 'Keeps the key, and generates a new passphrase for it' }
+      - { id: c, text: 'Generates a new key pair, which signs every user out' }
+      - { id: d, text: 'Keeps the key, and derives the public key without a passphrase' }
+    answer:
+      correct: c
+      explanation: >-
+        The deployed key is reused only with its passphrase. With either missing, `ensure_jwt_keys`
+        makes a new pair and existing tokens stop working.
+      optionNotes:
+        a: That check is for a key set as a CI variable without `JWT_PASSPHRASE`.
+    sources:
+      - { kind: code, repo: components-web-app, path: bin/devops/k8s.sh, lines: [52, 61], commit: 9ff42840b7da0f747320de601c5952258d29d5ce, linesHash: 'sha256:1461a894bd01f4d2' }
+      - { kind: code, repo: components-web-app, path: bin/devops/k8s.sh, lines: [75, 98], commit: 9ff42840b7da0f747320de601c5952258d29d5ce, linesHash: 'sha256:e1474d88b5bfa572' }
+    author: llm-draft

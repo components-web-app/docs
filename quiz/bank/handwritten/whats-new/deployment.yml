@@ -1,0 +1,185 @@
+# Hand-written What's new questions about deploying the template: changes in its latest releases.
+# Each one has a `since` naming the release that brought the change in.
+# Format: quiz/README.md. Run `pnpm quiz:stamp <id>` to fill in or refresh the hashes.
+
+questions:
+  - id: deploy.cicd.pinned-build
+    version: 1
+    status: live
+    level: advanced
+    area: deployment
+    tags: [deployment, kubernetes]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      Production was last deployed yesterday. Since then, new commits on `main` have been built.
+      Tonight a php pod is evicted and restarts. Which build does it run?
+    why: >-
+      A restart or a scale-up used to be able to run a build that was never deployed against the live database.
+      Now only a deploy changes what a track runs.
+    since: [{ repo: components-web-app, version: '2.0.0-alpha.35' }]
+    options:
+      - { id: a, text: 'The build `:main` holds when the pod starts' }
+      - { id: b, text: 'The newest build of any branch in the registry' }
+      - { id: c, text: 'The build yesterday''s deploy pinned by digest' }
+      - { id: d, text: 'Whichever build is in its node''s image cache' }
+    answer:
+      correct: c
+      explanation: >-
+        A deploy pins the image as `<track tag>@<digest>`, such as `production@sha256:…`, with
+        `pullPolicy: IfNotPresent`. Every pod started later, the orphan scan and the image variants Jobs run the
+        deployed build.
+      optionNotes:
+        a: 'Older templates ran `:main` with `pullPolicy: Always`, so a restart pulled whatever `:main` held then.'
+    sources:
+      - { kind: docs, page: /deployment/ci-cd, anchor: which-build-a-deploy-runs, sectionHash: 'sha256:975cfd7417434441' }
+    author: llm-draft
+
+  - id: deploy.k8s.rollback-github
+    version: 1
+    status: live
+    level: advanced
+    area: deployment
+    tags: [deployment, kubernetes]
+    type: multiple-choice
+    difficulty: 4
+    prompt: >-
+      Your site deploys with GitHub Actions. Today's production deploy broke the site, and you want yesterday's
+      build back. What do the docs say to do?
+    why: >-
+      On GitHub, running an old production workflow again looks like a rollback, but it deploys the current
+      build, so the broken release stays live.
+    since: [{ repo: components-web-app, version: '2.0.0-alpha.35' }]
+    options:
+      - { id: a, text: 'Run yesterday''s `production.yml` run again' }
+      - { id: b, text: 'Move the `:production` tag back by hand' }
+      - { id: c, text: 'Delete today''s image from the registry' }
+      - { id: d, text: 'Run `helm rollback` to the previous revision' }
+    answer:
+      correct: d
+      explanation: >-
+        `production.yml` builds nothing, so running it again deploys whatever `:main` holds now. `helm rollback`
+        restores the earlier revision's values, and their image tags include the digest, so it runs exactly that
+        build.
+      optionNotes:
+        b: Pods run `<track tag>@<digest>`, so moving the tag changes nothing until the next deploy.
+    sources:
+      - { kind: docs, page: /deployment/kubernetes, anchor: rollback, sectionHash: 'sha256:41d0d873fd59e900' }
+    author: llm-draft
+
+  - id: deploy.k8s.api-logs
+    version: 1
+    status: live
+    level: intermediate
+    area: deployment
+    tags: [kubernetes]
+    type: multiple-choice
+    difficulty: 2
+    prompt: A visitor reports an error on your production site. Where do you read the API's log?
+    why: >-
+      Nothing is written to `var/log/prod.log` any more, and only a request that logs an error writes its
+      lines, so look in the pod's output for the failing request.
+    since: [{ repo: components-web-app, version: '2.0.0-alpha.34' }]
+    options:
+      - { id: a, text: 'With `kubectl logs`, or the cluster''s log explorer' }
+      - { id: b, text: 'In `var/log/prod.log` inside the php container' }
+      - { id: c, text: 'In the admin panel''s settings, under Logs' }
+      - { id: d, text: 'In the ingress controller''s access log' }
+    answer:
+      correct: a
+      explanation: >-
+        In production, Symfony writes its log to stderr as JSON, in Google Cloud's structured logging format. It no
+        longer writes `var/log/prod.log`, a file inside the container that every restart lost.
+    sources:
+      - { kind: docs, page: /deployment/kubernetes, anchor: logs, sectionHash: 'sha256:e254dc6adcd65427' }
+    author: llm-draft
+
+  - id: deploy.k8s.error-mail-sender
+    version: 1
+    status: live
+    level: advanced
+    area: deployment
+    tags: [kubernetes, deployment]
+    type: multiple-choice
+    difficulty: 4
+    prompt: >-
+      You set `CWA_API_ERROR_MAIL_TO` and a working `MAILER_DSN`. The API then returns its first `500` since the
+      deploy, and no email arrives. What is the likely cause?
+    why: >-
+      The error mail fails silently, so without a sender you never hear about the API's `5xx` errors. Set
+      `MAILER_EMAIL` with the other two variables.
+    since: [{ repo: components-web-app, version: '2.0.0-alpha.34' }]
+    options:
+      - { id: a, text: 'Only uncaught exceptions send it, not a `500`' }
+      - { id: b, text: '`MAILER_EMAIL` is unset, so it has no sender' }
+      - { id: c, text: 'The CI variable must be named `ERROR_MAIL_TO`' }
+      - { id: d, text: 'Errors are collected and mailed once an hour' }
+    answer:
+      correct: b
+      explanation: >-
+        The mail is sent from `MAILER_EMAIL`, and with none set nothing is sent. A mail that can't be sent is
+        dropped without an error, so the log is the reliable record.
+      optionNotes:
+        c: php reads it as `ERROR_MAIL_TO`, but the CI variable is `CWA_API_ERROR_MAIL_TO`.
+        d: It sends one email per unique error per hour, so the first one goes at once.
+    sources:
+      - { kind: docs, page: /deployment/kubernetes, anchor: error-mail, sectionHash: 'sha256:f84299baade6313f' }
+    author: llm-draft
+
+  - id: deploy.browser-tests.turning-on
+    version: 1
+    status: live
+    level: beginner
+    area: deployment
+    tags: [deployment]
+    type: multiple-choice
+    difficulty: 2
+    prompt: You want the template's Playwright browser tests to run in your pipeline. What do you do?
+    why: >-
+      Once they're on, a build that breaks logging in or publishing never reaches a site, and every deploy waits
+      for the run.
+    since: [{ repo: components-web-app, version: '2.0.0-alpha.34' }]
+    options:
+      - { id: a, text: 'Nothing, because they run in the test stage by default' }
+      - { id: b, text: 'Add a `browser tests` job to your own CI file' }
+      - { id: c, text: 'Set the CI variable `CWA_CI_TEST_DISABLED` to `"false"`' }
+      - { id: d, text: 'Set the CI variable `CWA_CI_E2E_ENABLED` to `"true"`' }
+    answer:
+      correct: d
+      explanation: >-
+        The browser tests are opt-in, and nothing runs until `CWA_CI_E2E_ENABLED` is `"true"`. Then review,
+        staging, canary and production wait for them, and a failed run stops those deploys.
+    sources:
+      - { kind: docs, page: /deployment/browser-tests, anchor: turning-them-on, sectionHash: 'sha256:52344f007c78c692' }
+    author: llm-draft
+
+  - id: deploy.browser-tests.hidden-server-error
+    version: 1
+    status: live
+    level: advanced
+    area: deployment
+    tags: [deployment]
+    type: multiple-choice
+    difficulty: 4
+    prompt: >-
+      With browser tests on, a run fails although every test's assertions passed. The API had answered one request
+      with a `500` that the page hid. How did the run catch it?
+    why: >-
+      A failed run with green tests points at a server error the UI swallowed. Look in the php log for the failing
+      request, not in the tests.
+    since: [{ repo: components-web-app, version: '2.0.0-alpha.34' }]
+    options:
+      - { id: a, text: 'Playwright fails a test on any `5xx` response' }
+      - { id: b, text: 'The JUnit report counts the `500` as a failure' }
+      - { id: c, text: 'The API sent an error mail, which fails the run' }
+      - { id: d, text: '`check-all-ran.mjs` found the failed request' }
+    answer:
+      correct: c
+      explanation: >-
+        The test stack catches every email in Mailpit. A run fails when the API sent an error mail, which it does
+        for a `5xx` the UI may have hidden. An API write that gets a `405`, `406` or `415` fails it too.
+      optionNotes:
+        d: '`check-all-ran.mjs` fails a run when a listed test was skipped or didn''t run.'
+    sources:
+      - { kind: docs, page: /deployment/browser-tests, anchor: what-they-check, sectionHash: 'sha256:d1f1d2901a17528a' }
+    author: llm-draft

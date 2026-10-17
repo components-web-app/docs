@@ -80,6 +80,12 @@ importers:
       satori:
         specifier: ^0.47.1
         version: 0.47.1
+      yaml:
+        specifier: ^2.9.1
+        version: 2.9.1
+      zod:
+        specifier: ^3.25.76
+        version: 3.25.76
     devDependencies:
       '@nuxt/eslint':
         specifier: ^1.17.0

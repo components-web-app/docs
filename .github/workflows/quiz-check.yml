@@ -1,0 +1,67 @@
+# Checks the quiz bank on every pull request: schema, provenance, stale sources, the lock file and
+# the fairness rules (quiz/README.md). Expert questions are checked against the three source repos,
+# checked out next to the docs, so nothing else is fetched from the network.
+name: Quiz check
+
+on:
+  pull_request:
+    paths:
+      - 'quiz/**'
+      - 'content/**'
+      - 'scripts/quiz/**'
+      - '.github/workflows/quiz-check.yml'
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    env:
+      CWA_BUNDLE_DIR: ${{ github.workspace }}/api-components-bundle
+      CWA_MODULE_DIR: ${{ github.workspace }}/cwa-nuxt-3-module
+      CWA_TEMPLATE_DIR: ${{ github.workspace }}/components-web-app
+      QUIZ_OFFLINE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: docs
+
+      # Full history, so the pinned commits and origin/<branch> both resolve.
+      - uses: actions/checkout@v4
+        with:
+          repository: components-web-app/api-components-bundle
+          ref: main
+          fetch-depth: 0
+          path: api-components-bundle
+      - uses: actions/checkout@v4
+        with:
+          repository: components-web-app/cwa-nuxt-module
+          ref: dev
+          fetch-depth: 0
+          path: cwa-nuxt-3-module
+      - uses: actions/checkout@v4
+        with:
+          repository: components-web-app/components-web-app
+          ref: main
+          fetch-depth: 0
+          path: components-web-app
+
+      - uses: pnpm/action-setup@v4
+        with:
+          package_json_file: docs/package.json
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: docs/pnpm-lock.yaml
+
+      # The quiz scripts need no Nuxt build, so skip `nuxt prepare`.
+      - run: pnpm install --frozen-lockfile --ignore-scripts
+        working-directory: docs
+
+      # Strict, except for drift from the source repos (moved or changed lines, a new release after an
+      # unreleased change): another repo moving on shouldn't fail an unrelated pull request. It still
+      # shows as a warning annotation; `pnpm quiz:stamp <id>` or a review fixes it.
+      - run: pnpm quiz:check --strict --drift-warn
+        working-directory: docs
+
+      - run: pnpm quiz:diversity
+        working-directory: docs

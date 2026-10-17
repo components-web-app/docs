@@ -1,0 +1,197 @@
+# Hand-written What's new questions about the API bundle: changes in its latest releases.
+# Each one has a `since` naming the release that brought the change in.
+# Format: quiz/README.md. Run `pnpm quiz:stamp <id>` to fill in or refresh the hashes.
+
+questions:
+  - id: api.fixtures.publish-component
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [fixtures, draft-and-publish]
+    type: multiple-choice
+    difficulty: 2
+    prompt: >-
+      A scaffold creates an `HtmlContent` component and adds it to the home page's `primary` group. After the
+      load, visitors see nothing in that group. What does the scaffold need?
+    why: >-
+      Every publishable component a scaffold only creates loads as a draft, so editors see it in the admin while
+      visitors get an empty group.
+    since: [{ repo: api-components-bundle, version: '2.0.0-alpha.22' }]
+    options:
+      - { id: a, text: '`->liveAt(new \DateTimeImmutable())` on the home page' }
+      - { id: b, text: '`$cwa->persist($htmlContent)` after adding it' }
+      - { id: c, text: '`$cwa->publish($htmlContent)`' }
+      - { id: d, text: '`->draft($htmlContent)` on the component''s builder' }
+    answer:
+      correct: c
+      explanation: >-
+        A publishable component that you only create is a draft, and visitors don't see drafts. `$cwa->publish()`
+        sets its publish date, now or at `at:`. It doesn't save the component, so you still add it to a group.
+      optionNotes:
+        a: '`liveAt()` is the route''s go-live date. A page on a live route still hides its unpublished components.'
+        d: '`draft()` links a pending draft to a component that is already published.'
+    sources:
+      - { kind: docs, page: /api/data-fixtures/writing-a-scaffold, anchor: publishing-and-drafts, sectionHash: 'sha256:dc72bece4cfd1a62' }
+    author: llm-draft
+
+  - id: api.fixtures.component-draft
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [fixtures, draft-and-publish]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      A scaffold's published `$welcome` component should also have a pending draft. You create `$welcomeDraft`
+      and call `$cwa->component($welcome)->draft($welcomeDraft)`. What else does `$welcomeDraft` need?
+    why: >-
+      A seeded site can show editors a pending change on a published component, such as new copy waiting for
+      sign-off, while visitors keep seeing the live version.
+    since: [{ repo: api-components-bundle, version: '2.0.0-alpha.22' }]
+    options:
+      - { id: a, text: 'To be added to the same group as `$welcome`' }
+      - { id: b, text: 'A `$cwa->persist()` call of its own' }
+      - { id: c, text: 'A `$cwa->publish()` call with a future date' }
+      - { id: d, text: 'Nothing. The builder links and saves it' }
+    answer:
+      correct: d
+      explanation: >-
+        `draft()` links the draft to the published component at once, and the builder saves it after the
+        positions. Don't add the draft to a group.
+      optionNotes:
+        a: The docs say not to. The draft belongs to the published component, not to a group.
+        c: A pending draft needs no publish date. A future date would schedule it to replace the live version.
+    sources:
+      - { kind: docs, page: /api/data-fixtures/writing-a-scaffold, anchor: publishing-and-drafts, sectionHash: 'sha256:dc72bece4cfd1a62' }
+    author: llm-draft
+
+  - id: api.fixtures.link-route-group-owner
+    version: 1
+    status: live
+    level: advanced
+    area: api
+    tags: [fixtures, routes]
+    type: multiple-choice
+    difficulty: 4
+    prompt: >-
+      A scaffold's `Card` component owns a group of its own, and its builder calls
+      `->linkRoute('route', routeName: 'about')`. The load fails while saving the card, before any route exists.
+      What needs to change?
+    why: >-
+      A NOT NULL route column on a component looks safe until a scaffold seeds one that owns a group. Then every
+      fixture load fails on it.
+    since: [{ repo: api-components-bundle, version: '2.0.0-alpha.22' }]
+    options:
+      - { id: a, text: 'Set the field in `afterRoutes()` instead' }
+      - { id: b, text: 'Give the about page a `routeName:` of its own' }
+      - { id: c, text: 'Declare the card inside a `nested()` closure' }
+      - { id: d, text: 'The card''s `route` field must allow `null`' }
+    answer:
+      correct: d
+      explanation: >-
+        A component that owns groups is saved before its `linkRoute()` is applied, because its groups need an
+        owner. The builder sets the field once the routes exist, so until then it is `null`.
+      optionNotes:
+        a: '`afterRoutes()` also runs after the routes exist, so the card is still saved first with an empty field.'
+    sources:
+      - { kind: docs, page: /api/data-fixtures/writing-a-scaffold, anchor: linking-routes-and-iris, sectionHash: 'sha256:3940b189955e0261' }
+    author: llm-draft
+
+  - id: api.uploads.data-uri-validation
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [uploads]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      An image field has `#[UploadedImage]` with no options. A client sends a 40-megapixel JPEG as a base64 data
+      URI in the JSON body. What does the API return?
+    why: >-
+      Clients that upload base64 instead of multipart now get the same field errors as a form upload, so show
+      them to the editor like any other violation.
+    since: [{ repo: api-components-bundle, version: '2.0.0-alpha.23' }]
+    options:
+      - { id: a, text: '`201`, with the file stored and no variants' }
+      - { id: b, text: '`201`, because a data URI skips validation' }
+      - { id: c, text: '`422`, with a violation on the field' }
+      - { id: d, text: '`400`, saying the file could not be uploaded' }
+    answer:
+      correct: c
+      explanation: >-
+        A data URI is validated like a multipart upload: the field's `Assert\File`, `Assert\Image` or
+        `#[UploadedImage]` checks the decoded file. 40 megapixels is over the 30,000,000-pixel default, so it's a
+        `422` on the field.
+      optionNotes:
+        d: 'Older bundles refused every data-URI upload to a field with a `File` or `Image` constraint, valid or not, with a `422` saying "The file could not be uploaded."'
+    sources:
+      - { kind: docs, page: /api/components/annotations/uploadable, anchor: uploading-a-file, sectionHash: 'sha256:24eb1019fe531e53' }
+      - { kind: docs, page: /api/components/annotations/uploadable, anchor: capping-uploads-to-fit-the-budget, sectionHash: 'sha256:44a8df06f40989a6' }
+    author: llm-draft
+
+  - id: api.uploads.image-max-pixels-config
+    version: 1
+    status: live
+    level: advanced
+    area: api
+    tags: [uploads]
+    type: spot-the-mistake
+    difficulty: 3
+    prompt: >-
+      Your API uses the GD driver, so this config should lower the default pixel limit of `#[UploadedImage]` to
+      20 megapixels. One line is wrong. Click it.
+    why: >-
+      With GD and the 30-megapixel default, an image can pass validation and still be stored with no variants,
+      because generating them needs more than the 320M imagine budget.
+    since: [{ repo: api-components-bundle, version: '2.0.0-alpha.23' }]
+    code:
+      lang: yaml
+      text: |-
+        # config/packages/silverback_api_components.yaml
+        silverback_api_components:
+            imagine:
+                image_max_pixels: 20000000
+    answer:
+      line: 3
+      fix: '    uploadable:'
+      explanation: >-
+        The default limit is `uploadable.image_max_pixels`. The `imagine` block holds `memory_limit`, the budget
+        the limit has to fit. The 30,000,000 default fits that budget with vips, so on GD or Imagick the docs set
+        it to 20,000,000.
+    sources:
+      - { kind: docs, page: /api/components/annotations/uploadable, anchor: capping-uploads-to-fit-the-budget, sectionHash: 'sha256:44a8df06f40989a6', block: 1, blockHash: 'sha256:9e4c03469999e83f' }
+    author: llm-draft
+
+  - id: api.orphans.invalid-files-groups
+    version: 1
+    status: live
+    level: advanced
+    area: api
+    tags: [uploads, draft-and-publish]
+    type: multiple-choice
+    difficulty: 4
+    prompt: >-
+      A field's `Assert\Image(maxPixels: …)` is only in the `Article:published` validation group. You lower the
+      limit. Which stored files does the orphaned files report list as invalid?
+    why: >-
+      Rules that only apply at publish time now show up in the report for live content, so you can replace those
+      images before an editor's next publish fails on them.
+    since: [{ repo: api-components-bundle, version: '2.0.0-alpha.23' }]
+    options:
+      - { id: a, text: 'Files of published or scheduled rows that break it' }
+      - { id: b, text: 'Files of every row that break the new limit' }
+      - { id: c, text: 'Files of draft rows that break it, as drafts change' }
+      - { id: d, text: 'No files, because the scan checks only `Default`' }
+    answer:
+      correct: a
+      explanation: >-
+        A row with a publication date is checked in `Default` and the class's publish groups, the groups
+        publishing validates. A draft, or a class that isn't publishable, is checked in `Default` only.
+      optionNotes:
+        d: Older bundles checked only `Default`. A row with a publication date now gets its publish groups too.
+    sources:
+      - { kind: docs, page: /api/orphaned-data, anchor: how-invalid-files-are-checked, sectionHash: 'sha256:685126440c7e6ce9' }
+    author: llm-draft
