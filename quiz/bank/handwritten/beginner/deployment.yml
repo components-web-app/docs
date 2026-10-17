@@ -49,7 +49,7 @@ questions:
         c: It creates the admin account, and resets its password each time it runs.
     sources:
       - { kind: docs, page: /getting-started/installation, anchor: _2-load-the-sample-content, sectionHash: 'sha256:176954d8459ea97b' }
-      - { kind: docs, page: /api/data-fixtures/getting-started, anchor: setup, sectionHash: 'sha256:e2d6a667c3a3c508' }
+      - { kind: docs, page: /api/data-fixtures/getting-started, anchor: setup, sectionHash: 'sha256:d5b1955d47c29cc8' }
     author: llm-draft
 
   - id: deploy.install.dev-server

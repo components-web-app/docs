@@ -124,6 +124,16 @@
         }
       }
     },
+    "api.fixtures.asset-store-load": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:aff837bf73f55b68",
+          "docsCommit": "c24d0d481501865445e477c3c20b911146c688f6"
+        }
+      }
+    },
     "api.fixtures.component-draft": {
       "status": "live",
       "version": 1,
@@ -154,6 +164,16 @@
         }
       }
     },
+    "api.fixtures.load-variants": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:9659ab968ee9c3c6",
+          "docsCommit": "c24d0d481501865445e477c3c20b911146c688f6"
+        }
+      }
+    },
     "api.fixtures.page-group-allow": {
       "status": "live",
       "version": 1,
@@ -161,6 +181,16 @@
         "1": {
           "fingerprint": "sha256:1f2b2a912ed3273d",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        }
+      }
+    },
+    "api.fixtures.page-own-redirect": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:9388667b86703b4a",
+          "docsCommit": "c24d0d481501865445e477c3c20b911146c688f6"
         }
       }
     },
@@ -181,6 +211,36 @@
         "1": {
           "fingerprint": "sha256:4751f0057ae287a9",
           "docsCommit": "a1056e349c0674125d27aa7e59429f1d171722cf+dirty"
+        }
+      }
+    },
+    "api.groups.component-limit": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:d666cba847236ca5",
+          "docsCommit": "c24d0d481501865445e477c3c20b911146c688f6"
+        }
+      }
+    },
+    "api.groups.order-partial-list": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:893381fccb474005",
+          "docsCommit": "c24d0d481501865445e477c3c20b911146c688f6"
+        }
+      }
+    },
+    "api.groups.position-placement": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:75522e155352f411",
+          "docsCommit": "c24d0d481501865445e477c3c20b911146c688f6"
         }
       }
     },
@@ -459,6 +519,16 @@
         "1": {
           "fingerprint": "sha256:7f664f0ab408892d",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        }
+      }
+    },
+    "api.storage.delete-stored-files-rows": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:33ec0d02761ea60a",
+          "docsCommit": "c24d0d481501865445e477c3c20b911146c688f6"
         }
       }
     },
@@ -979,6 +1049,46 @@
         "1": {
           "fingerprint": "sha256:7cb81c5eb06937a9",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        }
+      }
+    },
+    "deploy.review.storage-cleanup": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:9354c188a8432776",
+          "docsCommit": "c24d0d481501865445e477c3c20b911146c688f6"
+        }
+      }
+    },
+    "deploy.storage.prefix-live-app": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:c42f9bc8ffcb1221",
+          "docsCommit": "c24d0d481501865445e477c3c20b911146c688f6"
+        }
+      }
+    },
+    "deploy.storage.prefix-media-urls": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:5de6ce8518994394",
+          "docsCommit": "c24d0d481501865445e477c3c20b911146c688f6"
+        }
+      }
+    },
+    "deploy.storage.shared-bucket": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:29d089c2e40eeaae",
+          "docsCommit": "c24d0d481501865445e477c3c20b911146c688f6"
         }
       }
     },
@@ -1571,7 +1681,7 @@
       }
     },
     "gen.target.fixture-redirect.1": {
-      "status": "live",
+      "status": "retired",
       "version": 1,
       "versions": {
         "1": {
@@ -1597,6 +1707,16 @@
         "1": {
           "fingerprint": "sha256:5ea9f16ab00d7f11",
           "docsCommit": "a1056e349c0674125d27aa7e59429f1d171722cf+dirty"
+        }
+      }
+    },
+    "gen.target.fixture-redirect.4": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:4694beab91848581",
+          "docsCommit": "c24d0d481501865445e477c3c20b911146c688f6"
         }
       }
     },
@@ -2006,6 +2126,16 @@
         }
       }
     },
+    "nuxt.admin.reorder-versions": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:a2dfddb052a50141",
+          "docsCommit": "c24d0d481501865445e477c3c20b911146c688f6"
+        }
+      }
+    },
     "nuxt.admin.start-editing": {
       "status": "live",
       "version": 1,
@@ -2103,6 +2233,26 @@
         "1": {
           "fingerprint": "sha256:37fed62c3fe99e09",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        }
+      }
+    },
+    "nuxt.group.max-components-binding": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:48739277affd3e8d",
+          "docsCommit": "c24d0d481501865445e477c3c20b911146c688f6"
+        }
+      }
+    },
+    "nuxt.group.max-components-removed": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:20675b3aafcb4cda",
+          "docsCommit": "c24d0d481501865445e477c3c20b911146c688f6"
         }
       }
     },
@@ -2351,6 +2501,16 @@
         "1": {
           "fingerprint": "sha256:a915eb183e00593c",
           "docsCommit": "a1056e349c0674125d27aa7e59429f1d171722cf+dirty"
+        }
+      }
+    },
+    "nuxt.resources.reorder-group": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:32c9009999ec74ef",
+          "docsCommit": "c24d0d481501865445e477c3c20b911146c688f6"
         }
       }
     },

@@ -394,7 +394,7 @@ questions:
     why: >-
       A generated route is named after the slug of the title, so changing the title in the scaffold renames the
       route. A `linkIri()` that still names the old route then stops the load with a `LogicException`, so give
-      linked page data a `routeName:`.
+      linked page data a `routeName:`, or pass its builder instead of a name.
     options:
       - { id: a, text: 'The page data''s class, such as `BlogArticleData`' }
       - { id: b, text: 'The reference of the template page it renders through' }
@@ -403,12 +403,12 @@ questions:
     answer:
       correct: d
       explanation: >-
-        `pageData()` takes no reference, so `linkIri()` finds page data by the name of its route. `page:` and
-        `layout:` take a reference, and `route:` a route name.
+        `pageData()` takes no reference, so `linkIri()` finds page data by the name of its route. It can also take
+        the page data's builder. `page:` and `layout:` take a reference, and `route:` a route name.
       optionNotes:
         b: A template page's reference names the page itself, with `linkIri(page:)`. Many records render through one template.
     since: [{ repo: api-components-bundle, version: '2.0.0-alpha.22' }]
     sources:
-      - { kind: docs, page: /api/data-fixtures/writing-a-scaffold, anchor: linking-routes-and-iris, sectionHash: 'sha256:3940b189955e0261' }
-      - { kind: docs, page: /api/data-fixtures/writing-a-scaffold, anchor: references-route-names-and-paths, sectionHash: 'sha256:48b81afe39fd089c' }
+      - { kind: docs, page: /api/data-fixtures/writing-a-scaffold, anchor: linking-routes-and-iris, sectionHash: 'sha256:87e67160f8a7aec6' }
+      - { kind: docs, page: /api/data-fixtures/writing-a-scaffold, anchor: references-route-names-and-paths, sectionHash: 'sha256:03d81e735ac1b09c' }
     author: llm-draft

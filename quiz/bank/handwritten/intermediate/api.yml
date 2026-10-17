@@ -233,8 +233,8 @@ questions:
     answer:
       correct: c
       explanation: >-
-        `linkRoute()` sets a field that holds a `Route`, by the route's name, once the routes exist during
-        `flush()`. Keep `afterRoutes()` for anything else that needs a route, such as a value your own code works
+        `linkRoute()` sets a field that holds a `Route`, by the route's name or the page's builder, once the
+        routes exist during `flush()`. Keep `afterRoutes()` for anything else that needs a route, such as a value your own code works
         out from it.
       optionNotes:
         a: The route doesn't exist until `flush()` creates it, so `getRoute()` throws there.
@@ -242,7 +242,7 @@ questions:
         d: '`linkIri()` writes an IRI string, for a string or array field. A `route` field holds the `Route` itself.'
     since: [{ repo: api-components-bundle, version: '2.0.0-alpha.22' }]
     sources:
-      - { kind: docs, page: /api/data-fixtures/writing-a-scaffold, anchor: linking-routes-and-iris, sectionHash: 'sha256:3940b189955e0261' }
+      - { kind: docs, page: /api/data-fixtures/writing-a-scaffold, anchor: linking-routes-and-iris, sectionHash: 'sha256:87e67160f8a7aec6' }
       - { kind: docs, page: /api/data-fixtures/builder-reference, anchor: afterroutes, sectionHash: 'sha256:675501e7417f2840' }
     author: llm-draft
 
@@ -271,7 +271,7 @@ questions:
       optionNotes:
         a: On a page builder the second argument is the `configure` closure.
     sources:
-      - { kind: docs, page: /api/data-fixtures/builder-reference, anchor: pagebuilder-from-cwa-page, sectionHash: 'sha256:6549a43071bfc877' }
+      - { kind: docs, page: /api/data-fixtures/builder-reference, anchor: pagebuilder-from-cwa-page, sectionHash: 'sha256:09fa85294badea1e' }
     author: llm-draft
 
   - id: api.fixtures.redirect-target-name
@@ -296,14 +296,14 @@ questions:
     answer:
       correct: b
       explanation: >-
-        `redirect(to:)` takes a route name, and `routeName:` sets it. The first argument of `page()` is the
+        `redirect(to:)` takes a route name, and `routeName:` sets it. It can also take the page's builder. The first argument of `page()` is the
         page's reference, and `route:` is the path visitors open.
       optionNotes:
         a: That is the page's reference, used by `page(layout:)`, `pageData(template:)` and `linkIri(page:)`. Without `routeName:` the route would be named after its path, `about-team`, but this one is named `team`.
         c: That is the route's path. A path is the first argument of `redirect()`, the URL it redirects from.
     sources:
-      - { kind: docs, page: /api/data-fixtures/writing-a-scaffold, anchor: references-route-names-and-paths, sectionHash: 'sha256:48b81afe39fd089c' }
-      - { kind: docs, page: /api/data-fixtures/builder-reference, anchor: redirect, sectionHash: 'sha256:ad6364c1c729865f' }
+      - { kind: docs, page: /api/data-fixtures/writing-a-scaffold, anchor: references-route-names-and-paths, sectionHash: 'sha256:03d81e735ac1b09c' }
+      - { kind: docs, page: /api/data-fixtures/builder-reference, anchor: redirect, sectionHash: 'sha256:f678fc37f40ec790' }
     author: llm-draft
 
   - id: api.uploads.uploaded-image-svg

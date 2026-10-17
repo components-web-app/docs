@@ -1,0 +1,124 @@
+# Hand-written What's new questions about deploying the template: changes in 2.0.0-alpha.37.
+# Each one has a `since` naming the release that brought the change in.
+# Format: quiz/README.md. Run `pnpm quiz:stamp <id>` to fill in or refresh the hashes.
+
+questions:
+  - id: deploy.storage.shared-bucket
+    version: 1
+    status: live
+    level: beginner
+    area: deployment
+    tags: [deployment, uploads]
+    type: multiple-choice
+    difficulty: 2
+    prompt: >-
+      Two sites built from the template store their uploads in the same bucket. What should each one set?
+    why: >-
+      An app at the bucket root sees the other apps' files as its own orphans, and deleting every orphan removes
+      them.
+    since: [{ repo: components-web-app, version: '2.0.0-alpha.37' }]
+    options:
+      - { id: a, text: 'Its own `GCLOUD_PATH_PREFIX`, such as `site-a/`' }
+      - { id: b, text: 'Its own `CWA_API_GCLOUD_PATH_PREFIX`' }
+      - { id: c, text: 'Its own `GCLOUD_PUBLIC_URL` for the bucket' }
+      - { id: d, text: 'Its own `GCLOUD_JSON` service account key' }
+    answer:
+      correct: a
+      explanation: >-
+        `GCLOUD_PATH_PREFIX` keeps an app's uploads and variants in one path of the bucket, and the orphaned files
+        scan lists only that path. Set it as its own CI variable.
+      optionNotes:
+        b: '`GCLOUD_PATH_PREFIX` is reserved, so `CWA_API_GCLOUD_PATH_PREFIX` fails the deploy.'
+    sources:
+      - { kind: docs, page: /deployment/variables, anchor: storage-path-prefix, sectionHash: 'sha256:ee65d7e654910827' }
+    author: llm-draft
+
+  - id: deploy.storage.prefix-media-urls
+    version: 1
+    status: live
+    level: intermediate
+    area: deployment
+    tags: [deployment, uploads]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      You set `GCLOUD_PATH_PREFIX` to `site-a/`, and change `GCLOUD_PUBLIC_URL` to
+      `https://cdn.example.com/site-a/` to match. New uploads save, but their media links 404. Why?
+    why: >-
+      Adding a path prefix to an app with a CDN in front of the bucket makes it tempting to change the public URL
+      too, which breaks every media link.
+    since: [{ repo: components-web-app, version: '2.0.0-alpha.37' }]
+    options:
+      - { id: a, text: 'The CDN still caches the old 404s for those paths' }
+      - { id: b, text: 'The prefix needs a leading slash, `/site-a/`' }
+      - { id: c, text: 'Uploads are stored at the root until a redeploy' }
+      - { id: d, text: 'Media URLs add the prefix, so it appears twice' }
+    answer:
+      correct: d
+      explanation: >-
+        Media URLs are `GCLOUD_PUBLIC_URL` followed by the prefix, so the links point at `site-a/site-a/…`. Keep
+        the public URL at `https://cdn.example.com/`.
+      optionNotes:
+        b: php tidies the value, removing a leading slash, so `/site-a` becomes `site-a/` anyway.
+    sources:
+      - { kind: docs, page: /deployment/variables, anchor: storage-path-prefix, sectionHash: 'sha256:ee65d7e654910827' }
+    author: llm-draft
+
+  - id: deploy.storage.prefix-live-app
+    version: 1
+    status: live
+    level: intermediate
+    area: deployment
+    tags: [deployment, uploads]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      A live site has stored its uploads at the bucket root for a year. You want it under `site-a/`. What do you
+      do before the deploy that sets `GCLOUD_PATH_PREFIX`?
+    why: >-
+      Deploying the prefix first makes every existing upload a missing file, because the database paths are now
+      read inside the prefix.
+    since: [{ repo: components-web-app, version: '2.0.0-alpha.37' }]
+    options:
+      - { id: a, text: 'Run `delete-stored-files` on the bucket root' }
+      - { id: b, text: 'Copy the objects under `site-a/`, keeping paths' }
+      - { id: c, text: 'Nothing, because the API moves each file on read' }
+      - { id: d, text: 'Run `generate-fixtures` to capture the uploads' }
+    answer:
+      correct: b
+      explanation: >-
+        The paths in the database are relative to the prefix. Copy the objects under the new prefix, keeping each
+        one's path below it, then deploy. The old objects stay until you remove them.
+    sources:
+      - { kind: docs, page: /deployment/variables, anchor: changing-a-live-apps-prefix, sectionHash: 'sha256:b3f0888ca270ea64' }
+    author: llm-draft
+
+  - id: deploy.review.storage-cleanup
+    version: 1
+    status: live
+    level: advanced
+    area: deployment
+    tags: [deployment, uploads]
+    type: multiple-choice
+    difficulty: 4
+    prompt: >-
+      You upgrade the template to 2.0.0-alpha.37. A review app deployed before the upgrade is then stopped,
+      without being deployed again. What happens to its uploads?
+    why: >-
+      Review apps from before the upgrade leave their files at the bucket root when stopped, so you remove them
+      by hand.
+    since: [{ repo: components-web-app, version: '2.0.0-alpha.37' }]
+    options:
+      - { id: a, text: '`--all` empties the bucket, as the pod has no prefix' }
+      - { id: b, text: 'The job fails, and the release stays installed' }
+      - { id: c, text: 'Nothing is deleted, a warning prints, it uninstalls' }
+      - { id: d, text: 'Only the files it uploaded at the root are deleted' }
+    answer:
+      correct: c
+      explanation: >-
+        The delete runs only when the pod's prefix ends in `review/<slug>/`. An older review app has no prefix, so
+        the guard refuses. The job warns and uninstalls the release anyway, and the files stay at the root.
+    sources:
+      - { kind: docs, page: /deployment/ci-cd, anchor: review-app-storage, sectionHash: 'sha256:e1e01b56288a7f67' }
+      - { kind: docs, page: /deployment/variables, anchor: review-app-paths, sectionHash: 'sha256:4109e4ac5c433bb3' }
+    author: llm-draft

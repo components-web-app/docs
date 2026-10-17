@@ -163,12 +163,12 @@ questions:
     answer:
       correct: b
       explanation: >-
-        Reordering changes each position's `sortValue` at once. Adding or removing a position is immediate
-        too. Only the components themselves have a draft and a published version.
+        Reordering saves the new order straight away. Adding or removing a position is immediate too. Only the
+        components themselves have a draft and a published version.
       optionNotes:
         a: The components have drafts, but their positions in the group don't. Moving one changes the live order.
     sources:
-      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: adding-removing-and-reordering-are-immediate, sectionHash: 'sha256:8f9e3b04c320c9e4' }
+      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: adding-removing-and-reordering-are-immediate, sectionHash: 'sha256:4b652d7ae8f34399' }
     author: llm-draft
 
   - id: core.admin.link-in-edit-mode
@@ -214,7 +214,7 @@ questions:
         Select a component, open the manager panel's **Order** tab and turn on **Enable reordering**. Then use
         **Move Up**, **Move Down** or a position number.
     sources:
-      - { kind: docs, page: /core-concepts/admin-panel, anchor: reordering, sectionHash: 'sha256:c61a684ec630d1d2' }
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: reordering, sectionHash: 'sha256:fd0ebb9fa7076f40' }
     author: llm-draft
 
   - id: core.caching.save-refreshes-pages
