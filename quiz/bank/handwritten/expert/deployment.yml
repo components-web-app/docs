@@ -4,7 +4,7 @@
 
 questions:
   - id: deploy.internals.cloudflare-flush
-    version: 2
+    version: 3
     status: live
     level: expert
     area: deployment
@@ -13,9 +13,9 @@ questions:
     difficulty: 3
     docsCoverage: documented
     prompt: >-
-      After a release, Cloudflare keeps serving old API responses. At the end of every deploy, the template
-      clears either the rendered pages only, or the whole HTTP cache, which also purges Cloudflare. What
-      decides that it clears everything?
+      At the end of every deploy, the template purges either the rendered pages only (the `cwa-html` tag) or
+      the whole HTTP cache, which also purges Cloudflare. After a release, Cloudflare keeps serving old API
+      responses. What makes the deploy purge the whole cache?
     why: >-
       If you cache `/_api` at Cloudflare's edge without that setting, a release that changes API output
       keeps serving old responses until someone purges by hand.

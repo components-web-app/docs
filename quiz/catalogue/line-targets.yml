@@ -42,13 +42,16 @@ targets:
     tags: [dynamic-pages, fixtures]
     langs: [php]
     match: '->pageDataPosition\('
-    prompt: Which line makes a region show the component held by each page data record?
+    prompt: >-
+      This fixture builds a template page (a page record that every page data record of one type renders
+      through). Which line makes one of its component groups (named lists of components) show each page data
+      record's own component?
     explanation: >-
       `pageDataPosition()` creates a position bound to a field of a page data class. Each record that renders
-      through the template page shows its own component in that slot.
+      through the template page shows the component held in its own field at that position.
     why: >-
-      Use it when each article needs its own body or hero in a shared template, rather than one component that
-      every record shows.
+      Use it when each blog article needs its own body or hero on a shared template page, rather than one
+      component that every record shows.
     readMore: { page: /api/data-fixtures/builder-reference, anchor: groupbuilder-from-any-group-call }
     limit: 3
 
@@ -62,13 +65,15 @@ targets:
     # The comment above the line gives the answer away.
     exclude:
       - /api/data-fixtures/getting-started#complete-example/0
-    prompt: Which line means this page has no URL of its own, and every record of one type renders through it?
+    prompt: >-
+      Which line gives this page no route of its own, so that every page data record (one item of repeating
+      content, such as a blog article) of one type renders through it?
     explanation: >-
       `isTemplate: true` makes a template page. It gets no route; every page data record of one type renders
       through it.
     why: >-
-      One template page serves every record of its type, so a change to its regions shows on all of them at
-      once.
+      One template page serves every page data record of its type, so a change to its component groups shows
+      on all of them at once.
     readMore: { page: /core-concepts/layouts-and-pages, anchor: template-pages-istemplate-true }
     limit: 4
 
@@ -117,13 +122,15 @@ targets:
     tags: [components]
     langs: [vue]
     match: ':allowed-components='
-    prompt: An editor opens this region's add dialog, and some component types aren't offered. Which line causes that?
+    prompt: >-
+      An editor opens the add dialog of this component group (a named list of components, such as `main`), and
+      some component types aren't offered. Which line causes that?
     explanation: >-
       The `allowed-components` prop restricts the component types an editor can add to the group, by
       component name.
     why: >-
-      When an editor asks why a component type is missing from one region, check this prop before the
-      component's registration.
+      When an editor asks why a component type is missing from one component group, check this prop before
+      the component's registration.
     readMore: { page: /nuxt-module/cwa-components/cwa-component-group, anchor: allowed-components }
     limit: 3
 
@@ -137,7 +144,7 @@ targets:
     # Its comment names the redirect.
     exclude:
       - /api/data-fixtures/getting-started#complete-example/0
-    prompt: Which line sends visitors from an old URL to a page's current route?
+    prompt: Which line sends visitors who open an old path to a page's current route?
     explanation: >-
       `$cwa->redirect($path, to: $routeName)` declares a redirect route. The builder creates it during
       `flush()`, straight after the page routes.

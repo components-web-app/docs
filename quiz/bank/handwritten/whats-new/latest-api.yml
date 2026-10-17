@@ -4,7 +4,7 @@
 
 questions:
   - id: api.groups.component-limit
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: api
@@ -12,10 +12,11 @@ questions:
     type: multiple-choice
     difficulty: 1
     prompt: >-
-      A layout's `header` group should hold one button at most. Where do you set that limit in the API?
+      A layout owns a `header` component group (a named list of components). The group should hold one button
+      component at most. Where in the API do you set that limit?
     why: >-
-      A slot meant for one thing, such as a header button, can stop editors adding a second one, and the API
-      refuses the extra write.
+      A component group meant for one thing, such as a header button, can stop editors adding a second one, and
+      the API refuses the extra write.
     since: [{ repo: api-components-bundle, version: '2.0.0-alpha.23' }]
     options:
       - { id: a, text: '`maxComponents` on the component group' }
@@ -32,7 +33,7 @@ questions:
     author: llm-draft
 
   - id: api.groups.position-placement
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: api
@@ -40,8 +41,9 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: >-
-      A script sends `PATCH` with `{"sortValue": 0}` to move a position to the top of its group. The API answers
-      `200`, but the position stays where it was. What should the script send?
+      A script sends `PATCH` with `{"sortValue": 0}` to a component position (the record that places a
+      component in a group), to move it to the top of its group. The API answers `200`, but the position stays
+      where it was. What should the script send instead?
     why: >-
       Scripts and imports that wrote `sortValue` keep getting a `200` after the upgrade, so nothing tells you the
       order they set is ignored.
@@ -64,7 +66,7 @@ questions:
     author: llm-draft
 
   - id: api.groups.order-partial-list
-    version: 1
+    version: 2
     status: live
     level: advanced
     area: api
@@ -72,8 +74,8 @@ questions:
     type: multiple-choice
     difficulty: 4
     prompt: >-
-      A group's positions are `A B C D E`. You send `PATCH <group>/order` with only `[D, B]` in
-      `componentPositions`. What is the group's new order?
+      A component group holds five positions in the order `A B C D E`. You send `PATCH <group IRI>/order` with
+      `componentPositions` listing only `[D, B]`. What order does the group have now?
     why: >-
       A client can send only the positions it moved, so a reorder still works when another editor has added a
       component the client hasn't seen.
@@ -94,7 +96,7 @@ questions:
     author: llm-draft
 
   - id: api.fixtures.load-variants
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: api
@@ -102,8 +104,8 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: >-
-      You load a scaffold with many images using `doctrine:fixtures:load`. The command ends by reminding you
-      about image variants. What do you run next?
+      You run `doctrine:fixtures:load` for a scaffold that seeds many images. The command ends with a reminder
+      about image variants, the resized copies the API makes of each image. What do you run next?
     why: >-
       A load no longer generates variants, so unless you run `imagine:generate`, the first read of each image has
       to make them, which is slow on a large site.
@@ -125,7 +127,7 @@ questions:
     author: llm-draft
 
   - id: api.fixtures.asset-store-load
-    version: 1
+    version: 2
     status: live
     level: advanced
     area: api
@@ -133,8 +135,9 @@ questions:
     type: multiple-choice
     difficulty: 4
     prompt: >-
-      With no `fixtures.assets` config, you run `generate-fixtures --assets-dir /srv/fixture-assets`. The
-      scaffold uses `$cwa->asset()`. Then `doctrine:fixtures:load` fails. Why?
+      The bundle config has no `fixtures.assets` block. You run `generate-fixtures --assets-dir
+      /srv/fixture-assets`, and the scaffold it writes loads its files with `$cwa->asset()`. Then
+      `doctrine:fixtures:load` fails. Why?
     why: >-
       A one-off store option looks like enough to set up an asset store, but every environment that loads the
       scaffold needs the store in its config.
@@ -154,7 +157,7 @@ questions:
     author: llm-draft
 
   - id: api.fixtures.page-own-redirect
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: api
@@ -162,8 +165,8 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: >-
-      A scaffold's home page has `route: '/'`. Visitors to `/` should be forwarded to the route named `graphs`.
-      What does the scaffold call?
+      A scaffold builds the home page with `route: '/'`. Visitors to `/` should be redirected to the route named
+      `graphs`. Which call does the scaffold need?
     why: >-
       A separate redirect at a page's own path is left alone, so the load seems to work but `/` never forwards
       anyone.
@@ -185,7 +188,7 @@ questions:
     author: llm-draft
 
   - id: api.storage.delete-stored-files-rows
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: api
@@ -193,8 +196,9 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: >-
-      You run `delete-stored-files gcloud legacy/` to empty a path your app still has content for. The next
-      orphaned files report lists many entries. Why?
+      Records in your database still point at files under `legacy/` in storage. You run
+      `delete-stored-files gcloud legacy/` to empty that path. The next orphaned files report lists many
+      entries. Why?
     why: >-
       The command clears storage, not content, so run it only on a path nothing in the database still points at.
     since: [{ repo: api-components-bundle, version: '2.0.0-alpha.24' }]

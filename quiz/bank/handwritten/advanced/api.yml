@@ -3,14 +3,14 @@
 
 questions:
   - id: api.cache.admin-route-private
-    version: 1
+    version: 2
     status: live
     level: advanced
     area: api
     tags: [http-caching, draft-and-publish]
     type: multiple-choice
     difficulty: 3
-    prompt: 'A signed-in admin''s `GET /_/routes//about-us` comes back `Cache-Control: private, no-store`. Why?'
+    prompt: 'A signed-in admin requests `GET /_/routes//about-us`. The response has `Cache-Control: private, no-store`. Why?'
     why: >-
       When you check caching while signed in, these responses never hit the cache, so test as a signed-out
       visitor to see what the public gets.
@@ -58,14 +58,16 @@ questions:
     author: llm-draft
 
   - id: api.cache.component-save-purge
-    version: 1
+    version: 2
     status: live
     level: advanced
     area: api
     tags: [http-caching]
     type: multiple-choice
     difficulty: 4
-    prompt: An editor saves new text in a component on a static page. Which cached responses does the API purge?
+    prompt: >-
+      A component sits in a component group on a page. An editor saves new text in the component. Which cached
+      responses does the API purge?
     why: >-
       If a page's structure looks stale after an edit, check whether a group, position, page or route was
       written, because a component save alone never refreshes a manifest.
@@ -84,14 +86,14 @@ questions:
     author: llm-draft
 
   - id: api.cache.scheduled-publish
-    version: 1
+    version: 2
     status: live
     level: advanced
     area: api
     tags: [http-caching, draft-and-publish]
     type: multiple-choice
     difficulty: 4
-    prompt: Nothing is written when a scheduled publish time arrives. How do shared caches avoid serving the old version after it?
+    prompt: A component is scheduled to publish at 09:00, and nothing writes to the database at 09:00. How do shared caches stop serving the old version after that time?
     why: >-
       It's why a long cache lifetime is safe with scheduled content: you don't need a short `s-maxage` or a
       job of your own to make a scheduled publish show on time.
@@ -110,14 +112,14 @@ questions:
     author: llm-draft
 
   - id: api.cache.site-config-tag
-    version: 1
+    version: 2
     status: live
     level: advanced
     area: api
     tags: [http-caching, page-caching]
     type: multiple-choice
     difficulty: 3
-    prompt: Saving site config changes every page. Which cache tag does the API purge so every rendered page is dropped?
+    prompt: An admin saves the site config, which every page shows. Which cache tag does the API purge so that every rendered page is dropped?
     why: >-
       If you add a resource of your own that changes every page without being rendered on it, list its class
       in `purge_rendered_html_classes`, or cached pages keep the old output until they expire.
@@ -136,14 +138,14 @@ questions:
     author: llm-draft
 
   - id: api.security.unplaced-component
-    version: 1
+    version: 2
     status: live
     level: advanced
     area: api
     tags: [security]
     type: multiple-choice
     difficulty: 5
-    prompt: With `routable_security` set, who can read a component that sits in no group, no page data and no template?
+    prompt: The API sets `routable_security`. A component is in no component group, no page data record references it, and no template page uses it. Who can read the component?
     why: >-
       A component you create ahead of time and haven't placed yet, such as an embargoed announcement, can be
       read by anyone who is sent its IRI.
@@ -250,14 +252,14 @@ questions:
     author: llm-draft
 
   - id: api.publishable.permission-writes
-    version: 1
+    version: 2
     status: live
     level: advanced
     area: api
     tags: [draft-and-publish, security]
     type: multiple-choice
     difficulty: 4
-    prompt: A user who fails `publishable.permission` sends a `PATCH` to a publishable component. What changes?
+    prompt: A user who doesn't pass `publishable.permission` sends a `PATCH` to a publishable component. What does the `PATCH` change?
     why: >-
       Before you give a role write access, decide whether it should also pass `publishable.permission`, or its
       edits reach visitors with no chance to review them.
@@ -315,14 +317,14 @@ questions:
     author: llm-draft
 
   - id: api.real-time.cookie-name
-    version: 1
+    version: 2
     status: live
     level: advanced
     area: api
     tags: [real-time, auth]
     type: pick-the-line
     difficulty: 5
-    prompt: On mercure-bundle 0.6, admins get no private updates in development unless one line is set. Which line?
+    prompt: On mercure-bundle 0.6, admins get no private Mercure updates in development unless one line of this config is set. Which line?
     why: >-
       If admins get no live draft updates in development while production works, a mismatched cookie name is
       the likely cause.

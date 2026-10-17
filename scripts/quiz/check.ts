@@ -187,6 +187,35 @@ function checkLinks(lq: LoadedQuestion, pages: Map<string, DocsPage>) {
   }
 }
 
+/**
+ * Loose words for CWA records. The glossary terms are component group and component position. Vue's
+ * slots (`<slot />`, "default slot", "named slot") are fine.
+ */
+const LOOSE_TERMS: { pattern: RegExp, use: string }[] = [
+  { pattern: /\bregions?\b/i, use: 'component group' },
+  { pattern: /(?<!\b(?:default|named|scoped|vue's|vue|layout's)\s)\bslots?\b(?!\s*(?:prop|content))/i, use: 'component position, or say Vue\'s slot' }
+]
+
+function checkTerms(lq: LoadedQuestion) {
+  const q = lq.question
+  if (q.status !== 'live') return
+  const texts: [string, string | undefined][] = [
+    ['prompt', q.prompt],
+    ['why', q.why],
+    ['explanation', q.answer.explanation],
+    ...(q.type === 'multiple-choice' ? q.options.map(o => [`option ${o.id}`, o.text] as [string, string]) : []),
+    ...Object.entries((q.answer as { optionNotes?: Record<string, string> }).optionNotes ?? {}).map(([id, n]) => [`note ${id}`, n] as [string, string])
+  ]
+  for (const [where, text] of texts) {
+    if (!text) continue
+    const prose = plainText(text.replace(/`[^`]*`/g, '').replace(/\]\([^)]*\)/g, ']'))
+    for (const t of LOOSE_TERMS) {
+      const m = prose.match(t.pattern)
+      if (m) add('warning', lq, `${where} says "${m[0]}". Use the glossary term: ${t.use} (quiz/README.md, "Use CWA's terms")`)
+    }
+  }
+}
+
 /** Levels whose hand-written questions must say why the fact matters. */
 const WHY_LEVELS = new Set(['intermediate', 'advanced', 'expert'])
 
@@ -251,6 +280,7 @@ async function main() {
     }
     checkFairness(lq)
     checkLinks(lq, pages)
+    checkTerms(lq)
     checkWhy(lq)
     checkVersions(lq)
   }

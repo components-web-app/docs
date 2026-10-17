@@ -4,7 +4,7 @@
 
 questions:
   - id: nuxt.group.max-components-removed
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: nuxt-module
@@ -12,8 +12,9 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: >-
-      A layout's group had `:max-components="1"`. You delete the prop to lift the limit and deploy. Admins still
-      can't add a second component. What do you pass instead?
+      In a layout's Vue file, a `<CwaComponentGroup>` had `:max-components="1"`. You delete the prop to lift the
+      limit, and deploy. Editors still can't add a second component to that component group. What do you pass
+      instead?
     why: >-
       A limit set once stays on the group in the API, so taking the prop out of your code changes nothing for
       editors.
@@ -32,11 +33,11 @@ questions:
         a: '`0` isn''t a positive whole number, so the module logs a warning and doesn''t send it.'
         c: '`null` for `allowed-components` allows every type. It has nothing to do with the limit.'
     sources:
-      - { kind: docs, page: /nuxt-module/cwa-components/cwa-component-group, anchor: limiting-the-number-of-components, sectionHash: 'sha256:c197998818157eec' }
+      - { kind: docs, page: /nuxt-module/cwa-components/cwa-component-group, anchor: limiting-the-number-of-components, sectionHash: 'sha256:46781eb729d3d7e7' }
     author: llm-draft
 
   - id: nuxt.group.max-components-binding
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: nuxt-module
@@ -44,7 +45,8 @@ questions:
     type: spot-the-mistake
     difficulty: 3
     prompt: >-
-      This header group should take one button, but editors can still add several. One line is wrong. Click it.
+      This component group in a layout should hold one header button at most, but editors can still add several.
+      One line is wrong. Click it.
     why: >-
       A limit the module can't read as a positive whole number is never sent, so the group stays unlimited and
       only a console warning says so.
@@ -65,11 +67,11 @@ questions:
         Without the `:`, Vue passes the string `"1"`. The module only syncs a positive whole number, so it logs
         `[CWA] maxComponents was not synced` and leaves the stored limit unchanged.
     sources:
-      - { kind: docs, page: /nuxt-module/cwa-components/cwa-component-group, anchor: limiting-the-number-of-components, sectionHash: 'sha256:c197998818157eec', block: 0, blockHash: 'sha256:f975d83a1dd787cc' }
+      - { kind: docs, page: /nuxt-module/cwa-components/cwa-component-group, anchor: limiting-the-number-of-components, sectionHash: 'sha256:46781eb729d3d7e7', block: 0, blockHash: 'sha256:f975d83a1dd787cc' }
     author: llm-draft
 
   - id: nuxt.resources.reorder-group
-    version: 1
+    version: 2
     status: live
     level: advanced
     area: nuxt-module
@@ -77,8 +79,9 @@ questions:
     type: multiple-choice
     difficulty: 4
     prompt: >-
-      Your own admin tool reorders a group by calling `updateResource` with a new `sortValue` on each position.
-      After you upgrade the bundle to 2.0.0-alpha.24, nothing moves. What should it call?
+      Your own admin code reorders a component group by calling `updateResource` to set a new `sortValue` on each
+      of its positions. After you upgrade the bundle to 2.0.0-alpha.24, nothing moves. What should the code call
+      instead?
     why: >-
       Custom admin code that wrote `sortValue` keeps saving without an error, so the broken reorder only shows
       when someone checks the page.

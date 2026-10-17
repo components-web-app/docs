@@ -118,7 +118,7 @@ questions:
     author: llm-draft
 
   - id: api.internals.authenticated-layout-headers
-    version: 2
+    version: 3
     status: live
     level: expert
     area: api
@@ -127,9 +127,9 @@ questions:
     difficulty: 4
     docsCoverage: light
     prompt: >-
-      Signed in as an admin, you check the cache headers in the network tab. A page's route comes back
-      `private, no-store`. A Layout isn't publishable and isn't in `personalised_resource_classes`. What does
-      the API do to the headers on your Layout response?
+      Signed in as an admin, you check cache headers in the network tab. The page's route response is
+      `private, no-store`. The `Layout` class isn't publishable and isn't in `personalised_resource_classes`.
+      What does the API do to the cache headers on the layout's response?
     why: >-
       When you check caching while signed in, public headers on a Layout aren't a leak. What must never
       be shared is a response that could carry drafts, and those are the ones marked private.

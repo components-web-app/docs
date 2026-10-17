@@ -53,14 +53,14 @@ questions:
     author: llm-draft
 
   - id: core.data-model.route-target
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: core-concepts
     tags: [data-model, routes]
     type: multiple-choice
     difficulty: 1
-    prompt: What can a Route point to?
+    prompt: A route is the record that holds a path, such as `/about-us`. Which records can a route point to?
     options:
       - { id: a, text: A page or a page data record }
       - { id: b, text: A component group or a position }
@@ -95,7 +95,7 @@ questions:
         Every page has exactly one layout, the outer shell with the header, footer and navigation. A site can
         have several layouts, and each page picks one.
     sources:
-      - { kind: docs, page: /core-concepts/the-data-model, anchor: layout, sectionHash: 'sha256:00ed5406b2443767' }
+      - { kind: docs, page: /core-concepts/the-data-model, anchor: layout, sectionHash: 'sha256:b8db0bab683d3204' }
     author: llm-draft
 
   - id: core.pages.page-template-vs-template-page
@@ -124,14 +124,16 @@ questions:
     author: llm-draft
 
   - id: core.draft.who-sees-drafts
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: core-concepts
     tags: [draft-and-publish]
     type: multiple-choice
     difficulty: 1
-    prompt: An editor changes a publishable component and doesn't publish it. Who sees the change?
+    prompt: >-
+      An editor changes a publishable component (one with a draft and a published version) and doesn't
+      publish it. Who sees the change?
     options:
       - { id: a, text: 'Every visitor, straight away' }
       - { id: b, text: Nobody until the next deploy }
@@ -147,14 +149,16 @@ questions:
     author: llm-draft
 
   - id: core.draft.reorder-timing
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: core-concepts
     tags: [draft-and-publish, admin]
     type: multiple-choice
     difficulty: 2
-    prompt: An editor reorders the components in a group. When do visitors see the new order?
+    prompt: >-
+      An editor reorders the components in a component group (a named list of components, such as `main`).
+      When do visitors see the new order?
     options:
       - { id: a, text: When the editor publishes the moved components }
       - { id: b, text: 'Straight away, because positions have no draft' }
@@ -172,14 +176,16 @@ questions:
     author: llm-draft
 
   - id: core.admin.link-in-edit-mode
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: core-concepts
     tags: [admin]
     type: multiple-choice
     difficulty: 2
-    prompt: In edit mode, an editor clicks a link to another page. What happens?
+    prompt: >-
+      An editor has turned on edit mode (with **Edit** in the admin bar) and clicks a link to another page.
+      What happens?
     options:
       - { id: a, text: The admin asks them to publish first }
       - { id: b, text: The link opens in a new tab }
@@ -191,18 +197,20 @@ questions:
         The navigation guard stops links while editing. Click **Done** first. The browser's back and forward
         buttons still work.
     sources:
-      - { kind: docs, page: /core-concepts/admin-panel, anchor: edit-mode, sectionHash: 'sha256:e892011c277f17fe' }
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: edit-mode, sectionHash: 'sha256:05cb7587553eab14' }
     author: llm-draft
 
   - id: core.admin.reorder-where
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: core-concepts
     tags: [admin]
     type: multiple-choice
     difficulty: 1
-    prompt: Where does an editor reorder the components in a group?
+    prompt: >-
+      Where does an editor reorder the components in a component group (a named list of components, such as
+      `main`)?
     options:
       - { id: a, text: The Order tab in the manager panel }
       - { id: b, text: By dragging the component on the page }
@@ -287,14 +295,16 @@ questions:
     author: llm-draft
 
   - id: core.components.admin-tab-saving
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: core-concepts
     tags: [components, admin]
     type: multiple-choice
     difficulty: 2
-    prompt: An editor types into a field in a component's admin tab. How is the change saved?
+    prompt: >-
+      An editor types into a field in a component's admin tab (the panel where an editor changes the
+      component's fields). How is the change saved?
     options:
       - { id: a, text: When they click Save at the foot of the tab }
       - { id: b, text: When they turn edit mode off again }
@@ -312,14 +322,16 @@ questions:
     author: llm-draft
 
   - id: core.identity.group-location
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: core-concepts
     tags: [components, data-model]
     type: multiple-choice
     difficulty: 2
-    prompt: What do you pass to `<CwaComponentGroup>` as its `location`?
+    prompt: >-
+      A Vue file declares a component group (a named list of components, such as `main`) with
+      `<CwaComponentGroup>`. What goes in its `location` prop?
     options:
       - { id: a, text: The URL path of the page the group appears on }
       - { id: b, text: 'The group''s name, such as `main`' }
@@ -335,15 +347,16 @@ questions:
     author: llm-draft
 
   - id: core.identity.layout-ui-component
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: core-concepts
     tags: [layouts-and-pages]
     type: multiple-choice
     difficulty: 2
-    prompt: A layout's Vue file is `app/app/cwa/layouts/Landing.vue`. What does the layout record's `uiComponent`
-      hold?
+    prompt: >-
+      A layout's Vue file is `app/app/cwa/layouts/Landing.vue`. What does the layout record's `uiComponent`
+      (the field that names the Vue file a record renders through) hold?
     options:
       - { id: a, text: '`CwaLayoutLanding`' }
       - { id: b, text: '`Landing`' }

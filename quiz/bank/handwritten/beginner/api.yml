@@ -3,14 +3,16 @@
 
 questions:
   - id: api.publishable.never-published
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: api
     tags: [draft-and-publish]
     type: multiple-choice
     difficulty: 2
-    prompt: An anonymous visitor requests a publishable component that has never been published. What do they get?
+    prompt: >-
+      A publishable component (one with a draft and a published version) has never been published. An
+      anonymous visitor requests it. What do they get?
     options:
       - { id: a, text: The draft version }
       - { id: b, text: An empty `200` response }
@@ -26,14 +28,16 @@ questions:
     author: llm-draft
 
   - id: api.page-data.base-class
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: api
     tags: [dynamic-pages, data-model]
     type: multiple-choice
     difficulty: 1
-    prompt: A blog article type is a page data entity. Which class does it extend?
+    prompt: >-
+      Each blog article should be a record with its own route, and every article should render through one
+      shared page. Which class does the article entity extend?
     options:
       - { id: a, text: '`AbstractPageData`' }
       - { id: b, text: '`AbstractComponent`' }
@@ -43,9 +47,9 @@ questions:
       correct: a
       explanation: >-
         Page data extends `AbstractPageData`, which already provides `title` and `metaDescription` for SEO.
-        You add your own fields, such as a component a template region binds to.
+        You add your own fields, such as a component that a position on the template page shows.
     sources:
-      - { kind: docs, page: /core-concepts/dynamic-pages, anchor: creating-pagedata-in-php, sectionHash: 'sha256:e68334a429ee630b' }
+      - { kind: docs, page: /core-concepts/dynamic-pages, anchor: creating-pagedata-in-php, sectionHash: 'sha256:c5477cafeb992cbc' }
     author: llm-draft
 
   - id: api.components.endpoint-prefix
@@ -72,14 +76,14 @@ questions:
     author: llm-draft
 
   - id: api.components.migrations
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: api
     tags: [components]
     type: multiple-choice
     difficulty: 2
-    prompt: You've written a new component entity. What must you run before the API can store one?
+    prompt: You've written a new component entity. What must you run before the API can save records of it?
     options:
       - { id: a, text: 'Nothing: the bundle creates its table when the API boots' }
       - { id: b, text: '`cache:clear`, so the API reads the new class' }
@@ -95,14 +99,16 @@ questions:
     author: llm-draft
 
   - id: api.components.inherited-properties
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: api
     tags: [components, data-model]
     type: multiple-choice
     difficulty: 2
-    prompt: Which property does every component already get from `AbstractComponent`, so you shouldn't add it yourself?
+    prompt: >-
+      Your component entity extends `AbstractComponent`. Which of these properties does it already have, so
+      you shouldn't add it yourself?
     options:
       - { id: a, text: '`title`' }
       - { id: b, text: '`publishedAt`' }

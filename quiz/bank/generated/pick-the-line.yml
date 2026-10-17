@@ -312,8 +312,8 @@ questions:
     generator:
       name: pick-the-line
       ref: define-expose
-  - id: gen.target.page-data-position.1
-    version: 2
+  - id: gen.target.page-data-position.4
+    version: 1
     status: live
     level: intermediate
     area: api
@@ -322,9 +322,11 @@ questions:
       - fixtures
     type: pick-the-line
     family: target:page-data-position
-    prompt: Which line makes a region show the component held by each page data record?
-    why: Use it when each article needs its own body or hero in a shared template, rather than one component that
-      every record shows.
+    prompt: This fixture builds a template page (a page record that every page data record of one type renders
+      through). Which line makes one of its component groups (named lists of components) show each page data
+      record's own component?
+    why: Use it when each blog article needs its own body or hero on a shared template page, rather than one
+      component that every record shows.
     code:
       lang: php
       text: |-
@@ -338,23 +340,23 @@ questions:
       lines:
         - 4
       explanation: "`pageDataPosition()` creates a position bound to a field of a page data class. Each record that
-        renders through the template page shows its own component in that slot."
+        renders through the template page shows the component held in its own field at that position."
     sources:
       - kind: docs
         page: /api/data-fixtures/builder-reference
         anchor: groupbuilder-from-any-group-call
-        sectionHash: sha256:09abbd254d166260
+        sectionHash: sha256:1297bf39d87b7f81
       - kind: docs
         page: /core-concepts/dynamic-pages
-        anchor: linking-a-pagedata-field-to-a-region
-        sectionHash: sha256:2e8edd52a45e53ee
+        anchor: linking-a-page-data-field-to-a-component-position
+        sectionHash: sha256:f256699eb9c03426
         block: 0
         blockHash: sha256:d24b319f202e0b32
     generator:
       name: pick-the-line
       ref: page-data-position
   - id: gen.target.page-data-position.2
-    version: 2
+    version: 3
     status: live
     level: intermediate
     area: api
@@ -363,9 +365,11 @@ questions:
       - fixtures
     type: pick-the-line
     family: target:page-data-position
-    prompt: Which line makes a region show the component held by each page data record?
-    why: Use it when each article needs its own body or hero in a shared template, rather than one component that
-      every record shows.
+    prompt: This fixture builds a template page (a page record that every page data record of one type renders
+      through). Which line makes one of its component groups (named lists of components) show each page data
+      record's own component?
+    why: Use it when each blog article needs its own body or hero on a shared template page, rather than one
+      component that every record shows.
     code:
       lang: php
       text: |-
@@ -396,23 +400,23 @@ questions:
       lines:
         - 11
       explanation: "`pageDataPosition()` creates a position bound to a field of a page data class. Each record that
-        renders through the template page shows its own component in that slot."
+        renders through the template page shows the component held in its own field at that position."
     sources:
       - kind: docs
         page: /api/data-fixtures/builder-reference
         anchor: groupbuilder-from-any-group-call
-        sectionHash: sha256:09abbd254d166260
+        sectionHash: sha256:1297bf39d87b7f81
       - kind: docs
         page: /guides/your-first-dynamic-page
         anchor: via-fixtures
-        sectionHash: sha256:cc06deaae2cf39c1
+        sectionHash: sha256:15ec0a7f9e44973c
         block: 0
         blockHash: sha256:63ed8fac2fd9414d
     generator:
       name: pick-the-line
       ref: page-data-position
   - id: gen.target.page-data-position.3
-    version: 2
+    version: 3
     status: live
     level: intermediate
     area: api
@@ -421,9 +425,11 @@ questions:
       - fixtures
     type: pick-the-line
     family: target:page-data-position
-    prompt: Which line makes a region show the component held by each page data record?
-    why: Use it when each article needs its own body or hero in a shared template, rather than one component that
-      every record shows.
+    prompt: This fixture builds a template page (a page record that every page data record of one type renders
+      through). Which line makes one of its component groups (named lists of components) show each page data
+      record's own component?
+    why: Use it when each blog article needs its own body or hero on a shared template page, rather than one
+      component that every record shows.
     code:
       lang: php
       text: |-
@@ -446,12 +452,12 @@ questions:
       lines:
         - 6
       explanation: "`pageDataPosition()` creates a position bound to a field of a page data class. Each record that
-        renders through the template page shows its own component in that slot."
+        renders through the template page shows the component held in its own field at that position."
     sources:
       - kind: docs
         page: /api/data-fixtures/builder-reference
         anchor: groupbuilder-from-any-group-call
-        sectionHash: sha256:09abbd254d166260
+        sectionHash: sha256:1297bf39d87b7f81
       - kind: docs
         page: /api/data-fixtures/getting-started
         anchor: complete-example
@@ -461,8 +467,8 @@ questions:
     generator:
       name: pick-the-line
       ref: page-data-position
-  - id: gen.target.template-page-flag.1
-    version: 2
+  - id: gen.target.template-page-flag.5
+    version: 1
     status: live
     level: intermediate
     area: api
@@ -471,9 +477,10 @@ questions:
       - fixtures
     type: pick-the-line
     family: target:template-page-flag
-    prompt: Which line means this page has no URL of its own, and every record of one type renders through it?
-    why: One template page serves every record of its type, so a change to its regions shows on all of them at
-      once.
+    prompt: Which line gives this page no route of its own, so that every page data record (one item of repeating
+      content, such as a blog article) of one type renders through it?
+    why: One template page serves every page data record of its type, so a change to its component groups shows on
+      all of them at once.
     code:
       lang: php
       text: |-
@@ -492,18 +499,18 @@ questions:
       - kind: docs
         page: /core-concepts/layouts-and-pages
         anchor: template-pages-istemplate-true
-        sectionHash: sha256:e643423b9bbe3b1b
+        sectionHash: sha256:aa5e8d6598a23a66
       - kind: docs
         page: /core-concepts/dynamic-pages
-        anchor: linking-a-pagedata-field-to-a-region
-        sectionHash: sha256:2e8edd52a45e53ee
+        anchor: linking-a-page-data-field-to-a-component-position
+        sectionHash: sha256:f256699eb9c03426
         block: 0
         blockHash: sha256:d24b319f202e0b32
     generator:
       name: pick-the-line
       ref: template-page-flag
   - id: gen.target.template-page-flag.2
-    version: 3
+    version: 4
     status: live
     level: intermediate
     area: api
@@ -512,9 +519,10 @@ questions:
       - fixtures
     type: pick-the-line
     family: target:template-page-flag
-    prompt: Which line means this page has no URL of its own, and every record of one type renders through it?
-    why: One template page serves every record of its type, so a change to its regions shows on all of them at
-      once.
+    prompt: Which line gives this page no route of its own, so that every page data record (one item of repeating
+      content, such as a blog article) of one type renders through it?
+    why: One template page serves every page data record of its type, so a change to its component groups shows on
+      all of them at once.
     code:
       lang: php
       text: |-
@@ -550,18 +558,18 @@ questions:
       - kind: docs
         page: /core-concepts/layouts-and-pages
         anchor: template-pages-istemplate-true
-        sectionHash: sha256:e643423b9bbe3b1b
+        sectionHash: sha256:aa5e8d6598a23a66
       - kind: docs
         page: /guides/your-first-dynamic-page
         anchor: via-fixtures
-        sectionHash: sha256:cc06deaae2cf39c1
+        sectionHash: sha256:15ec0a7f9e44973c
         block: 0
         blockHash: sha256:63ed8fac2fd9414d
     generator:
       name: pick-the-line
       ref: template-page-flag
   - id: gen.target.template-page-flag.4
-    version: 2
+    version: 3
     status: live
     level: intermediate
     area: api
@@ -570,9 +578,10 @@ questions:
       - fixtures
     type: pick-the-line
     family: target:template-page-flag
-    prompt: Which line means this page has no URL of its own, and every record of one type renders through it?
-    why: One template page serves every record of its type, so a change to its regions shows on all of them at
-      once.
+    prompt: Which line gives this page no route of its own, so that every page data record (one item of repeating
+      content, such as a blog article) of one type renders through it?
+    why: One template page serves every page data record of its type, so a change to its component groups shows on
+      all of them at once.
     code:
       lang: php
       text: |-
@@ -589,11 +598,11 @@ questions:
       - kind: docs
         page: /core-concepts/layouts-and-pages
         anchor: template-pages-istemplate-true
-        sectionHash: sha256:e643423b9bbe3b1b
+        sectionHash: sha256:aa5e8d6598a23a66
       - kind: docs
         page: /api/data-fixtures/builder-reference
         anchor: groupbuilder-from-any-group-call
-        sectionHash: sha256:09abbd254d166260
+        sectionHash: sha256:1297bf39d87b7f81
         block: 1
         blockHash: sha256:06c07e23e428b501
     generator:
@@ -638,7 +647,7 @@ questions:
       - kind: docs
         page: /core-concepts/dynamic-pages
         anchor: creating-pagedata-in-php
-        sectionHash: sha256:e68334a429ee630b
+        sectionHash: sha256:c5477cafeb992cbc
         block: 0
         blockHash: sha256:8cb33d52d28a2315
     generator:
@@ -1072,7 +1081,7 @@ questions:
       name: pick-the-line
       ref: publish-validation-group
   - id: gen.target.allowed-components.1
-    version: 2
+    version: 3
     status: live
     level: beginner
     area: nuxt-module
@@ -1080,9 +1089,9 @@ questions:
       - components
     type: pick-the-line
     family: target:allowed-components
-    prompt: An editor opens this region's add dialog, and some component types aren't offered. Which line causes
-      that?
-    why: When an editor asks why a component type is missing from one region, check this prop before the
+    prompt: An editor opens the add dialog of this component group (a named list of components, such as `main`),
+      and some component types aren't offered. Which line causes that?
+    why: When an editor asks why a component type is missing from one component group, check this prop before the
       component's registration.
     code:
       lang: vue
@@ -1114,14 +1123,14 @@ questions:
       - kind: docs
         page: /core-concepts/layouts-and-pages
         anchor: componentgroups-in-layouts
-        sectionHash: sha256:ce8c7bd07569de88
+        sectionHash: sha256:b111d5044c5c0739
         block: 0
         blockHash: sha256:7478601c33abbb39
     generator:
       name: pick-the-line
       ref: allowed-components
   - id: gen.target.allowed-components.2
-    version: 2
+    version: 3
     status: live
     level: beginner
     area: nuxt-module
@@ -1129,9 +1138,9 @@ questions:
       - components
     type: pick-the-line
     family: target:allowed-components
-    prompt: An editor opens this region's add dialog, and some component types aren't offered. Which line causes
-      that?
-    why: When an editor asks why a component type is missing from one region, check this prop before the
+    prompt: An editor opens the add dialog of this component group (a named list of components, such as `main`),
+      and some component types aren't offered. Which line causes that?
+    why: When an editor asks why a component type is missing from one component group, check this prop before the
       component's registration.
     code:
       lang: vue
@@ -1172,14 +1181,14 @@ questions:
       - kind: docs
         page: /guides/your-first-layout
         anchor: the-file
-        sectionHash: sha256:15c4056b85444412
+        sectionHash: sha256:a1f4ee1da582b30f
         block: 0
         blockHash: sha256:cfdf8a99c2ad44d7
     generator:
       name: pick-the-line
       ref: allowed-components
   - id: gen.target.allowed-components.3
-    version: 2
+    version: 3
     status: live
     level: beginner
     area: nuxt-module
@@ -1187,9 +1196,9 @@ questions:
       - components
     type: pick-the-line
     family: target:allowed-components
-    prompt: An editor opens this region's add dialog, and some component types aren't offered. Which line causes
-      that?
-    why: When an editor asks why a component type is missing from one region, check this prop before the
+    prompt: An editor opens the add dialog of this component group (a named list of components, such as `main`),
+      and some component types aren't offered. Which line causes that?
+    why: When an editor asks why a component type is missing from one component group, check this prop before the
       component's registration.
     code:
       lang: vue
@@ -1215,7 +1224,7 @@ questions:
       name: pick-the-line
       ref: allowed-components
   - id: gen.target.fixture-redirect.3
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: api
@@ -1224,7 +1233,7 @@ questions:
       - routes
     type: pick-the-line
     family: target:fixture-redirect
-    prompt: Which line sends visitors from an old URL to a page's current route?
+    prompt: Which line sends visitors who open an old path to a page's current route?
     why: When a rebuilt site changes its URLs, seed the old paths as redirects so existing links and search
       results still land.
     code:
@@ -1270,7 +1279,7 @@ questions:
       name: pick-the-line
       ref: fixture-redirect
   - id: gen.target.fixture-redirect.4
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: api
@@ -1279,7 +1288,7 @@ questions:
       - routes
     type: pick-the-line
     family: target:fixture-redirect
-    prompt: Which line sends visitors from an old URL to a page's current route?
+    prompt: Which line sends visitors who open an old path to a page's current route?
     why: When a rebuilt site changes its URLs, seed the old paths as redirects so existing links and search
       results still land.
     code:
@@ -1310,7 +1319,7 @@ questions:
       name: pick-the-line
       ref: fixture-redirect
   - id: gen.target.fixture-redirect.2
-    version: 2
+    version: 3
     status: live
     level: intermediate
     area: api
@@ -1319,7 +1328,7 @@ questions:
       - routes
     type: pick-the-line
     family: target:fixture-redirect
-    prompt: Which line sends visitors from an old URL to a page's current route?
+    prompt: Which line sends visitors who open an old path to a page's current route?
     why: When a rebuilt site changes its URLs, seed the old paths as redirects so existing links and search
       results still land.
     code:
@@ -1358,9 +1367,97 @@ questions:
     generator:
       name: pick-the-line
       ref: fixture-redirect
+  - id: gen.target.page-data-position.1
+    version: 2
+    status: retired
+    retired:
+      reason: "stale-source: the source block is gone or no longer matches the catalogue entry"
+    level: intermediate
+    area: api
+    tags:
+      - dynamic-pages
+      - fixtures
+    family: target:page-data-position
+    prompt: Which line makes a region show the component held by each page data record?
+    why: Use it when each article needs its own body or hero in a shared template, rather than one component that
+      every record shows.
+    sources:
+      - kind: docs
+        page: /api/data-fixtures/builder-reference
+        anchor: groupbuilder-from-any-group-call
+        sectionHash: sha256:09abbd254d166260
+      - kind: docs
+        page: /core-concepts/dynamic-pages
+        anchor: linking-a-page-data-field-to-a-component-position
+        sectionHash: sha256:2e8edd52a45e53ee
+        block: 0
+        blockHash: sha256:d24b319f202e0b32
+    generator:
+      name: pick-the-line
+      ref: page-data-position
+    type: pick-the-line
+    code:
+      lang: php
+      text: |-
+        $cwa->page('blog-template', 'PrimaryPageTemplate', layout: 'main', isTemplate: true,
+            configure: function (PageBuilder $p) {
+                $p->group('primary')
+                    ->pageDataPosition(BlogArticleData::class, 'htmlContent');
+            }
+        );
+    answer:
+      lines:
+        - 4
+      explanation: "`pageDataPosition()` creates a position bound to a field of a page data class. Each record that
+        renders through the template page shows its own component in that slot."
+  - id: gen.target.template-page-flag.1
+    version: 2
+    status: retired
+    retired:
+      reason: "stale-source: the source block is gone or no longer matches the catalogue entry"
+    level: intermediate
+    area: api
+    tags:
+      - dynamic-pages
+      - fixtures
+    family: target:template-page-flag
+    prompt: Which line means this page has no URL of its own, and every record of one type renders through it?
+    why: One template page serves every record of its type, so a change to its regions shows on all of them at
+      once.
+    sources:
+      - kind: docs
+        page: /core-concepts/layouts-and-pages
+        anchor: template-pages-istemplate-true
+        sectionHash: sha256:e643423b9bbe3b1b
+      - kind: docs
+        page: /core-concepts/dynamic-pages
+        anchor: linking-a-page-data-field-to-a-component-position
+        sectionHash: sha256:2e8edd52a45e53ee
+        block: 0
+        blockHash: sha256:d24b319f202e0b32
+    generator:
+      name: pick-the-line
+      ref: template-page-flag
+    type: pick-the-line
+    code:
+      lang: php
+      text: |-
+        $cwa->page('blog-template', 'PrimaryPageTemplate', layout: 'main', isTemplate: true,
+            configure: function (PageBuilder $p) {
+                $p->group('primary')
+                    ->pageDataPosition(BlogArticleData::class, 'htmlContent');
+            }
+        );
+    answer:
+      lines:
+        - 1
+      explanation: "`isTemplate: true` makes a template page. It gets no route; every page data record of one type
+        renders through it."
   - id: gen.target.fixture-redirect.1
     version: 1
     status: retired
+    retired:
+      reason: "stale-source: the source block is gone or no longer matches the catalogue entry"
     level: intermediate
     area: api
     tags:
@@ -1395,8 +1492,6 @@ questions:
         - 5
       explanation: "`$cwa->redirect($path, to: $routeName)` declares a redirect route. The builder creates it during
         `flush()`, straight after the page routes."
-    retired:
-      reason: "stale-source: the source block is gone or no longer matches the catalogue entry"
   - id: gen.target.template-page-flag.3
     version: 2
     status: retired

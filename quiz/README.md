@@ -144,6 +144,32 @@ branch's newest commit when the same lines are still there.
   ```
 - Links in a prompt or explanation need the page path, `[Routes](/api/routes#redirects)`, never `(#redirects)`.
 
+## Use CWA's terms
+
+A question is only fair if the reader knows what it's asking about. Name things by the terms in the
+[glossary](/core-concepts/glossary), the same way every time:
+
+| Say | Not |
+|---|---|
+| component group (or group, once it's clear) | region, area, section, zone, container |
+| component position (or position) | slot, spot, place |
+| component | block, widget, item, element |
+| page template (the Vue file) / template page (the record) | template, on its own |
+| page data (record) | article, post, item, entry, unless the question is about a real example such as a blog article |
+| layout, page, route | shell, screen, URL, when the record is meant |
+
+- **Say what a term means the first time a beginner or intermediate question uses it**, when it isn't
+  `layout`, `page` or `component`: "a component group (the named list of components a page template shows,
+  such as `main`)". Advanced and expert questions can assume the glossary.
+- **Ask one thing, plainly.** Lead with the situation, then the question: "An editor adds a Quote to the
+  `main` component group of a template page. Which records show it?" not "Where does it appear?".
+- **Name the record, not just the screen.** "The page data record's route", not "the article's URL".
+- **Code words stay code.** Vue's `<slot />`, Cloudflare's zone and similar terms from other tools are fine
+  when they mean that tool's thing.
+
+`quiz:check` warns when a prompt, option, explanation or `why` says "region", or "slot" outside Vue's
+slots *(check)*.
+
 ## Writing fair questions
 
 These rules are for every question, generated or not. `pnpm quiz:check` tests the ones marked *(check)*.

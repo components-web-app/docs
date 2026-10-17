@@ -29,14 +29,14 @@ questions:
     author: llm-draft
 
   - id: deploy.k8s.nuxt-hpa-target
-    version: 1
+    version: 2
     status: live
     level: advanced
     area: deployment
     tags: [kubernetes]
     type: multiple-choice
     difficulty: 4
-    prompt: The Nuxt HPA targets 175% CPU. How can a target be over 100%?
+    prompt: The chart's HPA for the Nuxt pods targets 175% CPU utilisation. How can a target be over 100%?
     why: >-
       If you change the Nuxt CPU request and leave the target alone, the HPA either adds pods for ordinary
       traffic or waits until renders queue.
@@ -55,14 +55,14 @@ questions:
     author: llm-draft
 
   - id: deploy.cicd.purge-after-deploy
-    version: 1
+    version: 2
     status: live
     level: advanced
     area: deployment
     tags: [deployment, page-caching]
     type: multiple-choice
     difficulty: 3
-    prompt: Why does every deploy purge the cached pages?
+    prompt: Why does every deploy of the template purge the cached page HTML?
     why: >-
       If visitors see unstyled pages straight after a release, suspect a cached page from the previous build
       first.
@@ -163,14 +163,14 @@ questions:
     author: llm-draft
 
   - id: deploy.origin.query-allowlist
-    version: 1
+    version: 2
     status: live
     level: advanced
     area: deployment
     tags: [page-caching, deployment]
     type: multiple-choice
     difficulty: 4
-    prompt: A page filters by `?category=` through `useQueryBoundModel('category')`. Server rendering never sees the value. What do you change?
+    prompt: A page template filters a collection by `?category=`, read with `useQueryBoundModel('category')`. On the server render, `category` is always empty. What do you change?
     why: >-
       Until you list it, every `?category=` value shares the cached entry for the unfiltered page, so the
       server-rendered HTML ignores the filter.

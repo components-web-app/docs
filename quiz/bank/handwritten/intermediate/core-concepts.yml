@@ -3,14 +3,14 @@
 
 questions:
   - id: core.dynamic.page-data-title
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: core-concepts
     tags: [dynamic-pages]
     type: multiple-choice
     difficulty: 2
-    prompt: A blog article is a page data record with a title. Where does its page's `<title>` come from?
+    prompt: 'A blog article is a page data record: one item of repeating content, with its own route. The record has a `title`. Where does the HTML `<title>` at the article''s route come from?'
     why: >-
       Leave `title` empty on seeded or imported records and they fall back to the template page's title, so
       search results show one title for every article.
@@ -30,14 +30,14 @@ questions:
     author: llm-draft
 
   - id: core.public.what-is-public
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: core-concepts
     tags: [security, routes]
     type: multiple-choice
     difficulty: 3
-    prompt: When can the public see a page and everything on it?
+    prompt: When can an anonymous visitor see a page record and the components on it?
     why: >-
       Publishing every component isn't enough. When content you published doesn't show for visitors, check its
       route's visibility first.
@@ -57,14 +57,14 @@ questions:
     author: llm-draft
 
   - id: core.admin.delete-one-version
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: core-concepts
     tags: [admin, draft-and-publish]
     type: multiple-choice
     difficulty: 3
-    prompt: An editor selects a published component's draft and clicks **Delete Draft**. What is removed?
+    prompt: A component has a published version and a draft. An editor selects the draft and clicks **Delete Draft**. What is removed?
     why: >-
       Removing a component completely takes two deletes, so check the other version is gone too before you
       assume it has left the site.
@@ -83,14 +83,14 @@ questions:
     author: llm-draft
 
   - id: core.admin.rename-child-routes
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: core-concepts
     tags: [admin, routes]
     type: multiple-choice
     difficulty: 3
-    prompt: An editor changes a parent route's path and confirms **Update child routes?**. What happens to the child routes?
+    prompt: In the admin, an editor changes a parent route's path and confirms **Update child routes?**. What happens to the child routes?
     why: >-
       Confirm it when you restructure a section, so old links and search results for its child pages keep
       landing.

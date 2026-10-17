@@ -4,7 +4,7 @@
 
 questions:
   - id: deploy.storage.shared-bucket
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: deployment
@@ -12,7 +12,8 @@ questions:
     type: multiple-choice
     difficulty: 2
     prompt: >-
-      Two sites built from the template store their uploads in the same bucket. What should each one set?
+      Two sites built from the template store their uploads in the same Google Cloud Storage bucket. What should
+      each site set?
     why: >-
       An app at the bucket root sees the other apps' files as its own orphans, and deleting every orphan removes
       them.
@@ -65,7 +66,7 @@ questions:
     author: llm-draft
 
   - id: deploy.storage.prefix-live-app
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: deployment
@@ -73,8 +74,8 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: >-
-      A live site has stored its uploads at the bucket root for a year. You want it under `site-a/`. What do you
-      do before the deploy that sets `GCLOUD_PATH_PREFIX`?
+      A live site has stored its uploads at the bucket root for a year. You want its uploads under `site-a/`.
+      What do you do before the deploy that sets `GCLOUD_PATH_PREFIX`?
     why: >-
       Deploying the prefix first makes every existing upload a missing file, because the database paths are now
       read inside the prefix.

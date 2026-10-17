@@ -4,7 +4,7 @@
 
 questions:
   - id: deploy.cicd.pinned-build
-    version: 1
+    version: 2
     status: live
     level: advanced
     area: deployment
@@ -12,8 +12,8 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: >-
-      Production was last deployed yesterday. Since then, new commits on `main` have been built.
-      Tonight a php pod is evicted and restarts. Which build does it run?
+      Production was last deployed yesterday. Since then, CI has built new commits on `main` but nobody has
+      deployed them. Tonight a production php pod is evicted and restarts. Which build does the new pod run?
     why: >-
       A restart or a scale-up used to be able to run a build that was never deployed against the live database.
       Now only a deploy changes what a track runs.
@@ -68,14 +68,16 @@ questions:
     author: llm-draft
 
   - id: deploy.k8s.api-logs
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: deployment
     tags: [kubernetes]
     type: multiple-choice
     difficulty: 2
-    prompt: A visitor reports an error on your production site. Where do you read the API's log?
+    prompt: >-
+      Your site runs on Kubernetes, deployed by the template's pipeline. A visitor reports an error on
+      production. Where do you read the API's log?
     why: >-
       Nothing is written to `var/log/prod.log` any more, and only a request that logs an error writes its
       lines, so look in the pod's output for the failing request.
@@ -95,7 +97,7 @@ questions:
     author: llm-draft
 
   - id: deploy.k8s.error-mail-sender
-    version: 1
+    version: 2
     status: live
     level: advanced
     area: deployment
@@ -103,8 +105,9 @@ questions:
     type: multiple-choice
     difficulty: 4
     prompt: >-
-      You set `CWA_API_ERROR_MAIL_TO` and a working `MAILER_DSN`. The API then returns its first `500` since the
-      deploy, and no email arrives. What is the likely cause?
+      To be emailed when the API fails, you set the CI variable `CWA_API_ERROR_MAIL_TO` and a working
+      `MAILER_DSN`. After the deploy, the API returns its first `500`, and no email arrives. What is the likely
+      cause?
     why: >-
       The error mail fails silently, so without a sender you never hear about the API's `5xx` errors. Set
       `MAILER_EMAIL` with the other two variables.

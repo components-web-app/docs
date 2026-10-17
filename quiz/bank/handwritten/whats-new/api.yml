@@ -4,7 +4,7 @@
 
 questions:
   - id: api.fixtures.publish-component
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: api
@@ -12,8 +12,8 @@ questions:
     type: multiple-choice
     difficulty: 2
     prompt: >-
-      A scaffold creates an `HtmlContent` component and adds it to the home page's `primary` group. After the
-      load, visitors see nothing in that group. What does the scaffold need?
+      A scaffold creates an `HtmlContent` component and adds it to the home page's `primary` component group.
+      After the fixtures load, visitors see an empty group. Which call does the scaffold need to add?
     why: >-
       Every publishable component a scaffold only creates loads as a draft, so editors see it in the admin while
       visitors get an empty group.
@@ -36,7 +36,7 @@ questions:
     author: llm-draft
 
   - id: api.fixtures.component-draft
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: api
@@ -44,16 +44,17 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: >-
-      A scaffold's published `$welcome` component should also have a pending draft. You create `$welcomeDraft`
-      and call `$cwa->component($welcome)->draft($welcomeDraft)`. What else does `$welcomeDraft` need?
+      In a scaffold, the published component `$welcome` should also have an unpublished draft. You create
+      `$welcomeDraft` and call `$cwa->component($welcome)->draft($welcomeDraft)`. What else must the scaffold
+      do with `$welcomeDraft`?
     why: >-
       A seeded site can show editors a pending change on a published component, such as new copy waiting for
       sign-off, while visitors keep seeing the live version.
     since: [{ repo: api-components-bundle, version: '2.0.0-alpha.22' }]
     options:
-      - { id: a, text: 'To be added to the same group as `$welcome`' }
-      - { id: b, text: 'A `$cwa->persist()` call of its own' }
-      - { id: c, text: 'A `$cwa->publish()` call with a future date' }
+      - { id: a, text: 'Add it to the same component group as `$welcome`' }
+      - { id: b, text: 'Pass it to a `$cwa->persist()` call of its own' }
+      - { id: c, text: 'Pass it to `$cwa->publish()` with a future date' }
       - { id: d, text: 'Nothing. The builder links and saves it' }
     answer:
       correct: d
@@ -68,7 +69,7 @@ questions:
     author: llm-draft
 
   - id: api.fixtures.link-route-group-owner
-    version: 1
+    version: 2
     status: live
     level: advanced
     area: api
@@ -76,9 +77,9 @@ questions:
     type: multiple-choice
     difficulty: 4
     prompt: >-
-      A scaffold's `Card` component owns a group of its own, and its builder calls
-      `->linkRoute('route', routeName: 'about')`. The load fails while saving the card, before any route exists.
-      What needs to change?
+      In a scaffold, a `Card` component owns a component group of its own, and its builder calls
+      `->linkRoute('route', routeName: 'about')` to fill the card's `route` field. The fixture load fails
+      while saving the card, before any route exists. What needs to change?
     why: >-
       A NOT NULL route column on a component looks safe until a scaffold seeds one that owns a group. Then every
       fixture load fails on it.
@@ -100,7 +101,7 @@ questions:
     author: llm-draft
 
   - id: api.uploads.data-uri-validation
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: api
@@ -108,8 +109,8 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: >-
-      An image field has `#[UploadedImage]` with no options. A client sends a 40-megapixel JPEG as a base64 data
-      URI in the JSON body. What does the API return?
+      A component's image field has `#[UploadedImage]` with no options. A client sends a 40-megapixel JPEG to
+      that field as a base64 data URI in the JSON body. What does the API return?
     why: >-
       Clients that upload base64 instead of multipart now get the same field errors as a form upload, so show
       them to the editor like any other violation.
@@ -166,7 +167,7 @@ questions:
     author: llm-draft
 
   - id: api.orphans.invalid-files-groups
-    version: 1
+    version: 2
     status: live
     level: advanced
     area: api
@@ -174,16 +175,17 @@ questions:
     type: multiple-choice
     difficulty: 4
     prompt: >-
-      A field's `Assert\Image(maxPixels: …)` is only in the `Article:published` validation group. You lower the
-      limit. Which stored files does the orphaned files report list as invalid?
+      On the publishable `Article` class, an image field's `Assert\Image(maxPixels: …)` is in the
+      `Article:published` validation group only. You lower `maxPixels`. Which stored files does the orphaned
+      files report now list as invalid?
     why: >-
       Rules that only apply at publish time now show up in the report for live content, so you can replace those
       images before an editor's next publish fails on them.
     since: [{ repo: api-components-bundle, version: '2.0.0-alpha.23' }]
     options:
-      - { id: a, text: 'Files of published or scheduled rows that break it' }
-      - { id: b, text: 'Files of every row that break the new limit' }
-      - { id: c, text: 'Files of draft rows that break it, as drafts change' }
+      - { id: a, text: 'Files of published or scheduled rows over the limit' }
+      - { id: b, text: 'Files of every row over the new limit' }
+      - { id: c, text: 'Files of draft rows over the limit, as drafts change' }
       - { id: d, text: 'No files, because the scan checks only `Default`' }
     answer:
       correct: a

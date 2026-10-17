@@ -83,14 +83,14 @@ questions:
     author: llm-draft
 
   - id: nuxt.page-cache.unpublished-component
-    version: 1
+    version: 2
     status: live
     level: advanced
     area: nuxt-module
     tags: [page-caching, draft-and-publish]
     type: multiple-choice
     difficulty: 5
-    prompt: A page places a component that has never been published. An anonymous visitor loads it. Is the page cached?
+    prompt: A component position on a live page holds a component that has never been published. An anonymous visitor loads the page. Does the shared cache store the page?
     why: >-
       You can prepare a component on a live page ahead of time without losing the page cache, and publishing
       it is all you need to do to show it.
@@ -109,14 +109,14 @@ questions:
     author: llm-draft
 
   - id: nuxt.setup.load-by-iri-public
-    version: 1
+    version: 2
     status: live
     level: advanced
     area: nuxt-module
     tags: [module-setup, security]
     type: multiple-choice
     difficulty: 4
-    prompt: A Nuxt page of your own loads a CWA page by IRI with `cwa.fetch`. The API sets `routable_security`. What makes it work for visitors?
+    prompt: A Nuxt page file of your own loads a CWA page record by its IRI, with `cwa.fetch` in `definePageMeta`. The API sets `routable_security`. What makes the Nuxt page work for anonymous visitors?
     why: >-
       Test the page as a signed-out visitor: users who pass `routable_security` can read the CWA page anyway,
       so an admin session hides the `401`.

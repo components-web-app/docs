@@ -26,7 +26,7 @@ questions:
     author: llm-draft
 
   - id: deploy.install.fixtures-append
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: deployment
@@ -34,7 +34,9 @@ questions:
     type: multiple-choice
     difficulty: 2
     family: fixtures-load-append
-    prompt: Why does the installation guide load the fixtures with `doctrine:fixtures:load --append`?
+    prompt: >-
+      The installation guide loads the fixtures (the code that seeds the sample content) with
+      `doctrine:fixtures:load --append`. What does `--append` do?
     options:
       - { id: a, text: It keeps existing data and creates what's missing }
       - { id: b, text: It adds the admin pages to the Nuxt app }
@@ -72,7 +74,7 @@ questions:
         The `app` container already runs the Nuxt dev server, and Caddy proxies it at `https://localhost`.
         Running `pnpm dev` on your machine starts a second Nuxt that `https://localhost` never reaches.
     sources:
-      - { kind: docs, page: /getting-started/installation, anchor: _3-open-the-site, sectionHash: 'sha256:25e00037eb801378' }
+      - { kind: docs, page: /getting-started/installation, anchor: _3-open-the-site, sectionHash: 'sha256:ea02c7e3b3d3b87c' }
     author: llm-draft
 
   - id: deploy.install.admin-role
@@ -120,7 +122,7 @@ questions:
       explanation: >-
         The admin panel is at `/_cwa` on the site's own host. The API is at `/_api`, and you sign in at `/login`.
     sources:
-      - { kind: docs, page: /getting-started/installation, anchor: _3-open-the-site, sectionHash: 'sha256:25e00037eb801378' }
+      - { kind: docs, page: /getting-started/installation, anchor: _3-open-the-site, sectionHash: 'sha256:ea02c7e3b3d3b87c' }
     author: llm-draft
 
   - id: deploy.install.certificate-warning
@@ -143,7 +145,7 @@ questions:
         Caddy makes a self-signed certificate for local use. Accept the warning, or trust Caddy's local CA,
         which is in the `caddy_data` volume.
     sources:
-      - { kind: docs, page: /getting-started/installation, anchor: _3-open-the-site, sectionHash: 'sha256:25e00037eb801378' }
+      - { kind: docs, page: /getting-started/installation, anchor: _3-open-the-site, sectionHash: 'sha256:ea02c7e3b3d3b87c' }
     author: llm-draft
 
   - id: deploy.install.empty-home

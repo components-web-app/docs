@@ -3,14 +3,14 @@
 
 questions:
   - id: nuxt.setup.extends-layer
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: nuxt-module
     tags: [module-setup]
     type: pick-the-line
     difficulty: 1
-    prompt: Which line gives this app the CWA sign-in pages, the `/_cwa` admin panel and the root layout?
+    prompt: In this `nuxt.config.ts`, which line gives the app the CWA sign-in pages, the `/_cwa` admin panel and the root layout?
     why: >-
       If `/login` or `/_cwa` gives a 404 in a new app, check that the config extends the layer rather than
       listing the module.
@@ -39,14 +39,17 @@ questions:
         blockHash: sha256:4452d03e14874b65
 
   - id: nuxt.admin.add-page-data-link
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: nuxt-module
     tags: [admin, dynamic-pages]
     type: spot-the-mistake
     difficulty: 3
-    prompt: This link should open the add form with the module as the parent and the lesson template chosen. One line is wrong. Click it.
+    prompt: >-
+      Each training module is a page data record (a record for one item of repeating content) inside a course.
+      This "Add a training module" link should open the admin's add form with the course as the parent and the
+      training module template page already chosen. One line is wrong. Click it.
     why: >-
       The form still opens, so the mistake is easy to miss: editors just have to pick the template themselves.
     code:
@@ -56,32 +59,34 @@ questions:
             <NuxtLink
                 :to="{
                     path: '/_cwa/data/trainingModuleData/add',
-                    query: { parentPageData: moduleIri, page: lessonTemplateIri },
+                    query: { parentPageData: courseIri, page: moduleTemplateIri },
                 }"
             >
-                Add a lesson
+                Add a training module
             </NuxtLink>
         </template>
     answer:
       line: 5
-      fix: "            query: { parentPageData: moduleIri, template: lessonTemplateIri },"
+      fix: "            query: { parentPageData: courseIri, template: moduleTemplateIri },"
       explanation: >-
         The template's query parameter is `template`. `?page=` is the page number of the list behind the form,
         so the template is never filled in.
     since: [{ repo: cwa-nuxt-module, version: '2.0.0-alpha.15' }]
     sources:
-      - { kind: docs, page: /nuxt-module/cwa-layer/admin-panel, anchor: linking-to-the-add-page-data-form, sectionHash: 'sha256:bbbd5de70f36bcfd', block: 0, blockHash: 'sha256:d9603cc46401ab23' }
+      - { kind: docs, page: /nuxt-module/cwa-layer/admin-panel, anchor: linking-to-the-add-page-data-form, sectionHash: 'sha256:f98a9e448ba3ec24', block: 0, blockHash: 'sha256:cbd5be71df6d7a72' }
     author: llm-draft
 
   - id: nuxt.page-data.read-in-computed
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: nuxt-module
     tags: [cwa-api, dynamic-pages]
     type: multiple-choice
     difficulty: 3
-    prompt: In `<script setup>`, why read `cwa.resources.pageData.value` inside a `computed`?
+    prompt: >-
+      A page template's `<script setup>` reads the current page data record (such as the blog article at the
+      current route) from `cwa.resources.pageData.value`. Why read it inside a `computed`?
     why: >-
       This bites on client-side navigation: move from one article to another and a setup-time read still shows
       the first article's data.
@@ -101,14 +106,14 @@ questions:
     author: llm-draft
 
   - id: nuxt.auth.ssr-safe-state
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: nuxt-module
     tags: [auth]
     type: multiple-choice
     difficulty: 3
-    prompt: Which auth values can a layout render on the server without `<ClientOnly>`?
+    prompt: A layout's header changes when someone signs in. Which `cwa.auth` values can the layout render on the server, without `<ClientOnly>`?
     why: >-
       This decides which parts of a header can be in the first HTML a visitor gets, and which must wait for
       the browser.
@@ -127,14 +132,14 @@ questions:
     author: llm-draft
 
   - id: nuxt.auth.roles-access
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: nuxt-module
     tags: [auth, cwa-api]
     type: multiple-choice
     difficulty: 3
-    prompt: In a script, how do you read the signed-in user's roles?
+    prompt: In a component's `<script setup>`, with `const cwa = useCwa()`, how do you read the signed-in user's roles?
     why: >-
       Add `.value` and a role check fails for a signed-in user and throws when nobody is signed in, so the UI
       it guards never appears.
@@ -153,14 +158,14 @@ questions:
     author: llm-draft
 
   - id: nuxt.config.layout-classes
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: nuxt-module
     tags: [layouts-and-pages, module-setup]
     type: multiple-choice
     difficulty: 3
-    prompt: How do you declare the styles an editor can pick for a layout?
+    prompt: Editors should be able to pick a style for a layout, such as a dark theme. How do you declare the styles they can pick?
     why: >-
       Don't add a "Default" entry yourself. One is already there, so editors would see two.
     options:
@@ -178,7 +183,7 @@ questions:
     author: llm-draft
 
   - id: nuxt.component.style-variants-where
-    version: 1
+    version: 2
     status: live
     family: component-style-variants
     level: intermediate
@@ -186,7 +191,7 @@ questions:
     tags: [components]
     type: multiple-choice
     difficulty: 3
-    prompt: Where do you declare the style variants an editor can pick for a component?
+    prompt: Editors should be able to pick a style variant for a component type, such as a highlighted Quote. Where do you declare the variants?
     why: >-
       Styles declared for a component in `nuxt.config` are never offered to editors, so when a style picker is
       missing, look in the Vue file.
@@ -208,14 +213,16 @@ questions:
     author: llm-draft
 
   - id: nuxt.component.nested-group-location
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: nuxt-module
     tags: [components]
     type: multiple-choice
     difficulty: 3
-    prompt: A component contains its own `<CwaComponentGroup>`. What do you pass as the group's `location`?
+    prompt: >-
+      A component's Vue file declares a component group of its own (a named list of components, such as
+      `main`) with `<CwaComponentGroup>`. What do you pass as the group's `location` prop?
     why: >-
       Each component then gets a group of its own, so two components of the same type on one page can hold
       different content.
@@ -234,14 +241,14 @@ questions:
     author: llm-draft
 
   - id: nuxt.component.resource-states
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: nuxt-module
     tags: [composables]
     type: multiple-choice
     difficulty: 3
-    prompt: From `useCwaComponent`, `resource.value` is an object with no `data`. What does that mean?
+    prompt: In a component's Vue file, `useCwaComponent(props)` returns `resource`. `resource.value` is an object, but it has no `data`. What does that tell you?
     why: >-
       This is the state your loading placeholder and error message handle. Treat it as not ready, not as an
       empty component.
@@ -260,20 +267,20 @@ questions:
     author: llm-draft
 
   - id: nuxt.admin.instant-add
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: nuxt-module
     tags: [admin, module-setup]
     type: multiple-choice
     difficulty: 2
-    prompt: 'What does `instantAdd: true` on a component type in `nuxt.config` change?'
+    prompt: 'A component type has `instantAdd: true` in `nuxt.config`. What does that change for editors?'
     why: >-
       Use it for components with nothing to set up, such as a divider or spacer. Anything editors must fill in
       is better added through the panel.
     options:
       - { id: a, text: 'It''s added at once, with no config panel first' }
-      - { id: b, text: 'Editors can add it to any group, whatever its allowed list' }
+      - { id: b, text: 'It can go in any component group, whatever its allowed list' }
       - { id: c, text: It's added to every new page automatically }
       - { id: d, text: The component is published as soon as it's added }
     answer:

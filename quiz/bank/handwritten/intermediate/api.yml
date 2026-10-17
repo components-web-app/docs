@@ -3,14 +3,14 @@
 
 questions:
   - id: api.publishable.publish-now
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: api
     tags: [draft-and-publish]
     type: multiple-choice
     difficulty: 3
-    prompt: 'Why does the admin publish by sending `"publishedAt": "now"` rather than the current time?'
+    prompt: 'When an editor publishes a component, the admin sends `"publishedAt": "now"` instead of the browser''s current time. Why?'
     why: >-
       If your own client code publishes with the browser's time, a clock running ahead leaves the resource
       scheduled, and it looks as if publishing failed.
@@ -29,14 +29,14 @@ questions:
     author: llm-draft
 
   - id: api.publishable.take-offline
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: api
     tags: [draft-and-publish]
     type: multiple-choice
     difficulty: 3
-    prompt: How do you take a published component offline through the API?
+    prompt: A component is published. Which API request takes it offline?
     why: >-
       Any client of yours that takes content down over the API, such as an integration, must send this
       `DELETE`. A `PATCH` succeeds but leaves the live version up.
@@ -58,14 +58,14 @@ questions:
     author: llm-draft
 
   - id: api.routes.redirect-storage
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: api
     tags: [routes]
     type: multiple-choice
     difficulty: 2
-    prompt: How is a redirect stored in the API?
+    prompt: An editor makes `/old-page` redirect to `/new-page`. How does the API store that redirect?
     why: >-
       When you import old URLs from another site, there's no redirects table to fill: each old URL becomes a
       route of its own.
@@ -84,14 +84,14 @@ questions:
     author: llm-draft
 
   - id: api.routes.redirect-status
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: api
     tags: [routes]
     type: multiple-choice
     difficulty: 3
-    prompt: A visitor opens a route that redirects. Which status does the module's route middleware send?
+    prompt: A visitor opens the path of a route that redirects to another route. Which HTTP status does the module's route middleware send?
     why: >-
       A `308` is permanent and keeps the request method, so browsers may cache it. Check a redirect's target
       before you save it, as a mistaken one can stick.
@@ -110,14 +110,14 @@ questions:
     author: llm-draft
 
   - id: api.routes.live-at-null
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: api
     tags: [routes]
     type: multiple-choice
     difficulty: 2
-    prompt: A route's `liveAt` is `null`. What do anonymous visitors get at its path?
+    prompt: A route's go-live date, `liveAt`, is `null`. What does an anonymous visitor get at the route's path?
     why: >-
       Use it to take a page down for a while. Deleting the route instead frees the path, and you'd have to set
       it up again.
@@ -136,14 +136,14 @@ questions:
     author: llm-draft
 
   - id: api.routes.live-at-inheritance
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: api
     tags: [routes]
     type: multiple-choice
     difficulty: 4
-    prompt: A parent route is scheduled for 1 November. Its child route's own `liveAt` has already passed. When does the child go live?
+    prompt: A parent route's `liveAt` (go-live date) is 1 November, still in the future. Its child route's own `liveAt` has already passed. When does the child route go live?
     why: >-
       If a page you set live still 404s for visitors, look at its parent routes: one that is scheduled or not
       live holds it back.
@@ -162,14 +162,14 @@ questions:
     author: llm-draft
 
   - id: api.routes.cascade-child-paths
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: api
     tags: [routes]
     type: multiple-choice
     difficulty: 3
-    prompt: 'An admin renames `/events` to `/happenings` with `cascadeChildPaths: true`. What happens to `/events/2024`?'
+    prompt: 'An admin changes a route''s path from `/events` to `/happenings`, with `cascadeChildPaths: true`. What happens to its child route `/events/2024`?'
     why: >-
       When your own code renames a section's route, pass it, or the child pages keep URLs under the old
       prefix.
@@ -188,14 +188,14 @@ questions:
     author: llm-draft
 
   - id: api.routes.page-data-without-route
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: api
     tags: [routes, dynamic-pages]
     type: multiple-choice
     difficulty: 3
-    prompt: You create a page data record with `POST` through the REST API. What route does it get?
+    prompt: You create a page data record (one item of repeating content, such as a blog article) with a `POST` to the REST API. Which route does the record get?
     why: >-
       Records you import through the API can't be visited until they have routes, so add that step to any
       import script.
@@ -214,14 +214,14 @@ questions:
     author: llm-draft
 
   - id: api.fixtures.after-routes
-    version: 2
+    version: 3
     status: live
     level: intermediate
     area: api
     tags: [fixtures, routes]
     type: multiple-choice
     difficulty: 3
-    prompt: In a scaffold, a navigation link's `route` field must point to the page route named `about`. How do the docs say to set it?
+    prompt: A scaffold creates a page whose route is named `about`. A navigation link component in the same scaffold has a `route` field that must hold that route. How do the docs say to set the field?
     why: >-
       Navigation links are where you'll meet this: a menu points at pages whose routes don't exist until the
       scaffold flushes.
@@ -247,14 +247,16 @@ questions:
     author: llm-draft
 
   - id: api.fixtures.page-group-allow
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: api
     tags: [fixtures, components]
     type: multiple-choice
     difficulty: 4
-    prompt: On a page builder, how do you limit the `primary` group to `HtmlContent` components?
+    prompt: >-
+      A scaffold builds a page with `$cwa->page(…)`, which returns a page builder. How do you limit the page's
+      `primary` component group (a named list of components) to `HtmlContent` components?
     why: >-
       The argument order differs between builders, so a `group()` call copied from a layout or component
       builder breaks on a page builder.
@@ -275,7 +277,7 @@ questions:
     author: llm-draft
 
   - id: api.fixtures.redirect-target-name
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: api
@@ -284,7 +286,7 @@ questions:
     difficulty: 3
     prompt: >-
       A scaffold declares `$cwa->page('about-team', uiComponent: 'Primary', layout: 'main', route: '/about/team',
-      routeName: 'team')`. What does `$cwa->redirect('/our-team', to: …)` take to send visitors to that page?
+      routeName: 'team')`. Which value do you pass as `to:` in `$cwa->redirect('/our-team', to: …)` to send visitors to that page?
     why: >-
       Each page in a scaffold has a reference, a route name and a path, so check which one a method expects
       before you pass it a string.
@@ -307,14 +309,14 @@ questions:
     author: llm-draft
 
   - id: api.uploads.uploaded-image-svg
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: api
     tags: [uploads]
     type: multiple-choice
     difficulty: 3
-    prompt: An image field has `#[UploadedImage]` with no options. An editor uploads an SVG to it. What happens?
+    prompt: A component's image field has the `#[UploadedImage]` attribute with no options. An editor uploads an SVG to that field. What happens?
     why: >-
       If a field's front end needs raster variants, such as a `srcset`, set `allowSvg: false`, or editors can
       upload SVGs that get none.

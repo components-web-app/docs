@@ -83,7 +83,7 @@ questions:
     author: llm-draft
 
   - id: nuxt.internals.disabled-page-fetch
-    version: 2
+    version: 3
     status: live
     level: expert
     area: nuxt-module
@@ -92,13 +92,13 @@ questions:
     difficulty: 3
     docsCoverage: light
     prompt: >-
-      You add an ordinary Nuxt page, `/contact`, marked `cwa: { disabled: true }`. A visitor reaches it from
-      a CMS page. What happens to the CMS page the module was holding as the current page?
+      You add an ordinary Nuxt page, `/contact`, with `cwa: { disabled: true }`. A visitor navigates to it from
+      a CWA page. What happens to the CWA page the module held as the current page?
     why: >-
-      On a disabled page, `$cwa.resources.page` and `layout` don't still hold the CMS page you came
+      On a disabled page, `$cwa.resources.page` and `layout` don't still hold the CWA page you came
       from, so code there can't read it.
     options:
-      - { id: a, text: 'It stays the current page until the next CMS page loads' }
+      - { id: a, text: 'It stays the current page until the next CWA page loads' }
       - { id: b, text: 'It is cleared, so page and layout resolve to nothing' }
       - { id: c, text: 'The site config and layout are fetched again, with no route' }
       - { id: d, text: 'The current page is marked as failed, with a 404' }
@@ -142,7 +142,7 @@ questions:
     author: llm-draft
 
   - id: nuxt.internals.stale-redirect
-    version: 2
+    version: 3
     status: live
     level: expert
     area: nuxt-module
@@ -151,8 +151,8 @@ questions:
     difficulty: 5
     docsCoverage: undocumented
     prompt: >-
-      A visitor clicks a link, and before that page loads, clicks a second link. The first link's route turns
-      out to be a redirect. What happens?
+      A visitor clicks a link, then clicks a second link before the first page loads. The route the module
+      fetched for the first link arrives after the second click, and it's a redirect. What happens?
     why: >-
       A slow redirect can't pull the visitor away from the page they chose last.
     options:

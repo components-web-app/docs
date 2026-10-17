@@ -700,7 +700,7 @@ questions:
       - kind: docs
         page: /guides/your-first-page-template
         anchor: the-file
-        sectionHash: sha256:647a73ba24152460
+        sectionHash: sha256:9d4da2ea60160308
         block: 0
         blockHash: sha256:6bc05eb5a4176069
     generator:
@@ -1110,7 +1110,7 @@ questions:
       - kind: docs
         page: /guides/your-first-page-template
         anchor: via-fixtures
-        sectionHash: sha256:30213a61bc6349b2
+        sectionHash: sha256:a8e964245cc7df96
         block: 0
         blockHash: sha256:06332e002924b0a9
     generator:
@@ -1373,11 +1373,11 @@ questions:
       - kind: docs
         page: /core-concepts/layouts-and-pages
         anchor: layouts
-        sectionHash: sha256:f88d69df59ac8408
+        sectionHash: sha256:4330f59d11ef7503
       - kind: docs
         page: /core-concepts/layouts-and-pages
         anchor: componentgroups-in-layouts
-        sectionHash: sha256:ce8c7bd07569de88
+        sectionHash: sha256:b111d5044c5c0739
         block: 0
         blockHash: sha256:7478601c33abbb39
     generator:
@@ -1429,11 +1429,11 @@ questions:
       - kind: docs
         page: /core-concepts/layouts-and-pages
         anchor: layouts
-        sectionHash: sha256:f88d69df59ac8408
+        sectionHash: sha256:4330f59d11ef7503
       - kind: docs
         page: /guides/your-first-layout
         anchor: the-file
-        sectionHash: sha256:15c4056b85444412
+        sectionHash: sha256:a1f4ee1da582b30f
         block: 0
         blockHash: sha256:cfdf8a99c2ad44d7
     generator:
@@ -1482,7 +1482,7 @@ questions:
       - kind: docs
         page: /core-concepts/layouts-and-pages
         anchor: layouts
-        sectionHash: sha256:f88d69df59ac8408
+        sectionHash: sha256:4330f59d11ef7503
       - kind: docs
         page: /nuxt-module/building-your-ui/creating-layouts
         anchor: minimal-layout
@@ -1534,11 +1534,11 @@ questions:
       - kind: docs
         page: /core-concepts/layouts-and-pages
         anchor: layouts
-        sectionHash: sha256:f88d69df59ac8408
+        sectionHash: sha256:4330f59d11ef7503
       - kind: docs
         page: /nuxt-module/building-your-ui/creating-layouts
         anchor: component-groups
-        sectionHash: sha256:e015e7b23939d707
+        sectionHash: sha256:f25480f8d882e378
         block: 0
         blockHash: sha256:a6206c28e0f69780
     generator:

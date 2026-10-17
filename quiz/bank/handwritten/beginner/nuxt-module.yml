@@ -60,7 +60,7 @@ questions:
     author: llm-draft
 
   - id: nuxt.layout.slot
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: nuxt-module
@@ -69,7 +69,7 @@ questions:
     difficulty: 1
     # Shares a family with the generated layout-slot spot-the-mistake questions: the same fact.
     family: mistake:layout-slot
-    prompt: Remove one line of this layout, and every page shows only the header and footer. Which line?
+    prompt: Which line of this layout, if you removed it, would leave every page showing only the header and footer?
     code:
       lang: vue
       text: |-
@@ -145,7 +145,7 @@ questions:
         Editing happens on the site itself. Click **Edit** to enter edit mode, then click a component to select
         it and change it.
     sources:
-      - { kind: docs, page: /getting-started/installation, anchor: _3-open-the-site, sectionHash: 'sha256:25e00037eb801378' }
+      - { kind: docs, page: /getting-started/installation, anchor: _3-open-the-site, sectionHash: 'sha256:ea02c7e3b3d3b87c' }
     author: llm-draft
 
   - id: nuxt.component.style-variants-beginner
@@ -175,7 +175,7 @@ questions:
     author: llm-draft
 
   - id: nuxt.real-time.visitor-notice
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: nuxt-module
@@ -184,7 +184,7 @@ questions:
     difficulty: 2
     prompt: >-
       A visitor has a page open when an editor publishes a change to a component on it, and the component's
-      resource has `mercure: true`. What does the visitor see?
+      PHP class has `mercure: true` in its `#[ApiResource]`. What does the visitor see?
     options:
       - { id: a, text: 'The component re-renders with the new content at once' }
       - { id: b, text: 'A notice that the content is outdated, with an Update button' }

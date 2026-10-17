@@ -198,7 +198,7 @@ questions:
       name: glossary
       ref: component
   - id: gen.term.content-structure.7
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: core-concepts
@@ -206,7 +206,8 @@ questions:
       - components
     type: multiple-choice
     family: term:ypas6i
-    prompt: Which term does this describe? “A named region where editors add components, such as `main` or `banner`.”
+    prompt: Which term does this describe? “A named, ordered list of components, such as `main` or `banner`, that
+      belongs to a layout, page or component.”
     options:
       - id: a
         text: Template page
@@ -218,19 +219,22 @@ questions:
         text: Page template
     answer:
       correct: c
-      explanation: A named region where editors add components, such as `main` or `banner`. A layout, page or
-        component owns it, and a Vue file declares it with `<CwaComponentGroup reference="main">`. Also called
-        a group or a region. See [`<CwaComponentGroup />`](/nuxt-module/cwa-components/cwa-component-group).
+      explanation: A named, ordered list of components, such as `main` or `banner`, that belongs to a layout, page
+        or component. Each component in it sits in a [component
+        position](/core-concepts/glossary#component-position). A Vue file declares the group with
+        `<CwaComponentGroup reference="main">`, and editors add components to it in [edit
+        mode](/core-concepts/glossary#edit-mode). Also called a group. See [`<CwaComponentGroup
+        />`](/nuxt-module/cwa-components/cwa-component-group).
     sources:
       - kind: docs
         page: /core-concepts/glossary
         anchor: component-group
-        sectionHash: sha256:1c57e2f33d15ec95
+        sectionHash: sha256:1078c99323abb87b
     generator:
       name: glossary
       ref: component-group
   - id: gen.term.content-structure.8
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: core-concepts
@@ -238,7 +242,7 @@ questions:
       - data-model
     type: multiple-choice
     family: term:slm6f4
-    prompt: Which term does this describe? “The slot that holds one component in a component group, and sets its
+    prompt: Which term does this describe? “The record that places one component in a component group and sets its
       order.”
     options:
       - id: a
@@ -251,19 +255,20 @@ questions:
         text: Component position
     answer:
       correct: d
-      explanation: The slot that holds one component in a component group, and sets its order. Also called a
-        position. The admin creates positions when an editor adds a component. See [The Data
-        Model](/core-concepts/the-data-model#componentposition).
+      explanation: The record that places one component in a component group and sets its order. Also called a
+        position. A [dynamic position](/core-concepts/glossary#dynamic-position) holds a binding to a page
+        data property instead of a component. The admin creates positions when an editor adds a component. See
+        [The Data Model](/core-concepts/the-data-model#componentposition).
     sources:
       - kind: docs
         page: /core-concepts/glossary
         anchor: component-position
-        sectionHash: sha256:00d2f725be8394f6
+        sectionHash: sha256:650c7294106a6fa4
     generator:
       name: glossary
       ref: component-position
   - id: gen.term.content-structure.9
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: core-concepts
@@ -271,7 +276,8 @@ questions:
       - dynamic-pages
     type: multiple-choice
     family: term:2a7460
-    prompt: Which term does this describe? “A component position bound to a page data property.”
+    prompt: Which term does this describe? “A component position bound to a page data property, which shows the
+      component the current page data record holds in that property instead of a component of its own.”
     options:
       - id: a
         text: Page template
@@ -283,14 +289,16 @@ questions:
         text: Template page
     answer:
       correct: c
-      explanation: A component position bound to a page data property. It shows a different component on each page
-        data record that shares the template page. See [Dynamic
-        Pages](/core-concepts/dynamic-pages#linking-a-pagedata-field-to-a-region).
+      explanation: A component position bound to a page data property, which shows the component the current page
+        data record holds in that property instead of a component of its own. It sits in a component group on
+        a template page, so each page data record that renders through that template page shows its own
+        component there. See [Dynamic
+        Pages](/core-concepts/dynamic-pages#linking-a-page-data-field-to-a-component-position).
     sources:
       - kind: docs
         page: /core-concepts/glossary
         anchor: dynamic-position
-        sectionHash: sha256:da360f70e05c6343
+        sectionHash: sha256:8a44339f1d20ed75
     generator:
       name: glossary
       ref: dynamic-position
@@ -382,14 +390,14 @@ questions:
         text: Scaffold
     answer:
       correct: b
-      explanation: What an editor turns on with **Edit** in the admin bar. Empty groups show a **+**, and clicking a
-        component selects it and opens the manager panel. See [The Admin
+      explanation: What an editor turns on with **Edit** in the admin bar. Empty component groups show a **+**, and
+        clicking a component selects it and opens the manager panel. See [The Admin
         Panel](/core-concepts/admin-panel#edit-mode).
     sources:
       - kind: docs
         page: /core-concepts/glossary
         anchor: edit-mode
-        sectionHash: sha256:f6cdb46f4c3aaf43
+        sectionHash: sha256:924d1ff97aa058a9
     generator:
       name: glossary
       ref: edit-mode

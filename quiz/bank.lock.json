@@ -2,21 +2,29 @@
   "questions": {
     "api.cache.admin-route-private": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:57c897d83d0bfacd",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:c8c799c1d8841c9b",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
     "api.cache.component-save-purge": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:3c208c5aed8bb31a",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:f5bb6cbe33e17201",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
@@ -32,21 +40,29 @@
     },
     "api.cache.scheduled-publish": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:11aed65e75dd37db",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:457210c2162f08b8",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
     "api.cache.site-config-tag": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:8df0300ed1582c72",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:c13c8dbd801edc4f",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
@@ -72,21 +88,29 @@
     },
     "api.components.inherited-properties": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:16c6be2eb8b6877e",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:491d6b50322af166",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
     "api.components.migrations": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:cc7ba259f83d72ed",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:64ee22db97f97ee8",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
@@ -112,7 +136,7 @@
     },
     "api.fixtures.after-routes": {
       "status": "live",
-      "version": 2,
+      "version": 3,
       "versions": {
         "1": {
           "fingerprint": "sha256:c8c5dd65002c9e9f",
@@ -121,26 +145,38 @@
         "2": {
           "fingerprint": "sha256:2fe6ae780879f945",
           "docsCommit": "a1056e349c0674125d27aa7e59429f1d171722cf+dirty"
+        },
+        "3": {
+          "fingerprint": "sha256:239c289660309b71",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
     "api.fixtures.asset-store-load": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:aff837bf73f55b68",
           "docsCommit": "c24d0d481501865445e477c3c20b911146c688f6"
+        },
+        "2": {
+          "fingerprint": "sha256:57b97ccd98c191c2",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
     "api.fixtures.component-draft": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:15adf6848e0958a8",
           "docsCommit": "b49338190931bcda931feed91ba6bca5e8f67440"
+        },
+        "2": {
+          "fingerprint": "sha256:945ef0cbdd19080e",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
@@ -156,97 +192,133 @@
     },
     "api.fixtures.link-route-group-owner": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:de50972f9ccfe912",
           "docsCommit": "b49338190931bcda931feed91ba6bca5e8f67440"
+        },
+        "2": {
+          "fingerprint": "sha256:7cbe725aa4e47768",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
     "api.fixtures.load-variants": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:9659ab968ee9c3c6",
           "docsCommit": "c24d0d481501865445e477c3c20b911146c688f6"
+        },
+        "2": {
+          "fingerprint": "sha256:855eb7f0bfb1e370",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
     "api.fixtures.page-group-allow": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:1f2b2a912ed3273d",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:5b314efd70f11537",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
     "api.fixtures.page-own-redirect": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:9388667b86703b4a",
           "docsCommit": "c24d0d481501865445e477c3c20b911146c688f6"
+        },
+        "2": {
+          "fingerprint": "sha256:a4fe4ad84f284e5a",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
     "api.fixtures.publish-component": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:c85dcd77a68b4580",
           "docsCommit": "b49338190931bcda931feed91ba6bca5e8f67440"
+        },
+        "2": {
+          "fingerprint": "sha256:52cc7a82d6e80e45",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
     "api.fixtures.redirect-target-name": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:4751f0057ae287a9",
           "docsCommit": "a1056e349c0674125d27aa7e59429f1d171722cf+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:674145d3ba079d13",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
     "api.groups.component-limit": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:d666cba847236ca5",
           "docsCommit": "c24d0d481501865445e477c3c20b911146c688f6"
+        },
+        "2": {
+          "fingerprint": "sha256:bef0b0163d263f55",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
     "api.groups.order-partial-list": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:893381fccb474005",
           "docsCommit": "c24d0d481501865445e477c3c20b911146c688f6"
+        },
+        "2": {
+          "fingerprint": "sha256:ee4a75cdf7d985bd",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
     "api.groups.position-placement": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:75522e155352f411",
           "docsCommit": "c24d0d481501865445e477c3c20b911146c688f6"
+        },
+        "2": {
+          "fingerprint": "sha256:943febd0e8ed65b8",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
     "api.internals.authenticated-layout-headers": {
       "status": "live",
-      "version": 2,
+      "version": 3,
       "versions": {
         "1": {
           "fingerprint": "sha256:c78dbdaaaff3f3db",
@@ -255,6 +327,10 @@
         "2": {
           "fingerprint": "sha256:b14e7d471fbadc32",
           "docsCommit": "cfd44afa96c8220a2b610226c2cc38e8f8065268"
+        },
+        "3": {
+          "fingerprint": "sha256:be677d2cc454a3fe",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
@@ -344,61 +420,85 @@
     },
     "api.orphans.invalid-files-groups": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:374b2f753456d0b3",
           "docsCommit": "b49338190931bcda931feed91ba6bca5e8f67440"
+        },
+        "2": {
+          "fingerprint": "sha256:8535f63c01562126",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
     "api.page-data.base-class": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:1cfc7c86fd4eb732",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:5b56c88a099c21be",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
     "api.publishable.never-published": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:083f9e3775516301",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:557bdcb5950ce4ab",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
     "api.publishable.permission-writes": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:75bf4a082afe71d4",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:4f8e7622ae3496ef",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
     "api.publishable.publish-now": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:dd8e9bd8129fb3e6",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:307fcf8ad8e73747",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
     "api.publishable.take-offline": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:afb540caf8233475",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:4467ad36a8b6001c",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
@@ -414,11 +514,15 @@
     },
     "api.real-time.cookie-name": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:6e492ca06562c6a2",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:75287b69a48b160b",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
@@ -444,71 +548,99 @@
     },
     "api.routes.cascade-child-paths": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:ee67dc0c0a7c4bf1",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:fcebb15b92fc0c6d",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
     "api.routes.live-at-inheritance": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:4063acbb7adfa7fd",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:10ecb0a8b24d3dfd",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
     "api.routes.live-at-null": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:474649ffc266e5a8",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:ae8c36febefea5dd",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
     "api.routes.page-data-without-route": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:d1f79cc4f22d3021",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:a6ee581f5189df20",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
     "api.routes.redirect-status": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:cf181eee78fea7db",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:edf1d89f92f64a61",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
     "api.routes.redirect-storage": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:5e03f7d00e5f8974",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:e8d64a409aa5786c",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
     "api.security.unplaced-component": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:c84f8d5b63f64479",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:b91c018aff832041",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
@@ -524,21 +656,29 @@
     },
     "api.storage.delete-stored-files-rows": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:33ec0d02761ea60a",
           "docsCommit": "c24d0d481501865445e477c3c20b911146c688f6"
+        },
+        "2": {
+          "fingerprint": "sha256:c70a4c29861931f8",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
     "api.uploads.data-uri-validation": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:fe14dc611446b704",
           "docsCommit": "b49338190931bcda931feed91ba6bca5e8f67440"
+        },
+        "2": {
+          "fingerprint": "sha256:495d97705b335b06",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
@@ -554,51 +694,71 @@
     },
     "api.uploads.uploaded-image-svg": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:01b76ec919cfceeb",
           "docsCommit": "a1056e349c0674125d27aa7e59429f1d171722cf+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:d7c5ba63934e32de",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
     "core.admin.delete-one-version": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:26d3bc191ffbf340",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:882a937d9db392cf",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
     "core.admin.link-in-edit-mode": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:df5a9a8f0fdfa884",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:4f02046faf04d29e",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
     "core.admin.rename-child-routes": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:2c7f8e41e54f7304",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:808bc9529bc529ce",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
     "core.admin.reorder-where": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:ed8b0d350eac9b1f",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:767105964c894f06",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
@@ -644,11 +804,15 @@
     },
     "core.components.admin-tab-saving": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:81015fdf9616f427",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:681016b0fd50d1b1",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
@@ -674,61 +838,85 @@
     },
     "core.data-model.route-target": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:bff24d3ec764d38c",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:8580e7a30df28035",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
     "core.draft.reorder-timing": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:a3daceb131928f86",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:03b02b449a4aca56",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
     "core.draft.who-sees-drafts": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:b9019efe4e345a4c",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:adc2cd7c3134ad38",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
     "core.dynamic.page-data-title": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:11d653b7d9d160bd",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:049aaeaafe59aa8d",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
     "core.identity.group-location": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:becfc4ea601f1eb1",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:3daf0ee249f05683",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
     "core.identity.layout-ui-component": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:644ec36371185ac4",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:a79f202d6565ba8f",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
@@ -744,11 +932,15 @@
     },
     "core.public.what-is-public": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:c70ee57997ffad9f",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:e59a90a3eb7c9d25",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
@@ -784,21 +976,29 @@
     },
     "deploy.cicd.pinned-build": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:caf7d6318972f2da",
           "docsCommit": "b49338190931bcda931feed91ba6bca5e8f67440"
+        },
+        "2": {
+          "fingerprint": "sha256:47683b2fdd28b5c4",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
     "deploy.cicd.purge-after-deploy": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:06c72222a828c612",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:dea84c47c647eeaa",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
@@ -894,11 +1094,15 @@
     },
     "deploy.install.fixtures-append": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:c76b39fa41a1d2b6",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:5c4cf60af1dc97d4",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
@@ -914,7 +1118,7 @@
     },
     "deploy.internals.cloudflare-flush": {
       "status": "live",
-      "version": 2,
+      "version": 3,
       "versions": {
         "1": {
           "fingerprint": "sha256:14bd53ae2f50c873",
@@ -923,6 +1127,10 @@
         "2": {
           "fingerprint": "sha256:7bece2e7b563c6f0",
           "docsCommit": "cfd44afa96c8220a2b610226c2cc38e8f8065268"
+        },
+        "3": {
+          "fingerprint": "sha256:bc7133bcc4ab49d9",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
@@ -984,31 +1192,43 @@
     },
     "deploy.k8s.api-logs": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:af307f55c376389d",
           "docsCommit": "b49338190931bcda931feed91ba6bca5e8f67440"
+        },
+        "2": {
+          "fingerprint": "sha256:1bc656a7fbb5591a",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
     "deploy.k8s.error-mail-sender": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:fe6331c75637108d",
           "docsCommit": "b49338190931bcda931feed91ba6bca5e8f67440"
+        },
+        "2": {
+          "fingerprint": "sha256:ff6007266dfb28da",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
     "deploy.k8s.nuxt-hpa-target": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:8fac62ff466e7245",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:481f9768eebc7cb1",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
@@ -1034,11 +1254,15 @@
     },
     "deploy.origin.query-allowlist": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:8d2c08559dc129f2",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:bf4508f672492f5f",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
@@ -1064,11 +1288,15 @@
     },
     "deploy.storage.prefix-live-app": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:c42f9bc8ffcb1221",
           "docsCommit": "c24d0d481501865445e477c3c20b911146c688f6"
+        },
+        "2": {
+          "fingerprint": "sha256:40790409642466a9",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
@@ -1084,11 +1312,15 @@
     },
     "deploy.storage.shared-bucket": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:29d089c2e40eeaae",
           "docsCommit": "c24d0d481501865445e477c3c20b911146c688f6"
+        },
+        "2": {
+          "fingerprint": "sha256:7d1d505dc2a07a1f",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
@@ -1592,31 +1824,43 @@
     },
     "gen.target.allowed-components.1": {
       "status": "live",
-      "version": 2,
+      "version": 3,
       "versions": {
         "2": {
           "fingerprint": "sha256:d8d2ce5654915aa3",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "3": {
+          "fingerprint": "sha256:0f5793344c295e68",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
     "gen.target.allowed-components.2": {
       "status": "live",
-      "version": 2,
+      "version": 3,
       "versions": {
         "2": {
           "fingerprint": "sha256:8ebe1f1566fddbe5",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "3": {
+          "fingerprint": "sha256:fe3f35039179b8bf",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
     "gen.target.allowed-components.3": {
       "status": "live",
-      "version": 2,
+      "version": 3,
       "versions": {
         "2": {
           "fingerprint": "sha256:2a30d746b5741916",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "3": {
+          "fingerprint": "sha256:d19183f8d29ab553",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
@@ -1692,31 +1936,43 @@
     },
     "gen.target.fixture-redirect.2": {
       "status": "live",
-      "version": 2,
+      "version": 3,
       "versions": {
         "2": {
           "fingerprint": "sha256:a05b8b147c1027f5",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "3": {
+          "fingerprint": "sha256:a53c2d7ac7363085",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
     "gen.target.fixture-redirect.3": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:5ea9f16ab00d7f11",
           "docsCommit": "a1056e349c0674125d27aa7e59429f1d171722cf+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:3953c1be1c1fc877",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
     "gen.target.fixture-redirect.4": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:4694beab91848581",
           "docsCommit": "c24d0d481501865445e477c3c20b911146c688f6"
+        },
+        "2": {
+          "fingerprint": "sha256:322d79d9d7ca1559",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
@@ -1805,7 +2061,7 @@
       }
     },
     "gen.target.page-data-position.1": {
-      "status": "live",
+      "status": "retired",
       "version": 2,
       "versions": {
         "2": {
@@ -1816,7 +2072,7 @@
     },
     "gen.target.page-data-position.2": {
       "status": "live",
-      "version": 2,
+      "version": 3,
       "versions": {
         "1": {
           "fingerprint": "sha256:8e60f5583d352dce",
@@ -1825,12 +2081,16 @@
         "2": {
           "fingerprint": "sha256:da6848fce0a457f8",
           "docsCommit": "a1056e349c0674125d27aa7e59429f1d171722cf+dirty"
+        },
+        "3": {
+          "fingerprint": "sha256:b8a5d6e7aeadbe16",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
     "gen.target.page-data-position.3": {
       "status": "live",
-      "version": 2,
+      "version": 3,
       "versions": {
         "1": {
           "fingerprint": "sha256:18e2586c62842aea",
@@ -1839,6 +2099,20 @@
         "2": {
           "fingerprint": "sha256:3985f67c865fb26b",
           "docsCommit": "a1056e349c0674125d27aa7e59429f1d171722cf+dirty"
+        },
+        "3": {
+          "fingerprint": "sha256:c598d8eab8a4f7b7",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
+        }
+      }
+    },
+    "gen.target.page-data-position.4": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:04ca030138652b60",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
@@ -1873,7 +2147,7 @@
       }
     },
     "gen.target.template-page-flag.1": {
-      "status": "live",
+      "status": "retired",
       "version": 2,
       "versions": {
         "2": {
@@ -1884,7 +2158,7 @@
     },
     "gen.target.template-page-flag.2": {
       "status": "live",
-      "version": 3,
+      "version": 4,
       "versions": {
         "2": {
           "fingerprint": "sha256:7c624548159ead5e",
@@ -1893,6 +2167,10 @@
         "3": {
           "fingerprint": "sha256:802c07d6ad96b276",
           "docsCommit": "a1056e349c0674125d27aa7e59429f1d171722cf+dirty"
+        },
+        "4": {
+          "fingerprint": "sha256:af2622e5b4f839c0",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
@@ -1908,11 +2186,25 @@
     },
     "gen.target.template-page-flag.4": {
       "status": "live",
-      "version": 2,
+      "version": 3,
       "versions": {
         "2": {
           "fingerprint": "sha256:4bdc03d1f3c526c5",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "3": {
+          "fingerprint": "sha256:e2170761e7950831",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
+        }
+      }
+    },
+    "gen.target.template-page-flag.5": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:28d8bbbbc6731f29",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
@@ -2048,31 +2340,43 @@
     },
     "gen.term.content-structure.7": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:12c5811e61e2fbfb",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:a61a1de6b07ed994",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
     "gen.term.content-structure.8": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:7a57219b9cda3587",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:3670b4b8ac922114",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
     "gen.term.content-structure.9": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:bc7932821a72bdce",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:183b6ce7cc043874",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
@@ -2098,31 +2402,43 @@
     },
     "nuxt.admin.add-page-data-link": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:fde052fa4edae6e4",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:fa161b3f109420bc",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
     "nuxt.admin.add-page-data-route": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:da23fdecc95fdde1",
           "docsCommit": "b49338190931bcda931feed91ba6bca5e8f67440"
+        },
+        "2": {
+          "fingerprint": "sha256:5e9d745db21aeb75",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
     "nuxt.admin.instant-add": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:443f328c3343b9c1",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:f4cabc836ad351a1",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
@@ -2148,21 +2464,29 @@
     },
     "nuxt.auth.roles-access": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:6eaa315dd47334e0",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:c26951ae8df56831",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
     "nuxt.auth.ssr-safe-state": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:5760ab455a122dd5",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:5319c3805ea48de6",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
@@ -2178,11 +2502,15 @@
     },
     "nuxt.component.nested-group-location": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:e6415b510fe23e17",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:96d509f103fdfb02",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
@@ -2198,11 +2526,15 @@
     },
     "nuxt.component.resource-states": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:e19bf13fadb1d448",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:837621f52f62f81b",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
@@ -2218,47 +2550,63 @@
     },
     "nuxt.component.style-variants-where": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:ff45e7454472c6b3",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:15ff615d87ac254d",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
     "nuxt.config.layout-classes": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:37fed62c3fe99e09",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:a677fe5cd3496d43",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
     "nuxt.group.max-components-binding": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:48739277affd3e8d",
           "docsCommit": "c24d0d481501865445e477c3c20b911146c688f6"
+        },
+        "2": {
+          "fingerprint": "sha256:a948cfece769cf58",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
     "nuxt.group.max-components-removed": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:20675b3aafcb4cda",
           "docsCommit": "c24d0d481501865445e477c3c20b911146c688f6"
+        },
+        "2": {
+          "fingerprint": "sha256:23ecb69d017fb148",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
     "nuxt.internals.disabled-page-fetch": {
       "status": "live",
-      "version": 2,
+      "version": 3,
       "versions": {
         "1": {
           "fingerprint": "sha256:55b2e2134d1fa876",
@@ -2267,6 +2615,10 @@
         "2": {
           "fingerprint": "sha256:6a925ca219358326",
           "docsCommit": "cfd44afa96c8220a2b610226c2cc38e8f8065268"
+        },
+        "3": {
+          "fingerprint": "sha256:2d1d5da332fa8125",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
@@ -2412,7 +2764,7 @@
     },
     "nuxt.internals.stale-redirect": {
       "status": "live",
-      "version": 2,
+      "version": 3,
       "versions": {
         "1": {
           "fingerprint": "sha256:2c8a413fd0007eb5",
@@ -2421,16 +2773,24 @@
         "2": {
           "fingerprint": "sha256:11ae9f36618c8cb6",
           "docsCommit": "cfd44afa96c8220a2b610226c2cc38e8f8065268"
+        },
+        "3": {
+          "fingerprint": "sha256:82da2c74bf016d25",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
     "nuxt.layout.slot": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:f7458bf9859b93a6",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:e7a85ee54ca62284",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
@@ -2476,51 +2836,71 @@
     },
     "nuxt.page-cache.unpublished-component": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:5633e0dc9bae5ffa",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:e8ef737fefbb64e1",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
     "nuxt.page-data.read-in-computed": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:5fb21ba09b4c9fdf",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:878abd00943580f0",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
     "nuxt.real-time.visitor-notice": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:a915eb183e00593c",
           "docsCommit": "a1056e349c0674125d27aa7e59429f1d171722cf+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:01c43bf3dbaf275e",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
     "nuxt.resources.reorder-group": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:32c9009999ec74ef",
           "docsCommit": "c24d0d481501865445e477c3c20b911146c688f6"
+        },
+        "2": {
+          "fingerprint": "sha256:8becccd95bebdad2",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
     "nuxt.seo.og-image-secret": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:d0abbaf5bc4197ac",
           "docsCommit": "b49338190931bcda931feed91ba6bca5e8f67440"
+        },
+        "2": {
+          "fingerprint": "sha256:0c2a19358e05244a",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
@@ -2536,21 +2916,29 @@
     },
     "nuxt.setup.extends-layer": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:21f976bcc442d766",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:e8f22a34da04dd9e",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
     "nuxt.setup.load-by-iri-public": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:75d2fc1373ad1623",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:265072e93f3e2129",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
@@ -2566,11 +2954,15 @@
     },
     "nuxt.ui.loading-indicator-bars": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:784c63c58d0df13f",
           "docsCommit": "b49338190931bcda931feed91ba6bca5e8f67440"
+        },
+        "2": {
+          "fingerprint": "sha256:cc4774e1050f0d2d",
+          "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
         }
       }
     },
