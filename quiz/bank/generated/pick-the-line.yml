@@ -343,7 +343,7 @@ questions:
       - kind: docs
         page: /api/data-fixtures/builder-reference
         anchor: groupbuilder-from-any-group-call
-        sectionHash: sha256:8d6363f2bc455df1
+        sectionHash: sha256:09abbd254d166260
       - kind: docs
         page: /core-concepts/dynamic-pages
         anchor: linking-a-pagedata-field-to-a-region
@@ -401,7 +401,7 @@ questions:
       - kind: docs
         page: /api/data-fixtures/builder-reference
         anchor: groupbuilder-from-any-group-call
-        sectionHash: sha256:8d6363f2bc455df1
+        sectionHash: sha256:09abbd254d166260
       - kind: docs
         page: /guides/your-first-dynamic-page
         anchor: via-fixtures
@@ -451,7 +451,7 @@ questions:
       - kind: docs
         page: /api/data-fixtures/builder-reference
         anchor: groupbuilder-from-any-group-call
-        sectionHash: sha256:8d6363f2bc455df1
+        sectionHash: sha256:09abbd254d166260
       - kind: docs
         page: /api/data-fixtures/getting-started
         anchor: complete-example
@@ -593,7 +593,7 @@ questions:
       - kind: docs
         page: /api/data-fixtures/builder-reference
         anchor: groupbuilder-from-any-group-call
-        sectionHash: sha256:8d6363f2bc455df1
+        sectionHash: sha256:09abbd254d166260
         block: 1
         blockHash: sha256:06c07e23e428b501
     generator:
@@ -1259,7 +1259,7 @@ questions:
       - kind: docs
         page: /api/data-fixtures/builder-reference
         anchor: seeding-redirects
-        sectionHash: sha256:87de9cea73483195
+        sectionHash: sha256:b79a3bbd3ab8180c
       - kind: docs
         page: /api/data-fixtures/writing-a-scaffold
         anchor: one-method-per-layout-page-and-page-data
@@ -1269,7 +1269,7 @@ questions:
     generator:
       name: pick-the-line
       ref: fixture-redirect
-  - id: gen.target.fixture-redirect.1
+  - id: gen.target.fixture-redirect.4
     version: 1
     status: live
     level: intermediate
@@ -1285,24 +1285,27 @@ questions:
     code:
       lang: php
       text: |-
-        public function build(CwaFixtureBuilder $cwa): void
-        {
-            $cwa->page('about', 'PrimaryPage', layout: 'main', route: '/about-us', routeName: 'about-us');
+        $about = $cwa->page('about', 'PrimaryPage', layout: 'main')->title('About');
 
-            $cwa->redirect('/about', to: 'about-us');
-        }
+        $cwa->component($aboutLink)->linkRoute('route', page: $about);
+        $cwa->redirect('/company', to: $about);
+        $cwa->component($card)->linkIri('href', route: $about);
     answer:
       lines:
-        - 5
+        - 4
       explanation: "`$cwa->redirect($path, to: $routeName)` declares a redirect route. The builder creates it during
         `flush()`, straight after the page routes."
     sources:
       - kind: docs
         page: /api/data-fixtures/builder-reference
         anchor: seeding-redirects
-        sectionHash: sha256:87de9cea73483195
+        sectionHash: sha256:b79a3bbd3ab8180c
+      - kind: docs
+        page: /api/data-fixtures/builder-reference
+        anchor: a-builder-as-the-target
+        sectionHash: sha256:cba05e76a565fe2f
         block: 0
-        blockHash: sha256:9e8f4653cc053285
+        blockHash: sha256:99ff70a86137c443
     generator:
       name: pick-the-line
       ref: fixture-redirect
@@ -1345,7 +1348,7 @@ questions:
       - kind: docs
         page: /api/data-fixtures/builder-reference
         anchor: seeding-redirects
-        sectionHash: sha256:87de9cea73483195
+        sectionHash: sha256:b79a3bbd3ab8180c
       - kind: docs
         page: /api/data-fixtures/appending
         anchor: more-than-one-scaffold
@@ -1355,6 +1358,45 @@ questions:
     generator:
       name: pick-the-line
       ref: fixture-redirect
+  - id: gen.target.fixture-redirect.1
+    version: 1
+    status: retired
+    level: intermediate
+    area: api
+    tags:
+      - fixtures
+      - routes
+    family: target:fixture-redirect
+    prompt: Which line sends visitors from an old URL to a page's current route?
+    why: When a rebuilt site changes its URLs, seed the old paths as redirects so existing links and search
+      results still land.
+    sources:
+      - kind: docs
+        page: /api/data-fixtures/builder-reference
+        anchor: seeding-redirects
+        sectionHash: sha256:87de9cea73483195
+        block: 0
+        blockHash: sha256:9e8f4653cc053285
+    generator:
+      name: pick-the-line
+      ref: fixture-redirect
+    type: pick-the-line
+    code:
+      lang: php
+      text: |-
+        public function build(CwaFixtureBuilder $cwa): void
+        {
+            $cwa->page('about', 'PrimaryPage', layout: 'main', route: '/about-us', routeName: 'about-us');
+
+            $cwa->redirect('/about', to: 'about-us');
+        }
+    answer:
+      lines:
+        - 5
+      explanation: "`$cwa->redirect($path, to: $routeName)` declares a redirect route. The builder creates it during
+        `flush()`, straight after the page routes."
+    retired:
+      reason: "stale-source: the source block is gone or no longer matches the catalogue entry"
   - id: gen.target.template-page-flag.3
     version: 2
     status: retired

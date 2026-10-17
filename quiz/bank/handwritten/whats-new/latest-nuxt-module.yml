@@ -1,0 +1,136 @@
+# Hand-written What's new questions about the Nuxt module: changes in 2.0.0-alpha.18 and 2.0.0-alpha.19.
+# Each one has a `since` naming the release that brought the change in.
+# Format: quiz/README.md. Run `pnpm quiz:stamp <id>` to fill in or refresh the hashes.
+
+questions:
+  - id: nuxt.group.max-components-removed
+    version: 1
+    status: live
+    level: intermediate
+    area: nuxt-module
+    tags: [components, admin]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      A layout's group had `:max-components="1"`. You delete the prop to lift the limit and deploy. Admins still
+      can't add a second component. What do you pass instead?
+    why: >-
+      A limit set once stays on the group in the API, so taking the prop out of your code changes nothing for
+      editors.
+    since: [{ repo: cwa-nuxt-module, version: '2.0.0-alpha.18' }]
+    options:
+      - { id: a, text: '`:max-components="0"`' }
+      - { id: b, text: '`:max-components="Infinity"`' }
+      - { id: c, text: '`:allowed-components="null"`' }
+      - { id: d, text: '`:max-components="null"`' }
+    answer:
+      correct: d
+      explanation: >-
+        When the prop is omitted, the module leaves the stored limit alone, so a limit set by fixtures or an
+        earlier sync is kept. `null` removes it.
+      optionNotes:
+        a: '`0` isn''t a positive whole number, so the module logs a warning and doesn''t send it.'
+        c: '`null` for `allowed-components` allows every type. It has nothing to do with the limit.'
+    sources:
+      - { kind: docs, page: /nuxt-module/cwa-components/cwa-component-group, anchor: limiting-the-number-of-components, sectionHash: 'sha256:c197998818157eec' }
+    author: llm-draft
+
+  - id: nuxt.group.max-components-binding
+    version: 1
+    status: live
+    level: intermediate
+    area: nuxt-module
+    tags: [components]
+    type: spot-the-mistake
+    difficulty: 3
+    prompt: >-
+      This header group should take one button, but editors can still add several. One line is wrong. Click it.
+    why: >-
+      A limit the module can't read as a positive whole number is never sent, so the group stays unlimited and
+      only a console warning says so.
+    since: [{ repo: cwa-nuxt-module, version: '2.0.0-alpha.18' }]
+    code:
+      lang: vue
+      text: |-
+        <CwaComponentGroup
+          reference="headerButton"
+          :location="$cwa.resources.layoutIri.value"
+          :allowed-components="[CwaComponentNames.HeaderButton]"
+          max-components="1"
+        />
+    answer:
+      line: 5
+      fix: '  :max-components="1"'
+      explanation: >-
+        Without the `:`, Vue passes the string `"1"`. The module only syncs a positive whole number, so it logs
+        `[CWA] maxComponents was not synced` and leaves the stored limit unchanged.
+    sources:
+      - { kind: docs, page: /nuxt-module/cwa-components/cwa-component-group, anchor: limiting-the-number-of-components, sectionHash: 'sha256:c197998818157eec', block: 0, blockHash: 'sha256:f975d83a1dd787cc' }
+    author: llm-draft
+
+  - id: nuxt.resources.reorder-group
+    version: 1
+    status: live
+    level: advanced
+    area: nuxt-module
+    tags: [cwa-api, components]
+    type: multiple-choice
+    difficulty: 4
+    prompt: >-
+      Your own admin tool reorders a group by calling `updateResource` with a new `sortValue` on each position.
+      After you upgrade the bundle to 2.0.0-alpha.24, nothing moves. What should it call?
+    why: >-
+      Custom admin code that wrote `sortValue` keeps saving without an error, so the broken reorder only shows
+      when someone checks the page.
+    since:
+      - { repo: cwa-nuxt-module, version: '2.0.0-alpha.19' }
+      - { repo: api-components-bundle, version: '2.0.0-alpha.24' }
+    options:
+      - { id: a, text: '`refreshComponentGroupOrder(groupIri)`' }
+      - { id: b, text: '`orderComponentGroup(groupIri, positionIris)`' }
+      - { id: c, text: '`updateResource` on the group''s positions list' }
+      - { id: d, text: '`storeResource` with each new `sortValue`' }
+    answer:
+      correct: b
+      explanation: >-
+        `orderComponentGroup()` sends `PATCH <groupIri>/order` with the positions in their new order, then updates
+        the stored sort values from the response. The API ignores a `sortValue` sent with `updateResource`.
+      optionNotes:
+        a: '`refreshComponentGroupOrder()` only reads the group''s order again. It changes nothing.'
+        d: '`storeResource` writes to the local store only. Nothing reaches the API.'
+    sources:
+      - { kind: docs, page: /nuxt-module/cwa-api/resources-manager, anchor: reordering-a-component-group, sectionHash: 'sha256:b817c6c4f9eb9e30' }
+    author: llm-draft
+
+  - id: nuxt.admin.reorder-versions
+    version: 1
+    status: live
+    level: advanced
+    area: nuxt-module
+    tags: [admin, components]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      You upgrade the bundle to 2.0.0-alpha.24 but leave `@cwa/nuxt` on 2.0.0-alpha.18. An editor moves a
+      component up in the Order tab. What happens?
+    why: >-
+      The bundle and the module change how ordering works together, so upgrading one without the other leaves
+      editors with a reorder that seems to save.
+    since:
+      - { repo: cwa-nuxt-module, version: '2.0.0-alpha.19' }
+      - { repo: api-components-bundle, version: '2.0.0-alpha.24' }
+    options:
+      - { id: a, text: 'It moves, and the API renumbers the group' }
+      - { id: b, text: 'The API refuses it with a `422` on `sortValue`' }
+      - { id: c, text: 'It looks moved, but the saved order is unchanged' }
+      - { id: d, text: 'The Order tab is disabled until you upgrade' }
+    answer:
+      correct: c
+      explanation: >-
+        An older module reorders by writing `sortValue` on each moved position. From bundle 2.0.0-alpha.24 that
+        field is read-only and ignored, so the request succeeds and the API keeps the old order. The admin shows the
+        move until the page is loaded again. Upgrade the module to 2.0.0-alpha.19.
+    sources:
+      - { kind: docs, page: /api/components/component-groups, anchor: how-positions-are-ordered, sectionHash: 'sha256:f3f6eb4926455708' }
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: reordering, sectionHash: 'sha256:fd0ebb9fa7076f40' }
+    author: llm-draft

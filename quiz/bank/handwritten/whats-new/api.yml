@@ -96,7 +96,7 @@ questions:
       optionNotes:
         a: '`afterRoutes()` also runs after the routes exist, so the card is still saved first with an empty field.'
     sources:
-      - { kind: docs, page: /api/data-fixtures/writing-a-scaffold, anchor: linking-routes-and-iris, sectionHash: 'sha256:3940b189955e0261' }
+      - { kind: docs, page: /api/data-fixtures/writing-a-scaffold, anchor: linking-routes-and-iris, sectionHash: 'sha256:87e67160f8a7aec6' }
     author: llm-draft
 
   - id: api.uploads.data-uri-validation

@@ -1,0 +1,213 @@
+# Hand-written What's new questions about the API bundle: changes in 2.0.0-alpha.23 and 2.0.0-alpha.24.
+# Each one has a `since` naming the release that brought the change in.
+# Format: quiz/README.md. Run `pnpm quiz:stamp <id>` to fill in or refresh the hashes.
+
+questions:
+  - id: api.groups.component-limit
+    version: 1
+    status: live
+    level: beginner
+    area: api
+    tags: [components]
+    type: multiple-choice
+    difficulty: 1
+    prompt: >-
+      A layout's `header` group should hold one button at most. Where do you set that limit in the API?
+    why: >-
+      A slot meant for one thing, such as a header button, can stop editors adding a second one, and the API
+      refuses the extra write.
+    since: [{ repo: api-components-bundle, version: '2.0.0-alpha.23' }]
+    options:
+      - { id: a, text: '`maxComponents` on the component group' }
+      - { id: b, text: '`maxComponents` on each component position' }
+      - { id: c, text: 'A `#[MaxComponents]` attribute on the button class' }
+      - { id: d, text: '`max_components` in the bundle''s YAML config' }
+    answer:
+      correct: a
+      explanation: >-
+        `maxComponents` is a field of the group, read and written like `allowedComponents`. `null` is unlimited.
+        When the group is full, adding or moving a position into it is a `422`.
+    sources:
+      - { kind: docs, page: /api/components/component-groups, anchor: limiting-how-many-components-a-group-holds, sectionHash: 'sha256:b839e255a6938bba' }
+    author: llm-draft
+
+  - id: api.groups.position-placement
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [components]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      A script sends `PATCH` with `{"sortValue": 0}` to move a position to the top of its group. The API answers
+      `200`, but the position stays where it was. What should the script send?
+    why: >-
+      Scripts and imports that wrote `sortValue` keep getting a `200` after the upgrade, so nothing tells you the
+      order they set is ignored.
+    since: [{ repo: api-components-bundle, version: '2.0.0-alpha.24' }]
+    options:
+      - { id: a, text: '`{"sortValue": -1}`, below the first value' }
+      - { id: b, text: '`{"before": "<IRI of the first position>"}`' }
+      - { id: c, text: '`{"sortValue": 0, "before": "<first IRI>"}`' }
+      - { id: d, text: '`{"componentGroup": "<its own group>"}`' }
+    answer:
+      correct: b
+      explanation: >-
+        `sortValue` is read-only, so the API ignores it in a request. To place a position, send `after` or
+        `before` with the IRI of a position in the same group, and the server picks the values.
+      optionNotes:
+        c: An anchor sent with a `sortValue` is a `422`.
+        d: A `PATCH` with no anchor and no change of group leaves the position where it is.
+    sources:
+      - { kind: docs, page: /api/components/component-groups, anchor: how-positions-are-ordered, sectionHash: 'sha256:f3f6eb4926455708' }
+    author: llm-draft
+
+  - id: api.groups.order-partial-list
+    version: 1
+    status: live
+    level: advanced
+    area: api
+    tags: [components]
+    type: multiple-choice
+    difficulty: 4
+    prompt: >-
+      A group's positions are `A B C D E`. You send `PATCH <group>/order` with only `[D, B]` in
+      `componentPositions`. What is the group's new order?
+    why: >-
+      A client can send only the positions it moved, so a reorder still works when another editor has added a
+      component the client hasn't seen.
+    since: [{ repo: api-components-bundle, version: '2.0.0-alpha.24' }]
+    options:
+      - { id: a, text: '`D B A C E`' }
+      - { id: b, text: '`A D B C E`' }
+      - { id: c, text: '`A D E B C`' }
+      - { id: d, text: 'A `422`, as three are missing' }
+    answer:
+      correct: c
+      explanation: >-
+        You don't have to list every position. One you leave out stays right after the listed position it
+        follows now, so `C` goes with `B` and `E` with `D`. `A` comes before the first listed one, so it stays
+        at the start.
+    sources:
+      - { kind: docs, page: /api/components/component-groups, anchor: reordering-a-group-in-one-request, sectionHash: 'sha256:7d66d6856fba894b' }
+    author: llm-draft
+
+  - id: api.fixtures.load-variants
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [fixtures, uploads]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      You load a scaffold with many images using `doctrine:fixtures:load`. The command ends by reminding you
+      about image variants. What do you run next?
+    why: >-
+      A load no longer generates variants, so unless you run `imagine:generate`, the first read of each image has
+      to make them, which is slow on a large site.
+    since: [{ repo: api-components-bundle, version: '2.0.0-alpha.23' }]
+    options:
+      - { id: a, text: '`purge-http-cache` alone, as the load skipped it' }
+      - { id: b, text: 'The load again with `--append`, to publish each write' }
+      - { id: c, text: '`scan-orphaned-files`, then `imagine:generate`' }
+      - { id: d, text: '`imagine:generate`, then `purge-http-cache`' }
+    answer:
+      correct: d
+      explanation: >-
+        While fixtures load, the bundle propagates nothing, so no variant is generated. Generate them, then flush
+        the cache again so cached responses list them.
+      optionNotes:
+        a: The load already flushes the whole cache once when it ends. The variants still don't exist.
+    sources:
+      - { kind: docs, page: /api/data-fixtures/getting-started, anchor: what-a-load-leaves-until-later, sectionHash: 'sha256:bc384586a7ada125' }
+    author: llm-draft
+
+  - id: api.fixtures.asset-store-load
+    version: 1
+    status: live
+    level: advanced
+    area: api
+    tags: [fixtures, uploads]
+    type: multiple-choice
+    difficulty: 4
+    prompt: >-
+      With no `fixtures.assets` config, you run `generate-fixtures --assets-dir /srv/fixture-assets`. The
+      scaffold uses `$cwa->asset()`. Then `doctrine:fixtures:load` fails. Why?
+    why: >-
+      A one-off store option looks like enough to set up an asset store, but every environment that loads the
+      scaffold needs the store in its config.
+    since: [{ repo: api-components-bundle, version: '2.0.0-alpha.23' }]
+    options:
+      - { id: a, text: 'Loading reads the configured store, so it looks in `assets/`' }
+      - { id: b, text: '`--assets-dir` writes readable copies that `asset()` can''t read' }
+      - { id: c, text: 'The manifest was written to that folder, not beside the class' }
+      - { id: d, text: 'A local store is pruned when the next load starts' }
+    answer:
+      correct: a
+      explanation: >-
+        `--assets-store` and `--assets-dir` change only where the command writes. The load always reads the
+        configured store, which without config is `assets/` beside the class, so it can't find the files.
+    sources:
+      - { kind: docs, page: /api/data-fixtures/generating-fixtures, anchor: keeping-files-in-an-asset-store, sectionHash: 'sha256:0e7622d30454f4e3' }
+    author: llm-draft
+
+  - id: api.fixtures.page-own-redirect
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [fixtures, routes]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      A scaffold's home page has `route: '/'`. Visitors to `/` should be forwarded to the route named `graphs`.
+      What does the scaffold call?
+    why: >-
+      A separate redirect at a page's own path is left alone, so the load seems to work but `/` never forwards
+      anyone.
+    since: [{ repo: api-components-bundle, version: '2.0.0-alpha.23' }]
+    options:
+      - { id: a, text: '`$cwa->redirect(''/'', to: ''graphs'')`' }
+      - { id: b, text: '`->redirectTo(page: $graphs)` on the home builder' }
+      - { id: c, text: '`->redirectTo(routeName: ''graphs'')` on the home builder' }
+      - { id: d, text: '`->linkRoute(''redirect'', routeName: ''graphs'')`' }
+    answer:
+      correct: c
+      explanation: >-
+        `redirectTo()` on a page or page data builder makes that page's own route redirect. Its target is a route
+        name; it doesn't take a builder.
+      optionNotes:
+        a: '`redirect()` creates a separate route. The home page already has `/`, so the builder keeps that route and creates nothing.'
+    sources:
+      - { kind: docs, page: /api/data-fixtures/builder-reference, anchor: a-page-that-redirects, sectionHash: 'sha256:2bcd129967d720c8' }
+    author: llm-draft
+
+  - id: api.storage.delete-stored-files-rows
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [uploads]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      You run `delete-stored-files gcloud legacy/` to empty a path your app still has content for. The next
+      orphaned files report lists many entries. Why?
+    why: >-
+      The command clears storage, not content, so run it only on a path nothing in the database still points at.
+    since: [{ repo: api-components-bundle, version: '2.0.0-alpha.24' }]
+    options:
+      - { id: a, text: 'It deleted the file info rows, so the files count as orphaned' }
+      - { id: b, text: 'The rows that hold those paths are kept, and show as missing' }
+      - { id: c, text: 'It needs `--all` as well to clear the matching rows' }
+      - { id: d, text: 'The scan ran while the delete was halfway through' }
+    answer:
+      correct: b
+      explanation: >-
+        `delete-stored-files` deletes files only. The rows that hold the deleted paths, and their file info rows,
+        stay as they are, so each one is listed as a missing file.
+    sources:
+      - { kind: docs, page: /api/console-commands, anchor: delete-stored-files, sectionHash: 'sha256:e32167b89a4e911e' }
+    author: llm-draft
