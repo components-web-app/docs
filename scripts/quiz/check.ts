@@ -1,7 +1,11 @@
 /**
- * pnpm quiz:check [--strict] [--fetch] [--quiet]
+ * pnpm quiz:check [--strict] [--drift-warn] [--fetch] [--quiet]
  *
  * Every check in quiz/DESIGN.md section 9. Errors exit 1; --strict makes warnings errors too.
+ * --drift-warn keeps drift as a warning under --strict: source lines that moved or changed on a
+ * repo's tracked branch, and a new release after an unreleased `since`. Those come from the other
+ * repos, not from the pull request, so CI reports them without failing.
+ * In GitHub Actions, drift also shows as a warning annotation.
  * Reports are printed and never fail. Needs no network unless a source repo has no local clone.
  */
 import { existsSync, readFileSync } from 'node:fs'
@@ -15,15 +19,19 @@ import { bracketsBalance, endsOnOpenTag, stripTrailingComment } from './generato
 const args = new Set(process.argv.slice(2))
 const STRICT = args.has('--strict')
 const QUIET = args.has('--quiet')
+const DRIFT_WARN = args.has('--drift-warn')
 
 type Severity = 'error' | 'warning'
-const findings: { severity: Severity, id: string, file: string, message: string }[] = []
+const findings: { severity: Severity, id: string, file: string, message: string, drift?: boolean }[] = []
 const report: string[] = []
 
-function add(severity: Severity, lq: { file: string, question?: { id: string } } | { file: string, id: string }, message: string) {
+function add(severity: Severity, lq: { file: string, question?: { id: string } } | { file: string, id: string }, message: string, drift = false) {
   const id = 'id' in lq ? lq.id : lq.question?.id ?? '-'
-  findings.push({ severity, id, file: lq.file, message })
+  findings.push({ severity, id, file: lq.file, message, ...(drift ? { drift } : {}) })
 }
+
+/** A warning caused by another repo moving on, not by the bank. */
+const drift = (lq: LoadedQuestion, message: string) => add('warning', lq, message, true)
 
 export const RETIRE_REASONS = ['stale-source', 'ambiguous', 'wrong', 'too-easy', 'poor-stats', 'over-exposed', 'leaked', 'superseded'] as const
 
@@ -100,11 +108,11 @@ async function checkCodeSource(lq: LoadedQuestion, s: Extract<Source, { kind: 'c
   const headRef = head ?? `origin/${REPOS[s.repo].track}`
   if (head === s.commit) return
   const current = await readAt(s.repo, headRef, s.path)
-  if (current === undefined) return add('warning', lq, `stale: ${s.path} no longer exists on ${REPOS[s.repo].track}, or can't be read`)
+  if (current === undefined) return drift(lq, `stale: ${s.path} no longer exists on ${REPOS[s.repo].track}, or can't be read`)
   if (linesHash(current, from, to) === s.linesHash) return
   const moved = findMoved(current, wanted)
-  if (moved) add('warning', lq, `stale: ${s.path} lines ${from}-${to} moved to L${moved[0]}-L${moved[1]} on ${REPOS[s.repo].track}. \`pnpm quiz:stamp ${q.id}\` re-pins it`)
-  else add('warning', lq, `stale: ${s.path} lines ${from}-${to} changed on ${REPOS[s.repo].track}. Review the question against the new code`)
+  if (moved) drift(lq, `stale: ${s.path} lines ${from}-${to} moved to L${moved[0]}-L${moved[1]} on ${REPOS[s.repo].track}. \`pnpm quiz:stamp ${q.id}\` re-pins it`)
+  else drift(lq, `stale: ${s.path} lines ${from}-${to} changed on ${REPOS[s.repo].track}. Review the question against the new code`)
 }
 
 // ---------------------------------------------------------------------------
@@ -203,7 +211,7 @@ function checkVersions(lq: LoadedQuestion) {
       }
       if (field === 'since' && 'unreleased' in r && r.unreleased) {
         const later = tags.filter(t => compareVersions(t, r.version) > 0).sort(compareVersions)
-        if (later.length) add('warning', lq, `since: ${r.repo} has released ${later[0]} since ${r.version}. If the change is in it, set version: ${later[0].replace(/^v/, '')} and drop unreleased`)
+        if (later.length) drift(lq, `since: ${r.repo} has released ${later[0]} since ${r.version}. If the change is in it, set version: ${later[0].replace(/^v/, '')} and drop unreleased`)
       }
     }
   }
@@ -280,11 +288,13 @@ async function main() {
 
   printReports(questions, config.levels.map(l => l.id), config.whatsNew)
 
-  const errors = findings.filter(f => f.severity === 'error' || STRICT)
-  const warnings = findings.filter(f => f.severity === 'warning' && !STRICT)
+  const isError = (f: typeof findings[number]) => f.severity === 'error' || (STRICT && !(DRIFT_WARN && f.drift))
+  const errors = findings.filter(isError)
+  const warnings = findings.filter(f => !isError(f))
   for (const f of [...findings].sort((a, b) => a.file.localeCompare(b.file) || a.id.localeCompare(b.id))) {
-    const label = f.severity === 'error' || STRICT ? 'ERROR' : 'warn '
+    const label = isError(f) ? 'ERROR' : 'warn '
     console.log(`${label} ${f.id} (${f.file}): ${f.message}`)
+    if (process.env.GITHUB_ACTIONS && f.drift && !isError(f)) console.log(`::warning file=${f.file},title=Quiz source drift (${f.id})::${f.message}`)
   }
   console.log(`\n${questions.length} questions checked: ${errors.length} errors, ${warnings.length} warnings${STRICT ? ' (--strict)' : ''}`)
   if (errors.length) process.exitCode = 1

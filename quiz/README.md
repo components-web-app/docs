@@ -20,7 +20,7 @@ Levels are `beginner`, `intermediate`, `advanced` and `expert`. Areas are `core-
 
 | Command | What it does |
 |---|---|
-| `pnpm quiz:check` | Runs every check. Fix every `ERROR`; a `warn` needs a look. `--strict` makes warnings errors (CI uses it). |
+| `pnpm quiz:check` | Runs every check. Fix every `ERROR`; a `warn` needs a look. `--strict` makes warnings errors. CI adds `--drift-warn`, which keeps source drift (lines that moved or changed in another repo) a warning, so it never fails an unrelated pull request. |
 | `pnpm quiz:stamp <id…>` | Fills in or refreshes a question's hashes, after you have checked it against its source. `--all-stale` does every question. Never changes the question's text. |
 | `pnpm quiz:generate` | Runs the generators and rewrites `bank/generated/`. Keeps ids. |
 | `pnpm quiz:sample --level advanced --seed k3j9x2ab` | Prints the quiz a seed gives, with no answers. `--answers` adds the answer key after it; `--key-only` prints only the key; `--json` for a machine. |

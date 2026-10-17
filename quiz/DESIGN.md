@@ -178,7 +178,7 @@ route gives us the split, per-level files, and the markdown and code pre-rendere
 | `quiz/bank/handwritten/<level>/<area>.yml`, `quiz/bank/generated/*.yml` | The bank. |
 | `quiz/bank.lock.json` | Published ids, versions and fingerprints. |
 | `quiz/README.md` | How to write a question, for someone who never reads app code. |
-| `.github/workflows/quiz-check.yml` | Runs `quiz:check --strict` and `quiz:diversity` on PRs (the repo has no workflows yet). |
+| `.github/workflows/quiz-check.yml` | Runs `quiz:check --strict --drift-warn` and `quiz:diversity` on PRs. Source drift from the other repos stays a warning annotation. |
 
 The scripts are TypeScript run directly by Node (`node scripts/quiz/check.ts`). Node 22.18+ strips
 types by default; use erasable syntax only (no `enum`, no parameter properties) and import local
