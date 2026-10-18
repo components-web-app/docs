@@ -10,7 +10,7 @@
  */
 import { existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { compareVersions, isWhatsNew, REPOS, whatsNewWindow, type Question, type Repo, type Source } from '../../quiz/schema.ts'
+import { compareVersions, isWhatsNew, QUESTION_TYPES, REPOS, whatsNewWindow, type Question, type Repo, type Source } from '../../quiz/schema.ts'
 import { readAllPages, dedent, locateRun, ROOT, type DocsPage } from './lib/docs.ts'
 import { fetchRepo, findMoved, linesHash, readAt, releaseTags, sliceLines, trackedHead } from './lib/source.ts'
 import { fingerprint, loadBank, loadConfig, loadLock, LOCK_FILE, rel, type LoadedQuestion } from './lib/bank.ts'
@@ -151,6 +151,22 @@ function checkFairness(lq: LoadedQuestion) {
     } else if (own > 1.2 * Math.max(...others)) {
       add('warning', lq, `the correct option is ${own} characters, over 1.2× the longest wrong one (${Math.max(...others)}). A test-wise reader picks the longest; lengthen a wrong option`)
     }
+  } else if (q.type === 'select-many') {
+    for (const o of q.options) {
+      if (/\b(all|none) of the (above|others)\b/i.test(o.text)) add('error', lq, `option ${o.id} is "${o.text}". Write a real option`)
+    }
+    const norm = q.options.map(o => (/^`[^`]+`$/.test(o.text.trim()) ? o.text.replace(/\s+/g, '') : plainText(o.text).toLowerCase().replace(/[^a-z0-9]/g, '')))
+    if (new Set(norm).size !== norm.length) add('error', lq, 'two options differ only in punctuation or case')
+    // The cue to avoid: every right option is longer than every wrong one.
+    const len = (t: string) => plainText(t).length
+    const right = q.options.filter(o => q.answer.correct.includes(o.id)).map(o => len(o.text))
+    const wrong = q.options.filter(o => !q.answer.correct.includes(o.id)).map(o => len(o.text))
+    if (q.status !== 'retired' && Math.min(...right) > Math.max(...wrong)) {
+      add('warning', lq, 'every right option is longer than every wrong one. A test-wise reader picks the long ones; balance the lengths')
+    }
+    if (!/\b(every|each|all|which)\b/i.test(plainText(q.prompt))) {
+      add('warning', lq, 'the prompt should say that more than one answer can be right, such as "Which of these…" or "every…"')
+    }
   } else {
     const lines = q.code.text.split('\n')
     const answers = q.type === 'pick-the-line' ? q.answer.lines : [q.answer.line]
@@ -171,7 +187,7 @@ function checkFairness(lq: LoadedQuestion) {
 /** Markdown links to docs pages in the prompt, options and answer must resolve. */
 function checkLinks(lq: LoadedQuestion, pages: Map<string, DocsPage>) {
   const q = lq.question
-  const texts = [q.prompt, q.answer.explanation, ...(q.why ? [q.why] : []), ...(q.type === 'multiple-choice' ? q.options.map(o => o.text) : []), ...Object.values((q.answer as { optionNotes?: Record<string, string> }).optionNotes ?? {})]
+  const texts = [q.prompt, q.answer.explanation, ...(q.why ? [q.why] : []), ...(q.type === 'multiple-choice' || q.type === 'select-many' ? q.options.map(o => o.text) : []), ...Object.values((q.answer as { optionNotes?: Record<string, string> }).optionNotes ?? {})]
   const targets = [...texts.flatMap(t => [...t.matchAll(/\]\((\/[^)\s]*)\)/g)].map(m => m[1])), ...(q.answer.links ?? []).map(l => l.to).filter(to => to.startsWith('/'))]
   for (const t of texts) {
     if (/\]\(#/.test(t)) add('error', lq, 'a link starts with `#`. Write the page path too: the quiz is on another page')
@@ -203,7 +219,7 @@ function checkTerms(lq: LoadedQuestion) {
     ['prompt', q.prompt],
     ['why', q.why],
     ['explanation', q.answer.explanation],
-    ...(q.type === 'multiple-choice' ? q.options.map(o => [`option ${o.id}`, o.text] as [string, string]) : []),
+    ...(q.type === 'multiple-choice' || q.type === 'select-many' ? q.options.map(o => [`option ${o.id}`, o.text] as [string, string]) : []),
     ...Object.entries((q.answer as { optionNotes?: Record<string, string> }).optionNotes ?? {}).map(([id, n]) => [`note ${id}`, n] as [string, string])
   ]
   for (const [where, text] of texts) {
@@ -343,7 +359,7 @@ function printReports(questions: LoadedQuestion[], levels: string[], whatsNew: {
   lines.push('Live questions per level and type:')
   for (const level of levels) {
     const atLevel = live.filter(q => q.level === level)
-    const byType = ['multiple-choice', 'pick-the-line', 'spot-the-mistake'].map(t => `${t} ${atLevel.filter(q => q.type === t).length}`)
+    const byType = QUESTION_TYPES.map(t => `${t} ${atLevel.filter(q => q.type === t).length}`)
     lines.push(`  ${level.padEnd(13)} ${String(atLevel.length).padStart(3)}  (${byType.join(', ')})`)
   }
 

@@ -509,7 +509,7 @@ questions:
         The API decides from the auth cookie and the user's role, not from edit mode, so an editor sees drafts
         on every page view. Adding `?published=true` to a request forces the published version.
     sources:
-      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:57d5bc6ed14a51f7' }
+      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:5c8ec9f39ad9cd58' }
     author: llm-draft
 
   - id: core.draft.new-component
@@ -534,7 +534,7 @@ questions:
         Adding a component creates its component position at once, but the component starts as a draft, so
         visitors don't see it. Publishing the component makes it visible.
     sources:
-      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: adding-removing-and-reordering-are-immediate, sectionHash: 'sha256:4b652d7ae8f34399' }
+      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: adding-removing-and-reordering-are-immediate, sectionHash: 'sha256:177d97708ef53e97' }
     author: llm-draft
 
   - id: core.draft.whole-page
@@ -586,7 +586,7 @@ questions:
       optionNotes:
         b: A route's go-live date holds back the whole page, not one component's change.
     sources:
-      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:57d5bc6ed14a51f7' }
+      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:5c8ec9f39ad9cd58' }
       - { kind: docs, page: /core-concepts/admin-panel, anchor: scheduling-a-publish, sectionHash: 'sha256:0b33497824fcff3b' }
     author: llm-draft
 
@@ -610,7 +610,7 @@ questions:
         Publishing promotes the draft to the published version, which the live site shows. Mercure then tells
         open browsers about the change.
     sources:
-      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:57d5bc6ed14a51f7' }
+      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:5c8ec9f39ad9cd58' }
     author: llm-draft
 
   - id: core.admin.manager-panel
@@ -840,6 +840,6 @@ questions:
         The draft and published versions live on each component, so each one is published on its own. The
         other two keep their published versions until an editor publishes their drafts.
     sources:
-      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: adding-removing-and-reordering-are-immediate, sectionHash: 'sha256:4b652d7ae8f34399' }
-      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:57d5bc6ed14a51f7' }
+      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: adding-removing-and-reordering-are-immediate, sectionHash: 'sha256:177d97708ef53e97' }
+      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:5c8ec9f39ad9cd58' }
     author: llm-draft

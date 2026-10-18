@@ -131,9 +131,10 @@ export function fingerprint(q: Question): string {
   return shortHash(canonical({
     type: q.type,
     prompt: q.prompt,
-    options: q.type === 'multiple-choice' ? q.options : undefined,
+    options: q.type === 'multiple-choice' || q.type === 'select-many' ? q.options : undefined,
     code: q.code,
-    answer: { correct: a.correct, lines: a.lines, line: a.line, fix: a.fix }
+    // A select-many answer is a set: listing the same options in another order isn't a new version.
+    answer: { correct: Array.isArray(a.correct) ? [...a.correct].sort() : a.correct, lines: a.lines, line: a.line, fix: a.fix }
   }))
 }
 

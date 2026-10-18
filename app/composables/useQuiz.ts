@@ -4,8 +4,8 @@ import type { QuizFeedbackGrader, QuizGradeResult } from './useQuizGrader'
 
 export type QuizPhase = 'loading' | 'error' | 'empty' | 'question' | 'answered' | 'result'
 
-/** The reader's choice for the current question: an option id or a 1-based line. */
-export type QuizChoice = { optionId: string } | { line: number }
+/** The reader's choice for the current question: an option id, the ticked option ids, or a 1-based line. */
+export type QuizChoice = { optionId: string } | { optionIds: string[] } | { line: number }
 
 /** One answered question, as the result screen needs it. */
 export type QuizRecord = {
@@ -73,12 +73,12 @@ export function useQuiz(source: QuizSource, grader: QuizFeedbackGrader) {
   async function check() {
     const q = current.value
     const picked = choice.value
-    if (phase.value !== 'question' || !q || !picked || grading.value) {
+    if (phase.value !== 'question' || !q || !picked || grading.value || ('optionIds' in picked && !picked.optionIds.length)) {
       return
     }
     const response: QuizResponse = 'optionId' in picked
       ? { ref: q.ref, optionId: picked.optionId }
-      : { ref: q.ref, line: picked.line }
+      : 'optionIds' in picked ? { ref: q.ref, optionIds: [...picked.optionIds] } : { ref: q.ref, line: picked.line }
     const thisRun = run
     grading.value = true
     try {

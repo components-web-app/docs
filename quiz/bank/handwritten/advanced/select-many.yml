@@ -1,0 +1,155 @@
+# Hand-written advanced select-many questions: tick every right option.
+# Format: quiz/README.md. Run `pnpm quiz:stamp <id>` to fill in or refresh the hashes.
+
+questions:
+  - id: api.cache.drop-every-page
+    version: 1
+    status: live
+    family: cwa-html-purge
+    level: advanced
+    area: api
+    tags: [http-caching, page-caching]
+    type: select-many
+    difficulty: 3
+    prompt: In the template's setup, with Souin as the HTTP cache, which of these drop every cached page at once?
+    why: >-
+      Each of these sends all traffic to Nuxt at the same moment, so they belong to rare admin actions and
+      deploys, and an ordinary edit only drops the pages that used what changed.
+    options:
+      - { id: a, text: An editor publishes a component on the home page }
+      - { id: b, text: An admin saves the site name in site config }
+      - { id: c, text: 'An editor reorders the home page''s `main` group' }
+      - { id: d, text: '`doctrine:fixtures:load` finishes' }
+      - { id: e, text: '`purge-http-cache --path /about-us`' }
+      - { id: f, text: '`purge-rendered-html`' }
+    answer:
+      correct: [b, d, f]
+      explanation: >-
+        A site config write purges `cwa-html`, the tag on every page Nuxt caches, and `purge-rendered-html`
+        purges the same tag. A fixture load sends no tag purges while it writes and flushes the whole cache
+        when it ends, pages included. A component write purges only its own IRI, and a reorder purges only the
+        records it wrote and the home page's manifest.
+      optionNotes:
+        a: A component write purges its IRI, so only the pages that rendered it are dropped.
+        c: A reorder purges the group and positions it wrote and the home page's manifest, so only the home page is dropped.
+        e: '`--path` purges only that route''s tag, `/_api/_/routes//about-us`, and never flushes.'
+        d: A load flushes the whole HTTP cache once at the end, API responses and pages together.
+    sources:
+      - { kind: docs, page: /api/http-caching, anchor: purging-every-rendered-page, sectionHash: 'sha256:ef0a84284564cd0d' }
+      - { kind: docs, page: /api/http-caching, anchor: flushing-the-whole-http-cache, sectionHash: 'sha256:d6247223c88916af' }
+      - { kind: docs, page: /api/http-caching, anchor: purging-one-page-or-tag, sectionHash: 'sha256:a5d8610cdfcc29eb' }
+    author: llm-draft
+
+  - id: api.cache.private-responses
+    version: 1
+    status: live
+    family: http-cache-safety
+    level: advanced
+    area: api
+    tags: [http-caching]
+    type: select-many
+    difficulty: 4
+    prompt: >-
+      With the bundle's default `personalised_resource_classes`, which of these `GET` responses come back
+      `Cache-Control: private, no-store`?
+    why: >-
+      A resource of your own that differs per signed-in user isn't in the affected set unless you add its
+      class, so a shared cache could serve one user's response to the public.
+    options:
+      - { id: a, text: 'A signed-in admin''s request for a layout' }
+      - { id: b, text: 'A signed-in admin''s request for `/_/routes//about-us`' }
+      - { id: c, text: 'An anonymous visitor''s request for `/_/routes//about-us`' }
+      - { id: d, text: 'A signed-in admin''s request for a component position' }
+      - { id: e, text: 'An anonymous visitor''s request for a resource manifest' }
+      - { id: f, text: 'A signed-in admin''s request for a publishable component' }
+    answer:
+      correct: [b, d, f]
+      explanation: >-
+        The bundle marks a `GET` or `HEAD` private, no-store when the user is authenticated and the resource is
+        in the affected set: `Route`, `ResourceManifest`, `ComponentPosition` and every Publishable resource. It
+        also strips `s-maxage`. Anonymous requests and resources outside the set, such as a layout, stay
+        publicly cacheable.
+      optionNotes:
+        a: A layout isn't in the affected set, so it stays public even for an admin.
+        c: Anonymous responses are left alone. They're the published view, which a shared cache may hold.
+        e: The manifest class is in the set, but only authenticated requests are marked.
+        f: Every Publishable resource is matched without being listed, because an admin's view can be the draft.
+    sources:
+      - { kind: docs, page: /api/http-caching, anchor: http-cache-safety, sectionHash: 'sha256:f7732bd3730f4608' }
+    author: llm-draft
+
+  - id: deploy.secrets.kept
+    version: 1
+    status: live
+    family: kept-secrets
+    level: advanced
+    area: deployment
+    tags: [deployment]
+    type: select-many
+    difficulty: 3
+    prompt: >-
+      A production release is deployed again, with no secrets set as CI variables. Which of these values does
+      the deploy keep from the release's live Secret?
+    why: >-
+      Kept secrets are why logins, signed URLs and Mercure cookies survive a deploy, and pods on either side
+      of a rollout agree.
+    options:
+      - { id: a, text: '`APP_SECRET`' }
+      - { id: b, text: '`ADMIN_PASSWORD`' }
+      - { id: c, text: '`MERCURE_JWT_SECRET`' }
+      - { id: d, text: '`CORS_ALLOW_ORIGIN`' }
+      - { id: e, text: '`NUXT_APP_SECRET`' }
+      - { id: f, text: '`JWT_SECRET_KEY` and `JWT_PASSPHRASE`' }
+    answer:
+      correct: [a, c, e, f]
+      explanation: >-
+        For each secret that isn't a CI variable, `deploy_secrets` reads the value from the release's live
+        Secret, and generates one only when the release has none yet. That covers `APP_SECRET`,
+        `MERCURE_JWT_SECRET`, `NUXT_APP_SECRET` and the JWT key, which is kept together with its passphrase.
+        The other settings come from their CI variable or their default.
+      optionNotes:
+        b: '`ADMIN_PASSWORD` is an application setting with a default of `admin`, not one of the kept secrets.'
+        d: '`CORS_ALLOW_ORIGIN` is derived from the release''s hosts unless you set it.'
+        f: The JWT key is kept with its own passphrase, and the public key is derived from the pair.
+    sources:
+      - { kind: docs, page: /deployment/variables, anchor: secrets, sectionHash: 'sha256:7a2fe292b4eea0c9' }
+      - { kind: docs, page: /deployment/variables, anchor: application, sectionHash: 'sha256:e483d72848bc2eb6' }
+    author: llm-draft
+
+  - id: api.cache.manifest-purge-writes
+    version: 1
+    status: live
+    family: manifest-purge
+    level: advanced
+    area: api
+    tags: [http-caching]
+    type: select-many
+    difficulty: 4
+    prompt: >-
+      A resource manifest lists the IRIs a page renders, and is tagged per page rather than with every IRI.
+      Which of these writes purge the manifests that contain them?
+    why: >-
+      A component's content edit refreshes the component and the pages that show it, but never its manifest,
+      so code that expects a component save to refresh a manifest waits for nothing.
+    options:
+      - { id: a, text: An editor changes a route's path }
+      - { id: b, text: 'An editor saves new text in a Title placed in the page''s `main` group' }
+      - { id: c, text: 'An editor adds a component to the page''s `main` group' }
+      - { id: d, text: An admin saves the site name in site config }
+      - { id: e, text: 'An editor changes a page data record''s `title`' }
+      - { id: f, text: An editor replaces an Image component's file }
+    answer:
+      correct: [a, c, e]
+      explanation: >-
+        A manifest changes only when the page's structure changes, so writes to `Route`, `Page`, any
+        `AbstractPageData`, `Layout`, `ComponentGroup` and `ComponentPosition` purge the manifests that contain
+        them. Adding a component creates a component position. Editing a component's content purges its own IRI
+        but no manifest, unless the component is placed through a `pageDataProperty`.
+      optionNotes:
+        b: A component write purges the component's IRI, so the pages that show it refresh, but the manifest's list is unchanged.
+        d: A site config write purges `cwa-html`, the pages' tag. Manifests aren't tagged with it.
+        f: Replacing a file is a write to the component, which purges its IRI and no manifest.
+        e: Page data is one of the classes whose writes purge manifests, because it decides what a page renders.
+    sources:
+      - { kind: docs, page: /api/http-caching, anchor: resource-manifests-are-tagged-per-page, sectionHash: 'sha256:c9b069e644d128b1' }
+    author: llm-draft

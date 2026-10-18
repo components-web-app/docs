@@ -92,6 +92,7 @@ function startWhatsNew() {
 
 const QUESTION_TYPES = [
   { icon: 'i-heroicons-list-bullet', title: 'Multiple choice', text: 'One right answer, and wrong ones that sound right.' },
+  { icon: 'i-heroicons-check-badge', title: 'Choose every right answer', text: 'More than one is right. Tick all of them, and only them.' },
   { icon: 'i-heroicons-cursor-arrow-rays', title: 'Pick the line', text: 'Real code from the docs. Click the line that does the job.' },
   { icon: 'i-heroicons-bug-ant', title: 'Spot the mistake', text: 'One line is wrong in a way the docs warn about. Find it.' }
 ]
@@ -113,7 +114,7 @@ const QUESTION_TYPES = [
       </template>
     </UPageHero>
 
-    <div class="grid gap-3 pb-10 sm:grid-cols-3">
+    <div class="grid gap-3 pb-10 sm:grid-cols-2 lg:grid-cols-4">
       <div
         v-for="type in QUESTION_TYPES"
         :key="type.title"

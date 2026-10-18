@@ -139,6 +139,7 @@ questions:
   - id: core.caching.save-refreshes-pages
     version: 1
     status: live
+    family: page-tag-purge
     level: intermediate
     area: core-concepts
     tags: [http-caching, page-caching]

@@ -76,6 +76,33 @@ that brought it in, so it joins the What's new quiz (see below).
     author: your-name
 ```
 
+### Select many
+
+For a fact that has several right answers, such as "which records can own a component group". The reader
+ticks checkboxes, and scores only by ticking every right option and no wrong one. The feedback marks each
+option as right, wrong or missed.
+
+```yaml
+    type: select-many
+    prompt: A component group is the named, ordered list of components, such as `main`. Which records can a component group belong to?
+    options:                              # 4 to 6, shuffled for each reader
+      - { id: a, text: A layout }
+      - { id: b, text: A page }
+      - { id: c, text: A component }
+      - { id: d, text: A route }
+      - { id: e, text: A page data record }
+    answer:
+      correct: [a, b, c]                  # 2 or more, with at least 2 options left wrong
+      explanation: …
+      optionNotes:                        # optional, any option: shown when the reader got that one wrong
+        d: …                              # (ticked a wrong one, or left a right one out)
+```
+
+- **Say that more than one can be right** ("Which of these…", "every…") *(check)*. The page says so too.
+- **Vary how many are right**, and don't let the right options all be the long ones *(check: warns when every
+  right option is longer than every wrong one)*.
+- Use it only when "several are right" is the fact. A question with one right answer stays multiple choice.
+
 ### Pick the line
 
 The code must be a run of lines copied from one docs code block (without `// [!code …]` annotations).
@@ -183,6 +210,8 @@ These rules are for every question, generated or not. `pnpm quiz:check` tests th
   not be the longest by a clear margin *(check: warns when it is over 1.5× the median of the others)*.
   Across the bank, spread the right answer over `a` to `e` *(check: reports the spread)*.
 - **Nothing tied to a release number** in a prompt or answer, unless the prompt names that release.
+- **Select many:** every option is clearly right or clearly wrong by the docs. One that is right only in some
+  setup is a trap, not a test.
 - **Spot the mistake:** exactly one line is wrong. Trimming a block must not leave something else that looks
   wrong, such as an unclosed brace or a variable used before the shown lines define it *(check: warns on
   unbalanced brackets)*.

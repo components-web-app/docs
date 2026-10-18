@@ -212,7 +212,7 @@ The schema is `QuestionSchema` in `quiz/schema.ts`; it is strict, so a misspelt 
 | `level` | yes | `beginner`, `intermediate`, `advanced`, `expert`. |
 | `area` | yes | The topic filter: `core-concepts`, `api`, `nuxt-module`, `deployment`. One per question. |
 | `tags` | yes | 1–4 tags from `quiz/config.yml`. The result screen suggests reading for the tags of wrong answers (each tag has a docs link). Finer than `area`, so it can feed per-skill scores later. |
-| `type` | yes | `multiple-choice`, `pick-the-line`, `spot-the-mistake`. Decides which fields follow. |
+| `type` | yes | `multiple-choice`, `select-many`, `pick-the-line`, `spot-the-mistake`. Decides which fields follow. |
 | `difficulty` | no | The author's guess, 1–5, within the level. A prior until there is response data. |
 | `calibration` | no | `{ difficulty, discrimination, responses, calibratedAt }`, written by a future calibration job (IRT b and a). Present now so adding it needs no schema change. It must also say which `version` it was fitted on, so a version bump makes it stale instead of silently carrying over (required change, see the review section). |
 | `exposure` | no | `{ weight, maxRate }`. `weight` (default 1) scales how often selection picks the question. `maxRate` is for exam mode. |
@@ -241,6 +241,23 @@ answer:
     a: …
   links: []          # optional extra links (label, to)
 ```
+
+**select-many**
+
+```yaml
+options:            # 4–6, each { id: a–z, text }. Shuffled like multiple choice.
+  - { id: a, text: … }
+code: { lang, text } # optional snippet above the options
+answer:
+  correct: [a, c]    # 2 or more; at least 2 options stay wrong, so neither "one" nor "all" scores
+  explanation: …
+  optionNotes:       # optional, any option; shown when the reader got that option wrong
+    b: …
+```
+
+Graded all or nothing: the answer is right only when the ticked set equals `correct` exactly
+(`gradeAgainstKey`). The key holds `correct: { optionIds }`; the response is `{ ref, optionIds }`. The
+fingerprint sorts `correct`, so listing the same options in another order is not a new version.
 
 **pick-the-line**
 

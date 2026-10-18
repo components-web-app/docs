@@ -1,0 +1,201 @@
+# Hand-written beginner select-many questions: tick every right option.
+# Format: quiz/README.md. Run `pnpm quiz:stamp <id>` to fill in or refresh the hashes.
+
+questions:
+  - id: core.data-model.group-owners
+    version: 1
+    status: live
+    level: beginner
+    area: core-concepts
+    tags: [data-model, components]
+    type: select-many
+    difficulty: 2
+    prompt: >-
+      A component group is the named, ordered list of components, such as `main`. Which of these records can
+      a component group belong to?
+    options:
+      - { id: a, text: A route }
+      - { id: b, text: A layout }
+      - { id: c, text: A component position }
+      - { id: d, text: A page }
+      - { id: e, text: A component }
+      - { id: f, text: A page data record }
+    answer:
+      correct: [b, d, e]
+      explanation: >-
+        A component group belongs to a layout, a page or a component. A layout's groups hold shared content
+        such as the navigation, a page's groups hold its content, and a component's own groups hold its
+        children, as in an accordion.
+      optionNotes:
+        a: A route maps a path to a page or a page data record. It holds no components.
+        c: A component position sits inside a group and places one component in it. It doesn't own a group.
+        e: A component can own groups too, for its children. An accordion declares a `<CwaComponentGroup>` in its own Vue file.
+        f: A page data record's components are shown by the template page's groups. The record holds fields, not groups.
+    sources:
+      - { kind: docs, page: /core-concepts/glossary, anchor: component-group, sectionHash: 'sha256:1078c99323abb87b' }
+      - { kind: docs, page: /core-concepts/the-data-model, anchor: componentgroup, sectionHash: 'sha256:2d82038914cdd316' }
+    author: llm-draft
+
+  - id: core.stack.api-side
+    version: 1
+    status: live
+    level: beginner
+    area: core-concepts
+    tags: [architecture]
+    type: select-many
+    difficulty: 2
+    prompt: CWA builds on well-known frameworks. Which of these does the API side of a CWA project use?
+    options:
+      - { id: a, text: Symfony }
+      - { id: b, text: Pinia }
+      - { id: c, text: Doctrine ORM }
+      - { id: d, text: Nuxt }
+      - { id: e, text: API Platform }
+      - { id: f, text: Tailwind CSS }
+    answer:
+      correct: [a, c, e]
+      explanation: >-
+        The API bundle installs into a Symfony application. API Platform gives every resource its REST
+        endpoints, and Doctrine ORM stores the entities in the database. Nuxt, Pinia and Tailwind CSS are the
+        front end: the module installs into Nuxt, Pinia holds the module's store, and Tailwind CSS styles the
+        module's admin.
+      optionNotes:
+        b: Pinia is the Nuxt module's store, in the browser and the server render, not the API.
+        d: Nuxt is the front-end application the module installs into.
+        f: Tailwind CSS styles the Nuxt module's admin, in its own cascade layer, on the front end.
+        c: Doctrine ORM stores the API's entities, and schema changes are Doctrine migrations.
+    sources:
+      - { kind: docs, page: /core-concepts/architecture, anchor: what-cwa-is-built-on, sectionHash: 'sha256:5a1b8352e317b360' }
+    author: llm-draft
+
+  - id: core.dynamic.per-record
+    version: 1
+    status: live
+    level: beginner
+    area: core-concepts
+    tags: [dynamic-pages]
+    type: select-many
+    difficulty: 3
+    prompt: >-
+      Twenty blog articles are page data records (one record for each item of repeating content). They all
+      render through one template page, a page record shared by every article. Which of these can differ from
+      one article to the next?
+    options:
+      - { id: a, text: The layout around the article }
+      - { id: b, text: The path of the article's route }
+      - { id: c, text: The component groups on the page }
+      - { id: d, text: The `<title>` and meta description }
+      - { id: e, text: The page template Vue file it renders through }
+      - { id: f, text: The component in a position bound to a field }
+    answer:
+      correct: [b, d, f]
+      explanation: >-
+        Each page data record has its own route, its own `title` and `metaDescription`, and its own fields. A
+        dynamic position (a component position bound to a page data field) shows the component the current
+        record holds in that field. The structure is shared: the template page holds the component groups, and
+        it names the layout and the page template every article renders through.
+      optionNotes:
+        a: The template page names the layout, and every article renders through that one template page.
+        c: The template page holds the component groups. The records only fill the positions bound to their fields.
+        e: The template page's `uiComponent` names the page template, so every article uses the same Vue file.
+        f: A position bound to a field such as `htmlContent` shows each record's own component from that field.
+    sources:
+      - { kind: docs, page: /core-concepts/dynamic-pages, anchor: how-it-works, sectionHash: 'sha256:84e223903937ce11' }
+      - { kind: docs, page: /core-concepts/dynamic-pages, anchor: seo, sectionHash: 'sha256:e9a9218d4322da12' }
+      - { kind: docs, page: /core-concepts/layouts-and-pages, anchor: template-pages-istemplate-true, sectionHash: 'sha256:aa5e8d6598a23a66' }
+    author: llm-draft
+
+  - id: nuxt.layer.provides
+    version: 1
+    status: live
+    family: cwa-provides-vs-you-write
+    level: beginner
+    area: nuxt-module
+    tags: [module-setup]
+    type: select-many
+    difficulty: 2
+    prompt: >-
+      The CWA layer is the part of `@cwa/nuxt` that your app extends. Which of these does the layer give you,
+      so you don't create them?
+    options:
+      - { id: a, text: 'The `/login` and password reset pages' }
+      - { id: b, text: A Vue file for each of your layouts }
+      - { id: c, text: 'The admin pages under `/_cwa`' }
+      - { id: d, text: 'The `cwa-root-layout` Nuxt layout' }
+      - { id: e, text: The display file for each component type }
+      - { id: f, text: 'The `cwa-auth` and `cwa-admin` middleware' }
+    answer:
+      correct: [a, c, d, f]
+      explanation: >-
+        The layer registers the module and adds the auth pages, the `/_cwa` admin panel, the `cwa-root-layout`
+        Nuxt layout and the `cwa-auth` and `cwa-admin` route middleware. You write the Vue files for your own
+        layouts, page templates and components.
+      optionNotes:
+        b: Your layouts are yours to write, in `app/app/cwa/layouts/`. The layer renders whichever one the page names.
+        e: Each component type's display file is yours, in `app/app/cwa/components/<Name>/`.
+        d: '`cwa-root-layout` comes from the layer and is applied to every page that sets no `layout` of its own.'
+        f: The layer ships both named middleware. You opt into them on the pages you want to guard.
+    sources:
+      - { kind: docs, page: /nuxt-module/cwa-layer/overview, anchor: pages-auto-registered, sectionHash: 'sha256:f0daa1b40d5b5f16' }
+      - { kind: docs, page: /nuxt-module/cwa-layer/overview, anchor: layout, sectionHash: 'sha256:dcc3e2c8c5c6fc89' }
+      - { kind: docs, page: /nuxt-module/cwa-layer/overview, anchor: route-middleware, sectionHash: 'sha256:dfc275b378f933f9' }
+    author: llm-draft
+
+  - id: nuxt.admin.admin-pages
+    version: 1
+    status: live
+    level: beginner
+    area: nuxt-module
+    tags: [admin]
+    type: select-many
+    difficulty: 2
+    prompt: >-
+      Most content is edited on the page itself, but the admin pages under `/_cwa` manage records that aren't
+      on a page. Which of these can an editor manage there?
+    options:
+      - { id: a, text: User accounts and their roles }
+      - { id: b, text: New component types for the site }
+      - { id: c, text: Layout records }
+      - { id: d, text: The Vue file of a page template }
+      - { id: e, text: 'Page data records, such as blog articles' }
+    answer:
+      correct: [a, c, e]
+      explanation: >-
+        The admin pages cover layouts, pages, page data, routes, users and site settings. A new component type,
+        or a change to a Vue file, is code: a PHP entity and Vue files that a developer writes.
+      optionNotes:
+        b: A component type is a PHP entity plus Vue files. The admin only adds components of types that already exist.
+        d: Vue files are code in your app. The admin's **Page UI** select only picks which page template a page uses.
+    sources:
+      - { kind: docs, page: /nuxt-module/cwa-layer/admin-panel, anchor: admin-routes, sectionHash: 'sha256:4dadfca0ef924049' }
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: the-admin-bar, sectionHash: 'sha256:793a65a946bb4316' }
+    author: llm-draft
+
+  - id: core.admin.edit-mode-effects
+    version: 1
+    status: live
+    level: beginner
+    area: core-concepts
+    tags: [admin]
+    type: select-many
+    difficulty: 2
+    prompt: An editor clicks **Edit** in the admin bar to turn on edit mode. Which of these happen while it's on?
+    options:
+      - { id: a, text: 'Visitors see a publishable component''s edits as they''re typed' }
+      - { id: b, text: An empty component group shows a **+** to add a component }
+      - { id: c, text: Changes are saved only when the editor clicks **Done** }
+      - { id: d, text: Clicking a component selects it and opens the manager panel }
+    answer:
+      correct: [b, d]
+      explanation: >-
+        In edit mode an empty group shows a **+** that opens the Add Component dialog, and clicking a component
+        selects it and opens the manager panel with its admin tabs. Edits save to the draft as the editor
+        types, and visitors keep seeing the published version until the editor publishes.
+      optionNotes:
+        a: Edits go to a publishable component's draft. Visitors see the published version until an editor clicks **Publish**.
+        c: An admin tab's fields send a debounced `PATCH` as the editor types. There's no save button, and **Done** only leaves edit mode.
+    sources:
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: edit-mode, sectionHash: 'sha256:05cb7587553eab14' }
+      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:5c8ec9f39ad9cd58' }
+      - { kind: docs, page: /core-concepts/components, anchor: the-admin-tab, sectionHash: 'sha256:4b979741549a18fa' }
+    author: llm-draft

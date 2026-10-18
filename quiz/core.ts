@@ -18,7 +18,7 @@ export const AREAS = ['core-concepts', 'api', 'nuxt-module', 'deployment'] as co
 export type Area = typeof AREAS[number]
 export type AreaFilter = Area | 'all'
 
-export const QUESTION_TYPES = ['multiple-choice', 'pick-the-line', 'spot-the-mistake'] as const
+export const QUESTION_TYPES = ['multiple-choice', 'select-many', 'pick-the-line', 'spot-the-mistake'] as const
 export type QuestionType = typeof QUESTION_TYPES[number]
 
 export const STATUSES = ['draft', 'live', 'retired'] as const
@@ -221,7 +221,8 @@ export type AnswerKey = {
   id: string
   version: number
   type: QuestionType
-  correct: { optionId: string } | { lines: number[] }
+  /** One option (multiple choice), every right option (select many), or the lines that count (code questions). */
+  correct: { optionId: string } | { optionIds: string[] } | { lines: number[] }
   fix?: string
   explanation: string
   /** One sentence on when this matters in practice, shown under the explanation. */
@@ -251,6 +252,7 @@ export type ExamItem = QuestionDisplay & { token: string }
  */
 export type QuizResponse
   = | { ref: string, optionId: string }
+    | { ref: string, optionIds: string[] }
     | { ref: string, line: number }
 
 /**
@@ -260,6 +262,7 @@ export type QuizResponse
  */
 export type QuizAnswer
   = | { questionId: string, version: number, optionId: string }
+    | { questionId: string, version: number, optionIds: string[] }
     | { questionId: string, version: number, line: number }
 
 export type GradeResult = {
@@ -296,6 +299,11 @@ export function gradeAgainstKey(answer: QuizAnswer, key: AnswerKey): GradeResult
   let correct = false
   if ('optionId' in answer && 'optionId' in key.correct) {
     correct = answer.optionId === key.correct.optionId
+  } else if ('optionIds' in answer && 'optionIds' in key.correct) {
+    // All or nothing: every right option and no wrong one. Repeats in the answer don't count twice.
+    const chosen = new Set(answer.optionIds)
+    const right = new Set(key.correct.optionIds)
+    correct = chosen.size === right.size && [...chosen].every(id => right.has(id))
   } else if ('line' in answer && 'lines' in key.correct) {
     correct = key.correct.lines.includes(answer.line)
   }

@@ -8,6 +8,7 @@ questions:
   - id: api.cache.layout-manifest-purge
     version: 1
     status: live
+    family: manifest-purge
     level: advanced
     area: api
     tags: [http-caching, layouts-and-pages]
@@ -451,6 +452,7 @@ questions:
   - id: deploy.secrets.rotation
     version: 1
     status: live
+    family: kept-secrets
     level: advanced
     area: deployment
     tags: [deployment, security]

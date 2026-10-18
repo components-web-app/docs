@@ -1,0 +1,220 @@
+# Hand-written intermediate select-many questions: tick every right option.
+# Format: quiz/README.md. Run `pnpm quiz:stamp <id>` to fill in or refresh the hashes.
+
+questions:
+  - id: nuxt.setup.disabled-pages
+    version: 1
+    status: live
+    level: intermediate
+    area: nuxt-module
+    tags: [module-setup]
+    type: select-many
+    difficulty: 3
+    family: 'mistake:cwa-disabled-false'
+    prompt: >-
+      CWA's route middleware runs on every navigation. Which of these pages must set
+      `cwa: { disabled: true }` in `definePageMeta`?
+    why: >-
+      Without the flag, a page of your own asks the API for a route at its path, finds none and shows the
+      error page, while a page that loads a CWA page by IRI breaks if you add it.
+    options:
+      - { id: a, text: '`app/app/pages/status.vue`, a status page of your own' }
+      - { id: b, text: 'An account settings page of your own that uses `cwa-root-layout`' }
+      - { id: c, text: 'A page of your own that loads a CWA page with `cwa.fetch`' }
+      - { id: d, text: 'A checkout page of your own with its own Nuxt layout' }
+      - { id: e, text: '`/about-us`, a page record an editor made in the admin' }
+    answer:
+      correct: [a, b, d]
+      explanation: >-
+        Every page of your own that isn't CWA content must set the flag, or the middleware asks the API for a
+        route at its path and the visitor gets the error page. That holds whatever layout the page uses. The
+        one exception is a page that loads a CWA page by IRI, which must leave the flag off. A page record made
+        in the admin is CWA content, served by the catch-all route.
+      optionNotes:
+        b: Using `cwa-root-layout` keeps the admin header, but the page still isn't CWA content, so it needs the flag.
+        c: '`disabled` stops every CWA fetch, including the one `cwa.fetch` asks for, so this page must leave it off.'
+        d: The flag is about the route fetch, not the layout. Your own page needs it with any layout.
+        e: An editor's page is rendered by CWA's catch-all route. There's no file of yours to set the flag in.
+    sources:
+      - { kind: docs, page: /nuxt-module/module-setup, anchor: disable-cwa-route-fetching, sectionHash: 'sha256:7d2c3f9a44902a9a' }
+      - { kind: docs, page: /nuxt-module/module-setup, anchor: use-the-cwa-root-layout-on-your-own-page, sectionHash: 'sha256:b0c7167c6d88bb4b' }
+    author: llm-draft
+
+  - id: api.publishable.version-served
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [draft-and-publish]
+    type: select-many
+    difficulty: 3
+    prompt: >-
+      A publishable component has a draft and a published version, and both are requested at the published
+      version's IRI. Which of these decide which version the API sends back?
+    why: >-
+      Drafts and published content share one URL, so when someone reports seeing a draft, the caller's role
+      and the query string are what to check.
+    options:
+      - { id: a, text: 'Whether the request has `?published=true`' }
+      - { id: b, text: 'Whether the component sits in a layout''s group or a page''s' }
+      - { id: c, text: 'Whether the caller passes `publishable.permission`' }
+      - { id: d, text: 'Whether the browser has a Mercure connection open' }
+      - { id: e, text: 'Whether the component has a draft at all' }
+    answer:
+      correct: [a, c, e]
+      explanation: >-
+        An anonymous visitor gets the published version. A caller who passes `publishable.permission` gets the
+        draft if one exists, and otherwise the published one. Adding `?published=true` asks for the published
+        version explicitly. The API reads the caller from the auth cookie, not from the URL.
+      optionNotes:
+        b: Where the component is placed doesn't matter. The rule is the same for every publishable component.
+        d: Mercure only carries updates to open pages. It plays no part in which version a request gets.
+        e: A caller who can see drafts gets the published version when there is no draft.
+    sources:
+      - { kind: docs, page: /api/components/annotations/publishable, anchor: how-it-works-at-the-api-level, sectionHash: 'sha256:ee0527b8cde5be46' }
+      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:5c8ec9f39ad9cd58' }
+    author: llm-draft
+
+  - id: core.caching.page-purges
+    version: 1
+    status: live
+    family: page-tag-purge
+    level: intermediate
+    area: core-concepts
+    tags: [page-caching]
+    type: select-many
+    difficulty: 3
+    prompt: >-
+      The `/about-us` page is cached. It shows a Title in its `main` component group (a named list of
+      components), and its layout's `navigation` group shows NavigationLink components. Which of these send a
+      purge that drops the cached `/about-us` page?
+    why: >-
+      A page is tagged with every resource it rendered, so an edit to shared content such as the navigation
+      refreshes every page that shows it without anyone purging by hand.
+    options:
+      - { id: a, text: An editor saves a Quote that only the contact page shows }
+      - { id: b, text: The Title's scheduled publish time arrives }
+      - { id: c, text: An editor publishes a change to a NavigationLink }
+      - { id: d, text: A signed-in editor opens `/about-us` }
+      - { id: e, text: An editor publishes a change to the Title }
+    answer:
+      correct: [c, e]
+      explanation: >-
+        Nuxt tags each cached page with the IRI of every resource it rendered, including the layout's
+        components. Writing a resource purges its IRI, so publishing a change to the Title or a NavigationLink
+        drops the page. A scheduled publish purges nothing: the API shortened the page's lifetime ahead of time, so it has already
+        expired.
+      optionNotes:
+        a: The `/about-us` page doesn't carry the Quote's IRI, so that purge doesn't match it.
+        e: Publishing writes the Title's published version, so its IRI is purged and the page is dropped.
+        b: No purge is sent. The API capped the lifetimes at the publish time in advance, so the cached copy expires then.
+        c: The layout's components are rendered on the page, so their IRIs are among its tags.
+        d: An editor's page is marked `private, no-store`. Viewing it neither stores nor purges anything.
+    sources:
+      - { kind: docs, page: /core-concepts/caching, anchor: purges, sectionHash: 'sha256:71faaafce95334a2' }
+      - { kind: docs, page: /core-concepts/caching, anchor: what-each-layer-does, sectionHash: 'sha256:6ab6857f5442bf44' }
+      - { kind: docs, page: /core-concepts/caching, anchor: signed-in-editors-never-get-a-cached-page, sectionHash: 'sha256:77665ddad4825fb4' }
+    author: llm-draft
+
+  - id: api.uploads.variant-types
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [uploads]
+    type: select-many
+    difficulty: 3
+    prompt: >-
+      An `#[UploadableField]` declares `imagineFilters: ['thumbnail']`, a LiipImagine filter set that makes a
+      resized copy. Which of these uploads get a thumbnail variant?
+    why: >-
+      A field that takes documents as well as photos is safe to give filters, and an SVG or PDF there shows
+      its original file instead of a variant.
+    options:
+      - { id: a, text: A JPEG photo }
+      - { id: b, text: An SVG logo }
+      - { id: c, text: A PDF brochure }
+      - { id: d, text: A PNG screenshot }
+      - { id: e, text: A WebP photo }
+      - { id: f, text: A Word document }
+    answer:
+      correct: [a, d, e]
+      explanation: >-
+        Filters apply only to raster images: a mime type of `image/*` that isn't `image/svg+xml`. JPEG, PNG and
+        WebP qualify. An SVG, PDF or Word document skips Imagine and returns only its primary media object.
+      optionNotes:
+        b: An SVG is `image/svg+xml`, which the filters skip.
+        e: WebP is `image/webp`, a raster image, so it gets the variant.
+    sources:
+      - { kind: docs, page: /api/components/annotations/uploadable, anchor: liipimaginebundle-integration, sectionHash: 'sha256:27ee53328388ecf2' }
+    author: llm-draft
+
+  - id: api.security.component-readable
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [security]
+    type: select-many
+    difficulty: 4
+    prompt: >-
+      The API sets `routable_security`, as the template does, and no page has **Public without a route**
+      turned on. Which of these let an anonymous visitor read a component by its IRI?
+    why: >-
+      Components on unrouted or scheduled pages stay hidden from the API, so content can be prepared out of
+      sight, while shared layout content is public wherever a live page uses it.
+    options:
+      - { id: a, text: 'It''s in the `navigation` group of a layout that a live-routed page uses' }
+      - { id: b, text: It's in a group of a page whose route only goes live next week }
+      - { id: c, text: It's held in a field of a page data record whose route is live }
+      - { id: d, text: 'It''s only on a page that no route reaches, at any depth' }
+      - { id: e, text: 'It''s in a group of the template page (the page record) that live-routed page data uses' }
+    answer:
+      correct: [a, c, e]
+      explanation: >-
+        The component voter grants access when the component is placed on a publicly reachable page (directly,
+        through a layout, or nested in another component), held in a field of reachable page data, or placed on
+        the template page that reachable page data renders through. Reachable means a route that exists and is
+        live now leads to it.
+      optionNotes:
+        b: A route that isn't live yet doesn't make anything reachable, so the visitor gets a 401.
+        d: A page that nothing routes to is private, and so are the components only it places.
+        e: Page data renders through its template page, so the template page's components are reachable through the record.
+    sources:
+      - { kind: docs, page: /api/users/access-control, anchor: component-security, sectionHash: 'sha256:a4d80b93ea7723cf' }
+      - { kind: docs, page: /api/users/access-control, anchor: public-access-follows-routes, sectionHash: 'sha256:d1fa4c0f3f1ae8bc' }
+    author: llm-draft
+
+  - id: api.security.public-without-route
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [security]
+    type: select-many
+    difficulty: 4
+    prompt: >-
+      An admin turns on **Public without a route** (`isReachableWithoutRoute`) for a template page (the page
+      record that page data renders through) that has no route and no parent page. The API sets
+      `routable_security`. Which of these can anonymous visitors now read?
+    why: >-
+      Setting the flag on a template page is a common slip: the template becomes public, but its page data
+      records stay private until each has the flag or a live route.
+    options:
+      - { id: a, text: The template page itself }
+      - { id: b, text: The page data records that render through it }
+      - { id: c, text: The components placed on the template page }
+      - { id: d, text: 'The template page''s resource manifest' }
+      - { id: e, text: 'The template page, listed in `GET /_/pages`' }
+    answer:
+      correct: [a, c, d]
+      explanation: >-
+        The flag counts as though a live route reached the page, so the page, its manifest, its components and
+        its ancestors are readable. It doesn't spread down: set on a template page it doesn't make its page data
+        public. Flagged pages are also left out of the `GET /_/pages` collection.
+      optionNotes:
+        b: Set the flag on the page data itself. Page data's flag makes its template readable, but not the other way round.
+        e: Flagged pages are readable by IRI but aren't listed in `GET /_/pages`.
+    sources:
+      - { kind: docs, page: /api/users/access-control, anchor: public-pages-without-a-route, sectionHash: 'sha256:63c727182c29980e' }
+    author: llm-draft

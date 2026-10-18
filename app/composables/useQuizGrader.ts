@@ -33,7 +33,7 @@ export function createLocalGrader(level: QuizSet): QuizFeedbackGrader {
       }
       const answer = 'optionId' in response
         ? { questionId, version, optionId: response.optionId }
-        : { questionId, version, line: response.line }
+        : 'optionIds' in response ? { questionId, version, optionIds: response.optionIds } : { questionId, version, line: response.line }
       const result = gradeAgainstKey(answer, entry.key)
       return { ...result, feedback: { explanation: entry.explanation, ...(entry.why ? { why: entry.why } : {}), ...(entry.optionNotes ? { optionNotes: entry.optionNotes } : {}) } }
     }

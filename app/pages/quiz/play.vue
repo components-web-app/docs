@@ -112,6 +112,10 @@ const selectedOption = computed({
   get: () => quiz.choice.value && 'optionId' in quiz.choice.value ? quiz.choice.value.optionId : undefined,
   set: (optionId?: string) => optionId && quiz.choose({ optionId })
 })
+const selectedOptions = computed({
+  get: () => quiz.choice.value && 'optionIds' in quiz.choice.value ? quiz.choice.value.optionIds : [],
+  set: (optionIds: string[]) => quiz.choose({ optionIds })
+})
 const selectedLine = computed({
   get: () => quiz.choice.value && 'line' in quiz.choice.value ? quiz.choice.value.line : undefined,
   set: (line?: number) => line && quiz.choose({ line })
@@ -158,6 +162,9 @@ watch(quiz.phase, (phase) => {
 function chosenOption(choice: QuizChoice) {
   return 'optionId' in choice ? choice.optionId : undefined
 }
+function chosenOptions(choice: QuizChoice) {
+  return 'optionIds' in choice ? choice.optionIds : []
+}
 function chosenLine(choice: QuizChoice) {
   return 'line' in choice ? choice.line : undefined
 }
@@ -177,6 +184,18 @@ const optionMarks = computed(() => {
   }
 })
 
+const manyMarks = computed(() => {
+  const r = record.value
+  if (!r) {
+    return undefined
+  }
+  return {
+    chosen: chosenOptions(r.choice),
+    correct: correct.value && 'optionIds' in correct.value ? correct.value.optionIds : [],
+    notes: r.result.feedback?.optionNotes
+  }
+})
+
 const lineMarks = computed(() => {
   const r = record.value
   if (!r) {
@@ -192,6 +211,7 @@ const lineMarks = computed(() => {
 
 const TYPE_HINTS = {
   'multiple-choice': 'Choose one answer.',
+  'select-many': 'Choose every answer that\'s right. It counts only if you choose all of them and nothing else.',
   'pick-the-line': 'Click a line, or use the arrow keys and Space.',
   'spot-the-mistake': 'Click the wrong line, or use the arrow keys and Space.'
 } as const
@@ -353,6 +373,19 @@ async function share() {
             :marks="optionMarks"
           />
         </template>
+        <template v-else-if="quiz.current.value.type === 'select-many'">
+          <QuizCodeLines
+            v-if="quiz.current.value.code"
+            :code="quiz.current.value.code"
+          />
+          <QuizSelectMany
+            v-if="quiz.current.value.options"
+            v-model="selectedOptions"
+            :options="quiz.current.value.options"
+            labelledby="quiz-prompt"
+            :marks="manyMarks"
+          />
+        </template>
         <QuizCodeLines
           v-else-if="quiz.current.value.code"
           v-model="selectedLine"
@@ -374,7 +407,7 @@ async function share() {
           v-if="quiz.phase.value === 'question'"
           label="Check answer"
           size="lg"
-          :disabled="!quiz.choice.value"
+          :disabled="!quiz.choice.value || ('optionIds' in quiz.choice.value && !quiz.choice.value.optionIds.length)"
           :loading="quiz.grading.value"
           @click="check"
         />

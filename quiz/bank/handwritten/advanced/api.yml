@@ -5,6 +5,7 @@ questions:
   - id: api.cache.admin-route-private
     version: 2
     status: live
+    family: http-cache-safety
     level: advanced
     area: api
     tags: [http-caching, draft-and-publish]
@@ -60,6 +61,7 @@ questions:
   - id: api.cache.component-save-purge
     version: 2
     status: live
+    family: manifest-purge
     level: advanced
     area: api
     tags: [http-caching]
@@ -114,6 +116,7 @@ questions:
   - id: api.cache.site-config-tag
     version: 2
     status: live
+    family: cwa-html-purge
     level: advanced
     area: api
     tags: [http-caching, page-caching]
@@ -160,7 +163,7 @@ questions:
         With no location at all, every check in the component voter abstains, and the voter grants access. Use
         `#[Silverback\Publishable]` or your own security if a component must stay private before it is placed.
     sources:
-      - { kind: docs, page: /api/users/access-control, anchor: component-security, sectionHash: 'sha256:6b067b51d04d5855' }
+      - { kind: docs, page: /api/users/access-control, anchor: component-security, sectionHash: 'sha256:a4d80b93ea7723cf' }
     author: llm-draft
 
   - id: api.security.unrouted-parent

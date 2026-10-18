@@ -24,7 +24,7 @@ questions:
         Anonymous visitors only ever get the published version, and a component with none is a 404 for them.
         Callers who may publish get the draft.
     sources:
-      - { kind: docs, page: /api/components/annotations/publishable, anchor: how-it-works-at-the-api-level, sectionHash: 'sha256:6da52c0571b624fb' }
+      - { kind: docs, page: /api/components/annotations/publishable, anchor: how-it-works-at-the-api-level, sectionHash: 'sha256:ee0527b8cde5be46' }
     author: llm-draft
 
   - id: api.page-data.base-class
@@ -144,5 +144,5 @@ questions:
         A publishable component has a draft that editors change and a published version that visitors see.
         Publishing copies the draft over the live version. Real-time updates come from `mercure: true`.
     sources:
-      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:57d5bc6ed14a51f7' }
+      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:5c8ec9f39ad9cd58' }
     author: llm-draft

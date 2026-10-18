@@ -5,6 +5,7 @@ questions:
   - id: core.architecture.what-you-write
     version: 1
     status: live
+    family: cwa-provides-vs-you-write
     level: beginner
     area: core-concepts
     tags: [architecture]
@@ -145,7 +146,7 @@ questions:
         Anonymous visitors get the published version. Signed-in users with publish rights get the draft, on
         every page view, whether or not edit mode is on.
     sources:
-      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:57d5bc6ed14a51f7' }
+      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:5c8ec9f39ad9cd58' }
     author: llm-draft
 
   - id: core.draft.reorder-timing
@@ -172,7 +173,7 @@ questions:
       optionNotes:
         a: The components have drafts, but their positions in the group don't. Moving one changes the live order.
     sources:
-      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: adding-removing-and-reordering-are-immediate, sectionHash: 'sha256:4b652d7ae8f34399' }
+      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: adding-removing-and-reordering-are-immediate, sectionHash: 'sha256:177d97708ef53e97' }
     author: llm-draft
 
   - id: core.admin.link-in-edit-mode

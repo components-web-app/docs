@@ -78,7 +78,9 @@ if (flag('answers') || flag('key-only')) {
   console.log('# Answer key')
   shown.forEach((q, n) => {
     const key = keys.get(q.id)!
-    const answer = 'optionId' in key.correct ? `option ${key.correct.optionId}` : `line ${key.correct.lines.join(' or ')}`
+    const answer = 'optionId' in key.correct
+      ? `option ${key.correct.optionId}`
+      : 'optionIds' in key.correct ? `options ${key.correct.optionIds.join(' and ')}` : `line ${key.correct.lines.join(' or ')}`
     console.log(`${n + 1}. ${q.id}: ${answer}${key.fix ? ` (should read: ${key.fix.trim()})` : ''}`)
     console.log(`   ${key.explanation.replace(/\n/g, ' ')}`)
     if (key.why) console.log(`   Why: ${key.why.replace(/\n/g, ' ')}`)

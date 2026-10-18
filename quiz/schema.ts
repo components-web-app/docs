@@ -194,6 +194,27 @@ export const MultipleChoiceSchema = BaseQuestion.extend({
   }).strict()
 }).strict()
 
+/**
+ * "Choose every answer that's right": checkboxes, marked right only when the reader picks exactly the
+ * right options. At least two are right and at least two are wrong, so neither "pick one" nor "pick
+ * them all" works.
+ */
+export const SelectManySchema = BaseQuestion.extend({
+  type: z.literal('select-many'),
+  options: z.array(OptionSchema).min(4).max(6),
+  code: CodeSchema.optional(),
+  answer: z.object({
+    correct: z.array(z.string().regex(/^[a-z]$/)).min(2),
+    explanation: ExplanationSchema,
+    /**
+     * A short note per option, shown when the reader got that option wrong: picked a wrong one, or
+     * left a right one out. So a right option can have a note too.
+     */
+    optionNotes: z.record(z.string().regex(/^[a-z]$/), z.string().max(300)).optional(),
+    links: z.array(LinkSchema).max(3).optional()
+  }).strict()
+}).strict()
+
 export const PickTheLineSchema = BaseQuestion.extend({
   type: z.literal('pick-the-line'),
   code: CodeSchema,
@@ -218,7 +239,7 @@ export const SpotTheMistakeSchema = BaseQuestion.extend({
   }).strict()
 }).strict()
 
-export const QuestionSchema = z.discriminatedUnion('type', [MultipleChoiceSchema, PickTheLineSchema, SpotTheMistakeSchema])
+export const QuestionSchema = z.discriminatedUnion('type', [MultipleChoiceSchema, SelectManySchema, PickTheLineSchema, SpotTheMistakeSchema])
   .superRefine((q, ctx) => {
     if (q.status === 'retired' && !q.retired) {
       ctx.addIssue({ code: 'custom', path: ['retired'], message: 'a retired question needs retired.reason' })
@@ -237,7 +258,29 @@ export const QuestionSchema = z.discriminatedUnion('type', [MultipleChoiceSchema
         }
       }
     }
-    if (q.type !== 'multiple-choice') {
+    if (q.type === 'select-many') {
+      const ids = q.options.map(o => o.id)
+      if (new Set(ids).size !== ids.length) {
+        ctx.addIssue({ code: 'custom', path: ['options'], message: 'duplicate option id' })
+      }
+      if (new Set(q.answer.correct).size !== q.answer.correct.length) {
+        ctx.addIssue({ code: 'custom', path: ['answer', 'correct'], message: 'an option is listed twice' })
+      }
+      for (const id of q.answer.correct) {
+        if (!ids.includes(id)) {
+          ctx.addIssue({ code: 'custom', path: ['answer', 'correct'], message: `"${id}" is not one of the options` })
+        }
+      }
+      if (ids.length - new Set(q.answer.correct).size < 2) {
+        ctx.addIssue({ code: 'custom', path: ['answer', 'correct'], message: 'at least two options must be wrong, or "choose them all" scores' })
+      }
+      for (const id of Object.keys(q.answer.optionNotes ?? {})) {
+        if (!ids.includes(id)) {
+          ctx.addIssue({ code: 'custom', path: ['answer', 'optionNotes', id], message: `"${id}" is not one of the options` })
+        }
+      }
+    }
+    if (q.type === 'pick-the-line' || q.type === 'spot-the-mistake') {
       const lineCount = q.code.text.split('\n').length
       const answerLines = q.type === 'pick-the-line' ? q.answer.lines : [q.answer.line]
       for (const line of answerLines) {
@@ -388,7 +431,7 @@ export function splitQuestion(q: Question): { question: PublicQuestion, key: Ans
     ...(q.exposure?.weight ? { weight: q.exposure.weight } : {}),
     // Copied field by field: the Nuxt app type-checks this file without strictNullChecks, where zod
     // infers every property as optional.
-    ...(q.type === 'multiple-choice' ? { options: q.options.map(o => ({ id: o.id, text: o.text })) } : {}),
+    ...(q.type === 'multiple-choice' || q.type === 'select-many' ? { options: q.options.map(o => ({ id: o.id, text: o.text })) } : {}),
     ...(q.code ? { code: { lang: q.code.lang, text: q.code.text } } : {})
   }
   const links: Link[] = [...q.sources.map(sourceLink), ...(q.answer.links ?? []).map(l => ({ label: l.label, to: l.to }))]
@@ -396,6 +439,8 @@ export function splitQuestion(q: Question): { question: PublicQuestion, key: Ans
   let key: AnswerKey
   if (q.type === 'multiple-choice') {
     key = { ...base, correct: { optionId: q.answer.correct }, ...(q.answer.optionNotes ? { optionNotes: q.answer.optionNotes } : {}) }
+  } else if (q.type === 'select-many') {
+    key = { ...base, correct: { optionIds: [...q.answer.correct].sort() }, ...(q.answer.optionNotes ? { optionNotes: q.answer.optionNotes } : {}) }
   } else if (q.type === 'pick-the-line') {
     key = { ...base, correct: { lines: q.answer.lines } }
   } else {
