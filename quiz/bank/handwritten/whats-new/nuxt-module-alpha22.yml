@@ -1,0 +1,213 @@
+# Hand-written What's new questions about the Nuxt module: changes in 2.0.0-alpha.20 to 2.0.0-alpha.22.
+# Each one has a `since` naming the release that brought the change in.
+# Format: quiz/README.md. Run `pnpm quiz:stamp <id>` to fill in or refresh the hashes.
+
+questions:
+  - id: nuxt.admin.clone-component
+    version: 1
+    status: live
+    level: intermediate
+    area: nuxt-module
+    tags: [admin, components]
+    type: multiple-choice
+    difficulty: 2
+    prompt: >-
+      An editor clones a call-to-action component from the home page into a component group on the About page.
+      Later they change its button text on the About page. What happens on the home page?
+    why: >-
+      A clone is for content that must stay identical in several places; when one place needs different text,
+      add a new component there instead.
+    since: [{ repo: cwa-nuxt-module, version: '2.0.0-alpha.22' }]
+    options:
+      - { id: a, text: 'Nothing: the clone is a separate copy with its own IRI' }
+      - { id: b, text: 'It changes too: both show one component, one IRI' }
+      - { id: c, text: 'It changes once the About page is published' }
+      - { id: d, text: 'The editor is asked which places to update' }
+    answer:
+      correct: b
+      explanation: >-
+        A clone isn't a copy. It places the same component, with the same IRI, in another component position, so
+        an edit or a publish in either place changes it everywhere.
+    sources:
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: cloning-a-component, sectionHash: 'sha256:97eeedbf7ca3f444' }
+    author: llm-draft
+
+  - id: nuxt.admin.clone-draft
+    version: 1
+    status: live
+    level: advanced
+    area: nuxt-module
+    tags: [admin, draft-and-publish]
+    type: multiple-choice
+    difficulty: 4
+    prompt: >-
+      An editor selects the draft of a published component and clones it into another component group. What
+      does the new component position hold?
+    why: >-
+      The new place shows the live content to visitors straight away, and the draft's changes reach both places
+      when it is published.
+    since: [{ repo: cwa-nuxt-module, version: '2.0.0-alpha.22' }]
+    options:
+      - { id: a, text: 'The draft, so the new place shows nothing to visitors' }
+      - { id: b, text: 'A new draft copied from the selected draft' }
+      - { id: c, text: 'The published component the draft belongs to' }
+      - { id: d, text: 'Nothing: drafts can''t be cloned' }
+    answer:
+      correct: c
+      explanation: >-
+        When the selected component is the draft of a published component, the clone places the published
+        component, which the draft belongs to.
+    sources:
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: cloning-a-component, sectionHash: 'sha256:97eeedbf7ca3f444' }
+    author: llm-draft
+
+  - id: nuxt.admin.delete-shared-component
+    version: 1
+    status: live
+    level: intermediate
+    area: nuxt-module
+    tags: [admin, components]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      A component is used in three places. An editor selects it in one component position, deletes it, and
+      chooses to remove it from this location only. What happens?
+    why: >-
+      Taking a shared component off one page doesn't delete it from the others, which a plain delete would.
+    since: [{ repo: cwa-nuxt-module, version: '2.0.0-alpha.22' }]
+    options:
+      - { id: a, text: 'The component is deleted, so all three places lose it' }
+      - { id: b, text: 'The position stays, empty, until the next publish' }
+      - { id: c, text: 'Only the component''s draft is deleted' }
+      - { id: d, text: 'That position is deleted; the other two keep it' }
+    answer:
+      correct: d
+      explanation: >-
+        Removing it from one location keeps the component and deletes the component position it was selected in.
+        For a dynamic component position, it clears the page data's field instead.
+    sources:
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: deleting-a-component, sectionHash: 'sha256:e9b23a3aa37ea324' }
+    author: llm-draft
+
+  - id: nuxt.config.route-cache-cost
+    version: 1
+    status: live
+    level: advanced
+    area: nuxt-module
+    tags: [module-setup]
+    type: multiple-choice
+    difficulty: 4
+    prompt: >-
+      On a large site you raise `routeCacheLimit`, the number of visited routes the module keeps for instant
+      revisits. What does that cost?
+    why: >-
+      Lower the limit when pages hold many resources each and browser memory is the concern, not navigation
+      speed.
+    since: [{ repo: cwa-nuxt-module, version: '2.0.0-alpha.22' }]
+    options:
+      - { id: a, text: 'Each navigation gets slower as the store grows' }
+      - { id: b, text: 'More API requests in the background' }
+      - { id: c, text: 'Browser memory, a few KB per resource kept' }
+      - { id: d, text: 'A larger SSR payload on the first page load' }
+    answer:
+      correct: c
+      explanation: >-
+        Looking a resource up and dropping a route don't slow down as more is stored. What grows is memory, about
+        3 KB for each stored resource.
+      optionNotes:
+        a: Before @cwa/nuxt 2.0.0-alpha.22, the store's work grew with every resource stored.
+    sources:
+      - { kind: docs, page: /nuxt-module/configuration/nuxt-config, anchor: route-cache, sectionHash: 'sha256:a5e06ae789a6bddf' }
+    author: llm-draft
+
+  - id: nuxt.page-cache.purge-page-scope
+    version: 1
+    status: live
+    level: advanced
+    area: nuxt-module
+    tags: [page-caching]
+    type: multiple-choice
+    difficulty: 4
+    prompt: >-
+      An admin purges the About page from its settings. Which other pages are rendered again on their next
+      visit?
+    why: >-
+      A one-page purge is cheaper than a full flush but not free: shared layouts and components spread it to
+      every page built from them.
+    since: [{ repo: cwa-nuxt-module, version: '2.0.0-alpha.20' }]
+    options:
+      - { id: a, text: 'None: only the About page''s HTML is dropped' }
+      - { id: b, text: 'Every page, as the purge flushes the cache' }
+      - { id: c, text: 'Only pages whose routes sit under `/about`' }
+      - { id: d, text: 'Pages sharing its layout or components' }
+    answer:
+      correct: d
+      explanation: >-
+        The purge sends the page's route paths and every IRI in its manifest as tags. Other pages that share its
+        layout or components carry the same tags, so they're dropped too.
+    sources:
+      - { kind: docs, page: /nuxt-module/page-caching, anchor: from-the-pages-settings, sectionHash: 'sha256:6a39fdfc24ec96b3' }
+    author: llm-draft
+
+  - id: nuxt.page-cache.missing-component
+    version: 1
+    status: live
+    level: advanced
+    area: nuxt-module
+    tags: [page-caching]
+    type: multiple-choice
+    difficulty: 4
+    prompt: >-
+      The cache is cold and the API is shedding load. While rendering a page, the fetch for one of its
+      components fails with a `503`, and again on the retry. What does the module do with the page?
+    why: >-
+      A brief overload no longer leaves a broken page in the shared cache for the API's full lifetime.
+    since: [{ repo: cwa-nuxt-module, version: '2.0.0-alpha.20' }]
+    options:
+      - { id: a, text: 'Caches it without the component, like a `404`' }
+      - { id: b, text: 'Sends it without the component, marked `no-store`' }
+      - { id: c, text: 'Sends Nuxt''s error page with a `500`' }
+      - { id: d, text: 'Holds the response until the component loads' }
+    answer:
+      correct: b
+      explanation: >-
+        A resource fetch that still fails with a `5xx` or a network error after its retry makes the render
+        `no-store`. The page is sent with the component missing, so the next visitor gets a fresh render.
+      optionNotes:
+        a: A `4xx` such as a `404` doesn't count, so that page is cached; a `5xx` does.
+    sources:
+      - { kind: docs, page: /nuxt-module/page-caching, anchor: when-a-page-is-not-cached, sectionHash: 'sha256:f63ee631045cc1d2' }
+    author: llm-draft
+
+  - id: nuxt.real-time.scheduled-component
+    version: 1
+    status: live
+    level: intermediate
+    area: nuxt-module
+    tags: [real-time, draft-and-publish]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      A component in a page's component position is scheduled to go live at 09:00. A visitor has the page open
+      from 08:55 and stays on it. When do they see the component?
+    why: >-
+      Editors who schedule content shouldn't expect it to pop in on open pages; only a publish now sends a live
+      update.
+    since:
+      - { repo: cwa-nuxt-module, version: '2.0.0-alpha.21' }
+      - { repo: api-components-bundle, version: '2.0.0-alpha.27' }
+    options:
+      - { id: a, text: 'At 09:00, behind the **Update** notice' }
+      - { id: b, text: 'At 09:00, with no click needed' }
+      - { id: c, text: 'On their next page load' }
+      - { id: d, text: 'Only after an admin purges the page' }
+    answer:
+      correct: c
+      explanation: >-
+        A scheduled component sends no update when it goes live, so an open page doesn't change. The next page
+        load shows it, and a cached page expires at that time.
+      optionNotes:
+        a: That's what happens when an editor publishes the component now.
+    sources:
+      - { kind: docs, page: /nuxt-module/component-helpers/real-time-updates, anchor: unpublished-components, sectionHash: 'sha256:1b829a5471989442' }
+    author: llm-draft

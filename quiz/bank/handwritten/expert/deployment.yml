@@ -28,12 +28,13 @@ questions:
       correct: a
       explanation: >-
         `purge_rendered_html` looks for `provider cloudflare` in `CADDY_CACHE_CDN_CONFIG` and then runs
-        `purge-http-cache`, which reaches Cloudflare as a purge of everything.
+        `purge-http-cache`, which reaches Cloudflare as a purge of everything. It then warms `/_api` again in the
+        API pod, because the flush also emptied the new pod's warm cache.
       optionNotes:
         b: The token is what Souin sends to Cloudflare. The deploy decides on the CDN config, not the token.
     sources:
-      - { kind: code, repo: components-web-app, path: bin/devops/k8s.sh, lines: [1320, 1331], commit: c5a8eb229d1ae01860f92be6978b02afa7daad3d, linesHash: 'sha256:969f72571c14be15' }
-      - { kind: docs, page: /deployment/ci-cd, anchor: why-every-deploy-clears-the-page-cache, sectionHash: 'sha256:a535bdc75c8f0bab' }
+      - { kind: code, repo: components-web-app, path: bin/devops/k8s.sh, lines: [1320, 1333], commit: fb08244926be4c90603eda248603cffa6f474d20, linesHash: 'sha256:edb0a70b64c5f391' }
+      - { kind: docs, page: /deployment/ci-cd, anchor: why-every-deploy-clears-the-page-cache, sectionHash: 'sha256:8ce1ee7f40bc4869' }
     author: llm-draft
 
   - id: deploy.internals.fixtures-purge-production

@@ -87,8 +87,8 @@ questions:
         b: '`cwa-html` drops the rendered pages only. The cached API response for the component still has the typo.'
         c: This drops the pages only, and leaves cached API responses alone.
     sources:
-      - { kind: docs, page: /api/http-caching, anchor: flushing-the-whole-http-cache, sectionHash: 'sha256:9e99a53d46b3c96b' }
-      - { kind: docs, page: /nuxt-module/page-caching, anchor: purging-all-cached-data, sectionHash: 'sha256:da41fda4a485cbce' }
+      - { kind: docs, page: /api/http-caching, anchor: flushing-the-whole-http-cache, sectionHash: 'sha256:d6247223c88916af' }
+      - { kind: docs, page: /nuxt-module/page-caching, anchor: purging-all-cached-data, sectionHash: 'sha256:a957a4c8bdd5c0eb' }
     author: llm-draft
 
   - id: api.cache.route-go-live-all-pages

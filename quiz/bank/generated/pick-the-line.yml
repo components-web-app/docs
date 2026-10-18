@@ -643,7 +643,7 @@ questions:
       - kind: docs
         page: /api/components/annotations/publishable
         anchor: interaction-with-mercure
-        sectionHash: sha256:e92e7c91a3bbe2a0
+        sectionHash: sha256:2117062c85a6c4a1
       - kind: docs
         page: /core-concepts/dynamic-pages
         anchor: creating-pagedata-in-php
@@ -689,7 +689,7 @@ questions:
       - kind: docs
         page: /api/components/annotations/publishable
         anchor: interaction-with-mercure
-        sectionHash: sha256:e92e7c91a3bbe2a0
+        sectionHash: sha256:2117062c85a6c4a1
       - kind: docs
         page: /core-concepts/components
         anchor: _1-the-php-entity-the-data
@@ -736,7 +736,7 @@ questions:
       - kind: docs
         page: /api/components/annotations/publishable
         anchor: interaction-with-mercure
-        sectionHash: sha256:e92e7c91a3bbe2a0
+        sectionHash: sha256:2117062c85a6c4a1
       - kind: docs
         page: /core-concepts/draft-and-publish
         anchor: the-php-side
@@ -798,7 +798,7 @@ questions:
       - kind: docs
         page: /api/components/annotations/publishable
         anchor: interaction-with-mercure
-        sectionHash: sha256:e92e7c91a3bbe2a0
+        sectionHash: sha256:2117062c85a6c4a1
       - kind: docs
         page: /guides/your-first-component
         anchor: the-api-entity
@@ -853,7 +853,7 @@ questions:
       - kind: docs
         page: /api/components/annotations/publishable
         anchor: interaction-with-mercure
-        sectionHash: sha256:e92e7c91a3bbe2a0
+        sectionHash: sha256:2117062c85a6c4a1
       - kind: docs
         page: /guides/your-first-dynamic-page
         anchor: the-file
@@ -905,7 +905,7 @@ questions:
       - kind: docs
         page: /api/components/annotations/publishable
         anchor: interaction-with-mercure
-        sectionHash: sha256:e92e7c91a3bbe2a0
+        sectionHash: sha256:2117062c85a6c4a1
       - kind: docs
         page: /api/components/creating-components
         anchor: step-1-create-the-entity
@@ -1268,7 +1268,7 @@ questions:
       - kind: docs
         page: /api/data-fixtures/builder-reference
         anchor: seeding-redirects
-        sectionHash: sha256:b79a3bbd3ab8180c
+        sectionHash: sha256:9297adedf54a8e3a
       - kind: docs
         page: /api/data-fixtures/writing-a-scaffold
         anchor: one-method-per-layout-page-and-page-data
@@ -1308,7 +1308,7 @@ questions:
       - kind: docs
         page: /api/data-fixtures/builder-reference
         anchor: seeding-redirects
-        sectionHash: sha256:b79a3bbd3ab8180c
+        sectionHash: sha256:9297adedf54a8e3a
       - kind: docs
         page: /api/data-fixtures/builder-reference
         anchor: a-builder-as-the-target
@@ -1357,7 +1357,7 @@ questions:
       - kind: docs
         page: /api/data-fixtures/builder-reference
         anchor: seeding-redirects
-        sectionHash: sha256:b79a3bbd3ab8180c
+        sectionHash: sha256:9297adedf54a8e3a
       - kind: docs
         page: /api/data-fixtures/appending
         anchor: more-than-one-scaffold

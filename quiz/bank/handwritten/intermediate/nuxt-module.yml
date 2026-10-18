@@ -208,7 +208,7 @@ questions:
       optionNotes:
         b: '`cwa.resources` has no `classes` key.'
     sources:
-      - { kind: docs, page: /nuxt-module/configuration/nuxt-config, anchor: full-cwa-reference, sectionHash: 'sha256:82d041df3e604929' }
+      - { kind: docs, page: /nuxt-module/configuration/nuxt-config, anchor: full-cwa-reference, sectionHash: 'sha256:989afdefb0c2b8e0' }
       - { kind: docs, page: /nuxt-module/composables/component/use-cwa-component, anchor: style-variants, sectionHash: 'sha256:73b5fa696d55a19d' }
     author: llm-draft
 

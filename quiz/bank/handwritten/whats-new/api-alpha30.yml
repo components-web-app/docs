@@ -1,0 +1,310 @@
+# Hand-written What's new questions about the API bundle: changes in 2.0.0-alpha.25 to 2.0.0-alpha.30.
+# Each one has a `since` naming the release that brought the change in.
+# Format: quiz/README.md. Run `pnpm quiz:stamp <id>` to fill in or refresh the hashes.
+
+questions:
+  - id: api.cache.purge-endpoint-body
+    version: 1
+    status: live
+    level: advanced
+    area: api
+    tags: [http-caching]
+    type: multiple-choice
+    difficulty: 4
+    prompt: >-
+      A deploy script collects the paths it changed and sends them to `POST /_/http_cache/purge` as
+      `{"paths": [...]}`. On one run nothing changed, so it sends `{"paths": []}`. What does the API do?
+    why: >-
+      A scoped purge with a bad body can never turn into a full flush, which would make every page render cold
+      at once; only a request with no body at all flushes.
+    since: [{ repo: api-components-bundle, version: '2.0.0-alpha.25' }]
+    options:
+      - { id: a, text: 'Flushes the whole cache, as for a request with no paths' }
+      - { id: b, text: 'Purges nothing and answers `204`' }
+      - { id: c, text: 'Answers `422` and purges nothing' }
+      - { id: d, text: 'Purges only the rendered pages, the `cwa-html` tag' }
+    answer:
+      correct: c
+      explanation: >-
+        Only a request with no body at all flushes the whole cache. Any other body that isn't a valid scope,
+        including `{}`, `null` and an empty list, is a `422`, and nothing is purged.
+    sources:
+      - { kind: docs, page: /api/http-caching, anchor: from-the-api, sectionHash: 'sha256:697d70579e4d0ac0' }
+    author: llm-draft
+
+  - id: api.cache.warm-after-flush-trigger
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [http-caching, fixtures]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      `http_cache.warm_after_flush` is on, so the API refills its HTTP cache after a flush. Which of these
+      starts a warm?
+    why: >-
+      Only a full flush leaves the whole cache cold, so only a full flush is followed by a warm; an ordinary save
+      or a page purge never sets one off.
+    since: [{ repo: api-components-bundle, version: '2.0.0-alpha.25' }]
+    options:
+      - { id: a, text: 'An editor saving a component, which purges its tags' }
+      - { id: b, text: '`purge-http-cache --path /about-us`' }
+      - { id: c, text: 'A `POST /_/http_cache/purge` with a `tags` body' }
+      - { id: d, text: 'A successful `doctrine:fixtures:load`' }
+    answer:
+      correct: d
+      explanation: >-
+        A warm follows every successful full flush: the endpoint with no body, `purge-http-cache` with no
+        options, and the flush at the end of each fixture load. A tag purge never starts one.
+    sources:
+      - { kind: docs, page: /api/http-caching, anchor: warming-after-a-flush, sectionHash: 'sha256:d84756a68512fc8b' }
+    author: llm-draft
+
+  - id: api.cache.warm-after-flush-async
+    version: 1
+    status: live
+    level: advanced
+    area: api
+    tags: [http-caching]
+    type: multiple-choice
+    difficulty: 4
+    prompt: >-
+      You turn on `http_cache.warm_after_flush` but route nothing to an async Messenger transport. An admin
+      clicks **Purge all cached data**. What happens to the warm?
+    why: >-
+      Without async routing, a flush from site settings holds a PHP worker for as long as the warm runs, so the
+      request is slow and the worker can't serve anyone else.
+    since: [{ repo: api-components-bundle, version: '2.0.0-alpha.25' }]
+    options:
+      - { id: a, text: 'It runs in the flush request, holding its PHP worker' }
+      - { id: b, text: 'Nothing is warmed, and the bundle logs a warning' }
+      - { id: c, text: 'The flush fails with a `500`, as the message has no transport' }
+      - { id: d, text: 'It waits for the next `messenger:consume` worker to start' }
+    answer:
+      correct: a
+      explanation: >-
+        The bundle dispatches `WarmHttpCacheMessage`s on the default bus. Handled synchronously, the warm runs
+        in the request or command that flushed. Nothing is warmed, with a warning, only when there is no
+        Messenger bus at all.
+    sources:
+      - { kind: docs, page: /api/http-caching, anchor: warming-after-a-flush, sectionHash: 'sha256:d84756a68512fc8b' }
+    author: llm-draft
+
+  - id: api.publishable.position-unpublished-component
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [draft-and-publish, components]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      A component position (the record that places a component in a component group) holds a publishable
+      component whose `publishedAt` is in the future. An anonymous visitor requests the position. What comes
+      back?
+    why: >-
+      A front end that reads positions itself must treat a position with no `component` as empty, rather than
+      requesting or rendering anything there.
+    since: [{ repo: api-components-bundle, version: '2.0.0-alpha.27' }]
+    options:
+      - { id: a, text: 'The position with the component''s IRI, which is a `404` to request' }
+      - { id: b, text: 'A `404` for the position itself' }
+      - { id: c, text: 'The position with the draft embedded as its `component`' }
+      - { id: d, text: 'The position with no `component` key at all' }
+    answer:
+      correct: d
+      explanation: >-
+        A caller who can't see drafts never sees an unpublished component through a position: it comes back with
+        no `component` and no `_metadata.staticComponent`. Admins still get the draft.
+      optionNotes:
+        a: That was the behaviour before bundle 2.0.0-alpha.27.
+    sources:
+      - { kind: docs, page: /api/components/annotations/publishable, anchor: positions-holding-an-unpublished-component, sectionHash: 'sha256:df93fb8d059fa547' }
+    author: llm-draft
+
+  - id: api.publishable.position-scheduled-expiry
+    version: 1
+    status: live
+    level: advanced
+    area: api
+    tags: [draft-and-publish, http-caching]
+    type: multiple-choice
+    difficulty: 4
+    prompt: >-
+      A component is scheduled to go live at 09:00. Its component position's response was cached at 08:00 for
+      anonymous visitors, without the component. Nobody writes anything at 09:00. How do visitors get the
+      component then?
+    why: >-
+      A scheduled publish needs no purge, cron job or editor at the go-live time, because the hidden response
+      was never cached past it.
+    since: [{ repo: api-components-bundle, version: '2.0.0-alpha.27' }]
+    options:
+      - { id: a, text: 'A Mercure update at 09:00 purges the position' }
+      - { id: b, text: 'Its `Expires` and `s-maxage` end at 09:00' }
+      - { id: c, text: 'The response is `no-store`, so it was never cached' }
+      - { id: d, text: 'They don''t until an editor saves the position' }
+    answer:
+      correct: b
+      explanation: >-
+        The position's response stays cacheable and carries the hidden component's cache tag. For a scheduled
+        component, its `Expires` and `s-maxage` end when the component goes live, so the next request reads it
+        fresh.
+      optionNotes:
+        a: Publishing or rescheduling purges and publishes over Mercure, but a go-live time passing is not a write.
+    sources:
+      - { kind: docs, page: /api/components/annotations/publishable, anchor: positions-holding-an-unpublished-component, sectionHash: 'sha256:df93fb8d059fa547' }
+    author: llm-draft
+
+  - id: api.real-time.public-update-payload
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [real-time]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      An admin updates a published resource that has `mercure: true`. What does the update on the resource's
+      public topic carry?
+    why: >-
+      Visitors' open pages get only what they could read themselves, so an admin's write can't push admin-only
+      data to them through Mercure.
+    since: [{ repo: api-components-bundle, version: '2.0.0-alpha.27' }]
+    options:
+      - { id: a, text: 'The resource as the admin''s request would read it' }
+      - { id: b, text: 'Only `{"@id": "<iri>"}`, so each browser fetches it again' }
+      - { id: c, text: 'What an anonymous `GET` of the resource returns' }
+      - { id: d, text: 'Nothing; all admin writes go out on the private topic' }
+    answer:
+      correct: c
+      explanation: >-
+        The bundle reads the public payload with an internal anonymous `GET`. The writer's view goes out
+        privately on `<iri>?draft=1`, and only when it differs from the public payload.
+      optionNotes:
+        a: That was the public payload before bundle 2.0.0-alpha.27, so an admin's write could publish content visitors can't read.
+    sources:
+      - { kind: docs, page: /api/real-time, anchor: public-and-admin-updates, sectionHash: 'sha256:c2e09b9e3b1eb3cb' }
+    author: llm-draft
+
+  - id: api.real-time.write-hides-resource
+    version: 1
+    status: live
+    level: advanced
+    area: api
+    tags: [real-time, routes]
+    type: multiple-choice
+    difficulty: 4
+    prompt: >-
+      A page's route is live, and visitors have the page open. An admin moves the route's `liveAt` to next week.
+      What goes out on the route's public Mercure topic?
+    why: >-
+      Open pages drop content an admin has just taken offline, but every subscriber sees the delete's IRI, and a
+      route's IRI contains its path.
+    since: [{ repo: api-components-bundle, version: '2.0.0-alpha.27' }]
+    options:
+      - { id: a, text: 'Nothing, as anonymous callers now get a `404`' }
+      - { id: b, text: 'A delete, `{"@id": "<iri>"}`' }
+      - { id: c, text: 'The route as the admin reads it' }
+      - { id: d, text: 'The route with `liveAt` set to next week' }
+    answer:
+      correct: b
+      explanation: >-
+        When anonymous callers can no longer read a resource because the write hid it, such as a publication
+        date or `liveAt` moved into the future, the public update is a delete, so open pages drop it.
+      optionNotes:
+        a: Nothing goes out publicly only when the resource wasn't readable and the write didn't hide it.
+    sources:
+      - { kind: docs, page: /api/real-time, anchor: public-and-admin-updates, sectionHash: 'sha256:c2e09b9e3b1eb3cb' }
+    author: llm-draft
+
+  - id: api.real-time.cookie-session-end
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [real-time, auth]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      An admin's session has expired. Their browser calls `/me`, sending the Mercure subscriber cookie, and gets
+      a `401`. What does that response do with the cookie?
+    why: >-
+      A browser left signed in on a shared machine stops being able to receive admin-only updates once the
+      session ends, without waiting for the cookie to time out.
+    since: [{ repo: api-components-bundle, version: '2.0.0-alpha.27' }]
+    options:
+      - { id: a, text: 'Replaces it with an anonymous one for public topics' }
+      - { id: b, text: 'Leaves it alone until its own expiry date' }
+      - { id: c, text: 'Reissues it with the admin''s topics for one hour' }
+      - { id: d, text: 'Expires it, so the private grants are gone' }
+    answer:
+      correct: d
+      explanation: >-
+        Signing out, an invalid or expired JWT, and a failed `/me` that carries the cookie expire it. Anonymous
+        visitors get no Mercure cookie at all, because public updates need none.
+      optionNotes:
+        a: Before bundle 2.0.0-alpha.27, these responses issued a new cookie. Now an anonymous visitor gets none.
+    sources:
+      - { kind: docs, page: /api/real-time, anchor: the-subscriber-cookie, sectionHash: 'sha256:b67625403db2091b' }
+    author: llm-draft
+
+  - id: api.groups.component-in-own-subtree
+    version: 1
+    status: live
+    level: advanced
+    area: api
+    tags: [components]
+    type: multiple-choice
+    difficulty: 4
+    prompt: >-
+      `Columns` is a component with its own component groups, and it's publishable. Which write does the API
+      refuse with a `422` on `component`?
+    why: >-
+      A component inside its own subtree would render itself without end, and older bundles' access check
+      recursed without end on such a cycle; sharing a component in several places is still fine.
+    since: [{ repo: api-components-bundle, version: '2.0.0-alpha.30' }]
+    options:
+      - { id: a, text: 'Placing one Quote in a group of each of two sibling `Columns`' }
+      - { id: b, text: 'Placing a `Columns` in a group of an unrelated `Columns`' }
+      - { id: c, text: 'Placing the draft of a `Columns` in a group of its published version' }
+      - { id: d, text: 'Moving a position from one of a page''s groups to another' }
+    answer:
+      correct: c
+      explanation: >-
+        A component can't be placed in its own groups or in any group below them. A published component and its
+        draft count as one component, so a draft inside its published version is refused too. Sharing one
+        component in several places isn't a cycle.
+    sources:
+      - { kind: docs, page: /api/components/component-groups, anchor: a-component-cant-contain-itself, sectionHash: 'sha256:a30955ea760b7bc6' }
+    author: llm-draft
+
+  - id: api.fixtures.shared-asset-folder
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [fixtures, uploads]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      Two generated scaffolds in the same directory share one `local` asset folder. You run `generate-fixtures` again for scaffold A,
+      which no longer uses image X. Scaffold B's manifest still lists X. What happens to X's file?
+    why: >-
+      Scaffolds can share a local asset folder, and regenerating one no longer breaks the other's next load.
+    since: [{ repo: api-components-bundle, version: '2.0.0-alpha.26' }]
+    options:
+      - { id: a, text: 'It''s kept, because another manifest lists it' }
+      - { id: b, text: 'It''s deleted, as A''s new manifest doesn''t list it' }
+      - { id: c, text: 'It''s moved into a folder of B''s own' }
+      - { id: d, text: 'The command stops, as two scaffolds share it' }
+    answer:
+      correct: a
+      explanation: >-
+        Generating deletes only files the scaffold's previous manifest listed and the new one doesn't, and keeps
+        any file another manifest in the class's directory still lists.
+      optionNotes:
+        b: Before bundle 2.0.0-alpha.26, X was deleted.
+    sources:
+      - { kind: docs, page: /api/data-fixtures/generating-fixtures, anchor: pruning, sectionHash: 'sha256:5bc72fc4c371e8bd' }
+    author: llm-draft

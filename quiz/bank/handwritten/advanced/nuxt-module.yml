@@ -102,10 +102,11 @@ questions:
     answer:
       correct: b
       explanation: >-
-        The component's private 404 is a 4xx, and a 4xx API response doesn't count towards the page's headers.
-        Publishing purges the component's IRI, which drops the page.
+        From bundle 2.0.0-alpha.27 the visitor's position has no component, so the module requests nothing.
+        With an older bundle the request is a private 404, and a 4xx doesn't count towards the page's headers.
+        The page carries the component's tag, so publishing it drops the page.
     sources:
-      - { kind: docs, page: /nuxt-module/page-caching, anchor: when-a-page-is-not-cached, sectionHash: 'sha256:507016c8de7e1673' }
+      - { kind: docs, page: /nuxt-module/page-caching, anchor: when-a-page-is-not-cached, sectionHash: 'sha256:f63ee631045cc1d2' }
     author: llm-draft
 
   - id: nuxt.setup.load-by-iri-public

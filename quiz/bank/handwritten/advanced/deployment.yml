@@ -77,7 +77,7 @@ questions:
         A new front-end build renames its JavaScript and CSS files and deletes the old ones. Cached pages would
         point at files that no longer exist, so visitors would get an unstyled page.
     sources:
-      - { kind: docs, page: /deployment/ci-cd, anchor: why-every-deploy-clears-the-page-cache, sectionHash: 'sha256:a535bdc75c8f0bab' }
+      - { kind: docs, page: /deployment/ci-cd, anchor: why-every-deploy-clears-the-page-cache, sectionHash: 'sha256:8ce1ee7f40bc4869' }
     author: llm-draft
 
   - id: deploy.cicd.purge-waits-for-rollout
@@ -104,7 +104,7 @@ questions:
         in the cache. Only then does the deploy purge the cached pages from the php pod (`purge-rendered-html`,
         or `purge-http-cache` when Cloudflare is configured).
     sources:
-      - { kind: docs, page: /deployment/ci-cd, anchor: why-every-deploy-clears-the-page-cache, sectionHash: 'sha256:a535bdc75c8f0bab' }
+      - { kind: docs, page: /deployment/ci-cd, anchor: why-every-deploy-clears-the-page-cache, sectionHash: 'sha256:8ce1ee7f40bc4869' }
     author: llm-draft
 
   - id: deploy.cloudflare.option-a-rules

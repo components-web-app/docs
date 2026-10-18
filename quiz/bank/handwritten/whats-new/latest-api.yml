@@ -154,7 +154,7 @@ questions:
         `--assets-store` and `--assets-dir` change only where the command writes. The load always reads the
         configured store, which without config is `assets/` beside the class, so it can't find the files.
     sources:
-      - { kind: docs, page: /api/data-fixtures/generating-fixtures, anchor: keeping-files-in-an-asset-store, sectionHash: 'sha256:0e7622d30454f4e3' }
+      - { kind: docs, page: /api/data-fixtures/generating-fixtures, anchor: keeping-files-in-an-asset-store, sectionHash: 'sha256:4e2d909b8899a79e' }
     author: llm-draft
 
   - id: api.fixtures.page-own-redirect
@@ -185,7 +185,7 @@ questions:
       optionNotes:
         a: '`redirect()` creates a separate route. The home page already has `/`, so the builder keeps that route and creates nothing.'
     sources:
-      - { kind: docs, page: /api/data-fixtures/builder-reference, anchor: a-page-that-redirects, sectionHash: 'sha256:2bcd129967d720c8' }
+      - { kind: docs, page: /api/data-fixtures/builder-reference, anchor: a-page-that-redirects, sectionHash: 'sha256:0120fc14aaa2dd95' }
     author: llm-draft
 
   - id: api.storage.delete-stored-files-rows

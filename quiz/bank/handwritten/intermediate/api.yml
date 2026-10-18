@@ -363,5 +363,5 @@ questions:
         The bundle publishes a draft to Mercure as a private update, so only signed-in users who may see drafts
         receive it. Visitors get the change once it is published.
     sources:
-      - { kind: docs, page: /api/components/annotations/publishable, anchor: interaction-with-mercure, sectionHash: 'sha256:e92e7c91a3bbe2a0' }
+      - { kind: docs, page: /api/components/annotations/publishable, anchor: interaction-with-mercure, sectionHash: 'sha256:2117062c85a6c4a1' }
     author: llm-draft

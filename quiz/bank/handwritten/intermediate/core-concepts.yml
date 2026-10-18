@@ -79,7 +79,7 @@ questions:
         A delete removes only the selected version. To delete the other one, select it first with the Publish
         tab's **Edit live version** toggle.
     sources:
-      - { kind: docs, page: /core-concepts/admin-panel, anchor: deleting-a-component, sectionHash: 'sha256:c0519cb70cf8ce3e' }
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: deleting-a-component, sectionHash: 'sha256:e9b23a3aa37ea324' }
     author: llm-draft
 
   - id: core.admin.rename-child-routes
@@ -159,7 +159,7 @@ questions:
         Every cached response and page is tagged with the IRIs of the resources in it. Saving a resource
         purges its IRI, so everything that used it is dropped.
     sources:
-      - { kind: docs, page: /core-concepts/caching, anchor: purges, sectionHash: 'sha256:41e0c77665a2d9d5' }
+      - { kind: docs, page: /core-concepts/caching, anchor: purges, sectionHash: 'sha256:71faaafce95334a2' }
     author: llm-draft
 
   - id: core.caching.editors-get-fresh-pages

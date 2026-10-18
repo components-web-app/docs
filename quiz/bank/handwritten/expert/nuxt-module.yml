@@ -40,8 +40,8 @@ questions:
       - kind: code
         repo: cwa-nuxt-module
         path: src/runtime/storage/stores/resources/actions.ts
-        lines: [582, 592]
-        commit: 95ac3e4dccf06514423b8ebc4600297c40d07583
+        lines: [646, 656]
+        commit: 17c472f902ea0fec5354ae1de14e399a37983deb
         linesHash: sha256:23f72f170cfb7b8c
 
   - id: nuxt.internals.redirect-base-url
@@ -327,8 +327,8 @@ questions:
         The route middleware asks the resources manager to confirm. A "Discard new resource?" dialog
         opens: cancel stops the navigation, and confirm drops the unsaved component and carries on.
     sources:
-      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/route-middleware.ts, lines: [35, 38], commit: 95ac3e4dccf06514423b8ebc4600297c40d07583, linesHash: 'sha256:41d40238906ac0f0' }
-      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/resources/resources-manager.ts, lines: [481, 499], commit: 95ac3e4dccf06514423b8ebc4600297c40d07583, linesHash: 'sha256:bfcd9d1e40da8528' }
+      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/route-middleware.ts, lines: [35, 38], commit: 17c472f902ea0fec5354ae1de14e399a37983deb, linesHash: 'sha256:41d40238906ac0f0' }
+      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/resources/resources-manager.ts, lines: [482, 500], commit: 17c472f902ea0fec5354ae1de14e399a37983deb, linesHash: 'sha256:bfcd9d1e40da8528' }
     author: llm-draft
 
   - id: nuxt.internals.page-cache-fallback
