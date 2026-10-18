@@ -48,6 +48,16 @@
         }
       }
     },
+    "api.cache.drop-every-page": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:ef8d948fc21b1989",
+          "docsCommit": "1984a1d83320370662bb4776d633766972cc18e9"
+        }
+      }
+    },
     "api.cache.failed-purge": {
       "status": "live",
       "version": 1,
@@ -68,6 +78,16 @@
         }
       }
     },
+    "api.cache.manifest-purge-writes": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:22f8d4d49ecd37e7",
+          "docsCommit": "1984a1d83320370662bb4776d633766972cc18e9"
+        }
+      }
+    },
     "api.cache.personalised-classes": {
       "status": "live",
       "version": 1,
@@ -75,6 +95,16 @@
         "1": {
           "fingerprint": "sha256:d9ad5e2b991cf4a2",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        }
+      }
+    },
+    "api.cache.private-responses": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:78037d52f18518a4",
+          "docsCommit": "1984a1d83320370662bb4776d633766972cc18e9"
         }
       }
     },
@@ -722,6 +752,16 @@
         }
       }
     },
+    "api.publishable.version-served": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:9ff1e673b171ce72",
+          "docsCommit": "1984a1d83320370662bb4776d633766972cc18e9"
+        }
+      }
+    },
     "api.publishable.what-it-adds": {
       "status": "live",
       "version": 1,
@@ -920,6 +960,26 @@
         }
       }
     },
+    "api.security.component-readable": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:3eae75a0daea18d3",
+          "docsCommit": "1984a1d83320370662bb4776d633766972cc18e9"
+        }
+      }
+    },
+    "api.security.public-without-route": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:ed0027985f5d8ba9",
+          "docsCommit": "1984a1d83320370662bb4776d633766972cc18e9"
+        }
+      }
+    },
     "api.security.unplaced-component": {
       "status": "live",
       "version": 2,
@@ -1016,6 +1076,16 @@
         }
       }
     },
+    "api.uploads.variant-types": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:3af6d309897aded7",
+          "docsCommit": "1984a1d83320370662bb4776d633766972cc18e9"
+        }
+      }
+    },
     "core.admin.delete-one-version": {
       "status": "live",
       "version": 2,
@@ -1027,6 +1097,16 @@
         "2": {
           "fingerprint": "sha256:882a937d9db392cf",
           "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
+        }
+      }
+    },
+    "core.admin.edit-mode-effects": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:feef1f1966a2e1bc",
+          "docsCommit": "1984a1d83320370662bb4776d633766972cc18e9"
         }
       }
     },
@@ -1152,6 +1232,16 @@
         }
       }
     },
+    "core.caching.page-purges": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:ea5b62f55d60b1ee",
+          "docsCommit": "1984a1d83320370662bb4776d633766972cc18e9"
+        }
+      }
+    },
     "core.caching.save-refreshes-pages": {
       "status": "live",
       "version": 1,
@@ -1203,6 +1293,16 @@
         "1": {
           "fingerprint": "sha256:8c0d54acc671b7fa",
           "docsCommit": "5a77f55ee091789ec3f314638209e92ca359558c"
+        }
+      }
+    },
+    "core.data-model.group-owners": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:c4ea12bbd25d582d",
+          "docsCommit": "1984a1d83320370662bb4776d633766972cc18e9"
         }
       }
     },
@@ -1449,6 +1549,16 @@
         "1": {
           "fingerprint": "sha256:ded9ad994e310253",
           "docsCommit": "5a77f55ee091789ec3f314638209e92ca359558c"
+        }
+      }
+    },
+    "core.dynamic.per-record": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:989d87367a5e1ac0",
+          "docsCommit": "1984a1d83320370662bb4776d633766972cc18e9"
         }
       }
     },
@@ -1831,6 +1941,16 @@
         "1": {
           "fingerprint": "sha256:ca156ab7e956c92e",
           "docsCommit": "5a77f55ee091789ec3f314638209e92ca359558c"
+        }
+      }
+    },
+    "core.stack.api-side": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:de030d45886741bc",
+          "docsCommit": "1984a1d83320370662bb4776d633766972cc18e9"
         }
       }
     },
@@ -2443,6 +2563,16 @@
         "1": {
           "fingerprint": "sha256:b381c4a0662f6803",
           "docsCommit": "05b8fc2ca14701fb4ad6cfac54b44420eaf729fa"
+        }
+      }
+    },
+    "deploy.secrets.kept": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:733be0816428941a",
+          "docsCommit": "1984a1d83320370662bb4776d633766972cc18e9"
         }
       }
     },
@@ -3598,6 +3728,16 @@
         }
       }
     },
+    "nuxt.admin.admin-pages": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:d2797b3074342652",
+          "docsCommit": "1984a1d83320370662bb4776d633766972cc18e9"
+        }
+      }
+    },
     "nuxt.admin.clone-component": {
       "status": "live",
       "version": 1,
@@ -4220,6 +4360,16 @@
         }
       }
     },
+    "nuxt.layer.provides": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:ea608622975226ea",
+          "docsCommit": "1984a1d83320370662bb4776d633766972cc18e9"
+        }
+      }
+    },
     "nuxt.layout.default-style": {
       "status": "live",
       "version": 1,
@@ -4571,6 +4721,16 @@
         "1": {
           "fingerprint": "sha256:de27d0ce488e8c0e",
           "docsCommit": "b49338190931bcda931feed91ba6bca5e8f67440"
+        }
+      }
+    },
+    "nuxt.setup.disabled-pages": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:45efb26c5a04b39f",
+          "docsCommit": "1984a1d83320370662bb4776d633766972cc18e9"
         }
       }
     },
