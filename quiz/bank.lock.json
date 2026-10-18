@@ -78,6 +78,16 @@
         }
       }
     },
+    "api.cache.purge-endpoint-body": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:3e7af445d1cad223",
+          "docsCommit": "05b8fc2ca14701fb4ad6cfac54b44420eaf729fa"
+        }
+      }
+    },
     "api.cache.route-go-live-all-pages": {
       "status": "live",
       "version": 1,
@@ -123,6 +133,26 @@
         "1": {
           "fingerprint": "sha256:3112118fa7143258",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        }
+      }
+    },
+    "api.cache.warm-after-flush-async": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:102638413e51fb42",
+          "docsCommit": "05b8fc2ca14701fb4ad6cfac54b44420eaf729fa"
+        }
+      }
+    },
+    "api.cache.warm-after-flush-trigger": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:785628a1ce2dd921",
+          "docsCommit": "05b8fc2ca14701fb4ad6cfac54b44420eaf729fa"
         }
       }
     },
@@ -344,6 +374,16 @@
         }
       }
     },
+    "api.fixtures.shared-asset-folder": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:d5b1aa7aa5ef3979",
+          "docsCommit": "05b8fc2ca14701fb4ad6cfac54b44420eaf729fa"
+        }
+      }
+    },
     "api.fixtures.template-argument": {
       "status": "live",
       "version": 1,
@@ -351,6 +391,16 @@
         "1": {
           "fingerprint": "sha256:4e0082e28e01ffc2",
           "docsCommit": "5a77f55ee091789ec3f314638209e92ca359558c"
+        }
+      }
+    },
+    "api.groups.component-in-own-subtree": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:1a8037158e34b9e4",
+          "docsCommit": "05b8fc2ca14701fb4ad6cfac54b44420eaf729fa"
         }
       }
     },
@@ -624,6 +674,26 @@
         }
       }
     },
+    "api.publishable.position-scheduled-expiry": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:c3bf639cc1426107",
+          "docsCommit": "05b8fc2ca14701fb4ad6cfac54b44420eaf729fa"
+        }
+      }
+    },
+    "api.publishable.position-unpublished-component": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:d4b446a91a5b1736",
+          "docsCommit": "05b8fc2ca14701fb4ad6cfac54b44420eaf729fa"
+        }
+      }
+    },
     "api.publishable.publish-now": {
       "status": "live",
       "version": 2,
@@ -676,6 +746,16 @@
         }
       }
     },
+    "api.real-time.cookie-session-end": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:11be7dfd688967bc",
+          "docsCommit": "05b8fc2ca14701fb4ad6cfac54b44420eaf729fa"
+        }
+      }
+    },
     "api.real-time.draft-updates": {
       "status": "live",
       "version": 1,
@@ -706,6 +786,16 @@
         }
       }
     },
+    "api.real-time.public-update-payload": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:d3ca6ab939cf2c5f",
+          "docsCommit": "05b8fc2ca14701fb4ad6cfac54b44420eaf729fa"
+        }
+      }
+    },
     "api.real-time.secure-subscriptions": {
       "status": "live",
       "version": 1,
@@ -713,6 +803,16 @@
         "1": {
           "fingerprint": "sha256:d51cef3e61ddbef4",
           "docsCommit": "5a77f55ee091789ec3f314638209e92ca359558c"
+        }
+      }
+    },
+    "api.real-time.write-hides-resource": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:74683c80310b3231",
+          "docsCommit": "05b8fc2ca14701fb4ad6cfac54b44420eaf729fa"
         }
       }
     },
@@ -1864,6 +1964,36 @@
         }
       }
     },
+    "deploy.cache.backend-timeout": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:b77f4c407c420cef",
+          "docsCommit": "05b8fc2ca14701fb4ad6cfac54b44420eaf729fa"
+        }
+      }
+    },
+    "deploy.cache.extra-config-timeout": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:6a5e4ef4b32d43ec",
+          "docsCommit": "05b8fc2ca14701fb4ad6cfac54b44420eaf729fa"
+        }
+      }
+    },
+    "deploy.cache.extra-config-upgrade": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:540d4cc21f16fd8c",
+          "docsCommit": "05b8fc2ca14701fb4ad6cfac54b44420eaf729fa"
+        }
+      }
+    },
     "deploy.cicd.pinned-build": {
       "status": "live",
       "version": 2,
@@ -1899,6 +2029,16 @@
         "1": {
           "fingerprint": "sha256:be82b85168bd9155",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        }
+      }
+    },
+    "deploy.cicd.rewarm-after-flush": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:608ce07661efe600",
+          "docsCommit": "05b8fc2ca14701fb4ad6cfac54b44420eaf729fa"
         }
       }
     },
@@ -2232,6 +2372,16 @@
         }
       }
     },
+    "deploy.k8s.warm-two-passes": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:7793da6ad932fe56",
+          "docsCommit": "05b8fc2ca14701fb4ad6cfac54b44420eaf729fa"
+        }
+      }
+    },
     "deploy.origin.query-allowlist": {
       "status": "live",
       "version": 2,
@@ -2256,6 +2406,26 @@
         }
       }
     },
+    "deploy.review.lifecycle-age": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:83b9e952f189473b",
+          "docsCommit": "05b8fc2ca14701fb4ad6cfac54b44420eaf729fa"
+        }
+      }
+    },
+    "deploy.review.stop-scripts": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:6ac473f871a90291",
+          "docsCommit": "05b8fc2ca14701fb4ad6cfac54b44420eaf729fa"
+        }
+      }
+    },
     "deploy.review.storage-cleanup": {
       "status": "live",
       "version": 1,
@@ -2263,6 +2433,16 @@
         "1": {
           "fingerprint": "sha256:9354c188a8432776",
           "docsCommit": "c24d0d481501865445e477c3c20b911146c688f6"
+        }
+      }
+    },
+    "deploy.review.storage-path": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:b381c4a0662f6803",
+          "docsCommit": "05b8fc2ca14701fb4ad6cfac54b44420eaf729fa"
         }
       }
     },
@@ -3418,6 +3598,36 @@
         }
       }
     },
+    "nuxt.admin.clone-component": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:3bdb90b579112d76",
+          "docsCommit": "05b8fc2ca14701fb4ad6cfac54b44420eaf729fa"
+        }
+      }
+    },
+    "nuxt.admin.clone-draft": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:5c84faae0825ccc3",
+          "docsCommit": "05b8fc2ca14701fb4ad6cfac54b44420eaf729fa"
+        }
+      }
+    },
+    "nuxt.admin.delete-shared-component": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:2547bef8ab67601d",
+          "docsCommit": "05b8fc2ca14701fb4ad6cfac54b44420eaf729fa"
+        }
+      }
+    },
     "nuxt.admin.instant-add": {
       "status": "live",
       "version": 2,
@@ -3743,6 +3953,16 @@
         "1": {
           "fingerprint": "sha256:65fbbedcb474151e",
           "docsCommit": "5a77f55ee091789ec3f314638209e92ca359558c"
+        }
+      }
+    },
+    "nuxt.config.route-cache-cost": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:8be3e1d40d93cb0f",
+          "docsCommit": "05b8fc2ca14701fb4ad6cfac54b44420eaf729fa"
         }
       }
     },
@@ -4094,6 +4314,16 @@
         }
       }
     },
+    "nuxt.page-cache.missing-component": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:85fb238843472734",
+          "docsCommit": "05b8fc2ca14701fb4ad6cfac54b44420eaf729fa"
+        }
+      }
+    },
     "nuxt.page-cache.nitro-route-rules": {
       "status": "live",
       "version": 1,
@@ -4101,6 +4331,16 @@
         "1": {
           "fingerprint": "sha256:f6755042937debc8",
           "docsCommit": "5a77f55ee091789ec3f314638209e92ca359558c"
+        }
+      }
+    },
+    "nuxt.page-cache.purge-page-scope": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:31bf63a70e1e728c",
+          "docsCommit": "05b8fc2ca14701fb4ad6cfac54b44420eaf729fa"
         }
       }
     },
@@ -4219,6 +4459,16 @@
         "1": {
           "fingerprint": "sha256:da95cd32d115faa4",
           "docsCommit": "5a77f55ee091789ec3f314638209e92ca359558c"
+        }
+      }
+    },
+    "nuxt.real-time.scheduled-component": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:2db64d0c0ba39846",
+          "docsCommit": "05b8fc2ca14701fb4ad6cfac54b44420eaf729fa"
         }
       }
     },
