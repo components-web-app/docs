@@ -32,7 +32,7 @@ questions:
         a: '`liveAt()` is the route''s go-live date. A page on a live route still hides its unpublished components.'
         d: '`draft()` links a pending draft to a component that is already published.'
     sources:
-      - { kind: docs, page: /api/data-fixtures/writing-a-scaffold, anchor: publishing-and-drafts, sectionHash: 'sha256:dc72bece4cfd1a62' }
+      - { kind: docs, page: /api/data-fixtures/writing-a-scaffold, anchor: publishing-and-drafts, sectionHash: 'sha256:dc72bece4cfd1a62', title: 'Writing a Scaffold › Publishing and Drafts' }
     author: llm-draft
 
   - id: api.fixtures.component-draft
@@ -65,7 +65,7 @@ questions:
         a: The docs say not to. The draft belongs to the published component, not to a group.
         c: A pending draft needs no publish date. A future date would schedule it to replace the live version.
     sources:
-      - { kind: docs, page: /api/data-fixtures/writing-a-scaffold, anchor: publishing-and-drafts, sectionHash: 'sha256:dc72bece4cfd1a62' }
+      - { kind: docs, page: /api/data-fixtures/writing-a-scaffold, anchor: publishing-and-drafts, sectionHash: 'sha256:dc72bece4cfd1a62', title: 'Writing a Scaffold › Publishing and Drafts' }
     author: llm-draft
 
   - id: api.fixtures.link-route-group-owner
@@ -97,7 +97,7 @@ questions:
       optionNotes:
         a: '`afterRoutes()` also runs after the routes exist, so the card is still saved first with an empty field.'
     sources:
-      - { kind: docs, page: /api/data-fixtures/writing-a-scaffold, anchor: linking-routes-and-iris, sectionHash: 'sha256:87e67160f8a7aec6' }
+      - { kind: docs, page: /api/data-fixtures/writing-a-scaffold, anchor: linking-routes-and-iris, sectionHash: 'sha256:87e67160f8a7aec6', title: 'Writing a Scaffold › Linking Routes and IRIs' }
     author: llm-draft
 
   - id: api.uploads.data-uri-validation
@@ -129,8 +129,8 @@ questions:
       optionNotes:
         d: 'Older bundles refused every data-URI upload to a field with a `File` or `Image` constraint, valid or not, with a `422` saying "The file could not be uploaded."'
     sources:
-      - { kind: docs, page: /api/components/annotations/uploadable, anchor: uploading-a-file, sectionHash: 'sha256:24eb1019fe531e53' }
-      - { kind: docs, page: /api/components/annotations/uploadable, anchor: capping-uploads-to-fit-the-budget, sectionHash: 'sha256:44a8df06f40989a6' }
+      - { kind: docs, page: /api/components/annotations/uploadable, anchor: uploading-a-file, sectionHash: 'sha256:24eb1019fe531e53', title: 'Uploadable › Uploading a File' }
+      - { kind: docs, page: /api/components/annotations/uploadable, anchor: capping-uploads-to-fit-the-budget, sectionHash: 'sha256:44a8df06f40989a6', title: 'Uploadable › Capping Uploads to Fit the Budget' }
     author: llm-draft
 
   - id: api.uploads.image-max-pixels-config
@@ -163,7 +163,7 @@ questions:
         the limit has to fit. The 30,000,000 default fits that budget with vips, so on GD or Imagick the docs set
         it to 20,000,000.
     sources:
-      - { kind: docs, page: /api/components/annotations/uploadable, anchor: capping-uploads-to-fit-the-budget, sectionHash: 'sha256:44a8df06f40989a6', block: 1, blockHash: 'sha256:9e4c03469999e83f' }
+      - { kind: docs, page: /api/components/annotations/uploadable, anchor: capping-uploads-to-fit-the-budget, sectionHash: 'sha256:44a8df06f40989a6', title: 'Uploadable › Capping Uploads to Fit the Budget', block: 1, blockHash: 'sha256:9e4c03469999e83f' }
     author: llm-draft
 
   - id: api.orphans.invalid-files-groups
@@ -195,5 +195,5 @@ questions:
       optionNotes:
         d: Older bundles checked only `Default`. A row with a publication date now gets its publish groups too.
     sources:
-      - { kind: docs, page: /api/orphaned-data, anchor: how-invalid-files-are-checked, sectionHash: 'sha256:685126440c7e6ce9' }
+      - { kind: docs, page: /api/orphaned-data, anchor: how-invalid-files-are-checked, sectionHash: 'sha256:685126440c7e6ce9', title: 'Orphaned Data › How Invalid Files Are Checked' }
     author: llm-draft

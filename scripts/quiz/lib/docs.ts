@@ -152,6 +152,18 @@ export async function readPage(file: string): Promise<DocsPage> {
   return page
 }
 
+/** A heading or title as plain text: no backticks, emphasis or link syntax. */
+function plain(text: string): string {
+  return text.replace(/\[([^\]]*)\]\([^)]*\)/g, '$1').replace(/[`*_]/g, '').trim()
+}
+
+/** A docs source's link label: `Page title › Section heading`, or the page title alone for its h1. */
+export function sourceTitle(page: DocsPage, section: Section): string {
+  const pageTitle = plain(page.title)
+  const heading = plain(section.title)
+  return section.depth === 1 || heading === pageTitle ? pageTitle : `${pageTitle} › ${heading}`
+}
+
 let cache: Map<string, DocsPage> | undefined
 
 /** Every docs page, keyed by URL path. Parsed once per process. */

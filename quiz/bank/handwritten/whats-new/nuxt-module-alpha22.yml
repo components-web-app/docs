@@ -29,7 +29,7 @@ questions:
         A clone isn't a copy. It places the same component, with the same IRI, in another component position, so
         an edit or a publish in either place changes it everywhere.
     sources:
-      - { kind: docs, page: /core-concepts/admin-panel, anchor: cloning-a-component, sectionHash: 'sha256:97eeedbf7ca3f444' }
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: cloning-a-component, sectionHash: 'sha256:c5c8f8543540f802', title: 'The Admin Panel › Cloning a Component' }
     author: llm-draft
 
   - id: nuxt.admin.clone-draft
@@ -58,7 +58,7 @@ questions:
         When the selected component is the draft of a published component, the clone places the published
         component, which the draft belongs to.
     sources:
-      - { kind: docs, page: /core-concepts/admin-panel, anchor: cloning-a-component, sectionHash: 'sha256:97eeedbf7ca3f444' }
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: cloning-a-component, sectionHash: 'sha256:c5c8f8543540f802', title: 'The Admin Panel › Cloning a Component' }
     author: llm-draft
 
   - id: nuxt.admin.delete-shared-component
@@ -86,7 +86,7 @@ questions:
         Removing it from one location keeps the component and deletes the component position it was selected in.
         For a dynamic component position, it clears the page data's field instead.
     sources:
-      - { kind: docs, page: /core-concepts/admin-panel, anchor: deleting-a-component, sectionHash: 'sha256:e9b23a3aa37ea324' }
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: deleting-a-component, sectionHash: 'sha256:34cf8e997729d977', title: 'The Admin Panel › Deleting a component' }
     author: llm-draft
 
   - id: nuxt.config.route-cache-cost
@@ -117,7 +117,7 @@ questions:
       optionNotes:
         a: Before @cwa/nuxt 2.0.0-alpha.22, the store's work grew with every resource stored.
     sources:
-      - { kind: docs, page: /nuxt-module/configuration/nuxt-config, anchor: route-cache, sectionHash: 'sha256:a5e06ae789a6bddf' }
+      - { kind: docs, page: /nuxt-module/configuration/nuxt-config, anchor: route-cache, sectionHash: 'sha256:a5e06ae789a6bddf', title: 'Nuxt Config › Route Cache' }
     author: llm-draft
 
   - id: nuxt.page-cache.purge-page-scope
@@ -146,7 +146,7 @@ questions:
         The purge sends the page's route paths and every IRI in its manifest as tags. Other pages that share its
         layout or components carry the same tags, so they're dropped too.
     sources:
-      - { kind: docs, page: /nuxt-module/page-caching, anchor: from-the-pages-settings, sectionHash: 'sha256:6a39fdfc24ec96b3' }
+      - { kind: docs, page: /nuxt-module/page-caching, anchor: from-the-pages-settings, sectionHash: 'sha256:e2cf86201a908daf', title: 'Page Caching › From the page''s settings' }
     author: llm-draft
 
   - id: nuxt.page-cache.missing-component
@@ -176,7 +176,7 @@ questions:
       optionNotes:
         a: A `4xx` such as a `404` doesn't count, so that page is cached; a `5xx` does.
     sources:
-      - { kind: docs, page: /nuxt-module/page-caching, anchor: when-a-page-is-not-cached, sectionHash: 'sha256:f63ee631045cc1d2' }
+      - { kind: docs, page: /nuxt-module/page-caching, anchor: when-a-page-is-not-cached, sectionHash: 'sha256:f63ee631045cc1d2', title: 'Page Caching › When a Page Is Not Cached' }
     author: llm-draft
 
   - id: nuxt.real-time.scheduled-component
@@ -209,5 +209,5 @@ questions:
       optionNotes:
         a: That's what happens when an editor publishes the component now.
     sources:
-      - { kind: docs, page: /nuxt-module/component-helpers/real-time-updates, anchor: unpublished-components, sectionHash: 'sha256:1b829a5471989442' }
+      - { kind: docs, page: /nuxt-module/component-helpers/real-time-updates, anchor: unpublished-components, sectionHash: 'sha256:1b829a5471989442', title: 'Real-Time Updates in Components › Unpublished Components' }
     author: llm-draft

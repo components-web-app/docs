@@ -11,7 +11,7 @@
 import { existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { compareVersions, isWhatsNew, QUESTION_TYPES, REPOS, whatsNewWindow, type Question, type Repo, type Source } from '../../quiz/schema.ts'
-import { readAllPages, dedent, locateRun, ROOT, type DocsPage } from './lib/docs.ts'
+import { readAllPages, dedent, locateRun, ROOT, sourceTitle, type DocsPage } from './lib/docs.ts'
 import { fetchRepo, findMoved, linesHash, readAt, releaseTags, sliceLines, trackedHead } from './lib/source.ts'
 import { fingerprint, loadBank, loadConfig, loadLock, LOCK_FILE, rel, type LoadedQuestion } from './lib/bank.ts'
 import { bracketsBalance, endsOnOpenTag, stripTrailingComment } from './generators/common.ts'
@@ -46,6 +46,9 @@ function checkDocsSource(lq: LoadedQuestion, s: Extract<Source, { kind: 'docs' }
   if (page.error) return add('error', lq, `sources[${n}]: ${s.page} can't be parsed into sections (${page.error})`)
   const section = page.sections.find(x => x.anchor === s.anchor)
   if (!section) return add('error', lq, `sources[${n}]: ${s.page} has no heading #${s.anchor}`)
+  const title = sourceTitle(page, section)
+  if (s.title === undefined) add('error', lq, `sources[${n}]: no title, so the link would say only "${s.page}". Run \`pnpm quiz:stamp ${q.id}\``)
+  else if (s.title !== title) add('warning', lq, `sources[${n}]: the link says "${s.title}", but the section is now "${title}". Run \`pnpm quiz:stamp ${q.id}\``)
   if (section.hash !== s.sectionHash) add('warning', lq, `stale: ${s.page}#${s.anchor} changed (sectionHash ${s.sectionHash} is now ${section.hash}). Review the question, then \`pnpm quiz:stamp ${q.id}\``)
   if (s.block === undefined) return
   const block = section.blocks[s.block]

@@ -32,8 +32,8 @@ questions:
         e: A component can own groups too, for its children. An accordion declares a `<CwaComponentGroup>` in its own Vue file.
         f: A page data record's components are shown by the template page's groups. The record holds fields, not groups.
     sources:
-      - { kind: docs, page: /core-concepts/glossary, anchor: component-group, sectionHash: 'sha256:1078c99323abb87b' }
-      - { kind: docs, page: /core-concepts/the-data-model, anchor: componentgroup, sectionHash: 'sha256:2d82038914cdd316' }
+      - { kind: docs, page: /core-concepts/glossary, anchor: component-group, sectionHash: 'sha256:1078c99323abb87b', title: 'Glossary › Component group' }
+      - { kind: docs, page: /core-concepts/the-data-model, anchor: componentgroup, sectionHash: 'sha256:2d82038914cdd316', title: 'The Data Model › ComponentGroup' }
     author: llm-draft
 
   - id: core.stack.api-side
@@ -65,7 +65,7 @@ questions:
         f: Tailwind CSS styles the Nuxt module's admin, in its own cascade layer, on the front end.
         c: Doctrine ORM stores the API's entities, and schema changes are Doctrine migrations.
     sources:
-      - { kind: docs, page: /core-concepts/architecture, anchor: what-cwa-is-built-on, sectionHash: 'sha256:5a1b8352e317b360' }
+      - { kind: docs, page: /core-concepts/architecture, anchor: what-cwa-is-built-on, sectionHash: 'sha256:5a1b8352e317b360', title: 'How It All Works › What CWA Is Built On' }
     author: llm-draft
 
   - id: core.dynamic.per-record
@@ -100,9 +100,9 @@ questions:
         e: The template page's `uiComponent` names the page template, so every article uses the same Vue file.
         f: A position bound to a field such as `htmlContent` shows each record's own component from that field.
     sources:
-      - { kind: docs, page: /core-concepts/dynamic-pages, anchor: how-it-works, sectionHash: 'sha256:84e223903937ce11' }
-      - { kind: docs, page: /core-concepts/dynamic-pages, anchor: seo, sectionHash: 'sha256:e9a9218d4322da12' }
-      - { kind: docs, page: /core-concepts/layouts-and-pages, anchor: template-pages-istemplate-true, sectionHash: 'sha256:aa5e8d6598a23a66' }
+      - { kind: docs, page: /core-concepts/dynamic-pages, anchor: how-it-works, sectionHash: 'sha256:84e223903937ce11', title: 'Dynamic Pages › How It Works' }
+      - { kind: docs, page: /core-concepts/dynamic-pages, anchor: seo, sectionHash: 'sha256:e9a9218d4322da12', title: 'Dynamic Pages › SEO' }
+      - { kind: docs, page: /core-concepts/layouts-and-pages, anchor: template-pages-istemplate-true, sectionHash: 'sha256:aa5e8d6598a23a66', title: 'Layouts & Pages › Template Pages (isTemplate: true)' }
     author: llm-draft
 
   - id: nuxt.layer.provides
@@ -136,9 +136,9 @@ questions:
         d: '`cwa-root-layout` comes from the layer and is applied to every page that sets no `layout` of its own.'
         f: The layer ships both named middleware. You opt into them on the pages you want to guard.
     sources:
-      - { kind: docs, page: /nuxt-module/cwa-layer/overview, anchor: pages-auto-registered, sectionHash: 'sha256:f0daa1b40d5b5f16' }
-      - { kind: docs, page: /nuxt-module/cwa-layer/overview, anchor: layout, sectionHash: 'sha256:dcc3e2c8c5c6fc89' }
-      - { kind: docs, page: /nuxt-module/cwa-layer/overview, anchor: route-middleware, sectionHash: 'sha256:dfc275b378f933f9' }
+      - { kind: docs, page: /nuxt-module/cwa-layer/overview, anchor: pages-auto-registered, sectionHash: 'sha256:cad6d0bd572b7d8e', title: 'The CWA Layer › Pages (auto-registered)' }
+      - { kind: docs, page: /nuxt-module/cwa-layer/overview, anchor: layout, sectionHash: 'sha256:dcc3e2c8c5c6fc89', title: 'The CWA Layer › Layout' }
+      - { kind: docs, page: /nuxt-module/cwa-layer/overview, anchor: route-middleware, sectionHash: 'sha256:dfc275b378f933f9', title: 'The CWA Layer › Route Middleware' }
     author: llm-draft
 
   - id: nuxt.admin.admin-pages
@@ -167,8 +167,8 @@ questions:
         b: A component type is a PHP entity plus Vue files. The admin only adds components of types that already exist.
         d: Vue files are code in your app. The admin's **Page UI** select only picks which page template a page uses.
     sources:
-      - { kind: docs, page: /nuxt-module/cwa-layer/admin-panel, anchor: admin-routes, sectionHash: 'sha256:4dadfca0ef924049' }
-      - { kind: docs, page: /core-concepts/admin-panel, anchor: the-admin-bar, sectionHash: 'sha256:793a65a946bb4316' }
+      - { kind: docs, page: /nuxt-module/cwa-layer/admin-panel, anchor: admin-routes, sectionHash: 'sha256:911e7cd88477b62c', title: 'Admin Panel Reference › Admin Routes' }
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: the-admin-bar, sectionHash: 'sha256:793a65a946bb4316', title: 'The Admin Panel › The Admin Bar' }
     author: llm-draft
 
   - id: core.admin.edit-mode-effects
@@ -195,7 +195,7 @@ questions:
         a: Edits go to a publishable component's draft. Visitors see the published version until an editor clicks **Publish**.
         c: An admin tab's fields send a debounced `PATCH` as the editor types. There's no save button, and **Done** only leaves edit mode.
     sources:
-      - { kind: docs, page: /core-concepts/admin-panel, anchor: edit-mode, sectionHash: 'sha256:05cb7587553eab14' }
-      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:5c8ec9f39ad9cd58' }
-      - { kind: docs, page: /core-concepts/components, anchor: the-admin-tab, sectionHash: 'sha256:4b979741549a18fa' }
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: edit-mode, sectionHash: 'sha256:05cb7587553eab14', title: 'The Admin Panel › Edit Mode' }
+      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:cd76322d674416ff', title: 'Draft & Publish Workflow › How It Works' }
+      - { kind: docs, page: /core-concepts/components, anchor: the-admin-tab, sectionHash: 'sha256:4b979741549a18fa', title: 'Components › The Admin Tab' }
     author: llm-draft

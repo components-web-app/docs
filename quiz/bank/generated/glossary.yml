@@ -33,6 +33,7 @@ questions:
         page: /core-concepts/glossary
         anchor: layout
         sectionHash: sha256:53e5d7d22e2afad8
+        title: Glossary › Layout
     generator:
       name: glossary
       ref: layout
@@ -65,6 +66,7 @@ questions:
         page: /core-concepts/glossary
         anchor: page-template
         sectionHash: sha256:b6c5c81e99e2648d
+        title: Glossary › Page template
     generator:
       name: glossary
       ref: page-template
@@ -92,12 +94,13 @@ questions:
       explanation: "A page record with `isTemplate: true`. It has no route of its own: every [page
         data](/core-concepts/glossary#page-data) record of one type renders through it. In the admin it's a
         **Dynamic** page. Not the same as a [page template](/core-concepts/glossary#page-template). See
-        [Layouts & Pages → Template Pages](/core-concepts/layouts-and-pages#template-pages-istemplate-true)."
+        [Layouts & Pages › Template Pages](/core-concepts/layouts-and-pages#template-pages-istemplate-true)."
     sources:
       - kind: docs
         page: /core-concepts/glossary
         anchor: template-page
-        sectionHash: sha256:496bde5809c524ff
+        sectionHash: sha256:74aad60b736ead27
+        title: Glossary › Template page
     generator:
       name: glossary
       ref: template-page
@@ -130,6 +133,7 @@ questions:
         page: /core-concepts/glossary
         anchor: page-data
         sectionHash: sha256:566df1a4f3877f23
+        title: Glossary › Page data
     generator:
       name: glossary
       ref: page-data
@@ -162,6 +166,7 @@ questions:
         page: /core-concepts/glossary
         anchor: route
         sectionHash: sha256:7b999d4d69310385
+        title: Glossary › Route
     generator:
       name: glossary
       ref: route
@@ -194,6 +199,7 @@ questions:
         page: /core-concepts/glossary
         anchor: component
         sectionHash: sha256:4c3eb465192bcc99
+        title: Glossary › Component
     generator:
       name: glossary
       ref: component
@@ -230,6 +236,7 @@ questions:
         page: /core-concepts/glossary
         anchor: component-group
         sectionHash: sha256:1078c99323abb87b
+        title: Glossary › Component group
     generator:
       name: glossary
       ref: component-group
@@ -264,6 +271,7 @@ questions:
         page: /core-concepts/glossary
         anchor: component-position
         sectionHash: sha256:650c7294106a6fa4
+        title: Glossary › Component position
     generator:
       name: glossary
       ref: component-position
@@ -299,6 +307,7 @@ questions:
         page: /core-concepts/glossary
         anchor: dynamic-position
         sectionHash: sha256:8a44339f1d20ed75
+        title: Glossary › Dynamic position
     generator:
       name: glossary
       ref: dynamic-position
@@ -332,6 +341,7 @@ questions:
         page: /core-concepts/glossary
         anchor: uicomponent
         sectionHash: sha256:29c68d4a852a3ec0
+        title: Glossary › uiComponent
     generator:
       name: glossary
       ref: uicomponent
@@ -359,13 +369,14 @@ questions:
       correct: c
       explanation: The path that identifies a record in the API, such as `/_/pages/018e…` or
         `/component/titles/018e…`. The module passes a record's IRI to its Vue file as the `iri` prop, and the
-        API uses IRIs as cache tags. See [Key Ideas →
-        IRI](/getting-started/key-ideas#how-records-are-identified).
+        API uses IRIs as cache tags. See [Key Ideas › How records are
+        identified](/getting-started/key-ideas#how-records-are-identified).
     sources:
       - kind: docs
         page: /core-concepts/glossary
         anchor: iri
-        sectionHash: sha256:d03544d8e690cabb
+        sectionHash: sha256:82fdff312ae852cd
+        title: Glossary › IRI
     generator:
       name: glossary
       ref: iri
@@ -398,6 +409,7 @@ questions:
         page: /core-concepts/glossary
         anchor: edit-mode
         sectionHash: sha256:924d1ff97aa058a9
+        title: Glossary › Edit mode
     generator:
       name: glossary
       ref: edit-mode
@@ -429,6 +441,7 @@ questions:
         page: /core-concepts/glossary
         anchor: souin
         sectionHash: sha256:d934bbbebd63aa0f
+        title: Glossary › Souin
     generator:
       name: glossary
       ref: souin
@@ -454,12 +467,13 @@ questions:
     answer:
       correct: b
       explanation: Removing cached responses by tag, so the next request gets a fresh copy. A full flush empties the
-        whole cache. See [Caching → Purges](/core-concepts/caching#purges).
+        whole cache. See [Caching › Purges](/core-concepts/caching#purges).
     sources:
       - kind: docs
         page: /core-concepts/glossary
         anchor: purge
-        sectionHash: sha256:8ebbc0166c619468
+        sectionHash: sha256:5547d388864693a0
+        title: Glossary › Purge
     generator:
       name: glossary
       ref: purge
@@ -492,6 +506,7 @@ questions:
         page: /core-concepts/glossary
         anchor: mercure
         sectionHash: sha256:11f10e68284bca9b
+        title: Glossary › Mercure
     generator:
       name: glossary
       ref: mercure
@@ -524,6 +539,7 @@ questions:
         page: /core-concepts/glossary
         anchor: track
         sectionHash: sha256:3bd185c78361fcc3
+        title: Glossary › Track
     generator:
       name: glossary
       ref: track
@@ -544,6 +560,7 @@ questions:
         page: /core-concepts/glossary
         anchor: stranded-component-group
         sectionHash: sha256:0a9ca1562a31e9df
+        title: Glossary › Stranded component group
     generator:
       name: glossary
       ref: stranded-component-group
@@ -579,6 +596,7 @@ questions:
         page: /core-concepts/glossary
         anchor: orphan
         sectionHash: sha256:9c641934ff72bc8f
+        title: Glossary › Orphan
     generator:
       name: glossary
       ref: orphan

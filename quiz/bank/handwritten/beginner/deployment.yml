@@ -22,7 +22,7 @@ questions:
         The Nuxt app is `app/`, and its source directory is `app/` too. Nuxt only looks in `app/app/cwa/`, so
         a file at `app/cwa/` is never found.
     sources:
-      - { kind: docs, page: /getting-started/installation, anchor: where-things-live, sectionHash: 'sha256:567f995785fc4015' }
+      - { kind: docs, page: /getting-started/installation, anchor: where-things-live, sectionHash: 'sha256:567f995785fc4015', title: 'Installation › Where things live' }
     author: llm-draft
 
   - id: deploy.install.dev-server
@@ -45,7 +45,7 @@ questions:
         The `app` container already runs the Nuxt dev server, and Caddy proxies it at `https://localhost`.
         Running `pnpm dev` on your machine starts a second Nuxt that `https://localhost` never reaches.
     sources:
-      - { kind: docs, page: /getting-started/installation, anchor: _3-open-the-site, sectionHash: 'sha256:ea02c7e3b3d3b87c' }
+      - { kind: docs, page: /getting-started/installation, anchor: _3-open-the-site, sectionHash: 'sha256:ea02c7e3b3d3b87c', title: 'Installation › 3. Open the site' }
     author: llm-draft
 
   - id: deploy.install.admin-role
@@ -70,8 +70,8 @@ questions:
         Editors sign in with `ROLE_ADMIN`. `silverback:api-components:user:create --admin` gives a new account
         that role; without it you can't open the admin panel.
     sources:
-      - { kind: docs, page: /getting-started/installation, anchor: _2-load-the-sample-content, sectionHash: 'sha256:176954d8459ea97b' }
-      - { kind: docs, page: /getting-started/key-ideas, anchor: editing, sectionHash: 'sha256:56ff4c5739a87e28' }
+      - { kind: docs, page: /getting-started/installation, anchor: _2-load-the-sample-content, sectionHash: 'sha256:176954d8459ea97b', title: 'Installation › 2. Load the sample content' }
+      - { kind: docs, page: /getting-started/key-ideas, anchor: editing, sectionHash: 'sha256:56ff4c5739a87e28', title: 'Key Ideas › Editing' }
     author: llm-draft
 
   - id: deploy.install.admin-url
@@ -93,7 +93,7 @@ questions:
       explanation: >-
         The admin panel is at `/_cwa` on the site's own host. The API is at `/_api`, and you sign in at `/login`.
     sources:
-      - { kind: docs, page: /getting-started/installation, anchor: _3-open-the-site, sectionHash: 'sha256:ea02c7e3b3d3b87c' }
+      - { kind: docs, page: /getting-started/installation, anchor: _3-open-the-site, sectionHash: 'sha256:ea02c7e3b3d3b87c', title: 'Installation › 3. Open the site' }
     author: llm-draft
 
   - id: deploy.install.empty-home
@@ -116,7 +116,7 @@ questions:
         It's expected. The database starts empty, so nothing answers at `/` until you build a page with that
         route. Sign in and start with your first layout.
     sources:
-      - { kind: docs, page: /getting-started/installation, anchor: _2-load-the-sample-content, sectionHash: 'sha256:176954d8459ea97b' }
+      - { kind: docs, page: /getting-started/installation, anchor: _2-load-the-sample-content, sectionHash: 'sha256:176954d8459ea97b', title: 'Installation › 2. Load the sample content' }
     author: llm-draft
 
   - id: deploy.install.console-commands
@@ -139,5 +139,5 @@ questions:
         PHP and Composer run only inside Docker, so PHP commands go through the `php` container. Commands run
         from the project root.
     sources:
-      - { kind: docs, page: /getting-started/installation, anchor: where-things-live, sectionHash: 'sha256:567f995785fc4015' }
+      - { kind: docs, page: /getting-started/installation, anchor: where-things-live, sectionHash: 'sha256:567f995785fc4015', title: 'Installation › Where things live' }
     author: llm-draft

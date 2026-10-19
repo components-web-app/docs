@@ -24,7 +24,7 @@ questions:
         The Vue file defines how a layout looks, but it doesn't create a layout record. Pages are assigned to a
         record, and the layout's component groups need a record as their owner.
     sources:
-      - { kind: docs, page: /guides/your-first-layout, anchor: create-the-layout-in-the-api, sectionHash: 'sha256:92642accfddde492' }
+      - { kind: docs, page: /guides/your-first-layout, anchor: create-the-layout-in-the-api, sectionHash: 'sha256:92642accfddde492', title: 'Your First Layout › Create the Layout in the API' }
     author: llm-draft
 
   - id: core.guides.layout-then-page-template
@@ -47,7 +47,7 @@ questions:
         A layout on its own isn't visible, because nothing uses it. The next guide makes a page template and a
         page at `/landing` that renders inside it.
     sources:
-      - { kind: docs, page: /guides/your-first-layout, anchor: next-create-a-page-template, sectionHash: 'sha256:1a25a7249eb9724e' }
+      - { kind: docs, page: /guides/your-first-layout, anchor: next-create-a-page-template, sectionHash: 'sha256:d860dbe9bd460ef3', title: 'Your First Layout › Next: Create a Page Template' }
     author: llm-draft
 
   - id: nuxt.page-template.two-groups
@@ -72,7 +72,7 @@ questions:
         Each `<CwaComponentGroup>` with its own `reference` is a separate, independently managed group. With the
         page's IRI as `location`, the components an editor adds are stored against that page record.
     sources:
-      - { kind: docs, page: /guides/your-first-page-template, anchor: key-points, sectionHash: 'sha256:f7efd4eb958ff065' }
+      - { kind: docs, page: /guides/your-first-page-template, anchor: key-points, sectionHash: 'sha256:f7efd4eb958ff065', title: 'Your First Page Template › Key points' }
     author: llm-draft
 
   - id: nuxt.page-template.iri-prop
@@ -105,7 +105,7 @@ questions:
         the `iri` prop. `defineProps<IriProp>()` declares it, and the template passes it to `<CwaComponentGroup>`
         as `location`.
     sources:
-      - { kind: docs, page: /nuxt-module/building-your-ui/creating-page-templates, anchor: minimal-page-template, sectionHash: 'sha256:a23206bcf93ad3cc', block: 0, blockHash: 'sha256:54c4076540395e52' }
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-page-templates, anchor: minimal-page-template, sectionHash: 'sha256:a23206bcf93ad3cc', title: 'Page Templates › Minimal Page Template', block: 0, blockHash: 'sha256:54c4076540395e52' }
     author: llm-draft
 
   - id: nuxt.config.resources-entry
@@ -130,7 +130,7 @@ questions:
         The module already finds component Vue files by where they are. The entry only sets the name and
         description the **Add Component** dialog shows.
     sources:
-      - { kind: docs, page: /guides/your-first-component, anchor: register-in-nuxtconfig, sectionHash: 'sha256:75a597f24b65f1d0' }
+      - { kind: docs, page: /guides/your-first-component, anchor: register-in-nuxtconfig, sectionHash: 'sha256:75a597f24b65f1d0', title: 'Your First Component › Register in nuxt.config' }
     author: llm-draft
 
   - id: nuxt.layout.unregistered
@@ -153,7 +153,7 @@ questions:
         A layout that isn't registered still renders correctly. It just has no name in the admin and no style
         options for editors to pick.
     sources:
-      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: registering-layout-options, sectionHash: 'sha256:260fe9e4c1275e6b' }
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: registering-layout-options, sectionHash: 'sha256:260fe9e4c1275e6b', title: 'Layouts › Registering Layout Options' }
     author: llm-draft
 
   - id: nuxt.layout.style-classes-applied
@@ -199,7 +199,7 @@ questions:
         `useCwaLayout()` applies the classes of the style the editor selected to the layout's root element, so no
         `:class` binding is needed.
     sources:
-      - { kind: docs, page: /guides/your-first-layout, anchor: the-file, sectionHash: 'sha256:a1f4ee1da582b30f', block: 0, blockHash: 'sha256:cfdf8a99c2ad44d7' }
+      - { kind: docs, page: /guides/your-first-layout, anchor: the-file, sectionHash: 'sha256:a1f4ee1da582b30f', title: 'Your First Layout › The File', block: 0, blockHash: 'sha256:cfdf8a99c2ad44d7' }
     author: llm-draft
 
   - id: nuxt.layout.default-style
@@ -224,7 +224,7 @@ questions:
         A **Default** option with no classes is added for you, so you only list the styles you're adding. Don't
         declare an empty entry for it.
     sources:
-      - { kind: docs, page: /guides/your-first-layout, anchor: register-in-nuxtconfig, sectionHash: 'sha256:68efa5cc062d16b1' }
+      - { kind: docs, page: /guides/your-first-layout, anchor: register-in-nuxtconfig, sectionHash: 'sha256:68efa5cc062d16b1', title: 'Your First Layout › Register in nuxt.config' }
     author: llm-draft
 
   - id: nuxt.layout.fixed-class-list
@@ -249,7 +249,7 @@ questions:
         The list is defined by you and your designer. It keeps the design system intact when layouts are reused,
         and stops style drift from ad-hoc values editors type in.
     sources:
-      - { kind: docs, page: /guides/your-first-layout, anchor: register-in-nuxtconfig, sectionHash: 'sha256:68efa5cc062d16b1' }
+      - { kind: docs, page: /guides/your-first-layout, anchor: register-in-nuxtconfig, sectionHash: 'sha256:68efa5cc062d16b1', title: 'Your First Layout › Register in nuxt.config' }
     author: llm-draft
 
   - id: core.guides.fixtures-for-development
@@ -274,7 +274,7 @@ questions:
         Fixtures give you a consistent, repeatable starting state, which helps when you switch feature branches
         or set up a new environment.
     sources:
-      - { kind: docs, page: /guides/your-first-layout, anchor: via-fixtures, sectionHash: 'sha256:55e036fee4a219a8' }
+      - { kind: docs, page: /guides/your-first-layout, anchor: via-fixtures, sectionHash: 'sha256:55e036fee4a219a8', title: 'Your First Layout › Via fixtures' }
     author: llm-draft
 
   - id: core.guides.append-existing-group
@@ -300,7 +300,7 @@ questions:
         The module creates a page's groups the first time a signed-in admin opens it, and `--append` never adds
         to a group that already exists. Add the quote in the admin, or reload from empty without `--append`.
     sources:
-      - { kind: docs, page: /guides/your-first-component, anchor: via-fixtures, sectionHash: 'sha256:e1c9ba97c217434a' }
+      - { kind: docs, page: /guides/your-first-component, anchor: via-fixtures, sectionHash: 'sha256:e1c9ba97c217434a', title: 'Your First Component › Via fixtures' }
     author: llm-draft
 
   - id: nuxt.cli.where-to-run
@@ -323,7 +323,7 @@ questions:
         The generator writes `app/cwa/components/<Name>/` relative to the current directory, so run it in `app/`.
         From the project root it writes to `app/cwa/components/`, which Nuxt never reads.
     sources:
-      - { kind: docs, page: /guides/your-first-component, anchor: the-vue-file, sectionHash: 'sha256:89e2acc4057f1248' }
+      - { kind: docs, page: /guides/your-first-component, anchor: the-vue-file, sectionHash: 'sha256:89e2acc4057f1248', title: 'Your First Component › The Vue file' }
     author: llm-draft
 
   - id: nuxt.cli.api-command
@@ -346,8 +346,8 @@ questions:
         It writes only the Vue file. Then it prints the matching `php bin/console make:api-component` command,
         which you run yourself; in the template, through the `php` container.
     sources:
-      - { kind: docs, page: /nuxt-module/building-your-ui/cwa-cli, anchor: next-steps-printed-after-generation, sectionHash: 'sha256:51aa0a2b56e3021f' }
-      - { kind: docs, page: /guides/your-first-component, anchor: the-api-entity, sectionHash: 'sha256:42656507ceb034bb' }
+      - { kind: docs, page: /nuxt-module/building-your-ui/cwa-cli, anchor: next-steps-printed-after-generation, sectionHash: 'sha256:bf064d8f57aa2367', title: 'CLI Generator › Next Steps Printed After Generation' }
+      - { kind: docs, page: /guides/your-first-component, anchor: the-api-entity, sectionHash: 'sha256:a50c17ac1cd7afd9', title: 'Your First Component › The API entity' }
     author: llm-draft
 
   - id: nuxt.component.admin-tab-file
@@ -374,8 +374,8 @@ questions:
         Admin tabs live in the component's `admin/` folder, one file per tab. The CLI doesn't write it, so you
         create `app/app/cwa/components/Quote/admin/Quote.vue` yourself.
     sources:
-      - { kind: docs, page: /guides/your-first-component, anchor: the-admin-tab, sectionHash: 'sha256:9a79409981bc2d3e' }
-      - { kind: docs, page: /nuxt-module/building-your-ui/creating-components, anchor: file-convention, sectionHash: 'sha256:280282ea4133bd3d' }
+      - { kind: docs, page: /guides/your-first-component, anchor: the-admin-tab, sectionHash: 'sha256:9a79409981bc2d3e', title: 'Your First Component › The admin tab' }
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-components, anchor: file-convention, sectionHash: 'sha256:280282ea4133bd3d', title: 'Component Files › File Convention' }
     author: llm-draft
 
   - id: nuxt.component.multiple-tabs
@@ -400,7 +400,7 @@ questions:
         Each file in `admin/` is one tab. Each calls `useCwaResourceManagerTab({ name, order })`, and lower
         `order` numbers appear first.
     sources:
-      - { kind: docs, page: /nuxt-module/building-your-ui/creating-components, anchor: multiple-tabs, sectionHash: 'sha256:c2d40e96d099336a' }
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-components, anchor: multiple-tabs, sectionHash: 'sha256:c2d40e96d099336a', title: 'Component Files › Multiple Tabs' }
     author: llm-draft
 
   - id: nuxt.component.admin-tab-model
@@ -439,8 +439,8 @@ questions:
         `useCwaResourceModel(iri, 'author')` returns a model bound to one property of the selected component.
         Writing to it saves the change to the API, and the input on line 6 is bound to that model.
     sources:
-      - { kind: docs, page: /guides/your-first-component, anchor: the-admin-tab, sectionHash: 'sha256:9a79409981bc2d3e', block: 0, blockHash: 'sha256:921b3ad3f72ff129' }
-      - { kind: docs, page: /nuxt-module/building-your-ui/creating-components, anchor: usecwaresourcemodel, sectionHash: 'sha256:01a1696db9417540' }
+      - { kind: docs, page: /guides/your-first-component, anchor: the-admin-tab, sectionHash: 'sha256:9a79409981bc2d3e', title: 'Your First Component › The admin tab', block: 0, blockHash: 'sha256:921b3ad3f72ff129' }
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-components, anchor: usecwaresourcemodel, sectionHash: 'sha256:01a1696db9417540', title: 'Component Files › useCwaResourceModel' }
     author: llm-draft
 
   - id: core.guides.fixture-add-to-group
@@ -474,7 +474,7 @@ questions:
         `->group('main')->add($quote)` adds the Quote to the page's `main` group. The name matches the
         `reference` of the `<CwaComponentGroup>` in `TwoColumnPageTemplate.vue`.
     sources:
-      - { kind: docs, page: /guides/your-first-component, anchor: via-fixtures, sectionHash: 'sha256:e1c9ba97c217434a', block: 0, blockHash: 'sha256:825d8146891df7f1' }
+      - { kind: docs, page: /guides/your-first-component, anchor: via-fixtures, sectionHash: 'sha256:e1c9ba97c217434a', title: 'Your First Component › Via fixtures', block: 0, blockHash: 'sha256:825d8146891df7f1' }
     author: llm-draft
 
   - id: nuxt.component.ui-file-location
@@ -501,7 +501,7 @@ questions:
         An alternative template goes in the component's `ui/` folder, beside the default `NavigationLink.vue`. It
         uses the same data, and editors pick it in the manager panel.
     sources:
-      - { kind: docs, page: /guides/alternative-ui-variants, anchor: approach-2-ui-templates-ui-directory, sectionHash: 'sha256:89c55ceb8b7fd102' }
+      - { kind: docs, page: /guides/alternative-ui-variants, anchor: approach-2-ui-templates-ui-directory, sectionHash: 'sha256:89c55ceb8b7fd102', title: 'Alternative UI Variants › Approach 2: UI Templates (ui/ directory)' }
     author: llm-draft
 
   - id: nuxt.component.ui-vs-styles
@@ -526,7 +526,7 @@ questions:
         Use `styles.classes` when it's the same HTML with different classes. A `ui/` template is for a variant
         that needs different HTML structure.
     sources:
-      - { kind: docs, page: /guides/alternative-ui-variants, anchor: when-to-use-ui-vs-stylesclasses, sectionHash: 'sha256:c387c50693891cdd' }
+      - { kind: docs, page: /guides/alternative-ui-variants, anchor: when-to-use-ui-vs-stylesclasses, sectionHash: 'sha256:c387c50693891cdd', title: 'Alternative UI Variants › When to use ui/ vs styles.classes' }
     author: llm-draft
 
   - id: nuxt.component.ui-registration
@@ -551,7 +551,7 @@ questions:
         The module discovers `ui/YouTube.vue` from where it is and registers it as the `YouTube` variant. When an
         editor selects it, it renders instead of `NavigationLink.vue`.
     sources:
-      - { kind: docs, page: /guides/alternative-ui-variants, anchor: the-ui-file, sectionHash: 'sha256:97d0c4346cea8201' }
+      - { kind: docs, page: /guides/alternative-ui-variants, anchor: the-ui-file, sectionHash: 'sha256:97d0c4346cea8201', title: 'Alternative UI Variants › The ui/ file' }
     author: llm-draft
 
   - id: nuxt.component.combine-styles
@@ -579,8 +579,8 @@ questions:
       explanation: >-
         `multiple: true` lets editors combine styles. With `false`, they pick one.
     sources:
-      - { kind: docs, page: /guides/alternative-ui-variants, anchor: real-example-htmlcontent-in-the-template-app, sectionHash: 'sha256:becd22e7af9638e9', block: 0, blockHash: 'sha256:e1811c714e3c0cba' }
-      - { kind: docs, page: /guides/alternative-ui-variants, anchor: how-it-works, sectionHash: 'sha256:b08f114aa6f21987' }
+      - { kind: docs, page: /guides/alternative-ui-variants, anchor: real-example-htmlcontent-in-the-template-app, sectionHash: 'sha256:becd22e7af9638e9', title: 'Alternative UI Variants › Real Example: HtmlContent in the Template App', block: 0, blockHash: 'sha256:e1811c714e3c0cba' }
+      - { kind: docs, page: /guides/alternative-ui-variants, anchor: how-it-works, sectionHash: 'sha256:b08f114aa6f21987', title: 'Alternative UI Variants › How it works' }
     author: llm-draft
 
   - id: core.dynamic.three-records
@@ -606,7 +606,7 @@ questions:
         A template page (a page record many articles share) holds the structure. Each article is a page data
         record that names the template page, and each has its own route.
     sources:
-      - { kind: docs, page: /guides/your-first-dynamic-page, anchor: create-in-the-api, sectionHash: 'sha256:baa52a543c4cb510' }
+      - { kind: docs, page: /guides/your-first-dynamic-page, anchor: create-in-the-api, sectionHash: 'sha256:baa52a543c4cb510', title: 'Your First Dynamic Page › Create in the API' }
     author: llm-draft
 
   - id: core.dynamic.position-shows
@@ -634,7 +634,7 @@ questions:
         It's a dynamic component position. Instead of holding one component, it shows whatever component the
         current article holds in its `quote` field.
     sources:
-      - { kind: docs, page: /guides/your-first-dynamic-page, anchor: create-in-the-api, sectionHash: 'sha256:baa52a543c4cb510' }
+      - { kind: docs, page: /guides/your-first-dynamic-page, anchor: create-in-the-api, sectionHash: 'sha256:baa52a543c4cb510', title: 'Your First Dynamic Page › Create in the API' }
     author: llm-draft
 
   - id: core.dynamic.new-file
@@ -659,7 +659,7 @@ questions:
         The Vue file already exists: articles render through `TwoColumnPageTemplate.vue`. The new file is the PHP
         entity, `NewsArticleData`, that holds each article's data.
     sources:
-      - { kind: docs, page: /guides/your-first-dynamic-page, anchor: the-file, sectionHash: 'sha256:933d9dcc30d23d71' }
+      - { kind: docs, page: /guides/your-first-dynamic-page, anchor: the-file, sectionHash: 'sha256:fd4134050fe8c59f', title: 'Your First Dynamic Page › The File' }
     author: llm-draft
 
   - id: core.dynamic.component-field-type
@@ -684,7 +684,7 @@ questions:
         The field holds the component each article shows, so it must be typed as a component class. In the guide
         it's a `ManyToOne` to `Quote`.
     sources:
-      - { kind: docs, page: /guides/your-first-dynamic-page, anchor: the-file, sectionHash: 'sha256:933d9dcc30d23d71' }
+      - { kind: docs, page: /guides/your-first-dynamic-page, anchor: the-file, sectionHash: 'sha256:fd4134050fe8c59f', title: 'Your First Dynamic Page › The File' }
     author: llm-draft
 
   - id: core.dynamic.quote-per-article
@@ -709,7 +709,7 @@ questions:
         The Quote is stored in this article's `quote` field, so it belongs to this article. The next article you
         create gets its own.
     sources:
-      - { kind: docs, page: /guides/your-first-dynamic-page, anchor: via-the-admin, sectionHash: 'sha256:c41dcc6bcd14fe43' }
+      - { kind: docs, page: /guides/your-first-dynamic-page, anchor: via-the-admin, sectionHash: 'sha256:c41dcc6bcd14fe43', title: 'Your First Dynamic Page › Via the admin' }
     author: llm-draft
 
   - id: core.dynamic.page-data-fixture
@@ -748,7 +748,7 @@ questions:
         `pageData()` saves the page data record with its route, and `template:` takes the template page's
         reference, `news-template`.
     sources:
-      - { kind: docs, page: /guides/your-first-dynamic-page, anchor: via-fixtures, sectionHash: 'sha256:15ec0a7f9e44973c', block: 0, blockHash: 'sha256:63ed8fac2fd9414d' }
+      - { kind: docs, page: /guides/your-first-dynamic-page, anchor: via-fixtures, sectionHash: 'sha256:15ec0a7f9e44973c', title: 'Your First Dynamic Page › Via fixtures', block: 0, blockHash: 'sha256:63ed8fac2fd9414d' }
     author: llm-draft
 
   - id: deploy.install.not-automatic
@@ -771,7 +771,7 @@ questions:
         The `php` container runs migrations, and the `app` container installs the Nuxt dependencies and starts
         the dev server. Fixtures are the exception: they're never loaded automatically.
     sources:
-      - { kind: docs, page: /getting-started/installation, anchor: what-docker-handles-automatically, sectionHash: 'sha256:fbbab0c06ccfb985' }
+      - { kind: docs, page: /getting-started/installation, anchor: what-docker-handles-automatically, sectionHash: 'sha256:fc0027cbc130c222', title: 'Installation › What Docker handles automatically' }
     author: llm-draft
 
   - id: nuxt.page.choose-page-ui
@@ -796,5 +796,5 @@ questions:
         The Page UI is the page template, such as `TwoColumnPageTemplate.vue`. The page record stores it as
         `uiComponent: CwaPageTwoColumnPageTemplate`. The layout is a separate choice on the same form.
     sources:
-      - { kind: docs, page: /guides/your-first-page-template, anchor: via-the-admin, sectionHash: 'sha256:7a86817c667e2a07' }
+      - { kind: docs, page: /guides/your-first-page-template, anchor: via-the-admin, sectionHash: 'sha256:7a86817c667e2a07', title: 'Your First Page Template › Via the admin' }
     author: llm-draft

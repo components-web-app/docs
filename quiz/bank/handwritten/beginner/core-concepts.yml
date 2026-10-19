@@ -26,8 +26,8 @@ questions:
         a: Routes belong to the API. You never define them in Vue files.
         c: The module ships the auth pages. You can override them, but you don't have to.
     sources:
-      - { kind: docs, page: /core-concepts/architecture, anchor: what-you-never-write, sectionHash: 'sha256:1b43f41f0f1125b5' }
-      - { kind: docs, page: /core-concepts/architecture, anchor: the-nuxt-module, sectionHash: 'sha256:8c01b275fd349b30' }
+      - { kind: docs, page: /core-concepts/architecture, anchor: what-you-never-write, sectionHash: 'sha256:1b43f41f0f1125b5', title: 'How It All Works › What You Never Write' }
+      - { kind: docs, page: /core-concepts/architecture, anchor: the-nuxt-module, sectionHash: 'sha256:8c01b275fd349b30', title: 'How It All Works › The Nuxt Module' }
     author: llm-draft
 
   - id: core.request.first-requests
@@ -50,7 +50,7 @@ questions:
         The middleware requests `GET /_/routes//about-us` and, in parallel, the resource manifest, which lists
         every resource the page renders. The route points to a page or a page data record.
     sources:
-      - { kind: docs, page: /core-concepts/architecture, anchor: the-request-lifecycle, sectionHash: 'sha256:b8b584459c4889d1' }
+      - { kind: docs, page: /core-concepts/architecture, anchor: the-request-lifecycle, sectionHash: 'sha256:b8b584459c4889d1', title: 'How It All Works › The Request Lifecycle' }
     author: llm-draft
 
   - id: core.data-model.route-target
@@ -73,7 +73,7 @@ questions:
         A route maps a URL path to a Page, for a static page, or to a PageData record, for a dynamic page. A
         route can also redirect to another route.
     sources:
-      - { kind: docs, page: /core-concepts/the-data-model, anchor: route, sectionHash: 'sha256:48c85cc1328f40b5' }
+      - { kind: docs, page: /core-concepts/the-data-model, anchor: route, sectionHash: 'sha256:48c85cc1328f40b5', title: 'The Data Model › Route' }
     author: llm-draft
 
   - id: core.data-model.layouts-per-page
@@ -96,7 +96,7 @@ questions:
         Every page has exactly one layout, the outer shell with the header, footer and navigation. A site can
         have several layouts, and each page picks one.
     sources:
-      - { kind: docs, page: /core-concepts/the-data-model, anchor: layout, sectionHash: 'sha256:b8db0bab683d3204' }
+      - { kind: docs, page: /core-concepts/the-data-model, anchor: layout, sectionHash: 'sha256:b8db0bab683d3204', title: 'The Data Model › Layout' }
     author: llm-draft
 
   - id: core.pages.page-template-vs-template-page
@@ -121,7 +121,7 @@ questions:
         A page template is the Vue file a page renders through, in `app/app/cwa/pages/`. A template page is a
         page record with `isTemplate: true`, shared by many page data records.
     sources:
-      - { kind: docs, page: /getting-started/key-ideas, anchor: repeating-content, sectionHash: 'sha256:16c50ea3e83daff7' }
+      - { kind: docs, page: /getting-started/key-ideas, anchor: repeating-content, sectionHash: 'sha256:16c50ea3e83daff7', title: 'Key Ideas › Repeating content' }
     author: llm-draft
 
   - id: core.draft.who-sees-drafts
@@ -146,7 +146,7 @@ questions:
         Anonymous visitors get the published version. Signed-in users with publish rights get the draft, on
         every page view, whether or not edit mode is on.
     sources:
-      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:5c8ec9f39ad9cd58' }
+      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:cd76322d674416ff', title: 'Draft & Publish Workflow › How It Works' }
     author: llm-draft
 
   - id: core.draft.reorder-timing
@@ -173,7 +173,7 @@ questions:
       optionNotes:
         a: The components have drafts, but their positions in the group don't. Moving one changes the live order.
     sources:
-      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: adding-removing-and-reordering-are-immediate, sectionHash: 'sha256:177d97708ef53e97' }
+      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: adding-removing-and-reordering-are-immediate, sectionHash: 'sha256:177d97708ef53e97', title: 'Draft & Publish Workflow › Adding, Removing and Reordering Are Immediate' }
     author: llm-draft
 
   - id: core.admin.link-in-edit-mode
@@ -198,7 +198,7 @@ questions:
         The navigation guard stops links while editing. Click **Done** first. The browser's back and forward
         buttons still work.
     sources:
-      - { kind: docs, page: /core-concepts/admin-panel, anchor: edit-mode, sectionHash: 'sha256:05cb7587553eab14' }
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: edit-mode, sectionHash: 'sha256:05cb7587553eab14', title: 'The Admin Panel › Edit Mode' }
     author: llm-draft
 
   - id: core.components.two-sides
@@ -221,7 +221,7 @@ questions:
         A component type is a PHP entity that holds the data, and a Vue file that displays it. Admin tabs in
         its `admin/` folder edit it.
     sources:
-      - { kind: docs, page: /core-concepts/components, anchor: a-component-has-two-sides, sectionHash: 'sha256:3bc630a33960fae8' }
+      - { kind: docs, page: /core-concepts/components, anchor: a-component-has-two-sides, sectionHash: 'sha256:3bc630a33960fae8', title: 'Components › A Component Has Two Sides' }
     author: llm-draft
 
   - id: core.components.admin-tab-saving
@@ -248,7 +248,7 @@ questions:
       optionNotes:
         a: There is no Save button. Each change is sent on its own, shortly after typing stops.
     sources:
-      - { kind: docs, page: /core-concepts/components, anchor: the-admin-tab, sectionHash: 'sha256:4b979741549a18fa' }
+      - { kind: docs, page: /core-concepts/components, anchor: the-admin-tab, sectionHash: 'sha256:4b979741549a18fa', title: 'Components › The Admin Tab' }
     author: llm-draft
 
   - id: core.identity.group-location
@@ -273,7 +273,7 @@ questions:
         `location` says which record owns the group: a layout, a page or a component. Its name goes in
         `reference`.
     sources:
-      - { kind: docs, page: /getting-started/key-ideas, anchor: how-records-are-identified, sectionHash: 'sha256:136fd1a524073c73' }
+      - { kind: docs, page: /getting-started/key-ideas, anchor: how-records-are-identified, sectionHash: 'sha256:136fd1a524073c73', title: 'Key Ideas › How records are identified' }
     author: llm-draft
 
   - id: core.architecture.template-app
@@ -296,5 +296,5 @@ questions:
         The template app is a complete working site that wires the API bundle and the Nuxt module together
         with Docker Compose. `pnpm create cwa` scaffolds new projects from it.
     sources:
-      - { kind: docs, page: /core-concepts/architecture, anchor: the-template-app, sectionHash: 'sha256:91b682d9a3dcf672' }
+      - { kind: docs, page: /core-concepts/architecture, anchor: the-template-app, sectionHash: 'sha256:91b682d9a3dcf672', title: 'How It All Works › The Template App' }
     author: llm-draft

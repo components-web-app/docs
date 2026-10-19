@@ -29,7 +29,7 @@ questions:
         Setting `model.value` starts a debounced `PATCH` (250 ms by default), and rapid changes are batched into
         one request.
     sources:
-      - { kind: docs, page: /nuxt-module/composables/admin-manager/use-cwa-resource-model, anchor: return-values, sectionHash: 'sha256:c010dd6af72583af' }
+      - { kind: docs, page: /nuxt-module/composables/admin-manager/use-cwa-resource-model, anchor: return-values, sectionHash: 'sha256:c010dd6af72583af', title: 'useCwaResourceModel › Return Values' }
     author: llm-draft
 
   - id: nuxt.resource-model.iri-argument
@@ -75,8 +75,8 @@ questions:
         to follow the selected component, so a plain string gives it no IRI: the field stays empty and nothing
         is saved.
     sources:
-      - { kind: docs, page: /nuxt-module/building-your-ui/creating-components, anchor: one-tab, sectionHash: 'sha256:4420b05a618dbc39', block: 0, blockHash: 'sha256:a585840b691d476e' }
-      - { kind: docs, page: /nuxt-module/composables/admin-manager/use-cwa-resource-manager-tab, anchor: return-values, sectionHash: 'sha256:3b7270f5ed56e80d' }
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-components, anchor: one-tab, sectionHash: 'sha256:4420b05a618dbc39', title: 'Component Files › One Tab', block: 0, blockHash: 'sha256:a585840b691d476e' }
+      - { kind: docs, page: /nuxt-module/composables/admin-manager/use-cwa-resource-manager-tab, anchor: return-values, sectionHash: 'sha256:3b7270f5ed56e80d', title: 'useCwaResourceManagerTab › Return Values' }
     author: llm-draft
 
   - id: nuxt.component.style-name-check
@@ -106,7 +106,7 @@ questions:
       optionNotes:
         a: '`uiClassNames` holds the class string, such as `bg-black text-white`, not `Dark`.'
     sources:
-      - { kind: docs, page: /nuxt-module/building-your-ui/creating-components, anchor: style-variants, sectionHash: 'sha256:f7e26614c2ae0511' }
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-components, anchor: style-variants, sectionHash: 'sha256:bd0d1095b55c2b7b', title: 'Component Files › Style Variants' }
     author: llm-draft
 
   - id: nuxt.component.inner-element-classes
@@ -134,7 +134,7 @@ questions:
         The selected classes are applied to the root element automatically. `autoClass: false` turns that off,
         and `useCwaComponent` returns `uiClassNames` for you to bind where you want.
     sources:
-      - { kind: docs, page: /nuxt-module/composables/component/use-cwa-component, anchor: applying-classes-to-an-inner-element, sectionHash: 'sha256:124bfc6ca5c55993' }
+      - { kind: docs, page: /nuxt-module/composables/component/use-cwa-component, anchor: applying-classes-to-an-inner-element, sectionHash: 'sha256:124bfc6ca5c55993', title: 'useCwaComponent › Applying Classes to an Inner Element' }
     author: llm-draft
 
   - id: nuxt.collection.item-fields
@@ -162,7 +162,7 @@ questions:
         `collectionItems` holds the response's `member` array. Each item is a raw API resource, so its fields
         are read directly, not through `data`.
     sources:
-      - { kind: docs, page: /nuxt-module/composables/component/use-cwa-component, anchor: withcollection, sectionHash: 'sha256:adb42ca3866b32b3' }
+      - { kind: docs, page: /nuxt-module/composables/component/use-cwa-component, anchor: withcollection, sectionHash: 'sha256:adb42ca3866b32b3', title: 'useCwaComponent › withCollection()' }
     author: llm-draft
 
   - id: nuxt.collection.query-change-page
@@ -190,7 +190,7 @@ questions:
         The collection fetches again whenever the URL query changes, and returns to page 1 when anything other
         than `page` or `perPage` changes.
     sources:
-      - { kind: docs, page: /nuxt-module/composables/component/use-cwa-component, anchor: withcollection, sectionHash: 'sha256:adb42ca3866b32b3' }
+      - { kind: docs, page: /nuxt-module/composables/component/use-cwa-component, anchor: withcollection, sectionHash: 'sha256:adb42ca3866b32b3', title: 'useCwaComponent › withCollection()' }
     author: llm-draft
 
   - id: nuxt.collection.link-without-route
@@ -219,7 +219,7 @@ questions:
         It returns `item.routePath` when the item has one, and otherwise a Vue Router location for CWA's
         internal resource page. That is an object, so bind it to `:to`, not `:href`.
     sources:
-      - { kind: docs, page: /nuxt-module/component-helpers/collections-and-pagination, anchor: linking-to-a-resources-page, sectionHash: 'sha256:d2f7b8f27ab06d9f' }
+      - { kind: docs, page: /nuxt-module/component-helpers/collections-and-pagination, anchor: linking-to-a-resources-page, sectionHash: 'sha256:d2f7b8f27ab06d9f', title: 'Collections & Pagination › Linking to a Resource''s Page' }
     author: llm-draft
 
   - id: nuxt.routing.navigate-by-iri
@@ -247,7 +247,7 @@ questions:
         `getInternalResourceLink(iri)`, from `useCwaResourceRoute()`, returns a route location for CWA's resource
         page with the IRI as its `cwaPage0` param. A bare IRI string has no `cwaPage0`, so it can only 404.
     sources:
-      - { kind: docs, page: /nuxt-module/composables/utilities/use-cwa-resource-route, anchor: getinternalresourcelinkiri, sectionHash: 'sha256:d4de9b25c7d7a7ff' }
+      - { kind: docs, page: /nuxt-module/composables/utilities/use-cwa-resource-route, anchor: getinternalresourcelinkiri, sectionHash: 'sha256:d4de9b25c7d7a7ff', title: 'useCwaResourceRoute › getInternalResourceLink(iri)' }
     author: llm-draft
 
   - id: nuxt.resources.leaf-page
@@ -275,7 +275,7 @@ questions:
         `page` is a flat leaf getter: it holds the page the visitor navigated to, the innermost one, and needs
         no manifest. `pageAtDepth(n)` is for what renders at one depth.
     sources:
-      - { kind: docs, page: /nuxt-module/cwa-api/resources, anchor: flat-leaf-getters, sectionHash: 'sha256:3a684c1600d8d3b2' }
+      - { kind: docs, page: /nuxt-module/cwa-api/resources, anchor: flat-leaf-getters, sectionHash: 'sha256:3a684c1600d8d3b2', title: 'cwa.resources › Flat Leaf Getters' }
     author: llm-draft
 
   - id: nuxt.cwa-page.no-cwa-page
@@ -303,7 +303,7 @@ questions:
         When the manifest has a child depth and the template registered no `<CwaPage />`, CWA appends one after
         the template, so no child is dropped. Add `<CwaPage />` yourself to choose where the child goes.
     sources:
-      - { kind: docs, page: /nuxt-module/cwa-components/cwa-page, anchor: auto-fallback, sectionHash: 'sha256:f9d1075c1a1c4e9c' }
+      - { kind: docs, page: /nuxt-module/cwa-components/cwa-page, anchor: auto-fallback, sectionHash: 'sha256:f9d1075c1a1c4e9c', title: '<CwaPage /> › Auto-Fallback' }
     author: llm-draft
 
   - id: nuxt.setup.fetch-and-disabled
@@ -330,7 +330,7 @@ questions:
         A page that uses `fetch` is the one page of your own that leaves `disabled` off. `fetch` already replaces
         the route lookup for the path with the page you name.
     sources:
-      - { kind: docs, page: /nuxt-module/configuration/nuxt-config, anchor: definepagemeta-cwa-options, sectionHash: 'sha256:d480ab634e57b325' }
+      - { kind: docs, page: /nuxt-module/configuration/nuxt-config, anchor: definepagemeta-cwa-options, sectionHash: 'sha256:d480ab634e57b325', title: 'Nuxt Config › definePageMeta CWA Options' }
     author: llm-draft
 
   - id: nuxt.config.server-api-url
@@ -360,7 +360,7 @@ questions:
       optionNotes:
         a: It still works as a fallback, but it publishes the internal URL in every page, so the server warns.
     sources:
-      - { kind: docs, page: /nuxt-module/configuration/nuxt-config, anchor: runtime-config, sectionHash: 'sha256:9d3370c64c839364' }
+      - { kind: docs, page: /nuxt-module/configuration/nuxt-config, anchor: runtime-config, sectionHash: 'sha256:9d3370c64c839364', title: 'Nuxt Config › Runtime Config' }
     author: llm-draft
 
   - id: nuxt.auth.middleware-and-api
@@ -388,7 +388,7 @@ questions:
         Route middleware is UX, not security. The API enforces access on every request, whatever the front end
         does.
     sources:
-      - { kind: docs, page: /nuxt-module/authentication, anchor: protecting-pages, sectionHash: 'sha256:a39674deb4430c44' }
+      - { kind: docs, page: /nuxt-module/authentication, anchor: protecting-pages, sectionHash: 'sha256:a39674deb4430c44', title: 'Front-End Authentication › Protecting Pages' }
     author: llm-draft
 
   - id: nuxt.auth.after-sign-in
@@ -417,7 +417,7 @@ questions:
         The middleware sends them to `/login?redirect=/account`, and `signIn()` follows the `redirect` query
         parameter, falling back to `/` when there isn't one.
     sources:
-      - { kind: docs, page: /nuxt-module/authentication, anchor: where-the-user-goes-after-signing-in, sectionHash: 'sha256:9f92ddd49dc9e587' }
+      - { kind: docs, page: /nuxt-module/authentication, anchor: where-the-user-goes-after-signing-in, sectionHash: 'sha256:9f92ddd49dc9e587', title: 'Front-End Authentication › Where the User Goes After Signing in' }
     author: llm-draft
 
   - id: nuxt.forms.field-name
@@ -460,8 +460,8 @@ questions:
         The name passed to `useCwaFormInput` must match the field's `full_name` in the API's form view, in
         Symfony's bracket notation: `contact_form[email]`.
     sources:
-      - { kind: docs, page: /nuxt-module/component-helpers/forms, anchor: form-container-component, sectionHash: 'sha256:709b83ce0d041c75', block: 0, blockHash: 'sha256:97365a10ae8306d6' }
-      - { kind: docs, page: /nuxt-module/component-helpers/forms, anchor: full_name-convention, sectionHash: 'sha256:bcb7784b09eaa55f' }
+      - { kind: docs, page: /nuxt-module/component-helpers/forms, anchor: form-container-component, sectionHash: 'sha256:709b83ce0d041c75', title: 'Working with Forms › Form Container Component', block: 0, blockHash: 'sha256:97365a10ae8306d6' }
+      - { kind: docs, page: /nuxt-module/component-helpers/forms, anchor: full_name-convention, sectionHash: 'sha256:bcb7784b09eaa55f', title: 'Working with Forms › fullname Convention' }
     author: llm-draft
 
   - id: nuxt.resources-manager.store-only
@@ -488,7 +488,7 @@ questions:
         `storeResource` is internal to the module and makes no API request. Save with `updateResource` (or
         `createResource`, `deleteResource`), or bind a field with `useCwaResourceModel`.
     sources:
-      - { kind: docs, page: /nuxt-module/cwa-api/resources-manager, anchor: writing-directly-to-the-store, sectionHash: 'sha256:aa6d8385bf1788ee' }
+      - { kind: docs, page: /nuxt-module/cwa-api/resources-manager, anchor: writing-directly-to-the-store, sectionHash: 'sha256:aa6d8385bf1788ee', title: 'cwa.resourcesManager › Writing Directly to the Store' }
     author: llm-draft
 
   - id: nuxt.component.two-file-fields
@@ -517,7 +517,7 @@ questions:
         once per field, and the plugin merge keeps both: `files.heroImage.contentUrl`,
         `files.thumbnail.contentUrl`.
     sources:
-      - { kind: docs, page: /nuxt-module/composables/component/use-cwa-component, anchor: multiple-file-fields, sectionHash: 'sha256:81679c681e508097' }
+      - { kind: docs, page: /nuxt-module/composables/component/use-cwa-component, anchor: multiple-file-fields, sectionHash: 'sha256:81679c681e508097', title: 'useCwaComponent › Multiple File Fields' }
     author: llm-draft
 
   - id: nuxt.group.allowed-hides-existing
@@ -547,7 +547,7 @@ questions:
         left out of the response. The Quote silently stops rendering, so the list must name every type already
         in the group.
     sources:
-      - { kind: docs, page: /nuxt-module/cwa-components/cwa-component-group, anchor: allowed-components, sectionHash: 'sha256:40f293f36d1ddb62' }
+      - { kind: docs, page: /nuxt-module/cwa-components/cwa-component-group, anchor: allowed-components, sectionHash: 'sha256:df8c8d2bc0897bee', title: '<CwaComponentGroup /> › Allowed Components' }
     author: llm-draft
 
   - id: nuxt.group.rename-reference
@@ -575,5 +575,5 @@ questions:
         The reference names the stored group, so the page gets a new, empty `body` group, and `content` stays
         attached with its components. The admin bar warns about the stranded group and lets you merge it.
     sources:
-      - { kind: docs, page: /nuxt-module/cwa-components/cwa-component-group, anchor: how-it-works, sectionHash: 'sha256:adcb2c0f402b205e' }
+      - { kind: docs, page: /nuxt-module/cwa-components/cwa-component-group, anchor: how-it-works, sectionHash: 'sha256:adcb2c0f402b205e', title: '<CwaComponentGroup /> › How It Works' }
     author: llm-draft

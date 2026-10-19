@@ -24,7 +24,7 @@ questions:
         Anonymous visitors only ever get the published version, and a component with none is a 404 for them.
         Callers who may publish get the draft.
     sources:
-      - { kind: docs, page: /api/components/annotations/publishable, anchor: how-it-works-at-the-api-level, sectionHash: 'sha256:ee0527b8cde5be46' }
+      - { kind: docs, page: /api/components/annotations/publishable, anchor: how-it-works-at-the-api-level, sectionHash: 'sha256:a4527f37b398b377', title: 'Publishable › How It Works at the API Level' }
     author: llm-draft
 
   - id: api.page-data.base-class
@@ -49,7 +49,7 @@ questions:
         Page data extends `AbstractPageData`, which already provides `title` and `metaDescription` for SEO.
         You add your own fields, such as a component that a position on the template page shows.
     sources:
-      - { kind: docs, page: /core-concepts/dynamic-pages, anchor: creating-pagedata-in-php, sectionHash: 'sha256:c5477cafeb992cbc' }
+      - { kind: docs, page: /core-concepts/dynamic-pages, anchor: creating-pagedata-in-php, sectionHash: 'sha256:c5477cafeb992cbc', title: 'Dynamic Pages › Creating PageData in PHP' }
     author: llm-draft
 
   - id: api.components.endpoint-prefix
@@ -72,7 +72,7 @@ questions:
         The bundle puts every component's endpoints under `/component/`, so `Title` is at `/component/titles`.
         You don't set a route prefix yourself.
     sources:
-      - { kind: docs, page: /api/components/creating-components, anchor: url-prefix-convention, sectionHash: 'sha256:743ed3871d0aada5' }
+      - { kind: docs, page: /api/components/creating-components, anchor: url-prefix-convention, sectionHash: 'sha256:743ed3871d0aada5', title: 'Creating Components › URL Prefix Convention' }
     author: llm-draft
 
   - id: api.components.migrations
@@ -95,7 +95,7 @@ questions:
         The diff writes a migration that creates the component's table, and `migrate` runs it. Review it first,
         and delete its `down()`: CWA's migrations only go up.
     sources:
-      - { kind: docs, page: /api/components/creating-components, anchor: step-2-run-migrations, sectionHash: 'sha256:f2d4689b46fc8902' }
+      - { kind: docs, page: /api/components/creating-components, anchor: step-2-run-migrations, sectionHash: 'sha256:e27d0731cdaf6bc9', title: 'Creating Components › Step 2: Run Migrations' }
     author: llm-draft
 
   - id: api.components.inherited-properties
@@ -121,7 +121,7 @@ questions:
         `componentPositions`. Fields such as a title are yours to add, and `publishedAt` comes from the
         publishable trait.
     sources:
-      - { kind: docs, page: /api/components/creating-components, anchor: what-abstractcomponent-gives-you, sectionHash: 'sha256:81118f548996b5fb' }
+      - { kind: docs, page: /api/components/creating-components, anchor: what-abstractcomponent-gives-you, sectionHash: 'sha256:81118f548996b5fb', title: 'Creating Components › What AbstractComponent Gives You' }
     author: llm-draft
 
   - id: api.publishable.what-it-adds
@@ -144,5 +144,5 @@ questions:
         A publishable component has a draft that editors change and a published version that visitors see.
         Publishing copies the draft over the live version. Real-time updates come from `mercure: true`.
     sources:
-      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:5c8ec9f39ad9cd58' }
+      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:cd76322d674416ff', title: 'Draft & Publish Workflow › How It Works' }
     author: llm-draft

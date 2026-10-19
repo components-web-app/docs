@@ -29,7 +29,7 @@ questions:
         database refuses the insert, so the client gets a 500. Add the constraint, or map free text as
         `type: 'text'`.
     sources:
-      - { kind: docs, page: /api/components/creating-components, anchor: string-columns-need-a-length-limit, sectionHash: 'sha256:83348085c96e8374' }
+      - { kind: docs, page: /api/components/creating-components, anchor: string-columns-need-a-length-limit, sectionHash: 'sha256:83348085c96e8374', title: 'Creating Components › String Columns Need a Length Limit' }
     author: llm-draft
 
   - id: api.page-data.unmapped-property
@@ -57,7 +57,7 @@ questions:
         Your own properties need an explicit Doctrine mapping, such as `#[ORM\Column]` or `#[ORM\ManyToOne]` for
         a component. Without one, Doctrine ignores the property.
     sources:
-      - { kind: docs, page: /api/dynamic-pages, anchor: creating-a-pagedata-entity, sectionHash: 'sha256:fce7ca48fdec004c' }
+      - { kind: docs, page: /api/dynamic-pages, anchor: creating-a-pagedata-entity, sectionHash: 'sha256:fce7ca48fdec004c', title: 'Page Data & Nested Pages › Creating a PageData Entity' }
     author: llm-draft
 
   - id: api.page-data.current-record
@@ -85,7 +85,7 @@ questions:
         The API works out the current page data record from the `path` header, which takes a route path or a
         page data IRI. The Nuxt module sends it for you.
     sources:
-      - { kind: docs, page: /api/dynamic-pages, anchor: component-positions-from-pagedata, sectionHash: 'sha256:325ae33d66116561' }
+      - { kind: docs, page: /api/dynamic-pages, anchor: component-positions-from-pagedata, sectionHash: 'sha256:325ae33d66116561', title: 'Page Data & Nested Pages › Component Positions from PageData' }
     author: llm-draft
 
   - id: api.page-data.per-field-filter
@@ -112,8 +112,8 @@ questions:
         Per-field parameters such as `?title=` are ignored, not refused, so the client gets every record. Send
         `?search=news`.
     sources:
-      - { kind: docs, page: /api/dynamic-pages, anchor: searching-and-sorting, sectionHash: 'sha256:50184720c778ca50' }
-      - { kind: docs, page: /nuxt-module/component-helpers/collections-and-pagination, anchor: user-controlled-sorting-and-filtering, sectionHash: 'sha256:03f8634993a92fe2' }
+      - { kind: docs, page: /api/dynamic-pages, anchor: searching-and-sorting, sectionHash: 'sha256:228a678c3c908704', title: 'Page Data & Nested Pages › Searching and Sorting' }
+      - { kind: docs, page: /nuxt-module/component-helpers/collections-and-pagination, anchor: user-controlled-sorting-and-filtering, sectionHash: 'sha256:89340b68d293e3c4', title: 'Collections & Pagination › User-Controlled Sorting and Filtering' }
     author: llm-draft
 
   - id: api.nested.explicit-path
@@ -141,7 +141,7 @@ questions:
         Only generated routes are prefixed with the parent's path. An explicit `route:` is used as written, so
         include the parent's segments to nest it.
     sources:
-      - { kind: docs, page: /api/dynamic-pages, anchor: route-auto-prefixing, sectionHash: 'sha256:9b1730643953152f' }
+      - { kind: docs, page: /api/dynamic-pages, anchor: route-auto-prefixing, sectionHash: 'sha256:9b1730643953152f', title: 'Page Data & Nested Pages › Route Auto-Prefixing' }
     author: llm-draft
 
   - id: api.nested.parent-reference
@@ -169,7 +169,7 @@ questions:
         `parentPageData` makes a record a child of a page data record, and `parentPage` a child of a static page.
         Set one or the other, not both. `page` is the template page the record renders through.
     sources:
-      - { kind: docs, page: /api/dynamic-pages, anchor: the-php-fields, sectionHash: 'sha256:1161d5294df9ac5e' }
+      - { kind: docs, page: /api/dynamic-pages, anchor: the-php-fields, sectionHash: 'sha256:1161d5294df9ac5e', title: 'Page Data & Nested Pages › The PHP Fields' }
     author: llm-draft
 
   - id: api.nested.title-tag
@@ -197,7 +197,7 @@ questions:
         `<CwaPage />` collects the titles from every depth, leaf first, joined with ` | `. A flat page's title has
         no separator.
     sources:
-      - { kind: docs, page: /api/dynamic-pages, anchor: seo-titles-and-meta-descriptions-for-nested-pages, sectionHash: 'sha256:627d78f24975f4f1' }
+      - { kind: docs, page: /api/dynamic-pages, anchor: seo-titles-and-meta-descriptions-for-nested-pages, sectionHash: 'sha256:627d78f24975f4f1', title: 'Page Data & Nested Pages › SEO Titles and Meta Descriptions for Nested Pages' }
     author: llm-draft
 
   - id: api.routes.generate-under-unrouted
@@ -225,7 +225,7 @@ questions:
         A route can only be generated when the parent has one. Give the parent a route, or give the child an
         explicit path with `POST /_/routes` or `route:` in a fixture.
     sources:
-      - { kind: docs, page: /api/routes, anchor: route-generation, sectionHash: 'sha256:d75613602e69bada' }
+      - { kind: docs, page: /api/routes, anchor: route-generation, sectionHash: 'sha256:b555eceb06c10ff8', title: 'Routes › Route Generation' }
     author: llm-draft
 
   - id: api.routes.generate-replaces
@@ -252,7 +252,7 @@ questions:
       explanation: >-
         If the record already had a route, the old route becomes a redirect to the new one.
     sources:
-      - { kind: docs, page: /api/routes, anchor: route-generation, sectionHash: 'sha256:d75613602e69bada' }
+      - { kind: docs, page: /api/routes, anchor: route-generation, sectionHash: 'sha256:b555eceb06c10ff8', title: 'Routes › Route Generation' }
     author: llm-draft
 
   - id: api.fixtures.template-argument
@@ -294,8 +294,8 @@ questions:
         `pageData(template: …)` takes the template page's reference, the first argument of `page()`:
         `'blog-template'`. `BlogPageTemplate` is its `uiComponent`, the Vue file it renders through.
     sources:
-      - { kind: docs, page: /api/data-fixtures/getting-started, anchor: complete-example, sectionHash: 'sha256:bf3d624568ee73b6', block: 0, blockHash: 'sha256:80311eeb89bf5f14' }
-      - { kind: docs, page: /api/data-fixtures/writing-a-scaffold, anchor: references-route-names-and-paths, sectionHash: 'sha256:03d81e735ac1b09c' }
+      - { kind: docs, page: /api/data-fixtures/getting-started, anchor: complete-example, sectionHash: 'sha256:bf3d624568ee73b6', title: 'Getting Started with Fixtures › Complete Example', block: 0, blockHash: 'sha256:80311eeb89bf5f14' }
+      - { kind: docs, page: /api/data-fixtures/writing-a-scaffold, anchor: references-route-names-and-paths, sectionHash: 'sha256:03d81e735ac1b09c', title: 'Writing a Scaffold › References, Route Names and Paths' }
     author: llm-draft
 
   - id: api.fixtures.page-data-component
@@ -323,7 +323,7 @@ questions:
         A component set on a page data field is saved with the page data, so it needs no `component()` or
         `persist()`. Set the field before you call `pageData()`.
     sources:
-      - { kind: docs, page: /api/data-fixtures/writing-a-scaffold, anchor: components-on-page-data, sectionHash: 'sha256:1bbe8b30034943a4' }
+      - { kind: docs, page: /api/data-fixtures/writing-a-scaffold, anchor: components-on-page-data, sectionHash: 'sha256:1bbe8b30034943a4', title: 'Writing a Scaffold › Components on Page Data' }
     author: llm-draft
 
   - id: api.uploads.original-url
@@ -353,8 +353,8 @@ questions:
       optionNotes:
         c: 'The file is stored as `hero-<token>.jpg`, so its name can''t be predicted.'
     sources:
-      - { kind: docs, page: /api/components/annotations/uploadable, anchor: the-_metadata-response, sectionHash: 'sha256:3f7a3f20bd0abb70' }
-      - { kind: docs, page: /api/components/annotations/uploadable, anchor: stored-filenames, sectionHash: 'sha256:40dc0e354369675f' }
+      - { kind: docs, page: /api/components/annotations/uploadable, anchor: the-_metadata-response, sectionHash: 'sha256:3f7a3f20bd0abb70', title: 'Uploadable › The metadata Response' }
+      - { kind: docs, page: /api/components/annotations/uploadable, anchor: stored-filenames, sectionHash: 'sha256:06c2532c9882dcf7', title: 'Uploadable › Stored Filenames' }
     author: llm-draft
 
   - id: api.uploads.remove-file
@@ -382,7 +382,7 @@ questions:
       optionNotes:
         d: That removes the whole component, and its files with it.
     sources:
-      - { kind: docs, page: /api/components/annotations/uploadable, anchor: deleting-a-file, sectionHash: 'sha256:9d391cdd5497c4cc' }
+      - { kind: docs, page: /api/components/annotations/uploadable, anchor: deleting-a-file, sectionHash: 'sha256:9d391cdd5497c4cc', title: 'Uploadable › Deleting a File' }
     author: llm-draft
 
   - id: api.auth.cookie-extractor
@@ -428,5 +428,5 @@ questions:
         The cookie name has to match in three places: `set_cookies.<name>`, `token_extractors.cookie.name` and
         the bundle's `refresh_token.cookie_name`. Here the extractor looks for a cookie that is never set.
     sources:
-      - { kind: docs, page: /api/users/authentication, anchor: lexik_jwt_authentication-configuration, sectionHash: 'sha256:9151c9149be3685a', block: 0, blockHash: 'sha256:8f5c05746c1d7ae7' }
+      - { kind: docs, page: /api/users/authentication, anchor: lexik_jwt_authentication-configuration, sectionHash: 'sha256:9151c9149be3685a', title: 'API Authentication › lexikjwtauthentication Configuration', block: 0, blockHash: 'sha256:8f5c05746c1d7ae7' }
     author: llm-draft

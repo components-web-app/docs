@@ -38,7 +38,10 @@ this repo (`../api-components-bundle`, `../cwa-nuxt-3-module`, `../components-we
 1. Find the docs section that states the fact. Open the page and copy its URL path and heading anchor.
 2. Add the question to `bank/handwritten/<level>/<area>.yml`, with `sectionHash: 'sha256:0000000000000000'`
    (and `blockHash` the same, for code) as a placeholder.
-3. Run `pnpm quiz:stamp <id>`, then `pnpm quiz:check`.
+3. Run `pnpm quiz:stamp <id>`, then `pnpm quiz:check`. Stamping also adds the source's `title`, the
+   page title and section heading that the read-more link shows (`Page Caching › How Long a Page Is
+   Kept`), so a reader knows where a link goes before following it. After renaming a heading or a page,
+   `pnpm quiz:stamp --titles` refreshes every link title and nothing else.
 4. Ask someone else to review it. They add `reviewed: { by: <name>, version: <version> }`.
 
 Every hand-written question from intermediate up needs a `why`: one sentence on when the fact matters
@@ -71,8 +74,8 @@ that brought it in, so it joins the What's new quiz (see below).
         The middleware issues a `308` to the route's `redirectPath`.
       optionNotes:                        # optional: shown when a reader picks that wrong option
         a: …
-    sources:                              # 1 to 3. The first is the "Read more" link
-      - { kind: docs, page: /api/routes, anchor: redirects, sectionHash: 'sha256:…' }
+    sources:                              # 1 to 3. Each is a read-more link, labelled with its title
+      - { kind: docs, page: /api/routes, anchor: redirects, sectionHash: 'sha256:…', title: 'Routes › Redirects' }
     author: your-name
 ```
 

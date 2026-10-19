@@ -29,7 +29,7 @@ questions:
       optionNotes:
         a: An anonymous visitor's route response is publicly cacheable.
     sources:
-      - { kind: docs, page: /api/http-caching, anchor: http-cache-safety, sectionHash: 'sha256:f7732bd3730f4608' }
+      - { kind: docs, page: /api/http-caching, anchor: http-cache-safety, sectionHash: 'sha256:f7732bd3730f4608', title: 'HTTP Caching › HTTP Cache Safety' }
     author: llm-draft
 
   - id: api.cache.vary-cookie
@@ -55,7 +55,7 @@ questions:
         Varying on the cookie would split the cache for anonymous visitors. It isn't needed either: the
         responses that differ are marked non-cacheable outright, and the anonymous variant carries no cookie.
     sources:
-      - { kind: docs, page: /api/http-caching, anchor: http-cache-safety, sectionHash: 'sha256:f7732bd3730f4608' }
+      - { kind: docs, page: /api/http-caching, anchor: http-cache-safety, sectionHash: 'sha256:f7732bd3730f4608', title: 'HTTP Caching › HTTP Cache Safety' }
     author: llm-draft
 
   - id: api.cache.component-save-purge
@@ -84,7 +84,7 @@ questions:
         The component's IRI is purged, so its response and every cached page tagged with it refresh. A manifest
         only lists IRIs, and that IRI hasn't changed, so no manifest is purged.
     sources:
-      - { kind: docs, page: /api/http-caching, anchor: resource-manifests-are-tagged-per-page, sectionHash: 'sha256:c9b069e644d128b1' }
+      - { kind: docs, page: /api/http-caching, anchor: resource-manifests-are-tagged-per-page, sectionHash: 'sha256:c9b069e644d128b1', title: 'HTTP Caching › Resource Manifests Are Tagged per Page' }
     author: llm-draft
 
   - id: api.cache.scheduled-publish
@@ -110,7 +110,7 @@ questions:
         A component with a future `publishedAt` sends `Expires` set to that date, and the bundle lowers
         `s-maxage` and `max-age` to the time left. The cached copy expires on time with no purge.
     sources:
-      - { kind: docs, page: /api/http-caching, anchor: scheduled-publication-and-cache-lifetime, sectionHash: 'sha256:302347fe1fa50302' }
+      - { kind: docs, page: /api/http-caching, anchor: scheduled-publication-and-cache-lifetime, sectionHash: 'sha256:1493bbf7a17d8444', title: 'HTTP Caching › Scheduled Publication and Cache Lifetime' }
     author: llm-draft
 
   - id: api.cache.site-config-tag
@@ -137,7 +137,7 @@ questions:
         The module tags every page it caches with `cwa-html`, and a write to a class in
         `purge_rendered_html_classes` (site config by default) purges it. Both sides must use the same name.
     sources:
-      - { kind: docs, page: /api/http-caching, anchor: purging-every-rendered-page, sectionHash: 'sha256:ef0a84284564cd0d' }
+      - { kind: docs, page: /api/http-caching, anchor: purging-every-rendered-page, sectionHash: 'sha256:ef0a84284564cd0d', title: 'HTTP Caching › Purging Every Rendered Page' }
     author: llm-draft
 
   - id: api.security.unplaced-component
@@ -163,7 +163,7 @@ questions:
         With no location at all, every check in the component voter abstains, and the voter grants access. Use
         `#[Silverback\Publishable]` or your own security if a component must stay private before it is placed.
     sources:
-      - { kind: docs, page: /api/users/access-control, anchor: component-security, sectionHash: 'sha256:a4d80b93ea7723cf' }
+      - { kind: docs, page: /api/users/access-control, anchor: component-security, sectionHash: 'sha256:92f2ea65acea4a29', title: 'Access Control › Component Security' }
     author: llm-draft
 
   - id: api.security.unrouted-parent
@@ -190,8 +190,8 @@ questions:
         So the parent renders at its depth on the child's URL. It isn't listed in `GET /_/pages`, which only
         lists records with their own live route.
     sources:
-      - { kind: docs, page: /api/users/access-control, anchor: public-access-follows-routes, sectionHash: 'sha256:d1fa4c0f3f1ae8bc' }
-      - { kind: docs, page: /api/users/access-control, anchor: routable_security, sectionHash: 'sha256:66074de1539e062c' }
+      - { kind: docs, page: /api/users/access-control, anchor: public-access-follows-routes, sectionHash: 'sha256:0f66cb5cfc7476bb', title: 'Access Control › Public Access Follows Routes' }
+      - { kind: docs, page: /api/users/access-control, anchor: routable_security, sectionHash: 'sha256:02b59895a065fe67', title: 'Access Control › routablesecurity' }
     author: llm-draft
 
   - id: api.filters.or-where
@@ -218,7 +218,7 @@ questions:
         The query extensions for drafts, go-live dates and route security run before filters. A top-level OR
         undoes them. Collect the clauses in an `Expr\Orx` and apply it with `andWhere()`.
     sources:
-      - { kind: docs, page: /api/components/annotations/publishable, anchor: writing-safe-filters, sectionHash: 'sha256:8488ea99222de51c' }
+      - { kind: docs, page: /api/components/annotations/publishable, anchor: writing-safe-filters, sectionHash: 'sha256:8488ea99222de51c', title: 'Publishable › Writing Safe Filters' }
     author: llm-draft
 
   - id: api.filters.and-where-code
@@ -251,7 +251,7 @@ questions:
         `orWhere()` ORs against everything already on the query, including the conditions that hide drafts and
         routes that aren't live. Wrap your OR clauses in one `andWhere()`.
     sources:
-      - { kind: docs, page: /api/components/annotations/publishable, anchor: writing-safe-filters, sectionHash: 'sha256:8488ea99222de51c', block: 0, blockHash: 'sha256:4c6a4fbf5379e81e' }
+      - { kind: docs, page: /api/components/annotations/publishable, anchor: writing-safe-filters, sectionHash: 'sha256:8488ea99222de51c', title: 'Publishable › Writing Safe Filters', block: 0, blockHash: 'sha256:4c6a4fbf5379e81e' }
     author: llm-draft
 
   - id: api.publishable.permission-writes
@@ -277,7 +277,7 @@ questions:
         Users who don't match `publishable.permission` never see drafts, and their writes skip the draft stage:
         a `POST` is published straight away and a `PATCH` updates the published version.
     sources:
-      - { kind: docs, page: /api/components/annotations/publishable, anchor: configuring-who-can-publish, sectionHash: 'sha256:c3230d5afeef2686' }
+      - { kind: docs, page: /api/components/annotations/publishable, anchor: configuring-who-can-publish, sectionHash: 'sha256:c3230d5afeef2686', title: 'Publishable › Configuring Who Can Publish' }
     author: llm-draft
 
   - id: api.real-time.protocol-version
@@ -316,7 +316,7 @@ questions:
         keeps the config independent of the bundle's version. 1.0 tokens then need the `iss`, `sub` and
         `client_id` claims.
     sources:
-      - { kind: docs, page: /api/real-time, anchor: mercureyaml, sectionHash: 'sha256:d44a2522865ee839', block: 0, blockHash: 'sha256:46bd4d8c83cac316' }
+      - { kind: docs, page: /api/real-time, anchor: mercureyaml, sectionHash: 'sha256:d44a2522865ee839', title: 'Real-Time Updates (Mercure) › mercure.yaml', block: 0, blockHash: 'sha256:46bd4d8c83cac316' }
     author: llm-draft
 
   - id: api.real-time.cookie-name
@@ -350,8 +350,8 @@ questions:
         On 0.6, a hub with no `cookie_name` names the subscriber cookie `mercure_access_token` while
         `kernel.debug` is on, and a hub expecting `__Secure-mercure_access_token` doesn't read it. Pin the name.
     sources:
-      - { kind: docs, page: /api/real-time, anchor: mercureyaml, sectionHash: 'sha256:d44a2522865ee839', block: 0, blockHash: 'sha256:46bd4d8c83cac316' }
-      - { kind: docs, page: /api/real-time, anchor: the-subscriber-cookie, sectionHash: 'sha256:b67625403db2091b' }
+      - { kind: docs, page: /api/real-time, anchor: mercureyaml, sectionHash: 'sha256:d44a2522865ee839', title: 'Real-Time Updates (Mercure) › mercure.yaml', block: 0, blockHash: 'sha256:46bd4d8c83cac316' }
+      - { kind: docs, page: /api/real-time, anchor: the-subscriber-cookie, sectionHash: 'sha256:b67625403db2091b', title: 'Real-Time Updates (Mercure) › The Subscriber Cookie' }
     author: llm-draft
 
   - id: api.cache.personalised-classes
@@ -382,7 +382,7 @@ questions:
         A class in `personalised_resource_classes` gets `private, no-store` on authenticated `GET`s. The first
         three are the defaults; publishable resources are matched without being listed.
     sources:
-      - { kind: docs, page: /api/http-caching, anchor: http-cache-safety, sectionHash: 'sha256:f7732bd3730f4608', block: 1, blockHash: 'sha256:4b182f6dadb04642' }
+      - { kind: docs, page: /api/http-caching, anchor: http-cache-safety, sectionHash: 'sha256:f7732bd3730f4608', title: 'HTTP Caching › HTTP Cache Safety', block: 1, blockHash: 'sha256:4b182f6dadb04642' }
     author: llm-draft
 
   - id: api.fixtures.link-iri-page-data
@@ -414,6 +414,6 @@ questions:
         b: A template page's reference names the page itself, with `linkIri(page:)`. Many records render through one template.
     since: [{ repo: api-components-bundle, version: '2.0.0-alpha.22' }]
     sources:
-      - { kind: docs, page: /api/data-fixtures/writing-a-scaffold, anchor: linking-routes-and-iris, sectionHash: 'sha256:87e67160f8a7aec6' }
-      - { kind: docs, page: /api/data-fixtures/writing-a-scaffold, anchor: references-route-names-and-paths, sectionHash: 'sha256:03d81e735ac1b09c' }
+      - { kind: docs, page: /api/data-fixtures/writing-a-scaffold, anchor: linking-routes-and-iris, sectionHash: 'sha256:87e67160f8a7aec6', title: 'Writing a Scaffold › Linking Routes and IRIs' }
+      - { kind: docs, page: /api/data-fixtures/writing-a-scaffold, anchor: references-route-names-and-paths, sectionHash: 'sha256:03d81e735ac1b09c', title: 'Writing a Scaffold › References, Route Names and Paths' }
     author: llm-draft

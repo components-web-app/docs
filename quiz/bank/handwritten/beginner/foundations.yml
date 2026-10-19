@@ -27,8 +27,8 @@ questions:
       optionNotes:
         b: CWA's Vue files are layouts, page templates and components. None of them sets a URL.
     sources:
-      - { kind: docs, page: /core-concepts/architecture, anchor: what-you-never-write, sectionHash: 'sha256:1b43f41f0f1125b5' }
-      - { kind: docs, page: /core-concepts/the-data-model, anchor: route, sectionHash: 'sha256:48c85cc1328f40b5' }
+      - { kind: docs, page: /core-concepts/architecture, anchor: what-you-never-write, sectionHash: 'sha256:1b43f41f0f1125b5', title: 'How It All Works › What You Never Write' }
+      - { kind: docs, page: /core-concepts/the-data-model, anchor: route, sectionHash: 'sha256:48c85cc1328f40b5', title: 'The Data Model › Route' }
     author: llm-draft
 
   - id: core.architecture.renders-api-structure
@@ -56,7 +56,7 @@ questions:
         The content structure is managed through the API, and the front end renders whatever structure the
         API describes. The module fetches the page's components and renders each one with its Vue file.
     sources:
-      - { kind: docs, page: /core-concepts/architecture, anchor: the-request-lifecycle, sectionHash: 'sha256:b8b584459c4889d1' }
+      - { kind: docs, page: /core-concepts/architecture, anchor: the-request-lifecycle, sectionHash: 'sha256:b8b584459c4889d1', title: 'How It All Works › The Request Lifecycle' }
     author: llm-draft
 
   - id: core.architecture.three-layers
@@ -79,7 +79,7 @@ questions:
         The API bundle (Symfony and API Platform) stores the content, the Nuxt module renders it and
         provides the admin, and the template app wires the two together as a starter project.
     sources:
-      - { kind: docs, page: /core-concepts/architecture, anchor: the-three-layers, sectionHash: 'sha256:dca53d81c9b29087' }
+      - { kind: docs, page: /core-concepts/architecture, anchor: the-three-layers, sectionHash: 'sha256:dca53d81c9b29087', title: 'How It All Works › The Three Layers' }
     author: llm-draft
 
   - id: core.architecture.api-you-write
@@ -102,7 +102,7 @@ questions:
         The bundle comes with the content data model, the REST endpoints, auth and a user system. You write
         your own component entities and your page data entities (the records behind dynamic pages).
     sources:
-      - { kind: docs, page: /core-concepts/architecture, anchor: the-api-bundle, sectionHash: 'sha256:809b38805c40261f' }
+      - { kind: docs, page: /core-concepts/architecture, anchor: the-api-bundle, sectionHash: 'sha256:809b38805c40261f', title: 'How It All Works › The API Bundle' }
     author: llm-draft
 
   - id: core.request.page-names
@@ -127,7 +127,7 @@ questions:
         The page names its layout (such as `CwaLayoutPrimary`) and its page template (such as
         `CwaPagePrimaryPageTemplate`). The layout renders first, and the page template renders inside it.
     sources:
-      - { kind: docs, page: /core-concepts/architecture, anchor: the-request-lifecycle, sectionHash: 'sha256:b8b584459c4889d1' }
+      - { kind: docs, page: /core-concepts/architecture, anchor: the-request-lifecycle, sectionHash: 'sha256:b8b584459c4889d1', title: 'How It All Works › The Request Lifecycle' }
     author: llm-draft
 
   - id: core.request.concurrent-fetch
@@ -150,7 +150,7 @@ questions:
         The whole tree fetches concurrently, helped by the resource manifest that lists every resource the
         page renders. The module's Pinia store updates reactively as the data arrives.
     sources:
-      - { kind: docs, page: /core-concepts/architecture, anchor: the-request-lifecycle, sectionHash: 'sha256:b8b584459c4889d1' }
+      - { kind: docs, page: /core-concepts/architecture, anchor: the-request-lifecycle, sectionHash: 'sha256:b8b584459c4889d1', title: 'How It All Works › The Request Lifecycle' }
     author: llm-draft
 
   - id: core.data-model.chain-order
@@ -175,8 +175,8 @@ questions:
         The route points to the page, the page has component groups, each group holds component positions,
         and each position holds one component. The page also names its layout, which has groups of its own.
     sources:
-      - { kind: docs, page: /core-concepts/the-data-model, anchor: the-resource-chain, sectionHash: 'sha256:023f6eb636d90d06' }
-      - { kind: docs, page: /core-concepts/layouts-and-pages, anchor: pages, sectionHash: 'sha256:57170d51aa05ef7f' }
+      - { kind: docs, page: /core-concepts/the-data-model, anchor: the-resource-chain, sectionHash: 'sha256:023f6eb636d90d06', title: 'The Data Model › The Resource Chain' }
+      - { kind: docs, page: /core-concepts/layouts-and-pages, anchor: pages, sectionHash: 'sha256:55b332d0181ed163', title: 'Layouts & Pages › Pages' }
     author: llm-draft
 
   - id: core.data-model.position-holds
@@ -203,7 +203,7 @@ questions:
       optionNotes:
         a: A group holds many components, through one position each.
     sources:
-      - { kind: docs, page: /core-concepts/the-data-model, anchor: componentposition, sectionHash: 'sha256:63c138701ce85700' }
+      - { kind: docs, page: /core-concepts/the-data-model, anchor: componentposition, sectionHash: 'sha256:63c138701ce85700', title: 'The Data Model › ComponentPosition' }
     author: llm-draft
 
   - id: core.layouts.shared-navigation
@@ -228,7 +228,7 @@ questions:
         A layout can own component groups, and the most common is one for the navigation bar. Every page
         rendered in that layout shows the same group.
     sources:
-      - { kind: docs, page: /core-concepts/layouts-and-pages, anchor: componentgroups-in-layouts, sectionHash: 'sha256:b111d5044c5c0739' }
+      - { kind: docs, page: /core-concepts/layouts-and-pages, anchor: componentgroups-in-layouts, sectionHash: 'sha256:b111d5044c5c0739', title: 'Layouts & Pages › ComponentGroups in Layouts' }
     author: llm-draft
 
   - id: core.components.child-group
@@ -253,8 +253,8 @@ questions:
         A component group can belong to a layout, a page or a component. For a parent with children, the
         parent component's Vue file declares a `<CwaComponentGroup>`, and editors add the children to it.
     sources:
-      - { kind: docs, page: /core-concepts/components, anchor: component-patterns, sectionHash: 'sha256:d7524195850c0529' }
-      - { kind: docs, page: /core-concepts/the-data-model, anchor: componentgroup, sectionHash: 'sha256:2d82038914cdd316' }
+      - { kind: docs, page: /core-concepts/components, anchor: component-patterns, sectionHash: 'sha256:d7524195850c0529', title: 'Components › Component Patterns' }
+      - { kind: docs, page: /core-concepts/the-data-model, anchor: componentgroup, sectionHash: 'sha256:2d82038914cdd316', title: 'The Data Model › ComponentGroup' }
     author: llm-draft
 
   - id: core.dynamic.page-data-fields
@@ -279,7 +279,7 @@ questions:
         A page data class extends `AbstractPageData`, and your custom fields, such as a headline, body or
         image, live there. The template page holds the shared structure.
     sources:
-      - { kind: docs, page: /core-concepts/the-data-model, anchor: pagedata, sectionHash: 'sha256:25ea3618f08187fa' }
+      - { kind: docs, page: /core-concepts/the-data-model, anchor: pagedata, sectionHash: 'sha256:25ea3618f08187fa', title: 'The Data Model › PageData' }
     author: llm-draft
 
   - id: core.dynamic.page-field
@@ -304,8 +304,8 @@ questions:
         A page data record carries a `page` field naming the template page to render, such as
         `blog-template`. Every article that names it shares that one page structure.
     sources:
-      - { kind: docs, page: /core-concepts/the-data-model, anchor: pagedata, sectionHash: 'sha256:25ea3618f08187fa' }
-      - { kind: docs, page: /core-concepts/dynamic-pages, anchor: how-it-works, sectionHash: 'sha256:84e223903937ce11' }
+      - { kind: docs, page: /core-concepts/the-data-model, anchor: pagedata, sectionHash: 'sha256:25ea3618f08187fa', title: 'The Data Model › PageData' }
+      - { kind: docs, page: /core-concepts/dynamic-pages, anchor: how-it-works, sectionHash: 'sha256:84e223903937ce11', title: 'Dynamic Pages › How It Works' }
     author: llm-draft
 
   - id: core.layouts.second-layout
@@ -330,7 +330,7 @@ questions:
         A site can have several layouts, each a Vue file in `app/app/cwa/layouts/`. Each page uses one, and
         editors choose it in the admin.
     sources:
-      - { kind: docs, page: /core-concepts/layouts-and-pages, anchor: multiple-layouts, sectionHash: 'sha256:d2fbdbf846b8e68c' }
+      - { kind: docs, page: /core-concepts/layouts-and-pages, anchor: multiple-layouts, sectionHash: 'sha256:d2fbdbf846b8e68c', title: 'Layouts & Pages › Multiple Layouts' }
     author: llm-draft
 
   - id: core.pages.static-page
@@ -354,7 +354,7 @@ questions:
         A static page is one URL mapped to one page, with its own component groups. It suits a home, about or
         contact page. Template pages and page data are for repeating content, such as blog articles.
     sources:
-      - { kind: docs, page: /core-concepts/layouts-and-pages, anchor: static-pages, sectionHash: 'sha256:ba9f9423b9af7075' }
+      - { kind: docs, page: /core-concepts/layouts-and-pages, anchor: static-pages, sectionHash: 'sha256:ba9f9423b9af7075', title: 'Layouts & Pages › Static Pages' }
     author: llm-draft
 
   - id: core.dynamic.article-routes
@@ -379,7 +379,7 @@ questions:
         A template page has no URL of its own. Each page data record has its own route, and renders through
         the shared template page.
     sources:
-      - { kind: docs, page: /core-concepts/layouts-and-pages, anchor: template-pages-istemplate-true, sectionHash: 'sha256:aa5e8d6598a23a66' }
+      - { kind: docs, page: /core-concepts/layouts-and-pages, anchor: template-pages-istemplate-true, sectionHash: 'sha256:aa5e8d6598a23a66', title: 'Layouts & Pages › Template Pages (isTemplate: true)' }
     author: llm-draft
 
   - id: core.dynamic.blog-records
@@ -408,8 +408,8 @@ questions:
         One template page (a page record with `isTemplate: true`) names the layout and page template and holds
         the component groups. Each article is a page data record with its own route and fields.
     sources:
-      - { kind: docs, page: /core-concepts/dynamic-pages, anchor: the-problem, sectionHash: 'sha256:f0023694490ba751' }
-      - { kind: docs, page: /core-concepts/layouts-and-pages, anchor: template-pages-istemplate-true, sectionHash: 'sha256:aa5e8d6598a23a66' }
+      - { kind: docs, page: /core-concepts/dynamic-pages, anchor: the-problem, sectionHash: 'sha256:f0023694490ba751', title: 'Dynamic Pages › The Problem' }
+      - { kind: docs, page: /core-concepts/layouts-and-pages, anchor: template-pages-istemplate-true, sectionHash: 'sha256:aa5e8d6598a23a66', title: 'Layouts & Pages › Template Pages (isTemplate: true)' }
     author: llm-draft
 
   - id: core.pages.shared-page-template
@@ -434,7 +434,7 @@ questions:
         A page template is the Vue file a page renders through, and many pages can use the same one. Each page
         record keeps its own components in the groups the page template places.
     sources:
-      - { kind: docs, page: /getting-started/key-ideas, anchor: what-a-page-is-made-of, sectionHash: 'sha256:f6f747d30dd591b9' }
+      - { kind: docs, page: /getting-started/key-ideas, anchor: what-a-page-is-made-of, sectionHash: 'sha256:f6f747d30dd591b9', title: 'Key Ideas › What a page is made of' }
     author: llm-draft
 
   - id: core.dynamic.bound-position
@@ -460,8 +460,8 @@ questions:
         At render time a bound position resolves to the matching field on the current page data record, so
         each article shows its own `HtmlContent` component in that position.
     sources:
-      - { kind: docs, page: /core-concepts/dynamic-pages, anchor: linking-a-page-data-field-to-a-component-position, sectionHash: 'sha256:f256699eb9c03426' }
-      - { kind: docs, page: /core-concepts/dynamic-pages, anchor: how-it-works, sectionHash: 'sha256:84e223903937ce11' }
+      - { kind: docs, page: /core-concepts/dynamic-pages, anchor: linking-a-page-data-field-to-a-component-position, sectionHash: 'sha256:f256699eb9c03426', title: 'Dynamic Pages › Linking a Page Data Field to a Component Position' }
+      - { kind: docs, page: /core-concepts/dynamic-pages, anchor: how-it-works, sectionHash: 'sha256:84e223903937ce11', title: 'Dynamic Pages › How It Works' }
     author: llm-draft
 
   - id: core.draft.why-drafts
@@ -484,7 +484,7 @@ questions:
         Without drafts, every edit would show to visitors at once, so a half-rewritten section would go out in
         a broken state. Editors change the draft, and nothing goes live until they publish.
     sources:
-      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: the-problem-it-solves, sectionHash: 'sha256:a51fdd62f291c06f' }
+      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: the-problem-it-solves, sectionHash: 'sha256:a51fdd62f291c06f', title: 'Draft & Publish Workflow › The Problem It Solves' }
     author: llm-draft
 
   - id: core.draft.edit-mode-off
@@ -509,7 +509,7 @@ questions:
         The API decides from the auth cookie and the user's role, not from edit mode, so an editor sees drafts
         on every page view. Adding `?published=true` to a request forces the published version.
     sources:
-      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:5c8ec9f39ad9cd58' }
+      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:cd76322d674416ff', title: 'Draft & Publish Workflow › How It Works' }
     author: llm-draft
 
   - id: core.draft.new-component
@@ -534,7 +534,7 @@ questions:
         Adding a component creates its component position at once, but the component starts as a draft, so
         visitors don't see it. Publishing the component makes it visible.
     sources:
-      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: adding-removing-and-reordering-are-immediate, sectionHash: 'sha256:177d97708ef53e97' }
+      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: adding-removing-and-reordering-are-immediate, sectionHash: 'sha256:177d97708ef53e97', title: 'Draft & Publish Workflow › Adding, Removing and Reordering Are Immediate' }
     author: llm-draft
 
   - id: core.draft.whole-page
@@ -559,7 +559,7 @@ questions:
         Draft and publish work per component. A whole page is held back by its route, which can be Live,
         Scheduled or Not live. Until it's live, visitors get a 404 while admins can still preview and edit it.
     sources:
-      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: scheduling-a-whole-page, sectionHash: 'sha256:f7ee30010bd5c4ca' }
+      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: scheduling-a-whole-page, sectionHash: 'sha256:9f24518865adfd32', title: 'Draft & Publish Workflow › Scheduling a Whole Page' }
     author: llm-draft
 
   - id: core.draft.scheduled-component
@@ -586,8 +586,8 @@ questions:
       optionNotes:
         b: A route's go-live date holds back the whole page, not one component's change.
     sources:
-      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:5c8ec9f39ad9cd58' }
-      - { kind: docs, page: /core-concepts/admin-panel, anchor: scheduling-a-publish, sectionHash: 'sha256:0b33497824fcff3b' }
+      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:cd76322d674416ff', title: 'Draft & Publish Workflow › How It Works' }
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: scheduling-a-publish, sectionHash: 'sha256:bfd1b90b562d3d8c', title: 'The Admin Panel › Scheduling a Publish' }
     author: llm-draft
 
   - id: core.draft.publish-promotes
@@ -610,7 +610,7 @@ questions:
         Publishing promotes the draft to the published version, which the live site shows. Mercure then tells
         open browsers about the change.
     sources:
-      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:5c8ec9f39ad9cd58' }
+      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:cd76322d674416ff', title: 'Draft & Publish Workflow › How It Works' }
     author: llm-draft
 
   - id: core.admin.manager-panel
@@ -633,8 +633,8 @@ questions:
         Clicking a component selects it and opens the manager panel. Its tabs are the component type's admin
         tabs, so content is edited on the page itself.
     sources:
-      - { kind: docs, page: /core-concepts/admin-panel, anchor: edit-mode, sectionHash: 'sha256:05cb7587553eab14' }
-      - { kind: docs, page: /getting-started/key-ideas, anchor: editing, sectionHash: 'sha256:56ff4c5739a87e28' }
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: edit-mode, sectionHash: 'sha256:05cb7587553eab14', title: 'The Admin Panel › Edit Mode' }
+      - { kind: docs, page: /getting-started/key-ideas, anchor: editing, sectionHash: 'sha256:56ff4c5739a87e28', title: 'Key Ideas › Editing' }
     author: llm-draft
 
   - id: core.data-model.positions-created
@@ -659,7 +659,7 @@ questions:
         You rarely deal with positions directly. The admin creates one when an editor adds a component to a
         group.
     sources:
-      - { kind: docs, page: /getting-started/key-ideas, anchor: what-a-page-is-made-of, sectionHash: 'sha256:f6f747d30dd591b9' }
+      - { kind: docs, page: /getting-started/key-ideas, anchor: what-a-page-is-made-of, sectionHash: 'sha256:f6f747d30dd591b9', title: 'Key Ideas › What a page is made of' }
     author: llm-draft
 
   - id: core.pages.template-page-renders
@@ -685,7 +685,7 @@ questions:
         A template page renders through a page template like any other page, such as `PrimaryPageTemplate.vue`.
         What makes it a template page is that many page data records share it.
     sources:
-      - { kind: docs, page: /core-concepts/layouts-and-pages, anchor: template-pages-istemplate-true, sectionHash: 'sha256:aa5e8d6598a23a66' }
+      - { kind: docs, page: /core-concepts/layouts-and-pages, anchor: template-pages-istemplate-true, sectionHash: 'sha256:aa5e8d6598a23a66', title: 'Layouts & Pages › Template Pages (isTemplate: true)' }
     author: llm-draft
 
   - id: core.data-model.group-reference
@@ -713,8 +713,8 @@ questions:
         The `reference` is a stable name for the component group. The `location` says which record owns it,
         such as the page, by its IRI.
     sources:
-      - { kind: docs, page: /core-concepts/layouts-and-pages, anchor: componentgroups-in-layouts, sectionHash: 'sha256:b111d5044c5c0739' }
-      - { kind: docs, page: /core-concepts/glossary, anchor: stranded-component-group, sectionHash: 'sha256:0a9ca1562a31e9df' }
+      - { kind: docs, page: /core-concepts/layouts-and-pages, anchor: componentgroups-in-layouts, sectionHash: 'sha256:b111d5044c5c0739', title: 'Layouts & Pages › ComponentGroups in Layouts' }
+      - { kind: docs, page: /core-concepts/glossary, anchor: stranded-component-group, sectionHash: 'sha256:0a9ca1562a31e9df', title: 'Glossary › Stranded component group' }
     author: llm-draft
 
   - id: core.dynamic.template-page-component
@@ -740,8 +740,8 @@ questions:
         The template page holds the shared structure, its component groups, for every page data record that
         renders through it. Only a position bound to a page data field shows each article's own component.
     sources:
-      - { kind: docs, page: /core-concepts/layouts-and-pages, anchor: template-pages-istemplate-true, sectionHash: 'sha256:aa5e8d6598a23a66' }
-      - { kind: docs, page: /core-concepts/dynamic-pages, anchor: how-it-works, sectionHash: 'sha256:84e223903937ce11' }
+      - { kind: docs, page: /core-concepts/layouts-and-pages, anchor: template-pages-istemplate-true, sectionHash: 'sha256:aa5e8d6598a23a66', title: 'Layouts & Pages › Template Pages (isTemplate: true)' }
+      - { kind: docs, page: /core-concepts/dynamic-pages, anchor: how-it-works, sectionHash: 'sha256:84e223903937ce11', title: 'Dynamic Pages › How It Works' }
     author: llm-draft
 
   - id: core.architecture.module-routing
@@ -766,7 +766,7 @@ questions:
         The Nuxt module handles routing (URL → API → page → layout → components) and server-side rendering. You
         write the Vue files it renders.
     sources:
-      - { kind: docs, page: /core-concepts/architecture, anchor: the-nuxt-module, sectionHash: 'sha256:8c01b275fd349b30' }
+      - { kind: docs, page: /core-concepts/architecture, anchor: the-nuxt-module, sectionHash: 'sha256:8c01b275fd349b30', title: 'How It All Works › The Nuxt Module' }
     author: llm-draft
 
   - id: core.pages.places-groups
@@ -791,7 +791,7 @@ questions:
         The page template is the Vue file a page renders through, and it places the page's component groups.
         It renders inside the layout's `<slot />`.
     sources:
-      - { kind: docs, page: /getting-started/key-ideas, anchor: what-a-page-is-made-of, sectionHash: 'sha256:f6f747d30dd591b9' }
+      - { kind: docs, page: /getting-started/key-ideas, anchor: what-a-page-is-made-of, sectionHash: 'sha256:f6f747d30dd591b9', title: 'Key Ideas › What a page is made of' }
     author: llm-draft
 
   - id: core.dynamic.when-to-use
@@ -814,8 +814,8 @@ questions:
         Dynamic pages are the pattern for repeating content, such as blog articles, events, team members or
         products: one page structure, many URLs.
     sources:
-      - { kind: docs, page: /core-concepts/dynamic-pages, anchor: the-problem, sectionHash: 'sha256:f0023694490ba751' }
-      - { kind: docs, page: /core-concepts/layouts-and-pages, anchor: template-pages-istemplate-true, sectionHash: 'sha256:aa5e8d6598a23a66' }
+      - { kind: docs, page: /core-concepts/dynamic-pages, anchor: the-problem, sectionHash: 'sha256:f0023694490ba751', title: 'Dynamic Pages › The Problem' }
+      - { kind: docs, page: /core-concepts/layouts-and-pages, anchor: template-pages-istemplate-true, sectionHash: 'sha256:aa5e8d6598a23a66', title: 'Layouts & Pages › Template Pages (isTemplate: true)' }
     author: llm-draft
 
   - id: core.draft.publish-one
@@ -840,6 +840,6 @@ questions:
         The draft and published versions live on each component, so each one is published on its own. The
         other two keep their published versions until an editor publishes their drafts.
     sources:
-      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: adding-removing-and-reordering-are-immediate, sectionHash: 'sha256:177d97708ef53e97' }
-      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:5c8ec9f39ad9cd58' }
+      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: adding-removing-and-reordering-are-immediate, sectionHash: 'sha256:177d97708ef53e97', title: 'Draft & Publish Workflow › Adding, Removing and Reordering Are Immediate' }
+      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:cd76322d674416ff', title: 'Draft & Publish Workflow › How It Works' }
     author: llm-draft

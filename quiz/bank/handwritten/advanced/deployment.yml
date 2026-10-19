@@ -25,7 +25,7 @@ questions:
         Souin's cache store and Mercure's `bolt` transport are local to the pod. A purge only reaches its own
         pod, so a second pod would keep serving stale responses.
     sources:
-      - { kind: docs, page: /deployment/kubernetes, anchor: php-stays-at-one-replica, sectionHash: 'sha256:a474db71bf39f921' }
+      - { kind: docs, page: /deployment/kubernetes, anchor: php-stays-at-one-replica, sectionHash: 'sha256:18bc1ca488a2a6d2', title: 'Kubernetes & Helm › php stays at one replica' }
     author: llm-draft
 
   - id: deploy.k8s.nuxt-hpa-target
@@ -51,7 +51,7 @@ questions:
         The target is a share of the 100m CPU request, and the limit is 1000m. At 175% a pod is using about 175m,
         roughly one 150ms render a second, before renders start to queue.
     sources:
-      - { kind: docs, page: /deployment/kubernetes, anchor: nuxt-scales-out, sectionHash: 'sha256:a8e538571408aad4' }
+      - { kind: docs, page: /deployment/kubernetes, anchor: nuxt-scales-out, sectionHash: 'sha256:a8e538571408aad4', title: 'Kubernetes & Helm › Nuxt scales out' }
     author: llm-draft
 
   - id: deploy.cicd.purge-after-deploy
@@ -77,7 +77,7 @@ questions:
         A new front-end build renames its JavaScript and CSS files and deletes the old ones. Cached pages would
         point at files that no longer exist, so visitors would get an unstyled page.
     sources:
-      - { kind: docs, page: /deployment/ci-cd, anchor: why-every-deploy-clears-the-page-cache, sectionHash: 'sha256:8ce1ee7f40bc4869' }
+      - { kind: docs, page: /deployment/ci-cd, anchor: why-every-deploy-clears-the-page-cache, sectionHash: 'sha256:a1715fec4542586c', title: 'CI/CD › Why every deploy clears the page cache' }
     author: llm-draft
 
   - id: deploy.cicd.purge-waits-for-rollout
@@ -104,7 +104,7 @@ questions:
         in the cache. Only then does the deploy purge the cached pages from the php pod (`purge-rendered-html`,
         or `purge-http-cache` when Cloudflare is configured).
     sources:
-      - { kind: docs, page: /deployment/ci-cd, anchor: why-every-deploy-clears-the-page-cache, sectionHash: 'sha256:8ce1ee7f40bc4869' }
+      - { kind: docs, page: /deployment/ci-cd, anchor: why-every-deploy-clears-the-page-cache, sectionHash: 'sha256:a1715fec4542586c', title: 'CI/CD › Why every deploy clears the page cache' }
     author: llm-draft
 
   - id: deploy.cloudflare.option-a-rules
@@ -132,7 +132,7 @@ questions:
       optionNotes:
         b: A bypass-everything rule sends every `/_nuxt` request to php.
     sources:
-      - { kind: docs, page: /deployment/cloudflare, anchor: leave-cloudflares-cache-alone, sectionHash: 'sha256:f263ccb3398c8784' }
+      - { kind: docs, page: /deployment/cloudflare, anchor: leave-cloudflares-cache-alone, sectionHash: 'sha256:a9bd1a1243d606d8', title: 'Cloudflare › Leave Cloudflare''s cache alone' }
     author: llm-draft
 
   - id: deploy.cloudflare.always-use-https
@@ -159,7 +159,7 @@ questions:
         redirect makes no exception, so while the origin's certificate is missing or expired, the challenge
         fails and no certificate can be issued.
     sources:
-      - { kind: docs, page: /deployment/cloudflare, anchor: each-deploy-track, sectionHash: 'sha256:7a1ff302b8717771' }
+      - { kind: docs, page: /deployment/cloudflare, anchor: each-deploy-track, sectionHash: 'sha256:7a1ff302b8717771', title: 'Cloudflare › Each deploy track' }
     author: llm-draft
 
   - id: deploy.origin.query-allowlist
@@ -187,7 +187,7 @@ questions:
       optionNotes:
         c: Never add `cwa_force`. Made-up values would all miss the cache.
     sources:
-      - { kind: docs, page: /deployment/origin-protection, anchor: query-parameters-on-pages, sectionHash: 'sha256:88d1767e2f8cba7c' }
+      - { kind: docs, page: /deployment/origin-protection, anchor: query-parameters-on-pages, sectionHash: 'sha256:355fc0dd4ccc150d', title: 'Origin Protection › Query Parameters on Pages' }
     author: llm-draft
 
   - id: deploy.origin.rate-limit-counts
@@ -213,5 +213,5 @@ questions:
         The limit runs inside the cache, so cache hits are never counted or refused. Over the limit, a visitor
         gets a `429` with `Retry-After`.
     sources:
-      - { kind: docs, page: /deployment/origin-protection, anchor: rate-limit-on-cache-misses, sectionHash: 'sha256:8aa9c63e6a8937bc' }
+      - { kind: docs, page: /deployment/origin-protection, anchor: rate-limit-on-cache-misses, sectionHash: 'sha256:1f78ec443fe8a5be', title: 'Origin Protection › Rate Limit on Cache Misses' }
     author: llm-draft

@@ -290,6 +290,7 @@ options, answer lines are inside the code and not blank, and expert questions ci
   page: /nuxt-module/module-setup        # the URL path, as the site serves it
   anchor: install                        # the heading id, as the site renders it
   sectionHash: sha256:be07d232ea5ebdc5   # hash of the section's markdown
+  title: 'Module Setup › Install'        # the link's label: page title › heading, written by quiz:stamp
   block: 1                               # code questions: which fenced block in the section, from 0
   blockHash: sha256:4452d03e14874b65     # hash of that block's display text
 ```
@@ -648,6 +649,8 @@ Each line names the question id, the file and the reason. The exit code is 1 whe
 | A tag not in `config.yml` | error |
 | A docs page or anchor that no longer exists | error |
 | A docs `sectionHash` or `blockHash` that no longer matches | warning (stale) |
+| A docs source with no `title` | error |
+| A docs `title` that isn't the page title and heading any more | warning (`pnpm quiz:stamp --titles`) |
 | Code that isn't a contiguous run of its block, or a spot-the-mistake that differs in more or fewer than one line, or whose `fix` isn't the original | error |
 | Pinned source lines that don't match `linesHash` at the pinned commit | error |
 | Source lines that changed between the pinned commit and the tracked branch | warning (stale), with "moved to L…" when the same lines are found elsewhere in the file |

@@ -41,10 +41,12 @@ questions:
         page: /nuxt-module/composables/component/use-cwa-component
         anchor: return-values
         sectionHash: sha256:db39379ae980b37e
+        title: useCwaComponent › Return Values
       - kind: docs
         page: /core-concepts/components
         anchor: _2-the-vue-component-the-display
         sectionHash: sha256:cc87dc88884ee7f5
+        title: Components › 2. The Vue component (the display)
         block: 0
         blockHash: sha256:58f142cdf2cf43cb
     generator:
@@ -95,10 +97,12 @@ questions:
         page: /nuxt-module/composables/component/use-cwa-component
         anchor: return-values
         sectionHash: sha256:db39379ae980b37e
+        title: useCwaComponent › Return Values
       - kind: docs
         page: /guides/your-first-component
         anchor: the-vue-file
         sectionHash: sha256:89e2acc4057f1248
+        title: Your First Component › The Vue file
         block: 1
         blockHash: sha256:df2358ca3d144100
     generator:
@@ -152,10 +156,12 @@ questions:
         page: /nuxt-module/composables/component/use-cwa-component
         anchor: return-values
         sectionHash: sha256:db39379ae980b37e
+        title: useCwaComponent › Return Values
       - kind: docs
         page: /guides/alternative-ui-variants
         anchor: approach-1-style-classes
         sectionHash: sha256:e84f4c49ad58dc77
+        title: "Alternative UI Variants › Approach 1: Style Classes"
         block: 0
         blockHash: sha256:32a1bc29f03d7ebd
     generator:
@@ -204,10 +210,12 @@ questions:
         page: /nuxt-module/composables/component/use-cwa-component
         anchor: return-values
         sectionHash: sha256:db39379ae980b37e
+        title: useCwaComponent › Return Values
       - kind: docs
         page: /guides/alternative-ui-variants
         anchor: conditional-rendering-based-on-style
         sectionHash: sha256:dbde099ff99715c7
+        title: Alternative UI Variants › Conditional rendering based on style
         block: 0
         blockHash: sha256:9cc2b9251be32c5c
     generator:
@@ -256,10 +264,12 @@ questions:
         page: /nuxt-module/composables/component/use-cwa-component
         anchor: return-values
         sectionHash: sha256:db39379ae980b37e
+        title: useCwaComponent › Return Values
       - kind: docs
         page: /guides/alternative-ui-variants
         anchor: the-ui-file
         sectionHash: sha256:97d0c4346cea8201
+        title: Alternative UI Variants › The ui/ file
         block: 0
         blockHash: sha256:67f7d40df9d95df6
     generator:
@@ -303,10 +313,12 @@ questions:
         page: /nuxt-module/composables/component/use-cwa-component
         anchor: return-values
         sectionHash: sha256:db39379ae980b37e
+        title: useCwaComponent › Return Values
       - kind: docs
         page: /nuxt-module/composables/component/use-cwa-component
         anchor: example
         sectionHash: sha256:df121ccdabd91158
+        title: useCwaComponent › Example
         block: 0
         blockHash: sha256:0eb850e42ebd4efc
     generator:
@@ -346,10 +358,12 @@ questions:
         page: /api/data-fixtures/builder-reference
         anchor: groupbuilder-from-any-group-call
         sectionHash: sha256:1297bf39d87b7f81
+        title: Builder Reference › GroupBuilder — from Any ->group() Call
       - kind: docs
         page: /core-concepts/dynamic-pages
         anchor: linking-a-page-data-field-to-a-component-position
         sectionHash: sha256:f256699eb9c03426
+        title: Dynamic Pages › Linking a Page Data Field to a Component Position
         block: 0
         blockHash: sha256:d24b319f202e0b32
     generator:
@@ -406,10 +420,12 @@ questions:
         page: /api/data-fixtures/builder-reference
         anchor: groupbuilder-from-any-group-call
         sectionHash: sha256:1297bf39d87b7f81
+        title: Builder Reference › GroupBuilder — from Any ->group() Call
       - kind: docs
         page: /guides/your-first-dynamic-page
         anchor: via-fixtures
         sectionHash: sha256:15ec0a7f9e44973c
+        title: Your First Dynamic Page › Via fixtures
         block: 0
         blockHash: sha256:63ed8fac2fd9414d
     generator:
@@ -458,10 +474,12 @@ questions:
         page: /api/data-fixtures/builder-reference
         anchor: groupbuilder-from-any-group-call
         sectionHash: sha256:1297bf39d87b7f81
+        title: Builder Reference › GroupBuilder — from Any ->group() Call
       - kind: docs
         page: /api/data-fixtures/getting-started
         anchor: complete-example
         sectionHash: sha256:bf3d624568ee73b6
+        title: Getting Started with Fixtures › Complete Example
         block: 0
         blockHash: sha256:80311eeb89bf5f14
     generator:
@@ -500,10 +518,12 @@ questions:
         page: /core-concepts/layouts-and-pages
         anchor: template-pages-istemplate-true
         sectionHash: sha256:aa5e8d6598a23a66
+        title: "Layouts & Pages › Template Pages (isTemplate: true)"
       - kind: docs
         page: /core-concepts/dynamic-pages
         anchor: linking-a-page-data-field-to-a-component-position
         sectionHash: sha256:f256699eb9c03426
+        title: Dynamic Pages › Linking a Page Data Field to a Component Position
         block: 0
         blockHash: sha256:d24b319f202e0b32
     generator:
@@ -559,10 +579,12 @@ questions:
         page: /core-concepts/layouts-and-pages
         anchor: template-pages-istemplate-true
         sectionHash: sha256:aa5e8d6598a23a66
+        title: "Layouts & Pages › Template Pages (isTemplate: true)"
       - kind: docs
         page: /guides/your-first-dynamic-page
         anchor: via-fixtures
         sectionHash: sha256:15ec0a7f9e44973c
+        title: Your First Dynamic Page › Via fixtures
         block: 0
         blockHash: sha256:63ed8fac2fd9414d
     generator:
@@ -599,10 +621,12 @@ questions:
         page: /core-concepts/layouts-and-pages
         anchor: template-pages-istemplate-true
         sectionHash: sha256:aa5e8d6598a23a66
+        title: "Layouts & Pages › Template Pages (isTemplate: true)"
       - kind: docs
         page: /api/data-fixtures/builder-reference
         anchor: groupbuilder-from-any-group-call
         sectionHash: sha256:1297bf39d87b7f81
+        title: Builder Reference › GroupBuilder — from Any ->group() Call
         block: 1
         blockHash: sha256:06c07e23e428b501
     generator:
@@ -644,10 +668,12 @@ questions:
         page: /api/components/annotations/publishable
         anchor: interaction-with-mercure
         sectionHash: sha256:2117062c85a6c4a1
+        title: Publishable › Interaction with Mercure
       - kind: docs
         page: /core-concepts/dynamic-pages
         anchor: creating-pagedata-in-php
         sectionHash: sha256:c5477cafeb992cbc
+        title: Dynamic Pages › Creating PageData in PHP
         block: 0
         blockHash: sha256:8cb33d52d28a2315
     generator:
@@ -690,10 +716,12 @@ questions:
         page: /api/components/annotations/publishable
         anchor: interaction-with-mercure
         sectionHash: sha256:2117062c85a6c4a1
+        title: Publishable › Interaction with Mercure
       - kind: docs
         page: /core-concepts/components
         anchor: _1-the-php-entity-the-data
         sectionHash: sha256:6786fd99b735348b
+        title: Components › 1. The PHP entity (the data)
         block: 0
         blockHash: sha256:972681e3c48c5ba7
     generator:
@@ -737,10 +765,12 @@ questions:
         page: /api/components/annotations/publishable
         anchor: interaction-with-mercure
         sectionHash: sha256:2117062c85a6c4a1
+        title: Publishable › Interaction with Mercure
       - kind: docs
         page: /core-concepts/draft-and-publish
         anchor: the-php-side
         sectionHash: sha256:211687be683a3bec
+        title: Draft & Publish Workflow › The PHP Side
         block: 0
         blockHash: sha256:742d418cba68d146
     generator:
@@ -799,10 +829,12 @@ questions:
         page: /api/components/annotations/publishable
         anchor: interaction-with-mercure
         sectionHash: sha256:2117062c85a6c4a1
+        title: Publishable › Interaction with Mercure
       - kind: docs
         page: /guides/your-first-component
         anchor: the-api-entity
-        sectionHash: sha256:42656507ceb034bb
+        sectionHash: sha256:a50c17ac1cd7afd9
+        title: Your First Component › The API entity
         block: 1
         blockHash: sha256:e1ea68436e541e9c
     generator:
@@ -854,10 +886,12 @@ questions:
         page: /api/components/annotations/publishable
         anchor: interaction-with-mercure
         sectionHash: sha256:2117062c85a6c4a1
+        title: Publishable › Interaction with Mercure
       - kind: docs
         page: /guides/your-first-dynamic-page
         anchor: the-file
-        sectionHash: sha256:933d9dcc30d23d71
+        sectionHash: sha256:fd4134050fe8c59f
+        title: Your First Dynamic Page › The File
         block: 0
         blockHash: sha256:b5bf9e2ca8eaac7e
     generator:
@@ -906,10 +940,12 @@ questions:
         page: /api/components/annotations/publishable
         anchor: interaction-with-mercure
         sectionHash: sha256:2117062c85a6c4a1
+        title: Publishable › Interaction with Mercure
       - kind: docs
         page: /api/components/creating-components
         anchor: step-1-create-the-entity
         sectionHash: sha256:fd6680f4797a3457
+        title: "Creating Components › Step 1: Create the Entity"
         block: 0
         blockHash: sha256:8eee9ab76bc59a52
     generator:
@@ -952,10 +988,12 @@ questions:
         page: /core-concepts/draft-and-publish
         anchor: validation-groups
         sectionHash: sha256:24caa89232de0fc9
+        title: Draft & Publish Workflow › Validation Groups
       - kind: docs
         page: /core-concepts/draft-and-publish
         anchor: the-php-side
         sectionHash: sha256:211687be683a3bec
+        title: Draft & Publish Workflow › The PHP Side
         block: 0
         blockHash: sha256:742d418cba68d146
     generator:
@@ -1013,10 +1051,12 @@ questions:
         page: /core-concepts/draft-and-publish
         anchor: validation-groups
         sectionHash: sha256:24caa89232de0fc9
+        title: Draft & Publish Workflow › Validation Groups
       - kind: docs
         page: /guides/your-first-component
         anchor: the-api-entity
-        sectionHash: sha256:42656507ceb034bb
+        sectionHash: sha256:a50c17ac1cd7afd9
+        title: Your First Component › The API entity
         block: 1
         blockHash: sha256:e1ea68436e541e9c
     generator:
@@ -1071,10 +1111,12 @@ questions:
         page: /core-concepts/draft-and-publish
         anchor: validation-groups
         sectionHash: sha256:24caa89232de0fc9
+        title: Draft & Publish Workflow › Validation Groups
       - kind: docs
         page: /api/components/creating-components
         anchor: a-complete-example
         sectionHash: sha256:a7d66fe3ad78d78e
+        title: Creating Components › A Complete Example
         block: 0
         blockHash: sha256:dac33d6b7f3af303
     generator:
@@ -1119,11 +1161,13 @@ questions:
       - kind: docs
         page: /nuxt-module/cwa-components/cwa-component-group
         anchor: allowed-components
-        sectionHash: sha256:40f293f36d1ddb62
+        sectionHash: sha256:df8c8d2bc0897bee
+        title: <CwaComponentGroup /> › Allowed Components
       - kind: docs
         page: /core-concepts/layouts-and-pages
         anchor: componentgroups-in-layouts
         sectionHash: sha256:b111d5044c5c0739
+        title: Layouts & Pages › ComponentGroups in Layouts
         block: 0
         blockHash: sha256:7478601c33abbb39
     generator:
@@ -1177,11 +1221,13 @@ questions:
       - kind: docs
         page: /nuxt-module/cwa-components/cwa-component-group
         anchor: allowed-components
-        sectionHash: sha256:40f293f36d1ddb62
+        sectionHash: sha256:df8c8d2bc0897bee
+        title: <CwaComponentGroup /> › Allowed Components
       - kind: docs
         page: /guides/your-first-layout
         anchor: the-file
         sectionHash: sha256:a1f4ee1da582b30f
+        title: Your First Layout › The File
         block: 0
         blockHash: sha256:cfdf8a99c2ad44d7
     generator:
@@ -1217,7 +1263,8 @@ questions:
       - kind: docs
         page: /nuxt-module/cwa-components/cwa-component-group
         anchor: allowed-components
-        sectionHash: sha256:40f293f36d1ddb62
+        sectionHash: sha256:df8c8d2bc0897bee
+        title: <CwaComponentGroup /> › Allowed Components
         block: 0
         blockHash: sha256:5671f480ab1307de
     generator:
@@ -1268,11 +1315,13 @@ questions:
       - kind: docs
         page: /api/data-fixtures/builder-reference
         anchor: seeding-redirects
-        sectionHash: sha256:9297adedf54a8e3a
+        sectionHash: sha256:668bdbf85ddf57a0
+        title: Builder Reference › Seeding Redirects
       - kind: docs
         page: /api/data-fixtures/writing-a-scaffold
         anchor: one-method-per-layout-page-and-page-data
         sectionHash: sha256:8faa982e6add6964
+        title: Writing a Scaffold › One Method per Layout, Page and Page Data
         block: 0
         blockHash: sha256:72fed91ce7506e56
     generator:
@@ -1308,11 +1357,13 @@ questions:
       - kind: docs
         page: /api/data-fixtures/builder-reference
         anchor: seeding-redirects
-        sectionHash: sha256:9297adedf54a8e3a
+        sectionHash: sha256:668bdbf85ddf57a0
+        title: Builder Reference › Seeding Redirects
       - kind: docs
         page: /api/data-fixtures/builder-reference
         anchor: a-builder-as-the-target
         sectionHash: sha256:cba05e76a565fe2f
+        title: Builder Reference › A Builder as the Target
         block: 0
         blockHash: sha256:99ff70a86137c443
     generator:
@@ -1357,11 +1408,13 @@ questions:
       - kind: docs
         page: /api/data-fixtures/builder-reference
         anchor: seeding-redirects
-        sectionHash: sha256:9297adedf54a8e3a
+        sectionHash: sha256:668bdbf85ddf57a0
+        title: Builder Reference › Seeding Redirects
       - kind: docs
         page: /api/data-fixtures/appending
         anchor: more-than-one-scaffold
         sectionHash: sha256:6ae2b587531338d0
+        title: Appending & Multiple Scaffolds › More Than One Scaffold
         block: 0
         blockHash: sha256:75a2a3fad2b6b681
     generator:
@@ -1386,10 +1439,12 @@ questions:
         page: /api/data-fixtures/builder-reference
         anchor: groupbuilder-from-any-group-call
         sectionHash: sha256:1297bf39d87b7f81
+        title: Builder Reference › GroupBuilder — from Any ->group() Call
       - kind: docs
         page: /core-concepts/dynamic-pages
         anchor: linking-a-page-data-field-to-a-component-position
         sectionHash: sha256:f256699eb9c03426
+        title: Dynamic Pages › Linking a Page Data Field to a Component Position
         block: 0
         blockHash: sha256:d24b319f202e0b32
     generator:
@@ -1429,10 +1484,12 @@ questions:
         page: /core-concepts/layouts-and-pages
         anchor: template-pages-istemplate-true
         sectionHash: sha256:aa5e8d6598a23a66
+        title: "Layouts & Pages › Template Pages (isTemplate: true)"
       - kind: docs
         page: /core-concepts/dynamic-pages
         anchor: linking-a-page-data-field-to-a-component-position
         sectionHash: sha256:f256699eb9c03426
+        title: Dynamic Pages › Linking a Page Data Field to a Component Position
         block: 0
         blockHash: sha256:d24b319f202e0b32
     generator:
@@ -1471,7 +1528,8 @@ questions:
       - kind: docs
         page: /api/data-fixtures/builder-reference
         anchor: seeding-redirects
-        sectionHash: sha256:b79a3bbd3ab8180c
+        sectionHash: sha256:668bdbf85ddf57a0
+        title: Builder Reference › Seeding Redirects
         block: 0
         blockHash: sha256:9a291fce9b0fdb20
     generator:
@@ -1509,10 +1567,12 @@ questions:
         page: /core-concepts/layouts-and-pages
         anchor: template-pages-istemplate-true
         sectionHash: sha256:aa5e8d6598a23a66
+        title: "Layouts & Pages › Template Pages (isTemplate: true)"
       - kind: docs
         page: /api/data-fixtures/builder-reference
         anchor: pagebuilder-from-cwa-page
         sectionHash: sha256:09fa85294badea1e
+        title: Builder Reference › PageBuilder — from $cwa->page()
         block: 2
         blockHash: sha256:eaec88680c1e538a
     generator:

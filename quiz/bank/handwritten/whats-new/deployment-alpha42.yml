@@ -1,0 +1,91 @@
+# Hand-written What's new questions about deployment: template changes in 2.0.0-alpha.41 and 2.0.0-alpha.42.
+# Each one has a `since` naming the release that brought the change in.
+# Format: quiz/README.md. Run `pnpm quiz:stamp <id>` to fill in or refresh the hashes.
+
+questions:
+  - id: deploy.k8s.no-php-hpa
+    version: 1
+    status: live
+    level: intermediate
+    area: deployment
+    tags: [kubernetes]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      On a cluster running the template's chart with default values, `kubectl get hpa` lists the Nuxt HPA
+      only. Why is there none for php?
+    why: >-
+      An HPA that can never scale only adds noise, such as memory always shown over its target; it comes back
+      when you allow more than one API pod.
+    since: [{ repo: components-web-app, version: '2.0.0-alpha.42' }]
+    options:
+      - { id: a, text: 'The deploy failed to create it and should be re-run' }
+      - { id: b, text: 'php scales by memory, which an HPA can''t measure' }
+      - { id: c, text: 'The chart skips it while `autoscaling.maxReplicas` is 1' }
+      - { id: d, text: 'php is a StatefulSet, which an HPA can''t target' }
+    answer:
+      correct: c
+      explanation: >-
+        While `autoscaling.maxReplicas` is 1, the default, the chart renders no php HPA and the Deployment runs
+        `autoscaling.minReplicas` pods. Raising `maxReplicas` above 1 brings the HPA back.
+    sources:
+      - { kind: docs, page: /deployment/kubernetes, anchor: php-stays-at-one-replica, sectionHash: 'sha256:18bc1ca488a2a6d2', title: 'Kubernetes & Helm › php stays at one replica' }
+    author: llm-draft
+
+  - id: deploy.browser-tests.sitemap-pages
+    version: 1
+    status: live
+    level: intermediate
+    area: deployment
+    tags: [deployment]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      A new project keeps the template's `e2e/` tests unchanged. Its sitemap lists only the home page. What
+      happens when the browser tests run?
+    why: >-
+      The template's tests rely only on the admin user and the sitemap, so the sitemap is what a project must
+      get right for them to pass.
+    since: [{ repo: components-web-app, version: '2.0.0-alpha.42' }]
+    options:
+      - { id: a, text: 'They pass: the tests use the template''s sample pages' }
+      - { id: b, text: 'The loading bar test fails: it needs a second page' }
+      - { id: c, text: 'They are skipped until the sitemap has ten pages' }
+      - { id: d, text: 'Every test fails, because the admin can''t sign in' }
+    answer:
+      correct: b
+      explanation: >-
+        The loading bar test navigates from the first sitemap page to the second, so the sitemap needs at least
+        two pages. The tests no longer use the template's sample content.
+    sources:
+      - { kind: docs, page: /deployment/browser-tests, anchor: what-they-check, sectionHash: 'sha256:f25f106693ab6b84', title: 'Browser Tests › What they check' }
+    author: llm-draft
+
+  - id: deploy.cicd.warm-after-fixtures
+    version: 1
+    status: live
+    level: advanced
+    area: deployment
+    tags: [deployment, fixtures, http-caching]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      A deploy loads fixtures, and `load_fixtures` flushes the whole HTTP cache afterwards. What does it do
+      next?
+    why: >-
+      Without the warm, the first visitors after a fixture load would make every API request a cache miss at
+      once.
+    since: [{ repo: components-web-app, version: '2.0.0-alpha.42' }]
+    options:
+      - { id: a, text: 'Nothing: the cache refills as visitors arrive' }
+      - { id: b, text: 'Renders every page in the sitemap to warm the HTML' }
+      - { id: c, text: 'Runs `warm_api_cache`, which warms `/_api` but not pages' }
+      - { id: d, text: 'Restarts php so its cache starts empty' }
+    answer:
+      correct: c
+      explanation: >-
+        After the flush, `load_fixtures` runs `warm_api_cache`, the same gzip and br passes a deploy runs after a
+        full flush. Pages aren't warmed, and a failed pass only warns.
+    sources:
+      - { kind: docs, page: /deployment/ci-cd, anchor: fixtures-on-a-deploy, sectionHash: 'sha256:1599d74ff846a6e1', title: 'CI/CD › Fixtures on a deploy' }
+    author: llm-draft

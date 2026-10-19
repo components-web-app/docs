@@ -1,0 +1,98 @@
+# Hand-written What's new questions about the Nuxt module: changes in 2.0.0-alpha.23 and 2.0.0-alpha.24.
+# Each one has a `since` naming the release that brought the change in.
+# Format: quiz/README.md. Run `pnpm quiz:stamp <id>` to fill in or refresh the hashes.
+
+questions:
+  - id: nuxt.admin.move-vs-clone
+    version: 1
+    status: live
+    level: beginner
+    area: nuxt-module
+    tags: [admin, components]
+    type: multiple-choice
+    difficulty: 2
+    family: admin-move-clone
+    prompt: >-
+      A banner component shows on the Home and Contact pages. An editor selects it on the Home page, chooses
+      **Move**, and places it on the About page. Where does it show now?
+    why: >-
+      Move changes one place and Clone adds one, so picking the wrong one either leaves a stray copy or takes
+      content off a page.
+    since: [{ repo: cwa-nuxt-module, version: '2.0.0-alpha.23' }]
+    options:
+      - { id: a, text: 'Only on the About page' }
+      - { id: b, text: 'On the Home, Contact and About pages' }
+      - { id: c, text: 'On the Contact and About pages' }
+      - { id: d, text: 'On the Home and About pages' }
+    answer:
+      correct: c
+      explanation: >-
+        Move takes the instance you selected out of its place and puts it somewhere else. Any other place that
+        shows the component keeps it, so Contact still has it and Home doesn't.
+    sources:
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: moving-a-component, sectionHash: 'sha256:2f0e68979239bce3', title: 'The Admin Panel › Moving a Component' }
+    author: llm-draft
+
+  - id: nuxt.admin.move-into-full-property
+    version: 1
+    status: live
+    level: intermediate
+    area: nuxt-module
+    tags: [admin, dynamic-pages]
+    type: multiple-choice
+    difficulty: 3
+    family: admin-move-clone
+    prompt: >-
+      While moving a component, an editor clicks a component position bound to a page data property that
+      already holds another component. What does the dialog offer?
+    why: >-
+      A move never discards the component it would displace; clear the property first, or clone if the
+      replaced component should go.
+    since: [{ repo: cwa-nuxt-module, version: '2.0.0-alpha.24' }]
+    options:
+      - { id: a, text: '**Use here**, warning that it replaces the other component' }
+      - { id: b, text: '**Use here** disabled: a move cannot replace it' }
+      - { id: c, text: '**Use here**, which swaps the two components' }
+      - { id: d, text: 'Nothing: moves into page data aren''t supported' }
+    answer:
+      correct: b
+      explanation: >-
+        **Use here** is disabled with the reason "a move cannot replace it". A clone, by contrast, offers
+        **Use here** with a warning that it replaces the other component. Moving into an empty property works.
+    sources:
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: moving-a-component, sectionHash: 'sha256:2f0e68979239bce3', title: 'The Admin Panel › Moving a Component' }
+    author: llm-draft
+
+  - id: nuxt.admin.needs-bundle-alpha32
+    version: 1
+    status: live
+    level: advanced
+    area: nuxt-module
+    tags: [admin, module-setup]
+    type: select-many
+    difficulty: 3
+    prompt: >-
+      A site runs `@cwa/nuxt` 2.0.0-alpha.24 with api-components-bundle 2.0.0-alpha.31. Which of these admin
+      features don't work until the bundle is 2.0.0-alpha.32? Choose every one.
+    why: >-
+      Updating the module without the bundle leaves some admin features silently missing or failing, so
+      update the two together.
+    since: [{ repo: cwa-nuxt-module, version: '2.0.0-alpha.24' }]
+    options:
+      - { id: a, text: '**Move**, in the ⋮ menu' }
+      - { id: b, text: 'The list of places behind the badge' }
+      - { id: c, text: '**Clone**, which adds another component position' }
+      - { id: d, text: 'The number on the **Shared · N places** badge' }
+    answer:
+      correct: [a, b]
+      explanation: >-
+        From module 2.0.0-alpha.24, Move goes through the bundle's `POST {component}/move`, and the list of
+        places reads `locations` from `GET {component}/usage`; both arrived in bundle 2.0.0-alpha.32. Clone
+        writes a position as before, and with an older bundle the badge still shows a count.
+      optionNotes:
+        c: 'A clone is an ordinary component position write, which every supported bundle accepts.'
+        d: 'With an older bundle the badge is only a count, but the count still shows.'
+    sources:
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: shared-components, sectionHash: 'sha256:62f074bfd8072ae0', title: 'The Admin Panel › Shared Components' }
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: moving-a-component, sectionHash: 'sha256:2f0e68979239bce3', title: 'The Admin Panel › Moving a Component' }
+    author: llm-draft

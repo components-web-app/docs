@@ -35,6 +35,7 @@ questions:
         page: /nuxt-module/module-setup
         anchor: install
         sectionHash: sha256:be07d232ea5ebdc5
+        title: 'Module Setup › Install'
         block: 1
         blockHash: sha256:4452d03e14874b65
 
@@ -73,7 +74,7 @@ questions:
         so the template is never filled in.
     since: [{ repo: cwa-nuxt-module, version: '2.0.0-alpha.15' }]
     sources:
-      - { kind: docs, page: /nuxt-module/cwa-layer/admin-panel, anchor: linking-to-the-add-page-data-form, sectionHash: 'sha256:f98a9e448ba3ec24', block: 0, blockHash: 'sha256:cbd5be71df6d7a72' }
+      - { kind: docs, page: /nuxt-module/cwa-layer/admin-panel, anchor: linking-to-the-add-page-data-form, sectionHash: 'sha256:1ac8260e0abef39d', title: 'Admin Panel Reference › Linking to the add page data form', block: 0, blockHash: 'sha256:cbd5be71df6d7a72' }
     author: llm-draft
 
   - id: nuxt.page-data.read-in-computed
@@ -102,7 +103,7 @@ questions:
         records that share the template page, which reuses the component. A setup-time read keeps the first
         value; a `computed` follows it.
     sources:
-      - { kind: docs, page: /core-concepts/dynamic-pages, anchor: reading-pagedata-in-your-vue-component, sectionHash: 'sha256:76c2ecae76dda115' }
+      - { kind: docs, page: /core-concepts/dynamic-pages, anchor: reading-pagedata-in-your-vue-component, sectionHash: 'sha256:76c2ecae76dda115', title: 'Dynamic Pages › Reading PageData in Your Vue Component' }
     author: llm-draft
 
   - id: nuxt.auth.ssr-safe-state
@@ -128,7 +129,7 @@ questions:
         `signedIn` and `status` come from a cookie, so the server can render them. `isAdmin`, `user` and `roles`
         need the user loaded from `/me`, so wrap UI that reads them in `<ClientOnly>`.
     sources:
-      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: auth-conditional-ui, sectionHash: 'sha256:d00d8d10438fee63' }
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: auth-conditional-ui, sectionHash: 'sha256:d00d8d10438fee63', title: 'Layouts › Auth-Conditional UI' }
     author: llm-draft
 
   - id: nuxt.auth.roles-access
@@ -154,7 +155,7 @@ questions:
         `user` and `roles` are plain reactive getters, not refs, so `.value` on them gives `undefined`.
         `roles` is `undefined` when nobody is signed in.
     sources:
-      - { kind: docs, page: /nuxt-module/cwa-api/auth, anchor: state, sectionHash: 'sha256:8e7fd8e732d171f5' }
+      - { kind: docs, page: /nuxt-module/cwa-api/auth, anchor: state, sectionHash: 'sha256:8e7fd8e732d171f5', title: 'cwa.auth › State' }
     author: llm-draft
 
   - id: nuxt.config.layout-classes
@@ -179,7 +180,7 @@ questions:
         `cwa.layouts.<Name>.classes` maps the label the admin sees to a class string. A "Default" option with no
         classes is added for you.
     sources:
-      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: registering-layout-options, sectionHash: 'sha256:260fe9e4c1275e6b' }
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: registering-layout-options, sectionHash: 'sha256:260fe9e4c1275e6b', title: 'Layouts › Registering Layout Options' }
     author: llm-draft
 
   - id: nuxt.component.style-variants-where
@@ -208,8 +209,8 @@ questions:
       optionNotes:
         b: '`cwa.resources` has no `classes` key.'
     sources:
-      - { kind: docs, page: /nuxt-module/configuration/nuxt-config, anchor: full-cwa-reference, sectionHash: 'sha256:989afdefb0c2b8e0' }
-      - { kind: docs, page: /nuxt-module/composables/component/use-cwa-component, anchor: style-variants, sectionHash: 'sha256:73b5fa696d55a19d' }
+      - { kind: docs, page: /nuxt-module/configuration/nuxt-config, anchor: full-cwa-reference, sectionHash: 'sha256:989afdefb0c2b8e0', title: 'Nuxt Config › Full cwa: Reference' }
+      - { kind: docs, page: /nuxt-module/composables/component/use-cwa-component, anchor: style-variants, sectionHash: 'sha256:73b5fa696d55a19d', title: 'useCwaComponent › Style Variants' }
     author: llm-draft
 
   - id: nuxt.component.nested-group-location
@@ -237,7 +238,7 @@ questions:
         Pass the component's `iri`. A nested group resolves its `location` to the component's published IRI
         itself, so you rarely need `publishedIri`.
     sources:
-      - { kind: docs, page: /nuxt-module/composables/component/use-cwa-component, anchor: return-values, sectionHash: 'sha256:db39379ae980b37e' }
+      - { kind: docs, page: /nuxt-module/composables/component/use-cwa-component, anchor: return-values, sectionHash: 'sha256:db39379ae980b37e', title: 'useCwaComponent › Return Values' }
     author: llm-draft
 
   - id: nuxt.component.resource-states
@@ -263,7 +264,7 @@ questions:
         `undefined` means the store has no entry. An object without `data` means the fetch is in progress or
         failed; `apiState.status` says which. With `data`, it's ready.
     sources:
-      - { kind: docs, page: /nuxt-module/composables/component/use-cwa-component, anchor: example, sectionHash: 'sha256:df121ccdabd91158' }
+      - { kind: docs, page: /nuxt-module/composables/component/use-cwa-component, anchor: example, sectionHash: 'sha256:df121ccdabd91158', title: 'useCwaComponent › Example' }
     author: llm-draft
 
   - id: nuxt.admin.instant-add
@@ -289,7 +290,7 @@ questions:
         In the Add Component dialog, a type with `instantAdd: true` is added straight away. Otherwise a config
         panel appears first.
     sources:
-      - { kind: docs, page: /core-concepts/admin-panel, anchor: adding-a-component, sectionHash: 'sha256:a7be3b997ea7de32' }
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: adding-a-component, sectionHash: 'sha256:a7be3b997ea7de32', title: 'The Admin Panel › Adding a Component' }
     author: llm-draft
 
   - id: nuxt.real-time.visitor-notice
@@ -320,6 +321,6 @@ questions:
         a: Updates are staged on purpose, so content never changes under someone mid-read.
         c: Mercure tells the open page about the change; no reload is needed to apply it.
     sources:
-      - { kind: docs, page: /nuxt-module/component-helpers/real-time-updates, anchor: the-visitor-notification, sectionHash: 'sha256:51f3ebc984f4fabc' }
-      - { kind: docs, page: /nuxt-module/component-helpers/real-time-updates, anchor: how-it-works, sectionHash: 'sha256:98ccc2cd82f5e7a7' }
+      - { kind: docs, page: /nuxt-module/component-helpers/real-time-updates, anchor: the-visitor-notification, sectionHash: 'sha256:51f3ebc984f4fabc', title: 'Real-Time Updates in Components › The Visitor Notification' }
+      - { kind: docs, page: /nuxt-module/component-helpers/real-time-updates, anchor: how-it-works, sectionHash: 'sha256:98ccc2cd82f5e7a7', title: 'Real-Time Updates in Components › How It Works' }
     author: llm-draft

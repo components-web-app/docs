@@ -36,8 +36,8 @@ questions:
         d: The flag is about the route fetch, not the layout. Your own page needs it with any layout.
         e: An editor's page is rendered by CWA's catch-all route. There's no file of yours to set the flag in.
     sources:
-      - { kind: docs, page: /nuxt-module/module-setup, anchor: disable-cwa-route-fetching, sectionHash: 'sha256:7d2c3f9a44902a9a' }
-      - { kind: docs, page: /nuxt-module/module-setup, anchor: use-the-cwa-root-layout-on-your-own-page, sectionHash: 'sha256:b0c7167c6d88bb4b' }
+      - { kind: docs, page: /nuxt-module/module-setup, anchor: disable-cwa-route-fetching, sectionHash: 'sha256:7d2c3f9a44902a9a', title: 'Module Setup › Disable CWA Route Fetching' }
+      - { kind: docs, page: /nuxt-module/module-setup, anchor: use-the-cwa-root-layout-on-your-own-page, sectionHash: 'sha256:b0c7167c6d88bb4b', title: 'Module Setup › Use the CWA Root Layout on Your Own Page' }
     author: llm-draft
 
   - id: api.publishable.version-served
@@ -71,8 +71,8 @@ questions:
         d: Mercure only carries updates to open pages. It plays no part in which version a request gets.
         e: A caller who can see drafts gets the published version when there is no draft.
     sources:
-      - { kind: docs, page: /api/components/annotations/publishable, anchor: how-it-works-at-the-api-level, sectionHash: 'sha256:ee0527b8cde5be46' }
-      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:5c8ec9f39ad9cd58' }
+      - { kind: docs, page: /api/components/annotations/publishable, anchor: how-it-works-at-the-api-level, sectionHash: 'sha256:a4527f37b398b377', title: 'Publishable › How It Works at the API Level' }
+      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:cd76322d674416ff', title: 'Draft & Publish Workflow › How It Works' }
     author: llm-draft
 
   - id: core.caching.page-purges
@@ -111,9 +111,9 @@ questions:
         c: The layout's components are rendered on the page, so their IRIs are among its tags.
         d: An editor's page is marked `private, no-store`. Viewing it neither stores nor purges anything.
     sources:
-      - { kind: docs, page: /core-concepts/caching, anchor: purges, sectionHash: 'sha256:71faaafce95334a2' }
-      - { kind: docs, page: /core-concepts/caching, anchor: what-each-layer-does, sectionHash: 'sha256:6ab6857f5442bf44' }
-      - { kind: docs, page: /core-concepts/caching, anchor: signed-in-editors-never-get-a-cached-page, sectionHash: 'sha256:77665ddad4825fb4' }
+      - { kind: docs, page: /core-concepts/caching, anchor: purges, sectionHash: 'sha256:c37d1bc5ca595f58', title: 'Caching › Purges' }
+      - { kind: docs, page: /core-concepts/caching, anchor: what-each-layer-does, sectionHash: 'sha256:6ab6857f5442bf44', title: 'Caching › What each layer does' }
+      - { kind: docs, page: /core-concepts/caching, anchor: signed-in-editors-never-get-a-cached-page, sectionHash: 'sha256:77665ddad4825fb4', title: 'Caching › Signed-in editors never get a cached page' }
     author: llm-draft
 
   - id: api.uploads.variant-types
@@ -146,7 +146,7 @@ questions:
         b: An SVG is `image/svg+xml`, which the filters skip.
         e: WebP is `image/webp`, a raster image, so it gets the variant.
     sources:
-      - { kind: docs, page: /api/components/annotations/uploadable, anchor: liipimaginebundle-integration, sectionHash: 'sha256:27ee53328388ecf2' }
+      - { kind: docs, page: /api/components/annotations/uploadable, anchor: liipimaginebundle-integration, sectionHash: 'sha256:498461f6b5e47843', title: 'Uploadable › LiipImagineBundle Integration' }
     author: llm-draft
 
   - id: api.security.component-readable
@@ -181,8 +181,8 @@ questions:
         d: A page that nothing routes to is private, and so are the components only it places.
         e: Page data renders through its template page, so the template page's components are reachable through the record.
     sources:
-      - { kind: docs, page: /api/users/access-control, anchor: component-security, sectionHash: 'sha256:a4d80b93ea7723cf' }
-      - { kind: docs, page: /api/users/access-control, anchor: public-access-follows-routes, sectionHash: 'sha256:d1fa4c0f3f1ae8bc' }
+      - { kind: docs, page: /api/users/access-control, anchor: component-security, sectionHash: 'sha256:92f2ea65acea4a29', title: 'Access Control › Component Security' }
+      - { kind: docs, page: /api/users/access-control, anchor: public-access-follows-routes, sectionHash: 'sha256:0f66cb5cfc7476bb', title: 'Access Control › Public Access Follows Routes' }
     author: llm-draft
 
   - id: api.security.public-without-route
@@ -216,5 +216,5 @@ questions:
         b: Set the flag on the page data itself. Page data's flag makes its template readable, but not the other way round.
         e: Flagged pages are readable by IRI but aren't listed in `GET /_/pages`.
     sources:
-      - { kind: docs, page: /api/users/access-control, anchor: public-pages-without-a-route, sectionHash: 'sha256:63c727182c29980e' }
+      - { kind: docs, page: /api/users/access-control, anchor: public-pages-without-a-route, sectionHash: 'sha256:51ffd66126651be7', title: 'Access Control › Public Pages Without a Route' }
     author: llm-draft

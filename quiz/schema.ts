@@ -49,6 +49,11 @@ export const DocsSourceSchema = z.object({
   /** Heading id exactly as the site renders it (the MDC parser's id), without `#`. */
   anchor: z.string().regex(/^[a-z0-9_-]+$/),
   sectionHash: ShortHash,
+  /**
+   * What the read-more link says: the page title and the section heading, as `pnpm quiz:stamp` writes
+   * them. Optional only so a new question loads before it's stamped; `pnpm quiz:check` requires it.
+   */
+  title: z.string().min(1).optional(),
   /** For code questions: which fenced block in the section, counting from 0. */
   block: z.number().int().min(0).optional(),
   /** Hash of that block's display text (annotations stripped). */
@@ -408,7 +413,7 @@ export type QuizConfig = z.infer<typeof QuizConfigSchema>
 /** `/nuxt-module/module-setup#install`, or the GitHub URL pinned to the commit with a line range. */
 export function sourceLink(source: Source): Link {
   if (source.kind === 'docs') {
-    return { label: 'Read more in the docs', to: `${source.page}#${source.anchor}` }
+    return { label: source.title ?? source.page, to: `${source.page}#${source.anchor}` }
   }
   const [from, to] = source.lines
   return {

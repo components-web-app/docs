@@ -29,7 +29,7 @@ questions:
         Only a request with no body at all flushes the whole cache. Any other body that isn't a valid scope,
         including `{}`, `null` and an empty list, is a `422`, and nothing is purged.
     sources:
-      - { kind: docs, page: /api/http-caching, anchor: from-the-api, sectionHash: 'sha256:697d70579e4d0ac0' }
+      - { kind: docs, page: /api/http-caching, anchor: from-the-api, sectionHash: 'sha256:697d70579e4d0ac0', title: 'HTTP Caching › From the API' }
     author: llm-draft
 
   - id: api.cache.warm-after-flush-trigger
@@ -58,7 +58,7 @@ questions:
         A warm follows every successful full flush: the endpoint with no body, `purge-http-cache` with no
         options, and the flush at the end of each fixture load. A tag purge never starts one.
     sources:
-      - { kind: docs, page: /api/http-caching, anchor: warming-after-a-flush, sectionHash: 'sha256:d84756a68512fc8b' }
+      - { kind: docs, page: /api/http-caching, anchor: warming-after-a-flush, sectionHash: 'sha256:d84756a68512fc8b', title: 'HTTP Caching › Warming after a flush' }
     author: llm-draft
 
   - id: api.cache.warm-after-flush-async
@@ -88,7 +88,7 @@ questions:
         in the request or command that flushed. Nothing is warmed, with a warning, only when there is no
         Messenger bus at all.
     sources:
-      - { kind: docs, page: /api/http-caching, anchor: warming-after-a-flush, sectionHash: 'sha256:d84756a68512fc8b' }
+      - { kind: docs, page: /api/http-caching, anchor: warming-after-a-flush, sectionHash: 'sha256:d84756a68512fc8b', title: 'HTTP Caching › Warming after a flush' }
     author: llm-draft
 
   - id: api.publishable.position-unpublished-component
@@ -120,7 +120,7 @@ questions:
       optionNotes:
         a: That was the behaviour before bundle 2.0.0-alpha.27.
     sources:
-      - { kind: docs, page: /api/components/annotations/publishable, anchor: positions-holding-an-unpublished-component, sectionHash: 'sha256:df93fb8d059fa547' }
+      - { kind: docs, page: /api/components/annotations/publishable, anchor: positions-holding-an-unpublished-component, sectionHash: 'sha256:83ecc7172f387e26', title: 'Publishable › Positions Holding an Unpublished Component' }
     author: llm-draft
 
   - id: api.publishable.position-scheduled-expiry
@@ -153,7 +153,7 @@ questions:
       optionNotes:
         a: Publishing or rescheduling purges and publishes over Mercure, but a go-live time passing is not a write.
     sources:
-      - { kind: docs, page: /api/components/annotations/publishable, anchor: positions-holding-an-unpublished-component, sectionHash: 'sha256:df93fb8d059fa547' }
+      - { kind: docs, page: /api/components/annotations/publishable, anchor: positions-holding-an-unpublished-component, sectionHash: 'sha256:83ecc7172f387e26', title: 'Publishable › Positions Holding an Unpublished Component' }
     author: llm-draft
 
   - id: api.real-time.public-update-payload
@@ -184,7 +184,7 @@ questions:
       optionNotes:
         a: That was the public payload before bundle 2.0.0-alpha.27, so an admin's write could publish content visitors can't read.
     sources:
-      - { kind: docs, page: /api/real-time, anchor: public-and-admin-updates, sectionHash: 'sha256:c2e09b9e3b1eb3cb' }
+      - { kind: docs, page: /api/real-time, anchor: public-and-admin-updates, sectionHash: 'sha256:c2e09b9e3b1eb3cb', title: 'Real-Time Updates (Mercure) › Public and Admin Updates' }
     author: llm-draft
 
   - id: api.real-time.write-hides-resource
@@ -215,7 +215,7 @@ questions:
       optionNotes:
         a: Nothing goes out publicly only when the resource wasn't readable and the write didn't hide it.
     sources:
-      - { kind: docs, page: /api/real-time, anchor: public-and-admin-updates, sectionHash: 'sha256:c2e09b9e3b1eb3cb' }
+      - { kind: docs, page: /api/real-time, anchor: public-and-admin-updates, sectionHash: 'sha256:c2e09b9e3b1eb3cb', title: 'Real-Time Updates (Mercure) › Public and Admin Updates' }
     author: llm-draft
 
   - id: api.real-time.cookie-session-end
@@ -246,7 +246,7 @@ questions:
       optionNotes:
         a: Before bundle 2.0.0-alpha.27, these responses issued a new cookie. Now an anonymous visitor gets none.
     sources:
-      - { kind: docs, page: /api/real-time, anchor: the-subscriber-cookie, sectionHash: 'sha256:b67625403db2091b' }
+      - { kind: docs, page: /api/real-time, anchor: the-subscriber-cookie, sectionHash: 'sha256:b67625403db2091b', title: 'Real-Time Updates (Mercure) › The Subscriber Cookie' }
     author: llm-draft
 
   - id: api.groups.component-in-own-subtree
@@ -276,7 +276,7 @@ questions:
         draft count as one component, so a draft inside its published version is refused too. Sharing one
         component in several places isn't a cycle.
     sources:
-      - { kind: docs, page: /api/components/component-groups, anchor: a-component-cant-contain-itself, sectionHash: 'sha256:a30955ea760b7bc6' }
+      - { kind: docs, page: /api/components/component-groups, anchor: a-component-cant-contain-itself, sectionHash: 'sha256:a30955ea760b7bc6', title: 'Component Groups & Positions › A Component Can''t Contain Itself' }
     author: llm-draft
 
   - id: api.fixtures.shared-asset-folder
@@ -306,5 +306,5 @@ questions:
       optionNotes:
         b: Before bundle 2.0.0-alpha.26, X was deleted.
     sources:
-      - { kind: docs, page: /api/data-fixtures/generating-fixtures, anchor: pruning, sectionHash: 'sha256:5bc72fc4c371e8bd' }
+      - { kind: docs, page: /api/data-fixtures/generating-fixtures, anchor: pruning, sectionHash: 'sha256:b0ac57f911181603', title: 'Generating Fixtures › Pruning' }
     author: llm-draft

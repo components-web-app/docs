@@ -35,9 +35,9 @@ questions:
         e: '`--path` purges only that route''s tag, `/_api/_/routes//about-us`, and never flushes.'
         d: A load flushes the whole HTTP cache once at the end, API responses and pages together.
     sources:
-      - { kind: docs, page: /api/http-caching, anchor: purging-every-rendered-page, sectionHash: 'sha256:ef0a84284564cd0d' }
-      - { kind: docs, page: /api/http-caching, anchor: flushing-the-whole-http-cache, sectionHash: 'sha256:d6247223c88916af' }
-      - { kind: docs, page: /api/http-caching, anchor: purging-one-page-or-tag, sectionHash: 'sha256:a5d8610cdfcc29eb' }
+      - { kind: docs, page: /api/http-caching, anchor: purging-every-rendered-page, sectionHash: 'sha256:ef0a84284564cd0d', title: 'HTTP Caching › Purging Every Rendered Page' }
+      - { kind: docs, page: /api/http-caching, anchor: flushing-the-whole-http-cache, sectionHash: 'sha256:d6247223c88916af', title: 'HTTP Caching › Flushing the Whole HTTP Cache' }
+      - { kind: docs, page: /api/http-caching, anchor: purging-one-page-or-tag, sectionHash: 'sha256:a5d8610cdfcc29eb', title: 'HTTP Caching › Purging One Page or Tag' }
     author: llm-draft
 
   - id: api.cache.private-responses
@@ -75,7 +75,7 @@ questions:
         e: The manifest class is in the set, but only authenticated requests are marked.
         f: Every Publishable resource is matched without being listed, because an admin's view can be the draft.
     sources:
-      - { kind: docs, page: /api/http-caching, anchor: http-cache-safety, sectionHash: 'sha256:f7732bd3730f4608' }
+      - { kind: docs, page: /api/http-caching, anchor: http-cache-safety, sectionHash: 'sha256:f7732bd3730f4608', title: 'HTTP Caching › HTTP Cache Safety' }
     author: llm-draft
 
   - id: deploy.secrets.kept
@@ -112,8 +112,8 @@ questions:
         d: '`CORS_ALLOW_ORIGIN` is derived from the release''s hosts unless you set it.'
         f: The JWT key is kept with its own passphrase, and the public key is derived from the pair.
     sources:
-      - { kind: docs, page: /deployment/variables, anchor: secrets, sectionHash: 'sha256:7a2fe292b4eea0c9' }
-      - { kind: docs, page: /deployment/variables, anchor: application, sectionHash: 'sha256:e483d72848bc2eb6' }
+      - { kind: docs, page: /deployment/variables, anchor: secrets, sectionHash: 'sha256:3a053dabe537216c', title: 'CI/CD Variables › Secrets' }
+      - { kind: docs, page: /deployment/variables, anchor: application, sectionHash: 'sha256:e483d72848bc2eb6', title: 'CI/CD Variables › Application' }
     author: llm-draft
 
   - id: api.cache.manifest-purge-writes
@@ -151,5 +151,5 @@ questions:
         f: Replacing a file is a write to the component, which purges its IRI and no manifest.
         e: Page data is one of the classes whose writes purge manifests, because it decides what a page renders.
     sources:
-      - { kind: docs, page: /api/http-caching, anchor: resource-manifests-are-tagged-per-page, sectionHash: 'sha256:c9b069e644d128b1' }
+      - { kind: docs, page: /api/http-caching, anchor: resource-manifests-are-tagged-per-page, sectionHash: 'sha256:c9b069e644d128b1', title: 'HTTP Caching › Resource Manifests Are Tagged per Page' }
     author: llm-draft

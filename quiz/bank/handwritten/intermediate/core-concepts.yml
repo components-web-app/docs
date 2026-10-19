@@ -26,7 +26,7 @@ questions:
         and `<meta name="description">` with no extra code. A record with no title can fall back to its
         template page's title.
     sources:
-      - { kind: docs, page: /core-concepts/dynamic-pages, anchor: seo, sectionHash: 'sha256:e9a9218d4322da12' }
+      - { kind: docs, page: /core-concepts/dynamic-pages, anchor: seo, sectionHash: 'sha256:e9a9218d4322da12', title: 'Dynamic Pages › SEO' }
     author: llm-draft
 
   - id: core.public.what-is-public
@@ -53,7 +53,7 @@ questions:
         nothing routes to is visible only to admins, unless an admin marks it **Public without a route**. Layouts
         aren't published or drafted.
     sources:
-      - { kind: docs, page: /core-concepts/layouts-and-pages, anchor: what-the-public-can-see, sectionHash: 'sha256:e97a5369b4be828a' }
+      - { kind: docs, page: /core-concepts/layouts-and-pages, anchor: what-the-public-can-see, sectionHash: 'sha256:ea71aea0e2941373', title: 'Layouts & Pages › What the Public Can See' }
     author: llm-draft
 
   - id: core.admin.delete-one-version
@@ -79,7 +79,7 @@ questions:
         A delete removes only the selected version. To delete the other one, select it first with the Publish
         tab's **Edit live version** toggle.
     sources:
-      - { kind: docs, page: /core-concepts/admin-panel, anchor: deleting-a-component, sectionHash: 'sha256:e9b23a3aa37ea324' }
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: deleting-a-component, sectionHash: 'sha256:34cf8e997729d977', title: 'The Admin Panel › Deleting a component' }
     author: llm-draft
 
   - id: core.admin.rename-child-routes
@@ -105,7 +105,7 @@ questions:
         Confirming renames every child path to stay under the new parent prefix and creates redirects from the
         old paths. Without it, only the parent is renamed.
     sources:
-      - { kind: docs, page: /core-concepts/admin-panel, anchor: editing-a-path, sectionHash: 'sha256:03e5ff2517176e16' }
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: editing-a-path, sectionHash: 'sha256:03e5ff2517176e16', title: 'The Admin Panel › Editing a path' }
     author: llm-draft
 
   - id: core.admin.reorder-where
@@ -133,7 +133,7 @@ questions:
         Select a component, open the manager panel's **Order** tab and turn on **Enable reordering**. Then use
         **Move Up**, **Move Down** or a position number.
     sources:
-      - { kind: docs, page: /core-concepts/admin-panel, anchor: reordering, sectionHash: 'sha256:fd0ebb9fa7076f40' }
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: reordering, sectionHash: 'sha256:fd0ebb9fa7076f40', title: 'The Admin Panel › Reordering' }
     author: llm-draft
 
   - id: core.caching.save-refreshes-pages
@@ -160,7 +160,7 @@ questions:
         Every cached response and page is tagged with the IRIs of the resources in it. Saving a resource
         purges its IRI, so everything that used it is dropped.
     sources:
-      - { kind: docs, page: /core-concepts/caching, anchor: purges, sectionHash: 'sha256:71faaafce95334a2' }
+      - { kind: docs, page: /core-concepts/caching, anchor: purges, sectionHash: 'sha256:c37d1bc5ca595f58', title: 'Caching › Purges' }
     author: llm-draft
 
   - id: core.caching.editors-get-fresh-pages
@@ -186,7 +186,7 @@ questions:
         Drafts and published content share the same URLs, and the API tells them apart by the auth cookie. So
         an editor's responses are never stored, and a cache only holds what anonymous visitors see.
     sources:
-      - { kind: docs, page: /core-concepts/caching, anchor: signed-in-editors-never-get-a-cached-page, sectionHash: 'sha256:77665ddad4825fb4' }
+      - { kind: docs, page: /core-concepts/caching, anchor: signed-in-editors-never-get-a-cached-page, sectionHash: 'sha256:77665ddad4825fb4', title: 'Caching › Signed-in editors never get a cached page' }
     author: llm-draft
 
   - id: core.identity.layout-ui-component
@@ -214,5 +214,5 @@ questions:
         The module registers layouts with the `CwaLayout` prefix, and a layout's `uiComponent` holds that full
         name. It is rendered as stored, so `Landing` wouldn't resolve.
     sources:
-      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: how-uicomponent-names-resolve, sectionHash: 'sha256:5dc45450ae61e9df' }
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: how-uicomponent-names-resolve, sectionHash: 'sha256:5dc45450ae61e9df', title: 'Layouts › How uiComponent Names Resolve' }
     author: llm-draft

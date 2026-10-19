@@ -33,7 +33,7 @@ questions:
         `useCwaComponent(props)` reads the resource for the component's IRI from the store. The module has
         already fetched it, and `resource` stays reactive to updates.
     sources:
-      - { kind: docs, page: /core-concepts/components, anchor: _2-the-vue-component-the-display, sectionHash: 'sha256:cc87dc88884ee7f5', block: 0, blockHash: 'sha256:58f142cdf2cf43cb' }
+      - { kind: docs, page: /core-concepts/components, anchor: _2-the-vue-component-the-display, sectionHash: 'sha256:cc87dc88884ee7f5', title: 'Components › 2. The Vue component (the display)', block: 0, blockHash: 'sha256:58f142cdf2cf43cb' }
     author: llm-draft
 
   - id: nuxt.component.iri-prop
@@ -56,7 +56,7 @@ questions:
         Each component receives its IRI as the `iri` prop (`defineProps<IriProp>()`), and reads its data from
         the store with `useCwaComponent(props)`.
     sources:
-      - { kind: docs, page: /getting-started/key-ideas, anchor: how-records-are-identified, sectionHash: 'sha256:136fd1a524073c73' }
+      - { kind: docs, page: /getting-started/key-ideas, anchor: how-records-are-identified, sectionHash: 'sha256:136fd1a524073c73', title: 'Key Ideas › How records are identified' }
     author: llm-draft
 
   - id: nuxt.layout.slot
@@ -99,7 +99,7 @@ questions:
         The module passes the page into the layout's default slot, so `<slot />` is where the page renders.
         Without it, the page passed in is never shown. A layout needs no special props.
     sources:
-      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: minimal-layout, sectionHash: 'sha256:2b8dc7ad2252926d', block: 0, blockHash: 'sha256:184da2bd305e9d07' }
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: minimal-layout, sectionHash: 'sha256:2b8dc7ad2252926d', title: 'Layouts › Minimal Layout', block: 0, blockHash: 'sha256:184da2bd305e9d07' }
     author: llm-draft
 
   - id: nuxt.layout.where-files-go
@@ -122,7 +122,7 @@ questions:
         The module registers the files in `app/app/cwa/layouts/` as global components with the `CwaLayout`
         prefix. Nuxt's own layouts are something else: a CWA layout renders inside the module's root layout.
     sources:
-      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: how-uicomponent-names-resolve, sectionHash: 'sha256:5dc45450ae61e9df' }
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: how-uicomponent-names-resolve, sectionHash: 'sha256:5dc45450ae61e9df', title: 'Layouts › How uiComponent Names Resolve' }
     author: llm-draft
 
   - id: nuxt.admin.start-editing
@@ -145,7 +145,7 @@ questions:
         Editing happens on the site itself. Click **Edit** to enter edit mode, then click a component to select
         it and change it.
     sources:
-      - { kind: docs, page: /getting-started/installation, anchor: _3-open-the-site, sectionHash: 'sha256:ea02c7e3b3d3b87c' }
+      - { kind: docs, page: /getting-started/installation, anchor: _3-open-the-site, sectionHash: 'sha256:ea02c7e3b3d3b87c', title: 'Installation › 3. Open the site' }
     author: llm-draft
 
   - id: nuxt.component.style-variants-beginner
@@ -170,6 +170,6 @@ questions:
         A component's Vue file can name styles, each a set of CSS classes. Editors pick one in the admin, and it
         is stored on that component as `uiClassNames`.
     sources:
-      - { kind: docs, page: /nuxt-module/composables/component/use-cwa-component, anchor: style-variants, sectionHash: 'sha256:73b5fa696d55a19d' }
-      - { kind: docs, page: /api/components/creating-components, anchor: what-abstractcomponent-gives-you, sectionHash: 'sha256:81118f548996b5fb' }
+      - { kind: docs, page: /nuxt-module/composables/component/use-cwa-component, anchor: style-variants, sectionHash: 'sha256:73b5fa696d55a19d', title: 'useCwaComponent › Style Variants' }
+      - { kind: docs, page: /api/components/creating-components, anchor: what-abstractcomponent-gives-you, sectionHash: 'sha256:81118f548996b5fb', title: 'Creating Components › What AbstractComponent Gives You' }
     author: llm-draft

@@ -34,8 +34,8 @@ questions:
         c: ingress-nginx waits 60 seconds, far longer than this render.
         d: Cloudflare waits 100 seconds; it only passed on Souin's `504`.
     sources:
-      - { kind: docs, page: /deployment/docker, anchor: the-cache-store-and-backend-timeout, sectionHash: 'sha256:6beeddf100757934' }
-      - { kind: docs, page: /deployment/troubleshooting, anchor: the-first-visitor-after-a-flush-or-a-rollout-gets-a-504, sectionHash: 'sha256:2b336d6f58332c99' }
+      - { kind: docs, page: /deployment/docker, anchor: the-cache-store-and-backend-timeout, sectionHash: 'sha256:0f97184fa683a769', title: 'Docker › The cache store and backend timeout' }
+      - { kind: docs, page: /deployment/troubleshooting, anchor: the-first-visitor-after-a-flush-or-a-rollout-gets-a-504, sectionHash: 'sha256:af86ab66b9fc71dd', title: 'Troubleshooting › The first visitor after a flush or a rollout gets a 504' }
     author: llm-draft
 
   - id: deploy.cache.extra-config-timeout
@@ -65,7 +65,7 @@ questions:
         uses its own 10 seconds. The deploy refuses a `timeout` block or a store there; set
         `CWA_API_CADDY_CACHE_BACKEND_TIMEOUT` instead.
     sources:
-      - { kind: docs, page: /deployment/variables, anchor: http-cache, sectionHash: 'sha256:80151c7f434355a2' }
+      - { kind: docs, page: /deployment/variables, anchor: http-cache, sectionHash: 'sha256:b00191c2cc5927f6', title: 'CI/CD Variables › HTTP cache' }
     author: llm-draft
 
   - id: deploy.cache.extra-config-upgrade
@@ -97,7 +97,7 @@ questions:
         b: '`CADDY_CACHE_EXTRA_CONFIG` is reserved, so the `CWA_API_` form fails the deploy.'
         a: '`php.caddy.storageConfig` is now `php.caddy.extraConfig`, and the chart reads no old name.'
     sources:
-      - { kind: docs, page: /deployment/variables, anchor: http-cache, sectionHash: 'sha256:80151c7f434355a2' }
+      - { kind: docs, page: /deployment/variables, anchor: http-cache, sectionHash: 'sha256:b00191c2cc5927f6', title: 'CI/CD Variables › HTTP cache' }
     author: llm-draft
 
   - id: deploy.review.stop-scripts
@@ -126,7 +126,7 @@ questions:
         The job doesn't check out its branch (`GIT_STRATEGY: none`), because the branch may already be deleted. It
         fetches `bin/devops` from the default branch, so the stop runs that branch's scripts.
     sources:
-      - { kind: docs, page: /deployment/ci-cd, anchor: review-apps, sectionHash: 'sha256:fc3b3dcc3c805b43' }
+      - { kind: docs, page: /deployment/ci-cd, anchor: review-apps, sectionHash: 'sha256:afc9db4a9c6f5f2b', title: 'CI/CD › Review Apps' }
     author: llm-draft
 
   - id: deploy.review.storage-path
@@ -159,7 +159,7 @@ questions:
       optionNotes:
         d: That matches every object of app A, so production's uploads would be deleted too.
     sources:
-      - { kind: docs, page: /deployment/variables, anchor: review-app-paths, sectionHash: 'sha256:283ea9d9c4379f7a' }
+      - { kind: docs, page: /deployment/variables, anchor: review-app-paths, sectionHash: 'sha256:56dfd62e9abdd006', title: 'CI/CD Variables › Review app paths' }
     author: llm-draft
 
   - id: deploy.review.lifecycle-age
@@ -188,7 +188,7 @@ questions:
         The age counts from each object's creation, not from when the review app stops, so uploads older than 90
         days are deleted while the app is still running.
     sources:
-      - { kind: docs, page: /deployment/variables, anchor: review-app-paths, sectionHash: 'sha256:283ea9d9c4379f7a' }
+      - { kind: docs, page: /deployment/variables, anchor: review-app-paths, sectionHash: 'sha256:56dfd62e9abdd006', title: 'CI/CD Variables › Review app paths' }
     author: llm-draft
 
   - id: deploy.cicd.rewarm-after-flush
@@ -219,7 +219,7 @@ questions:
       optionNotes:
         c: Kubernetes starts no probe until the `postStart` hook returns, so the pod isn't ready while it warms.
     sources:
-      - { kind: docs, page: /deployment/ci-cd, anchor: why-every-deploy-clears-the-page-cache, sectionHash: 'sha256:8ce1ee7f40bc4869' }
+      - { kind: docs, page: /deployment/ci-cd, anchor: why-every-deploy-clears-the-page-cache, sectionHash: 'sha256:a1715fec4542586c', title: 'CI/CD › Why every deploy clears the page cache' }
     author: llm-draft
 
   - id: deploy.k8s.warm-two-passes
@@ -248,5 +248,5 @@ questions:
         The first pass warms the `gzip` entries server-side rendering reads. The cache stores one entry per
         encoding, so the `br` pass warms the entries browsers and Cloudflare read.
     sources:
-      - { kind: docs, page: /deployment/kubernetes, anchor: warming-the-api-cache-on-start, sectionHash: 'sha256:2332452b7281a251' }
+      - { kind: docs, page: /deployment/kubernetes, anchor: warming-the-api-cache-on-start, sectionHash: 'sha256:87338c15b57f3856', title: 'Kubernetes & Helm › Warming the API cache on start' }
     author: llm-draft

@@ -9,7 +9,7 @@ import { parse } from 'yaml'
 import { z } from 'zod'
 import { AREAS, LEVELS } from '../../../quiz/schema.ts'
 import { hash53 } from '../../../quiz/lib/select.ts'
-import type { DocsPage } from '../lib/docs.ts'
+import { sourceTitle, type DocsPage } from '../lib/docs.ts'
 import { QUIZ_DIR } from '../lib/bank.ts'
 import type { GeneratedDraft } from './common.ts'
 
@@ -102,7 +102,7 @@ export function generateGlossary(pages: Map<string, DocsPage>): GeneratedDraft[]
           ...(settings.why ? { why: settings.why } : {}),
           options,
           answer: { correct, explanation: body.length > 500 ? firstSentence(body) : body },
-          sources: [{ kind: 'docs', page: page.path, anchor: term.anchor, sectionHash: term.hash }],
+          sources: [{ kind: 'docs', page: page.path, anchor: term.anchor, sectionHash: term.hash, title: sourceTitle(page, term) }],
           generator: { name: 'glossary', ref: term.anchor }
         }
       })

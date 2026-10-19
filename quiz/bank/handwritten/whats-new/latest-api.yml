@@ -30,7 +30,7 @@ questions:
         `maxComponents` is a field of the group, read and written like `allowedComponents`. `null` is unlimited.
         When the group is full, adding or moving a position into it is a `422`.
     sources:
-      - { kind: docs, page: /api/components/component-groups, anchor: limiting-how-many-components-a-group-holds, sectionHash: 'sha256:b839e255a6938bba' }
+      - { kind: docs, page: /api/components/component-groups, anchor: limiting-how-many-components-a-group-holds, sectionHash: 'sha256:687450063895fc95', title: 'Component Groups & Positions › Limiting How Many Components a Group Holds' }
     author: llm-draft
 
   - id: api.groups.position-placement
@@ -63,7 +63,7 @@ questions:
         c: An anchor sent with a `sortValue` is a `422`.
         d: A `PATCH` with no anchor and no change of group leaves the position where it is.
     sources:
-      - { kind: docs, page: /api/components/component-groups, anchor: how-positions-are-ordered, sectionHash: 'sha256:f3f6eb4926455708' }
+      - { kind: docs, page: /api/components/component-groups, anchor: how-positions-are-ordered, sectionHash: 'sha256:f3f6eb4926455708', title: 'Component Groups & Positions › How Positions Are Ordered' }
     author: llm-draft
 
   - id: api.groups.order-partial-list
@@ -93,7 +93,7 @@ questions:
         follows now, so `C` goes with `B` and `E` with `D`. `A` comes before the first listed one, so it stays
         at the start.
     sources:
-      - { kind: docs, page: /api/components/component-groups, anchor: reordering-a-group-in-one-request, sectionHash: 'sha256:7d66d6856fba894b' }
+      - { kind: docs, page: /api/components/component-groups, anchor: reordering-a-group-in-one-request, sectionHash: 'sha256:7d66d6856fba894b', title: 'Component Groups & Positions › Reordering a group in one request' }
     author: llm-draft
 
   - id: api.fixtures.load-variants
@@ -124,7 +124,7 @@ questions:
       optionNotes:
         a: The load already flushes the whole cache once when it ends. The variants still don't exist.
     sources:
-      - { kind: docs, page: /api/data-fixtures/getting-started, anchor: what-a-load-leaves-until-later, sectionHash: 'sha256:bc384586a7ada125' }
+      - { kind: docs, page: /api/data-fixtures/getting-started, anchor: what-a-load-leaves-until-later, sectionHash: 'sha256:fece5627707d2d0c', title: 'Getting Started with Fixtures › What a Load Leaves Until Later' }
     author: llm-draft
 
   - id: api.fixtures.asset-store-load
@@ -154,7 +154,7 @@ questions:
         `--assets-store` and `--assets-dir` change only where the command writes. The load always reads the
         configured store, which without config is `assets/` beside the class, so it can't find the files.
     sources:
-      - { kind: docs, page: /api/data-fixtures/generating-fixtures, anchor: keeping-files-in-an-asset-store, sectionHash: 'sha256:4e2d909b8899a79e' }
+      - { kind: docs, page: /api/data-fixtures/generating-fixtures, anchor: keeping-files-in-an-asset-store, sectionHash: 'sha256:b7b3142acdcc60f1', title: 'Generating Fixtures › Keeping Files in an Asset Store' }
     author: llm-draft
 
   - id: api.fixtures.page-own-redirect
@@ -185,7 +185,7 @@ questions:
       optionNotes:
         a: '`redirect()` creates a separate route. The home page already has `/`, so the builder keeps that route and creates nothing.'
     sources:
-      - { kind: docs, page: /api/data-fixtures/builder-reference, anchor: a-page-that-redirects, sectionHash: 'sha256:0120fc14aaa2dd95' }
+      - { kind: docs, page: /api/data-fixtures/builder-reference, anchor: a-page-that-redirects, sectionHash: 'sha256:0120fc14aaa2dd95', title: 'Builder Reference › A Page That Redirects' }
     author: llm-draft
 
   - id: api.storage.delete-stored-files-rows
@@ -214,5 +214,5 @@ questions:
         `delete-stored-files` deletes files only. The rows that hold the deleted paths, and their file info rows,
         stay as they are, so each one is listed as a missing file.
     sources:
-      - { kind: docs, page: /api/console-commands, anchor: delete-stored-files, sectionHash: 'sha256:e32167b89a4e911e' }
+      - { kind: docs, page: /api/console-commands, anchor: delete-stored-files, sectionHash: 'sha256:533afe5049f0ba0c', title: 'Console Commands › delete-stored-files' }
     author: llm-draft

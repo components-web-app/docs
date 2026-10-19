@@ -27,7 +27,7 @@ questions:
       optionNotes:
         a: One hour applies only when no API response supplies a lifetime.
     sources:
-      - { kind: docs, page: /nuxt-module/page-caching, anchor: how-long-a-page-is-kept, sectionHash: 'sha256:118538e80ad6a936' }
+      - { kind: docs, page: /nuxt-module/page-caching, anchor: how-long-a-page-is-kept, sectionHash: 'sha256:118538e80ad6a936', title: 'Page Caching › How Long a Page Is Kept' }
     author: llm-draft
 
   - id: nuxt.page-cache.max-age-zero
@@ -53,7 +53,7 @@ questions:
         Nothing can purge a visitor's browser cache, and a stale page that points at an old build's `/_nuxt`
         files loads blank. So only the shared cache, which the API purges, keeps pages.
     sources:
-      - { kind: docs, page: /nuxt-module/page-caching, anchor: what-a-cached-page-carries, sectionHash: 'sha256:33104e6452ead55b' }
+      - { kind: docs, page: /nuxt-module/page-caching, anchor: what-a-cached-page-carries, sectionHash: 'sha256:33104e6452ead55b', title: 'Page Caching › What a Cached Page Carries' }
     author: llm-draft
 
   - id: nuxt.page-cache.shared-max-age-when
@@ -79,7 +79,7 @@ questions:
         Only CWA resources are tagged for purging. A date rendered on the server or a third-party fetch is never
         purged, so with the default lifetime it can stay for up to a year. `sharedMaxAge` caps every page.
     sources:
-      - { kind: docs, page: /nuxt-module/page-caching, anchor: how-long-a-page-is-kept, sectionHash: 'sha256:118538e80ad6a936' }
+      - { kind: docs, page: /nuxt-module/page-caching, anchor: how-long-a-page-is-kept, sectionHash: 'sha256:118538e80ad6a936', title: 'Page Caching › How Long a Page Is Kept' }
     author: llm-draft
 
   - id: nuxt.page-cache.unpublished-component
@@ -106,7 +106,7 @@ questions:
         With an older bundle the request is a private 404, and a 4xx doesn't count towards the page's headers.
         The page carries the component's tag, so publishing it drops the page.
     sources:
-      - { kind: docs, page: /nuxt-module/page-caching, anchor: when-a-page-is-not-cached, sectionHash: 'sha256:f63ee631045cc1d2' }
+      - { kind: docs, page: /nuxt-module/page-caching, anchor: when-a-page-is-not-cached, sectionHash: 'sha256:f63ee631045cc1d2', title: 'Page Caching › When a Page Is Not Cached' }
     author: llm-draft
 
   - id: nuxt.setup.load-by-iri-public
@@ -134,7 +134,7 @@ questions:
       optionNotes:
         a: A page that loads a CWA page by IRI must leave `disabled` off.
     sources:
-      - { kind: docs, page: /nuxt-module/module-setup, anchor: load-a-cwa-page-by-iri, sectionHash: 'sha256:aca777ce426bdb22' }
+      - { kind: docs, page: /nuxt-module/module-setup, anchor: load-a-cwa-page-by-iri, sectionHash: 'sha256:aca777ce426bdb22', title: 'Module Setup › Load a CWA Page by IRI' }
     author: llm-draft
 
   - id: nuxt.setup.own-pages-error
@@ -163,6 +163,6 @@ questions:
       optionNotes:
         b: Your `app/app/pages/` files take precedence over CWA's catch-all route.
     sources:
-      - { kind: docs, page: /nuxt-module/module-setup, anchor: disable-cwa-route-fetching, sectionHash: 'sha256:7d2c3f9a44902a9a' }
-      - { kind: docs, page: /nuxt-module/module-setup, anchor: mixing-your-own-pages-with-cwa, sectionHash: 'sha256:ff0c746c5a55f2d3' }
+      - { kind: docs, page: /nuxt-module/module-setup, anchor: disable-cwa-route-fetching, sectionHash: 'sha256:7d2c3f9a44902a9a', title: 'Module Setup › Disable CWA Route Fetching' }
+      - { kind: docs, page: /nuxt-module/module-setup, anchor: mixing-your-own-pages-with-cwa, sectionHash: 'sha256:ff0c746c5a55f2d3', title: 'Module Setup › Mixing Your Own Pages with CWA' }
     author: llm-draft

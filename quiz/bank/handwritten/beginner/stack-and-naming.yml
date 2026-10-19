@@ -28,7 +28,7 @@ questions:
         a: Doctrine maps entities to the database. It doesn't serve HTTP.
         c: Mercure pushes real-time updates to open browsers.
     sources:
-      - { kind: docs, page: /core-concepts/architecture, anchor: what-cwa-is-built-on, sectionHash: 'sha256:5a1b8352e317b360' }
+      - { kind: docs, page: /core-concepts/architecture, anchor: what-cwa-is-built-on, sectionHash: 'sha256:5a1b8352e317b360', title: 'How It All Works › What CWA Is Built On' }
     author: llm-draft
 
   - id: core.stack.migrations
@@ -54,7 +54,7 @@ questions:
         a: API Platform serves the entity over HTTP. It reads Doctrine's mapping but doesn't change the schema.
         b: PostgreSQL is the template's database server, but you don't write raw SQL migrations for it.
     sources:
-      - { kind: docs, page: /core-concepts/architecture, anchor: what-cwa-is-built-on, sectionHash: 'sha256:5a1b8352e317b360' }
+      - { kind: docs, page: /core-concepts/architecture, anchor: what-cwa-is-built-on, sectionHash: 'sha256:5a1b8352e317b360', title: 'How It All Works › What CWA Is Built On' }
     author: llm-draft
 
   - id: core.stack.real-time
@@ -79,7 +79,7 @@ questions:
         a: Pinia is the store in the browser that holds the fetched resources. It doesn't receive anything from the API by itself.
         b: Souin is the HTTP cache in front of the API.
     sources:
-      - { kind: docs, page: /core-concepts/architecture, anchor: what-cwa-is-built-on, sectionHash: 'sha256:5a1b8352e317b360' }
+      - { kind: docs, page: /core-concepts/architecture, anchor: what-cwa-is-built-on, sectionHash: 'sha256:5a1b8352e317b360', title: 'How It All Works › What CWA Is Built On' }
     author: llm-draft
 
   - id: core.stack.store
@@ -101,7 +101,7 @@ questions:
       explanation: >-
         The module's store is a Pinia store, and it holds every resource the module has fetched.
     sources:
-      - { kind: docs, page: /core-concepts/architecture, anchor: what-cwa-is-built-on, sectionHash: 'sha256:5a1b8352e317b360' }
+      - { kind: docs, page: /core-concepts/architecture, anchor: what-cwa-is-built-on, sectionHash: 'sha256:5a1b8352e317b360', title: 'How It All Works › What CWA Is Built On' }
     author: llm-draft
 
   - id: core.stack.vue-files
@@ -124,7 +124,7 @@ questions:
         Every layout, page template and component you write is a Vue single-file component, rendered by the
         Nuxt app the module installs into.
     sources:
-      - { kind: docs, page: /core-concepts/architecture, anchor: what-cwa-is-built-on, sectionHash: 'sha256:5a1b8352e317b360' }
+      - { kind: docs, page: /core-concepts/architecture, anchor: what-cwa-is-built-on, sectionHash: 'sha256:5a1b8352e317b360', title: 'How It All Works › What CWA Is Built On' }
     author: llm-draft
 
   - id: core.stack.whose-docs-vue
@@ -147,7 +147,7 @@ questions:
         Your components are ordinary Vue single-file components, so Vue's own docs apply to everything CWA
         doesn't change, such as `computed`.
     sources:
-      - { kind: docs, page: /core-concepts/architecture, anchor: what-cwa-is-built-on, sectionHash: 'sha256:5a1b8352e317b360' }
+      - { kind: docs, page: /core-concepts/architecture, anchor: what-cwa-is-built-on, sectionHash: 'sha256:5a1b8352e317b360', title: 'How It All Works › What CWA Is Built On' }
     author: llm-draft
 
   - id: core.stack.whose-docs-console
@@ -170,7 +170,7 @@ questions:
         The bundle installs into a Symfony application, and Symfony provides its config, services, console
         commands and security. Symfony's docs apply to anything CWA doesn't change.
     sources:
-      - { kind: docs, page: /core-concepts/architecture, anchor: what-cwa-is-built-on, sectionHash: 'sha256:5a1b8352e317b360' }
+      - { kind: docs, page: /core-concepts/architecture, anchor: what-cwa-is-built-on, sectionHash: 'sha256:5a1b8352e317b360', title: 'How It All Works › What CWA Is Built On' }
     author: llm-draft
 
   - id: core.stack.sign-in
@@ -192,7 +192,7 @@ questions:
       explanation: >-
         LexikJWTAuthenticationBundle provides sign-in, with the JWT held in a cookie.
     sources:
-      - { kind: docs, page: /core-concepts/architecture, anchor: what-cwa-is-built-on, sectionHash: 'sha256:5a1b8352e317b360' }
+      - { kind: docs, page: /core-concepts/architecture, anchor: what-cwa-is-built-on, sectionHash: 'sha256:5a1b8352e317b360', title: 'How It All Works › What CWA Is Built On' }
     author: llm-draft
 
   - id: core.stack.app-server
@@ -216,7 +216,7 @@ questions:
       optionNotes:
         d: Souin is the HTTP cache, and it runs as a module inside Caddy.
     sources:
-      - { kind: docs, page: /core-concepts/architecture, anchor: what-cwa-is-built-on, sectionHash: 'sha256:5a1b8352e317b360' }
+      - { kind: docs, page: /core-concepts/architecture, anchor: what-cwa-is-built-on, sectionHash: 'sha256:5a1b8352e317b360', title: 'How It All Works › What CWA Is Built On' }
     author: llm-draft
 
   - id: core.stack.http-cache
@@ -239,7 +239,7 @@ questions:
         Souin is the HTTP cache in front of the API. It runs as a module of Caddy, the web server FrankenPHP is
         built on.
     sources:
-      - { kind: docs, page: /core-concepts/architecture, anchor: what-cwa-is-built-on, sectionHash: 'sha256:5a1b8352e317b360' }
+      - { kind: docs, page: /core-concepts/architecture, anchor: what-cwa-is-built-on, sectionHash: 'sha256:5a1b8352e317b360', title: 'How It All Works › What CWA Is Built On' }
     author: llm-draft
 
   - id: core.stack.api-resource-attribute
@@ -274,8 +274,8 @@ questions:
         `#[ApiResource]` comes from API Platform and gives the class its REST endpoints. `#[ORM\Entity]` is
         Doctrine's, and maps the class to the database.
     sources:
-      - { kind: docs, page: /api/components/creating-components, anchor: step-1-create-the-entity, sectionHash: 'sha256:fd6680f4797a3457', block: 0, blockHash: 'sha256:8eee9ab76bc59a52' }
-      - { kind: docs, page: /core-concepts/architecture, anchor: what-cwa-is-built-on, sectionHash: 'sha256:5a1b8352e317b360' }
+      - { kind: docs, page: /api/components/creating-components, anchor: step-1-create-the-entity, sectionHash: 'sha256:fd6680f4797a3457', title: 'Creating Components › Step 1: Create the Entity', block: 0, blockHash: 'sha256:8eee9ab76bc59a52' }
+      - { kind: docs, page: /core-concepts/architecture, anchor: what-cwa-is-built-on, sectionHash: 'sha256:5a1b8352e317b360', title: 'How It All Works › What CWA Is Built On' }
     author: llm-draft
 
   - id: core.stack.doctrine-entity-attribute
@@ -310,8 +310,8 @@ questions:
         `#[ORM\Entity]` is Doctrine's mapping attribute, imported as `ORM` from `Doctrine\ORM\Mapping`. The
         `#[ORM\Column]` lower down maps one property to a column of that entity.
     sources:
-      - { kind: docs, page: /api/components/creating-components, anchor: step-1-create-the-entity, sectionHash: 'sha256:fd6680f4797a3457', block: 0, blockHash: 'sha256:8eee9ab76bc59a52' }
-      - { kind: docs, page: /core-concepts/architecture, anchor: what-cwa-is-built-on, sectionHash: 'sha256:5a1b8352e317b360' }
+      - { kind: docs, page: /api/components/creating-components, anchor: step-1-create-the-entity, sectionHash: 'sha256:fd6680f4797a3457', title: 'Creating Components › Step 1: Create the Entity', block: 0, blockHash: 'sha256:8eee9ab76bc59a52' }
+      - { kind: docs, page: /core-concepts/architecture, anchor: what-cwa-is-built-on, sectionHash: 'sha256:5a1b8352e317b360', title: 'How It All Works › What CWA Is Built On' }
     author: llm-draft
 
   # ---------------------------------------------------------------- Naming conventions
@@ -340,8 +340,8 @@ questions:
         a: Nuxt's own `components/` folder registers it without the `CwaComponent` prefix, so the module can't find it.
         e: Nuxt only looks in `app/app/cwa/`, so a file at `app/cwa/` from the repository root is never found.
     sources:
-      - { kind: docs, page: /api/components/creating-components, anchor: the-class-name-vue-component-convention, sectionHash: 'sha256:22b4c3a09af7ba18' }
-      - { kind: docs, page: /getting-started/installation, anchor: where-things-live, sectionHash: 'sha256:567f995785fc4015' }
+      - { kind: docs, page: /api/components/creating-components, anchor: the-class-name-vue-component-convention, sectionHash: 'sha256:22b4c3a09af7ba18', title: 'Creating Components › The Class Name → Vue Component Convention' }
+      - { kind: docs, page: /getting-started/installation, anchor: where-things-live, sectionHash: 'sha256:567f995785fc4015', title: 'Installation › Where things live' }
     author: llm-draft
 
   - id: core.naming.endpoint-path
@@ -364,8 +364,8 @@ questions:
         The bundle prefixes every component endpoint with `/component/`, and API Platform makes the plural,
         snake_case path from the class name.
     sources:
-      - { kind: docs, page: /core-concepts/architecture, anchor: naming-conventions, sectionHash: 'sha256:e1f7a7979c17cf50' }
-      - { kind: docs, page: /api/components/creating-components, anchor: url-prefix-convention, sectionHash: 'sha256:743ed3871d0aada5' }
+      - { kind: docs, page: /core-concepts/architecture, anchor: naming-conventions, sectionHash: 'sha256:16de6a5c40411e2c', title: 'How It All Works › Naming Conventions' }
+      - { kind: docs, page: /api/components/creating-components, anchor: url-prefix-convention, sectionHash: 'sha256:743ed3871d0aada5', title: 'Creating Components › URL Prefix Convention' }
     author: llm-draft
 
   - id: core.naming.ui-variant-folder
@@ -391,7 +391,7 @@ questions:
       optionNotes:
         d: A folder of its own makes a new component type named `AltHtmlContent`, not a variant of `HtmlContent`.
     sources:
-      - { kind: docs, page: /core-concepts/architecture, anchor: naming-conventions, sectionHash: 'sha256:e1f7a7979c17cf50' }
+      - { kind: docs, page: /core-concepts/architecture, anchor: naming-conventions, sectionHash: 'sha256:16de6a5c40411e2c', title: 'How It All Works › Naming Conventions' }
     author: llm-draft
 
   - id: core.naming.admin-tab-folder
@@ -415,7 +415,7 @@ questions:
         Each admin tab is one file in the component's `admin/` folder. The `ui/` folder holds alternative
         templates.
     sources:
-      - { kind: docs, page: /core-concepts/architecture, anchor: naming-conventions, sectionHash: 'sha256:e1f7a7979c17cf50' }
+      - { kind: docs, page: /core-concepts/architecture, anchor: naming-conventions, sectionHash: 'sha256:16de6a5c40411e2c', title: 'How It All Works › Naming Conventions' }
     author: llm-draft
 
   - id: core.naming.page-template-name
@@ -438,7 +438,7 @@ questions:
         Files in `app/app/cwa/pages/` are registered with the `CwaPage` prefix in front of the PascalCased file
         name, so `BlogDetail.vue` is `CwaPageBlogDetail`.
     sources:
-      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: how-uicomponent-names-resolve, sectionHash: 'sha256:5dc45450ae61e9df' }
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: how-uicomponent-names-resolve, sectionHash: 'sha256:5dc45450ae61e9df', title: 'Layouts › How uiComponent Names Resolve' }
     author: llm-draft
 
   - id: core.naming.file-name-casing
@@ -461,7 +461,7 @@ questions:
         Nuxt builds the name from the `CwaLayout` prefix and the PascalCased file name, so `site-header.vue`
         becomes `CwaLayoutSiteHeader`.
     sources:
-      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: how-uicomponent-names-resolve, sectionHash: 'sha256:5dc45450ae61e9df' }
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: how-uicomponent-names-resolve, sectionHash: 'sha256:5dc45450ae61e9df', title: 'Layouts › How uiComponent Names Resolve' }
     author: llm-draft
 
   - id: core.naming.nuxt-config-keys
@@ -484,8 +484,8 @@ questions:
         The keys under `cwa.layouts` and `cwa.pages` in `nuxt.config` are the name without the prefix, such as
         `Primary` and `BlogDetail`. The record's `uiComponent` is the one that holds the full name.
     sources:
-      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: how-uicomponent-names-resolve, sectionHash: 'sha256:5dc45450ae61e9df' }
-      - { kind: docs, page: /core-concepts/architecture, anchor: naming-conventions, sectionHash: 'sha256:e1f7a7979c17cf50' }
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: how-uicomponent-names-resolve, sectionHash: 'sha256:5dc45450ae61e9df', title: 'Layouts › How uiComponent Names Resolve' }
+      - { kind: docs, page: /core-concepts/architecture, anchor: naming-conventions, sectionHash: 'sha256:16de6a5c40411e2c', title: 'How It All Works › Naming Conventions' }
     author: llm-draft
 
   - id: core.naming.bundle-tables
@@ -507,7 +507,7 @@ questions:
       explanation: >-
         The bundle prefixes its own tables with `_acb_` by default (its `table_prefix` setting). Your component entities get tables of their own.
     sources:
-      - { kind: docs, page: /core-concepts/architecture, anchor: naming-conventions, sectionHash: 'sha256:e1f7a7979c17cf50' }
+      - { kind: docs, page: /core-concepts/architecture, anchor: naming-conventions, sectionHash: 'sha256:16de6a5c40411e2c', title: 'How It All Works › Naming Conventions' }
     author: llm-draft
 
   - id: core.naming.layout-file-suffix
@@ -535,7 +535,7 @@ questions:
       optionNotes:
         b: That is the name of `primary.vue`. The module doesn't strip a `Layout` suffix from the file name.
     sources:
-      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: how-uicomponent-names-resolve, sectionHash: 'sha256:5dc45450ae61e9df' }
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: how-uicomponent-names-resolve, sectionHash: 'sha256:5dc45450ae61e9df', title: 'Layouts › How uiComponent Names Resolve' }
     author: llm-draft
 
   - id: core.naming.page-short-name
@@ -564,7 +564,7 @@ questions:
       optionNotes:
         a: That is what happens for a layout. Layouts are stored as sent, with no prefix added.
     sources:
-      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: how-uicomponent-names-resolve, sectionHash: 'sha256:5dc45450ae61e9df' }
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: how-uicomponent-names-resolve, sectionHash: 'sha256:5dc45450ae61e9df', title: 'Layouts › How uiComponent Names Resolve' }
     author: llm-draft
 
   - id: core.naming.layout-short-name
@@ -591,8 +591,8 @@ questions:
         sent, with no prefix added, and rendered by the name as stored, so `Primary` doesn't resolve. The module
         falls back to the default layout and logs that the layout component cannot be resolved.
     sources:
-      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: how-uicomponent-names-resolve, sectionHash: 'sha256:5dc45450ae61e9df' }
-      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: renaming-or-deleting-a-layout, sectionHash: 'sha256:a66804030913aff5' }
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: how-uicomponent-names-resolve, sectionHash: 'sha256:5dc45450ae61e9df', title: 'Layouts › How uiComponent Names Resolve' }
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: renaming-or-deleting-a-layout, sectionHash: 'sha256:a66804030913aff5', title: 'Layouts › Renaming or Deleting a Layout' }
     author: llm-draft
 
   - id: core.naming.component-empty-ui-component
@@ -619,6 +619,6 @@ questions:
         empty. `@type` is the PHP class name, so a `Title` renders with `CwaComponentTitle`, from
         `Title/Title.vue`.
     sources:
-      - { kind: docs, page: /api/components/creating-components, anchor: the-class-name-vue-component-convention, sectionHash: 'sha256:22b4c3a09af7ba18' }
-      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: how-uicomponent-names-resolve, sectionHash: 'sha256:5dc45450ae61e9df' }
+      - { kind: docs, page: /api/components/creating-components, anchor: the-class-name-vue-component-convention, sectionHash: 'sha256:22b4c3a09af7ba18', title: 'Creating Components › The Class Name → Vue Component Convention' }
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: how-uicomponent-names-resolve, sectionHash: 'sha256:5dc45450ae61e9df', title: 'Layouts › How uiComponent Names Resolve' }
     author: llm-draft

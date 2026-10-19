@@ -35,6 +35,7 @@ questions:
         page: /api/data-fixtures/seeding-content
         anchor: getting-the-iri-of-a-persisted-entity
         sectionHash: sha256:bc3e43d86b988cbf
+        title: Seeding Content › Getting the IRI of a Persisted Entity
         block: 0
         blockHash: sha256:0a1b538b82eb64ce
     generator:
@@ -80,10 +81,12 @@ questions:
         page: /nuxt-module/cwa-layer/admin-panel
         anchor: edit-mode
         sectionHash: sha256:1708eff0dfb948f0
+        title: Admin Panel Reference › Edit Mode
       - kind: docs
         page: /nuxt-module/component-helpers/rich-text-editor
         anchor: loading-an-editor-lazily
         sectionHash: sha256:7fce4f11b07ffd0b
+        title: Rich-Text Editor › Loading an Editor Lazily
         block: 0
         blockHash: sha256:0e7f745cec50bbb2
     generator:
@@ -120,10 +123,12 @@ questions:
         page: /nuxt-module/cwa-layer/admin-panel
         anchor: edit-mode
         sectionHash: sha256:1708eff0dfb948f0
+        title: Admin Panel Reference › Edit Mode
       - kind: docs
         page: /nuxt-module/component-helpers/rich-text-editor
         anchor: choosing-the-editors-buttons
         sectionHash: sha256:0185d0498eaba132
+        title: Rich-Text Editor › Choosing the Editor's Buttons
         block: 0
         blockHash: sha256:cd4c2bec1c8cdb59
     generator:
@@ -169,10 +174,12 @@ questions:
         page: /nuxt-module/cwa-layer/admin-panel
         anchor: edit-mode
         sectionHash: sha256:1708eff0dfb948f0
+        title: Admin Panel Reference › Edit Mode
       - kind: docs
         page: /nuxt-module/pwa
         anchor: applying-updates
-        sectionHash: sha256:1e1edfcff665dd28
+        sectionHash: sha256:9e0cef773e3c77ed
+        title: Progressive Web App & Offline › Applying Updates
         block: 1
         blockHash: sha256:60c62f519ea31f5a
     generator:
@@ -211,10 +218,12 @@ questions:
         page: /nuxt-module/cwa-api/auth
         anchor: state
         sectionHash: sha256:8e7fd8e732d171f5
+        title: cwa.auth › State
       - kind: docs
         page: /nuxt-module/authentication
         anchor: reading-auth-state
         sectionHash: sha256:42ec771f5f4b2b90
+        title: Front-End Authentication › Reading Auth State
         block: 1
         blockHash: sha256:aa2f049cd0d90315
     generator:
@@ -259,10 +268,12 @@ questions:
         page: /nuxt-module/cwa-api/auth
         anchor: state
         sectionHash: sha256:8e7fd8e732d171f5
+        title: cwa.auth › State
       - kind: docs
         page: /nuxt-module/authentication
         anchor: when-the-api-is-on-another-origin
         sectionHash: sha256:7154d7185c40c220
+        title: Front-End Authentication › When the API Is on Another Origin
         block: 0
         blockHash: sha256:38932816137a25f3
     generator:
@@ -298,6 +309,7 @@ questions:
         page: /core-concepts/dynamic-pages
         anchor: reading-pagedata-in-your-vue-component
         sectionHash: sha256:76c2ecae76dda115
+        title: Dynamic Pages › Reading PageData in Your Vue Component
         block: 0
         blockHash: sha256:372e9b5e8455ca74
     generator:
@@ -333,10 +345,12 @@ questions:
         page: /core-concepts/dynamic-pages
         anchor: reading-pagedata-in-your-vue-component
         sectionHash: sha256:76c2ecae76dda115
+        title: Dynamic Pages › Reading PageData in Your Vue Component
       - kind: docs
         page: /nuxt-module/module-setup
         anchor: what-you-get
         sectionHash: sha256:2783cd802e80fe4f
+        title: Module Setup › What You Get
         block: 0
         blockHash: sha256:e3fbc2aa6442685a
     generator:
@@ -372,10 +386,12 @@ questions:
         page: /core-concepts/dynamic-pages
         anchor: reading-pagedata-in-your-vue-component
         sectionHash: sha256:76c2ecae76dda115
+        title: Dynamic Pages › Reading PageData in Your Vue Component
       - kind: docs
         page: /nuxt-module/configuration/site-config-and-seo
         anchor: accessing-site-config
         sectionHash: sha256:215d8c27f98b85ef
+        title: Site Config & SEO › Accessing Site Config
         block: 0
         blockHash: sha256:7d90bce438918da9
     generator:
@@ -412,6 +428,7 @@ questions:
         page: /nuxt-module/module-setup
         anchor: disable-cwa-route-fetching
         sectionHash: sha256:7d2c3f9a44902a9a
+        title: Module Setup › Disable CWA Route Fetching
         block: 0
         blockHash: sha256:c7106abaf1cdaca5
     generator:
@@ -448,10 +465,12 @@ questions:
         page: /nuxt-module/module-setup
         anchor: disable-cwa-route-fetching
         sectionHash: sha256:7d2c3f9a44902a9a
+        title: Module Setup › Disable CWA Route Fetching
       - kind: docs
         page: /nuxt-module/module-setup
         anchor: use-the-cwa-root-layout-on-your-own-page
         sectionHash: sha256:b0c7167c6d88bb4b
+        title: Module Setup › Use the CWA Root Layout on Your Own Page
         block: 0
         blockHash: sha256:fedc5347071c40db
     generator:
@@ -494,10 +513,12 @@ questions:
         page: /nuxt-module/module-setup
         anchor: disable-cwa-route-fetching
         sectionHash: sha256:7d2c3f9a44902a9a
+        title: Module Setup › Disable CWA Route Fetching
       - kind: docs
         page: /nuxt-module/composables/auth/use-verify-email
         anchor: example
         sectionHash: sha256:f01dbca8cd989e74
+        title: useVerifyEmail › Example
         block: 0
         blockHash: sha256:38357614a04aa9dc
     generator:
@@ -533,10 +554,12 @@ questions:
         page: /nuxt-module/module-setup
         anchor: disable-cwa-route-fetching
         sectionHash: sha256:7d2c3f9a44902a9a
+        title: Module Setup › Disable CWA Route Fetching
       - kind: docs
         page: /nuxt-module/authentication
         anchor: protecting-pages
         sectionHash: sha256:a39674deb4430c44
+        title: Front-End Authentication › Protecting Pages
         block: 0
         blockHash: sha256:631e4bb611a3587a
     generator:
@@ -592,10 +615,12 @@ questions:
         page: /nuxt-module/module-setup
         anchor: disable-cwa-route-fetching
         sectionHash: sha256:7d2c3f9a44902a9a
+        title: Module Setup › Disable CWA Route Fetching
       - kind: docs
         page: /nuxt-module/authentication
         anchor: customising-the-login-page
         sectionHash: sha256:cb4ed501bf5c492c
+        title: Front-End Authentication › Customising the Login Page
         block: 0
         blockHash: sha256:2b94d9514f6c538a
     generator:
@@ -640,10 +665,12 @@ questions:
         page: /nuxt-module/module-setup
         anchor: typescript-support
         sectionHash: sha256:7ba383c3c56ea423
+        title: Module Setup › TypeScript Support
       - kind: docs
         page: /core-concepts/components
         anchor: _2-the-vue-component-the-display
         sectionHash: sha256:cc87dc88884ee7f5
+        title: Components › 2. The Vue component (the display)
         block: 0
         blockHash: sha256:58f142cdf2cf43cb
     generator:
@@ -697,10 +724,12 @@ questions:
         page: /nuxt-module/module-setup
         anchor: typescript-support
         sectionHash: sha256:7ba383c3c56ea423
+        title: Module Setup › TypeScript Support
       - kind: docs
         page: /guides/your-first-page-template
         anchor: the-file
         sectionHash: sha256:9d4da2ea60160308
+        title: Your First Page Template › The File
         block: 0
         blockHash: sha256:6bc05eb5a4176069
     generator:
@@ -753,10 +782,12 @@ questions:
         page: /nuxt-module/module-setup
         anchor: typescript-support
         sectionHash: sha256:7ba383c3c56ea423
+        title: Module Setup › TypeScript Support
       - kind: docs
         page: /guides/your-first-component
         anchor: the-vue-file
         sectionHash: sha256:89e2acc4057f1248
+        title: Your First Component › The Vue file
         block: 1
         blockHash: sha256:df2358ca3d144100
     generator:
@@ -812,10 +843,12 @@ questions:
         page: /nuxt-module/module-setup
         anchor: typescript-support
         sectionHash: sha256:7ba383c3c56ea423
+        title: Module Setup › TypeScript Support
       - kind: docs
         page: /guides/alternative-ui-variants
         anchor: approach-1-style-classes
         sectionHash: sha256:e84f4c49ad58dc77
+        title: "Alternative UI Variants › Approach 1: Style Classes"
         block: 0
         blockHash: sha256:32a1bc29f03d7ebd
     generator:
@@ -867,10 +900,12 @@ questions:
         page: /nuxt-module/module-setup
         anchor: typescript-support
         sectionHash: sha256:7ba383c3c56ea423
+        title: Module Setup › TypeScript Support
       - kind: docs
         page: /guides/alternative-ui-variants
         anchor: conditional-rendering-based-on-style
         sectionHash: sha256:dbde099ff99715c7
+        title: Alternative UI Variants › Conditional rendering based on style
         block: 0
         blockHash: sha256:9cc2b9251be32c5c
     generator:
@@ -921,10 +956,12 @@ questions:
         page: /nuxt-module/module-setup
         anchor: typescript-support
         sectionHash: sha256:7ba383c3c56ea423
+        title: Module Setup › TypeScript Support
       - kind: docs
         page: /guides/alternative-ui-variants
         anchor: the-ui-file
         sectionHash: sha256:97d0c4346cea8201
+        title: Alternative UI Variants › The ui/ file
         block: 0
         blockHash: sha256:67f7d40df9d95df6
     generator:
@@ -965,6 +1002,7 @@ questions:
         page: /nuxt-module/module-setup
         anchor: use-a-static-layout-component
         sectionHash: sha256:b88ee19e60ecdc18
+        title: Module Setup › Use a Static Layout Component
         block: 0
         blockHash: sha256:4d69724fea997f4b
     generator:
@@ -1010,10 +1048,12 @@ questions:
         page: /nuxt-module/module-setup
         anchor: use-a-static-layout-component
         sectionHash: sha256:b88ee19e60ecdc18
+        title: Module Setup › Use a Static Layout Component
       - kind: docs
         page: /nuxt-module/configuration/nuxt-config
         anchor: definepagemeta-cwa-options
         sectionHash: sha256:d480ab634e57b325
+        title: Nuxt Config › definePageMeta CWA Options
         block: 0
         blockHash: sha256:9cd8d9c1d2eb79f5
     generator:
@@ -1065,10 +1105,12 @@ questions:
         page: /api/data-fixtures/builder-reference
         anchor: layout
         sectionHash: sha256:f3917667f7c359ed
+        title: Builder Reference › layout()
       - kind: docs
         page: /guides/your-first-layout
         anchor: via-fixtures
         sectionHash: sha256:55e036fee4a219a8
+        title: Your First Layout › Via fixtures
         block: 0
         blockHash: sha256:e65412420a5eda6f
     generator:
@@ -1107,10 +1149,12 @@ questions:
         page: /api/data-fixtures/builder-reference
         anchor: layout
         sectionHash: sha256:f3917667f7c359ed
+        title: Builder Reference › layout()
       - kind: docs
         page: /guides/your-first-page-template
         anchor: via-fixtures
         sectionHash: sha256:a8e964245cc7df96
+        title: Your First Page Template › Via fixtures
         block: 0
         blockHash: sha256:06332e002924b0a9
     generator:
@@ -1159,10 +1203,12 @@ questions:
         page: /api/data-fixtures/builder-reference
         anchor: layout
         sectionHash: sha256:f3917667f7c359ed
+        title: Builder Reference › layout()
       - kind: docs
         page: /guides/your-first-component
         anchor: via-fixtures
         sectionHash: sha256:e1c9ba97c217434a
+        title: Your First Component › Via fixtures
         block: 0
         blockHash: sha256:825d8146891df7f1
     generator:
@@ -1197,10 +1243,12 @@ questions:
         page: /api/data-fixtures/builder-reference
         anchor: layout
         sectionHash: sha256:f3917667f7c359ed
+        title: Builder Reference › layout()
       - kind: docs
         page: /api/components/annotations/explicit-allow-only
         anchor: allowing-the-type-in-a-group
-        sectionHash: sha256:8df0f13d0eb76748
+        sectionHash: sha256:3e826d05b2e1cc9b
+        title: Explicit Allow Only › Allowing the Type in a Group
         block: 0
         blockHash: sha256:f47a61e917655a64
     generator:
@@ -1237,10 +1285,12 @@ questions:
         page: /api/data-fixtures/builder-reference
         anchor: pagebuilder-from-cwa-page
         sectionHash: sha256:09fa85294badea1e
+        title: Builder Reference › PageBuilder — from $cwa->page()
       - kind: docs
         page: /api/data-fixtures/writing-a-scaffold
         anchor: components-on-page-data
         sectionHash: sha256:1bbe8b30034943a4
+        title: Writing a Scaffold › Components on Page Data
         block: 0
         blockHash: sha256:acb32b0c1a027ec2
     generator:
@@ -1275,10 +1325,12 @@ questions:
         page: /api/data-fixtures/builder-reference
         anchor: pagebuilder-from-cwa-page
         sectionHash: sha256:09fa85294badea1e
+        title: Builder Reference › PageBuilder — from $cwa->page()
       - kind: docs
         page: /api/data-fixtures/builder-reference
         anchor: pagedatabuilder-from-cwa-pagedata
         sectionHash: sha256:47d1c5c75e9642c7
+        title: Builder Reference › PageDataBuilder — from $cwa->pageData()
         block: 1
         blockHash: sha256:af420ca9b5622e29
     generator:
@@ -1331,6 +1383,7 @@ questions:
         page: /api/data-fixtures/getting-started
         anchor: seeding-users
         sectionHash: sha256:8b00b077d42750cc
+        title: Getting Started with Fixtures › Seeding Users
         block: 0
         blockHash: sha256:c397d856800f4dcc
     generator:
@@ -1374,10 +1427,12 @@ questions:
         page: /core-concepts/layouts-and-pages
         anchor: layouts
         sectionHash: sha256:4330f59d11ef7503
+        title: Layouts & Pages › Layouts
       - kind: docs
         page: /core-concepts/layouts-and-pages
         anchor: componentgroups-in-layouts
         sectionHash: sha256:b111d5044c5c0739
+        title: Layouts & Pages › ComponentGroups in Layouts
         block: 0
         blockHash: sha256:7478601c33abbb39
     generator:
@@ -1430,10 +1485,12 @@ questions:
         page: /core-concepts/layouts-and-pages
         anchor: layouts
         sectionHash: sha256:4330f59d11ef7503
+        title: Layouts & Pages › Layouts
       - kind: docs
         page: /guides/your-first-layout
         anchor: the-file
         sectionHash: sha256:a1f4ee1da582b30f
+        title: Your First Layout › The File
         block: 0
         blockHash: sha256:cfdf8a99c2ad44d7
     generator:
@@ -1483,10 +1540,12 @@ questions:
         page: /core-concepts/layouts-and-pages
         anchor: layouts
         sectionHash: sha256:4330f59d11ef7503
+        title: Layouts & Pages › Layouts
       - kind: docs
         page: /nuxt-module/building-your-ui/creating-layouts
         anchor: minimal-layout
         sectionHash: sha256:2b8dc7ad2252926d
+        title: Layouts › Minimal Layout
         block: 0
         blockHash: sha256:184da2bd305e9d07
     generator:
@@ -1535,10 +1594,12 @@ questions:
         page: /core-concepts/layouts-and-pages
         anchor: layouts
         sectionHash: sha256:4330f59d11ef7503
+        title: Layouts & Pages › Layouts
       - kind: docs
         page: /nuxt-module/building-your-ui/creating-layouts
         anchor: component-groups
         sectionHash: sha256:f25480f8d882e378
+        title: Layouts › Component Groups
         block: 0
         blockHash: sha256:a6206c28e0f69780
     generator:
@@ -1582,10 +1643,12 @@ questions:
         page: /nuxt-module/composables/component/use-cwa-component
         anchor: return-values
         sectionHash: sha256:db39379ae980b37e
+        title: useCwaComponent › Return Values
       - kind: docs
         page: /core-concepts/components
         anchor: _2-the-vue-component-the-display
         sectionHash: sha256:cc87dc88884ee7f5
+        title: Components › 2. The Vue component (the display)
         block: 0
         blockHash: sha256:58f142cdf2cf43cb
     generator:
@@ -1637,10 +1700,12 @@ questions:
         page: /nuxt-module/composables/component/use-cwa-component
         anchor: return-values
         sectionHash: sha256:db39379ae980b37e
+        title: useCwaComponent › Return Values
       - kind: docs
         page: /guides/your-first-component
         anchor: the-vue-file
         sectionHash: sha256:89e2acc4057f1248
+        title: Your First Component › The Vue file
         block: 1
         blockHash: sha256:df2358ca3d144100
     generator:
@@ -1687,10 +1752,12 @@ questions:
         page: /nuxt-module/composables/component/use-cwa-component
         anchor: return-values
         sectionHash: sha256:db39379ae980b37e
+        title: useCwaComponent › Return Values
       - kind: docs
         page: /nuxt-module/building-your-ui/creating-components
         anchor: the-mandatory-pattern
         sectionHash: sha256:dd17ace354762d82
+        title: Component Files › The Mandatory Pattern
         block: 0
         blockHash: sha256:6a5b7ec046544e6c
     generator:
@@ -1732,10 +1799,12 @@ questions:
         page: /nuxt-module/composables/component/use-cwa-component
         anchor: return-values
         sectionHash: sha256:db39379ae980b37e
+        title: useCwaComponent › Return Values
       - kind: docs
         page: /nuxt-module/building-your-ui/cwa-cli
         anchor: what-gets-generated
         sectionHash: sha256:afb530103b2db9e6
+        title: CLI Generator › What Gets Generated
         block: 0
         blockHash: sha256:e8cffca99014ceee
     generator:
@@ -1787,10 +1856,12 @@ questions:
         page: /nuxt-module/composables/component/use-cwa-component
         anchor: return-values
         sectionHash: sha256:db39379ae980b37e
+        title: useCwaComponent › Return Values
       - kind: docs
         page: /nuxt-module/component-helpers/html-content
         anchor: usage
         sectionHash: sha256:144ca3e5a7959ee8
+        title: HTML Content › Usage
         block: 0
         blockHash: sha256:51b0148ece554cb1
     generator:
@@ -1837,10 +1908,12 @@ questions:
         page: /nuxt-module/composables/component/use-cwa-component
         anchor: return-values
         sectionHash: sha256:db39379ae980b37e
+        title: useCwaComponent › Return Values
       - kind: docs
         page: /nuxt-module/component-helpers/forms
         anchor: form-container-component
         sectionHash: sha256:709b83ce0d041c75
+        title: Working with Forms › Form Container Component
         block: 0
         blockHash: sha256:97365a10ae8306d6
     generator:
@@ -1882,10 +1955,12 @@ questions:
         page: /core-concepts/draft-and-publish
         anchor: validation-groups
         sectionHash: sha256:24caa89232de0fc9
+        title: Draft & Publish Workflow › Validation Groups
       - kind: docs
         page: /core-concepts/draft-and-publish
         anchor: the-php-side
         sectionHash: sha256:211687be683a3bec
+        title: Draft & Publish Workflow › The PHP Side
         block: 0
         blockHash: sha256:742d418cba68d146
     generator:
@@ -1942,10 +2017,12 @@ questions:
         page: /core-concepts/draft-and-publish
         anchor: validation-groups
         sectionHash: sha256:24caa89232de0fc9
+        title: Draft & Publish Workflow › Validation Groups
       - kind: docs
         page: /guides/your-first-component
         anchor: the-api-entity
-        sectionHash: sha256:42656507ceb034bb
+        sectionHash: sha256:a50c17ac1cd7afd9
+        title: Your First Component › The API entity
         block: 1
         blockHash: sha256:e1ea68436e541e9c
     generator:
@@ -1999,10 +2076,12 @@ questions:
         page: /core-concepts/draft-and-publish
         anchor: validation-groups
         sectionHash: sha256:24caa89232de0fc9
+        title: Draft & Publish Workflow › Validation Groups
       - kind: docs
         page: /api/components/creating-components
         anchor: a-complete-example
         sectionHash: sha256:a7d66fe3ad78d78e
+        title: Creating Components › A Complete Example
         block: 0
         blockHash: sha256:dac33d6b7f3af303
     generator:
@@ -2036,10 +2115,12 @@ questions:
         page: /core-concepts/draft-and-publish
         anchor: validation-groups
         sectionHash: sha256:24caa89232de0fc9
+        title: Draft & Publish Workflow › Validation Groups
       - kind: docs
         page: /api/components/annotations/publishable
         anchor: publish-only-validation
         sectionHash: sha256:c89f435046be17af
+        title: Publishable › Publish-Only Validation
         block: 0
         blockHash: sha256:07ae3b3ec5b1994e
     generator:
@@ -2062,6 +2143,7 @@ questions:
         page: /api/data-fixtures/builder-reference
         anchor: pagebuilder-from-cwa-page
         sectionHash: sha256:09fa85294badea1e
+        title: Builder Reference › PageBuilder — from $cwa->page()
         block: 2
         blockHash: sha256:eaec88680c1e538a
     generator:
@@ -2098,12 +2180,14 @@ questions:
         page: /nuxt-module/building-your-ui/creating-layouts
         anchor: accessing-layout-data
         sectionHash: sha256:e09863528691188c
+        title: Layouts › Accessing Layout Data
         block: 0
         blockHash: sha256:b64f71277423f584
       - kind: docs
         page: /core-concepts/dynamic-pages
         anchor: reading-pagedata-in-your-vue-component
         sectionHash: sha256:76c2ecae76dda115
+        title: Dynamic Pages › Reading PageData in Your Vue Component
     generator:
       name: spot-the-mistake
       ref: script-dollar-cwa
@@ -2136,12 +2220,14 @@ questions:
         page: /nuxt-module/building-your-ui/creating-page-templates
         anchor: dynamic-pages-accessing-page-data
         sectionHash: sha256:1ad16d755073ee03
+        title: "Page Templates › Dynamic Pages: Accessing Page Data"
         block: 0
         blockHash: sha256:9e192dd721110c8e
       - kind: docs
         page: /core-concepts/dynamic-pages
         anchor: reading-pagedata-in-your-vue-component
         sectionHash: sha256:76c2ecae76dda115
+        title: Dynamic Pages › Reading PageData in Your Vue Component
     generator:
       name: spot-the-mistake
       ref: script-dollar-cwa
@@ -2175,12 +2261,14 @@ questions:
         page: /nuxt-module/cwa-components/cwa-page
         anchor: child-template
         sectionHash: sha256:83b6f435edca40c4
+        title: <CwaPage /> › Child Template
         block: 0
         blockHash: sha256:3b4084deacbdb5cb
       - kind: docs
         page: /core-concepts/dynamic-pages
         anchor: reading-pagedata-in-your-vue-component
         sectionHash: sha256:76c2ecae76dda115
+        title: Dynamic Pages › Reading PageData in Your Vue Component
     generator:
       name: spot-the-mistake
       ref: script-dollar-cwa
@@ -2228,13 +2316,15 @@ questions:
       - kind: docs
         page: /nuxt-module/module-setup
         anchor: set-the-api-url
-        sectionHash: sha256:c1e229ba6223f727
+        sectionHash: sha256:088a6f83e0a018e6
+        title: Module Setup › Set the API URL
         block: 0
         blockHash: sha256:becfc9d30c345ed4
       - kind: docs
         page: /nuxt-module/configuration/nuxt-config
         anchor: runtime-config
         sectionHash: sha256:9d3370c64c839364
+        title: Nuxt Config › Runtime Config
     generator:
       name: spot-the-mistake
       ref: api-url-trailing-slash
@@ -2275,6 +2365,7 @@ questions:
         page: /nuxt-module/configuration/nuxt-config
         anchor: runtime-config
         sectionHash: sha256:9d3370c64c839364
+        title: Nuxt Config › Runtime Config
         block: 0
         blockHash: sha256:b1625d33d1a97a37
     generator:

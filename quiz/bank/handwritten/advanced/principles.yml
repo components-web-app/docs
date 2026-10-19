@@ -31,7 +31,7 @@ questions:
       optionNotes:
         b: That's why editing a component's content purges no manifest. Adding a component changes the structure.
     sources:
-      - { kind: docs, page: /api/http-caching, anchor: resource-manifests-are-tagged-per-page, sectionHash: 'sha256:c9b069e644d128b1' }
+      - { kind: docs, page: /api/http-caching, anchor: resource-manifests-are-tagged-per-page, sectionHash: 'sha256:c9b069e644d128b1', title: 'HTTP Caching › Resource Manifests Are Tagged per Page' }
     author: llm-draft
 
   - id: api.cache.failed-purge
@@ -58,7 +58,7 @@ questions:
         The failure is logged at error level with the tags, and those responses stay stale until they expire or
         someone purges again.
     sources:
-      - { kind: docs, page: /api/http-caching, anchor: cache-tags-and-purging, sectionHash: 'sha256:265b323fb734a064' }
+      - { kind: docs, page: /api/http-caching, anchor: cache-tags-and-purging, sectionHash: 'sha256:265b323fb734a064', title: 'HTTP Caching › Cache Tags and Purging' }
     author: llm-draft
 
   - id: api.cache.direct-database-edit
@@ -88,8 +88,8 @@ questions:
         b: '`cwa-html` drops the rendered pages only. The cached API response for the component still has the typo.'
         c: This drops the pages only, and leaves cached API responses alone.
     sources:
-      - { kind: docs, page: /api/http-caching, anchor: flushing-the-whole-http-cache, sectionHash: 'sha256:d6247223c88916af' }
-      - { kind: docs, page: /nuxt-module/page-caching, anchor: purging-all-cached-data, sectionHash: 'sha256:a957a4c8bdd5c0eb' }
+      - { kind: docs, page: /api/http-caching, anchor: flushing-the-whole-http-cache, sectionHash: 'sha256:d6247223c88916af', title: 'HTTP Caching › Flushing the Whole HTTP Cache' }
+      - { kind: docs, page: /nuxt-module/page-caching, anchor: purging-all-cached-data, sectionHash: 'sha256:e2845b04299edb08', title: 'Page Caching › Purging All Cached Data' }
     author: llm-draft
 
   - id: api.cache.route-go-live-all-pages
@@ -116,8 +116,8 @@ questions:
         route going live can change pages that never mention it, such as a navigation menu, and no cache tag can
         express that. A page then inherits the lowest lifetime of the responses it used.
     sources:
-      - { kind: docs, page: /api/http-caching, anchor: scheduled-publication-and-cache-lifetime, sectionHash: 'sha256:302347fe1fa50302' }
-      - { kind: docs, page: /nuxt-module/page-caching, anchor: how-long-a-page-is-kept, sectionHash: 'sha256:118538e80ad6a936' }
+      - { kind: docs, page: /api/http-caching, anchor: scheduled-publication-and-cache-lifetime, sectionHash: 'sha256:1493bbf7a17d8444', title: 'HTTP Caching › Scheduled Publication and Cache Lifetime' }
+      - { kind: docs, page: /nuxt-module/page-caching, anchor: how-long-a-page-is-kept, sectionHash: 'sha256:118538e80ad6a936', title: 'Page Caching › How Long a Page Is Kept' }
     author: llm-draft
 
   - id: api.real-time.failed-publish
@@ -143,7 +143,7 @@ questions:
         it at error level, with a message containing `could not be published`, and the save still returns its
         normal response. Other open pages miss that update until they next fetch.
     sources:
-      - { kind: docs, page: /api/real-time, anchor: when-updates-dont-arrive, sectionHash: 'sha256:4cf5f6932f81ece1' }
+      - { kind: docs, page: /api/real-time, anchor: when-updates-dont-arrive, sectionHash: 'sha256:4cf5f6932f81ece1', title: 'Real-Time Updates (Mercure) › When Updates Don''t Arrive' }
     author: llm-draft
 
   - id: api.real-time.secure-subscriptions
@@ -172,7 +172,7 @@ questions:
         `secure_subscriptions: true`, the bundle checks each resource's security expression when it issues the
         cookie and leaves out the topics the user can't access.
     sources:
-      - { kind: docs, page: /api/real-time, anchor: secure-subscriptions, sectionHash: 'sha256:a55d9bda5bdb92a1' }
+      - { kind: docs, page: /api/real-time, anchor: secure-subscriptions, sectionHash: 'sha256:a55d9bda5bdb92a1', title: 'Real-Time Updates (Mercure) › Secure Subscriptions' }
     author: llm-draft
 
   - id: api.orphans.delete-rescan
@@ -198,7 +198,7 @@ questions:
         request and deletes only what is orphaned now. The placed component comes back in `rejected` as
         `not_orphaned`, and one refusal doesn't stop the rest.
     sources:
-      - { kind: docs, page: /api/orphaned-data, anchor: deleting-orphans, sectionHash: 'sha256:3c36d4168713f1dd' }
+      - { kind: docs, page: /api/orphaned-data, anchor: deleting-orphans, sectionHash: 'sha256:3c36d4168713f1dd', title: 'Orphaned Data › Deleting Orphans' }
     author: llm-draft
 
   # ---------------------------------------------------------------- Nuxt module
@@ -227,7 +227,7 @@ questions:
         isn't a leak. The module sends no `Vary: Cookie`, so the cache serves that anonymous copy to the admin,
         who sees no admin controls or draft content.
     sources:
-      - { kind: docs, page: /nuxt-module/page-caching, anchor: deployment-requirements, sectionHash: 'sha256:a2181baa0ca07fd8' }
+      - { kind: docs, page: /nuxt-module/page-caching, anchor: deployment-requirements, sectionHash: 'sha256:534b41949291678a', title: 'Page Caching › Deployment Requirements' }
     author: llm-draft
 
   - id: nuxt.page-cache.accept-key
@@ -254,7 +254,7 @@ questions:
         browser, and a page cached for one browser misses for the next. API responses do depend on it, and
         Swagger UI's response sends no `Vary: Accept`, so without it a hit could serve HTML to a JSON-LD client.
     sources:
-      - { kind: docs, page: /nuxt-module/page-caching, anchor: deployment-requirements, sectionHash: 'sha256:a2181baa0ca07fd8' }
+      - { kind: docs, page: /nuxt-module/page-caching, anchor: deployment-requirements, sectionHash: 'sha256:534b41949291678a', title: 'Page Caching › Deployment Requirements' }
     author: llm-draft
 
   - id: nuxt.page-cache.nitro-route-rules
@@ -282,7 +282,7 @@ questions:
         The API purges Souin by tag. Nitro's own cache isn't purged by the API, so edits don't appear until the
         route rule expires. The module warns at build time when both are on.
     sources:
-      - { kind: docs, page: /nuxt-module/page-caching, anchor: deployment-requirements, sectionHash: 'sha256:a2181baa0ca07fd8' }
+      - { kind: docs, page: /nuxt-module/page-caching, anchor: deployment-requirements, sectionHash: 'sha256:534b41949291678a', title: 'Page Caching › Deployment Requirements' }
     author: llm-draft
 
   - id: nuxt.page-cache.warm-on-server
@@ -309,7 +309,7 @@ questions:
         anonymously through the in-cluster origin, with the site's public `Host`, so each page is stored under
         the same key visitors use.
     sources:
-      - { kind: docs, page: /nuxt-module/page-caching, anchor: warming-the-cache-from-site-settings, sectionHash: 'sha256:51de2bcca27fcfc3' }
+      - { kind: docs, page: /nuxt-module/page-caching, anchor: warming-the-cache-from-site-settings, sectionHash: 'sha256:2cfed47cdc82b2e6', title: 'Page Caching › Warming the Cache from Site Settings' }
     author: llm-draft
 
   - id: nuxt.pwa.network-first
@@ -335,7 +335,7 @@ questions:
         `NetworkFirst` reads the cache only when the network fails, that is, offline. So no connected visitor
         is served a stale or wrongly scoped response from the service worker.
     sources:
-      - { kind: docs, page: /nuxt-module/pwa, anchor: tier-2-cwa-api-runtime-cache, sectionHash: 'sha256:0012729a734dd7ff' }
+      - { kind: docs, page: /nuxt-module/pwa, anchor: tier-2-cwa-api-runtime-cache, sectionHash: 'sha256:9eff887af41250a1', title: 'Progressive Web App & Offline › Tier 2 — CWA API Runtime Cache' }
     author: llm-draft
 
   - id: nuxt.pwa.url-pattern
@@ -361,7 +361,7 @@ questions:
         page data and components. A broad match would intercept the Mercure server-sent events connection and
         stop real-time updates.
     sources:
-      - { kind: docs, page: /nuxt-module/pwa, anchor: tier-2-cwa-api-runtime-cache, sectionHash: 'sha256:0012729a734dd7ff' }
+      - { kind: docs, page: /nuxt-module/pwa, anchor: tier-2-cwa-api-runtime-cache, sectionHash: 'sha256:9eff887af41250a1', title: 'Progressive Web App & Offline › Tier 2 — CWA API Runtime Cache' }
     author: llm-draft
 
   - id: nuxt.pwa.reconnect
@@ -390,7 +390,7 @@ questions:
       optionNotes:
         d: The module never swaps the content in by itself; the page keeps the old content until the visitor updates.
     sources:
-      - { kind: docs, page: /nuxt-module/pwa, anchor: offline-and-real-time-updates, sectionHash: 'sha256:457e0a4756e3d0d4' }
+      - { kind: docs, page: /nuxt-module/pwa, anchor: offline-and-real-time-updates, sectionHash: 'sha256:457e0a4756e3d0d4', title: 'Progressive Web App & Offline › Offline and Real-Time Updates' }
     author: llm-draft
 
   # ---------------------------------------------------------------- Deployment
@@ -419,7 +419,7 @@ questions:
         replica, but several pods can start together and race. Turn off the entrypoint migration and run it in a
         `pre-install,pre-upgrade` Helm hook Job, so it finishes before any new pod gets traffic.
     sources:
-      - { kind: docs, page: /deployment/kubernetes, anchor: running-migrations, sectionHash: 'sha256:45306ee5d37ef051' }
+      - { kind: docs, page: /deployment/kubernetes, anchor: running-migrations, sectionHash: 'sha256:45306ee5d37ef051', title: 'Kubernetes & Helm › Running Migrations' }
     author: llm-draft
 
   - id: deploy.k8s.rollback-schema
@@ -446,7 +446,7 @@ questions:
         the newer release left it. Migrations are upward-only: to undo a change, write a new migration that
         reverses it and deploy that.
     sources:
-      - { kind: docs, page: /deployment/kubernetes, anchor: rollback, sectionHash: 'sha256:41d0d873fd59e900' }
+      - { kind: docs, page: /deployment/kubernetes, anchor: rollback, sectionHash: 'sha256:779929d1aca64347', title: 'Kubernetes & Helm › Rollback' }
     author: llm-draft
 
   - id: deploy.secrets.rotation
@@ -474,7 +474,7 @@ questions:
         generates one only when the release has none yet. To rotate, set a new value as the CI variable and
         deploy.
     sources:
-      - { kind: docs, page: /deployment/variables, anchor: secrets, sectionHash: 'sha256:7a2fe292b4eea0c9' }
+      - { kind: docs, page: /deployment/variables, anchor: secrets, sectionHash: 'sha256:3a053dabe537216c', title: 'CI/CD Variables › Secrets' }
     author: llm-draft
 
   - id: deploy.cicd.staging-fixtures
@@ -500,7 +500,7 @@ questions:
         Staging runs under the production environment and gets production's variables. With an external
         `DATABASE_URL` it uses production's database, so a fixture load there would write to production.
     sources:
-      - { kind: docs, page: /deployment/ci-cd, anchor: fixtures-on-a-deploy, sectionHash: 'sha256:b2a73785da6d0d2b' }
+      - { kind: docs, page: /deployment/ci-cd, anchor: fixtures-on-a-deploy, sectionHash: 'sha256:1599d74ff846a6e1', title: 'CI/CD › Fixtures on a deploy' }
     author: llm-draft
 
   - id: deploy.cloudflare.api-accept
@@ -526,7 +526,7 @@ questions:
         returns JSON-LD, JSON or the HTML docs depending on `Accept`, so a rule by path could serve the wrong
         format. The optional API rule caches only the exact `Accept` the module sends.
     sources:
-      - { kind: docs, page: /deployment/cloudflare, anchor: _api-needs-its-own-rule, sectionHash: 'sha256:b5acdc286b99fb40' }
+      - { kind: docs, page: /deployment/cloudflare, anchor: _api-needs-its-own-rule, sectionHash: 'sha256:0506eff494c572a0', title: 'Cloudflare › /api needs its own rule' }
     author: llm-draft
 
   - id: deploy.cloudflare.positions-path
@@ -552,7 +552,7 @@ questions:
         `path` request header, and the API sends `Vary: path`. Souin honours it, but Cloudflare ignores `Vary`.
         The API rule must leave out `/_api/_/component_positions/`.
     sources:
-      - { kind: docs, page: /deployment/cloudflare, anchor: api-responses-optional, sectionHash: 'sha256:395c2b5cce8c289b' }
+      - { kind: docs, page: /deployment/cloudflare, anchor: api-responses-optional, sectionHash: 'sha256:395c2b5cce8c289b', title: 'Cloudflare › API responses (optional)' }
     author: llm-draft
 
   - id: deploy.cloudflare.edge-ttl-override
@@ -578,7 +578,7 @@ questions:
         an error page no longer stops Cloudflare caching it. With purges reaching Cloudflare, the origin's
         `s-maxage` is the lifetime you want.
     sources:
-      - { kind: docs, page: /deployment/cloudflare, anchor: edge-lifetime, sectionHash: 'sha256:36dac065ef4c0002' }
+      - { kind: docs, page: /deployment/cloudflare, anchor: edge-lifetime, sectionHash: 'sha256:36dac065ef4c0002', title: 'Cloudflare › Edge lifetime' }
     author: llm-draft
 
   - id: deploy.cloudflare.review-scope
@@ -604,7 +604,7 @@ questions:
         A deploy with that config ends with a purge of everything in the zone, and so does every fixture load. A
         purge everything can't be limited to one hostname, so production's edge is emptied too.
     sources:
-      - { kind: docs, page: /deployment/cloudflare, anchor: secrets, sectionHash: 'sha256:41dd0a664d55b699' }
+      - { kind: docs, page: /deployment/cloudflare, anchor: secrets, sectionHash: 'sha256:41dd0a664d55b699', title: 'Cloudflare › Secrets' }
     author: llm-draft
 
   - id: deploy.docker.mercure-not-cached
@@ -630,5 +630,5 @@ questions:
         Mercure uses server-sent events under `/.well-known/mercure`. A cached SSE response never finishes, so
         connections build up and the site looks like it has gone down.
     sources:
-      - { kind: docs, page: /deployment/docker, anchor: what-the-page-cache-stores, sectionHash: 'sha256:05b5ea4747c68066' }
+      - { kind: docs, page: /deployment/docker, anchor: what-the-page-cache-stores, sectionHash: 'sha256:05b5ea4747c68066', title: 'Docker › What the page cache stores' }
     author: llm-draft

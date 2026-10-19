@@ -31,7 +31,7 @@ questions:
       optionNotes:
         b: '`GCLOUD_PATH_PREFIX` is reserved, so `CWA_API_GCLOUD_PATH_PREFIX` fails the deploy.'
     sources:
-      - { kind: docs, page: /deployment/variables, anchor: storage-path-prefix, sectionHash: 'sha256:d5050419f3c67122' }
+      - { kind: docs, page: /deployment/variables, anchor: storage-path-prefix, sectionHash: 'sha256:0fd6cf4c8802eb79', title: 'CI/CD Variables › Storage path prefix' }
     author: llm-draft
 
   - id: deploy.storage.prefix-media-urls
@@ -62,7 +62,7 @@ questions:
       optionNotes:
         b: php tidies the value, removing a leading slash, so `/site-a` becomes `site-a/` anyway.
     sources:
-      - { kind: docs, page: /deployment/variables, anchor: storage-path-prefix, sectionHash: 'sha256:d5050419f3c67122' }
+      - { kind: docs, page: /deployment/variables, anchor: storage-path-prefix, sectionHash: 'sha256:0fd6cf4c8802eb79', title: 'CI/CD Variables › Storage path prefix' }
     author: llm-draft
 
   - id: deploy.storage.prefix-live-app
@@ -91,7 +91,7 @@ questions:
         The paths in the database are relative to the prefix. Copy the objects under the new prefix, keeping each
         one's path below it, then deploy. The old objects stay until you remove them.
     sources:
-      - { kind: docs, page: /deployment/variables, anchor: changing-a-live-apps-prefix, sectionHash: 'sha256:b3f0888ca270ea64' }
+      - { kind: docs, page: /deployment/variables, anchor: changing-a-live-apps-prefix, sectionHash: 'sha256:b3f0888ca270ea64', title: 'CI/CD Variables › Changing a live app''s prefix' }
     author: llm-draft
 
   - id: deploy.review.storage-cleanup
@@ -120,6 +120,6 @@ questions:
         The delete runs only when the pod's prefix ends in `review/<slug>/`. An older review app has no prefix, so
         the guard refuses. The job warns and uninstalls the release anyway, and the files stay at the root.
     sources:
-      - { kind: docs, page: /deployment/ci-cd, anchor: review-app-storage, sectionHash: 'sha256:857ec17a08b78b21' }
-      - { kind: docs, page: /deployment/variables, anchor: review-app-paths, sectionHash: 'sha256:283ea9d9c4379f7a' }
+      - { kind: docs, page: /deployment/ci-cd, anchor: review-app-storage, sectionHash: 'sha256:9ac5d633066cedfc', title: 'CI/CD › Review app storage' }
+      - { kind: docs, page: /deployment/variables, anchor: review-app-paths, sectionHash: 'sha256:56dfd62e9abdd006', title: 'CI/CD Variables › Review app paths' }
     author: llm-draft

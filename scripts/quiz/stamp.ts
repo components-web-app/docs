@@ -1,8 +1,10 @@
 /**
  * pnpm quiz:stamp <id…> | --all-stale [--fetch]
+ * pnpm quiz:stamp --titles   (only the link titles, on every question: after a heading or page title changes)
  *
  * Run after a person has reviewed a question against its source. Fills in or refreshes its hashes:
- * - docs sources: `sectionHash`, and `blockHash` when `block` is set;
+ * - docs sources: `sectionHash`, `title` (the link's label, added after `sectionHash` if missing),
+ *   and `blockHash` when `block` is set;
  * - code sources: `linesHash` for the pinned lines, then re-pins to the tracked branch's head
  *   (new commit, and the new line range if the same lines moved).
  * Never changes a question's text. Only the hash, commit and line-range values are rewritten, in
@@ -12,15 +14,16 @@ import { readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { isMap, isScalar, isSeq, parseDocument, type YAMLMap } from 'yaml'
 import { REPOS, type Repo } from '../../quiz/schema.ts'
-import { readAllPages, ROOT } from './lib/docs.ts'
+import { readAllPages, ROOT, sourceTitle } from './lib/docs.ts'
 import { fetchRepo, findMoved, linesHash, readAt, sliceLines, trackedHead } from './lib/source.ts'
 import { loadBank } from './lib/bank.ts'
 
 const argv = process.argv.slice(2)
-const allStale = argv.includes('--all-stale')
+const titlesOnly = argv.includes('--titles')
+const allStale = argv.includes('--all-stale') || titlesOnly
 const ids = new Set(argv.filter(a => !a.startsWith('--')))
 if (!allStale && ids.size === 0) {
-  console.error('Usage: pnpm quiz:stamp <id…> | --all-stale [--fetch]')
+  console.error('Usage: pnpm quiz:stamp <id…> | --all-stale [--fetch] | --titles')
   process.exit(1)
 }
 if (argv.includes('--fetch')) for (const repo of Object.keys(REPOS) as Repo[]) fetchRepo(repo)
@@ -53,7 +56,9 @@ for (const [file, fileIds] of files) {
     if (!isSeq(sources)) continue
     for (const node of sources.items) {
       if (!isMap(node)) continue
-      const note = node.get('kind') === 'docs' ? stampDocs(node, id) : await stampCode(node, id)
+      const docs = node.get('kind') === 'docs'
+      if (titlesOnly && !docs) continue
+      const note = docs ? stampDocs(node, id) : await stampCode(node, id)
       if (note) {
         console.log(`${id}: ${note}`)
         changed++
@@ -84,6 +89,22 @@ function set(node: YAMLMap, key: string, value: string | [number, number]): bool
   return true
 }
 
+/** Sets `title`, adding it after `sectionHash` in the source's own style when it's missing. */
+function setTitle(node: YAMLMap, title: string): boolean {
+  if (node.has('title')) return set(node, 'title', title)
+  const after = node.get('sectionHash', true) as { range?: [number, number, number] } | undefined
+  if (!after?.range) return false
+  const quoted = `'${title.replace(/'/g, "''")}'`
+  if (node.flow) {
+    edits.push({ start: after.range[1], end: after.range[1], text: `, title: ${quoted}` })
+  } else {
+    const lineStart = source.lastIndexOf('\n', after.range[0]) + 1
+    const indent = /^\s*/.exec(source.slice(lineStart))![0]
+    edits.push({ start: after.range[1], end: after.range[1], text: `\n${indent}title: ${quoted}` })
+  }
+  return true
+}
+
 function stampDocs(node: YAMLMap, id: string): string | undefined {
   const page = pages.get(String(node.get('page')))
   const section = page?.sections.find(s => s.anchor === node.get('anchor'))
@@ -92,7 +113,9 @@ function stampDocs(node: YAMLMap, id: string): string | undefined {
     process.exitCode = 1
     return undefined
   }
+  if (titlesOnly) return setTitle(node, sourceTitle(page!, section)) ? 'title' : undefined
   let note = set(node, 'sectionHash', section.hash) ? `${section.anchor} section hash` : ''
+  if (setTitle(node, sourceTitle(page!, section))) note += `${note ? ', ' : ''}title`
   const blockIndex = node.get('block')
   if (typeof blockIndex === 'number') {
     const block = section.blocks[blockIndex]

@@ -29,7 +29,7 @@ questions:
         Older layouts rendered `<CwaUiProgressBar>`, driven by `pageLoadProgress`. `<CwaLoadingIndicator>` covers
         CWA pages and your own Nuxt pages with one bar, so remove the old one.
     sources:
-      - { kind: docs, page: /nuxt-module/building-your-ui/creating-page-templates, anchor: loading-bar, sectionHash: 'sha256:b462b57d44f1200b' }
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-page-templates, anchor: loading-bar, sectionHash: 'sha256:abab6daea170c1d9', title: 'Page Templates › Loading Bar' }
     author: llm-draft
 
   - id: nuxt.ui.page-loading-end
@@ -58,7 +58,7 @@ questions:
         The module holds `page:loading:end` until the new CWA page shows, so the loading bar finishes and the page
         scrolls to the top then. Pages with `cwa: { disabled: true }` are never held.
     sources:
-      - { kind: docs, page: /nuxt-module/building-your-ui/creating-page-templates, anchor: loading-bar, sectionHash: 'sha256:b462b57d44f1200b' }
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-page-templates, anchor: loading-bar, sectionHash: 'sha256:abab6daea170c1d9', title: 'Page Templates › Loading Bar' }
     author: llm-draft
 
   - id: nuxt.seo.og-image-secret
@@ -91,7 +91,7 @@ questions:
         b: '`NUXT_OG_IMAGE_SECRET` is the older, deprecated name, read by Nuxt as a fallback. The API never signs these URLs.'
         c: Without the renderers the module logs that open graph image generation is disabled, and pages get no OG image at all.
     sources:
-      - { kind: docs, page: /nuxt-module/configuration/site-config-and-seo, anchor: the-og-image-secret, sectionHash: 'sha256:860cf01d421ad9e3' }
+      - { kind: docs, page: /nuxt-module/configuration/site-config-and-seo, anchor: the-og-image-secret, sectionHash: 'sha256:3f98dbbd1384e0c2', title: 'Site Config & SEO › The OG image secret' }
     author: llm-draft
 
   - id: nuxt.seo.skew-protection
@@ -123,7 +123,7 @@ questions:
         `@nuxtjs/seo` 6 turns both on. The module doesn't register `@nuxtjs/seo`, so only an app that does needs
         these lines.
     sources:
-      - { kind: docs, page: /nuxt-module/module-setup, anchor: nuxt-seo-v6, sectionHash: 'sha256:db486a0b1853bdf7', block: 1, blockHash: 'sha256:869ce22d8f66f1bc' }
+      - { kind: docs, page: /nuxt-module/module-setup, anchor: nuxt-seo-v6, sectionHash: 'sha256:87a00bcdafa81714', title: 'Module Setup › Nuxt SEO v6', block: 1, blockHash: 'sha256:869ce22d8f66f1bc' }
     author: llm-draft
 
   - id: nuxt.admin.add-page-data-route
@@ -155,5 +155,5 @@ questions:
       optionNotes:
         c: Creating page data in the admin never creates a route. The editor generates or adds one in the Routes tab.
     sources:
-      - { kind: docs, page: /nuxt-module/cwa-layer/admin-panel, anchor: linking-to-the-add-page-data-form, sectionHash: 'sha256:f98a9e448ba3ec24' }
+      - { kind: docs, page: /nuxt-module/cwa-layer/admin-panel, anchor: linking-to-the-add-page-data-form, sectionHash: 'sha256:1ac8260e0abef39d', title: 'Admin Panel Reference › Linking to the add page data form' }
     author: llm-draft
