@@ -2410,6 +2410,16 @@
         }
       }
     },
+    "deploy.db.review-production-database": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:d65005db9f182337",
+          "docsCommit": "40c75c27b4f88361ffbcf40fd1469bbdf706c40e"
+        }
+      }
+    },
     "deploy.db.staging-shared-database": {
       "status": "live",
       "version": 1,
@@ -2422,11 +2432,25 @@
     },
     "deploy.db.window-failure": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:a0a9955f258e10a4",
           "docsCommit": "a922e093061fa1ec590408d5e373f4c2f525e6dc"
+        },
+        "2": {
+          "fingerprint": "sha256:a0a9955f258e10a4",
+          "docsCommit": "40c75c27b4f88361ffbcf40fd1469bbdf706c40e"
+        }
+      }
+    },
+    "deploy.db.window-left-on": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:035e9b77c8bd943c",
+          "docsCommit": "40c75c27b4f88361ffbcf40fd1469bbdf706c40e"
         }
       }
     },
