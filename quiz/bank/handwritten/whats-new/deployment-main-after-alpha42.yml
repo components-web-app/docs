@@ -28,7 +28,7 @@ questions:
         The backup needs a private bucket of its own. The deploy refuses `GCLOUD_BUCKET`, which is public and which
         the daily orphan scan cleans, and after each upload it deletes a dump that it can read without credentials.
     sources:
-      - { kind: docs, page: /deployment/migrations-and-backups, anchor: the-backup-bucket, sectionHash: 'sha256:838d8218a4c424d4', title: 'Migrations and Backups › The backup bucket' }
+      - { kind: docs, page: /deployment/migrations-and-backups, anchor: the-backup-bucket, sectionHash: 'sha256:c745822566442b82', title: 'Migrations and Backups › The backup bucket' }
     author: llm-draft
 
   - id: deploy.db.window-failure
@@ -179,7 +179,7 @@ questions:
       optionNotes:
         b: 'Before this change the upload used `GCLOUD_JSON`. Now the deploy refuses the same service account.'
     sources:
-      - { kind: docs, page: /deployment/migrations-and-backups, anchor: the-backup-bucket, sectionHash: 'sha256:838d8218a4c424d4', title: 'Migrations and Backups › The backup bucket' }
+      - { kind: docs, page: /deployment/migrations-and-backups, anchor: the-backup-bucket, sectionHash: 'sha256:c745822566442b82', title: 'Migrations and Backups › The backup bucket' }
 
   - id: deploy.cicd.failed-rollout-tag
     version: 1
