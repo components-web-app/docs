@@ -3124,7 +3124,7 @@
     },
     "deploy.k8s.no-php-hpa": {
       "status": "live",
-      "version": 2,
+      "version": 3,
       "versions": {
         "1": {
           "fingerprint": "sha256:c9cea38c4982ed3d",
@@ -3133,6 +3133,10 @@
         "2": {
           "fingerprint": "sha256:c9cea38c4982ed3d",
           "docsCommit": "a922e093061fa1ec590408d5e373f4c2f525e6dc"
+        },
+        "3": {
+          "fingerprint": "sha256:c9cea38c4982ed3d",
+          "docsCommit": "7a36c534373f4cbf871927224fcceb1460618f31"
         }
       }
     },
@@ -3156,7 +3160,7 @@
     },
     "deploy.k8s.php-replicas": {
       "status": "live",
-      "version": 2,
+      "version": 3,
       "versions": {
         "1": {
           "fingerprint": "sha256:e56e4a1b7b75f843",
@@ -3165,6 +3169,10 @@
         "2": {
           "fingerprint": "sha256:e56e4a1b7b75f843",
           "docsCommit": "b0ce7fcde1dcf942410f017c32293f84c3990dcf"
+        },
+        "3": {
+          "fingerprint": "sha256:e56e4a1b7b75f843",
+          "docsCommit": "7a36c534373f4cbf871927224fcceb1460618f31"
         }
       }
     },
@@ -3277,6 +3285,16 @@
         "2": {
           "fingerprint": "sha256:3e79e246fa6b3845",
           "docsCommit": "9ff81ee4322ec1346c58b0cfb3bff98d6e868932"
+        }
+      }
+    },
+    "deploy.scaled.shared-cache-check": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:c62227f9141059f4",
+          "docsCommit": "7a36c534373f4cbf871927224fcceb1460618f31"
         }
       }
     },
