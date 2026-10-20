@@ -2182,6 +2182,16 @@
         }
       }
     },
+    "deploy.admin.password-warning": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:7c709e5964eec5bc",
+          "docsCommit": "f1e07aec791e8244e4df03720af68fc29e9221c8"
+        }
+      }
+    },
     "deploy.browser-tests.hidden-server-error": {
       "status": "live",
       "version": 1,
@@ -2471,6 +2481,16 @@
         "1": {
           "fingerprint": "sha256:dab97f4966190cb8",
           "docsCommit": "5a77f55ee091789ec3f314638209e92ca359558c"
+        }
+      }
+    },
+    "deploy.docker.wait-ready": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:4fb73f46bc78b15b",
+          "docsCommit": "f1e07aec791e8244e4df03720af68fc29e9221c8"
         }
       }
     },
