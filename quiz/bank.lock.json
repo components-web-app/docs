@@ -2916,11 +2916,15 @@
     },
     "deploy.install.certificate-warning": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:350b49b499e4ddd0",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:350b49b499e4ddd0",
+          "docsCommit": "e5d7c058a223e71399f317cd17f9c3e3a6550c99"
         }
       }
     },
