@@ -31,7 +31,7 @@ questions:
     author: llm-draft
 
   - id: core.request.first-requests
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: core-concepts
@@ -41,37 +41,37 @@ questions:
     prompt: A visitor opens `/about-us`. What does the module ask the API for first?
     options:
       - { id: a, text: The layout named in the site settings }
-      - { id: b, text: 'The route at that path, and its resource manifest' }
-      - { id: c, text: 'Every page record, to find one whose title matches the path' }
+      - { id: b, text: 'The route at that path, and a list of its content' }
+      - { id: c, text: 'Every page, to find one whose title matches the path' }
       - { id: d, text: The page's Vue file for that path }
     answer:
       correct: b
       explanation: >-
-        The middleware requests `GET /_/routes//about-us` and, in parallel, the resource manifest, which lists
-        every resource the page renders. The route points to a page or a page data record.
+        The middleware requests `GET /_/routes//about-us` and, at the same time, the resource manifest, which
+        lists everything the page displays. The route points to a page or to page data.
     sources:
       - { kind: docs, page: /core-concepts/architecture, anchor: the-request-lifecycle, sectionHash: 'sha256:b8b584459c4889d1', title: 'How It All Works › The Request Lifecycle' }
     author: llm-draft
 
   - id: core.data-model.route-target
-    version: 2
+    version: 3
     status: live
     level: beginner
     area: core-concepts
     tags: [data-model, routes]
     type: multiple-choice
     difficulty: 1
-    prompt: A route is the record that holds a path, such as `/about-us`. Which records can a route point to?
+    prompt: A route is what the API saves for a URL path, such as `/about-us`. What can a route point to?
     options:
-      - { id: a, text: A page or a page data record }
+      - { id: a, text: A page or page data }
       - { id: b, text: A component group or a position }
       - { id: c, text: A layout or a component }
       - { id: d, text: A Vue file in `app/app/cwa/pages/` }
     answer:
       correct: a
       explanation: >-
-        A route maps a URL path to a Page, for a static page, or to a PageData record, for a dynamic page. A
-        route can also redirect to another route.
+        A route maps a URL path to a page, for a static page, or to page data, for a dynamic page. A route can
+        also redirect to another route.
     sources:
       - { kind: docs, page: /core-concepts/the-data-model, anchor: route, sectionHash: 'sha256:48c85cc1328f40b5', title: 'The Data Model › Route' }
     author: llm-draft
@@ -100,7 +100,7 @@ questions:
     author: llm-draft
 
   - id: core.pages.page-template-vs-template-page
-    version: 1
+    version: 2
     status: live
     # Shares a family with the glossary questions on both terms.
     family: page-template-vs-template-page
@@ -111,17 +111,17 @@ questions:
     difficulty: 2
     prompt: What is the difference between a _page template_ and a _template page_?
     options:
-      - { id: a, text: A page template is a page record; a template page is a Vue file }
-      - { id: b, text: A page template is a Vue file; a template page is a shared page record }
-      - { id: c, text: They are two names for the same page record }
+      - { id: a, text: A page template is a saved page; a template page is a Vue file }
+      - { id: b, text: 'A page template is a Vue file; a template page is a shared, saved page' }
+      - { id: c, text: They are two names for the same saved page }
       - { id: d, text: A page template is a layout; a template page is a component group }
     answer:
       correct: b
       explanation: >-
-        A page template is the Vue file a page renders through, in `app/app/cwa/pages/`. A template page is a
-        page record with `isTemplate: true`, shared by many page data records.
+        A page template is the Vue file that displays a page, in `app/app/cwa/pages/`. A template page is a
+        page saved in the API with `isTemplate: true`, which many page data items share.
     sources:
-      - { kind: docs, page: /getting-started/key-ideas, anchor: repeating-content, sectionHash: 'sha256:16c50ea3e83daff7', title: 'Key Ideas › Repeating content' }
+      - { kind: docs, page: /getting-started/key-ideas, anchor: repeating-content, sectionHash: 'sha256:a0948f9c10d4d955', title: 'Key Ideas › Repeating content' }
     author: llm-draft
 
   - id: core.draft.who-sees-drafts
@@ -202,7 +202,7 @@ questions:
     author: llm-draft
 
   - id: core.components.two-sides
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: core-concepts
@@ -211,21 +211,21 @@ questions:
     difficulty: 1
     prompt: What does each component type need?
     options:
-      - { id: a, text: A PHP entity for its data and a Vue file to display it }
+      - { id: a, text: A PHP class for its data and a Vue file to display it }
       - { id: b, text: A Vue file only; the API stores any fields it's sent }
-      - { id: c, text: A PHP entity only; the module renders a default view }
+      - { id: c, text: A PHP class only; the module renders a default view }
       - { id: d, text: A JSON schema in `nuxt.config` and a Vue file }
     answer:
       correct: a
       explanation: >-
-        A component type is a PHP entity that holds the data, and a Vue file that displays it. Admin tabs in
+        A component type is a PHP class (a Doctrine entity) that holds the data, and a Vue file that displays it. Admin tabs in
         its `admin/` folder edit it.
     sources:
       - { kind: docs, page: /core-concepts/components, anchor: a-component-has-two-sides, sectionHash: 'sha256:3bc630a33960fae8', title: 'Components › A Component Has Two Sides' }
     author: llm-draft
 
   - id: core.components.admin-tab-saving
-    version: 2
+    version: 3
     status: live
     level: beginner
     area: core-concepts
@@ -233,8 +233,8 @@ questions:
     type: multiple-choice
     difficulty: 2
     prompt: >-
-      An editor types into a field in a component's admin tab (the panel where an editor changes the
-      component's fields). How is the change saved?
+      An editor types into an input on a component's admin tab (the panel where editors change the
+      component's content). How is the change saved?
     options:
       - { id: a, text: When they click Save at the foot of the tab }
       - { id: b, text: When they turn edit mode off again }
@@ -252,7 +252,7 @@ questions:
     author: llm-draft
 
   - id: core.identity.group-location
-    version: 2
+    version: 3
     status: live
     level: beginner
     area: core-concepts
@@ -266,14 +266,14 @@ questions:
       - { id: a, text: The URL path of the page the group appears on }
       - { id: b, text: 'The group''s name, such as `main`' }
       - { id: c, text: The layout's Vue file name }
-      - { id: d, text: The IRI of the record that owns the group }
+      - { id: d, text: The IRI (API address) of the group's owner }
     answer:
       correct: d
       explanation: >-
-        `location` says which record owns the group: a layout, a page or a component. Its name goes in
+        `location` says what owns the group: a layout, a page or a component, by its IRI. Its name goes in
         `reference`.
     sources:
-      - { kind: docs, page: /getting-started/key-ideas, anchor: how-records-are-identified, sectionHash: 'sha256:136fd1a524073c73', title: 'Key Ideas › How records are identified' }
+      - { kind: docs, page: /getting-started/key-ideas, anchor: how-records-are-identified, sectionHash: 'sha256:1023d3985d57778d', title: 'Key Ideas › How records are identified' }
     author: llm-draft
 
   - id: core.architecture.template-app

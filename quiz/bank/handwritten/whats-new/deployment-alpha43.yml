@@ -94,7 +94,7 @@ questions:
     author: llm-draft
 
   - id: deploy.k8s.migration-lock
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: deployment
@@ -102,8 +102,8 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: >-
-      A deploy starts a new API pod at 03:00, just as the orphan scan's pod starts. Both run migrations on start.
-      What happens on PostgreSQL?
+      At 03:00 a deploy starts a new API pod, and at the same moment the nightly orphan scan Job starts its own
+      pod. Both run the migrations when they start. What happens on PostgreSQL?
     why: >-
       Two processes running the same migration at once could fail half-way; the lock makes starting together safe.
     since: [{ repo: components-web-app, version: '2.0.0-alpha.43' }]
@@ -123,7 +123,8 @@ questions:
 
   - id: deploy.mercure.hub-settings-file
     version: 1
-    status: live
+    status: retired
+    retired: { reason: "trivia: an upgrade step; the quiz doesn't ask about upgrades (Daniel, 2026-10-20)" }
     level: intermediate
     area: deployment
     tags: [real-time, deployment]
@@ -299,7 +300,7 @@ questions:
       - { kind: docs, page: /deployment/migrations-and-backups, anchor: when-the-window-fails, sectionHash: 'sha256:031fb5134b828bdc', title: 'Migrations and Backups › When the window fails' }
 
   - id: deploy.db.review-production-database
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: deployment
@@ -307,8 +308,9 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: >-
-      On GitLab, a project sets production's external `DATABASE_URL` with `CWA_CI_POSTGRES_ENABLED="false"`,
-      scoped to All environments. What happens on the next review app deploy?
+      On GitLab, production uses an external database: `DATABASE_URL` points at it, and
+      `CWA_CI_POSTGRES_ENABLED` is `"false"`. Both variables are scoped to All environments, so review apps get
+      them too. What happens on the next review app deploy?
     why: >-
       A review app migrating production's database would change the live schema from an unreviewed branch, so
       the deploy stops it.

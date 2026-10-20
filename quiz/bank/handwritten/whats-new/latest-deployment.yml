@@ -96,7 +96,8 @@ questions:
 
   - id: deploy.review.storage-cleanup
     version: 1
-    status: live
+    status: retired
+    retired: { reason: "trivia: an upgrade step; the quiz doesn't ask about upgrades (Daniel, 2026-10-20)" }
     level: advanced
     area: deployment
     tags: [deployment, uploads]

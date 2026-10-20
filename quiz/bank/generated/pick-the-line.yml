@@ -325,7 +325,7 @@ questions:
       name: pick-the-line
       ref: define-expose
   - id: gen.target.page-data-position.4
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: api
@@ -334,9 +334,8 @@ questions:
       - fixtures
     type: pick-the-line
     family: target:page-data-position
-    prompt: This fixture builds a template page (a page record that every page data record of one type renders
-      through). Which line makes one of its component groups (named lists of components) show each page data
-      record's own component?
+    prompt: "This fixture builds a template page: the shared design that every blog article, say, is shown
+      through. Which line makes one of its component groups show each article's own component?"
     why: Use it when each blog article needs its own body or hero on a shared template page, rather than one
       component that every record shows.
     code:
@@ -370,7 +369,7 @@ questions:
       name: pick-the-line
       ref: page-data-position
   - id: gen.target.page-data-position.2
-    version: 3
+    version: 4
     status: live
     level: intermediate
     area: api
@@ -379,9 +378,8 @@ questions:
       - fixtures
     type: pick-the-line
     family: target:page-data-position
-    prompt: This fixture builds a template page (a page record that every page data record of one type renders
-      through). Which line makes one of its component groups (named lists of components) show each page data
-      record's own component?
+    prompt: "This fixture builds a template page: the shared design that every blog article, say, is shown
+      through. Which line makes one of its component groups show each article's own component?"
     why: Use it when each blog article needs its own body or hero on a shared template page, rather than one
       component that every record shows.
     code:
@@ -432,7 +430,7 @@ questions:
       name: pick-the-line
       ref: page-data-position
   - id: gen.target.page-data-position.3
-    version: 3
+    version: 4
     status: live
     level: intermediate
     area: api
@@ -441,9 +439,8 @@ questions:
       - fixtures
     type: pick-the-line
     family: target:page-data-position
-    prompt: This fixture builds a template page (a page record that every page data record of one type renders
-      through). Which line makes one of its component groups (named lists of components) show each page data
-      record's own component?
+    prompt: "This fixture builds a template page: the shared design that every blog article, say, is shown
+      through. Which line makes one of its component groups show each article's own component?"
     why: Use it when each blog article needs its own body or hero on a shared template page, rather than one
       component that every record shows.
     code:
@@ -486,7 +483,7 @@ questions:
       name: pick-the-line
       ref: page-data-position
   - id: gen.target.template-page-flag.5
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: api
@@ -495,8 +492,8 @@ questions:
       - fixtures
     type: pick-the-line
     family: target:template-page-flag
-    prompt: Which line gives this page no route of its own, so that every page data record (one item of repeating
-      content, such as a blog article) of one type renders through it?
+    prompt: Which line turns this page into the shared design for one type of page data, such as every blog
+      article, with no route of its own?
     why: One template page serves every page data record of its type, so a change to its component groups shows on
       all of them at once.
     code:
@@ -530,7 +527,7 @@ questions:
       name: pick-the-line
       ref: template-page-flag
   - id: gen.target.template-page-flag.2
-    version: 4
+    version: 5
     status: live
     level: intermediate
     area: api
@@ -539,8 +536,8 @@ questions:
       - fixtures
     type: pick-the-line
     family: target:template-page-flag
-    prompt: Which line gives this page no route of its own, so that every page data record (one item of repeating
-      content, such as a blog article) of one type renders through it?
+    prompt: Which line turns this page into the shared design for one type of page data, such as every blog
+      article, with no route of its own?
     why: One template page serves every page data record of its type, so a change to its component groups shows on
       all of them at once.
     code:
@@ -591,7 +588,7 @@ questions:
       name: pick-the-line
       ref: template-page-flag
   - id: gen.target.template-page-flag.4
-    version: 3
+    version: 4
     status: live
     level: intermediate
     area: api
@@ -600,8 +597,8 @@ questions:
       - fixtures
     type: pick-the-line
     family: target:template-page-flag
-    prompt: Which line gives this page no route of its own, so that every page data record (one item of repeating
-      content, such as a blog article) of one type renders through it?
+    prompt: Which line turns this page into the shared design for one type of page data, such as every blog
+      article, with no route of its own?
     why: One template page serves every page data record of its type, so a change to its component groups shows on
       all of them at once.
     code:

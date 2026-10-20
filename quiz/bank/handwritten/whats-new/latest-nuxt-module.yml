@@ -72,7 +72,8 @@ questions:
 
   - id: nuxt.resources.reorder-group
     version: 2
-    status: live
+    status: retired
+    retired: { reason: "trivia: an upgrade step; the quiz doesn't ask about upgrades (Daniel, 2026-10-20)" }
     level: advanced
     area: nuxt-module
     tags: [cwa-api, components]

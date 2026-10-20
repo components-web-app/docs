@@ -38,7 +38,7 @@ questions:
       name: glossary
       ref: layout
   - id: gen.term.content-structure.2
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: core-concepts
@@ -46,32 +46,32 @@ questions:
       - layouts-and-pages
     type: multiple-choice
     family: page-template-vs-template-page
-    prompt: Which term does this describe? “The Vue file a page renders through, in `app/app/cwa/pages/`.”
+    prompt: Which term does this describe? “The Vue file that arranges a page's component groups on screen, in
+      `app/app/cwa/pages/`.”
     options:
       - id: a
         text: Template page
       - id: b
         text: "`uiComponent`"
       - id: c
-        text: Component group
+        text: Dynamic position
       - id: d
         text: Page template
     answer:
       correct: d
-      explanation: The Vue file a page renders through, in `app/app/cwa/pages/`. It places the page's component
-        groups. In the admin it's the **Page UI**. Not the same as a [template
-        page](/core-concepts/glossary#template-page).
+      explanation: The Vue file that arranges a page's component groups on screen, in `app/app/cwa/pages/`. In the
+        admin it's the **Page UI**. Not the same as a [template page](/core-concepts/glossary#template-page).
     sources:
       - kind: docs
         page: /core-concepts/glossary
         anchor: page-template
-        sectionHash: sha256:b6c5c81e99e2648d
+        sectionHash: sha256:35d7afda04c7f7dc
         title: Glossary › Page template
     generator:
       name: glossary
       ref: page-template
   - id: gen.term.content-structure.3
-    version: 1
+    version: 3
     status: live
     level: intermediate
     area: core-concepts
@@ -79,7 +79,8 @@ questions:
       - dynamic-pages
     type: multiple-choice
     family: page-template-vs-template-page
-    prompt: "Which term does this describe? “A page record with `isTemplate: true`.”"
+    prompt: Which term does this describe? “A page that is the shared design for one type of page data, such as
+      every blog article.”
     options:
       - id: a
         text: Component group
@@ -91,21 +92,22 @@ questions:
         text: Page template
     answer:
       correct: c
-      explanation: "A page record with `isTemplate: true`. It has no route of its own: every [page
-        data](/core-concepts/glossary#page-data) record of one type renders through it. In the admin it's a
-        **Dynamic** page. Not the same as a [page template](/core-concepts/glossary#page-template). See
-        [Layouts & Pages › Template Pages](/core-concepts/layouts-and-pages#template-pages-istemplate-true)."
+      explanation: "A page that is the shared design for one type of page data, such as every blog article. It has
+        `isTemplate: true` and no route of its own: each [page data](/core-concepts/glossary#page-data) item
+        of that type is shown through it. In the admin it's a **Dynamic** page. Not the same as a [page
+        template](/core-concepts/glossary#page-template). See [Layouts & Pages › Template
+        Pages](/core-concepts/layouts-and-pages#template-pages-istemplate-true)."
     sources:
       - kind: docs
         page: /core-concepts/glossary
         anchor: template-page
-        sectionHash: sha256:74aad60b736ead27
+        sectionHash: sha256:3706c492ca3a9542
         title: Glossary › Template page
     generator:
       name: glossary
       ref: template-page
   - id: gen.term.content-structure.4
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: core-concepts
@@ -113,7 +115,8 @@ questions:
       - dynamic-pages
     type: multiple-choice
     family: term:27zzqu
-    prompt: Which term does this describe? “A record for one item of repeating content, such as one blog article.”
+    prompt: Which term does this describe? “One item of repeating content, such as one blog article, with its own
+      fields and its own route.”
     options:
       - id: a
         text: Component
@@ -125,20 +128,20 @@ questions:
         text: Page data
     answer:
       correct: d
-      explanation: A record for one item of repeating content, such as one blog article. It extends
-        `AbstractPageData`, has its own route and fields, and renders through a template page. See [Dynamic
+      explanation: One item of repeating content, such as one blog article, with its own fields and its own route.
+        Its PHP class extends `AbstractPageData`, and it is shown through a template page. See [Dynamic
         Pages](/core-concepts/dynamic-pages).
     sources:
       - kind: docs
         page: /core-concepts/glossary
         anchor: page-data
-        sectionHash: sha256:566df1a4f3877f23
+        sectionHash: sha256:859b9013019d6f75
         title: Glossary › Page data
     generator:
       name: glossary
       ref: page-data
   - id: gen.term.content-structure.5
-    version: 2
+    version: 3
     status: live
     level: beginner
     area: core-concepts
@@ -146,8 +149,8 @@ questions:
       - routes
     type: multiple-choice
     family: term:14qwcz
-    prompt: Which term does this describe? “A record that maps a path, such as `/about-us`, to one page or page
-      data record.”
+    prompt: Which term does this describe? “The link from a URL path, such as `/about-us`, to the page or page
+      data item shown there.”
     options:
       - id: a
         text: Layout
@@ -159,13 +162,13 @@ questions:
         text: Component
     answer:
       correct: c
-      explanation: A record that maps a path, such as `/about-us`, to one page or page data record. A route can also
-        redirect to another route, and can have a go-live date. See [Routes](/api/routes).
+      explanation: The link from a URL path, such as `/about-us`, to the page or page data item shown there. A route
+        can also redirect to another route, and can have a go-live date. See [Routes](/api/routes).
     sources:
       - kind: docs
         page: /core-concepts/glossary
         anchor: route
-        sectionHash: sha256:7b999d4d69310385
+        sectionHash: sha256:b84f573f56eaabd1
         title: Glossary › Route
     generator:
       name: glossary
@@ -241,7 +244,7 @@ questions:
       name: glossary
       ref: component-group
   - id: gen.term.content-structure.8
-    version: 2
+    version: 3
     status: live
     level: beginner
     area: core-concepts
@@ -249,8 +252,8 @@ questions:
       - data-model
     type: multiple-choice
     family: term:slm6f4
-    prompt: Which term does this describe? “The record that places one component in a component group and sets its
-      order.”
+    prompt: Which term does this describe? “The entry that puts one component into a component group and sets
+      where it comes in the group's order.”
     options:
       - id: a
         text: Dynamic position
@@ -262,21 +265,21 @@ questions:
         text: Component position
     answer:
       correct: d
-      explanation: The record that places one component in a component group and sets its order. Also called a
-        position. A [dynamic position](/core-concepts/glossary#dynamic-position) holds a binding to a page
-        data property instead of a component. The admin creates positions when an editor adds a component. See
-        [The Data Model](/core-concepts/the-data-model#componentposition).
+      explanation: The entry that puts one component into a component group and sets where it comes in the group's
+        order. Also called a position. A [dynamic position](/core-concepts/glossary#dynamic-position) holds a
+        binding to a page data property instead of a component. The admin creates positions when an editor
+        adds a component. See [The Data Model](/core-concepts/the-data-model#componentposition).
     sources:
       - kind: docs
         page: /core-concepts/glossary
         anchor: component-position
-        sectionHash: sha256:650c7294106a6fa4
+        sectionHash: sha256:7a627635146cf7e7
         title: Glossary › Component position
     generator:
       name: glossary
       ref: component-position
   - id: gen.term.content-structure.9
-    version: 2
+    version: 3
     status: live
     level: intermediate
     area: core-concepts
@@ -284,8 +287,8 @@ questions:
       - dynamic-pages
     type: multiple-choice
     family: term:2a7460
-    prompt: Which term does this describe? “A component position bound to a page data property, which shows the
-      component the current page data record holds in that property instead of a component of its own.”
+    prompt: "Which term does this describe? “A component position with no component of its own: it shows a
+      component from the current page data item instead, such as each article's body.”"
     options:
       - id: a
         text: Page template
@@ -297,22 +300,21 @@ questions:
         text: Template page
     answer:
       correct: c
-      explanation: A component position bound to a page data property, which shows the component the current page
-        data record holds in that property instead of a component of its own. It sits in a component group on
-        a template page, so each page data record that renders through that template page shows its own
-        component there. See [Dynamic
-        Pages](/core-concepts/dynamic-pages#linking-a-page-data-field-to-a-component-position).
+      explanation: "A component position with no component of its own: it shows a component from the current page
+        data item instead, such as each article's body. It sits in a component group on a template page, so
+        every item shown through that template page shows its own component there. See [Dynamic
+        Pages](/core-concepts/dynamic-pages#linking-a-page-data-field-to-a-component-position)."
     sources:
       - kind: docs
         page: /core-concepts/glossary
         anchor: dynamic-position
-        sectionHash: sha256:8a44339f1d20ed75
+        sectionHash: sha256:6fd6404f5d9d2cf5
         title: Glossary › Dynamic position
     generator:
       name: glossary
       ref: dynamic-position
   - id: gen.term.content-structure.10
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: core-concepts
@@ -320,8 +322,8 @@ questions:
       - layouts-and-pages
     type: multiple-choice
     family: term:2gh8i9
-    prompt: Which term does this describe? “The field on a layout, page or component record that names the Vue
-      file it renders through.”
+    prompt: Which term does this describe? “The name of the Vue file that displays a layout, page or component,
+      saved with it in the database.”
     options:
       - id: a
         text: Page template
@@ -333,14 +335,14 @@ questions:
         text: Template page
     answer:
       correct: c
-      explanation: The field on a layout, page or component record that names the Vue file it renders through. A
-        layout file `landing.vue` is stored as `CwaLayoutLanding`. See [How uiComponent names
+      explanation: The name of the Vue file that displays a layout, page or component, saved with it in the
+        database. For the layout file `landing.vue`, it's `CwaLayoutLanding`. See [How uiComponent names
         resolve](/nuxt-module/building-your-ui/creating-layouts#how-uicomponent-names-resolve).
     sources:
       - kind: docs
         page: /core-concepts/glossary
         anchor: uicomponent
-        sectionHash: sha256:29c68d4a852a3ec0
+        sectionHash: sha256:335cc0247cc838cf
         title: Glossary › uiComponent
     generator:
       name: glossary
@@ -380,6 +382,40 @@ questions:
     generator:
       name: glossary
       ref: iri
+  - id: gen.term.identifying-and-loading.3
+    version: 1
+    status: live
+    level: intermediate
+    area: core-concepts
+    tags:
+      - routes
+    type: multiple-choice
+    family: term:1xsedt
+    prompt: Which term does this describe? “The list of everything a page displays, which the module fetches with
+      the route so it can load the whole page at once.”
+    options:
+      - id: a
+        text: Edit mode
+      - id: b
+        text: Manifest
+      - id: c
+        text: Scaffold
+      - id: d
+        text: Layer
+    answer:
+      correct: b
+      explanation: The list of everything a page displays, which the module fetches with the route so it can load
+        the whole page at once. It comes from `GET /_/resource_manifest/{path}`, grouped by how deeply each
+        item is nested. See [Routes › The Resource Manifest](/api/routes#the-resource-manifest).
+    sources:
+      - kind: docs
+        page: /core-concepts/glossary
+        anchor: manifest
+        sectionHash: sha256:3624a12e4fce18ec
+        title: Glossary › Manifest
+    generator:
+      name: glossary
+      ref: manifest
   - id: gen.term.identifying-and-loading.2
     version: 1
     status: live
@@ -413,6 +449,40 @@ questions:
     generator:
       name: glossary
       ref: edit-mode
+  - id: gen.term.identifying-and-loading.4
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags:
+      - fixtures
+    type: multiple-choice
+    family: term:1m22ub
+    prompt: Which term does this describe? “A PHP class that creates layouts, pages, routes and components in
+      code, to fill the database with starting content.”
+    options:
+      - id: a
+        text: Manifest
+      - id: b
+        text: Scaffold
+      - id: c
+        text: Edit mode
+      - id: d
+        text: Layer
+    answer:
+      correct: b
+      explanation: A PHP class that creates layouts, pages, routes and components in code, to fill the database with
+        starting content. It extends `AbstractCwaScaffold`. See [Data
+        Fixtures](/api/data-fixtures/getting-started).
+    sources:
+      - kind: docs
+        page: /core-concepts/glossary
+        anchor: scaffold
+        sectionHash: sha256:d4946003a10372c9
+        title: Glossary › Scaffold
+    generator:
+      name: glossary
+      ref: scaffold
   - id: gen.term.caching-and-deployment.1
     version: 1
     status: live

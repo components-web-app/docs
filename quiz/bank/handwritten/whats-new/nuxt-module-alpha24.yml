@@ -34,7 +34,7 @@ questions:
     author: llm-draft
 
   - id: nuxt.admin.move-into-full-property
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: nuxt-module
@@ -43,8 +43,8 @@ questions:
     difficulty: 3
     family: admin-move-clone
     prompt: >-
-      While moving a component, an editor clicks a component position bound to a page data property that
-      already holds another component. What does the dialog offer?
+      An editor is moving a component. They click a dynamic component position, one filled from a page data
+      property, and that property already holds another component. What does the dialog offer?
     why: >-
       A move never discards the component it would displace; clear the property first, or clone if the
       replaced component should go.
@@ -65,7 +65,8 @@ questions:
 
   - id: nuxt.admin.needs-bundle-alpha32
     version: 1
-    status: live
+    status: retired
+    retired: { reason: "trivia: an upgrade step; the quiz doesn't ask about upgrades (Daniel, 2026-10-20)" }
     level: advanced
     area: nuxt-module
     tags: [admin, module-setup]

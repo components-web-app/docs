@@ -4,7 +4,7 @@
 
 questions:
   - id: nuxt.resource-model.saving
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: nuxt-module
@@ -12,15 +12,15 @@ questions:
     type: multiple-choice
     difficulty: 2
     prompt: >-
-      An admin tab (the panel an editor uses to change a selected component's fields) binds an input to
-      `useCwaResourceModel(iri, 'title')`. An editor types a whole sentence quickly. What does the composable
+      In an admin tab (the panel where an editor edits the component they selected), a text input is bound to
+      `useCwaResourceModel(iri, 'title')`. The editor types a whole sentence quickly. What does the composable
       send to the API?
     why: >-
       You don't add a Save button or your own request to an admin tab: the bound model saves for you, and
       `states.isBusy` is what you show while it does.
     options:
       - { id: a, text: 'A `PATCH` for every key press, sent in order' }
-      - { id: b, text: 'One `PATCH` of the field, once the typing pauses' }
+      - { id: b, text: 'One `PATCH` of `title`, once the typing pauses' }
       - { id: c, text: 'Nothing until the editor clicks **Publish**' }
       - { id: d, text: 'A `PUT` of the whole component when the tab closes' }
     answer:
@@ -194,7 +194,7 @@ questions:
     author: llm-draft
 
   - id: nuxt.collection.link-without-route
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: nuxt-module
@@ -202,12 +202,11 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: >-
-      A collection lists page data records (one item of repeating content, such as a blog article). An admin
-      sees draft records that have no route yet. What does `resolveResourceLink(item, 'routePath')` return for
-      them?
+      A collection component lists blog articles (page data). Signed in as an admin, you also see draft
+      articles that have no route yet. What does `resolveResourceLink(item, 'routePath')` return for those?
     why: >-
-      Draft records in a list stay linkable only if you bind the result to `:to`, because the fallback is a route
-      location object, not a string.
+      Draft articles in a list stay linkable only if you bind the result to `:to`, because the fallback is a
+      route location object, not a string.
     options:
       - { id: a, text: 'An empty string, so the link goes nowhere' }
       - { id: b, text: 'A route location for CWA''s internal resource page' }
@@ -223,7 +222,7 @@ questions:
     author: llm-draft
 
   - id: nuxt.routing.navigate-by-iri
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: nuxt-module
@@ -231,8 +230,8 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: >-
-      After an admin action, your code should open a page data record that has only an IRI to go by. Which call
-      opens it?
+      After an admin action, your code needs to open a blog article (page data). All it has is the article's
+      IRI, its API path, such as `/page_data/blog_article_datas/018e…`. Which call opens it?
     why: >-
       `navigateTo(iri)` matches one of the module's catch-all routes, so the module asks the API for a route at
       that path and the visitor gets a 404 while the URL stays put.
@@ -279,7 +278,7 @@ questions:
     author: llm-draft
 
   - id: nuxt.cwa-page.no-cwa-page
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: nuxt-module
@@ -287,8 +286,8 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: >-
-      The `/blog` page's page template (its Vue file) has no `<CwaPage />`. A visitor opens `/blog/my-first-post`,
-      a page data record nested under `/blog`. Where does the article render?
+      The page template (Vue file) that the `/blog` page uses has no `<CwaPage />` in it. A visitor opens
+      `/blog/my-first-post`, a blog article nested under `/blog`. Where on the page does the article appear?
     why: >-
       If a child page renders after everything in its parent's template instead of where you meant it to go, the
       parent template is missing `<CwaPage />`.
@@ -492,7 +491,7 @@ questions:
     author: llm-draft
 
   - id: nuxt.component.two-file-fields
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: nuxt-module
@@ -500,8 +499,8 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: >-
-      A component's PHP entity has two uploadable fields, `heroImage` and `thumbnail`. How does its display
-      component read both files' URLs?
+      A component's PHP class has two file upload properties, `heroImage` and `thumbnail`. How does the
+      component's Vue file read both files' URLs?
     why: >-
       A single `withFile()` reads only the field named `file`, so a component with renamed or extra fields
       shows no images until each field has its own plugin.

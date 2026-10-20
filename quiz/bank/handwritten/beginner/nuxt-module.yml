@@ -37,7 +37,7 @@ questions:
     author: llm-draft
 
   - id: nuxt.component.iri-prop
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: nuxt-module
@@ -53,10 +53,11 @@ questions:
     answer:
       correct: b
       explanation: >-
-        Each component receives its IRI as the `iri` prop (`defineProps<IriProp>()`), and reads its data from
+        Each component receives its IRI, its address in the API such as `/component/titles/abc`, as the
+        `iri` prop (`defineProps<IriProp>()`), and reads its data from
         the store with `useCwaComponent(props)`.
     sources:
-      - { kind: docs, page: /getting-started/key-ideas, anchor: how-records-are-identified, sectionHash: 'sha256:136fd1a524073c73', title: 'Key Ideas › How records are identified' }
+      - { kind: docs, page: /getting-started/key-ideas, anchor: how-records-are-identified, sectionHash: 'sha256:1023d3985d57778d', title: 'Key Ideas › How records are identified' }
     author: llm-draft
 
   - id: nuxt.layout.slot

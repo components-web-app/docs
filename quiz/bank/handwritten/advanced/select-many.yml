@@ -117,7 +117,7 @@ questions:
     author: llm-draft
 
   - id: api.cache.manifest-purge-writes
-    version: 1
+    version: 2
     status: live
     family: manifest-purge
     level: advanced
@@ -126,8 +126,8 @@ questions:
     type: select-many
     difficulty: 4
     prompt: >-
-      A resource manifest lists the IRIs a page renders, and is tagged per page rather than with every IRI.
-      Which of these writes purge the manifests that contain them?
+      A page's resource manifest lists the IRIs of everything the page renders. Its cache tag names the page,
+      rather than each IRI in it. Which of these edits purge the cached manifest of the page involved?
     why: >-
       A component's content edit refreshes the component and the pages that show it, but never its manifest,
       so code that expects a component save to refresh a manifest waits for nothing.
@@ -136,7 +136,7 @@ questions:
       - { id: b, text: 'An editor saves new text in a Title placed in the page''s `main` group' }
       - { id: c, text: 'An editor adds a component to the page''s `main` group' }
       - { id: d, text: An admin saves the site name in site config }
-      - { id: e, text: 'An editor changes a page data record''s `title`' }
+      - { id: e, text: 'An editor changes the `title` of the page''s page data' }
       - { id: f, text: An editor replaces an Image component's file }
     answer:
       correct: [a, c, e]

@@ -84,14 +84,14 @@ questions:
     author: llm-draft
 
   - id: api.routes.redirect-status
-    version: 2
+    version: 3
     status: live
     level: intermediate
     area: api
     tags: [routes]
     type: multiple-choice
     difficulty: 3
-    prompt: A visitor opens the path of a route that redirects to another route. Which HTTP status does the module's route middleware send?
+    prompt: A route is set to redirect to another route. A visitor opens the first route's path, and the Nuxt module redirects them. Which HTTP status code does it send?
     why: >-
       A `308` is permanent and keeps the request method, so browsers may cache it. Check a redirect's target
       before you save it, as a mistaken one can stick.
@@ -110,14 +110,14 @@ questions:
     author: llm-draft
 
   - id: api.routes.live-at-null
-    version: 2
+    version: 3
     status: live
     level: intermediate
     area: api
     tags: [routes]
     type: multiple-choice
     difficulty: 2
-    prompt: A route's go-live date, `liveAt`, is `null`. What does an anonymous visitor get at the route's path?
+    prompt: A route's go-live date, `liveAt`, is set to `null`. A signed-out visitor opens the route's path. What do they get?
     why: >-
       Use it to take a page down for a while. Deleting the route instead frees the path, and you'd have to set
       it up again.
@@ -188,16 +188,16 @@ questions:
     author: llm-draft
 
   - id: api.routes.page-data-without-route
-    version: 2
+    version: 3
     status: live
     level: intermediate
     area: api
     tags: [routes, dynamic-pages]
     type: multiple-choice
     difficulty: 3
-    prompt: You create a page data record (one item of repeating content, such as a blog article) with a `POST` to the REST API. Which route does the record get?
+    prompt: You create a blog article, stored as page data, by sending a `POST` request to the API. Which route does the article get?
     why: >-
-      Records you import through the API can't be visited until they have routes, so add that step to any
+      Page data you import through the API can't be visited until it has routes, so add that step to any
       import script.
     options:
       - { id: a, text: None until you create or generate one }
@@ -214,14 +214,14 @@ questions:
     author: llm-draft
 
   - id: api.fixtures.after-routes
-    version: 3
+    version: 4
     status: live
     level: intermediate
     area: api
     tags: [fixtures, routes]
     type: multiple-choice
     difficulty: 3
-    prompt: A scaffold creates a page whose route is named `about`. A navigation link component in the same scaffold has a `route` field that must hold that route. How do the docs say to set the field?
+    prompt: A scaffold creates a page with a route named `about`. In the same scaffold, a navigation link component has a `route` property that should point to that route. Which way do the docs recommend for setting it?
     why: >-
       Navigation links are where you'll meet this: a menu points at pages whose routes don't exist until the
       scaffold flushes.

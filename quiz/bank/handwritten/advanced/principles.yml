@@ -35,14 +35,14 @@ questions:
     author: llm-draft
 
   - id: api.cache.failed-purge
-    version: 1
+    version: 2
     status: live
     level: advanced
     area: api
     tags: [http-caching]
     type: multiple-choice
     difficulty: 3
-    prompt: An editor saves a component while the shared cache can't be reached. What happens?
+    prompt: An editor saves a component while the shared cache can't be reached, so the API's purge fails. What happens to the save and to the cached responses?
     why: >-
       With a long `s-maxage`, a missed purge can leave stale content for a long time, so alert on the purge
       failure in the API's error log.
@@ -93,14 +93,14 @@ questions:
     author: llm-draft
 
   - id: api.cache.route-go-live-all-pages
-    version: 1
+    version: 2
     status: live
     level: advanced
     area: api
     tags: [http-caching, routes]
     type: multiple-choice
     difficulty: 4
-    prompt: One route is scheduled to go live tomorrow at 09:00. Until then, every cached page's lifetime ends at that moment, including pages that never mention the route. Why does the API cap them all?
+    prompt: One route is scheduled to go live tomorrow at 09:00. The API makes every cached page expire at 09:00, even pages that never mention that route. Why?
     why: >-
       While any route is waiting to go live, every page is kept only until then, so expect more cache misses
       on a site that always has a go-live pending.
@@ -176,14 +176,14 @@ questions:
     author: llm-draft
 
   - id: api.orphans.delete-rescan
-    version: 1
+    version: 2
     status: live
     level: advanced
     area: api
     tags: [admin, components]
     type: multiple-choice
     difficulty: 3
-    prompt: An admin deletes three components listed in an orphaned resources report from an hour ago. Since that scan, an editor has placed one of them on a page. What happens?
+    prompt: An orphaned resources report from an hour ago lists three components. Since that scan, an editor has placed one of them on a page. An admin now deletes all three from the report. What does the delete request do?
     why: >-
       You can clean up from an old report without removing content someone has just reused.
     options:
@@ -365,14 +365,14 @@ questions:
     author: llm-draft
 
   - id: nuxt.pwa.reconnect
-    version: 1
+    version: 2
     status: live
     level: advanced
     area: nuxt-module
     tags: [real-time]
     type: multiple-choice
     difficulty: 4
-    prompt: A visitor's laptop is offline for an hour while editors publish changes to the page it has open, which uses `cwa-root-layout`. The Mercure hub keeps no event history. What happens when the connection comes back?
+    prompt: A visitor has a page open that uses the module's `cwa-root-layout`. Their laptop goes offline for an hour while editors publish changes to that page. The Mercure hub keeps no event history. What happens when the laptop reconnects?
     why: >-
       You don't need an event store on the hub for offline gaps, but other pages in the route cache stay old
       until they are fetched again.
@@ -533,14 +533,14 @@ questions:
     author: llm-draft
 
   - id: deploy.cloudflare.positions-path
-    version: 1
+    version: 2
     status: live
     level: advanced
     area: deployment
     tags: [cloudflare, dynamic-pages]
     type: multiple-choice
     difficulty: 4
-    prompt: With a Cloudflare rule caching `/_api`, every page data page built from one template page shows the same body after client-side navigation, while titles and server renders look right. What explains it?
+    prompt: A Cloudflare rule caches `/_api` responses. Several blog articles (page data records) share one template page. After client-side navigation, every article shows the same body text, though titles and server-rendered pages are right. Why?
     why: >-
       Without the positions exclusion in the API rule, the wrong body stays at the edge for up to a year.
     options:
@@ -611,14 +611,14 @@ questions:
     author: llm-draft
 
   - id: deploy.docker.mercure-not-cached
-    version: 1
+    version: 2
     status: live
     level: advanced
     area: deployment
     tags: [real-time, page-caching]
     type: multiple-choice
     difficulty: 3
-    prompt: Someone simplifies the HTML branch of the Caddyfile's `@use_cache` matcher and drops its `/.well-known/` exclusion. What do visitors notice?
+    prompt: Someone edits the Caddyfile's `@use_cache` matcher and removes the rule that keeps `/.well-known/` paths out of the page cache. What do visitors notice?
     why: >-
       Keep the template's cache exclusions when you edit the Caddyfile; each one is there because something
       broke without it.

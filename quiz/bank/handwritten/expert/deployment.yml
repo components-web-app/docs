@@ -4,7 +4,7 @@
 
 questions:
   - id: deploy.internals.cloudflare-flush
-    version: 3
+    version: 4
     status: live
     level: expert
     area: deployment
@@ -13,9 +13,9 @@ questions:
     difficulty: 3
     docsCoverage: documented
     prompt: >-
-      At the end of every deploy, the template purges either the rendered pages only (the `cwa-html` tag) or
-      the whole HTTP cache, which also purges Cloudflare. After a release, Cloudflare keeps serving old API
-      responses. What makes the deploy purge the whole cache?
+      You cache `/_api` responses at Cloudflare's edge. After a release, Cloudflare keeps serving old API
+      responses, because the deploy purged only the rendered pages (the `cwa-html` tag). What makes a deploy
+      purge the whole HTTP cache, Cloudflare included, instead?
     why: >-
       If you cache `/_api` at Cloudflare's edge without that setting, a release that changes API output
       keeps serving old responses until someone purges by hand.
@@ -33,7 +33,7 @@ questions:
       optionNotes:
         b: The token is what Souin sends to Cloudflare. The deploy decides on the CDN config, not the token.
     sources:
-      - { kind: code, repo: components-web-app, path: bin/devops/k8s.sh, lines: [1548, 1566], commit: 947034eba4ec82bb62ea8f3bbb153c1ec241a381, linesHash: 'sha256:fb2d824718b22048' }
+      - { kind: code, repo: components-web-app, path: bin/devops/k8s.sh, lines: [1568, 1586], commit: 83dd2765a49d3b0968113a5b8748366e031f7a15, linesHash: 'sha256:fb2d824718b22048' }
       - { kind: docs, page: /deployment/ci-cd, anchor: why-every-deploy-clears-the-page-cache, sectionHash: 'sha256:a1715fec4542586c', title: 'CI/CD › Why every deploy clears the page cache' }
     author: llm-draft
 
@@ -63,7 +63,7 @@ questions:
         `"true"` purges review apps only. On production the job logs that it needs `"force"`, and loads
         with `--append`, keeping existing content.
     sources:
-      - { kind: code, repo: components-web-app, path: bin/devops/k8s.sh, lines: [1485, 1499], commit: 947034eba4ec82bb62ea8f3bbb153c1ec241a381, linesHash: 'sha256:3f9ddbfc0a66f94f' }
+      - { kind: code, repo: components-web-app, path: bin/devops/k8s.sh, lines: [1505, 1519], commit: 83dd2765a49d3b0968113a5b8748366e031f7a15, linesHash: 'sha256:3f9ddbfc0a66f94f' }
       - { kind: docs, page: /deployment/ci-cd, anchor: purging-before-a-load, sectionHash: 'sha256:bec843d848a1ae81', title: 'CI/CD › Purging before a load' }
     author: llm-draft
 
@@ -96,7 +96,7 @@ questions:
       optionNotes:
         d: That leaves out the imagine headroom. One request at a time may use the imagine limit in place of a worker's.
     sources:
-      - { kind: code, repo: components-web-app, path: bin/devops/k8s.sh, lines: [964, 995], commit: 947034eba4ec82bb62ea8f3bbb153c1ec241a381, linesHash: 'sha256:0fbedb863b5d2572' }
+      - { kind: code, repo: components-web-app, path: bin/devops/k8s.sh, lines: [984, 1015], commit: 83dd2765a49d3b0968113a5b8748366e031f7a15, linesHash: 'sha256:0fbedb863b5d2572' }
       - { kind: docs, page: /deployment/variables, anchor: php-memory-budget, sectionHash: 'sha256:e1cae31fe58f5738', title: 'CI/CD Variables › php memory budget' }
     author: llm-draft
 
@@ -126,8 +126,8 @@ questions:
         The template wraps the Mercure hub, and its `publish()` sends nothing while the variable is
         `true`. It's set only on the fixture command, so the running API still publishes as usual.
     sources:
-      - { kind: code, repo: components-web-app, path: api/src/Mercure/SkipAwareMercureHub.php, lines: [65, 72], commit: 947034eba4ec82bb62ea8f3bbb153c1ec241a381, linesHash: 'sha256:b5324028cac06d5d' }
-      - { kind: code, repo: components-web-app, path: bin/devops/k8s.sh, lines: [1506, 1507], commit: 947034eba4ec82bb62ea8f3bbb153c1ec241a381, linesHash: 'sha256:93293bade60a9144' }
+      - { kind: code, repo: components-web-app, path: api/src/Mercure/SkipAwareMercureHub.php, lines: [65, 72], commit: 83dd2765a49d3b0968113a5b8748366e031f7a15, linesHash: 'sha256:b5324028cac06d5d' }
+      - { kind: code, repo: components-web-app, path: bin/devops/k8s.sh, lines: [1526, 1527], commit: 83dd2765a49d3b0968113a5b8748366e031f7a15, linesHash: 'sha256:93293bade60a9144' }
     author: llm-draft
 
   - id: deploy.internals.jwt-from-live-secret

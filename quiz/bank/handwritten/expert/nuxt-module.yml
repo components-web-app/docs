@@ -142,7 +142,7 @@ questions:
     author: llm-draft
 
   - id: nuxt.internals.stale-redirect
-    version: 3
+    version: 4
     status: live
     level: expert
     area: nuxt-module
@@ -152,7 +152,8 @@ questions:
     docsCoverage: undocumented
     prompt: >-
       A visitor clicks a link, then clicks a second link before the first page loads. The route the module
-      fetched for the first link arrives after the second click, and it's a redirect. What happens?
+      fetched for the first link arrives after the second click, and it's a redirect. What does the module do
+      with that redirect?
     why: >-
       A slow redirect can't pull the visitor away from the page they chose last.
     options:
@@ -171,7 +172,7 @@ questions:
     author: llm-draft
 
   - id: nuxt.internals.response-cache-directives
-    version: 2
+    version: 3
     status: live
     level: expert
     area: nuxt-module
@@ -181,9 +182,9 @@ questions:
     docsCoverage: light
     family: nuxt-internals-response-directives
     prompt: >-
-      No page on your site is ever cached, though the API's responses are cacheable. The template's API sends
-      `max-age=0` along with an `s-maxage`. This code reads each API response's lifetime while a page renders.
-      Click the line that causes it.
+      The template's API sends `max-age=0` with an `s-maxage`, so its responses are cacheable. Yet no page on
+      your site is ever cached. This code reads the cache lifetime of each API response a page uses. Click the
+      line that causes the bug.
     why: >-
       APIs often send `max-age=0` with a long `s-maxage`, so browsers check back while a CDN keeps the
       response. Reading them in the wrong order turns page caching off.
@@ -213,7 +214,7 @@ questions:
     author: llm-draft
 
   - id: nuxt.internals.expires-lifetime
-    version: 2
+    version: 3
     status: live
     level: expert
     area: nuxt-module
@@ -225,7 +226,7 @@ questions:
     family: nuxt-internals-response-directives
     prompt: >-
       A page uses an API response with `Cache-Control: public, s-maxage=600` and an `Expires` header 120
-      seconds after its `Date`. For how long does the module let the page be cached because of it?
+      seconds after its `Date`. Going by this response, how long does the module let a cache keep the page?
     why: >-
       A page never outlives the content in it, so content due to change soon, such as a scheduled page,
       shortens the cache for every page that shows it.
@@ -302,7 +303,7 @@ questions:
     author: llm-draft
 
   - id: nuxt.internals.navigate-while-adding
-    version: 2
+    version: 3
     status: live
     level: expert
     area: nuxt-module
@@ -311,8 +312,8 @@ questions:
     difficulty: 3
     docsCoverage: undocumented
     prompt: >-
-      An editor starts adding a new component and, before saving it, clicks a link to another page. What
-      happens?
+      An editor starts adding a new component. Before saving it, they click a link to another page. What does
+      the module do?
     why: >-
       An unsaved component only exists in the browser, so leaving the page would lose it. The dialog
       gives the editor the chance to stay and save it.
@@ -362,7 +363,7 @@ questions:
     author: llm-draft
 
   - id: nuxt.internals.page-cache-defaults
-    version: 2
+    version: 3
     status: live
     level: expert
     area: nuxt-module
@@ -372,7 +373,7 @@ questions:
     docsCoverage: documented
     prompt: >-
       On production, your pages stay in the cache for a year, because that's what the template's API allows.
-      Which of the page cache's defaults is the reason the module doesn't cap it lower?
+      Which line of the page cache's defaults explains why the module doesn't cap that lifetime?
     why: >-
       Anything on a page that the API can't purge, such as text from another service, could stay cached
       that long. Set `sharedMaxAge` for those pages.

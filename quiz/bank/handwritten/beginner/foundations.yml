@@ -83,7 +83,7 @@ questions:
     author: llm-draft
 
   - id: core.architecture.api-you-write
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: core-concepts
@@ -92,21 +92,22 @@ questions:
     difficulty: 2
     prompt: On the API side of a CWA project, which PHP classes do you write yourself?
     options:
-      - { id: a, text: The route and layout entities }
-      - { id: b, text: The page and component group entities }
-      - { id: c, text: The REST controllers for each resource }
-      - { id: d, text: Your component and page data entities }
+      - { id: a, text: The route and layout classes }
+      - { id: b, text: The page and component group classes }
+      - { id: c, text: The REST controllers for each type }
+      - { id: d, text: Your component and page data classes }
     answer:
       correct: d
       explanation: >-
         The bundle comes with the content data model, the REST endpoints, auth and a user system. You write
-        your own component entities and your page data entities (the records behind dynamic pages).
+        the classes for your own components and your page data (the content behind dynamic pages, such as
+        one blog article each).
     sources:
       - { kind: docs, page: /core-concepts/architecture, anchor: the-api-bundle, sectionHash: 'sha256:809b38805c40261f', title: 'How It All Works › The API Bundle' }
     author: llm-draft
 
   - id: core.request.page-names
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: core-concepts
@@ -114,8 +115,8 @@ questions:
     type: multiple-choice
     difficulty: 2
     prompt: >-
-      A visitor's route points to a page record. Which two things does the page record name, deciding which
-      Vue files the page renders through?
+      A visitor opens a URL, and its route points to a page. The page names two things that decide which Vue
+      files display it. What are they?
     options:
       - { id: a, text: Its layout and its page template }
       - { id: b, text: Its route and its component positions }
@@ -131,7 +132,7 @@ questions:
     author: llm-draft
 
   - id: core.request.concurrent-fetch
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: core-concepts
@@ -140,21 +141,21 @@ questions:
     difficulty: 3
     prompt: How does the module load a page's layout, page and components from the API?
     options:
-      - { id: a, text: 'One at a time, each waiting for the record above it' }
+      - { id: a, text: 'One at a time, each waiting for the one before it' }
       - { id: b, text: 'In one request that returns the whole page as HTML' }
       - { id: c, text: 'Concurrently, updating its store as each one arrives' }
       - { id: d, text: 'Only the page on the server; the rest in the browser' }
     answer:
       correct: c
       explanation: >-
-        The whole tree fetches concurrently, helped by the resource manifest that lists every resource the
-        page renders. The module's Pinia store updates reactively as the data arrives.
+        Everything is fetched at the same time, helped by a manifest from the API that lists everything the
+        page needs. The module's Pinia store updates reactively as the data arrives.
     sources:
       - { kind: docs, page: /core-concepts/architecture, anchor: the-request-lifecycle, sectionHash: 'sha256:b8b584459c4889d1', title: 'How It All Works › The Request Lifecycle' }
     author: llm-draft
 
   - id: core.data-model.chain-order
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: core-concepts
@@ -162,8 +163,9 @@ questions:
     type: multiple-choice
     difficulty: 2
     prompt: >-
-      On a static page, which chain of records leads from the URL to a piece of content? A component group is
-      a named list of components, such as `main`, and a component position places one component in it.
+      On a static page, the API links the URL to each piece of content through a chain. What is the order?
+      (A component group is a named list of components, such as `main`. A component position places one
+      component in it.)
     options:
       - { id: a, text: 'Route → component group → page → component → component position' }
       - { id: b, text: 'Page → route → component position → component group → component' }
@@ -180,7 +182,7 @@ questions:
     author: llm-draft
 
   - id: core.data-model.position-holds
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: core-concepts
@@ -188,8 +190,8 @@ questions:
     type: multiple-choice
     difficulty: 2
     prompt: >-
-      A component position is the record that places a component in a component group (a named list of
-      components, such as `main`). What can one position hold?
+      A component position places a component in a component group (a named list of components, such as
+      `main`). What can one position hold?
     options:
       - { id: a, text: 'Any number of components, in their order' }
       - { id: b, text: 'One component, or a binding to a page data field' }
@@ -198,8 +200,8 @@ questions:
     answer:
       correct: b
       explanation: >-
-        A position holds exactly one component, or a binding to a field on a page data record. The group's
-        order comes from its positions.
+        A position holds exactly one component, or a binding to a property of page data, such as an
+        article's `htmlContent`. The group's order comes from its positions.
       optionNotes:
         a: A group holds many components, through one position each.
     sources:
@@ -207,7 +209,7 @@ questions:
     author: llm-draft
 
   - id: core.layouts.shared-navigation
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: core-concepts
@@ -216,7 +218,7 @@ questions:
     difficulty: 2
     prompt: >-
       Every page that uses the Primary layout should show the same navigation links, edited in one place.
-      Which record should own the component group (the named list of components) that holds them?
+      What should the component group (the named list of components) that holds them belong to?
     options:
       - { id: a, text: Each page that uses the layout }
       - { id: b, text: The home page's route }
@@ -232,7 +234,7 @@ questions:
     author: llm-draft
 
   - id: core.components.child-group
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: core-concepts
@@ -243,7 +245,7 @@ questions:
       An Accordion component should hold its own list of child components that editors add to. How do you
       build that?
     options:
-      - { id: a, text: Add an array of child IRIs as a field on the Accordion entity }
+      - { id: a, text: Add a list of child component IDs to the Accordion's PHP class }
       - { id: b, text: Give the Accordion its own page and route }
       - { id: c, text: Declare a `<CwaComponentGroup>` in the Accordion's Vue file }
       - { id: d, text: 'Put the children in the page''s group, straight after the Accordion' }
@@ -258,7 +260,7 @@ questions:
     author: llm-draft
 
   - id: core.dynamic.page-data-fields
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: core-concepts
@@ -266,8 +268,8 @@ questions:
     type: multiple-choice
     difficulty: 2
     prompt: >-
-      Each blog article is a page data record (one item of repeating content, with its own route). Every
-      article needs its own headline. Where does the headline field go?
+      Each blog article is saved as page data: one item of repeating content, with its own URL. Every
+      article needs its own headline. Where do you add the `headline` property?
     options:
       - { id: a, text: On the page data class }
       - { id: b, text: On the template page that every article shares }
@@ -283,7 +285,7 @@ questions:
     author: llm-draft
 
   - id: core.dynamic.page-field
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: core-concepts
@@ -291,17 +293,17 @@ questions:
     type: multiple-choice
     difficulty: 2
     prompt: >-
-      A visitor opens a blog article's route, which points to a page data record (one item of repeating
-      content). How does CWA know which template page to render it with?
+      A visitor opens a blog article. Its route points to the article's page data (one item of repeating
+      content). How does CWA know which template page to display it with?
     options:
       - { id: a, text: From the first part of the route's path }
-      - { id: b, text: From the record's `page` field }
-      - { id: c, text: From the record's `title` field }
+      - { id: b, text: From the page data's `page` property }
+      - { id: c, text: From the page data's `title` property }
       - { id: d, text: From a setting on the layout }
     answer:
       correct: b
       explanation: >-
-        A page data record carries a `page` field naming the template page to render, such as
+        Page data has a `page` property that names the template page to use, such as
         `blog-template`. Every article that names it shares that one page structure.
     sources:
       - { kind: docs, page: /core-concepts/the-data-model, anchor: pagedata, sectionHash: 'sha256:25ea3618f08187fa', title: 'The Data Model › PageData' }
@@ -334,7 +336,7 @@ questions:
     author: llm-draft
 
   - id: core.pages.static-page
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: core-concepts
@@ -342,11 +344,11 @@ questions:
     type: multiple-choice
     difficulty: 1
     prompt: >-
-      A Contact page has a fixed URL, and editors manage its content by hand. Which kind of record is it?
+      A Contact page has a fixed URL, and editors manage its content by hand. What kind of page is it in CWA?
     options:
       - { id: a, text: A static page }
       - { id: b, text: A template page }
-      - { id: c, text: A page data record }
+      - { id: c, text: A page data item }
       - { id: d, text: A layout }
     answer:
       correct: a
@@ -358,7 +360,7 @@ questions:
     author: llm-draft
 
   - id: core.dynamic.article-routes
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: core-concepts
@@ -366,24 +368,24 @@ questions:
     type: multiple-choice
     difficulty: 2
     prompt: >-
-      Blog articles are page data records (one record per article) that share one template page. Visitors
-      open each article at its own path, such as `/blog/my-first-post`. Which records have routes?
+      Blog articles are saved as page data, one per article, and they share one template page. Visitors
+      open each article at its own path, such as `/blog/my-first-post`. What has a route?
     options:
       - { id: a, text: 'Only the template page; the articles share its route' }
-      - { id: b, text: 'Each page data record; the template page has none of its own' }
+      - { id: b, text: 'Each article''s page data, not the template page' }
       - { id: c, text: 'The template page and the layout, one each' }
       - { id: d, text: 'Each component on the article' }
     answer:
       correct: b
       explanation: >-
-        A template page has no URL of its own. Each page data record has its own route, and renders through
-        the shared template page.
+        A template page has no URL of its own. Each article's page data has its own route, and is displayed
+        with the shared template page.
     sources:
       - { kind: docs, page: /core-concepts/layouts-and-pages, anchor: template-pages-istemplate-true, sectionHash: 'sha256:aa5e8d6598a23a66', title: 'Layouts & Pages › Template Pages (isTemplate: true)' }
     author: llm-draft
 
   - id: core.dynamic.blog-records
-    version: 1
+    version: 2
     status: live
     family: dynamic-pages-records-needed
     level: beginner
@@ -393,27 +395,27 @@ questions:
     difficulty: 3
     prompt: >-
       An editor wants 50 blog articles. Each should have its own URL and content, and every article should
-      share one layout and one page structure. Which records does that take?
+      share one layout and one page structure. What do you create?
     why: >-
       Without page data you would build and maintain 50 separate pages; with it, a change to the template
       page changes every article at once.
     options:
       - { id: a, text: '50 static pages, each copied from the first one' }
       - { id: b, text: '50 layouts, each with one component group in it' }
-      - { id: c, text: 'One template page, and a page data record per article' }
+      - { id: c, text: 'One template page, and page data for each article' }
       - { id: d, text: 'One page with 50 components, one per article' }
     answer:
       correct: c
       explanation: >-
-        One template page (a page record with `isTemplate: true`) names the layout and page template and holds
-        the component groups. Each article is a page data record with its own route and fields.
+        One template page (a page saved with `isTemplate: true`) names the layout and page template and holds
+        the component groups. Each article is saved as page data, with its own route and properties.
     sources:
       - { kind: docs, page: /core-concepts/dynamic-pages, anchor: the-problem, sectionHash: 'sha256:f0023694490ba751', title: 'Dynamic Pages › The Problem' }
       - { kind: docs, page: /core-concepts/layouts-and-pages, anchor: template-pages-istemplate-true, sectionHash: 'sha256:aa5e8d6598a23a66', title: 'Layouts & Pages › Template Pages (isTemplate: true)' }
     author: llm-draft
 
   - id: core.pages.shared-page-template
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: core-concepts
@@ -425,20 +427,20 @@ questions:
       How does CWA expect you to set that up?
     options:
       - { id: a, text: 'Two page template Vue files, one for each page' }
-      - { id: b, text: 'One page template Vue file, used by both page records' }
-      - { id: c, text: 'One page record, with two routes pointing to it' }
+      - { id: b, text: 'One page template Vue file, used by both pages' }
+      - { id: c, text: 'One page, with two routes pointing to it' }
       - { id: d, text: 'One layout that contains both pages'' components' }
     answer:
       correct: b
       explanation: >-
-        A page template is the Vue file a page renders through, and many pages can use the same one. Each page
-        record keeps its own components in the groups the page template places.
+        A page template is the Vue file that displays a page, and many pages can use the same one. Each page
+        keeps its own components in the groups the page template places.
     sources:
-      - { kind: docs, page: /getting-started/key-ideas, anchor: what-a-page-is-made-of, sectionHash: 'sha256:f6f747d30dd591b9', title: 'Key Ideas › What a page is made of' }
+      - { kind: docs, page: /getting-started/key-ideas, anchor: what-a-page-is-made-of, sectionHash: 'sha256:a44954d296b13c59', title: 'Key Ideas › What a page is made of' }
     author: llm-draft
 
   - id: core.dynamic.bound-position
-    version: 1
+    version: 2
     status: live
     family: term:2a7460
     level: beginner
@@ -447,18 +449,18 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: >-
-      On the blog's template page, one component position (the record that places a component in a group) is
-      bound to the page data field `htmlContent`. What does that position show on each article?
+      On the blog's template page, one component position is bound to the page data property `htmlContent`.
+      (A position places one component in a group.) What does that position show on each article?
     options:
-      - { id: a, text: 'The `HtmlContent` component on that article''s record' }
+      - { id: a, text: 'The `HtmlContent` component saved on that article' }
       - { id: b, text: 'The same `HtmlContent` component on every article' }
       - { id: c, text: 'The article''s `htmlContent` text, without a component' }
       - { id: d, text: 'Nothing until an editor adds a component to it' }
     answer:
       correct: a
       explanation: >-
-        At render time a bound position resolves to the matching field on the current page data record, so
-        each article shows its own `HtmlContent` component in that position.
+        A bound position shows the component saved in that property of the article being viewed, so each
+        article shows its own `HtmlContent` component in that position.
     sources:
       - { kind: docs, page: /core-concepts/dynamic-pages, anchor: linking-a-page-data-field-to-a-component-position, sectionHash: 'sha256:f256699eb9c03426', title: 'Dynamic Pages › Linking a Page Data Field to a Component Position' }
       - { kind: docs, page: /core-concepts/dynamic-pages, anchor: how-it-works, sectionHash: 'sha256:84e223903937ce11', title: 'Dynamic Pages › How It Works' }
@@ -538,7 +540,7 @@ questions:
     author: llm-draft
 
   - id: core.draft.whole-page
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: core-concepts
@@ -550,7 +552,7 @@ questions:
       back?
     options:
       - { id: a, text: 'Leaving every component on it as a draft' }
-      - { id: b, text: 'Leaving the page record unpublished' }
+      - { id: b, text: 'Leaving the page itself unpublished' }
       - { id: c, text: 'Its route''s go-live date, set to the launch' }
       - { id: d, text: 'Leaving the page out of the navigation group' }
     answer:
@@ -638,7 +640,7 @@ questions:
     author: llm-draft
 
   - id: core.data-model.positions-created
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: core-concepts
@@ -646,8 +648,7 @@ questions:
     type: multiple-choice
     difficulty: 1
     prompt: >-
-      Component positions are the records that place components in a component group. Who usually creates
-      them?
+      A component position places one component in a component group. Who usually creates positions?
     options:
       - { id: a, text: 'You, in each page template''s Vue file' }
       - { id: b, text: 'The admin, when an editor adds a component' }
@@ -659,11 +660,11 @@ questions:
         You rarely deal with positions directly. The admin creates one when an editor adds a component to a
         group.
     sources:
-      - { kind: docs, page: /getting-started/key-ideas, anchor: what-a-page-is-made-of, sectionHash: 'sha256:f6f747d30dd591b9', title: 'Key Ideas › What a page is made of' }
+      - { kind: docs, page: /getting-started/key-ideas, anchor: what-a-page-is-made-of, sectionHash: 'sha256:a44954d296b13c59', title: 'Key Ideas › What a page is made of' }
     author: llm-draft
 
   - id: core.pages.template-page-renders
-    version: 1
+    version: 2
     status: live
     family: page-template-vs-template-page
     level: beginner
@@ -672,8 +673,8 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: >-
-      A template page (a page record with `isTemplate: true`, shared by many page data records) is set up for
-      blog articles. How does it get its markup?
+      A template page is a page saved with `isTemplate: true`, which many blog articles share. Where does
+      its HTML come from?
     options:
       - { id: a, text: 'From a page template Vue file, like any other page' }
       - { id: b, text: 'From the page data class, which renders its own HTML' }
@@ -682,14 +683,14 @@ questions:
     answer:
       correct: a
       explanation: >-
-        A template page renders through a page template like any other page, such as `PrimaryPageTemplate.vue`.
-        What makes it a template page is that many page data records share it.
+        A template page is displayed by a page template like any other page, such as
+        `PrimaryPageTemplate.vue`. What makes it a template page is that many page data items share it.
     sources:
       - { kind: docs, page: /core-concepts/layouts-and-pages, anchor: template-pages-istemplate-true, sectionHash: 'sha256:aa5e8d6598a23a66', title: 'Layouts & Pages › Template Pages (isTemplate: true)' }
     author: llm-draft
 
   - id: core.data-model.group-reference
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: core-concepts
@@ -697,28 +698,28 @@ questions:
     type: multiple-choice
     difficulty: 2
     prompt: >-
-      A page template (the Vue file a page renders through) declares
+      A page template (the Vue file that displays a page) declares
       `<CwaComponentGroup reference="hero" :location="iri" />`. What is `hero`?
     why: >-
       The reference is how code and stored content meet, so renaming it in code leaves the old group, and its
-      components, attached to the record but no longer shown.
+      components, attached to the page but no longer shown.
     options:
       - { id: a, text: 'The CSS class the group renders with' }
       - { id: b, text: 'The component type allowed in the group' }
       - { id: c, text: 'The route the group''s components link to' }
-      - { id: d, text: 'The group''s name within its owner record' }
+      - { id: d, text: 'The group''s name on the page that owns it' }
     answer:
       correct: d
       explanation: >-
-        The `reference` is a stable name for the component group. The `location` says which record owns it,
-        such as the page, by its IRI.
+        The `reference` is a stable name for the component group. The `location` says what owns it, here the
+        page, by its IRI (its address in the API).
     sources:
       - { kind: docs, page: /core-concepts/layouts-and-pages, anchor: componentgroups-in-layouts, sectionHash: 'sha256:b111d5044c5c0739', title: 'Layouts & Pages › ComponentGroups in Layouts' }
       - { kind: docs, page: /core-concepts/glossary, anchor: stranded-component-group, sectionHash: 'sha256:0a9ca1562a31e9df', title: 'Glossary › Stranded component group' }
     author: llm-draft
 
   - id: core.dynamic.template-page-component
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: core-concepts
@@ -726,7 +727,7 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: >-
-      Every blog article (a page data record) renders through one template page. An editor adds a newsletter
+      Every blog article is displayed with the same template page. An editor adds a newsletter
       sign-up component straight into a component group on that template page, and publishes it. Which pages
       show it?
     options:
@@ -737,8 +738,8 @@ questions:
     answer:
       correct: d
       explanation: >-
-        The template page holds the shared structure, its component groups, for every page data record that
-        renders through it. Only a position bound to a page data field shows each article's own component.
+        The template page holds the shared structure, its component groups, for every article that uses it.
+        Only a position bound to a page data property shows each article's own component.
     sources:
       - { kind: docs, page: /core-concepts/layouts-and-pages, anchor: template-pages-istemplate-true, sectionHash: 'sha256:aa5e8d6598a23a66', title: 'Layouts & Pages › Template Pages (isTemplate: true)' }
       - { kind: docs, page: /core-concepts/dynamic-pages, anchor: how-it-works, sectionHash: 'sha256:84e223903937ce11', title: 'Dynamic Pages › How It Works' }
@@ -770,7 +771,7 @@ questions:
     author: llm-draft
 
   - id: core.pages.places-groups
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: core-concepts
@@ -788,21 +789,21 @@ questions:
     answer:
       correct: d
       explanation: >-
-        The page template is the Vue file a page renders through, and it places the page's component groups.
+        The page template is the Vue file that displays a page, and it places the page's component groups.
         It renders inside the layout's `<slot />`.
     sources:
-      - { kind: docs, page: /getting-started/key-ideas, anchor: what-a-page-is-made-of, sectionHash: 'sha256:f6f747d30dd591b9', title: 'Key Ideas › What a page is made of' }
+      - { kind: docs, page: /getting-started/key-ideas, anchor: what-a-page-is-made-of, sectionHash: 'sha256:a44954d296b13c59', title: 'Key Ideas › What a page is made of' }
     author: llm-draft
 
   - id: core.dynamic.when-to-use
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: core-concepts
     tags: [dynamic-pages]
     type: multiple-choice
     difficulty: 1
-    prompt: Which content suits dynamic pages, built from page data records and a shared template page?
+    prompt: Which content suits dynamic pages, built from page data and a shared template page?
     options:
       - { id: a, text: 'A single home page with hand-placed content' }
       - { id: b, text: 'Repeating items, each with its own URL' }

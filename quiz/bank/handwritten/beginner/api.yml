@@ -28,7 +28,7 @@ questions:
     author: llm-draft
 
   - id: api.page-data.base-class
-    version: 2
+    version: 3
     status: live
     level: beginner
     area: api
@@ -36,8 +36,8 @@ questions:
     type: multiple-choice
     difficulty: 1
     prompt: >-
-      Each blog article should be a record with its own route, and every article should render through one
-      shared page. Which class does the article entity extend?
+      Each blog article needs its own URL, and every article should share one page structure. Which class
+      does your article's PHP class extend?
     options:
       - { id: a, text: '`AbstractPageData`' }
       - { id: b, text: '`AbstractComponent`' }
@@ -53,14 +53,14 @@ questions:
     author: llm-draft
 
   - id: api.components.endpoint-prefix
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: api
     tags: [components]
     type: multiple-choice
     difficulty: 1
-    prompt: You add a `Title` component entity. Where does the API serve its records?
+    prompt: You add a `Title` component class to the API. At which path does the API serve Title components?
     options:
       - { id: a, text: '`/titles`, from the class name alone' }
       - { id: b, text: '`/component/titles`' }
@@ -76,14 +76,14 @@ questions:
     author: llm-draft
 
   - id: api.components.migrations
-    version: 2
+    version: 3
     status: live
     level: beginner
     area: api
     tags: [components]
     type: multiple-choice
     difficulty: 2
-    prompt: You've written a new component entity. What must you run before the API can save records of it?
+    prompt: You've written the PHP class for a new component type. What must you run before the API can save components of that type?
     options:
       - { id: a, text: 'Nothing: the bundle creates its table when the API boots' }
       - { id: b, text: '`cache:clear`, so the API reads the new class' }

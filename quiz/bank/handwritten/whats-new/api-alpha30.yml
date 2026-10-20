@@ -92,7 +92,7 @@ questions:
     author: llm-draft
 
   - id: api.publishable.position-unpublished-component
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: api
@@ -100,9 +100,8 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: >-
-      A component position (the record that places a component in a component group) holds a publishable
-      component whose `publishedAt` is in the future. An anonymous visitor requests the position. What comes
-      back?
+      A component position puts a Quote in a page's `main` component group. The Quote is publishable, and its
+      `publishedAt` is tomorrow. An anonymous visitor requests the position from the API. What do they get back?
     why: >-
       A front end that reads positions itself must treat a position with no `component` as empty, rather than
       requesting or rendering anything there.
@@ -157,7 +156,7 @@ questions:
     author: llm-draft
 
   - id: api.real-time.public-update-payload
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: api
@@ -165,16 +164,16 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: >-
-      An admin updates a published resource that has `mercure: true`. What does the update on the resource's
-      public topic carry?
+      A component's class has `mercure: true`. An admin edits the published component and saves. Visitors' open
+      pages listen on the component's public Mercure topic. What does the update on that topic contain?
     why: >-
       Visitors' open pages get only what they could read themselves, so an admin's write can't push admin-only
       data to them through Mercure.
     since: [{ repo: api-components-bundle, version: '2.0.0-alpha.27' }]
     options:
-      - { id: a, text: 'The resource as the admin''s request would read it' }
+      - { id: a, text: 'The component as the admin''s request would read it' }
       - { id: b, text: 'Only `{"@id": "<iri>"}`, so each browser fetches it again' }
-      - { id: c, text: 'What an anonymous `GET` of the resource returns' }
+      - { id: c, text: 'What an anonymous `GET` of the component returns' }
       - { id: d, text: 'Nothing; all admin writes go out on the private topic' }
     answer:
       correct: c
@@ -250,7 +249,7 @@ questions:
     author: llm-draft
 
   - id: api.groups.component-in-own-subtree
-    version: 1
+    version: 2
     status: live
     level: advanced
     area: api
@@ -258,8 +257,8 @@ questions:
     type: multiple-choice
     difficulty: 4
     prompt: >-
-      `Columns` is a component with its own component groups, and it's publishable. Which write does the API
-      refuse with a `422` on `component`?
+      `Columns` is a publishable component with component groups of its own, so other components can be placed
+      inside it. Which of these writes does the API refuse with a `422`?
     why: >-
       A component inside its own subtree would render itself without end, and older bundles' access check
       recursed without end on such a cycle; sharing a component in several places is still fine.
@@ -280,7 +279,7 @@ questions:
     author: llm-draft
 
   - id: api.fixtures.shared-asset-folder
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: api
@@ -288,8 +287,9 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: >-
-      Two generated scaffolds in the same directory share one `local` asset folder. You run `generate-fixtures` again for scaffold A,
-      which no longer uses image X. Scaffold B's manifest still lists X. What happens to X's file?
+      Scaffolds A and B were generated into the same directory, and they keep their files in one shared local
+      asset folder. You run `generate-fixtures` again for A, which no longer uses image X. B's manifest still
+      lists X. What happens to the file for X?
     why: >-
       Scaffolds can share a local asset folder, and regenerating one no longer breaks the other's next load.
     since: [{ repo: api-components-bundle, version: '2.0.0-alpha.26' }]

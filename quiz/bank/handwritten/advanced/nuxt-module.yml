@@ -110,14 +110,14 @@ questions:
     author: llm-draft
 
   - id: nuxt.setup.load-by-iri-public
-    version: 2
+    version: 3
     status: live
     level: advanced
     area: nuxt-module
     tags: [module-setup, security]
     type: multiple-choice
     difficulty: 4
-    prompt: A Nuxt page file of your own loads a CWA page record by its IRI, with `cwa.fetch` in `definePageMeta`. The API sets `routable_security`. What makes the Nuxt page work for anonymous visitors?
+    prompt: A Nuxt page file of your own loads a CWA page by its IRI, with `cwa.fetch` in `definePageMeta`. The CWA page has no route, and the API sets `routable_security`. What makes the Nuxt page work for signed-out visitors?
     why: >-
       Test the page as a signed-out visitor: users who pass `routable_security` can read the CWA page anyway,
       so an admin session hides the `401`.

@@ -4,7 +4,7 @@
 
 questions:
   - id: api.groups.move-keeps-position
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: api
@@ -12,8 +12,8 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: >-
-      A script sends `POST {component}/move` with `from` a component position and `to` a component group on
-      another page. What happens to the position?
+      A script moves a component with `POST {component}/move`. Its `from` is the component position that holds
+      the component now, and its `to` is a component group on another page. What happens to that position?
     why: >-
       Anything that stored the position's IRI, such as a Mercure subscriber or a cached order, still points
       at the right record after the move.
@@ -34,7 +34,7 @@ questions:
     author: llm-draft
 
   - id: api.groups.move-into-full-property
-    version: 1
+    version: 2
     status: live
     level: advanced
     area: api
@@ -42,7 +42,8 @@ questions:
     type: multiple-choice
     difficulty: 4
     prompt: >-
-      A move's `to` is a page data property that already holds another component. What does the API do?
+      A script moves a component with `POST {component}/move`. Its `to` is a page data property, such as a news
+      article's `heroImage`, that already holds another component. What does the API do?
     why: >-
       A move never drops a component on the floor: to put one in an occupied property, clear the property
       first, or write it directly with a page data `PATCH`.
@@ -62,7 +63,7 @@ questions:
     author: llm-draft
 
   - id: api.groups.move-position-into-property
-    version: 1
+    version: 2
     status: live
     level: advanced
     area: api
@@ -70,8 +71,8 @@ questions:
     type: multiple-choice
     difficulty: 4
     prompt: >-
-      A component's only use is one component position. A move takes it from that position into an empty page
-      data property. What happens to the component?
+      A component appears in one place only, through one component position. A `POST {component}/move` takes it
+      from that position into an empty page data property. What happens to the component?
     why: >-
       Unlike deleting the position and posting to the page data yourself, a move can't lose the component
       between the two requests.
@@ -272,7 +273,7 @@ questions:
     author: llm-draft
 
   - id: api.uploads.manifest-no-variants
-    version: 1
+    version: 2
     status: live
     level: advanced
     area: api
@@ -280,8 +281,8 @@ questions:
     type: multiple-choice
     difficulty: 4
     prompt: >-
-      A developer adds a new imagine filter and deploys. Which request generates an image's variant for it, if
-      nothing generated it ahead of time?
+      A developer adds a new imagine filter, such as a `thumbnail` size, and deploys. Nothing has generated the
+      new variants ahead of time. Which request first generates an image's variant for the new filter?
     why: >-
       Building a page's manifest stays fast and has no side effects, so a new filter's variants come from reading
       the resource or from generating them ahead of time.
@@ -290,7 +291,7 @@ questions:
       - { id: a, text: 'The page''s resource manifest, as the page is built' }
       - { id: b, text: 'Nothing, until the image is uploaded again' }
       - { id: c, text: 'The next fixture load, which regenerates all variants' }
-      - { id: d, text: 'Reading the image resource itself, such as `GET` on its IRI' }
+      - { id: d, text: 'Reading the image component itself, such as a `GET` on its IRI' }
     answer:
       correct: d
       explanation: >-

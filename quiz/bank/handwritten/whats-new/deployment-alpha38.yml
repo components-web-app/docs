@@ -4,16 +4,18 @@
 
 questions:
   - id: deploy.cache.backend-timeout
-    version: 1
-    status: live
+    version: 2
+    status: retired
+    retired: { reason: "trivia: a fault in older templates; the quiz asks how CWA works now, not about upgrades (Daniel, 2026-10-20)" }
     level: advanced
     area: deployment
     tags: [deployment, page-caching]
     type: multiple-choice
     difficulty: 3
     prompt: >-
-      On a template before 2.0.0-alpha.38, after a full flush, the first visitor to a CMS-heavy page gets a `504`,
-      which Cloudflare passes on. The page takes about 12 seconds to render cold. What produced the `504`?
+      A project runs a template older than 2.0.0-alpha.38. Right after a full cache flush, the first visitor to
+      a large page gets a `504`, which Cloudflare passes on. That page takes about 12 seconds to render with a
+      cold cache. What produced the `504`?
     why: >-
       A `504` straight after a flush or a rollout points at Souin giving up on a slow cold render, not at php
       running out of workers. If you raise the timeout, keep it under the ingress and Cloudflare timeouts.
@@ -39,7 +41,7 @@ questions:
     author: llm-draft
 
   - id: deploy.cache.extra-config-timeout
-    version: 1
+    version: 2
     status: live
     level: advanced
     area: deployment
@@ -47,8 +49,8 @@ questions:
     type: multiple-choice
     difficulty: 4
     prompt: >-
-      A project sets `CADDY_CACHE_EXTRA_CONFIG` to `timeout { cache 1s }`, and the deploy refuses it. What would
-      that block have done to the Caddyfile's `cache` settings?
+      A project sets the CI variable `CADDY_CACHE_EXTRA_CONFIG` to `timeout { cache 1s }`, and the deploy
+      refuses it. If the deploy had let it through, what would it have done to the Caddyfile's `cache` settings?
     why: >-
       Souin accepts the block without an error, so without the deploy's check the 30-second backend timeout would
       be lost silently and slow cold pages would `504` again.
@@ -70,7 +72,8 @@ questions:
 
   - id: deploy.cache.extra-config-upgrade
     version: 1
-    status: live
+    status: retired
+    retired: { reason: "trivia: an upgrade step; the quiz doesn't ask about upgrades (Daniel, 2026-10-20)" }
     level: intermediate
     area: deployment
     tags: [deployment, page-caching]
@@ -101,7 +104,7 @@ questions:
     author: llm-draft
 
   - id: deploy.review.stop-scripts
-    version: 1
+    version: 2
     status: live
     level: advanced
     area: deployment
@@ -109,8 +112,8 @@ questions:
     type: multiple-choice
     difficulty: 4
     prompt: >-
-      On GitLab, a branch with a review app is merged with *Delete source branch*, and GitLab runs **stop review**.
-      Whose `bin/devops/k8s.sh` and `project.sh` does that job run?
+      On GitLab, a branch with a review app is merged with *Delete source branch*, and GitLab runs the **stop
+      review** job. Which branch's copy of `bin/devops/k8s.sh` and `project.sh` does that job run?
     why: >-
       A change to the stop steps in a branch's `project.sh` doesn't apply to that branch's own stop; it has to be
       on the default branch first.
@@ -130,7 +133,7 @@ questions:
     author: llm-draft
 
   - id: deploy.review.storage-path
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: deployment
@@ -138,9 +141,9 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: >-
-      Several apps share one bucket, and app A's `GCLOUD_PATH_PREFIX` is `site-a/`. You add a bucket lifecycle
-      rule to delete A's review app uploads when a stop review couldn't. Which `matchesPrefix` should the rule
-      use?
+      App A shares a bucket with other apps, and its `GCLOUD_PATH_PREFIX` is `site-a/`. Stopping a review app
+      normally deletes its uploads. As a backstop, you add a bucket lifecycle rule that deletes any of A's
+      review app uploads left behind. Which `matchesPrefix` should the rule use?
     why: >-
       A rule on `review/` misses a prefixed app's review uploads, and a rule on the prefix alone deletes
       production's uploads too.
@@ -192,16 +195,18 @@ questions:
     author: llm-draft
 
   - id: deploy.cicd.rewarm-after-flush
-    version: 1
-    status: live
+    version: 2
+    status: retired
+    retired: { reason: "trivia: a fault in older templates; the quiz asks how CWA works now, not about upgrades (Daniel, 2026-10-20)" }
     level: advanced
     area: deployment
     tags: [deployment, cloudflare, page-caching]
     type: multiple-choice
     difficulty: 4
     prompt: >-
-      A site has `provider cloudflare` in `CADDY_CACHE_CDN_CONFIG`. On templates before 2.0.0-alpha.39, the first
-      visitor's component requests after a deploy were load-shed. What caused it?
+      A site has `provider cloudflare` in `CADDY_CACHE_CDN_CONFIG`. On templates before 2.0.0-alpha.39, right
+      after each deploy, php turned away the first visitor's component requests because it was overloaded (load
+      shedding). What caused it?
     why: >-
       A deploy that flushes the whole HTTP cache throws away the new pod's start-up warm, so it needs its own warm
       afterwards or the first visitors hit a cold API.

@@ -5,7 +5,8 @@
 questions:
   - id: nuxt.ui.loading-indicator-bars
     version: 2
-    status: live
+    status: retired
+    retired: { reason: "trivia: an upgrade step; the quiz doesn't ask about upgrades (Daniel, 2026-10-20)" }
     level: beginner
     area: nuxt-module
     tags: [module-setup]
@@ -62,7 +63,7 @@ questions:
     author: llm-draft
 
   - id: nuxt.seo.og-image-secret
-    version: 2
+    version: 3
     status: live
     level: advanced
     area: nuxt-module
@@ -70,8 +71,8 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: >-
-      After upgrading `@cwa/nuxt`, production pages render, but their open graph images (the pictures shown when
-      a link is shared) are broken. The server logs `URL signing has no valid secret`. What do you set?
+      Production pages render, but their open graph images (the pictures shown when someone shares a link) are
+      broken. The server logs `URL signing has no valid secret`. What do you set?
     why: >-
       Nothing else fails, so a missing secret goes unnoticed until someone shares a link. The template's deploy
       keeps one for you; any other deployment must set it.
@@ -127,7 +128,7 @@ questions:
     author: llm-draft
 
   - id: nuxt.admin.add-page-data-route
-    version: 2
+    version: 3
     status: live
     level: intermediate
     area: nuxt-module
@@ -135,9 +136,10 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: >-
-      A link opens the admin's add form for `trainingModuleData` page data (records for repeating content),
-      `/_cwa/data/trainingModuleData/add`, with `parentPageData` and `template` in the query. An editor fills
-      in the form and saves. How does the new record get its route?
+      `TrainingModuleData` is a page data class: each training module is one record that shows on its own page. A
+      link opens the admin form for adding one, `/_cwa/data/trainingModuleData/add`, with `parentPageData` and
+      `template` in the query. An editor fills in the form and saves. How does the new training module get its
+      route (its URL path)?
     why: >-
       A link that pre-fills the add form saves editors choosing the parent and template, but the record has no
       URL until someone adds its route.
@@ -150,7 +152,7 @@ questions:
     answer:
       correct: a
       explanation: >-
-        The path isn't a page data field, so a link can't fill it in. After saving, the form opens the **Routes**
+        The path isn't a property of the page data, so a link can't fill it in. After saving, the form opens the **Routes**
         tab, where the editor adds the route.
       optionNotes:
         c: Creating page data in the admin never creates a route. The editor generates or adds one in the Routes tab.

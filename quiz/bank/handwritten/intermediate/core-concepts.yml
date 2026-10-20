@@ -3,41 +3,41 @@
 
 questions:
   - id: core.dynamic.page-data-title
-    version: 2
+    version: 3
     status: live
     level: intermediate
     area: core-concepts
     tags: [dynamic-pages]
     type: multiple-choice
     difficulty: 2
-    prompt: 'A blog article is a page data record: one item of repeating content, with its own route. The record has a `title`. Where does the HTML `<title>` at the article''s route come from?'
+    prompt: 'Each blog article is stored as page data: one entry of repeating content, with its own route and a `title`. A visitor opens an article. Where does the page''s HTML `<title>` come from?'
     why: >-
-      Leave `title` empty on seeded or imported records and they fall back to the template page's title, so
+      Leave `title` empty on seeded or imported articles and they fall back to the template page's title, so
       search results show one title for every article.
     options:
       - { id: a, text: The page template's `uiComponent` name }
       - { id: b, text: The layout's `siteName` alone }
       - { id: c, text: The last segment of its route }
-      - { id: d, text: The record's `title` field }
+      - { id: d, text: The article's own `title` }
     answer:
       correct: d
       explanation: >-
         Page data has `title` and `metaDescription` from `AbstractPageData`. The module uses them for `<title>`
-        and `<meta name="description">` with no extra code. A record with no title can fall back to its
+        and `<meta name="description">` with no extra code. An article with no title can fall back to its
         template page's title.
     sources:
       - { kind: docs, page: /core-concepts/dynamic-pages, anchor: seo, sectionHash: 'sha256:e9a9218d4322da12', title: 'Dynamic Pages › SEO' }
     author: llm-draft
 
   - id: core.public.what-is-public
-    version: 2
+    version: 3
     status: live
     level: intermediate
     area: core-concepts
     tags: [security, routes]
     type: multiple-choice
     difficulty: 3
-    prompt: When can an anonymous visitor see a page record and the components on it?
+    prompt: When can a signed-out visitor see a page and the components on it?
     why: >-
       Publishing every component isn't enough. When content you published doesn't show for visitors, check its
       route's visibility first.
@@ -83,14 +83,14 @@ questions:
     author: llm-draft
 
   - id: core.admin.rename-child-routes
-    version: 2
+    version: 3
     status: live
     level: intermediate
     area: core-concepts
     tags: [admin, routes]
     type: multiple-choice
     difficulty: 3
-    prompt: In the admin, an editor changes a parent route's path and confirms **Update child routes?**. What happens to the child routes?
+    prompt: In the admin, an editor changes a route's path from `/events` to `/happenings`. A dialog asks **Update child routes?** and they confirm. What happens to child routes such as `/events/2024`?
     why: >-
       Confirm it when you restructure a section, so old links and search results for its child pages keep
       landing.
@@ -137,7 +137,7 @@ questions:
     author: llm-draft
 
   - id: core.caching.save-refreshes-pages
-    version: 1
+    version: 2
     status: live
     family: page-tag-purge
     level: intermediate
@@ -157,8 +157,8 @@ questions:
     answer:
       correct: c
       explanation: >-
-        Every cached response and page is tagged with the IRIs of the resources in it. Saving a resource
-        purges its IRI, so everything that used it is dropped.
+        Every cached response and page is tagged with the IRIs (API paths) of the resources in it. Saving a
+        resource purges its IRI, so everything that used it is dropped.
     sources:
       - { kind: docs, page: /core-concepts/caching, anchor: purges, sectionHash: 'sha256:c37d1bc5ca595f58', title: 'Caching › Purges' }
     author: llm-draft
@@ -190,7 +190,7 @@ questions:
     author: llm-draft
 
   - id: core.identity.layout-ui-component
-    version: 2
+    version: 3
     status: live
     level: intermediate
     area: core-concepts
@@ -198,11 +198,11 @@ questions:
     type: multiple-choice
     difficulty: 2
     prompt: >-
-      A layout's Vue file is `app/app/cwa/layouts/Landing.vue`. What does the layout record's `uiComponent`
-      (the field that names the Vue file a record renders through) hold?
+      A layout's Vue file is `app/app/cwa/layouts/Landing.vue`. In the API, each layout has a `uiComponent`
+      value that says which Vue component displays it. What should that value be for this layout?
     why: >-
-      A layout record that stores the short name, such as `Landing`, doesn't resolve, so the page falls back
-      to the default layout.
+      A layout whose `uiComponent` is the short name, such as `Landing`, doesn't resolve, so the page falls
+      back to the default layout.
     options:
       - { id: a, text: '`CwaLayoutLanding`' }
       - { id: b, text: '`Landing`' }

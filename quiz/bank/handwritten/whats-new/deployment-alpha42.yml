@@ -63,7 +63,7 @@ questions:
     author: llm-draft
 
   - id: deploy.cicd.warm-after-fixtures
-    version: 1
+    version: 2
     status: live
     level: advanced
     area: deployment
@@ -71,8 +71,8 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: >-
-      A deploy loads fixtures, and `load_fixtures` flushes the whole HTTP cache afterwards. What does it do
-      next?
+      A deploy loads fixtures. When the load succeeds, the deploy flushes the whole HTTP cache, API responses
+      and pages alike. What does it do straight after the flush?
     why: >-
       Without the warm, the first visitors after a fixture load would make every API request a cache miss at
       once.
@@ -80,13 +80,13 @@ questions:
     options:
       - { id: a, text: 'Nothing: the cache refills as visitors arrive' }
       - { id: b, text: 'Renders every page in the sitemap to warm the HTML' }
-      - { id: c, text: 'Runs `warm_api_cache`, which warms `/_api` but not pages' }
+      - { id: c, text: 'Warms the `/_api` responses, but not the pages' }
       - { id: d, text: 'Restarts php so its cache starts empty' }
     answer:
       correct: c
       explanation: >-
-        After the flush, `load_fixtures` runs `warm_api_cache`, the same gzip and br passes a deploy runs after a
-        full flush. Pages aren't warmed, and a failed pass only warns.
+        After the flush, the deploy runs `warm_api_cache`, the same gzip and br passes of `warm-http-cache` a deploy
+        runs after any full flush. Pages aren't warmed, and a failed pass only warns.
     sources:
       - { kind: docs, page: /deployment/ci-cd, anchor: fixtures-on-a-deploy, sectionHash: 'sha256:47811d21cdab86ae', title: 'CI/CD › Fixtures on a deploy' }
     author: llm-draft

@@ -69,7 +69,7 @@ questions:
     author: llm-draft
 
   - id: api.fixtures.link-route-group-owner
-    version: 2
+    version: 3
     status: live
     level: advanced
     area: api
@@ -77,31 +77,31 @@ questions:
     type: multiple-choice
     difficulty: 4
     prompt: >-
-      In a scaffold, a `Card` component owns a component group of its own, and its builder calls
-      `->linkRoute('route', routeName: 'about')` to fill the card's `route` field. The fixture load fails
+      In a scaffold, a `Card` component has a component group of its own. Its `route` property should point at
+      the About page, so its builder calls `->linkRoute('route', routeName: 'about')`. The fixture load fails
       while saving the card, before any route exists. What needs to change?
     why: >-
       A NOT NULL route column on a component looks safe until a scaffold seeds one that owns a group. Then every
       fixture load fails on it.
     since: [{ repo: api-components-bundle, version: '2.0.0-alpha.22' }]
     options:
-      - { id: a, text: 'Set the field in `afterRoutes()` instead' }
+      - { id: a, text: 'Set the property in `afterRoutes()` instead' }
       - { id: b, text: 'Give the about page a `routeName:` of its own' }
       - { id: c, text: 'Declare the card inside a `nested()` closure' }
-      - { id: d, text: 'The card''s `route` field must allow `null`' }
+      - { id: d, text: 'The card''s `route` property must allow `null`' }
     answer:
       correct: d
       explanation: >-
         A component that owns groups is saved before its `linkRoute()` is applied, because its groups need an
-        owner. The builder sets the field once the routes exist, so until then it is `null`.
+        owner. The builder sets the property once the routes exist, so until then it is `null`.
       optionNotes:
-        a: '`afterRoutes()` also runs after the routes exist, so the card is still saved first with an empty field.'
+        a: '`afterRoutes()` also runs after the routes exist, so the card is still saved first with an empty `route`.'
     sources:
       - { kind: docs, page: /api/data-fixtures/writing-a-scaffold, anchor: linking-routes-and-iris, sectionHash: 'sha256:87e67160f8a7aec6', title: 'Writing a Scaffold › Linking Routes and IRIs' }
     author: llm-draft
 
   - id: api.uploads.data-uri-validation
-    version: 2
+    version: 3
     status: live
     level: intermediate
     area: api
@@ -109,8 +109,9 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: >-
-      A component's image field has `#[UploadedImage]` with no options. A client sends a 40-megapixel JPEG to
-      that field as a base64 data URI in the JSON body. What does the API return?
+      A component's `image` property has `#[UploadedImage]` with no options. A client uploads a 40-megapixel
+      JPEG to it as a base64 data URI in the JSON
+      body, instead of a multipart form. What does the API return?
     why: >-
       Clients that upload base64 instead of multipart now get the same field errors as a form upload, so show
       them to the editor like any other violation.
@@ -167,7 +168,7 @@ questions:
     author: llm-draft
 
   - id: api.orphans.invalid-files-groups
-    version: 2
+    version: 3
     status: live
     level: advanced
     area: api
@@ -175,25 +176,26 @@ questions:
     type: multiple-choice
     difficulty: 4
     prompt: >-
-      On the publishable `Article` class, an image field's `Assert\Image(maxPixels: …)` is in the
-      `Article:published` validation group only. You lower `maxPixels`. Which stored files does the orphaned
+      `Article` is a publishable class. Its image property has `Assert\Image(maxPixels: …)` in the
+      `Article:published` validation group only. You lower `maxPixels`. Which articles' images does the orphaned
       files report now list as invalid?
     why: >-
       Rules that only apply at publish time now show up in the report for live content, so you can replace those
       images before an editor's next publish fails on them.
     since: [{ repo: api-components-bundle, version: '2.0.0-alpha.23' }]
     options:
-      - { id: a, text: 'Files of published or scheduled rows over the limit' }
-      - { id: b, text: 'Files of every row over the new limit' }
-      - { id: c, text: 'Files of draft rows over the limit, as drafts change' }
-      - { id: d, text: 'No files, because the scan checks only `Default`' }
+      - { id: a, text: 'Published or scheduled articles'' images over the limit' }
+      - { id: b, text: 'Every article''s image over the new limit' }
+      - { id: c, text: 'Draft articles'' images over the limit, as drafts change' }
+      - { id: d, text: 'None, because the scan checks only the `Default` group' }
     answer:
       correct: a
       explanation: >-
-        A row with a publication date is checked in `Default` and the class's publish groups, the groups
-        publishing validates. A draft, or a class that isn't publishable, is checked in `Default` only.
+        An article with a publication date, published or scheduled, is checked in `Default` and the class's publish
+        groups, the groups publishing validates. A draft, or a class that isn't publishable, is checked in `Default`
+        only.
       optionNotes:
-        d: Older bundles checked only `Default`. A row with a publication date now gets its publish groups too.
+        d: Older bundles checked only `Default`. An article with a publication date now gets its publish groups too.
     sources:
       - { kind: docs, page: /api/orphaned-data, anchor: how-invalid-files-are-checked, sectionHash: 'sha256:685126440c7e6ce9', title: 'Orphaned Data › How Invalid Files Are Checked' }
     author: llm-draft

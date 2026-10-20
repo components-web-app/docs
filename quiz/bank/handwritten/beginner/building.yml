@@ -3,7 +3,7 @@
 
 questions:
   - id: core.guides.layout-record
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: core-concepts
@@ -12,30 +12,30 @@ questions:
     difficulty: 2
     prompt: >-
       You've written `app/app/cwa/layouts/landing.vue` and added it to `nuxt.config`. Why do you still need to
-      create a layout record in the API?
+      create the layout in the API too?
     options:
-      - { id: a, text: The Vue file only says how a layout looks; pages and groups need a record to belong to }
-      - { id: b, text: The module copies the Vue file into the database the first time the record is saved }
-      - { id: c, text: The record turns on server-side rendering for every page that uses the file }
-      - { id: d, text: 'The record holds the layout''s CSS, which the Vue file can''t contain' }
+      - { id: a, text: The Vue file only says how a layout looks; pages and groups need a saved layout to belong to }
+      - { id: b, text: The module copies the Vue file into the database the first time the layout is saved }
+      - { id: c, text: The saved layout turns on server-side rendering for every page that uses the file }
+      - { id: d, text: 'The saved layout holds the layout''s CSS, which the Vue file can''t contain' }
     answer:
       correct: a
       explanation: >-
-        The Vue file defines how a layout looks, but it doesn't create a layout record. Pages are assigned to a
-        record, and the layout's component groups need a record as their owner.
+        The Vue file defines how a layout looks, but it doesn't create the layout in the API. Pages are
+        assigned to a saved layout, and the layout's component groups need it as their owner.
     sources:
       - { kind: docs, page: /guides/your-first-layout, anchor: create-the-layout-in-the-api, sectionHash: 'sha256:92642accfddde492', title: 'Your First Layout › Create the Layout in the API' }
     author: llm-draft
 
   - id: core.guides.layout-then-page-template
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: core-concepts
     tags: [layouts-and-pages]
     type: multiple-choice
     difficulty: 1
-    prompt: You've created a layout's Vue file and its layout record. Why can't you see it on the site yet?
+    prompt: You've written a layout's Vue file and created the layout in the API. Why can't you see it on the site yet?
     options:
       - { id: a, text: Layouts only show after the next deploy }
       - { id: b, text: 'Nothing uses it yet: no page is assigned to it' }
@@ -51,7 +51,7 @@ questions:
     author: llm-draft
 
   - id: nuxt.page-template.two-groups
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: nuxt-module
@@ -59,31 +59,31 @@ questions:
     type: multiple-choice
     difficulty: 2
     prompt: >-
-      A page template (the Vue file a page renders through) has two `<CwaComponentGroup>` elements, with the
+      A page template (the Vue file that displays a page) has two `<CwaComponentGroup>` elements, with the
       references `main` and `aside`, both with `:location="props.iri"`. What does each page that uses it get?
     options:
       - { id: a, text: 'One shared list of components, shown in both places' }
       - { id: b, text: Two groups that every page using the template shares }
-      - { id: c, text: 'Two separate component groups, stored against that page' }
+      - { id: c, text: 'Two separate component groups, saved on that page' }
       - { id: d, text: 'One group, because a page can only own one' }
     answer:
       correct: c
       explanation: >-
         Each `<CwaComponentGroup>` with its own `reference` is a separate, independently managed group. With the
-        page's IRI as `location`, the components an editor adds are stored against that page record.
+        page's IRI (its address in the API) as `location`, the components an editor adds are saved on that page.
     sources:
       - { kind: docs, page: /guides/your-first-page-template, anchor: key-points, sectionHash: 'sha256:f7efd4eb958ff065', title: 'Your First Page Template › Key points' }
     author: llm-draft
 
   - id: nuxt.page-template.iri-prop
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: nuxt-module
     tags: [layouts-and-pages]
     type: pick-the-line
     difficulty: 2
-    prompt: Which line declares the prop through which the module passes this page template its page's IRI?
+    prompt: The module passes this page template the IRI (the API address) of the page it displays. Which line declares the prop that receives it?
     code:
       lang: vue
       text: |-
@@ -101,7 +101,7 @@ questions:
     answer:
       lines: [10]
       explanation: >-
-        Every page template receives its page's IRI (the path that identifies the page record in the API) as
+        Every page template receives its page's IRI (the path that identifies the page in the API) as
         the `iri` prop. `defineProps<IriProp>()` declares it, and the template passes it to `<CwaComponentGroup>`
         as `location`.
     sources:
@@ -253,7 +253,7 @@ questions:
     author: llm-draft
 
   - id: core.guides.fixtures-for-development
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: core-concepts
@@ -264,9 +264,9 @@ questions:
       You can create the guides' layouts and pages in the admin, or with fixtures (PHP code that seeds the
       database). Why do the docs recommend fixtures during development?
     options:
-      - { id: a, text: 'Records made in the admin are deleted on every deploy' }
+      - { id: a, text: 'Content made in the admin is deleted on every deploy' }
       - { id: b, text: 'They give a consistent, repeatable starting state' }
-      - { id: c, text: 'The admin can only edit records, not create them' }
+      - { id: c, text: 'The admin can only edit content, not create it' }
       - { id: d, text: 'Fixtures are the only way to set a `uiComponent`' }
     answer:
       correct: b
@@ -278,7 +278,7 @@ questions:
     author: llm-draft
 
   - id: core.guides.append-existing-group
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: core-concepts
@@ -286,9 +286,8 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: >-
-      You opened `/landing` while signed in as an admin. Then you add a Quote to the page's `main` component
-      group (a named list of components) in your fixtures and run `doctrine:fixtures:load --append`. The quote
-      doesn't appear. Why?
+      You opened `/landing` while signed in as an admin. Later, your fixtures add a Quote to that page's
+      `main` component group, and you run `doctrine:fixtures:load --append`. The Quote doesn't appear. Why?
     options:
       - { id: a, text: 'The Quote has no route of its own, so the page can''t show it' }
       - { id: b, text: 'The page needs a fresh deploy before new components can show' }
@@ -327,16 +326,16 @@ questions:
     author: llm-draft
 
   - id: nuxt.cli.api-command
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: nuxt-module
     tags: [components]
     type: multiple-choice
     difficulty: 2
-    prompt: What does `npx cwa make:component` do about the component's API entity?
+    prompt: What does `npx cwa make:component` do about the component's PHP class in the API?
     options:
-      - { id: a, text: 'It writes the PHP entity into `api/src/Entity/`' }
+      - { id: a, text: 'It writes the PHP class into `api/src/Entity/`' }
       - { id: b, text: 'It runs `make:api-component` in the `php` container' }
       - { id: c, text: 'It sends the new type to the API over HTTP' }
       - { id: d, text: 'It prints the `make:api-component` command for you to run' }
@@ -404,14 +403,14 @@ questions:
     author: llm-draft
 
   - id: nuxt.component.admin-tab-model
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: nuxt-module
     tags: [components, admin, composables]
     type: pick-the-line
     difficulty: 2
-    prompt: In this admin tab, which line creates the model that reads and saves the Quote's `author` field in the API?
+    prompt: In this admin tab, which line creates the model that reads the Quote's `author` value from the API and saves changes to it?
     code:
       lang: vue
       text: |-
@@ -584,7 +583,7 @@ questions:
     author: llm-draft
 
   - id: core.dynamic.three-records
-    version: 1
+    version: 2
     status: live
     family: dynamic-pages-records-needed
     level: beginner
@@ -594,23 +593,23 @@ questions:
     difficulty: 3
     prompt: >-
       You're building news articles. Each has its own path and its own content, and a change to the structure
-      should reach every article at once. Which records does CWA use for that?
+      should reach every article at once. What does CWA use for that?
     options:
       - { id: a, text: 'One page per article, each with its own route and its own components' }
       - { id: b, text: 'One page with one route, and a query parameter that picks the article' }
       - { id: c, text: 'One layout per article, and one page with a route for the whole list' }
-      - { id: d, text: 'A template page, a page data record for each article, and a route for each' }
+      - { id: d, text: 'A template page, page data for each article, and a route for each' }
     answer:
       correct: d
       explanation: >-
-        A template page (a page record many articles share) holds the structure. Each article is a page data
-        record that names the template page, and each has its own route.
+        A template page (a page that many articles share) holds the structure. Each article is saved as page
+        data that names the template page, and each has its own route.
     sources:
       - { kind: docs, page: /guides/your-first-dynamic-page, anchor: create-in-the-api, sectionHash: 'sha256:baa52a543c4cb510', title: 'Your First Dynamic Page › Create in the API' }
     author: llm-draft
 
   - id: core.dynamic.position-shows
-    version: 1
+    version: 2
     status: live
     # The glossary question on "dynamic component position" tests the same fact.
     family: term:2a7460
@@ -620,11 +619,11 @@ questions:
     type: multiple-choice
     difficulty: 2
     prompt: >-
-      The news template page's `main` component group has a component position (the record that places a
-      component in a group) bound to the articles' `quote` field. A visitor opens one article. What does that
-      position show?
+      The news template page's `main` component group has a component position bound to the articles'
+      `quote` property. (A position places one component in a group.) A visitor opens one article. What
+      does that position show?
     options:
-      - { id: a, text: The component held in this article's `quote` field }
+      - { id: a, text: The component in this article's `quote` property }
       - { id: b, text: 'The newest article''s quote, on every article' }
       - { id: c, text: The quote an editor placed on the template page }
       - { id: d, text: 'Every article''s quote, as a list' }
@@ -632,13 +631,13 @@ questions:
       correct: a
       explanation: >-
         It's a dynamic component position. Instead of holding one component, it shows whatever component the
-        current article holds in its `quote` field.
+        current article holds in its `quote` property.
     sources:
       - { kind: docs, page: /guides/your-first-dynamic-page, anchor: create-in-the-api, sectionHash: 'sha256:baa52a543c4cb510', title: 'Your First Dynamic Page › Create in the API' }
     author: llm-draft
 
   - id: core.dynamic.new-file
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: core-concepts
@@ -646,24 +645,24 @@ questions:
     type: multiple-choice
     difficulty: 2
     prompt: >-
-      You add news articles that render through the `TwoColumnPageTemplate.vue` page template you already
+      You add news articles, displayed with the `TwoColumnPageTemplate.vue` page template you already
       built. Which new file do you write?
     options:
       - { id: a, text: 'A new page template Vue file for articles' }
-      - { id: b, text: 'A PHP entity for the articles'' data' }
+      - { id: b, text: 'A PHP class for the articles'' data' }
       - { id: c, text: 'A new layout Vue file for articles' }
       - { id: d, text: 'A Nuxt route file at `app/app/pages/news/[slug].vue`' }
     answer:
       correct: b
       explanation: >-
-        The Vue file already exists: articles render through `TwoColumnPageTemplate.vue`. The new file is the PHP
-        entity, `NewsArticleData`, that holds each article's data.
+        The Vue file already exists: articles are displayed with `TwoColumnPageTemplate.vue`. The new file is
+        the PHP class (a Doctrine entity), `NewsArticleData`, that holds each article's data.
     sources:
       - { kind: docs, page: /guides/your-first-dynamic-page, anchor: the-file, sectionHash: 'sha256:fd4134050fe8c59f', title: 'Your First Dynamic Page › The File' }
     author: llm-draft
 
   - id: core.dynamic.component-field-type
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: core-concepts
@@ -671,24 +670,24 @@ questions:
     type: multiple-choice
     difficulty: 2
     prompt: >-
-      Each news article's page data entity has a `quote` field, shown by the template page. How must that field
-      be typed?
+      Your news article page data class has a `quote` property. A position on the template page shows it.
+      What type must the property have?
     options:
-      - { id: a, text: 'As a string holding the quote''s text' }
-      - { id: b, text: 'As the IRI of a component position' }
-      - { id: c, text: 'As a component class, such as `Quote`' }
-      - { id: d, text: 'As JSON copied from a component' }
+      - { id: a, text: 'A string holding the quote''s text' }
+      - { id: b, text: 'The IRI of a component position' }
+      - { id: c, text: 'A component class, such as `Quote`' }
+      - { id: d, text: 'JSON copied from a component' }
     answer:
       correct: c
       explanation: >-
-        The field holds the component each article shows, so it must be typed as a component class. In the guide
-        it's a `ManyToOne` to `Quote`.
+        The property holds the component each article shows, so its type must be a component class. In the
+        guide it's a `ManyToOne` to `Quote`.
     sources:
       - { kind: docs, page: /guides/your-first-dynamic-page, anchor: the-file, sectionHash: 'sha256:fd4134050fe8c59f', title: 'Your First Dynamic Page › The File' }
     author: llm-draft
 
   - id: core.dynamic.quote-per-article
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: core-concepts
@@ -706,21 +705,21 @@ questions:
     answer:
       correct: b
       explanation: >-
-        The Quote is stored in this article's `quote` field, so it belongs to this article. The next article you
+        The Quote is saved in this article's `quote` property, so it belongs to this article. The next article you
         create gets its own.
     sources:
       - { kind: docs, page: /guides/your-first-dynamic-page, anchor: via-the-admin, sectionHash: 'sha256:c41dcc6bcd14fe43', title: 'Your First Dynamic Page › Via the admin' }
     author: llm-draft
 
   - id: core.dynamic.page-data-fixture
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: core-concepts
     tags: [dynamic-pages, fixtures]
     type: pick-the-line
     difficulty: 2
-    prompt: Which line saves the article with its own route and names the template page it renders through?
+    prompt: Which line saves the article with its own route and names the template page that displays it?
     code:
       lang: php
       text: |-
@@ -745,7 +744,7 @@ questions:
     answer:
       lines: [17]
       explanation: >-
-        `pageData()` saves the page data record with its route, and `template:` takes the template page's
+        `pageData()` saves the article's page data with its route, and `template:` takes the template page's
         reference, `news-template`.
     sources:
       - { kind: docs, page: /guides/your-first-dynamic-page, anchor: via-fixtures, sectionHash: 'sha256:15ec0a7f9e44973c', title: 'Your First Dynamic Page › Via fixtures', block: 0, blockHash: 'sha256:63ed8fac2fd9414d' }
@@ -775,7 +774,7 @@ questions:
     author: llm-draft
 
   - id: nuxt.page.choose-page-ui
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: core-concepts
@@ -787,13 +786,13 @@ questions:
       chosen?
     options:
       - { id: a, text: 'The layout that wraps the page, with its header' }
-      - { id: b, text: The page template the page renders through }
+      - { id: b, text: The page template that displays the page }
       - { id: c, text: The first component in the page's `main` group }
       - { id: d, text: The template page whose components it shares }
     answer:
       correct: b
       explanation: >-
-        The Page UI is the page template, such as `TwoColumnPageTemplate.vue`. The page record stores it as
+        The Page UI is the page template, such as `TwoColumnPageTemplate.vue`. The page saves it as
         `uiComponent: CwaPageTwoColumnPageTemplate`. The layout is a separate choice on the same form.
     sources:
       - { kind: docs, page: /guides/your-first-page-template, anchor: via-the-admin, sectionHash: 'sha256:7a86817c667e2a07', title: 'Your First Page Template › Via the admin' }

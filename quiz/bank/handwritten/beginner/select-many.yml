@@ -3,7 +3,7 @@
 
 questions:
   - id: core.data-model.group-owners
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: core-concepts
@@ -11,15 +11,15 @@ questions:
     type: select-many
     difficulty: 2
     prompt: >-
-      A component group is the named, ordered list of components, such as `main`. Which of these records can
-      a component group belong to?
+      A component group is a named, ordered list of components, such as `main`. Which of these can a
+      component group belong to?
     options:
       - { id: a, text: A route }
       - { id: b, text: A layout }
       - { id: c, text: A component position }
       - { id: d, text: A page }
       - { id: e, text: A component }
-      - { id: f, text: A page data record }
+      - { id: f, text: 'Page data, such as a blog article' }
     answer:
       correct: [b, d, e]
       explanation: >-
@@ -30,7 +30,7 @@ questions:
         a: A route maps a path to a page or a page data record. It holds no components.
         c: A component position sits inside a group and places one component in it. It doesn't own a group.
         e: A component can own groups too, for its children. An accordion declares a `<CwaComponentGroup>` in its own Vue file.
-        f: A page data record's components are shown by the template page's groups. The record holds fields, not groups.
+        f: A page data record's components are shown by the template page's groups. Page data holds properties, not groups.
     sources:
       - { kind: docs, page: /core-concepts/glossary, anchor: component-group, sectionHash: 'sha256:1078c99323abb87b', title: 'Glossary › Component group' }
       - { kind: docs, page: /core-concepts/the-data-model, anchor: componentgroup, sectionHash: 'sha256:2d82038914cdd316', title: 'The Data Model › ComponentGroup' }
@@ -69,7 +69,7 @@ questions:
     author: llm-draft
 
   - id: core.dynamic.per-record
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: core-concepts
@@ -77,28 +77,27 @@ questions:
     type: select-many
     difficulty: 3
     prompt: >-
-      Twenty blog articles are page data records (one record for each item of repeating content). They all
-      render through one template page, a page record shared by every article. Which of these can differ from
-      one article to the next?
+      Twenty blog articles are saved as page data, one per article. They all share one template page. Which
+      of these can differ from one article to the next?
     options:
       - { id: a, text: The layout around the article }
       - { id: b, text: The path of the article's route }
       - { id: c, text: The component groups on the page }
       - { id: d, text: The `<title>` and meta description }
-      - { id: e, text: The page template Vue file it renders through }
-      - { id: f, text: The component in a position bound to a field }
+      - { id: e, text: The page template Vue file that displays it }
+      - { id: f, text: A component in a position bound to its data }
     answer:
       correct: [b, d, f]
       explanation: >-
-        Each page data record has its own route, its own `title` and `metaDescription`, and its own fields. A
-        dynamic position (a component position bound to a page data field) shows the component the current
-        record holds in that field. The structure is shared: the template page holds the component groups, and
-        it names the layout and the page template every article renders through.
+        Each article's page data has its own route, its own `title` and `metaDescription`, and its own
+        properties. A dynamic position (a component position bound to a page data property) shows the
+        component the current article holds in that property. The structure is shared: the template page
+        holds the component groups, and it names the layout and the page template every article uses.
       optionNotes:
         a: The template page names the layout, and every article renders through that one template page.
-        c: The template page holds the component groups. The records only fill the positions bound to their fields.
+        c: The template page holds the component groups. The articles only fill the positions bound to their properties.
         e: The template page's `uiComponent` names the page template, so every article uses the same Vue file.
-        f: A position bound to a field such as `htmlContent` shows each record's own component from that field.
+        f: A position bound to a property such as `htmlContent` shows each article's own component from that property.
     sources:
       - { kind: docs, page: /core-concepts/dynamic-pages, anchor: how-it-works, sectionHash: 'sha256:84e223903937ce11', title: 'Dynamic Pages › How It Works' }
       - { kind: docs, page: /core-concepts/dynamic-pages, anchor: seo, sectionHash: 'sha256:e9a9218d4322da12', title: 'Dynamic Pages › SEO' }
@@ -142,7 +141,7 @@ questions:
     author: llm-draft
 
   - id: nuxt.admin.admin-pages
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: nuxt-module
@@ -150,14 +149,14 @@ questions:
     type: select-many
     difficulty: 2
     prompt: >-
-      Most content is edited on the page itself, but the admin pages under `/_cwa` manage records that aren't
-      on a page. Which of these can an editor manage there?
+      Most content is edited on the page itself, but the admin pages under `/_cwa` manage content that isn't
+      placed on a page. Which of these can an editor manage there?
     options:
       - { id: a, text: User accounts and their roles }
       - { id: b, text: New component types for the site }
-      - { id: c, text: Layout records }
+      - { id: c, text: Layouts }
       - { id: d, text: The Vue file of a page template }
-      - { id: e, text: 'Page data records, such as blog articles' }
+      - { id: e, text: 'Page data, such as blog articles' }
     answer:
       correct: [a, c, e]
       explanation: >-

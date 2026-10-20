@@ -174,6 +174,16 @@ branch's newest commit when the same lines are still there.
   ```
 - Links in a prompt or explanation need the page path, `[Routes](/api/routes#redirects)`, never `(#redirects)`.
 
+## Write for a first reading
+
+A developer new to the topic should know what's being asked the first time they read it. Use short
+sentences and a concrete scenario. Don't lean on words with two meanings or on jargon the question isn't
+about: "field", "record", "row", "resource", "renders through". A glossary definition becomes a question
+through its first sentence, so that sentence must make sense on its own.
+
+**No questions about upgrades.** What to change when moving a project to a new release is a release note,
+not quiz material. Ask how a feature works now instead; retire an upgrade-step question as `trivia`.
+
 ## Use CWA's terms
 
 A question is only fair if the reader knows what it's asking about. Name things by the terms in the

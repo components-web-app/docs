@@ -34,7 +34,7 @@ questions:
     author: llm-draft
 
   - id: api.groups.position-placement
-    version: 2
+    version: 3
     status: live
     level: intermediate
     area: api
@@ -46,8 +46,7 @@ questions:
       component in a group), to move it to the top of its group. The API answers `200`, but the position stays
       where it was. What should the script send instead?
     why: >-
-      Scripts and imports that wrote `sortValue` keep getting a `200` after the upgrade, so nothing tells you the
-      order they set is ignored.
+      A script that writes `sortValue` still gets a `200`, so nothing tells you the order it set was ignored.
     since: [{ repo: api-components-bundle, version: '2.0.0-alpha.24' }]
     options:
       - { id: a, text: '`{"sortValue": -1}`, below the first value' }
@@ -189,7 +188,7 @@ questions:
     author: llm-draft
 
   - id: api.storage.delete-stored-files-rows
-    version: 2
+    version: 3
     status: live
     level: intermediate
     area: api
@@ -197,21 +196,21 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: >-
-      Records in your database still point at files under `legacy/` in storage. You run
+      Components in your database still point at image files under `legacy/` in storage. You run
       `delete-stored-files gcloud legacy/` to empty that path. The next orphaned files report lists many
       entries. Why?
     why: >-
       The command clears storage, not content, so run it only on a path nothing in the database still points at.
     since: [{ repo: api-components-bundle, version: '2.0.0-alpha.24' }]
     options:
-      - { id: a, text: 'It deleted the file info rows, so the files count as orphaned' }
-      - { id: b, text: 'The rows that hold those paths are kept, and show as missing' }
-      - { id: c, text: 'It needs `--all` as well to clear the matching rows' }
+      - { id: a, text: 'It also deleted the file info, so the files count as orphaned' }
+      - { id: b, text: 'The components that point at them are kept, so each file shows as missing' }
+      - { id: c, text: 'It needs `--all` as well to clear the components too' }
       - { id: d, text: 'The scan ran while the delete was halfway through' }
     answer:
       correct: b
       explanation: >-
-        `delete-stored-files` deletes files only. The rows that hold the deleted paths, and their file info rows,
+        `delete-stored-files` deletes files only. The components that hold the deleted paths, and their file info,
         stay as they are, so each one is listed as a missing file.
     sources:
       - { kind: docs, page: /api/console-commands, anchor: delete-stored-files, sectionHash: 'sha256:533afe5049f0ba0c', title: 'Console Commands › delete-stored-files' }

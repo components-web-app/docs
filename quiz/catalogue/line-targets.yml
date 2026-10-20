@@ -43,9 +43,8 @@ targets:
     langs: [php]
     match: '->pageDataPosition\('
     prompt: >-
-      This fixture builds a template page (a page record that every page data record of one type renders
-      through). Which line makes one of its component groups (named lists of components) show each page data
-      record's own component?
+      This fixture builds a template page: the shared design that every blog article, say, is shown through.
+      Which line makes one of its component groups show each article's own component?
     explanation: >-
       `pageDataPosition()` creates a position bound to a field of a page data class. Each record that renders
       through the template page shows the component held in its own field at that position.
@@ -66,8 +65,8 @@ targets:
     exclude:
       - /api/data-fixtures/getting-started#complete-example/0
     prompt: >-
-      Which line gives this page no route of its own, so that every page data record (one item of repeating
-      content, such as a blog article) of one type renders through it?
+      Which line turns this page into the shared design for one type of page data, such as every blog
+      article, with no route of its own?
     explanation: >-
       `isTemplate: true` makes a template page. It gets no route; every page data record of one type renders
       through it.

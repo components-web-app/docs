@@ -62,7 +62,7 @@ questions:
     author: llm-draft
 
   - id: nuxt.admin.delete-shared-component
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: nuxt-module
@@ -70,7 +70,7 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: >-
-      A component is used in three places. An editor selects it in one component position, deletes it, and
+      A component shows in three places on the site. An editor selects it in one of them, clicks delete, and
       chooses to remove it from this location only. What happens?
     why: >-
       Taking a shared component off one page doesn't delete it from the others, which a plain delete would.
@@ -84,7 +84,7 @@ questions:
       correct: d
       explanation: >-
         Removing it from one location keeps the component and deletes the component position it was selected in.
-        For a dynamic component position, it clears the page data's field instead.
+        For a dynamic component position, it clears the page data's property instead.
     sources:
       - { kind: docs, page: /core-concepts/admin-panel, anchor: deleting-a-component, sectionHash: 'sha256:34cf8e997729d977', title: 'The Admin Panel › Deleting a component' }
     author: llm-draft
@@ -121,7 +121,7 @@ questions:
     author: llm-draft
 
   - id: nuxt.page-cache.purge-page-scope
-    version: 1
+    version: 2
     status: live
     level: advanced
     area: nuxt-module
@@ -129,8 +129,8 @@ questions:
     type: multiple-choice
     difficulty: 4
     prompt: >-
-      An admin purges the About page from its settings. Which other pages are rendered again on their next
-      visit?
+      An admin opens the About page's settings and clicks **Purge this page's cache**. Which other pages are
+      rendered again on their next visit?
     why: >-
       A one-page purge is cheaper than a full flush but not free: shared layouts and components spread it to
       every page built from them.

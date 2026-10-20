@@ -3,7 +3,7 @@
 
 questions:
   - id: api.cache.admin-route-private
-    version: 2
+    version: 3
     status: live
     family: http-cache-safety
     level: advanced
@@ -17,7 +17,7 @@ questions:
       visitor to see what the public gets.
     options:
       - { id: a, text: 'Routes are never cached, whoever asks for them' }
-      - { id: b, text: The admin's view can hold drafts at the public URL }
+      - { id: b, text: An admin's response can include drafts visitors mustn't get }
       - { id: c, text: 'The auth cookie expired, so the API refused to cache it' }
       - { id: d, text: Admin requests bypass Souin and go straight to php }
     answer:
@@ -33,14 +33,14 @@ questions:
     author: llm-draft
 
   - id: api.cache.vary-cookie
-    version: 1
+    version: 2
     status: live
     level: advanced
     area: api
     tags: [http-caching]
     type: multiple-choice
     difficulty: 4
-    prompt: 'Why doesn''t the bundle send `Vary: Cookie` on resources that differ for signed-in users?'
+    prompt: 'Why doesn''t the bundle send `Vary: Cookie` on responses that differ for signed-in users?'
     why: >-
       Adding `Vary: Cookie` yourself to be safe would cut the anonymous hit rate and send more requests to
       php, and it would make nothing safer.
@@ -48,7 +48,7 @@ questions:
       - { id: a, text: 'Souin ignores `Vary`, so the header would do nothing at all' }
       - { id: b, text: Browsers drop cookies from cached responses anyway }
       - { id: c, text: 'API Platform already sends `Vary: Authorization`' }
-      - { id: d, text: 'Cookies churn, so it would wreck the anonymous hit rate' }
+      - { id: d, text: 'It would split the cache and cut the anonymous hit rate' }
     answer:
       correct: d
       explanation: >-
@@ -281,14 +281,14 @@ questions:
     author: llm-draft
 
   - id: api.real-time.protocol-version
-    version: 1
+    version: 2
     status: live
     level: advanced
     area: api
     tags: [real-time]
     type: pick-the-line
     difficulty: 3
-    prompt: Which line makes the bundle talk to the hub with the Mercure 1.0 protocol, whatever mercure-bundle's default?
+    prompt: Which line makes the bundle talk to the hub with the Mercure 1.0 protocol, whichever mercure-bundle version is installed?
     why: >-
       Leave it out and the config works on mercure-bundle 0.6, but on 0.5, which the bundle also accepts,
       sign-in and `/me` fail when the bundle builds the Mercure cookie.
@@ -386,7 +386,7 @@ questions:
     author: llm-draft
 
   - id: api.fixtures.link-iri-page-data
-    version: 1
+    version: 2
     status: live
     level: advanced
     area: api
@@ -394,15 +394,15 @@ questions:
     type: multiple-choice
     difficulty: 4
     prompt: >-
-      In a scaffold, `->linkIri('featured', pageData: …)` writes a page data record's IRI into a field. What does
-      the `pageData:` argument name?
+      In a scaffold, a component's builder calls `->linkIri('featured', pageData: …)`. This stores a page data record's
+      IRI in the component's `featured` property. What do you pass as `pageData:`?
     why: >-
       A generated route is named after the slug of the title, so changing the title in the scaffold renames the
       route. A `linkIri()` that still names the old route then stops the load with a `LogicException`, so give
       linked page data a `routeName:`, or pass its builder instead of a name.
     options:
       - { id: a, text: 'The page data''s class, such as `BlogArticleData`' }
-      - { id: b, text: 'The reference of the template page it renders through' }
+      - { id: b, text: 'The reference of the template page that displays it' }
       - { id: c, text: 'The path of its route, such as `/blog/first-post`' }
       - { id: d, text: 'The name of its route, such as `article-1`' }
     answer:
@@ -411,7 +411,7 @@ questions:
         `pageData()` takes no reference, so `linkIri()` finds page data by the name of its route. It can also take
         the page data's builder. `page:` and `layout:` take a reference, and `route:` a route name.
       optionNotes:
-        b: A template page's reference names the page itself, with `linkIri(page:)`. Many records render through one template.
+        b: A template page's reference names the page itself, with `linkIri(page:)`. Many page data records share one template page.
     since: [{ repo: api-components-bundle, version: '2.0.0-alpha.22' }]
     sources:
       - { kind: docs, page: /api/data-fixtures/writing-a-scaffold, anchor: linking-routes-and-iris, sectionHash: 'sha256:87e67160f8a7aec6', title: 'Writing a Scaffold › Linking Routes and IRIs' }

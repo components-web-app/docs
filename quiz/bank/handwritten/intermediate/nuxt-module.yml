@@ -40,7 +40,7 @@ questions:
         blockHash: sha256:4452d03e14874b65
 
   - id: nuxt.admin.add-page-data-link
-    version: 2
+    version: 3
     status: live
     level: intermediate
     area: nuxt-module
@@ -48,9 +48,9 @@ questions:
     type: spot-the-mistake
     difficulty: 3
     prompt: >-
-      Each training module is a page data record (a record for one item of repeating content) inside a course.
-      This "Add a training module" link should open the admin's add form with the course as the parent and the
-      training module template page already chosen. One line is wrong. Click it.
+      Courses and training modules are both page data (repeating content, one entry each), and each training
+      module sits under a course. This "Add a training module" link should open the admin's add form with the
+      course as the parent and the training module template page already chosen. One line is wrong. Click it.
     why: >-
       The form still opens, so the mistake is easy to miss: editors just have to pick the template themselves.
     code:
@@ -78,7 +78,7 @@ questions:
     author: llm-draft
 
   - id: nuxt.page-data.read-in-computed
-    version: 2
+    version: 3
     status: live
     level: intermediate
     area: nuxt-module
@@ -86,8 +86,8 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: >-
-      A page template's `<script setup>` reads the current page data record (such as the blog article at the
-      current route) from `cwa.resources.pageData.value`. Why read it inside a `computed`?
+      A page template's `<script setup>` reads the blog article the visitor is viewing (the current page data)
+      from `cwa.resources.pageData.value`. Why read it inside a `computed`?
     why: >-
       This bites on client-side navigation: move from one article to another and a setup-time read still shows
       the first article's data.
@@ -100,7 +100,7 @@ questions:
       correct: c
       explanation: >-
         `pageData` is empty until the page data fetch resolves, and it changes on client-side navigation between
-        records that share the template page, which reuses the component. A setup-time read keeps the first
+        articles that share the template page, which reuses the component. A setup-time read keeps the first
         value; a `computed` follows it.
     sources:
       - { kind: docs, page: /core-concepts/dynamic-pages, anchor: reading-pagedata-in-your-vue-component, sectionHash: 'sha256:76c2ecae76dda115', title: 'Dynamic Pages › Reading PageData in Your Vue Component' }

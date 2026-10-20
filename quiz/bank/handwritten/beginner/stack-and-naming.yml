@@ -6,14 +6,14 @@ questions:
   # ---------------------------------------------------------------- What CWA is built on
 
   - id: core.stack.rest-endpoints
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: core-concepts
     tags: [architecture]
     type: multiple-choice
     difficulty: 1
-    prompt: Every resource in a CWA site, such as a page or a component, has REST endpoints. Which framework provides them?
+    prompt: In a CWA site, every page, layout and component can be read and changed through a REST API. Which framework provides those endpoints?
     options:
       - { id: a, text: Doctrine ORM }
       - { id: b, text: API Platform }
@@ -22,8 +22,8 @@ questions:
     answer:
       correct: b
       explanation: >-
-        API Platform serves the REST endpoints for every resource, with JSON-LD/Hydra, filters, pagination and
-        validation. Your component entities are API Platform resources.
+        API Platform serves the REST endpoints for every kind of content, with JSON-LD/Hydra, filters, pagination
+        and validation. Your own component classes are served by API Platform too.
       optionNotes:
         a: Doctrine maps entities to the database. It doesn't serve HTTP.
         c: Mercure pushes real-time updates to open browsers.
@@ -83,14 +83,14 @@ questions:
     author: llm-draft
 
   - id: core.stack.store
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: core-concepts
     tags: [architecture]
     type: multiple-choice
     difficulty: 2
-    prompt: The Nuxt module keeps every resource it has fetched in a store in the browser. Which library is that store built on?
+    prompt: The Nuxt module keeps everything it has fetched from the API, such as pages and components, in a store in the browser. Which library is that store built on?
     options:
       - { id: a, text: Pinia }
       - { id: b, text: Doctrine ORM }
@@ -99,7 +99,7 @@ questions:
     answer:
       correct: a
       explanation: >-
-        The module's store is a Pinia store, and it holds every resource the module has fetched.
+        The module's store is a Pinia store, and it holds everything the module has fetched from the API.
     sources:
       - { kind: docs, page: /core-concepts/architecture, anchor: what-cwa-is-built-on, sectionHash: 'sha256:5a1b8352e317b360', title: 'How It All Works › What CWA Is Built On' }
     author: llm-draft
@@ -419,14 +419,14 @@ questions:
     author: llm-draft
 
   - id: core.naming.page-template-name
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: core-concepts
     tags: [layouts-and-pages]
     type: multiple-choice
     difficulty: 2
-    prompt: A page template (the Vue file a page renders through) is at `app/app/cwa/pages/BlogDetail.vue`. Which name does the module register it under?
+    prompt: A page template (the Vue file that displays a page) is at `app/app/cwa/pages/BlogDetail.vue`. Which name does the module register it under?
     options:
       - { id: a, text: '`CwaPageBlogDetail`' }
       - { id: b, text: '`CwaComponentBlogDetail`' }
@@ -465,7 +465,7 @@ questions:
     author: llm-draft
 
   - id: core.naming.nuxt-config-keys
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: core-concepts
@@ -482,26 +482,27 @@ questions:
       correct: b
       explanation: >-
         The keys under `cwa.layouts` and `cwa.pages` in `nuxt.config` are the name without the prefix, such as
-        `Primary` and `BlogDetail`. The record's `uiComponent` is the one that holds the full name.
+        `Primary` and `BlogDetail`. The full name, with the prefix, is what a layout or page saved in the API
+        holds in its `uiComponent`.
     sources:
       - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: how-uicomponent-names-resolve, sectionHash: 'sha256:5dc45450ae61e9df', title: 'Layouts › How uiComponent Names Resolve' }
       - { kind: docs, page: /core-concepts/architecture, anchor: naming-conventions, sectionHash: 'sha256:16de6a5c40411e2c', title: 'How It All Works › Naming Conventions' }
     author: llm-draft
 
   - id: core.naming.bundle-tables
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: core-concepts
     tags: [data-model]
     type: multiple-choice
     difficulty: 1
-    prompt: In the database you find a table named `_acb_component_group`. A component group is the named, ordered list of components, such as `main`, that belongs to a layout, page or component. What does the `_acb_` prefix tell you about the table?
+    prompt: In the database you find a table named `_acb_component_group`. What does the `_acb_` prefix at the start of the name tell you?
     options:
       - { id: a, text: It is one of the bundle's own tables }
       - { id: b, text: It belongs to your own entities }
       - { id: c, text: A migration left it behind to delete }
-      - { id: d, text: It holds only draft rows }
+      - { id: d, text: It holds only drafts }
     answer:
       correct: a
       explanation: >-
@@ -511,17 +512,17 @@ questions:
     author: llm-draft
 
   - id: core.naming.layout-file-suffix
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: core-concepts
     tags: [layouts-and-pages]
     type: multiple-choice
     difficulty: 2
-    prompt: A layout's Vue file is `app/app/cwa/layouts/PrimaryLayout.vue`. Which value must the layout record's `uiComponent` (the field naming the Vue file it renders with) hold?
+    prompt: Each layout saved in the API has a `uiComponent` value, which names the Vue file that displays it. Your layout's file is `app/app/cwa/layouts/PrimaryLayout.vue`. What must its `uiComponent` be?
     why: >-
-      A layout whose `uiComponent` doesn't match the registered name doesn't resolve, so naming the file
-      `primary.vue` keeps the stored name short and readable.
+      A layout whose `uiComponent` doesn't match the registered name isn't found. The prefix is added to the
+      whole file name, so a file named `primary.vue` keeps the saved name short and readable.
     options:
       - { id: a, text: '`PrimaryCwaLayout`' }
       - { id: b, text: '`CwaLayoutPrimary`' }
@@ -539,14 +540,14 @@ questions:
     author: llm-draft
 
   - id: core.naming.page-short-name
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: core-concepts
     tags: [layouts-and-pages]
     type: multiple-choice
     difficulty: 3
-    prompt: Your own API call creates a page record with `uiComponent` set to `BlogDetail`, the short name of the page template `BlogDetail.vue`. What does the API store?
+    prompt: You create a page with your own API request and set its `uiComponent` to `BlogDetail`, the short name of the page template `BlogDetail.vue`. What does the API save as the `uiComponent`?
     why: >-
       The admin, the fixture builder and your own API calls all end up storing the same value, so you can compare
       or filter pages by `uiComponent` without checking for two forms.
@@ -568,14 +569,14 @@ questions:
     author: llm-draft
 
   - id: core.naming.layout-short-name
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: core-concepts
     tags: [layouts-and-pages]
     type: multiple-choice
     difficulty: 3
-    prompt: A layout record's `uiComponent` is stored as `Primary`, and the layout's Vue file is `app/app/cwa/layouts/primary.vue`. What happens when a page with that layout renders?
+    prompt: A layout is saved in the API with its `uiComponent` set to `Primary`. Its Vue file is `app/app/cwa/layouts/primary.vue`. Which layout does a page that uses it show?
     why: >-
       Unlike pages, layouts get no prefix added by the API, so a script or fixture that writes the short name
       leaves a layout that never uses its Vue file.
@@ -596,26 +597,26 @@ questions:
     author: llm-draft
 
   - id: core.naming.component-empty-ui-component
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: core-concepts
     tags: [components]
     type: multiple-choice
     difficulty: 2
-    prompt: A `Title` component record has an empty `uiComponent`. Which Vue component does the module render it with?
+    prompt: A `Title` component is saved in the API with no `uiComponent` set. Which Vue component displays it?
     why: >-
       A new component type renders with no setup beyond its display file, and when that file is missing or
       misnamed the module warns that the component cannot be resolved.
     options:
       - { id: a, text: 'None: it renders nothing until an editor picks a variant' }
-      - { id: b, text: '`CwaComponentTitle`, found from the record''s `@type`' }
+      - { id: b, text: '`CwaComponentTitle`, found from its `@type`' }
       - { id: c, text: 'The first file in the `Title/ui/` folder, by name' }
       - { id: d, text: 'A placeholder from the layout, until one is set' }
     answer:
       correct: b
       explanation: >-
-        The module resolves the component from `uiComponent`, and falls back to the record's `@type` when it is
+        The module resolves the component from `uiComponent`, and falls back to the component's `@type` when it is
         empty. `@type` is the PHP class name, so a `Title` renders with `CwaComponentTitle`, from
         `Title/Title.vue`.
     sources:

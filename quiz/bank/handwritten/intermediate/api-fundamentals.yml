@@ -33,7 +33,7 @@ questions:
     author: llm-draft
 
   - id: api.page-data.unmapped-property
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: api
@@ -41,8 +41,8 @@ questions:
     type: multiple-choice
     difficulty: 2
     prompt: >-
-      You add `public ?string $headline = null;` to a page data entity (one that extends `AbstractPageData`),
-      with no Doctrine attribute. What happens to the field?
+      You add `public ?string $headline = null;` to your page data class (it extends `AbstractPageData`), but
+      give it no Doctrine attribute such as `#[ORM\Column]`. What happens to `headline`?
     why: >-
       If a new field never shows up in the API or the admin, check its Doctrine mapping before anything on the
       front end.
@@ -61,7 +61,7 @@ questions:
     author: llm-draft
 
   - id: api.page-data.current-record
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: api
@@ -69,11 +69,12 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: >-
-      A template page (the page record that every blog article renders through) has a component position bound
-      to the `image` property of `BlogArticleData`. How does the API know which article's image to return?
+      Every blog article uses the same template page for its design. On that template page, a component
+      position is bound to the `image` property of `BlogArticleData`, so it shows each article's own image. A
+      visitor opens one article. How does the API know which article's image to return?
     why: >-
       When you call the API yourself, such as from a test, you send this header to get the component a bound
-      position shows for one record.
+      position shows for one article.
     options:
       - { id: a, text: 'From the `path` request header, which the module sends' }
       - { id: b, text: 'From a `pageData` query parameter on the position''s IRI' }
@@ -82,8 +83,8 @@ questions:
     answer:
       correct: a
       explanation: >-
-        The API works out the current page data record from the `path` header, which takes a route path or a
-        page data IRI. The Nuxt module sends it for you.
+        The API works out which article is being viewed from the `path` header. It holds the page's route path,
+        such as `/blog/first-post`, or the article's IRI (its API path). The Nuxt module sends it for you.
     sources:
       - { kind: docs, page: /api/dynamic-pages, anchor: component-positions-from-pagedata, sectionHash: 'sha256:325ae33d66116561', title: 'Page Data & Nested Pages › Component Positions from PageData' }
     author: llm-draft
@@ -117,7 +118,7 @@ questions:
     author: llm-draft
 
   - id: api.nested.explicit-path
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: api
@@ -125,8 +126,8 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: >-
-      In a scaffold, a page nested under `/events` (inside its `nested()` closure) is given `route: '/2024'`.
-      Which path does the child's route get?
+      In a fixture scaffold, you create a page inside the `/events` page's `nested()` closure and give it
+      `route: '/2024'`. What path does the new page's route get?
     why: >-
       Give a nested page an explicit route and you must write its parent's segments yourself, or the page ends up
       at the top level.
@@ -145,7 +146,7 @@ questions:
     author: llm-draft
 
   - id: api.nested.parent-reference
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: api
@@ -153,8 +154,8 @@ questions:
     type: multiple-choice
     difficulty: 2
     prompt: >-
-      Each blog post is a page data record (one item of repeating content), and so is each category. A post
-      should live under its category. Which field do you set on the post?
+      Blog posts and blog categories are both page data (repeating content, one entry per post or category).
+      Each post's route should sit under its category's route. Which property do you set on the post?
     why: >-
       The parent field decides the route prefix and the nesting the front end renders, so the wrong one, or both,
       gives the wrong URL.
@@ -167,7 +168,7 @@ questions:
       correct: d
       explanation: >-
         `parentPageData` makes a record a child of a page data record, and `parentPage` a child of a static page.
-        Set one or the other, not both. `page` is the template page the record renders through.
+        Set one or the other, not both. `page` is the template page that gives the post its design.
     sources:
       - { kind: docs, page: /api/dynamic-pages, anchor: the-php-fields, sectionHash: 'sha256:1161d5294df9ac5e', title: 'Page Data & Nested Pages › The PHP Fields' }
     author: llm-draft
@@ -201,7 +202,7 @@ questions:
     author: llm-draft
 
   - id: api.routes.generate-under-unrouted
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: api
@@ -209,8 +210,8 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: >-
-      A page data record's `parentPage` has no route. You call `POST /_/routes/generate` for the record. What
-      happens?
+      A blog article (page data) has its `parentPage` set to a page that has no route. You call
+      `POST /_/routes/generate` to make a route for the article. What happens?
     why: >-
       The same rule makes a fixture throw `UnroutedParentException` on `flush()`, so a scaffold that leaves a
       grouping parent unrouted must give its children explicit paths.
@@ -229,7 +230,7 @@ questions:
     author: llm-draft
 
   - id: api.routes.generate-replaces
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: api
@@ -237,7 +238,7 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: >-
-      A page data record already has the route `/blog/old-title`. Its title changes to "New Title", and you call
+      A blog article (page data) has the route `/blog/old-title`. You change its title to "New Title" and call
       `POST /_/routes/generate` for it. What happens to `/blog/old-title`?
     why: >-
       You can regenerate routes after retitling content without breaking links people have shared or search
@@ -250,13 +251,13 @@ questions:
     answer:
       correct: b
       explanation: >-
-        If the record already had a route, the old route becomes a redirect to the new one.
+        If the article already had a route, the old route becomes a redirect to the new one.
     sources:
       - { kind: docs, page: /api/routes, anchor: route-generation, sectionHash: 'sha256:b555eceb06c10ff8', title: 'Routes › Route Generation' }
     author: llm-draft
 
   - id: api.fixtures.template-argument
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: api
@@ -292,14 +293,14 @@ questions:
       fix: "    $cwa->pageData($pageData, template: 'blog-template', route: '/blog/first-post', routeName: 'article-1');"
       explanation: >-
         `pageData(template: …)` takes the template page's reference, the first argument of `page()`:
-        `'blog-template'`. `BlogPageTemplate` is its `uiComponent`, the Vue file it renders through.
+        `'blog-template'`. `BlogPageTemplate` is its `uiComponent`, the name of the Vue component that displays it.
     sources:
       - { kind: docs, page: /api/data-fixtures/getting-started, anchor: complete-example, sectionHash: 'sha256:bf3d624568ee73b6', title: 'Getting Started with Fixtures › Complete Example', block: 0, blockHash: 'sha256:80311eeb89bf5f14' }
       - { kind: docs, page: /api/data-fixtures/writing-a-scaffold, anchor: references-route-names-and-paths, sectionHash: 'sha256:03d81e735ac1b09c', title: 'Writing a Scaffold › References, Route Names and Paths' }
     author: llm-draft
 
   - id: api.fixtures.page-data-component
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: api
@@ -307,11 +308,11 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: >-
-      A page data class has a `component` property that holds a Hero. In a scaffold, how do you seed the Hero
-      for one record?
+      Your page data class has a `component` property that holds a Hero component. In a fixture scaffold, how do
+      you add the Hero for one page data entry?
     why: >-
-      You don't place a page data record's component in a group or persist it yourself: the record saves it,
-      as long as the field is set first.
+      You don't place a page data entry's component in a group or persist it yourself: the page data saves it,
+      as long as the property is set first.
     options:
       - { id: a, text: 'Set `$pageData->component` before calling `pageData()`' }
       - { id: b, text: 'Add the Hero to the template page''s group with `add()`' }
@@ -320,8 +321,8 @@ questions:
     answer:
       correct: a
       explanation: >-
-        A component set on a page data field is saved with the page data, so it needs no `component()` or
-        `persist()`. Set the field before you call `pageData()`.
+        A component set on a page data property is saved with the page data, so it needs no `component()` or
+        `persist()`. Set the property before you call `pageData()`.
     sources:
       - { kind: docs, page: /api/data-fixtures/writing-a-scaffold, anchor: components-on-page-data, sectionHash: 'sha256:1bbe8b30034943a4', title: 'Writing a Scaffold › Components on Page Data' }
     author: llm-draft
