@@ -33,7 +33,7 @@ questions:
       optionNotes:
         b: The token is what Souin sends to Cloudflare. The deploy decides on the CDN config, not the token.
     sources:
-      - { kind: code, repo: components-web-app, path: bin/devops/k8s.sh, lines: [1590, 1608], commit: 97e2d139602171d8cc5a93ec3f532438923affc9, linesHash: 'sha256:fb2d824718b22048' }
+      - { kind: code, repo: components-web-app, path: bin/devops/k8s.sh, lines: [1590, 1608], commit: 5eeaedc50415fe22da3d71357e129f4b13d92416, linesHash: 'sha256:fb2d824718b22048' }
       - { kind: docs, page: /deployment/ci-cd, anchor: why-every-deploy-clears-the-page-cache, sectionHash: 'sha256:a1715fec4542586c', title: 'CI/CD › Why every deploy clears the page cache' }
     author: llm-draft
 
@@ -63,7 +63,7 @@ questions:
         `"true"` purges review apps only. On production the job logs that it needs `"force"`, and loads
         with `--append`, keeping existing content.
     sources:
-      - { kind: code, repo: components-web-app, path: bin/devops/k8s.sh, lines: [1527, 1541], commit: 97e2d139602171d8cc5a93ec3f532438923affc9, linesHash: 'sha256:3f9ddbfc0a66f94f' }
+      - { kind: code, repo: components-web-app, path: bin/devops/k8s.sh, lines: [1527, 1541], commit: 5eeaedc50415fe22da3d71357e129f4b13d92416, linesHash: 'sha256:3f9ddbfc0a66f94f' }
       - { kind: docs, page: /deployment/ci-cd, anchor: purging-before-a-load, sectionHash: 'sha256:bec843d848a1ae81', title: 'CI/CD › Purging before a load' }
     author: llm-draft
 
@@ -96,7 +96,7 @@ questions:
       optionNotes:
         d: That leaves out the imagine headroom. One request at a time may use the imagine limit in place of a worker's.
     sources:
-      - { kind: code, repo: components-web-app, path: bin/devops/k8s.sh, lines: [984, 1015], commit: 97e2d139602171d8cc5a93ec3f532438923affc9, linesHash: 'sha256:0fbedb863b5d2572' }
+      - { kind: code, repo: components-web-app, path: bin/devops/k8s.sh, lines: [984, 1015], commit: 5eeaedc50415fe22da3d71357e129f4b13d92416, linesHash: 'sha256:0fbedb863b5d2572' }
       - { kind: docs, page: /deployment/variables, anchor: php-memory-budget, sectionHash: 'sha256:e1cae31fe58f5738', title: 'CI/CD Variables › php memory budget' }
     author: llm-draft
 
@@ -126,8 +126,8 @@ questions:
         The template wraps the Mercure hub, and its `publish()` sends nothing while the variable is
         `true`. It's set only on the fixture command, so the running API still publishes as usual.
     sources:
-      - { kind: code, repo: components-web-app, path: api/src/Mercure/SkipAwareMercureHub.php, lines: [65, 72], commit: 97e2d139602171d8cc5a93ec3f532438923affc9, linesHash: 'sha256:b5324028cac06d5d' }
-      - { kind: code, repo: components-web-app, path: bin/devops/k8s.sh, lines: [1548, 1549], commit: 97e2d139602171d8cc5a93ec3f532438923affc9, linesHash: 'sha256:93293bade60a9144' }
+      - { kind: code, repo: components-web-app, path: api/src/Mercure/SkipAwareMercureHub.php, lines: [65, 72], commit: 5eeaedc50415fe22da3d71357e129f4b13d92416, linesHash: 'sha256:b5324028cac06d5d' }
+      - { kind: code, repo: components-web-app, path: bin/devops/k8s.sh, lines: [1548, 1549], commit: 5eeaedc50415fe22da3d71357e129f4b13d92416, linesHash: 'sha256:93293bade60a9144' }
     author: llm-draft
 
   - id: deploy.internals.jwt-from-live-secret
@@ -158,6 +158,6 @@ questions:
       optionNotes:
         a: That check is for a key set as a CI variable without `JWT_PASSPHRASE`.
     sources:
-      - { kind: code, repo: components-web-app, path: bin/devops/k8s.sh, lines: [52, 61], commit: 97e2d139602171d8cc5a93ec3f532438923affc9, linesHash: 'sha256:1461a894bd01f4d2' }
-      - { kind: code, repo: components-web-app, path: bin/devops/k8s.sh, lines: [75, 98], commit: 97e2d139602171d8cc5a93ec3f532438923affc9, linesHash: 'sha256:e1474d88b5bfa572' }
+      - { kind: code, repo: components-web-app, path: bin/devops/k8s.sh, lines: [52, 61], commit: 5eeaedc50415fe22da3d71357e129f4b13d92416, linesHash: 'sha256:1461a894bd01f4d2' }
+      - { kind: code, repo: components-web-app, path: bin/devops/k8s.sh, lines: [75, 98], commit: 5eeaedc50415fe22da3d71357e129f4b13d92416, linesHash: 'sha256:e1474d88b5bfa572' }
     author: llm-draft
