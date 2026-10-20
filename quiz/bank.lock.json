@@ -2960,7 +2960,7 @@
     },
     "deploy.install.fixtures-append": {
       "status": "live",
-      "version": 2,
+      "version": 3,
       "versions": {
         "1": {
           "fingerprint": "sha256:c76b39fa41a1d2b6",
@@ -2969,16 +2969,24 @@
         "2": {
           "fingerprint": "sha256:5c4cf60af1dc97d4",
           "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
+        },
+        "3": {
+          "fingerprint": "sha256:974368bddf4579f1",
+          "docsCommit": "42e82b37aae112f896f8cedbc9f16b94614b7e0a"
         }
       }
     },
     "deploy.install.not-automatic": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:8b05554d01a97bcb",
           "docsCommit": "5a77f55ee091789ec3f314638209e92ca359558c"
+        },
+        "2": {
+          "fingerprint": "sha256:996278e58888ca28",
+          "docsCommit": "42e82b37aae112f896f8cedbc9f16b94614b7e0a"
         }
       }
     },
