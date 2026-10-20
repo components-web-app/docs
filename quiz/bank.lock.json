@@ -234,6 +234,26 @@
         }
       }
     },
+    "api.console.maintenance-already-on": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:844d7cf45e96d00c",
+          "docsCommit": "a922e093061fa1ec590408d5e373f4c2f525e6dc"
+        }
+      }
+    },
+    "api.console.maintenance-exit-codes": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:3d726e86642b500b",
+          "docsCommit": "a922e093061fa1ec590408d5e373f4c2f525e6dc"
+        }
+      }
+    },
     "api.filters.and-where-code": {
       "status": "live",
       "version": 1,
@@ -1032,21 +1052,29 @@
     },
     "api.security.route-pattern-select": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:5c40e3924a2d3b4a",
           "docsCommit": "4667755e4a6ab9bc4416bec7c41a386534cc1623"
+        },
+        "2": {
+          "fingerprint": "sha256:333c9f239c6d06e5",
+          "docsCommit": "a922e093061fa1ec590408d5e373f4c2f525e6dc"
         }
       }
     },
     "api.security.route-pattern-whole-path": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:2a048c6d3494c442",
           "docsCommit": "4667755e4a6ab9bc4416bec7c41a386534cc1623"
+        },
+        "2": {
+          "fingerprint": "sha256:48f2f390b52d4918",
+          "docsCommit": "a922e093061fa1ec590408d5e373f4c2f525e6dc"
         }
       }
     },
@@ -1109,6 +1137,16 @@
         "1": {
           "fingerprint": "sha256:1c3dc20bf86b6080",
           "docsCommit": "b49338190931bcda931feed91ba6bca5e8f67440"
+        }
+      }
+    },
+    "api.uploads.manifest-no-variants": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:9d23ef698f69a838",
+          "docsCommit": "a922e093061fa1ec590408d5e373f4c2f525e6dc"
         }
       }
     },
@@ -2322,6 +2360,36 @@
         }
       }
     },
+    "deploy.db.backup-bucket": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:fab5edaaba16112e",
+          "docsCommit": "a922e093061fa1ec590408d5e373f4c2f525e6dc"
+        }
+      }
+    },
+    "deploy.db.window-failure": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:a0a9955f258e10a4",
+          "docsCommit": "a922e093061fa1ec590408d5e373f4c2f525e6dc"
+        }
+      }
+    },
+    "deploy.db.window-steps": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:7ed106c41d032333",
+          "docsCommit": "a922e093061fa1ec590408d5e373f4c2f525e6dc"
+        }
+      }
+    },
     "deploy.docker.mercure-not-cached": {
       "status": "live",
       "version": 1,
@@ -2528,8 +2596,18 @@
         }
       }
     },
-    "deploy.k8s.migration-race": {
+    "deploy.k8s.migration-lock": {
       "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:d37a2313fbd282f9",
+          "docsCommit": "a922e093061fa1ec590408d5e373f4c2f525e6dc"
+        }
+      }
+    },
+    "deploy.k8s.migration-race": {
+      "status": "retired",
       "version": 1,
       "versions": {
         "1": {
@@ -2540,11 +2618,15 @@
     },
     "deploy.k8s.no-php-hpa": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:c9cea38c4982ed3d",
           "docsCommit": "4667755e4a6ab9bc4416bec7c41a386534cc1623"
+        },
+        "2": {
+          "fingerprint": "sha256:c9cea38c4982ed3d",
+          "docsCommit": "a922e093061fa1ec590408d5e373f4c2f525e6dc"
         }
       }
     },
@@ -2599,6 +2681,16 @@
         "1": {
           "fingerprint": "sha256:7793da6ad932fe56",
           "docsCommit": "05b8fc2ca14701fb4ad6cfac54b44420eaf729fa"
+        }
+      }
+    },
+    "deploy.mercure.hub-settings-file": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:36b1b2b0d21fe4df",
+          "docsCommit": "a922e093061fa1ec590408d5e373f4c2f525e6dc"
         }
       }
     },
