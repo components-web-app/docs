@@ -768,6 +768,7 @@ Researched and recorded on the issue (body + [findings comment](https://github.c
 
 ## Skipped
 
+- **2026-10-21 — template #181 (a template-only CI file that reloads the preview site's scaffold daily):** internal to the template's own preview, and `create-cwa` leaves the file out, so no project gets it. Not listed with `publish-create-cwa.yml` in installation or ci-cd. Template #208's xdebug note is in the changelog now (`423884f`); the docs say nothing about xdebug in production, so no change.
 - **2026-09-26 — api-components-bundle PR #360** (Behat shards, bcrypt cost 4 in tests): only the bundle's own test suite changes. The faster-behat-tests guide is for applications and is unaffected.
 - **2026-09-23 — log cleanup, moved from Pending:**
   - Module #318 (only collection fetches get the page query). It was already marked Skipped at `0fd23d7c`; the page-caching tracking-parameter section now covers the cache side.
