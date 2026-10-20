@@ -2872,11 +2872,15 @@
     },
     "deploy.db.window-steps": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:7ed106c41d032333",
           "docsCommit": "a922e093061fa1ec590408d5e373f4c2f525e6dc"
+        },
+        "2": {
+          "fingerprint": "sha256:765465c36d7b8b4a",
+          "docsCommit": "719826d7e02d71215ade1bb2890a88f9f825532e"
         }
       }
     },
@@ -4622,7 +4626,7 @@
     },
     "nuxt.admin.move-into-full-property": {
       "status": "live",
-      "version": 2,
+      "version": 3,
       "versions": {
         "1": {
           "fingerprint": "sha256:81f6435fb0b067de",
@@ -4631,6 +4635,10 @@
         "2": {
           "fingerprint": "sha256:45cbeeeae209e41b",
           "docsCommit": "9ff81ee4322ec1346c58b0cfb3bff98d6e868932"
+        },
+        "3": {
+          "fingerprint": "sha256:dc9df0138852ff94",
+          "docsCommit": "719826d7e02d71215ade1bb2890a88f9f825532e"
         }
       }
     },
