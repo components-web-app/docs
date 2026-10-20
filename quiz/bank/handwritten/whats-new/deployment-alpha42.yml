@@ -59,7 +59,7 @@ questions:
         The loading bar test navigates from the first sitemap page to the second, so the sitemap needs at least
         two pages. The tests no longer use the template's sample content.
     sources:
-      - { kind: docs, page: /deployment/browser-tests, anchor: what-they-check, sectionHash: 'sha256:f25f106693ab6b84', title: 'Browser Tests › What they check' }
+      - { kind: docs, page: /deployment/browser-tests, anchor: what-they-check, sectionHash: 'sha256:0eb98e145315de38', title: 'Browser Tests › What they check' }
     author: llm-draft
 
   - id: deploy.cicd.warm-after-fixtures

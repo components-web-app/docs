@@ -113,7 +113,7 @@ questions:
         f: The JWT key is kept with its own passphrase, and the public key is derived from the pair.
     sources:
       - { kind: docs, page: /deployment/variables, anchor: secrets, sectionHash: 'sha256:3a053dabe537216c', title: 'CI/CD Variables › Secrets' }
-      - { kind: docs, page: /deployment/variables, anchor: application, sectionHash: 'sha256:a30565b89e9a2a65', title: 'CI/CD Variables › Application' }
+      - { kind: docs, page: /deployment/variables, anchor: application, sectionHash: 'sha256:f2611f9c1cf7d7e7', title: 'CI/CD Variables › Application' }
     author: llm-draft
 
   - id: api.cache.manifest-purge-writes

@@ -49,7 +49,7 @@ questions:
         going live, whichever is sooner. `max()` picks the later one, so the old page outlives the
         go-live.
     sources:
-      - { kind: code, repo: api-components-bundle, path: src/EventListener/Api/CacheHeadersEventListener.php, lines: [127, 144], commit: b96066e7b0e1c11710a76924b531cb7f0d891f58, linesHash: 'sha256:712348427f1d7d93' }
+      - { kind: code, repo: api-components-bundle, path: src/EventListener/Api/CacheHeadersEventListener.php, lines: [127, 144], commit: a5faa3ba48f7fa4134ca04807b4da7abf701f1f7, linesHash: 'sha256:712348427f1d7d93' }
       - { kind: docs, page: /api/http-caching, anchor: scheduled-publication-and-cache-lifetime, sectionHash: 'sha256:1493bbf7a17d8444', title: 'HTTP Caching › Scheduled Publication and Cache Lifetime' }
     author: llm-draft
 
@@ -82,8 +82,8 @@ questions:
         b: The cap at the next go-live is for responses that can be cached. This one is never stored at all.
         c: On the route and manifest endpoints a `401` or `403` is turned into a `404`, so the route's existence doesn't show.
     sources:
-      - { kind: code, repo: api-components-bundle, path: src/EventListener/Api/UnpublishedRouteExceptionListener.php, lines: [29, 46], commit: b96066e7b0e1c11710a76924b531cb7f0d891f58, linesHash: 'sha256:20efd75041da42d8' }
-      - { kind: code, repo: api-components-bundle, path: src/EventListener/Api/CacheHeadersEventListener.php, lines: [53, 59], commit: b96066e7b0e1c11710a76924b531cb7f0d891f58, linesHash: 'sha256:f6a1991bcec8d6f4' }
+      - { kind: code, repo: api-components-bundle, path: src/EventListener/Api/UnpublishedRouteExceptionListener.php, lines: [29, 46], commit: a5faa3ba48f7fa4134ca04807b4da7abf701f1f7, linesHash: 'sha256:20efd75041da42d8' }
+      - { kind: code, repo: api-components-bundle, path: src/EventListener/Api/CacheHeadersEventListener.php, lines: [53, 59], commit: a5faa3ba48f7fa4134ca04807b4da7abf701f1f7, linesHash: 'sha256:f6a1991bcec8d6f4' }
     author: llm-draft
 
   - id: api.internals.persist-before-flush
@@ -113,8 +113,8 @@ questions:
         Outside a flush, `persist()` only queues the entity. `flush()` saves the queue after the pages
         and page data, and leaves out an entity that links to content the load skipped.
     sources:
-      - { kind: code, repo: api-components-bundle, path: src/Fixture/CwaFixtureBuilder.php, lines: [316, 332], commit: b96066e7b0e1c11710a76924b531cb7f0d891f58, linesHash: 'sha256:a1c646f503ed0f51' }
-      - { kind: code, repo: api-components-bundle, path: src/Fixture/CwaFixtureBuilder.php, lines: [551, 566], commit: b96066e7b0e1c11710a76924b531cb7f0d891f58, linesHash: 'sha256:6022bee6f7d2bdf2' }
+      - { kind: code, repo: api-components-bundle, path: src/Fixture/CwaFixtureBuilder.php, lines: [316, 332], commit: a5faa3ba48f7fa4134ca04807b4da7abf701f1f7, linesHash: 'sha256:a1c646f503ed0f51' }
+      - { kind: code, repo: api-components-bundle, path: src/Fixture/CwaFixtureBuilder.php, lines: [551, 566], commit: a5faa3ba48f7fa4134ca04807b4da7abf701f1f7, linesHash: 'sha256:6022bee6f7d2bdf2' }
     author: llm-draft
 
   - id: api.internals.authenticated-layout-headers
@@ -144,7 +144,7 @@ questions:
         For a signed-in user, `CacheHeadersEventListener` only marks personalised resources, which can
         show an admin drafts, and then returns. The go-live cap is only for anonymous responses.
     sources:
-      - { kind: code, repo: api-components-bundle, path: src/EventListener/Api/CacheHeadersEventListener.php, lines: [46, 75], commit: b96066e7b0e1c11710a76924b531cb7f0d891f58, linesHash: 'sha256:7237d377c78aeca5' }
+      - { kind: code, repo: api-components-bundle, path: src/EventListener/Api/CacheHeadersEventListener.php, lines: [46, 75], commit: a5faa3ba48f7fa4134ca04807b4da7abf701f1f7, linesHash: 'sha256:7237d377c78aeca5' }
     author: llm-draft
 
   - id: api.internals.layout-empty-ui-component
@@ -172,7 +172,7 @@ questions:
       explanation: >-
         The prefix is only added to a name that isn't empty. An empty string stores `null`.
     sources:
-      - { kind: code, repo: api-components-bundle, path: src/Fixture/CwaFixtureBuilder.php, lines: [233, 244], commit: b96066e7b0e1c11710a76924b531cb7f0d891f58, linesHash: 'sha256:a54fee8a4eceea95' }
+      - { kind: code, repo: api-components-bundle, path: src/Fixture/CwaFixtureBuilder.php, lines: [233, 244], commit: a5faa3ba48f7fa4134ca04807b4da7abf701f1f7, linesHash: 'sha256:a54fee8a4eceea95' }
     author: llm-draft
 
   - id: api.internals.layout-same-ref
@@ -201,7 +201,7 @@ questions:
         `layout()` makes a builder the first time it sees a ref. Later calls with the same ref return
         that builder unchanged, and their UI name and classes are ignored.
     sources:
-      - { kind: code, repo: api-components-bundle, path: src/Fixture/CwaFixtureBuilder.php, lines: [233, 244], commit: b96066e7b0e1c11710a76924b531cb7f0d891f58, linesHash: 'sha256:a54fee8a4eceea95' }
+      - { kind: code, repo: api-components-bundle, path: src/Fixture/CwaFixtureBuilder.php, lines: [233, 244], commit: a5faa3ba48f7fa4134ca04807b4da7abf701f1f7, linesHash: 'sha256:a54fee8a4eceea95' }
     author: llm-draft
 
   - id: api.internals.route-name-conflict
@@ -230,6 +230,6 @@ questions:
         `resolveConflicts()` adds the same `-1`, `-2`… to the name and the path together, until neither
         clashes.
     sources:
-      - { kind: code, repo: api-components-bundle, path: src/Helper/Route/RouteGenerator.php, lines: [146, 177], commit: b96066e7b0e1c11710a76924b531cb7f0d891f58, linesHash: 'sha256:676ce15209789418' }
-      - { kind: code, repo: api-components-bundle, path: src/Helper/Route/RouteGenerator.php, lines: [80, 102], commit: b96066e7b0e1c11710a76924b531cb7f0d891f58, linesHash: 'sha256:903fd398f535e642' }
+      - { kind: code, repo: api-components-bundle, path: src/Helper/Route/RouteGenerator.php, lines: [146, 177], commit: a5faa3ba48f7fa4134ca04807b4da7abf701f1f7, linesHash: 'sha256:676ce15209789418' }
+      - { kind: code, repo: api-components-bundle, path: src/Helper/Route/RouteGenerator.php, lines: [80, 102], commit: a5faa3ba48f7fa4134ca04807b4da7abf701f1f7, linesHash: 'sha256:903fd398f535e642' }
     author: llm-draft

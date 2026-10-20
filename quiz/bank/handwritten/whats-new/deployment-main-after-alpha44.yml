@@ -1,0 +1,33 @@
+# Hand-written What's new questions about deployment: template changes on main after 2.0.0-alpha.44.
+# Each `since` is 2.0.0-alpha.44 with `unreleased: true`; when the release ships, quiz:check warns: set its version.
+# Format: quiz/README.md. Run `pnpm quiz:stamp <id>` to fill in or refresh the hashes.
+
+questions:
+  - id: deploy.compose-prod.site-host
+    version: 1
+    status: live
+    level: intermediate
+    area: deployment
+    tags: [deployment]
+    type: multiple-choice
+    difficulty: 2
+    prompt: >-
+      You run the template's production stack on one server with `compose.prod.yaml`, for `www.example.com`.
+      Which setting do you give the site's host?
+    why: >-
+      One setting gives Caddy its HTTPS host and builds the site URL, the trusted hosts and the CORS origins, so they
+      can't disagree.
+    since: [{ repo: components-web-app, version: '2.0.0-alpha.44', unreleased: true }]
+    options:
+      - { id: a, text: '`SERVER_NAME=https://www.example.com`' }
+      - { id: b, text: '`SITE_HOST=www.example.com`' }
+      - { id: c, text: '`NUXT_SITE_URL=https://www.example.com`' }
+      - { id: d, text: '`TRUSTED_HOSTS=www.example.com`' }
+    answer:
+      correct: b
+      explanation: >-
+        `SITE_HOST` is required, with no scheme or port. Caddy's `SERVER_NAME`, `NUXT_SITE_URL`, the Mercure public
+        URL, `TRUSTED_HOSTS` and the CORS origins all come from it; more hosts go in `SITE_ALIASES`.
+    sources:
+      - { kind: docs, page: /deployment/docker, anchor: production-docker-compose, sectionHash: 'sha256:93b3cd3c3e3d790e', title: 'Docker › Production Docker Compose' }
+    author: llm-draft
