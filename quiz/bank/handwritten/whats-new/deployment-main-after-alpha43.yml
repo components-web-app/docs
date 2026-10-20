@@ -61,3 +61,33 @@ questions:
     sources:
       - { kind: docs, page: /deployment/docker, anchor: waiting-for-the-stack, sectionHash: 'sha256:71b766d4196de9bc', title: 'Docker › Waiting for the stack' }
     author: llm-draft
+
+  - id: deploy.scaled.shared-cache-check
+    version: 1
+    status: live
+    level: advanced
+    area: deployment
+    tags: [deployment]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      A production site runs in scaled mode. At the end of a deploy, three requests through the API's Service
+      all miss Redis, so the deploy's shared-cache check fails. What has the deploy done?
+    why: >-
+      If the pods don't share Redis, a purge on one pod leaves stale copies on the others, so editors' changes
+      seem to come and go.
+    since: [{ repo: components-web-app, version: '2.0.0-alpha.43', unreleased: true }]
+    options:
+      - { id: a, text: 'Finished the deploy, after three requests through the API got no Redis hit' }
+      - { id: b, text: 'Rolled back to the previous release, because the cache is broken' }
+      - { id: c, text: 'Switched the API pods back to their own in-memory caches' }
+      - { id: d, text: 'Scaled the API down to one pod until Redis answers again' }
+    answer:
+      correct: a
+      explanation: >-
+        After the flush and warm, the deploy asks the API through its Service up to three times for a response
+        cached in Redis. If none is, it prints the warning and carries on: the deploy isn't failed. Check the
+        Redis pod's logs and the API pods' Redis errors, then press **Purge all cached data**.
+    sources:
+      - { kind: docs, page: /deployment/scaled-mode, anchor: checking-the-cache-is-shared, sectionHash: 'sha256:cf79c4e02181361b', title: 'Scaled Mode › Checking the cache is shared' }
+    author: llm-draft

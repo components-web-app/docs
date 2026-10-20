@@ -148,7 +148,7 @@ questions:
         into the `mercure` block. Copy it (and `mercure-hub.Caddyfile`) with the Caddyfile, and move any hub settings
         you changed into it.
     sources:
-      - { kind: docs, page: /api/real-time, anchor: in-the-template, sectionHash: 'sha256:32d6f0f3aed18e31', title: 'Real-Time Updates (Mercure) › In the Template' }
+      - { kind: docs, page: /api/real-time, anchor: in-the-template, sectionHash: 'sha256:4c79531e4ffdc6b6', title: 'Real-Time Updates (Mercure) › In the Template' }
     author: llm-draft
 
   - id: deploy.db.backup-key

@@ -4,7 +4,7 @@
 
 questions:
   - id: deploy.k8s.no-php-hpa
-    version: 2
+    version: 3
     status: live
     level: intermediate
     area: deployment
@@ -28,9 +28,9 @@ questions:
       explanation: >-
         While `autoscaling.maxReplicas` is 1, the default, the chart renders no php HPA and the Deployment runs
         `autoscaling.minReplicas` pods. A `maxReplicas` above 1 brings it back, but the API's cache lives in each pod, so
-        more than one API pod needs scaled mode, which is still being built.
+        more than one API pod needs scaled mode, which shares the cache in Redis.
     sources:
-      - { kind: docs, page: /deployment/kubernetes, anchor: php-stays-at-one-replica, sectionHash: 'sha256:00c6290d3f96e0b5', title: 'Kubernetes & Helm › php stays at one replica' }
+      - { kind: docs, page: /deployment/kubernetes, anchor: php-stays-at-one-replica, sectionHash: 'sha256:44efc48b59770573', title: 'Kubernetes & Helm › php stays at one replica' }
     author: llm-draft
 
   - id: deploy.browser-tests.sitemap-pages
