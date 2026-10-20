@@ -186,6 +186,16 @@
         }
       }
     },
+    "api.cache.warm-requests-per-connection": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:9bc15db0c3110296",
+          "docsCommit": "b0ce7fcde1dcf942410f017c32293f84c3990dcf"
+        }
+      }
+    },
     "api.components.endpoint-prefix": {
       "status": "live",
       "version": 1,
@@ -2232,6 +2242,16 @@
         }
       }
     },
+    "deploy.cicd.failed-rollout-tag": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:2a53141219b5f8ab",
+          "docsCommit": "b0ce7fcde1dcf942410f017c32293f84c3990dcf"
+        }
+      }
+    },
     "deploy.cicd.pinned-build": {
       "status": "live",
       "version": 2,
@@ -2267,6 +2287,16 @@
         "1": {
           "fingerprint": "sha256:be82b85168bd9155",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        }
+      }
+    },
+    "deploy.cicd.retry-ci-only": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:7103107079ca94a2",
+          "docsCommit": "b0ce7fcde1dcf942410f017c32293f84c3990dcf"
         }
       }
     },
@@ -2367,6 +2397,26 @@
         "1": {
           "fingerprint": "sha256:fab5edaaba16112e",
           "docsCommit": "a922e093061fa1ec590408d5e373f4c2f525e6dc"
+        }
+      }
+    },
+    "deploy.db.backup-key": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:c5b25824e8f04407",
+          "docsCommit": "b0ce7fcde1dcf942410f017c32293f84c3990dcf"
+        }
+      }
+    },
+    "deploy.db.staging-shared-database": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:ab4cc82e4702e397",
+          "docsCommit": "b0ce7fcde1dcf942410f017c32293f84c3990dcf"
         }
       }
     },
@@ -2646,11 +2696,15 @@
     },
     "deploy.k8s.php-replicas": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:e56e4a1b7b75f843",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:e56e4a1b7b75f843",
+          "docsCommit": "b0ce7fcde1dcf942410f017c32293f84c3990dcf"
         }
       }
     },
