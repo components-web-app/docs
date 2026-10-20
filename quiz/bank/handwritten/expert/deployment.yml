@@ -96,7 +96,7 @@ questions:
       optionNotes:
         d: That leaves out the imagine headroom. One request at a time may use the imagine limit in place of a worker's.
     sources:
-      - { kind: code, repo: components-web-app, path: bin/devops/k8s.sh, lines: [964, 995], commit: 7246c9e41af00b26571d9fbb575403f88f6bda1c, linesHash: 'sha256:0fbedb863b5d2572' }
+      - { kind: code, repo: components-web-app, path: bin/devops/k8s.sh, lines: [964, 995], commit: 34bf1c507d7b7dfefcb51486622b9c12344b9fad, linesHash: 'sha256:0fbedb863b5d2572' }
       - { kind: docs, page: /deployment/variables, anchor: php-memory-budget, sectionHash: 'sha256:e1cae31fe58f5738', title: 'CI/CD Variables › php memory budget' }
     author: llm-draft
 
@@ -158,6 +158,6 @@ questions:
       optionNotes:
         a: That check is for a key set as a CI variable without `JWT_PASSPHRASE`.
     sources:
-      - { kind: code, repo: components-web-app, path: bin/devops/k8s.sh, lines: [52, 61], commit: 2e1c1b204827c4e195c72cc0a7dd117deb31709a, linesHash: 'sha256:1461a894bd01f4d2' }
-      - { kind: code, repo: components-web-app, path: bin/devops/k8s.sh, lines: [75, 98], commit: 2e1c1b204827c4e195c72cc0a7dd117deb31709a, linesHash: 'sha256:e1474d88b5bfa572' }
+      - { kind: code, repo: components-web-app, path: bin/devops/k8s.sh, lines: [52, 61], commit: 34bf1c507d7b7dfefcb51486622b9c12344b9fad, linesHash: 'sha256:1461a894bd01f4d2' }
+      - { kind: code, repo: components-web-app, path: bin/devops/k8s.sh, lines: [75, 98], commit: 34bf1c507d7b7dfefcb51486622b9c12344b9fad, linesHash: 'sha256:e1474d88b5bfa572' }
     author: llm-draft

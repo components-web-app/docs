@@ -1,5 +1,5 @@
-# Hand-written What's new questions about deployment: template changes on main after 2.0.0-alpha.42.
-# Each `since` is 2.0.0-alpha.42 with `unreleased: true`; when the release ships, quiz:check warns: set its version.
+# Hand-written What's new questions about deployment: template changes in 2.0.0-alpha.43.
+# Each one has a `since` naming the release that brought the change in.
 # Format: quiz/README.md. Run `pnpm quiz:stamp <id>` to fill in or refresh the hashes.
 
 questions:
@@ -16,7 +16,7 @@ questions:
       name?
     why: >-
       A dump holds every user's email address and password hash, so where it lands decides who can read them.
-    since: [{ repo: components-web-app, version: '2.0.0-alpha.42', unreleased: true }]
+    since: [{ repo: components-web-app, version: '2.0.0-alpha.43' }]
     options:
       - { id: a, text: 'The media bucket, `GCLOUD_BUCKET`, under its own prefix' }
       - { id: b, text: 'A private bucket of its own that nobody can read anonymously' }
@@ -28,7 +28,7 @@ questions:
         The backup needs a private bucket of its own. The deploy refuses `GCLOUD_BUCKET`, which is public and which
         the daily orphan scan cleans, and after each upload it deletes a dump that it can read without credentials.
     sources:
-      - { kind: docs, page: /deployment/migrations-and-backups, anchor: the-backup-bucket, sectionHash: 'sha256:c745822566442b82', title: 'Migrations and Backups › The backup bucket' }
+      - { kind: docs, page: /deployment/migrations-and-backups, anchor: the-backup-bucket, sectionHash: 'sha256:31e7d06db99078ba', title: 'Migrations and Backups › The backup bucket' }
     author: llm-draft
 
   - id: deploy.db.window-failure
@@ -45,7 +45,7 @@ questions:
     why: >-
       A failed window keeps visitors off a half-migrated site, so someone has to act on the log before the site
       opens again.
-    since: [{ repo: components-web-app, version: '2.0.0-alpha.42', unreleased: true }]
+    since: [{ repo: components-web-app, version: '2.0.0-alpha.43' }]
     options:
       - { id: a, text: 'The old release, because the deploy turns maintenance off' }
       - { id: b, text: 'The new release with the old schema' }
@@ -58,7 +58,7 @@ questions:
         restore it, and how to turn maintenance off. The next production deploy also ends the window, with or
         without the variable. A failed migration is rolled back in one transaction, so a restore is rarely needed.
     sources:
-      - { kind: docs, page: /deployment/migrations-and-backups, anchor: when-the-window-fails, sectionHash: 'sha256:4544f34dd1452011', title: 'Migrations and Backups › When the window fails' }
+      - { kind: docs, page: /deployment/migrations-and-backups, anchor: when-the-window-fails, sectionHash: 'sha256:3d629f68e9697936', title: 'Migrations and Backups › When the window fails' }
     author: llm-draft
 
   - id: deploy.db.window-steps
@@ -74,7 +74,7 @@ questions:
       does it do while maintenance mode is on? Choose every one.
     why: >-
       Knowing what happens inside the window tells you what a failure at each step leaves behind.
-    since: [{ repo: components-web-app, version: '2.0.0-alpha.42', unreleased: true }]
+    since: [{ repo: components-web-app, version: '2.0.0-alpha.43' }]
     options:
       - { id: a, text: 'Migrates in a Job, whatever `CWA_CI_MIGRATIONS_JOB_PRODUCTION` says' }
       - { id: b, text: 'Rolls out the new release, then flushes the cache and warms `/_api`' }
@@ -90,7 +90,7 @@ questions:
         d: 'The window only covers production''s own deploy.'
         e: 'A failure leaves maintenance on and prints how to restore. Restoring is up to you.'
     sources:
-      - { kind: docs, page: /deployment/migrations-and-backups, anchor: the-maintenance-window, sectionHash: 'sha256:cf2138c1f473e5cb', title: 'Migrations and Backups › The maintenance window' }
+      - { kind: docs, page: /deployment/migrations-and-backups, anchor: the-maintenance-window, sectionHash: 'sha256:34bf8c10c4f384e6', title: 'Migrations and Backups › The maintenance window' }
     author: llm-draft
 
   - id: deploy.k8s.migration-lock
@@ -106,7 +106,7 @@ questions:
       What happens on PostgreSQL?
     why: >-
       Two processes running the same migration at once could fail half-way; the lock makes starting together safe.
-    since: [{ repo: components-web-app, version: '2.0.0-alpha.42', unreleased: true }]
+    since: [{ repo: components-web-app, version: '2.0.0-alpha.43' }]
     options:
       - { id: a, text: 'Both run the migrations, and the second fails on a duplicate' }
       - { id: b, text: 'The orphan scan is skipped that night' }
@@ -118,7 +118,7 @@ questions:
         Migrations and `ANALYZE` run through `app:database:migrate` under a PostgreSQL advisory lock. The other process
         prints that another is migrating, waits up to 600 seconds, then has nothing left to do.
     sources:
-      - { kind: docs, page: /deployment/kubernetes, anchor: running-migrations, sectionHash: 'sha256:a123b373fcd6193a', title: 'Kubernetes & Helm › Running Migrations' }
+      - { kind: docs, page: /deployment/kubernetes, anchor: running-migrations, sectionHash: 'sha256:4fcac3367363007f', title: 'Kubernetes & Helm › Running Migrations' }
     author: llm-draft
 
   - id: deploy.mercure.hub-settings-file
@@ -134,7 +134,7 @@ questions:
       then won't start. Why?
     why: >-
       The hub's settings now live in a file of their own, so a project's own hub changes belong there too.
-    since: [{ repo: components-web-app, version: '2.0.0-alpha.42', unreleased: true }]
+    since: [{ repo: components-web-app, version: '2.0.0-alpha.43' }]
     options:
       - { id: a, text: 'The Caddyfile imports `mercure-hub.caddy`, which wasn''t copied' }
       - { id: b, text: 'The new Caddyfile needs a newer FrankenPHP base image' }
@@ -147,7 +147,7 @@ questions:
         into the `mercure` block. Copy it (and `mercure-hub.Caddyfile`) with the Caddyfile, and move any hub settings
         you changed into it.
     sources:
-      - { kind: docs, page: /api/real-time, anchor: in-the-template, sectionHash: 'sha256:20f7baa29f27f7d9', title: 'Real-Time Updates (Mercure) › In the Template' }
+      - { kind: docs, page: /api/real-time, anchor: in-the-template, sectionHash: 'sha256:32d6f0f3aed18e31', title: 'Real-Time Updates (Mercure) › In the Template' }
     author: llm-draft
 
   - id: deploy.db.backup-key
@@ -164,7 +164,7 @@ questions:
     why: >-
       A key that can reach the backups must never sit in the API pods, which run the site's code and hold the
       media key.
-    since: [{ repo: components-web-app, version: '2.0.0-alpha.42', unreleased: true }]
+    since: [{ repo: components-web-app, version: '2.0.0-alpha.43' }]
     options:
       - { id: a, text: '`CWA_CI_DATABASE_BACKUP_GCLOUD_JSON`, a key for this project''s folder only' }
       - { id: b, text: '`GCLOUD_JSON`, the same key the API uses to store uploaded media files' }
@@ -179,7 +179,7 @@ questions:
       optionNotes:
         b: 'Before this change the upload used `GCLOUD_JSON`. Now the deploy refuses the same service account.'
     sources:
-      - { kind: docs, page: /deployment/migrations-and-backups, anchor: the-backup-bucket, sectionHash: 'sha256:c745822566442b82', title: 'Migrations and Backups › The backup bucket' }
+      - { kind: docs, page: /deployment/migrations-and-backups, anchor: the-backup-bucket, sectionHash: 'sha256:31e7d06db99078ba', title: 'Migrations and Backups › The backup bucket' }
 
   - id: deploy.cicd.failed-rollout-tag
     version: 1
@@ -195,7 +195,7 @@ questions:
     why: >-
       The track tag is what the next deploy and a rollback start from, so a failed deploy must not leave it on
       a build that never worked.
-    since: [{ repo: components-web-app, version: '2.0.0-alpha.42', unreleased: true }]
+    since: [{ repo: components-web-app, version: '2.0.0-alpha.43' }]
     options:
       - { id: a, text: 'The last build that deployed well, because the tag moves only after a rollout' }
       - { id: b, text: 'The new build, because Helm had already applied the new revision to the release' }
@@ -208,7 +208,7 @@ questions:
         build to the track's tag only once the migrations and both rollouts have succeeded. The failed deploy
         stops with `THE cwa ROLLOUT DID NOT FINISH`, while the old pods keep serving.
     sources:
-      - { kind: docs, page: /deployment/ci-cd, anchor: which-build-a-deploy-runs, sectionHash: 'sha256:96e4aef5aec7341a', title: 'CI/CD › Which build a deploy runs' }
+      - { kind: docs, page: /deployment/ci-cd, anchor: which-build-a-deploy-runs, sectionHash: 'sha256:59cb7d65c3616962', title: 'CI/CD › Which build a deploy runs' }
 
   - id: deploy.db.staging-shared-database
     version: 1
@@ -224,7 +224,7 @@ questions:
     why: >-
       Staging migrating a shared database first would skip production's backup and maintenance window, and
       change the schema under the live site.
-    since: [{ repo: components-web-app, version: '2.0.0-alpha.42', unreleased: true }]
+    since: [{ repo: components-web-app, version: '2.0.0-alpha.43' }]
     options:
       - { id: a, text: 'Staging isn''t deployed; the production deploy runs the migrations' }
       - { id: b, text: 'Staging migrates the shared database, then rolls out its pods' }
@@ -237,7 +237,7 @@ questions:
         never migrate, and with migrations pending the job succeeds with a warning while the old staging keeps
         running. Production's deploy migrates, with its own plan, backup and window. A canary fails instead.
     sources:
-      - { kind: docs, page: /deployment/migrations-and-backups, anchor: a-track-on-productions-database, sectionHash: 'sha256:fbebf7566ab5248d', title: 'Migrations and Backups › A track on production''s database' }
+      - { kind: docs, page: /deployment/migrations-and-backups, anchor: a-track-on-productions-database, sectionHash: 'sha256:0d80838ccd7065b3', title: 'Migrations and Backups › A track on production''s database' }
 
   - id: deploy.cicd.retry-ci-only
     version: 1
@@ -253,7 +253,7 @@ questions:
     why: >-
       Running a failed window again would back up and migrate a second time while the site is in maintenance,
       which is for a person to decide.
-    since: [{ repo: components-web-app, version: '2.0.0-alpha.42', unreleased: true }]
+    since: [{ repo: components-web-app, version: '2.0.0-alpha.43' }]
     options:
       - { id: a, text: 'No: it retries only when CI failed, such as a runner or a timeout' }
       - { id: b, text: 'Yes, once, taking another backup and migrating again' }
@@ -265,7 +265,7 @@ questions:
         The staging and production jobs retry once only for CI failures: a runner or scheduler failure, a GitLab
         API failure or the job's timeout. A failed deploy is never run again by itself.
     sources:
-      - { kind: docs, page: /deployment/ci-cd, anchor: production, sectionHash: 'sha256:a95c8f34a2b7c692', title: 'CI/CD › Production' }
+      - { kind: docs, page: /deployment/ci-cd, anchor: production, sectionHash: 'sha256:e7064427a8506147', title: 'CI/CD › Production' }
 
   - id: deploy.db.window-left-on
     version: 1
@@ -281,7 +281,7 @@ questions:
     why: >-
       A fix-forward deploy shouldn't need the same switches as the one that failed, or the site stays in
       maintenance until someone remembers them.
-    since: [{ repo: components-web-app, version: '2.0.0-alpha.42', unreleased: true }]
+    since: [{ repo: components-web-app, version: '2.0.0-alpha.43' }]
     options:
       - { id: a, text: 'The deploy finds the window''s marker and turns maintenance off after the rollout' }
       - { id: b, text: 'It stays on, because only a deploy with the variable set can end a window' }
@@ -296,7 +296,7 @@ questions:
       optionNotes:
         b: 'That was true before `abcc4a1`, and still is for a window left on before it, which has no marker.'
     sources:
-      - { kind: docs, page: /deployment/migrations-and-backups, anchor: when-the-window-fails, sectionHash: 'sha256:4544f34dd1452011', title: 'Migrations and Backups › When the window fails' }
+      - { kind: docs, page: /deployment/migrations-and-backups, anchor: when-the-window-fails, sectionHash: 'sha256:3d629f68e9697936', title: 'Migrations and Backups › When the window fails' }
 
   - id: deploy.db.review-production-database
     version: 1
@@ -312,7 +312,7 @@ questions:
     why: >-
       A review app migrating production's database would change the live schema from an unreviewed branch, so
       the deploy stops it.
-    since: [{ repo: components-web-app, version: '2.0.0-alpha.42', unreleased: true }]
+    since: [{ repo: components-web-app, version: '2.0.0-alpha.43' }]
     options:
       - { id: a, text: 'It''s refused with `REVIEW APP NOT DEPLOYED` before Helm runs' }
       - { id: b, text: 'It deploys and migrates production''s database first' }
@@ -327,4 +327,4 @@ questions:
       optionNotes:
         c: 'Skipping migrations is the guard for staging and canary, which share production''s namespace.'
     sources:
-      - { kind: docs, page: /deployment/migrations-and-backups, anchor: review-apps, sectionHash: 'sha256:4ee9dc45aa722376', title: 'Migrations and Backups › Review apps' }
+      - { kind: docs, page: /deployment/migrations-and-backups, anchor: review-apps, sectionHash: 'sha256:617fd82b4b585274', title: 'Migrations and Backups › Review apps' }
