@@ -448,7 +448,7 @@ questions:
         the newer release left it. Migrations are upward-only: to undo a change, write a new migration that
         reverses it and deploy that.
     sources:
-      - { kind: docs, page: /deployment/kubernetes, anchor: rollback, sectionHash: 'sha256:e58fdf9d3300f989', title: 'Kubernetes & Helm › Rollback' }
+      - { kind: docs, page: /deployment/kubernetes, anchor: rollback, sectionHash: 'sha256:03544662c62fbfb3', title: 'Kubernetes & Helm › Rollback' }
     author: llm-draft
 
   - id: deploy.secrets.rotation

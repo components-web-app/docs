@@ -1,0 +1,34 @@
+# Hand-written What's new questions about the API bundle: changes on `main` after 2.0.0-alpha.33.
+# Each one has a `since` with `unreleased: true`. Change it to the release that ships the change once it's tagged.
+# Format: quiz/README.md. Run `pnpm quiz:stamp <id>` to fill in or refresh the hashes.
+
+questions:
+  - id: api.cache.warm-requests-per-connection
+    version: 1
+    status: live
+    level: advanced
+    area: api
+    tags: [http-caching, kubernetes]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      A warm runs with `--base-url` set to a Kubernetes Service in front of three API pods, and afterwards
+      only one pod's cache is warm. What does adding `--requests-per-connection=10` change?
+    why: >-
+      A Service balances connections, not requests, so a keep-alive warm through it fills one or two pods and
+      leaves the rest cold.
+    since: [{ repo: api-components-bundle, version: '2.0.0-alpha.33', unreleased: true }]
+    options:
+      - { id: a, text: 'Every 10th request closes its connection, so later ones can reach other pods' }
+      - { id: b, text: 'It opens 10 connections at the start and gives each pod its own share of the requests' }
+      - { id: c, text: 'It adds a header so that each pod caches the responses under its own key' }
+      - { id: d, text: 'It sends every request to each pod behind the Service, 10 at a time' }
+    answer:
+      correct: a
+      explanation: >-
+        Every Nth request carries `Connection: close`, so the next one opens a new connection, which the Service
+        can send to another pod. No other header changes, so the cache keys are the same. It only helps over
+        plain HTTP/1.1, and against `http://localhost` there's only one pod to fill.
+    sources:
+      - { kind: docs, page: /api/console-commands, anchor: spreading-a-warm-across-pods, sectionHash: 'sha256:99145633fde10698', title: 'Console Commands › Spreading a warm across pods' }
+    author: llm-draft

@@ -3,7 +3,7 @@
 
 questions:
   - id: deploy.k8s.php-replicas
-    version: 1
+    version: 2
     status: live
     level: advanced
     area: deployment
@@ -12,8 +12,8 @@ questions:
     difficulty: 4
     prompt: Why does the Helm chart keep php at one replica by default?
     why: >-
-      If you add php replicas for capacity, saves in the admin seem to work but some visitors keep seeing old
-      content. Move to a shared cache store and a clustered Mercure hub first.
+      With a second php pod, saves in the admin seem to work but some visitors keep seeing old content. The
+      template's scaled mode, still being built, moves the cache to a shared Redis and Mercure to a hub pod.
     options:
       - { id: a, text: FrankenPHP can only run one worker per cluster }
       - { id: b, text: The database accepts one connection per release }
@@ -25,7 +25,7 @@ questions:
         Souin's cache store and Mercure's `bolt` transport are local to the pod. A purge only reaches its own
         pod, so a second pod would keep serving stale responses.
     sources:
-      - { kind: docs, page: /deployment/kubernetes, anchor: php-stays-at-one-replica, sectionHash: 'sha256:b1c4e344eb0586ad', title: 'Kubernetes & Helm › php stays at one replica' }
+      - { kind: docs, page: /deployment/kubernetes, anchor: php-stays-at-one-replica, sectionHash: 'sha256:b42e0d96d991b7b7', title: 'Kubernetes & Helm › php stays at one replica' }
     author: llm-draft
 
   - id: deploy.k8s.nuxt-hpa-target

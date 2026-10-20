@@ -58,7 +58,7 @@ questions:
         A warm follows every successful full flush: the endpoint with no body, `purge-http-cache` with no
         options, and the flush at the end of each fixture load. A tag purge never starts one.
     sources:
-      - { kind: docs, page: /api/http-caching, anchor: warming-after-a-flush, sectionHash: 'sha256:d84756a68512fc8b', title: 'HTTP Caching › Warming after a flush' }
+      - { kind: docs, page: /api/http-caching, anchor: warming-after-a-flush, sectionHash: 'sha256:24b3f8a3e41c1943', title: 'HTTP Caching › Warming after a flush' }
     author: llm-draft
 
   - id: api.cache.warm-after-flush-async
@@ -88,7 +88,7 @@ questions:
         in the request or command that flushed. Nothing is warmed, with a warning, only when there is no
         Messenger bus at all.
     sources:
-      - { kind: docs, page: /api/http-caching, anchor: warming-after-a-flush, sectionHash: 'sha256:d84756a68512fc8b', title: 'HTTP Caching › Warming after a flush' }
+      - { kind: docs, page: /api/http-caching, anchor: warming-after-a-flush, sectionHash: 'sha256:24b3f8a3e41c1943', title: 'HTTP Caching › Warming after a flush' }
     author: llm-draft
 
   - id: api.publishable.position-unpublished-component

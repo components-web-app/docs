@@ -33,7 +33,7 @@ questions:
       optionNotes:
         b: The token is what Souin sends to Cloudflare. The deploy decides on the CDN config, not the token.
     sources:
-      - { kind: code, repo: components-web-app, path: bin/devops/k8s.sh, lines: [1440, 1458], commit: 2e1c1b204827c4e195c72cc0a7dd117deb31709a, linesHash: 'sha256:fb2d824718b22048' }
+      - { kind: code, repo: components-web-app, path: bin/devops/k8s.sh, lines: [1509, 1527], commit: 7246c9e41af00b26571d9fbb575403f88f6bda1c, linesHash: 'sha256:fb2d824718b22048' }
       - { kind: docs, page: /deployment/ci-cd, anchor: why-every-deploy-clears-the-page-cache, sectionHash: 'sha256:a1715fec4542586c', title: 'CI/CD › Why every deploy clears the page cache' }
     author: llm-draft
 
@@ -63,7 +63,7 @@ questions:
         `"true"` purges review apps only. On production the job logs that it needs `"force"`, and loads
         with `--append`, keeping existing content.
     sources:
-      - { kind: code, repo: components-web-app, path: bin/devops/k8s.sh, lines: [1383, 1400], commit: 2e1c1b204827c4e195c72cc0a7dd117deb31709a, linesHash: 'sha256:297bfb487906c25e' }
+      - { kind: code, repo: components-web-app, path: bin/devops/k8s.sh, lines: [1451, 1468], commit: 7246c9e41af00b26571d9fbb575403f88f6bda1c, linesHash: 'sha256:297bfb487906c25e' }
       - { kind: docs, page: /deployment/ci-cd, anchor: purging-before-a-load, sectionHash: 'sha256:bec843d848a1ae81', title: 'CI/CD › Purging before a load' }
     author: llm-draft
 
@@ -96,7 +96,7 @@ questions:
       optionNotes:
         d: That leaves out the imagine headroom. One request at a time may use the imagine limit in place of a worker's.
     sources:
-      - { kind: code, repo: components-web-app, path: bin/devops/k8s.sh, lines: [923, 954], commit: 2e1c1b204827c4e195c72cc0a7dd117deb31709a, linesHash: 'sha256:0fbedb863b5d2572' }
+      - { kind: code, repo: components-web-app, path: bin/devops/k8s.sh, lines: [964, 995], commit: 7246c9e41af00b26571d9fbb575403f88f6bda1c, linesHash: 'sha256:0fbedb863b5d2572' }
       - { kind: docs, page: /deployment/variables, anchor: php-memory-budget, sectionHash: 'sha256:e1cae31fe58f5738', title: 'CI/CD Variables › php memory budget' }
     author: llm-draft
 
@@ -126,8 +126,8 @@ questions:
         The template wraps the Mercure hub, and its `publish()` sends nothing while the variable is
         `true`. It's set only on the fixture command, so the running API still publishes as usual.
     sources:
-      - { kind: code, repo: components-web-app, path: api/src/Mercure/SkipAwareMercureHub.php, lines: [65, 72], commit: 2e1c1b204827c4e195c72cc0a7dd117deb31709a, linesHash: 'sha256:b5324028cac06d5d' }
-      - { kind: code, repo: components-web-app, path: bin/devops/k8s.sh, lines: [1399, 1400], commit: 2e1c1b204827c4e195c72cc0a7dd117deb31709a, linesHash: 'sha256:93293bade60a9144' }
+      - { kind: code, repo: components-web-app, path: api/src/Mercure/SkipAwareMercureHub.php, lines: [65, 72], commit: 7246c9e41af00b26571d9fbb575403f88f6bda1c, linesHash: 'sha256:b5324028cac06d5d' }
+      - { kind: code, repo: components-web-app, path: bin/devops/k8s.sh, lines: [1467, 1468], commit: 7246c9e41af00b26571d9fbb575403f88f6bda1c, linesHash: 'sha256:93293bade60a9144' }
     author: llm-draft
 
   - id: deploy.internals.jwt-from-live-secret
