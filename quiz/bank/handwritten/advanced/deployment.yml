@@ -25,7 +25,7 @@ questions:
         Souin's cache store and Mercure's `bolt` transport are local to the pod. A purge only reaches its own
         pod, so a second pod would keep serving stale responses.
     sources:
-      - { kind: docs, page: /deployment/kubernetes, anchor: php-stays-at-one-replica, sectionHash: 'sha256:b42e0d96d991b7b7', title: 'Kubernetes & Helm › php stays at one replica' }
+      - { kind: docs, page: /deployment/kubernetes, anchor: php-stays-at-one-replica, sectionHash: 'sha256:0cc1564a59d6b0d4', title: 'Kubernetes & Helm › php stays at one replica' }
     author: llm-draft
 
   - id: deploy.k8s.nuxt-hpa-target

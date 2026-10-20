@@ -32,7 +32,7 @@ questions:
     author: llm-draft
 
   - id: deploy.db.window-failure
-    version: 1
+    version: 2
     status: live
     level: advanced
     area: deployment
@@ -55,10 +55,10 @@ questions:
       correct: c
       explanation: >-
         Anything that fails after maintenance is on leaves it on. The job's log ends with the backup's path, how to
-        restore it, and how to turn maintenance off. A failed migration is rolled back in one transaction, so a
-        restore is rarely needed.
+        restore it, and how to turn maintenance off. The next production deploy also ends the window, with or
+        without the variable. A failed migration is rolled back in one transaction, so a restore is rarely needed.
     sources:
-      - { kind: docs, page: /deployment/migrations-and-backups, anchor: when-the-window-fails, sectionHash: 'sha256:befb4406fe0253b6', title: 'Migrations and Backups › When the window fails' }
+      - { kind: docs, page: /deployment/migrations-and-backups, anchor: when-the-window-fails, sectionHash: 'sha256:4544f34dd1452011', title: 'Migrations and Backups › When the window fails' }
     author: llm-draft
 
   - id: deploy.db.window-steps
@@ -90,7 +90,7 @@ questions:
         d: 'The window only covers production''s own deploy.'
         e: 'A failure leaves maintenance on and prints how to restore. Restoring is up to you.'
     sources:
-      - { kind: docs, page: /deployment/migrations-and-backups, anchor: the-maintenance-window, sectionHash: 'sha256:50413c25bb9473e5', title: 'Migrations and Backups › The maintenance window' }
+      - { kind: docs, page: /deployment/migrations-and-backups, anchor: the-maintenance-window, sectionHash: 'sha256:cf2138c1f473e5cb', title: 'Migrations and Backups › The maintenance window' }
     author: llm-draft
 
   - id: deploy.k8s.migration-lock
@@ -237,7 +237,7 @@ questions:
         never migrate, and with migrations pending the job succeeds with a warning while the old staging keeps
         running. Production's deploy migrates, with its own plan, backup and window. A canary fails instead.
     sources:
-      - { kind: docs, page: /deployment/migrations-and-backups, anchor: a-track-on-productions-database, sectionHash: 'sha256:d487e72f369c1774', title: 'Migrations and Backups › A track on production''s database' }
+      - { kind: docs, page: /deployment/migrations-and-backups, anchor: a-track-on-productions-database, sectionHash: 'sha256:fbebf7566ab5248d', title: 'Migrations and Backups › A track on production''s database' }
 
   - id: deploy.cicd.retry-ci-only
     version: 1
@@ -266,3 +266,65 @@ questions:
         API failure or the job's timeout. A failed deploy is never run again by itself.
     sources:
       - { kind: docs, page: /deployment/ci-cd, anchor: production, sectionHash: 'sha256:a95c8f34a2b7c692', title: 'CI/CD › Production' }
+
+  - id: deploy.db.window-left-on
+    version: 1
+    status: live
+    level: advanced
+    area: deployment
+    tags: [deployment]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      A production deploy's maintenance window failed and left maintenance on. You fix the migration and run a
+      normal production deploy, without `CWA_CI_MAINTENANCE_DURING_MIGRATIONS`. What happens to maintenance mode?
+    why: >-
+      A fix-forward deploy shouldn't need the same switches as the one that failed, or the site stays in
+      maintenance until someone remembers them.
+    since: [{ repo: components-web-app, version: '2.0.0-alpha.42', unreleased: true }]
+    options:
+      - { id: a, text: 'The deploy finds the window''s marker and turns maintenance off after the rollout' }
+      - { id: b, text: 'It stays on, because only a deploy with the variable set can end a window' }
+      - { id: c, text: 'The deploy refuses to run until someone turns maintenance off by hand' }
+      - { id: d, text: 'It turns off at once, before the deploy rolls out the fixed release' }
+    answer:
+      correct: a
+      explanation: >-
+        The window marks itself with a ConfigMap, `<fullname>-maintenance-window`. Every production deploy looks
+        for it, rolls out, flushes, warms and then turns maintenance off. Maintenance an admin turned on has no
+        marker, so a deploy leaves it alone.
+      optionNotes:
+        b: 'That was true before `abcc4a1`, and still is for a window left on before it, which has no marker.'
+    sources:
+      - { kind: docs, page: /deployment/migrations-and-backups, anchor: when-the-window-fails, sectionHash: 'sha256:4544f34dd1452011', title: 'Migrations and Backups › When the window fails' }
+
+  - id: deploy.db.review-production-database
+    version: 1
+    status: live
+    level: intermediate
+    area: deployment
+    tags: [deployment]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      On GitLab, a project sets production's external `DATABASE_URL` with `CWA_CI_POSTGRES_ENABLED="false"`,
+      scoped to All environments. What happens on the next review app deploy?
+    why: >-
+      A review app migrating production's database would change the live schema from an unreviewed branch, so
+      the deploy stops it.
+    since: [{ repo: components-web-app, version: '2.0.0-alpha.42', unreleased: true }]
+    options:
+      - { id: a, text: 'It''s refused with `REVIEW APP NOT DEPLOYED` before Helm runs' }
+      - { id: b, text: 'It deploys and migrates production''s database first' }
+      - { id: c, text: 'It deploys, but its pods skip migrations as staging''s do' }
+      - { id: d, text: 'It deploys with an in-cluster database of its own instead' }
+    answer:
+      correct: a
+      explanation: >-
+        Review apps must have their own database. The deploy compares the review's `DATABASE_URL` with
+        production's release, looked up as `RELEASE_PRODUCTION` in `KUBE_NAMESPACE_PRODUCTION`, and refuses a match.
+        Scope production's database variables to production. If production can't be read, the deploy only warns.
+      optionNotes:
+        c: 'Skipping migrations is the guard for staging and canary, which share production''s namespace.'
+    sources:
+      - { kind: docs, page: /deployment/migrations-and-backups, anchor: review-apps, sectionHash: 'sha256:4ee9dc45aa722376', title: 'Migrations and Backups › Review apps' }

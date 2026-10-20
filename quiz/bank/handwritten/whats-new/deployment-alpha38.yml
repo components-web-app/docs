@@ -126,7 +126,7 @@ questions:
         The job doesn't check out its branch (`GIT_STRATEGY: none`), because the branch may already be deleted. It
         fetches `bin/devops` from the default branch, so the stop runs that branch's scripts.
     sources:
-      - { kind: docs, page: /deployment/ci-cd, anchor: review-apps, sectionHash: 'sha256:afc9db4a9c6f5f2b', title: 'CI/CD › Review Apps' }
+      - { kind: docs, page: /deployment/ci-cd, anchor: review-apps, sectionHash: 'sha256:868a90084117b83b', title: 'CI/CD › Review Apps' }
     author: llm-draft
 
   - id: deploy.review.storage-path

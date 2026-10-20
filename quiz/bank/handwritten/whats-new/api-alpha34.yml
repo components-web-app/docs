@@ -1,5 +1,5 @@
-# Hand-written What's new questions about the API bundle: changes on `main` after 2.0.0-alpha.33.
-# Each one has a `since` with `unreleased: true`. Change it to the release that ships the change once it's tagged.
+# Hand-written What's new questions about the API bundle: changes in 2.0.0-alpha.34.
+# Each one has a `since` naming the release that brought the change in.
 # Format: quiz/README.md. Run `pnpm quiz:stamp <id>` to fill in or refresh the hashes.
 
 questions:
@@ -17,7 +17,7 @@ questions:
     why: >-
       A Service balances connections, not requests, so a keep-alive warm through it fills one or two pods and
       leaves the rest cold.
-    since: [{ repo: api-components-bundle, version: '2.0.0-alpha.33', unreleased: true }]
+    since: [{ repo: api-components-bundle, version: '2.0.0-alpha.34' }]
     options:
       - { id: a, text: 'Every 10th request closes its connection, so later ones can reach other pods' }
       - { id: b, text: 'It opens 10 connections at the start and gives each pod its own share of the requests' }
@@ -30,5 +30,5 @@ questions:
         can send to another pod. No other header changes, so the cache keys are the same. It only helps over
         plain HTTP/1.1, and against `http://localhost` there's only one pod to fill.
     sources:
-      - { kind: docs, page: /api/console-commands, anchor: spreading-a-warm-across-pods, sectionHash: 'sha256:99145633fde10698', title: 'Console Commands › Spreading a warm across pods' }
+      - { kind: docs, page: /api/console-commands, anchor: spreading-a-warm-across-pods, sectionHash: 'sha256:2c7df3952c0b80b2', title: 'Console Commands › Spreading a warm across pods' }
     author: llm-draft
