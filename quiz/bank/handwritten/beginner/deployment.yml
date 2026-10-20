@@ -45,7 +45,7 @@ questions:
         The `app` container already runs the Nuxt dev server, and Caddy proxies it at `https://localhost`.
         Running `pnpm dev` on your machine starts a second Nuxt that `https://localhost` never reaches.
     sources:
-      - { kind: docs, page: /getting-started/installation, anchor: _3-open-the-site, sectionHash: 'sha256:a1839bbfc8fac952', title: 'Installation › 3. Open the site' }
+      - { kind: docs, page: /getting-started/installation, anchor: _3-open-the-site, sectionHash: 'sha256:4fb77867b007759e', title: 'Installation › 3. Open the site' }
     author: llm-draft
 
   - id: deploy.install.admin-role
@@ -93,7 +93,7 @@ questions:
       explanation: >-
         The admin panel is at `/_cwa` on the site's own host. The API is at `/_api`, and you sign in at `/login`.
     sources:
-      - { kind: docs, page: /getting-started/installation, anchor: _3-open-the-site, sectionHash: 'sha256:a1839bbfc8fac952', title: 'Installation › 3. Open the site' }
+      - { kind: docs, page: /getting-started/installation, anchor: _3-open-the-site, sectionHash: 'sha256:4fb77867b007759e', title: 'Installation › 3. Open the site' }
     author: llm-draft
 
   - id: deploy.install.empty-home
