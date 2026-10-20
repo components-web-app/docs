@@ -2792,6 +2792,16 @@
         }
       }
     },
+    "deploy.compose-prod.site-host": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:f4a8abc9a3e58a23",
+          "docsCommit": "dd8fa09f015b20875250d2a65784023152739d18"
+        }
+      }
+    },
     "deploy.db.backup-bucket": {
       "status": "live",
       "version": 1,
