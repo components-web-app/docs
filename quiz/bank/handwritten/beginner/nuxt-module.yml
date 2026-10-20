@@ -146,7 +146,7 @@ questions:
         Editing happens on the site itself. Click **Edit** to enter edit mode, then click a component to select
         it and change it.
     sources:
-      - { kind: docs, page: /getting-started/installation, anchor: _3-open-the-site, sectionHash: 'sha256:4fb77867b007759e', title: 'Installation › 3. Open the site' }
+      - { kind: docs, page: /getting-started/installation, anchor: _3-open-the-site, sectionHash: 'sha256:3e9b363326a8717c', title: 'Installation › 3. Open the site' }
     author: llm-draft
 
   - id: nuxt.component.style-variants-beginner

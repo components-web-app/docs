@@ -3,7 +3,7 @@
 
 questions:
   - id: deploy.install.fixtures-append
-    version: 2
+    version: 3
     status: live
     level: intermediate
     area: deployment
@@ -12,7 +12,7 @@ questions:
     difficulty: 2
     family: fixtures-load-append
     prompt: >-
-      The installation guide loads the fixtures (the code that seeds the sample content) with
+      `bin/up` loads the fixtures (the code that seeds the admin account and sample content) with
       `doctrine:fixtures:load --append`. What does `--append` do?
     why: >-
       It's what makes rerunning the load safe on a database you've been editing, though it still resets the
@@ -26,11 +26,11 @@ questions:
       correct: a
       explanation: >-
         Without `--append`, `doctrine:fixtures:load` empties the database first. With it, the load is safe to
-        run again. It still resets the admin's password to `admin`.
+        run again. It still resets the admin's password and email to `ADMIN_PASSWORD` and `ADMIN_EMAIL`.
       optionNotes:
         c: It creates the admin account, and resets its password each time it runs.
     sources:
-      - { kind: docs, page: /getting-started/installation, anchor: _2-load-the-sample-content, sectionHash: 'sha256:48577c0fed8986f2', title: 'Installation › 2. Load the sample content' }
+      - { kind: docs, page: /getting-started/installation, anchor: _2-let-binup-start-the-site, sectionHash: 'sha256:3eba2ff39071bf66', title: 'Installation › 2. Let bin/up start the site' }
       - { kind: docs, page: /api/data-fixtures/getting-started, anchor: setup, sectionHash: 'sha256:d72eb07e3bf318e2', title: 'Getting Started with Fixtures › Setup' }
     author: llm-draft
 
@@ -57,5 +57,5 @@ questions:
         The certificate is kept in the `caddy_data` volume: `docker compose down -v` makes a new one, and the
         browser asks again.
     sources:
-      - { kind: docs, page: /getting-started/installation, anchor: _3-open-the-site, sectionHash: 'sha256:4fb77867b007759e', title: 'Installation › 3. Open the site' }
+      - { kind: docs, page: /getting-started/installation, anchor: _3-open-the-site, sectionHash: 'sha256:3e9b363326a8717c', title: 'Installation › 3. Open the site' }
     author: llm-draft

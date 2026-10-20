@@ -30,7 +30,7 @@ questions:
         `autoscaling.minReplicas` pods. A `maxReplicas` above 1 brings it back, but the API's cache lives in each pod, so
         more than one API pod needs scaled mode, which shares the cache in Redis.
     sources:
-      - { kind: docs, page: /deployment/kubernetes, anchor: php-stays-at-one-replica, sectionHash: 'sha256:44efc48b59770573', title: 'Kubernetes & Helm › php stays at one replica' }
+      - { kind: docs, page: /deployment/kubernetes, anchor: php-stays-at-one-replica, sectionHash: 'sha256:6c0d38d328f2ea54', title: 'Kubernetes & Helm › php stays at one replica' }
     author: llm-draft
 
   - id: deploy.browser-tests.sitemap-pages

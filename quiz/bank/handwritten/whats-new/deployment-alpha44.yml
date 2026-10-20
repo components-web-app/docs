@@ -1,5 +1,5 @@
-# Hand-written What's new questions about deployment: template changes on main after 2.0.0-alpha.43.
-# Each `since` is 2.0.0-alpha.43 with `unreleased: true`; when the release ships, quiz:check warns: set its version.
+# Hand-written What's new questions about deployment: template changes in 2.0.0-alpha.44.
+# Each one has a `since` naming the release that brought the change in.
 # Format: quiz/README.md. Run `pnpm quiz:stamp <id>` to fill in or refresh the hashes.
 
 questions:
@@ -16,7 +16,7 @@ questions:
     why: >-
       Every fixture load resets the super admin's password to `ADMIN_PASSWORD`, so leaving it at the
       development default lets anyone sign in to a public site.
-    since: [{ repo: components-web-app, version: '2.0.0-alpha.43', unreleased: true }]
+    since: [{ repo: components-web-app, version: '2.0.0-alpha.44' }]
     options:
       - { id: a, text: 'It warns that anyone can sign in as super admin, and deploys anyway' }
       - { id: b, text: 'It refuses to deploy until the variable is set' }
@@ -31,7 +31,7 @@ questions:
         b: 'Refusing is what `compose.prod.yaml` does, not the Kubernetes deploy.'
         c: '`ADMIN_PASSWORD` isn''t one of the secrets a deploy generates and keeps.'
     sources:
-      - { kind: docs, page: /deployment/variables, anchor: the-admin-password, sectionHash: 'sha256:ee2032c4885357d8', title: 'CI/CD Variables › The admin password' }
+      - { kind: docs, page: /deployment/variables, anchor: the-admin-password, sectionHash: 'sha256:00d0ac732805ace7', title: 'CI/CD Variables › The admin password' }
     author: llm-draft
 
   - id: deploy.docker.wait-ready
@@ -47,7 +47,7 @@ questions:
     why: >-
       Loading fixtures or opening the site before php can reach the database fails in confusing ways, so the
       stack says when it's ready.
-    since: [{ repo: components-web-app, version: '2.0.0-alpha.43', unreleased: true }]
+    since: [{ repo: components-web-app, version: '2.0.0-alpha.44' }]
     options:
       - { id: a, text: 'When php and app both pass their health checks' }
       - { id: b, text: 'As soon as every container has started' }
@@ -59,7 +59,7 @@ questions:
         php's health check calls the API's health endpoint on a loopback-only Caddy site, which answers 503
         while the database is down, and app checks `/_cwa/healthcheck`. `--wait` returns when both are healthy.
     sources:
-      - { kind: docs, page: /deployment/docker, anchor: waiting-for-the-stack, sectionHash: 'sha256:71b766d4196de9bc', title: 'Docker › Waiting for the stack' }
+      - { kind: docs, page: /deployment/docker, anchor: waiting-for-the-stack, sectionHash: 'sha256:f7dfcaf1245c229e', title: 'Docker › Waiting for the stack' }
     author: llm-draft
 
   - id: deploy.scaled.shared-cache-check
@@ -76,7 +76,7 @@ questions:
     why: >-
       If the pods don't share Redis, a purge on one pod leaves stale copies on the others, so editors' changes
       seem to come and go.
-    since: [{ repo: components-web-app, version: '2.0.0-alpha.43', unreleased: true }]
+    since: [{ repo: components-web-app, version: '2.0.0-alpha.44' }]
     options:
       - { id: a, text: 'Finished the deploy, after three requests through the API got no Redis hit' }
       - { id: b, text: 'Rolled back to the previous release, because the cache is broken' }
@@ -89,5 +89,5 @@ questions:
         cached in Redis. If none is, it prints the warning and carries on: the deploy isn't failed. Check the
         Redis pod's logs and the API pods' Redis errors, then press **Purge all cached data**.
     sources:
-      - { kind: docs, page: /deployment/scaled-mode, anchor: checking-the-cache-is-shared, sectionHash: 'sha256:cf79c4e02181361b', title: 'Scaled Mode › Checking the cache is shared' }
+      - { kind: docs, page: /deployment/scaled-mode, anchor: checking-the-cache-is-shared, sectionHash: 'sha256:de3d47935f967dee', title: 'Scaled Mode › Checking the cache is shared' }
     author: llm-draft

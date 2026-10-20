@@ -751,14 +751,14 @@ questions:
     author: llm-draft
 
   - id: deploy.install.not-automatic
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: deployment
     tags: [fixtures, architecture]
     type: multiple-choice
     difficulty: 2
-    prompt: The template's containers do several setup steps each time they start. Which step do you always run yourself?
+    prompt: The template's containers do several setup steps each time they start. Which step is left to `bin/up` instead?
     options:
       - { id: a, text: Running pending database migrations }
       - { id: b, text: Installing the Nuxt dependencies }
@@ -768,9 +768,10 @@ questions:
       correct: d
       explanation: >-
         The `php` container runs migrations, and the `app` container installs the Nuxt dependencies and starts
-        the dev server. Fixtures are the exception: they're never loaded automatically.
+        the dev server. The containers never load fixtures: `bin/up` loads them with `--append` once the stack is
+        healthy.
     sources:
-      - { kind: docs, page: /getting-started/installation, anchor: what-docker-handles-automatically, sectionHash: 'sha256:fc0027cbc130c222', title: 'Installation › What Docker handles automatically' }
+      - { kind: docs, page: /getting-started/installation, anchor: what-docker-handles-automatically, sectionHash: 'sha256:0aa41d7739eb57b8', title: 'Installation › What Docker handles automatically' }
     author: llm-draft
 
   - id: nuxt.page.choose-page-ui
