@@ -503,7 +503,7 @@ questions:
         Staging runs under the production environment and gets production's variables. With an external
         `DATABASE_URL` it uses production's database, so a fixture load there would write to production.
     sources:
-      - { kind: docs, page: /deployment/ci-cd, anchor: fixtures-on-a-deploy, sectionHash: 'sha256:1599d74ff846a6e1', title: 'CI/CD › Fixtures on a deploy' }
+      - { kind: docs, page: /deployment/ci-cd, anchor: fixtures-on-a-deploy, sectionHash: 'sha256:47811d21cdab86ae', title: 'CI/CD › Fixtures on a deploy' }
     author: llm-draft
 
   - id: deploy.cloudflare.api-accept

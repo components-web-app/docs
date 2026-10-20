@@ -1382,7 +1382,7 @@ questions:
       - kind: docs
         page: /api/data-fixtures/getting-started
         anchor: seeding-users
-        sectionHash: sha256:8b00b077d42750cc
+        sectionHash: sha256:c7b08313f99ade15
         title: Getting Started with Fixtures › Seeding Users
         block: 0
         blockHash: sha256:c397d856800f4dcc

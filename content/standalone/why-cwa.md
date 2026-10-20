@@ -79,6 +79,8 @@ CWA 2.0 is in **alpha**: try it, build with it, and give feedback.
 
 Release notes are in each repository's changelog: [API bundle](https://github.com/components-web-app/api-components-bundle/blob/main/CHANGELOG.md), [Nuxt module](https://github.com/components-web-app/cwa-nuxt-module/blob/main/CHANGELOG.md) and [template](https://github.com/components-web-app/components-web-app/blob/main/CHANGELOG.md).
 
+CWA is MIT-licensed (the template's [LICENSE](https://github.com/components-web-app/components-web-app/blob/main/LICENSE) and the API bundle's [LICENSE](https://github.com/components-web-app/api-components-bundle/blob/main/LICENSE)). Report a security problem privately, as the template's [SECURITY.md](https://github.com/components-web-app/components-web-app/blob/main/SECURITY.md) describes, never in a public issue. There's no warranty and no guaranteed response time. To contribute, start with [CONTRIBUTING.md](https://github.com/components-web-app/components-web-app/blob/main/CONTRIBUTING.md). See [Introduction › Licence, security and contributing](/getting-started#licence-security-and-contributing).
+
 ## Next steps
 
 - [Open the playground](https://preview.cwa.rocks/login) to try editing a CWA site. Sign in with the username and password `admin`.

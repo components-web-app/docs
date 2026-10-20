@@ -1,0 +1,63 @@
+# Hand-written What's new questions about deployment: template changes on main after 2.0.0-alpha.43.
+# Each `since` is 2.0.0-alpha.43 with `unreleased: true`; when the release ships, quiz:check warns: set its version.
+# Format: quiz/README.md. Run `pnpm quiz:stamp <id>` to fill in or refresh the hashes.
+
+questions:
+  - id: deploy.admin.password-warning
+    version: 1
+    status: live
+    level: intermediate
+    area: deployment
+    tags: [deployment]
+    type: multiple-choice
+    difficulty: 2
+    prompt: >-
+      A Kubernetes deploy runs with `ADMIN_PASSWORD` unset. What does the template's deploy do about it?
+    why: >-
+      Every fixture load resets the super admin's password to `ADMIN_PASSWORD`, so leaving it at the
+      development default lets anyone sign in to a public site.
+    since: [{ repo: components-web-app, version: '2.0.0-alpha.43', unreleased: true }]
+    options:
+      - { id: a, text: 'It warns that anyone can sign in as super admin, and deploys anyway' }
+      - { id: b, text: 'It refuses to deploy until the variable is set' }
+      - { id: c, text: 'It generates a random password and keeps it in the release''s Secret' }
+      - { id: d, text: 'Nothing: the check only runs in `compose.prod.yaml`' }
+    answer:
+      correct: a
+      explanation: >-
+        Unset or `admin`, the deploy and each fixture load it runs print a warning and carry on. The default
+        stays `admin`. `compose.prod.yaml` is stricter: it won't start without `ADMIN_PASSWORD`.
+      optionNotes:
+        b: 'Refusing is what `compose.prod.yaml` does, not the Kubernetes deploy.'
+        c: '`ADMIN_PASSWORD` isn''t one of the secrets a deploy generates and keeps.'
+    sources:
+      - { kind: docs, page: /deployment/variables, anchor: the-admin-password, sectionHash: 'sha256:ee2032c4885357d8', title: 'CI/CD Variables › The admin password' }
+    author: llm-draft
+
+  - id: deploy.docker.wait-ready
+    version: 1
+    status: live
+    level: beginner
+    area: deployment
+    tags: [deployment]
+    type: multiple-choice
+    difficulty: 2
+    prompt: >-
+      You start the template's local stack with `docker compose up -d --wait`. When does the command return?
+    why: >-
+      Loading fixtures or opening the site before php can reach the database fails in confusing ways, so the
+      stack says when it's ready.
+    since: [{ repo: components-web-app, version: '2.0.0-alpha.43', unreleased: true }]
+    options:
+      - { id: a, text: 'When php and app both pass their health checks' }
+      - { id: b, text: 'As soon as every container has started' }
+      - { id: c, text: 'Once the first page has been rendered and cached' }
+      - { id: d, text: 'Once the fixtures have been loaded into the database' }
+    answer:
+      correct: a
+      explanation: >-
+        php's health check calls the API's health endpoint on a loopback-only Caddy site, which answers 503
+        while the database is down, and app checks `/_cwa/healthcheck`. `--wait` returns when both are healthy.
+    sources:
+      - { kind: docs, page: /deployment/docker, anchor: waiting-for-the-stack, sectionHash: 'sha256:71b766d4196de9bc', title: 'Docker › Waiting for the stack' }
+    author: llm-draft
