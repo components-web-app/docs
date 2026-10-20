@@ -4,7 +4,7 @@
 
 questions:
   - id: deploy.k8s.no-php-hpa
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: deployment
@@ -15,8 +15,8 @@ questions:
       On a cluster running the template's chart with default values, `kubectl get hpa` lists the Nuxt HPA
       only. Why is there none for php?
     why: >-
-      An HPA that can never scale only adds noise, such as memory always shown over its target; it comes back
-      when you allow more than one API pod.
+      An HPA that can never scale only adds noise, such as memory always shown over its target, so a missing
+      php HPA is expected, not a failed deploy.
     since: [{ repo: components-web-app, version: '2.0.0-alpha.42' }]
     options:
       - { id: a, text: 'The deploy failed to create it and should be re-run' }
@@ -27,9 +27,10 @@ questions:
       correct: c
       explanation: >-
         While `autoscaling.maxReplicas` is 1, the default, the chart renders no php HPA and the Deployment runs
-        `autoscaling.minReplicas` pods. Raising `maxReplicas` above 1 brings the HPA back.
+        `autoscaling.minReplicas` pods. A `maxReplicas` above 1 brings it back, but the API's cache lives in each pod, so
+        more than one API pod needs scaled mode, which is still being built.
     sources:
-      - { kind: docs, page: /deployment/kubernetes, anchor: php-stays-at-one-replica, sectionHash: 'sha256:18bc1ca488a2a6d2', title: 'Kubernetes & Helm › php stays at one replica' }
+      - { kind: docs, page: /deployment/kubernetes, anchor: php-stays-at-one-replica, sectionHash: 'sha256:b1c4e344eb0586ad', title: 'Kubernetes & Helm › php stays at one replica' }
     author: llm-draft
 
   - id: deploy.browser-tests.sitemap-pages

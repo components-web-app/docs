@@ -64,7 +64,7 @@ questions:
       optionNotes:
         b: Pods run `<track tag>@<digest>`, so moving the tag changes nothing until the next deploy.
     sources:
-      - { kind: docs, page: /deployment/kubernetes, anchor: rollback, sectionHash: 'sha256:779929d1aca64347', title: 'Kubernetes & Helm › Rollback' }
+      - { kind: docs, page: /deployment/kubernetes, anchor: rollback, sectionHash: 'sha256:e58fdf9d3300f989', title: 'Kubernetes & Helm › Rollback' }
     author: llm-draft
 
   - id: deploy.k8s.api-logs

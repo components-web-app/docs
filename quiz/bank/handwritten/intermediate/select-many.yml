@@ -146,7 +146,7 @@ questions:
         b: An SVG is `image/svg+xml`, which the filters skip.
         e: WebP is `image/webp`, a raster image, so it gets the variant.
     sources:
-      - { kind: docs, page: /api/components/annotations/uploadable, anchor: liipimaginebundle-integration, sectionHash: 'sha256:498461f6b5e47843', title: 'Uploadable › LiipImagineBundle Integration' }
+      - { kind: docs, page: /api/components/annotations/uploadable, anchor: liipimaginebundle-integration, sectionHash: 'sha256:2dc7bff380211595', title: 'Uploadable › LiipImagineBundle Integration' }
     author: llm-draft
 
   - id: api.security.component-readable

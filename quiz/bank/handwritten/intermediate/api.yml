@@ -337,7 +337,7 @@ questions:
     since: [{ repo: api-components-bundle, version: '2.0.0-alpha.23' }]
     sources:
       - { kind: docs, page: /api/components/annotations/uploadable, anchor: capping-uploads-to-fit-the-budget, sectionHash: 'sha256:44a8df06f40989a6', title: 'Uploadable › Capping Uploads to Fit the Budget' }
-      - { kind: docs, page: /api/components/annotations/uploadable, anchor: liipimaginebundle-integration, sectionHash: 'sha256:498461f6b5e47843', title: 'Uploadable › LiipImagineBundle Integration' }
+      - { kind: docs, page: /api/components/annotations/uploadable, anchor: liipimaginebundle-integration, sectionHash: 'sha256:2dc7bff380211595', title: 'Uploadable › LiipImagineBundle Integration' }
     author: llm-draft
 
   - id: api.real-time.draft-updates

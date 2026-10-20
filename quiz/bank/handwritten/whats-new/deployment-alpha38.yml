@@ -65,7 +65,7 @@ questions:
         uses its own 10 seconds. The deploy refuses a `timeout` block or a store there; set
         `CWA_API_CADDY_CACHE_BACKEND_TIMEOUT` instead.
     sources:
-      - { kind: docs, page: /deployment/variables, anchor: http-cache, sectionHash: 'sha256:b00191c2cc5927f6', title: 'CI/CD Variables › HTTP cache' }
+      - { kind: docs, page: /deployment/variables, anchor: http-cache, sectionHash: 'sha256:9059e566e873f4bb', title: 'CI/CD Variables › HTTP cache' }
     author: llm-draft
 
   - id: deploy.cache.extra-config-upgrade
@@ -97,7 +97,7 @@ questions:
         b: '`CADDY_CACHE_EXTRA_CONFIG` is reserved, so the `CWA_API_` form fails the deploy.'
         a: '`php.caddy.storageConfig` is now `php.caddy.extraConfig`, and the chart reads no old name.'
     sources:
-      - { kind: docs, page: /deployment/variables, anchor: http-cache, sectionHash: 'sha256:b00191c2cc5927f6', title: 'CI/CD Variables › HTTP cache' }
+      - { kind: docs, page: /deployment/variables, anchor: http-cache, sectionHash: 'sha256:9059e566e873f4bb', title: 'CI/CD Variables › HTTP cache' }
     author: llm-draft
 
   - id: deploy.review.stop-scripts

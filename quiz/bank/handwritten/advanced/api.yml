@@ -351,7 +351,7 @@ questions:
         `kernel.debug` is on, and a hub expecting `__Secure-mercure_access_token` doesn't read it. Pin the name.
     sources:
       - { kind: docs, page: /api/real-time, anchor: mercureyaml, sectionHash: 'sha256:d44a2522865ee839', title: 'Real-Time Updates (Mercure) › mercure.yaml', block: 0, blockHash: 'sha256:46bd4d8c83cac316' }
-      - { kind: docs, page: /api/real-time, anchor: the-subscriber-cookie, sectionHash: 'sha256:b67625403db2091b', title: 'Real-Time Updates (Mercure) › The Subscriber Cookie' }
+      - { kind: docs, page: /api/real-time, anchor: the-subscriber-cookie, sectionHash: 'sha256:fb0632bbcb874cf8', title: 'Real-Time Updates (Mercure) › The Subscriber Cookie' }
     author: llm-draft
 
   - id: api.cache.personalised-classes

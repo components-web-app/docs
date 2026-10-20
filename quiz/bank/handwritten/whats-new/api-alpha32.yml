@@ -1,4 +1,4 @@
-# Hand-written What's new questions about the API bundle: changes in 2.0.0-alpha.31 and 2.0.0-alpha.32.
+# Hand-written What's new questions about the API bundle: changes in 2.0.0-alpha.31 to 2.0.0-alpha.33.
 # Each one has a `since` naming the release that brought the change in.
 # Format: quiz/README.md. Run `pnpm quiz:stamp <id>` to fill in or refresh the hashes.
 
@@ -120,7 +120,7 @@ questions:
     author: llm-draft
 
   - id: api.security.route-pattern-whole-path
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: api
@@ -130,26 +130,26 @@ questions:
     prompt: >-
       A `route_security` rule uses the pattern `/admin*`. Which route does it cover?
     why: >-
-      A pattern without a leading `*` no longer reaches into the middle of a path, so a rule written to catch
-      a segment anywhere needs `*/admin*`.
-    since: [{ repo: api-components-bundle, version: '2.0.0-alpha.32' }]
+      A pattern without a leading `*` no longer reaches into the middle of a path, and its letters must match
+      the path's exactly, so a rule written to catch a segment anywhere needs `*/admin*`.
+    since: [{ repo: api-components-bundle, version: '2.0.0-alpha.33' }]
     options:
       - { id: a, text: '`/team/admin/settings`' }
-      - { id: b, text: '`/Admin-tools`' }
+      - { id: b, text: '`/administration`' }
       - { id: c, text: '`/blog/admin`' }
-      - { id: d, text: '`/administration`, but not `/Admin`' }
+      - { id: d, text: '`/Admin`' }
     answer:
       correct: b
       explanation: >-
-        A pattern matches the whole path, `*` is the only wildcard, and ASCII letters match regardless of case.
-        `/admin*` is a prefix, so it covers `/Admin-tools` and `/Admin`, but not a path that has `/admin` in the
-        middle.
+        A pattern matches the whole path, `*` is the only wildcard, and every other character matches only
+        itself, so letters are case-sensitive. `/admin*` is a prefix: it covers `/administration`, but not
+        `/Admin` or a path with `/admin` in the middle.
     sources:
-      - { kind: docs, page: /api/users/access-control, anchor: how-a-pattern-matches, sectionHash: 'sha256:5e3872bcaedb9d7c', title: 'Access Control › How a pattern matches' }
+      - { kind: docs, page: /api/users/access-control, anchor: how-a-pattern-matches, sectionHash: 'sha256:1d59392459a892e6', title: 'Access Control › How a pattern matches' }
     author: llm-draft
 
   - id: api.security.route-pattern-select
-    version: 1
+    version: 2
     status: live
     level: advanced
     area: api
@@ -161,26 +161,25 @@ questions:
     why: >-
       Knowing exactly what a pattern covers is the difference between a protected area and one that leaks a
       similarly named page.
-    since: [{ repo: api-components-bundle, version: '2.0.0-alpha.32' }]
+    since: [{ repo: api-components-bundle, version: '2.0.0-alpha.33' }]
     options:
       - { id: a, text: '`/user-area`' }
       - { id: b, text: '`/user-areas`' }
-      - { id: c, text: '`/User-Area/profile`' }
-      - { id: d, text: '`/members/user-area/profile`' }
-      - { id: e, text: '`/user_area`' }
+      - { id: c, text: '`/user-area/profile`' }
+      - { id: d, text: '`/User-Area/profile`' }
+      - { id: e, text: '`/members/user-area/profile`' }
     answer:
       correct: [a, b, c]
       explanation: >-
-        The pattern is a prefix of the whole path: `*` matches any run of characters, including none, and
-        letters match regardless of case. It doesn't match mid-path, and `-` and `_` are literal characters, so
-        `/user_area` is a different path.
+        The pattern is a prefix of the whole path, and `*` matches any run of characters, including none and
+        `/`. Every other character matches only itself, so the letters' case must match, and the pattern
+        doesn't match mid-path.
       optionNotes:
         b: '`*` matches any characters after the prefix, not only a `/` and what follows.'
-        c: 'ASCII letters match regardless of case.'
-        d: 'The pattern matches from the start of the path. `*/user-area*` would match this one.'
-        e: '`_` is a literal character, not a wildcard.'
+        d: 'Letters are case-sensitive, from bundle 2.0.0-alpha.33. Add a rule for each spelling you need.'
+        e: 'The pattern matches from the start of the path. `*/user-area*` would match this one.'
     sources:
-      - { kind: docs, page: /api/users/access-control, anchor: how-a-pattern-matches, sectionHash: 'sha256:5e3872bcaedb9d7c', title: 'Access Control › How a pattern matches' }
+      - { kind: docs, page: /api/users/access-control, anchor: how-a-pattern-matches, sectionHash: 'sha256:1d59392459a892e6', title: 'Access Control › How a pattern matches' }
     author: llm-draft
 
   - id: api.publishable.draft-reference
@@ -211,4 +210,93 @@ questions:
         stored as it is.
     sources:
       - { kind: docs, page: /api/components/annotations/publishable, anchor: a-reference-to-a-draft-stores-the-published-component, sectionHash: 'sha256:c346c09e9f0b34fe', title: 'Publishable › A Reference to a Draft Stores the Published Component' }
+    author: llm-draft
+
+  - id: api.console.maintenance-already-on
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [deployment, page-caching]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      An admin turned maintenance mode on in the site settings. A deploy then runs
+      `silverback:api-components:maintenance on`. What does the command do?
+    why: >-
+      A deploy can run the command without checking the current state first, and still rely on the cached pages
+      being gone.
+    since: [{ repo: api-components-bundle, version: '2.0.0-alpha.33' }]
+    options:
+      - { id: a, text: 'Exits `1`, because maintenance mode is already on' }
+      - { id: b, text: 'Writes nothing, still purges the cached pages, exits `0`' }
+      - { id: c, text: 'Writes the setting again and purges nothing' }
+      - { id: d, text: 'Turns it off, because `on` toggles the setting' }
+    answer:
+      correct: b
+      explanation: >-
+        It prints `Maintenance mode is already on` and writes nothing, then purges the rendered pages' `cwa-html` tag
+        and the site config's tags as it always does, and exits `0`.
+    sources:
+      - { kind: docs, page: /api/console-commands, anchor: maintenance, sectionHash: 'sha256:c71b2d3ff0852773', title: 'Console Commands › maintenance' }
+    author: llm-draft
+
+  - id: api.console.maintenance-exit-codes
+    version: 1
+    status: live
+    level: advanced
+    area: api
+    tags: [deployment]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      A deploy script runs `silverback:api-components:maintenance on --quiet` before migrating, and the command
+      prints nothing. How should the script tell whether it worked?
+    why: >-
+      A failed purge or database write must stop the deploy before it migrates, and with `--quiet` the exit code is
+      the only signal.
+    since: [{ repo: api-components-bundle, version: '2.0.0-alpha.33' }]
+    options:
+      - { id: a, text: 'Run `status` after it and look for `on`' }
+      - { id: b, text: 'Nothing printed means that it worked' }
+      - { id: c, text: 'Check its exit code, which is `1` on failure' }
+      - { id: d, text: 'Read the error from the API pod''s log' }
+    answer:
+      correct: c
+      explanation: >-
+        `--quiet` hides the error messages too. The command exits `1` when the purge fails or the database can't be
+        read or written, `2` for an argument other than `on`, `off` or `status`, and `0` when it's done. A
+        `status` check can say `on` even when the purge failed.
+    sources:
+      - { kind: docs, page: /api/console-commands, anchor: maintenance, sectionHash: 'sha256:c71b2d3ff0852773', title: 'Console Commands › maintenance' }
+    author: llm-draft
+
+  - id: api.uploads.manifest-no-variants
+    version: 1
+    status: live
+    level: advanced
+    area: api
+    tags: [uploads]
+    type: multiple-choice
+    difficulty: 4
+    prompt: >-
+      A developer adds a new imagine filter and deploys. Which request generates an image's variant for it, if
+      nothing generated it ahead of time?
+    why: >-
+      Building a page's manifest stays fast and has no side effects, so a new filter's variants come from reading
+      the resource or from generating them ahead of time.
+    since: [{ repo: api-components-bundle, version: '2.0.0-alpha.33' }]
+    options:
+      - { id: a, text: 'The page''s resource manifest, as the page is built' }
+      - { id: b, text: 'Nothing, until the image is uploaded again' }
+      - { id: c, text: 'The next fixture load, which regenerates all variants' }
+      - { id: d, text: 'Reading the image resource itself, such as `GET` on its IRI' }
+    answer:
+      correct: d
+      explanation: >-
+        A variant that isn't stored yet is generated the first time the resource itself is read. Building a resource
+        manifest doesn't generate variants or write file info rows, because the manifest's body has no
+        `mediaObjects`. `imagine:generate` makes them before visitors ask.
+    sources:
+      - { kind: docs, page: /api/components/annotations/uploadable, anchor: liipimaginebundle-integration, sectionHash: 'sha256:2dc7bff380211595', title: 'Uploadable › LiipImagineBundle Integration' }
     author: llm-draft

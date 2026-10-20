@@ -246,7 +246,7 @@ questions:
       optionNotes:
         a: Before bundle 2.0.0-alpha.27, these responses issued a new cookie. Now an anonymous visitor gets none.
     sources:
-      - { kind: docs, page: /api/real-time, anchor: the-subscriber-cookie, sectionHash: 'sha256:b67625403db2091b', title: 'Real-Time Updates (Mercure) › The Subscriber Cookie' }
+      - { kind: docs, page: /api/real-time, anchor: the-subscriber-cookie, sectionHash: 'sha256:fb0632bbcb874cf8', title: 'Real-Time Updates (Mercure) › The Subscriber Cookie' }
     author: llm-draft
 
   - id: api.groups.component-in-own-subtree
