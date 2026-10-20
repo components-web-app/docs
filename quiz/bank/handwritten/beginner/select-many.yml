@@ -194,7 +194,7 @@ questions:
         a: Edits go to a publishable component's draft. Visitors see the published version until an editor clicks **Publish**.
         c: An admin tab's fields send a debounced `PATCH` as the editor types. There's no save button, and **Done** only leaves edit mode.
     sources:
-      - { kind: docs, page: /core-concepts/admin-panel, anchor: edit-mode, sectionHash: 'sha256:05cb7587553eab14', title: 'The Admin Panel › Edit Mode' }
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: edit-mode, sectionHash: 'sha256:42ae9453304cad0f', title: 'The Admin Panel › Edit Mode' }
       - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:cd76322d674416ff', title: 'Draft & Publish Workflow › How It Works' }
       - { kind: docs, page: /core-concepts/components, anchor: the-admin-tab, sectionHash: 'sha256:4b979741549a18fa', title: 'Components › The Admin Tab' }
     author: llm-draft

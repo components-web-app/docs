@@ -198,7 +198,7 @@ questions:
         The navigation guard stops links while editing. Click **Done** first. The browser's back and forward
         buttons still work.
     sources:
-      - { kind: docs, page: /core-concepts/admin-panel, anchor: edit-mode, sectionHash: 'sha256:05cb7587553eab14', title: 'The Admin Panel › Edit Mode' }
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: edit-mode, sectionHash: 'sha256:42ae9453304cad0f', title: 'The Admin Panel › Edit Mode' }
     author: llm-draft
 
   - id: core.components.two-sides

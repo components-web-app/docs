@@ -253,5 +253,5 @@ questions:
         The first pass warms the `gzip` entries server-side rendering reads. The cache stores one entry per
         encoding, so the `br` pass warms the entries browsers and Cloudflare read.
     sources:
-      - { kind: docs, page: /deployment/kubernetes, anchor: warming-the-api-cache-on-start, sectionHash: 'sha256:dcb0cce73a770e76', title: 'Kubernetes & Helm › Warming the API cache on start' }
+      - { kind: docs, page: /deployment/kubernetes, anchor: warming-the-api-cache-on-start, sectionHash: 'sha256:f822ecf36f65ae2f', title: 'Kubernetes & Helm › Warming the API cache on start' }
     author: llm-draft

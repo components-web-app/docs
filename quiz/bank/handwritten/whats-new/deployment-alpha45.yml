@@ -1,5 +1,5 @@
-# Hand-written What's new questions about deployment: template changes on main after 2.0.0-alpha.44.
-# Each `since` is 2.0.0-alpha.44 with `unreleased: true`; when the release ships, quiz:check warns: set its version.
+# Hand-written What's new questions about deployment: template changes in 2.0.0-alpha.45.
+# Each one has a `since` naming the release that brought the change in.
 # Format: quiz/README.md. Run `pnpm quiz:stamp <id>` to fill in or refresh the hashes.
 
 questions:
@@ -17,7 +17,7 @@ questions:
     why: >-
       One setting gives Caddy its HTTPS host and builds the site URL, the trusted hosts and the CORS origins, so they
       can't disagree.
-    since: [{ repo: components-web-app, version: '2.0.0-alpha.44', unreleased: true }]
+    since: [{ repo: components-web-app, version: '2.0.0-alpha.45' }]
     options:
       - { id: a, text: '`SERVER_NAME=https://www.example.com`' }
       - { id: b, text: '`SITE_HOST=www.example.com`' }
@@ -29,5 +29,5 @@ questions:
         `SITE_HOST` is required, with no scheme or port. Caddy's `SERVER_NAME`, `NUXT_SITE_URL`, the Mercure public
         URL, `TRUSTED_HOSTS` and the CORS origins all come from it; more hosts go in `SITE_ALIASES`.
     sources:
-      - { kind: docs, page: /deployment/docker, anchor: production-docker-compose, sectionHash: 'sha256:8295fbfd903423f6', title: 'Docker › Production Docker Compose' }
+      - { kind: docs, page: /deployment/docker, anchor: production-docker-compose, sectionHash: 'sha256:ebcab86bb1039370', title: 'Docker › Production Docker Compose' }
     author: llm-draft

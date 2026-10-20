@@ -57,5 +57,5 @@ questions:
         The certificate is kept in the `caddy_data` volume: `docker compose down -v` makes a new one, and the
         browser asks again.
     sources:
-      - { kind: docs, page: /getting-started/installation, anchor: _3-open-the-site, sectionHash: 'sha256:3e9b363326a8717c', title: 'Installation › 3. Open the site' }
+      - { kind: docs, page: /getting-started/installation, anchor: _3-open-the-site, sectionHash: 'sha256:31450e46c7106927', title: 'Installation › 3. Open the site' }
     author: llm-draft

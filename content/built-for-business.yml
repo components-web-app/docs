@@ -1,5 +1,5 @@
 title: 'Built for Business'
-description: 'Who CWA is for, what it costs to run, and the project''s alpha status.'
+description: 'Who CWA is for, what it costs to run, and the project''s status.'
 navigation: false
 hero:
   title: 'Built for <span class="text-primary-400 font-semibold">Business</span>'
@@ -136,14 +136,14 @@ faq:
         Editors need no code knowledge. They work on the page, once your developers have built the components.
     - label: What is the project's status?
       content: |
-        CWA 2.0 is in <strong>alpha</strong>: try it, build with it, and give feedback. The API bundle and the Nuxt module are released as <code>2.0.0-alpha</code> versions, and the template follows them.
+        CWA 2 is a prerelease (2.0.0-alpha), heading for a beta. It runs production sites; configuration can still change between releases, always with upgrade notes.
         <br><br>
-        The core model (layouts, pages, component groups, components, routes, draft and publish) is in place. Configuration, APIs and behaviour can still change between alpha releases, and some changes need manual upgrade steps. Read each release's upgrade notes on the <a href="/getting-started/releases">Releases</a> page before you update.
+        The core model (layouts, pages, component groups, components, routes, draft and publish) is in place. Read each release's upgrade notes on the <a href="/getting-started/releases">Releases</a> page before you update, and see <a href="/getting-started/releases#versions-and-support">Releases › Versions and support</a> for how versions and support work.
         <br><br>
         Release notes: <a href="https://github.com/components-web-app/api-components-bundle/blob/main/CHANGELOG.md">API bundle</a>, <a href="https://github.com/components-web-app/cwa-nuxt-module/blob/main/CHANGELOG.md">Nuxt module</a>, <a href="https://github.com/components-web-app/components-web-app/blob/main/CHANGELOG.md">template</a>.
     - label: What guarantees are given?
       content: |
-        The code is MIT licensed and provided as is, with no warranty. While it is in alpha, plan for upgrade work between releases.
+        The code is MIT licensed and provided as is, with no warranty. Until 2.0.0, plan for upgrade work between releases.
         <br><br>
         Report bugs and ask about the core project in the <a href="https://github.com/components-web-app">GitHub repositories</a>.
     - label: What developers do I need?

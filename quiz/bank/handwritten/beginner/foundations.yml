@@ -635,7 +635,7 @@ questions:
         Clicking a component selects it and opens the manager panel. Its tabs are the component type's admin
         tabs, so content is edited on the page itself.
     sources:
-      - { kind: docs, page: /core-concepts/admin-panel, anchor: edit-mode, sectionHash: 'sha256:05cb7587553eab14', title: 'The Admin Panel › Edit Mode' }
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: edit-mode, sectionHash: 'sha256:42ae9453304cad0f', title: 'The Admin Panel › Edit Mode' }
       - { kind: docs, page: /getting-started/key-ideas, anchor: editing, sectionHash: 'sha256:56ff4c5739a87e28', title: 'Key Ideas › Editing' }
     author: llm-draft
 

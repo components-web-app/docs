@@ -422,7 +422,7 @@ questions:
         replica, but several pods can start together and race. Turn off the entrypoint migration and run it in a
         `pre-install,pre-upgrade` Helm hook Job, so it finishes before any new pod gets traffic.
     sources:
-      - { kind: docs, page: /deployment/kubernetes, anchor: running-migrations, sectionHash: 'sha256:4fcac3367363007f', title: 'Kubernetes & Helm › Running Migrations' }
+      - { kind: docs, page: /deployment/kubernetes, anchor: running-migrations, sectionHash: 'sha256:51b05faa17fdf8fe', title: 'Kubernetes & Helm › Running Migrations' }
     author: llm-draft
 
   - id: deploy.k8s.rollback-schema

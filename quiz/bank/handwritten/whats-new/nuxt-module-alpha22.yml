@@ -29,7 +29,7 @@ questions:
         A clone isn't a copy. It places the same component, with the same IRI, in another component position, so
         an edit or a publish in either place changes it everywhere.
     sources:
-      - { kind: docs, page: /core-concepts/admin-panel, anchor: cloning-a-component, sectionHash: 'sha256:c5c8f8543540f802', title: 'The Admin Panel › Cloning a Component' }
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: cloning-a-component, sectionHash: 'sha256:3156ec7c015a58c0', title: 'The Admin Panel › Cloning a Component' }
     author: llm-draft
 
   - id: nuxt.admin.clone-draft
@@ -58,7 +58,7 @@ questions:
         When the selected component is the draft of a published component, the clone places the published
         component, which the draft belongs to.
     sources:
-      - { kind: docs, page: /core-concepts/admin-panel, anchor: cloning-a-component, sectionHash: 'sha256:c5c8f8543540f802', title: 'The Admin Panel › Cloning a Component' }
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: cloning-a-component, sectionHash: 'sha256:3156ec7c015a58c0', title: 'The Admin Panel › Cloning a Component' }
     author: llm-draft
 
   - id: nuxt.admin.delete-shared-component
