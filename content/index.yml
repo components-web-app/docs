@@ -1,9 +1,9 @@
 title: 'CWA - Components Web App'
-description: With the CWA you will create feature-rich, totally custom web apps with surprisingly little code
+description: 'Developers build the blocks. Editors build the website: the low-code website builder for custom web apps, edited right on the live page.'
 navigation: false
 hero:
-  title: 'Components Web App'
-  description: 'Your new <span class="text-primary-400 font-semibold">low-code solution</span> for creating feature-rich, totally <span class="text-primary-400 font-semibold">custom decoupled web apps</span> including an <span class="text-primary-400 font-semibold">intuitive website builder</span> interface'
+  title: 'Developers build the blocks.<br><span class="text-primary-400">Editors build the website.</span>'
+  description: 'The <span class="text-primary-400 font-semibold">low-code website builder</span> for custom web apps. Editors build pages <span class="text-primary-400 font-semibold">right on the live site</span> from components your developers made, and everything stays on brand. A new component starts at a few lines of code.'
   orientation: vertical
   links:
     - label: Open the playground
@@ -37,58 +37,39 @@ features:
       to: '/about'
       size: xl
   items:
-    - title: 'Draft & Published Components'
-      description: 'As a user updates a component it will become a private draft, so they can make changes freely and only publish it when they are ready.'
-      icon: 'i-heroicons-newspaper-20-solid'
+    - title: 'Build on the live page'
+      description: 'Editors add, arrange and edit components on the real site, not in a form somewhere else. Developers decide what can go where, so every page looks right.'
+      icon: 'i-heroicons-cursor-arrow-rays-20-solid'
       spotlight: true
-    - title: 'Lightning fast'
-      description: 'Improve visitors'' UX and increase conversions, the CWA is built to be fast! We implement tactics for the fastest First Contentful Paint, and smart caching.'
+    - title: 'Everything is included'
+      description: 'Sign-in, users, forms, image uploads, SEO, sitemaps, share images, drafts, real-time updates and a deploy pipeline come ready on day one. That''s why it''s low-code: most of it is already written.'
+      icon: 'i-heroicons-gift-20-solid'
+      spotlight: true
+    - title: 'Fast by default'
+      description: 'Almost every visit is served straight from cache, and publishing clears only the pages that changed. Sites stay fast on small servers, and edits appear the moment they''re published.'
       icon: 'i-heroicons-bolt-20-solid'
       spotlight: true
-    - title: 'Stay in sync'
-      description: 'Learn how your website users will get realtime updates and never miss a beat with our integration of Mercure.'
-      icon: 'i-heroicons-arrow-path-20-solid'
+    - title: 'Yours to own'
+      description: 'Free, open source and MIT licensed. Host it on your own servers, keep your own data, and never pay per seat or get locked in.'
+      icon: 'i-heroicons-lock-open-20-solid'
       spotlight: true
 
 benefits:
   sections:
-    - title: 'Supercharge your<br><span class="text-primary-400">business</span>'
-      description: The CWA reduces your team's workload and increases productivity.
-      id: supercharge
-      align: right
-      image: '/images/home/home-supercharge.svg'
-      features:
-        - name: For Agencies
-          description: Streamline workflows, increase output and impress your clients.
-          icon: i-heroicons-presentation-chart-line
-        - name: For Developers
-          description: A DX which will keep developers smiling as they realise how simple it can be to add advanced functionality, while staying in control.
-          icon: i-heroicons-code-bracket
-        - name: For Web Admins
-          description: In-line and intuitive website and content management makes updating the website or creating new pages impressively easy.
-          icon: i-heroicons-device-phone-mobile
-      links:
-        - label: Built for business
-          to: /built-for-business
-          color: gray
-          icon: i-heroicons-arrow-right-20-solid
-          trailing: true
-          size: xl
-          class: ml-0
     - title: 'The missing link in<br><span class="text-primary-400">website builders</span>'
       description: Traditional website builders take control and crucial decisions away from the professionals while increasing complexity for users.
       id: professionals
-      align: left
+      align: right
       image: '/images/home/home-builders.svg'
       features:
         - name: Build the website you want
-          description: No need to hack other website builders to work for you - components are built by professionals, custom to users' needs.
+          description: No hacking another builder to fit. Developers build the components your site needs, custom to your users.
           icon: i-heroicons-computer-desktop
-        - name: Easy to make, easy to use
-          description: Using the CWA, styles can manually pre-configured to match branding. No more endless choices for administrators resulting in off brand styling.
+        - name: On brand, every time
+          description: Styles are set up in advance to match your branding, so editors choose from your design instead of inventing a new one.
           icon: i-heroicons-paint-brush
-        - name: Seamless integration of new pages
-          description: With our balance of flexibility and restrictions, new pages are easy to integrate seamlessly and beautifully into the website.
+        - name: New pages fit right in
+          description: The right balance of freedom and guardrails means every new page looks like it belongs.
           icon: i-heroicons-puzzle-piece
       links:
         - label: More about the CWA
@@ -98,18 +79,62 @@ benefits:
           trailing: true
           size: xl
           class: ml-0
+    - title: 'A real editorial workflow,<br><span class="text-primary-400">included</span>'
+      description: The tools content teams usually pay extra for come with every site.
+      id: workflow
+      align: left
+      image: '/images/home/home-workflow.svg'
+      features:
+        - name: Draft, refine, publish
+          description: Every change is a private draft until it's ready to go live.
+          icon: i-heroicons-pencil-square
+        - name: Schedule it
+          description: Choose when new content goes live, and it publishes itself.
+          icon: i-heroicons-calendar-days
+        - name: Edit once, update everywhere
+          description: Put one component on as many pages as you like, and change it in one place.
+          icon: i-heroicons-squares-2x2
+        - name: Work together, live
+          description: Editors see each other's changes as they happen, and visitors are told the moment a page they're reading has changed.
+          icon: i-heroicons-arrow-path
+    - title: 'Supercharge your<br><span class="text-primary-400">business</span>'
+      description: The CWA reduces your team's workload and increases productivity.
+      id: supercharge
+      align: right
+      image: '/images/home/home-supercharge.svg'
+      features:
+        - name: For Agencies
+          description: One predictable structure across every client site, so each new project starts further ahead and your clients are impressed.
+          icon: i-heroicons-presentation-chart-line
+        - name: For Developers
+          description: Low-code components on frameworks you already enjoy, with advanced features in a few lines and you staying in control.
+          icon: i-heroicons-code-bracket
+        - name: For Web Admins
+          description: Updating the website or creating new pages is as easy as clicking on the page and typing.
+          icon: i-heroicons-device-phone-mobile
+      links:
+        - label: Built for business
+          to: /built-for-business
+          color: gray
+          icon: i-heroicons-arrow-right-20-solid
+          trailing: true
+          size: xl
+          class: ml-0
     - title: 'Built on the<br><span class="text-primary-400">shoulders of giants</span>'
       description: |
-        The CWA has been built on the shoulders of giants providing maximum flexibility and extensibility.
+        The CWA is built on the shoulders of giants, on the latest version of each, for maximum flexibility and extensibility.
       id: shoulders
-      align: right
+      align: left
       image: '/images/home/home-giants.svg'
       features:
+        - name: The latest of everything
+          description: Symfony 8, API Platform 5 and Nuxt 4, served by FrankenPHP. Years of support ahead, current security fixes, and no legacy code to fight.
+          icon: i-heroicons-sparkles
         - name: Symfony bundle with API Platform
           description: An incredibly powerful and well maintained framework. Extend API Platform and Symfony functionality for services such as SAML authentication protocols or API proxies.
           icon: i-custom-api-platform
         - name: Front-end Nuxt module
-          description: Nuxt and VueJS are one of the most enjoyable front-end frameworks to use. Our CWA Nuxt module provides easy to use composables along with a full management system.
+          description: Nuxt and Vue are among the most enjoyable front-end frameworks to use. Our CWA Nuxt module provides easy to use composables along with a full management system.
           icon: i-simple-icons-nuxtdotjs
 #      links:
 #        - label: Discover more
@@ -185,7 +210,7 @@ code:
       - key: component
         label: 'Component'
         description: |
-          With a few composables and very little code you can quickly create your CWA components.
+          With a few composables and very little code you can quickly create your CWA components. This is the whole component.
           <br><br>
           Load the data provided by the API and add any functionality you need just like any other Vue component.
         code: |
