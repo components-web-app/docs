@@ -1,9 +1,9 @@
 ---
 title: Why CWA
-description: What CWA does differently, how it compares with other ways to build an editable website, when not to choose it, and the project's status.
+description: What CWA does differently, how it compares with WordPress, Storyblok, Sanity, Payload, Webflow and others, when not to choose it, and the project's status.
 ---
 
-CWA is an open-source, self-hosted website platform for Symfony and Nuxt. Your developers build the components. Your clients edit, draft, schedule and publish pages directly on the live site. The template ships the whole production stack.
+CWA (Components Web App) is an open-source, self-hosted website platform for Symfony and Nuxt. Your developers build the components. Your clients edit, draft, schedule and publish pages directly on the live site. The template ships the whole production stack.
 
 This page helps you decide whether it fits your project.
 
@@ -24,9 +24,25 @@ This page helps you decide whether it fits your project.
 
 See [Deployment](/deployment) for the full list.
 
+## How CWA compares
+
+The table compares CWA with eight products people often weigh it against. **Accurate as of October 2026:** products and prices change quickly, so check each one's current documentation and pricing before you decide.
+
+::comparison-table
+::
+
+::callout{icon="i-heroicons-information-circle"}
+**Partly** means the product does some of it, as the note says. **Paid plan** means the free version doesn't include it. **Not checked** means we couldn't confirm it from the product's own pages.
+::
+
+### Where the comparison comes from
+
+::comparison-sources
+::
+
 ## Compared with other approaches
 
-There are several ways to give clients an editable website. The table compares CWA with the main approaches, not with individual products. Products change quickly, so check each one's current documentation and pricing before you decide.
+There are several ways to give clients an editable website. This table compares the approaches rather than products.
 
 | | CWA | Hosted visual CMS | Headless CMS with its own admin | Git-based editing | PHP CMS with its own templates |
 |---|---|---|---|---|---|

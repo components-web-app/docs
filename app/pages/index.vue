@@ -79,6 +79,8 @@ definePageMeta({
       </div>
     </UPageSection>
 
+    <HomeComparison />
+
     <HomeCode class="mb-24" />
 
     <UPageSection
