@@ -55,6 +55,12 @@ export default defineNuxtConfig({
       clientId: ''
     },
     public: {
+      // The docs chat assistant (docs #1). Decided at build time, so a deploy without an
+      // Anthropic key ships no chat button. The key itself is only read by /api/chat.
+      chat: {
+        enabled: Boolean(process.env.NUXT_ANTHROPIC_API_KEY || process.env.ANTHROPIC_API_KEY)
+          || ['1', 'true'].includes(process.env.NUXT_CHAT_MOCK ?? '')
+      },
       scripts: {
         cloudflareWebAnalytics: {
           // .env
@@ -107,6 +113,8 @@ export default defineNuxtConfig({
         '/robots.txt',
         '/api/stats.json',
         '/api/releases.json',
+        // The chat assistant's retrieval corpus, fetched by the /api/chat edge function
+        '/api/chat-index.json',
         // Server-highlighted snippets for the marketing pages (useHighlightedCode)
         '/api/highlighted-code/index.json',
         '/api/highlighted-code/about.json',
