@@ -18,6 +18,11 @@ export const siteLinks: SiteLink[] = [
     to: '/built-for-business'
   },
   {
+    label: 'Why CWA',
+    icon: 'i-heroicons-scale-solid',
+    to: '/why-cwa'
+  },
+  {
     label: 'Docs',
     icon: 'i-heroicons-book-open-solid',
     to: '/getting-started'

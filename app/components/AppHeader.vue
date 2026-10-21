@@ -10,7 +10,9 @@ const props = defineProps<{
 const { header } = useAppConfig()
 const route = useRoute()
 
-const isDocsPage = computed(() => !['/', '/about', '/built-for-business'].includes(route.path))
+// The mobile menu lists the docs navigation on docs pages only: not on the marketing pages, Why CWA, privacy or the quiz.
+const NON_DOCS_PATHS = ['/', '/about', '/built-for-business', '/why-cwa', '/privacy']
+const isDocsPage = computed(() => !NON_DOCS_PATHS.includes(route.path) && !route.path.startsWith('/quiz'))
 
 const linksWithoutIcons = computed(() =>
   (props.links || []).map(({ icon: _icon, ...link }) => link)

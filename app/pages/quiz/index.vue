@@ -2,8 +2,6 @@
 import { LEVELS, WHATS_NEW, type AreaFilter, type Level } from '~~/quiz/core'
 import { newSeed } from '~~/quiz/lib/select'
 
-definePageMeta({ layout: 'docs' })
-
 const { data: manifest } = await useQuizManifest()
 if (!manifest.value) {
   throw createError({ statusCode: 500, statusMessage: 'The quiz could not be loaded', fatal: true })
@@ -101,7 +99,17 @@ const QUESTION_TYPES = [
 </script>
 
 <template>
-  <div>
+  <UContainer class="max-w-5xl">
+    <div class="pt-6">
+      <UButton
+        to="/getting-started"
+        label="Back to docs"
+        icon="i-heroicons-arrow-left"
+        color="neutral"
+        variant="ghost"
+        size="sm"
+      />
+    </div>
     <UPageHero
       title="How well do you know CWA?"
       description="Up to ten short questions, drawn at random from a bank, so each quiz is different. Every answer explains itself and links to the docs. Expert questions come straight from the source code."
@@ -242,5 +250,5 @@ const QUESTION_TYPES = [
         />
       </div>
     </section>
-  </div>
+  </UContainer>
 </template>
