@@ -3,8 +3,6 @@ import { AREAS, LEVELS, QUIZ_SETS, quizLengthFor, setConfigFor, WHATS_NEW, type 
 import { newSeed, SEED_PATTERN } from '~~/quiz/lib/select'
 import type { QuizChoice } from '~/composables/useQuiz'
 
-definePageMeta({ layout: 'docs' })
-
 /**
  * /quiz/play?level=advanced&topic=all&seed=k3j9x2ab, or level=whats-new for the latest releases
  *
@@ -49,6 +47,11 @@ const quizKey = (s: { level: QuizSet, topic: AreaFilter, seed: string }) => `${s
 
 const settings = computed(() => quiz.settings.value)
 const levelConfig = computed(() => manifest.value && settings.value ? setConfigFor(manifest.value.config, settings.value.level) : undefined)
+// The area the current question is about. Its finer tags stay hidden until it's answered: they can give the answer away.
+const questionArea = computed(() => {
+  const area = quiz.current.value?.area
+  return area ? manifest.value?.config.areas.find(a => a.id === area)?.label ?? area : undefined
+})
 const topicLabel = computed(() => {
   const topic = settings.value?.topic
   return !topic || topic === 'all' ? 'Everything' : manifest.value?.config.areas.find(a => a.id === topic)?.label ?? topic
@@ -246,7 +249,7 @@ async function share() {
 </script>
 
 <template>
-  <div class="max-w-3xl py-8 sm:py-12">
+  <UContainer class="max-w-3xl py-8 sm:py-12">
     <!-- Prerendered and first client render: nothing depends on the query yet -->
     <div
       v-if="!mounted || quiz.phase.value === 'loading'"
@@ -350,6 +353,15 @@ async function share() {
       </div>
 
       <div class="flex flex-col gap-4">
+        <UBadge
+          v-if="questionArea"
+          :label="questionArea"
+          color="neutral"
+          variant="outline"
+          size="sm"
+          icon="i-heroicons-tag"
+          class="self-start"
+        />
         <div
           id="quiz-prompt"
           ref="promptHeading"
@@ -422,5 +434,5 @@ async function share() {
         />
       </div>
     </div>
-  </div>
+  </UContainer>
 </template>
