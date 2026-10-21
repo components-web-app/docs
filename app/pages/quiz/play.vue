@@ -47,10 +47,12 @@ const quizKey = (s: { level: QuizSet, topic: AreaFilter, seed: string }) => `${s
 
 const settings = computed(() => quiz.settings.value)
 const levelConfig = computed(() => manifest.value && settings.value ? setConfigFor(manifest.value.config, settings.value.level) : undefined)
-// The area the current question is about. Its finer tags stay hidden until it's answered: they can give the answer away.
+// The area the current question is about, shown on an Everything quiz only: one topic already says it.
+// Its finer tags stay hidden until it's answered: they can give the answer away.
 const questionArea = computed(() => {
   const area = quiz.current.value?.area
-  return area ? manifest.value?.config.areas.find(a => a.id === area)?.label ?? area : undefined
+  if (!area || settings.value?.topic !== 'all') return undefined
+  return manifest.value?.config.areas.find(a => a.id === area)?.label ?? area
 })
 const topicLabel = computed(() => {
   const topic = settings.value?.topic

@@ -75,11 +75,12 @@ const { data: highlightedCode } = await useHighlightedCode('index')
       </template>
 
       <template #title>
-        <div class="flex justify-center mb-6">
+        <div class="flex flex-col items-center gap-3 mb-6">
           <SvgoLogo
             class="text-primary h-20"
             :font-controlled="false"
           />
+          <span class="block text-sm sm:text-base font-semibold uppercase tracking-[0.3em] text-muted [text-shadow:none]">Components Web App</span>
         </div>
         <span v-html="page.hero.title" />
       </template>
