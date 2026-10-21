@@ -162,15 +162,21 @@ watch(() => messages.value.length, () => nextTick(() => {
                 <Markdown :value="keepKnownLinks(message.content, message.sources)" />
               </div>
               <p
-                v-else-if="!message.error"
+                v-if="!message.error && (message.searching || !message.content) && busy && message === messages[messages.length - 1]"
                 class="flex items-center gap-2 text-muted"
+                :class="{ 'mt-2': message.content }"
               >
                 <UIcon
                   name="i-heroicons-arrow-path"
                   class="size-4 animate-spin"
                   aria-hidden="true"
                 />
-                Reading the docs…
+                <template v-if="message.searching">
+                  Searching the docs for “{{ message.searching }}”…
+                </template>
+                <template v-else>
+                  Reading the docs…
+                </template>
               </p>
 
               <UAlert

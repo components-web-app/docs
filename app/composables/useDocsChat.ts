@@ -17,6 +17,8 @@ export interface DocsChatMessage {
   error?: string
   /** The limit was hit, so the widget offers the docs search instead. */
   limited?: boolean
+  /** What the assistant is searching the docs for, while it does. */
+  searching?: string
 }
 
 export type DocsChatStatus = 'ready' | 'submitted' | 'streaming' | 'error'
@@ -104,7 +106,11 @@ export function useDocsChat() {
           if (!line.trim()) continue
           const event = JSON.parse(line) as ChatEvent
           if (event.type === 'sources') answer.sources = event.sources
-          else if (event.type === 'delta') answer.content += event.text
+          else if (event.type === 'delta') {
+            answer.searching = undefined
+            answer.content += event.text
+          } else if (event.type === 'searching') answer.searching = event.query
+          else if (event.type === 'discard') answer.content = ''
           else if (event.type === 'error') answer.error = event.message
         }
       }

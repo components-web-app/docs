@@ -74,6 +74,8 @@ export interface SearchOptions {
   limit?: number
   /** At most this many passages from one page, so one long page can't crowd out the rest. */
   perPage?: number
+  /** Passages already sent, left out so a follow-up search brings new ones. */
+  exclude?: Set<string>
 }
 
 /** Heading words count three times: a section titled "Page Caching" is about page caching. */
@@ -133,7 +135,7 @@ export function createRetriever(chunks: ChatChunk[]): Retriever {
   }
 
   function search(query: string, options: SearchOptions = {}): ChatChunk[] {
-    const { maxChars = 30_000, limit = 12, perPage = 3 } = options
+    const { maxChars = 30_000, limit = 12, perPage = 3, exclude } = options
     const queryTerms = [...new Set(tokenize(query))]
     if (!queryTerms.length) return []
 
@@ -155,6 +157,7 @@ export function createRetriever(chunks: ChatChunk[]): Retriever {
     let chars = 0
     for (const { item } of scored) {
       if (picked.length >= limit) break
+      if (exclude?.has(chunkKey(item.chunk))) continue
       const pagePath = item.chunk.url.split('#')[0]!
       const used = perPageCount.get(pagePath) ?? 0
       if (used >= perPage) continue
@@ -167,6 +170,11 @@ export function createRetriever(chunks: ChatChunk[]): Retriever {
   }
 
   return { search, size: count }
+}
+
+/** Identifies a passage across searches: its url plus where its text starts. */
+export function chunkKey(chunk: Pick<ChatChunk, 'url' | 'text'>): string {
+  return `${chunk.url}\n${chunk.text.slice(0, 80)}`
 }
 
 /** The link text an answer uses for a passage: `Page › Section`, or the page title alone. */

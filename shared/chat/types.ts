@@ -16,6 +16,8 @@ export interface ChatChunk {
 export interface ChatIndex {
   generatedAt: string
   chunks: ChatChunk[]
+  /** CWA's terms, one per line with a short definition, from Core Concepts › Glossary. */
+  glossary?: string
 }
 
 /** A docs page the answer may cite. */
@@ -35,5 +37,8 @@ export interface ChatTurn {
 export type ChatEvent
   = | { type: 'sources', sources: ChatSource[] }
     | { type: 'delta', text: string }
+    | { type: 'searching', query: string }
+    /** The text so far was a preamble to a search: clear it, the answer follows. */
+    | { type: 'discard' }
     | { type: 'done' }
     | { type: 'error', message: string }

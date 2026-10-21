@@ -13,8 +13,8 @@
  * refuses, and this endpoint needs only one streamed Messages API call.
  */
 import type { ChatChunk, ChatEvent, ChatIndex, ChatTurn } from './types'
-import { createRetriever, sourcesOf, type Retriever } from './retrieval'
-import { SYSTEM_PROMPT, buildUserMessage } from './prompt'
+import { chunkKey, createRetriever, sourcesOf, type Retriever } from './retrieval'
+import { SYSTEM_PROMPT, buildUserMessage, excerptsOf } from './prompt'
 
 export const CHAT_MODEL = 'claude-haiku-5-5'
 
@@ -29,10 +29,13 @@ export const CHAT_LIMITS = {
   /** Per IP, per edge instance: requests in a minute, and in a day. */
   perMinute: 6,
   perDay: 60,
-  /** About 8k tokens of retrieved docs per question. */
-  contextChars: 30_000,
+  /** About 4k tokens of docs found before the model is asked; it can search for more. */
+  contextChars: 16_000,
+  /** Searches the model may run itself, each adding up to about 3k tokens. */
+  searches: 2,
+  searchChars: 12_000,
   /** Answers are asked to stay brief; this is room for a short code example. */
-  maxOutputTokens: 800
+  maxOutputTokens: 1200
 } as const
 
 export interface ChatEnv {
@@ -136,20 +139,25 @@ export function validateTurns(body: unknown): ValidatedTurns {
 // ---------------------------------------------------------------------------
 // Retrieval index, cached for the life of the edge instance
 
-let retrieverPromise: Promise<Retriever> | undefined
+interface LoadedIndex {
+  retriever: Retriever
+  glossary: string
+}
+
+let retrieverPromise: Promise<LoadedIndex> | undefined
 
 /**
  * Loads the index once per instance. `cookie` is the visitor's own, passed on only when the
  * index is on the request's own origin: on a preview behind Vercel Authentication, the
  * visitor's sign-in cookie is what lets the function read its own site.
  */
-async function loadRetriever(url: string, cookie?: string): Promise<Retriever> {
+async function loadRetriever(url: string, cookie?: string): Promise<LoadedIndex> {
   if (!retrieverPromise) {
     retrieverPromise = fetch(url, { headers: cookie ? { cookie } : {}, redirect: 'manual' })
       .then(async (response) => {
         if (!response.ok) throw new Error(`The chat index returned ${response.status}`)
         const index = await response.json() as ChatIndex
-        return createRetriever(index.chunks)
+        return { retriever: createRetriever(index.chunks), glossary: index.glossary ?? '' }
       })
       .catch((error) => {
         retrieverPromise = undefined
@@ -239,11 +247,12 @@ export async function handleChatRequest(request: Request, env: ChatEnv): Promise
   }
 
   let chunks: ChatChunk[]
+  let loaded: LoadedIndex
   try {
-    const retriever = env.indexUrl
+    loaded = env.indexUrl
       ? await loadRetriever(env.indexUrl)
       : await loadRetriever(new URL('/api/chat-index.json', request.url).toString(), request.headers.get('cookie') ?? undefined)
-    chunks = retriever.search(retrievalQuery(turns), { maxChars: CHAT_LIMITS.contextChars })
+    chunks = loaded.retriever.search(retrievalQuery(turns), { maxChars: CHAT_LIMITS.contextChars })
   } catch (error) {
     console.error('[chat] could not load the index', error)
     return json({ error: 'The assistant is not available right now.' }, 503)
@@ -259,7 +268,7 @@ export async function handleChatRequest(request: Request, env: ChatEnv): Promise
         if (env.mock) {
           await streamMock(turns, sources, send)
         } else {
-          await streamClaude(turns, chunks, env, send, request.signal)
+          await streamClaude(turns, chunks, loaded, env, send, request.signal)
         }
         send({ type: 'done' })
       } catch (error) {
@@ -319,16 +328,87 @@ async function* readSse(body: ReadableStream<Uint8Array>): AsyncGenerator<{ even
   }
 }
 
+const SEARCH_TOOL = {
+  name: 'search_docs',
+  description: 'Search the CWA documentation. Returns passages, each with its page title and url. '
+    + 'Use CWA\'s own terms from the glossary (component group, page data, template page, publishable, scaled mode), '
+    + 'not the visitor\'s wording. Search when the excerpts you have don\'t answer the question, or answer only part of it.',
+  input_schema: {
+    type: 'object',
+    properties: { query: { type: 'string', description: 'A few keywords in CWA\'s terms.' } },
+    required: ['query']
+  }
+}
+
+interface ContentBlock {
+  type: string
+  text?: string
+  id?: string
+  name?: string
+  input?: unknown
+}
+
 async function streamClaude(
   turns: ChatTurn[],
   chunks: ChatChunk[],
+  loaded: LoadedIndex,
   env: ChatEnv,
   send: (event: ChatEvent) => void,
   signal: AbortSignal
 ): Promise<void> {
   const history = turns.slice(0, -1)
   const question = turns[turns.length - 1]!.content
+  const seen = new Set(chunks.map(chunkKey))
+  const found = [...chunks]
 
+  const messages: { role: 'user' | 'assistant', content: string | unknown[] }[] = [
+    ...history.map(turn => ({ role: turn.role, content: turn.content })),
+    { role: 'user', content: buildUserMessage(question, chunks, loaded.glossary) }
+  ]
+
+  for (let round = 0; ; round++) {
+    // After the last allowed search the model must answer with what it has.
+    const canSearch = round < CHAT_LIMITS.searches
+    const { blocks, stopReason } = await claudeRound(messages, canSearch, env, send, signal)
+
+    const toolUses = blocks.filter(block => block.type === 'tool_use')
+    if (stopReason !== 'tool_use' || !toolUses.length) {
+      if (stopReason === 'refusal') {
+        send({ type: 'delta', text: '\n\nI can\'t help with that one. Try asking about building a site with CWA.' })
+      } else if (stopReason === 'max_tokens') {
+        send({ type: 'delta', text: '…\n\n(The answer was cut short. Ask me to continue, or follow the links above.)' })
+      }
+      return
+    }
+
+    messages.push({ role: 'assistant', content: blocks })
+    const results = toolUses.map((use) => {
+      const query = String((use.input as { query?: unknown })?.query ?? '').slice(0, 200)
+      send({ type: 'searching', query })
+      const more = query ? loaded.retriever.search(query, { maxChars: CHAT_LIMITS.searchChars, limit: 6, exclude: seen }) : []
+      for (const chunk of more) {
+        seen.add(chunkKey(chunk))
+        found.push(chunk)
+      }
+      return {
+        type: 'tool_result',
+        tool_use_id: use.id,
+        content: more.length ? excerptsOf(more) : 'No other passages matched. Answer from what you have, or say the docs don\'t cover it.'
+      }
+    })
+    send({ type: 'sources', sources: sourcesOf(found) })
+    messages.push({ role: 'user', content: results })
+  }
+}
+
+/** One call to the Messages API, streaming its text to the visitor as it arrives. */
+async function claudeRound(
+  messages: unknown[],
+  canSearch: boolean,
+  env: ChatEnv,
+  send: (event: ChatEvent) => void,
+  signal: AbortSignal
+): Promise<{ blocks: ContentBlock[], stopReason: string }> {
   const response = await fetch(env.apiUrl || 'https://api.anthropic.com/v1/messages', {
     method: 'POST',
     signal,
@@ -340,14 +420,14 @@ async function streamClaude(
     body: JSON.stringify({
       model: env.model || CHAT_MODEL,
       max_tokens: CHAT_LIMITS.maxOutputTokens,
-      // A docs chat wants a quick first word more than deep reasoning.
-      output_config: { effort: 'low' },
+      // A docs chat wants a quick first word more than deep reasoning, and thinking
+      // tokens would count against the short max_tokens.
+      thinking: { type: 'disabled' },
       stream: true,
       system: SYSTEM_PROMPT,
-      messages: [
-        ...history.map(turn => ({ role: turn.role, content: turn.content })),
-        { role: 'user', content: buildUserMessage(question, chunks) }
-      ]
+      tools: [SEARCH_TOOL],
+      tool_choice: canSearch ? { type: 'auto' } : { type: 'none' },
+      messages
     })
   })
 
@@ -356,11 +436,27 @@ async function streamClaude(
     throw new AnthropicError(response.status, `Anthropic returned ${response.status}: ${detail.slice(0, 500)}`)
   }
 
+  const blocks: ContentBlock[] = []
+  const toolJson = new Map<number, string>()
   let stopReason = ''
+  let wroteText = false
   for await (const { event, data } of readSse(response.body)) {
     const payload = JSON.parse(data)
-    if (event === 'content_block_delta' && payload.delta?.type === 'text_delta') {
+    if (event === 'content_block_start') {
+      const block = payload.content_block as ContentBlock
+      blocks[payload.index] = block.type === 'text' ? { type: 'text', text: '' } : { ...block }
+      // Text written before a search is a preamble ("Let me look that up"): drop it.
+      if (block.type === 'tool_use' && wroteText) {
+        send({ type: 'discard' })
+        wroteText = false
+      }
+    } else if (event === 'content_block_delta' && payload.delta?.type === 'text_delta') {
+      const block = blocks[payload.index]
+      if (block) block.text = (block.text ?? '') + payload.delta.text
       send({ type: 'delta', text: payload.delta.text })
+      wroteText = true
+    } else if (event === 'content_block_delta' && payload.delta?.type === 'input_json_delta') {
+      toolJson.set(payload.index, (toolJson.get(payload.index) ?? '') + payload.delta.partial_json)
     } else if (event === 'message_delta' && payload.delta?.stop_reason) {
       stopReason = payload.delta.stop_reason
     } else if (event === 'error') {
@@ -369,11 +465,17 @@ async function streamClaude(
     }
   }
 
-  if (stopReason === 'refusal') {
-    send({ type: 'delta', text: '\n\nI can\'t help with that one. Try asking about building a site with CWA.' })
-  } else if (stopReason === 'max_tokens') {
-    send({ type: 'delta', text: '…\n\n(The answer was cut short. Ask me to continue, or follow the links above.)' })
+  for (const [index, raw] of toolJson) {
+    const block = blocks[index]
+    if (!block) continue
+    try {
+      block.input = raw ? JSON.parse(raw) : {}
+    } catch {
+      block.input = {}
+    }
   }
+  // A tool round's text was discarded above; leave empty text blocks out of the history.
+  return { blocks: blocks.filter(block => block && !(block.type === 'text' && !block.text)), stopReason }
 }
 
 /** A canned answer, streamed a few words at a time, so the widget can be tested without a key. */

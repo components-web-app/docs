@@ -298,6 +298,44 @@ describe('handleChatRequest with Claude', () => {
     assert.deepEqual(result[result.length - 1], { type: 'done' })
   })
 
+  it('lets Haiku search the docs, then streams its answer', async () => {
+    const bodies: any[] = [] // eslint-disable-line @typescript-eslint/no-explicit-any -- request bodies as received
+    reply = (response) => {
+      bodies.push(received!.body)
+      response.writeHead(200, { 'Content-Type': 'text/event-stream' })
+      if (bodies.length === 1) {
+        response.write(sse('content_block_start', { type: 'content_block_start', index: 0, content_block: { type: 'text', text: '' } }))
+        response.write(sse('content_block_delta', { type: 'content_block_delta', index: 0, delta: { type: 'text_delta', text: 'Let me look.' } }))
+        response.write(sse('content_block_start', { type: 'content_block_start', index: 1, content_block: { type: 'tool_use', id: 'toolu_1', name: 'search_docs', input: {} } }))
+        response.write(sse('content_block_delta', { type: 'content_block_delta', index: 1, delta: { type: 'input_json_delta', partial_json: '{"query": "cache ' } }))
+        response.write(sse('content_block_delta', { type: 'content_block_delta', index: 1, delta: { type: 'input_json_delta', partial_json: 'purge"}' } }))
+        response.write(sse('message_delta', { type: 'message_delta', delta: { stop_reason: 'tool_use' } }))
+      } else {
+        response.write(sse('content_block_start', { type: 'content_block_start', index: 0, content_block: { type: 'text', text: '' } }))
+        response.write(sse('content_block_delta', { type: 'content_block_delta', index: 0, delta: { type: 'text_delta', text: 'Purge it.' } }))
+        response.write(sse('message_delta', { type: 'message_delta', delta: { stop_reason: 'end_turn' } }))
+      }
+      response.end(sse('message_stop', { type: 'message_stop' }))
+    }
+    const result = await events(await ask([{ role: 'user', content: 'zzz unrelated words' }]))
+
+    assert.equal(bodies.length, 2)
+    assert.equal(bodies[0].tools[0].name, 'search_docs')
+    assert.deepEqual(bodies[0].tool_choice, { type: 'auto' })
+    const toolUse = bodies[1].messages[1].content.find((block: { type: string }) => block.type === 'tool_use')
+    assert.deepEqual(toolUse.input, { query: 'cache purge' })
+    const toolResult = bodies[1].messages[2].content[0]
+    assert.equal(toolResult.tool_use_id, 'toolu_1')
+    assert.match(toolResult.content, /Purging One Page/)
+
+    const types = result.map(event => event.type)
+    assert.ok(types.indexOf('discard') > types.indexOf('delta'), 'the preamble is discarded')
+    assert.deepEqual(result.find(event => event.type === 'searching'), { type: 'searching', query: 'cache purge' })
+    const afterDiscard = result.slice(types.indexOf('discard')).filter(event => event.type === 'delta').map(event => event.text).join('')
+    assert.equal(afterDiscard, 'Purge it.')
+    assert.deepEqual(result[result.length - 1], { type: 'done' })
+  })
+
   it('turns an Anthropic error into a friendly message', async () => {
     reply = (response) => {
       response.writeHead(529, { 'Content-Type': 'application/json' })

@@ -43,6 +43,22 @@ function splitText(text: string, max = MAX_CHUNK_CHARS): string[] {
   return pieces
 }
 
+/**
+ * One line per Core Concepts › Glossary term: the term and the first sentence of its
+ * definition. Sent with every question so the model can search in CWA's own words.
+ */
+function glossaryOf(sections: SearchSection[]): string {
+  return sections
+    .filter(section => section.id.startsWith('/core-concepts/glossary#') && section.titles.length > 1)
+    .map((section) => {
+      const first = (section.content ?? '').replace(/\s+/g, ' ').trim().match(/^.*?[.!?](\s|$)/)?.[0] ?? ''
+      return first ? `${section.title}: ${first.trim()}` : ''
+    })
+    .filter(Boolean)
+    .join('\n')
+    .slice(0, 6000)
+}
+
 function sectionChunks(sections: SearchSection[]): ChatChunk[] {
   const chunks: ChatChunk[] = []
   for (const section of sections) {
@@ -76,5 +92,5 @@ export default defineEventHandler(async (event): Promise<ChatIndex> => {
 
   for (const chunk of chunks) chunk.terms = encodeTerms(termsOf(chunk).terms)
 
-  return { generatedAt: new Date().toISOString(), chunks }
+  return { generatedAt: new Date().toISOString(), chunks, glossary: glossaryOf(docs) }
 })
