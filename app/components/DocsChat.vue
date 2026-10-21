@@ -17,6 +17,8 @@ const { open: searchOpen } = useContentSearch()
 
 const input = ref('')
 const log = ref<HTMLElement>()
+const turnstileBox = ref<HTMLElement>()
+const turnstile = useTurnstile(turnstileBox)
 
 const hidden = computed(() => route.path.startsWith('/quiz'))
 
@@ -32,7 +34,7 @@ function submit() {
   const question = input.value
   if (!question.trim() || busy.value) return
   input.value = ''
-  ask(question)
+  ask(question, turnstile.token)
 }
 
 function openSearch() {
@@ -131,7 +133,7 @@ watch(() => messages.value.length, () => nextTick(() => {
                 size="sm"
                 class="text-left"
                 :disabled="unavailable"
-                @click="ask(suggestion)"
+                @click="ask(suggestion, turnstile.token)"
               />
             </div>
           </div>
@@ -216,6 +218,12 @@ watch(() => messages.value.length, () => nextTick(() => {
         </div>
 
         <div class="border-t border-default px-4 py-3 sm:px-6">
+          <!-- Cloudflare Turnstile: invisible unless Cloudflare wants a click -->
+          <div
+            v-if="turnstile.enabled"
+            ref="turnstileBox"
+            class="empty:hidden"
+          />
           <p
             v-if="unavailable"
             class="text-sm text-muted"

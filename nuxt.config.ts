@@ -57,6 +57,8 @@ export default defineNuxtConfig({
     public: {
       // The docs chat assistant (docs #1). Decided at build time, so a deploy without an
       // Anthropic key ships no chat button. The key itself is only read by /api/chat.
+      // Cloudflare Turnstile's site key for the chat's bot check; the secret is only read by /api/chat
+      turnstileSiteKey: '',
       chat: {
         enabled: Boolean(process.env.NUXT_ANTHROPIC_API_KEY || process.env.ANTHROPIC_API_KEY)
           || ['1', 'true'].includes(process.env.NUXT_CHAT_MOCK ?? '')

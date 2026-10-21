@@ -13,7 +13,7 @@ import type { AddressInfo } from 'node:net'
 import { after, before, describe, it } from 'node:test'
 import assert from 'node:assert/strict'
 import { createRetriever, sourcesOf, sourceTitle, stem, tokenize } from '../../shared/chat/retrieval.ts'
-import { CHAT_LIMITS, handleChatRequest, rateLimited, resetRateLimits, retrievalQuery, validateTurns } from '../../shared/chat/handler.ts'
+import { CHAT_LIMITS, handleChatRequest, rateLimited, resetRateLimits, retrievalQuery, turnstilePassed, validateTurns } from '../../shared/chat/handler.ts'
 import type { ChatChunk, ChatEvent, ChatIndex } from '../../shared/chat/types.ts'
 
 const indexPath = process.env.CHAT_INDEX || new URL('../../.output/public/api/chat-index.json', import.meta.url).pathname
@@ -170,6 +170,57 @@ describe('handleChatRequest', () => {
     const answer = events.filter(event => event.type === 'delta').map(event => event.text).join('')
     assert.match(answer, /\[Page Caching › Purging One Page\]\(\/nuxt-module\/page-caching#purging-one-page\)/)
     assert.deepEqual(events[events.length - 1], { type: 'done' })
+  })
+})
+
+describe('Turnstile', () => {
+  let server: ReturnType<typeof createServer>
+  let verifyUrl = ''
+  const seen: URLSearchParams[] = []
+
+  before(async () => {
+    server = createServer((request, response) => {
+      let raw = ''
+      request.on('data', (chunk) => {
+        raw += chunk
+      })
+      request.on('end', () => {
+        const form = new URLSearchParams(raw)
+        seen.push(form)
+        response.setHeader('Content-Type', 'application/json')
+        response.end(JSON.stringify(form.get('response') === 'good' ? { success: true } : { 'success': false, 'error-codes': ['invalid-input-response'] }))
+      })
+    })
+    await new Promise<void>(resolve => server.listen(0, resolve))
+    verifyUrl = `http://127.0.0.1:${(server.address() as AddressInfo).port}/`
+  })
+  after(() => server.close())
+
+  it('lets every question through when no secret is set', async () => {
+    assert.equal(await turnstilePassed(undefined, '10.0.0.1', {}), true)
+  })
+
+  it('refuses a missing token without asking Cloudflare', async () => {
+    const before = seen.length
+    assert.equal(await turnstilePassed(undefined, '10.0.0.1', { turnstileSecret: 's', turnstileVerifyUrl: verifyUrl }), false)
+    assert.equal(seen.length, before)
+  })
+
+  it('sends the secret, token and IP, and follows the answer', async () => {
+    const env = { turnstileSecret: 'secret', turnstileVerifyUrl: verifyUrl }
+    assert.equal(await turnstilePassed('good', '10.0.0.9', env), true)
+    assert.deepEqual(Object.fromEntries(seen[seen.length - 1]!), { secret: 'secret', response: 'good', remoteip: '10.0.0.9' })
+    assert.equal(await turnstilePassed('bad', '10.0.0.9', env), false)
+  })
+
+  it('answers 403 before retrieval when the token fails', async () => {
+    const request = new Request('http://localhost/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-real-ip': '10.0.1.1' },
+      body: JSON.stringify({ messages: [{ role: 'user', content: 'hi' }], turnstileToken: 'bad' })
+    })
+    const response = await handleChatRequest(request, { mock: true, turnstileSecret: 's', turnstileVerifyUrl: verifyUrl, indexUrl: 'http://127.0.0.1:9/unreachable' })
+    assert.equal(response.status, 403)
   })
 })
 

@@ -31,11 +31,16 @@ export const CHAT_LIMITS = {
   perDay: 60,
   /** About 8k tokens of retrieved docs per question. */
   contextChars: 30_000,
-  maxOutputTokens: 1500
+  /** Answers are asked to stay brief; this is room for a short code example. */
+  maxOutputTokens: 800
 } as const
 
 export interface ChatEnv {
   apiKey?: string
+  /** Cloudflare Turnstile's secret key. When set, every question needs a valid token. */
+  turnstileSecret?: string
+  /** Overrides Turnstile's siteverify URL (the tests point it at a fake server). */
+  turnstileVerifyUrl?: string
   /** Answer with a canned, streamed reply instead of calling Anthropic (local testing). */
   mock?: boolean
   /** Where the retrieval index is; defaults to /api/chat-index.json on the request's origin. */
@@ -50,6 +55,7 @@ export interface ChatEnv {
 export function chatEnvFrom(env: Record<string, string | undefined>): ChatEnv {
   return {
     apiKey: env.NUXT_ANTHROPIC_API_KEY || env.ANTHROPIC_API_KEY || undefined,
+    turnstileSecret: env.NUXT_TURNSTILE_SECRET_KEY || undefined,
     mock: env.NUXT_CHAT_MOCK === 'true' || env.NUXT_CHAT_MOCK === '1',
     indexUrl: env.NUXT_CHAT_INDEX_URL || undefined,
     model: env.NUXT_CHAT_MODEL || undefined
@@ -163,6 +169,32 @@ export function retrievalQuery(turns: ChatTurn[]): string {
 
 // ---------------------------------------------------------------------------
 
+// ---------------------------------------------------------------------------
+// Bot check: Cloudflare Turnstile. The widget in the panel gets a token for each question,
+// and it's checked here before anything is sent to Anthropic. Tokens are single use.
+
+export const TURNSTILE_FAILED = 'We couldn\'t confirm this question came from a person. Reload the page and try again.'
+
+export async function turnstilePassed(token: unknown, ip: string, env: ChatEnv): Promise<boolean> {
+  if (!env.turnstileSecret) return true
+  if (typeof token !== 'string' || !token || token.length > 2048) return false
+  const form = new URLSearchParams({ secret: env.turnstileSecret, response: token })
+  if (ip !== 'unknown') form.set('remoteip', ip)
+  try {
+    const response = await fetch(env.turnstileVerifyUrl || 'https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+      method: 'POST',
+      body: form,
+      signal: AbortSignal.timeout(5000)
+    })
+    const result = await response.json() as { 'success'?: boolean, 'error-codes'?: string[] }
+    if (!result.success) console.warn('[chat] Turnstile refused a token', result['error-codes'])
+    return result.success === true
+  } catch (error) {
+    console.error('[chat] could not reach Turnstile', error)
+    return false
+  }
+}
+
 function json(data: unknown, status = 200): Response {
   return new Response(JSON.stringify(data), {
     status,
@@ -201,6 +233,10 @@ export async function handleChatRequest(request: Request, env: ChatEnv): Promise
   const validated = validateTurns(body)
   if ('message' in validated) return json({ error: validated.message }, validated.status)
   const turns = validated.turns
+
+  if (!await turnstilePassed((body as { turnstileToken?: unknown }).turnstileToken, clientIp(request), env)) {
+    return json({ error: TURNSTILE_FAILED }, 403)
+  }
 
   let chunks: ChatChunk[]
   try {

@@ -44,7 +44,8 @@ export function useDocsChat() {
     controller = undefined
   }
 
-  async function ask(question: string) {
+  /** `getToken` gives a Turnstile token for this question (useTurnstile), when the site uses one. */
+  async function ask(question: string, getToken?: () => Promise<string | undefined>) {
     const text = question.trim().slice(0, CHAT_QUESTION_MAX)
     if (!text || busy.value || atLimit.value) return
 
@@ -63,11 +64,21 @@ export function useDocsChat() {
     status.value = 'submitted'
     controller = new AbortController()
 
+    let turnstileToken: string | undefined
+    try {
+      turnstileToken = await getToken?.()
+    } catch {
+      answer.error = 'We couldn\'t confirm this question came from a person. Reload the page and try again.'
+      status.value = 'error'
+      controller = undefined
+      return
+    }
+
     try {
       const response = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: history }),
+        body: JSON.stringify({ messages: history, turnstileToken }),
         signal: controller.signal
       })
 
