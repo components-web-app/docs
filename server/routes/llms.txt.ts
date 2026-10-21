@@ -1,10 +1,9 @@
 import { queryCollection } from '@nuxt/content/server'
 import { setResponseHeader } from 'h3'
 
-const SITE_URL = 'https://cwa.rocks'
-
 export default defineEventHandler(async (event) => {
   setResponseHeader(event, 'Content-Type', 'text/plain; charset=utf-8')
+  const { origin: SITE_URL, versionLine } = docsSite(event)
 
   const [docs, marketing] = await Promise.all([
     queryCollection(event, 'docs')
@@ -40,6 +39,7 @@ export default defineEventHandler(async (event) => {
     '> A Symfony + Nuxt framework for building component-driven, CMS-powered web applications.',
     '> The API bundle handles routing, authentication, real-time updates, and a flexible component/page structure.',
     '> The Nuxt module provides the frontend layer with inline CMS editing, reactive resource binding, and admin tooling.',
+    ...(versionLine ? [versionLine] : []),
     '',
     `Full documentation: ${SITE_URL}/getting-started`,
     `Full text for AI ingestion: ${SITE_URL}/llms-full.txt`,

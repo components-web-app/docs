@@ -2,5 +2,13 @@
   "buildCommand": "pnpm run generate",
   "rewrites": [
     { "source": "/vip", "destination": "/api/vip" }
+  ],
+  "headers": [
+    {
+      "source": "/api/docs-version.json",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" }
+      ]
+    }
   ]
 }

@@ -1,4 +1,9 @@
 import { fileURLToPath } from 'node:url'
+import { channelOrigin, findChannel, resolveChannelId } from './shared/docs-versions'
+
+// Which documentation version this build is (shared/docs-versions.ts, VERSIONS.md)
+const docsChannelId = resolveChannelId(process.env.NUXT_PUBLIC_DOCS_CHANNEL, process.env.VERCEL_GIT_COMMIT_REF)
+const docsOrigin = channelOrigin(findChannel(docsChannelId)!)
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -15,9 +20,9 @@ export default defineNuxtConfig({
   ],
 
   // Used by nuxt-og-image (absolute og:image URLs). Canonical URLs, the sitemap and
-  // structured data use the same origin (app/utils/site.ts).
+  // structured data use the same origin: the channel's own (shared/docs-versions.ts).
   site: {
-    url: 'https://cwa.rocks',
+    url: docsOrigin,
     name: 'CWA (Components Web App)'
   },
 
@@ -55,6 +60,8 @@ export default defineNuxtConfig({
       clientId: ''
     },
     public: {
+      // The documentation version this build documents (shared/docs-versions.ts)
+      docsChannel: docsChannelId,
       scripts: {
         cloudflareWebAnalytics: {
           // .env
@@ -107,6 +114,8 @@ export default defineNuxtConfig({
         '/robots.txt',
         '/api/stats.json',
         '/api/releases.json',
+        // The version switcher reads it from the other versions' deployments
+        '/api/docs-version.json',
         // Server-highlighted snippets for the marketing pages (useHighlightedCode)
         '/api/highlighted-code/index.json',
         '/api/highlighted-code/about.json',

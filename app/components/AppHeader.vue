@@ -43,6 +43,9 @@ const linksWithoutIcons = computed(() =>
     />
 
     <template #right>
+      <!-- Documentation versions (shared/docs-versions.ts); hidden while only one is live -->
+      <DocsVersionSwitcher class="hidden sm:block" />
+
       <!-- Search on every page, not only in the docs sidebar -->
       <UContentSearchButton
         v-if="header?.search"
@@ -84,6 +87,11 @@ const linksWithoutIcons = computed(() =>
     </template>
 
     <template #body>
+      <DocsVersionSwitcher
+        size="md"
+        block
+        class="mb-4"
+      />
       <LazyUContentSearchButton
         v-if="header?.search"
         size="md"

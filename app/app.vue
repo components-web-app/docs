@@ -3,7 +3,10 @@ import VipSlideover from '~/components/VipSlideover.vue'
 
 const { seo } = useAppConfig()
 const route = useRoute()
-const canonicalUrl = computed(() => absoluteUrl(route.path))
+// Each documentation version is its own deployment with its own origin (shared/docs-versions.ts).
+// Only the primary version is indexed; the others say noindex.
+const { origin: SITE_URL, indexed } = useDocsChannel()
+const canonicalUrl = computed(() => absoluteUrl(route.path, SITE_URL))
 
 const { data: navigation } = await useAsyncData('navigation', () => queryCollectionNavigation('docs'))
 const { data: files } = useLazyFetch('/api/search.json', {
@@ -38,7 +41,8 @@ useSeoMeta({
   twitterImage: `${SITE_URL}/social-card.png`,
   twitterCard: 'summary_large_image',
   twitterSite: '@cwa_rocks',
-  themeColor: '#000000'
+  themeColor: '#000000',
+  robots: indexed.value ? undefined : 'noindex, follow'
 })
 
 // Structured data for the home page: who publishes the site, and the site itself.
