@@ -20,7 +20,7 @@ export default defineEventHandler(async (event) => {
   setResponseHeader(event, 'Content-Type', 'application/xml; charset=utf-8')
 
   const [docs, marketing] = await Promise.all([
-    queryCollection(event, 'docs').select('path').order('path', 'ASC').all(),
+    queryCollection(event, 'docs').where('extension', '=', 'md').select('path').order('path', 'ASC').all(),
     queryCollection(event, 'pages').select('path').order('path', 'ASC').all()
   ])
 

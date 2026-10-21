@@ -5,7 +5,8 @@ export default defineContentConfig({
     docs: defineCollection({
       type: 'page',
       source: {
-        include: '**/*.md',
+        // Each section's .navigation.yml gives its sidebar title.
+        include: '**/{*.md,.navigation.yml}',
         // Pages outside the docs (privacy, why CWA) are their own collection, so they stay out of the sidebar and search.
         exclude: ['standalone/**']
       },

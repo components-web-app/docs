@@ -9,6 +9,7 @@ export default defineEventHandler(async (event) => {
 
   const [docs, sections, marketing] = await Promise.all([
     queryCollection(event, 'docs')
+      .where('extension', '=', 'md')
       .select('title', 'description', 'path')
       .order('path', 'ASC')
       .all(),

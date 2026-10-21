@@ -20,16 +20,13 @@ const topNavDefaultOpen = computed(() => (!mounted.value || isDesktop.value) ? u
 
 const ALWAYS_OPEN_ON_DESKTOP = ['/getting-started', '/guides', '/core-concepts']
 
-// The quiz is a page of its own, not a content file, so it joins Getting Started here.
+// The quiz is a page of its own, not a content file, so it's added at the top of the sidebar here.
 const QUIZ_ITEM: ContentNavigationItem = { title: 'Quiz', path: '/quiz', icon: 'i-heroicons-academic-cap' }
 
-const topNavigation = computed<ContentNavigationItem[]>(() =>
-  navigation?.value
-    ?.filter(item => ALWAYS_OPEN_ON_DESKTOP.some(p => item.path?.startsWith(p)))
-    .map(item => item.path === '/getting-started'
-      ? { ...item, children: [...(item.children ?? []), QUIZ_ITEM] }
-      : item) ?? []
-)
+const topNavigation = computed<ContentNavigationItem[]>(() => [
+  QUIZ_ITEM,
+  ...(navigation?.value?.filter(item => ALWAYS_OPEN_ON_DESKTOP.some(p => item.path?.startsWith(p))) ?? [])
+])
 
 const bottomNavigation = computed<ContentNavigationItem[]>(() =>
   navigation?.value?.filter(item =>
