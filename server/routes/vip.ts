@@ -1,14 +1,9 @@
 import { sendRedirect } from 'h3'
 
 export default defineEventHandler((event) => {
-  const maxAge = 24 * 3600 - 1
-  const expiresAt = new Date().getTime() + maxAge * 1000
-  // Increase counter cookie by 1
+  // Shows the VIP sign-up on the site for a day after a /vip link
   setCookie(event, 'vip', 'true', {
-    maxAge
-  })
-  setCookie(event, 'vip-expires', `${expiresAt}`, {
-    maxAge
+    maxAge: 24 * 3600 - 1
   })
   // Redirect on the server. Uses a 302 (not 307) by default.
   return sendRedirect(event, '/', 307)

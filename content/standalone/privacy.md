@@ -19,7 +19,7 @@ The site is hosted on Vercel. Like any web server, Vercel receives your IP addre
 
 ### Your email address, if you sign up
 
-Some visitors see a sign-up form for updates about CWA. If you submit it, your email address is added to our mailing list at [Campaign Monitor](https://www.campaignmonitor.com/), our email provider. We use it only to send you CWA news. Campaign Monitor may record when you open an email or click a link in it.
+Some visitors see a sign-up form for updates about CWA. If you submit it, your email address is added to our mailing list at [Campaign Monitor](https://www.campaignmonitor.com/), our email provider. We use it only to send you CWA news. Campaign Monitor records when you open an email or click a link in it only if you tick the box that allows it on the form.
 
 Every email has an unsubscribe link. To have your address removed completely, email [hello@cwa.rocks](mailto:hello@cwa.rocks).
 
@@ -29,12 +29,12 @@ We don't use advertising or tracking cookies. The site stores these small values
 
 | Name | Type | What it's for | How long |
 |------|------|---------------|----------|
-| `vip`, `vip-expires` | Cookie | Shows the sign-up offer after you open a `/vip` link | 24 hours |
-| `vip-shown` | Cookie | Stops the sign-up panel opening again on every page | 1 hour |
+| `vip` | Cookie | Shows the sign-up offer after you open a `/vip` link | 24 hours |
+| `vip-shown` | Cookie | Stops the sign-up panel opening by itself again | 30 days |
 | `nuxt-color-mode` | Local storage | Remembers light or dark mode, if you choose one | Until you clear it |
 | `cwa-docs-alpha-notice-dismissed` | Local storage | Remembers that you closed the alpha notice in the docs | Until you clear it |
 
-None of these leave your browser except the two `vip` cookies, which are sent back to cwa.rocks only.
+None of these leave your browser except the `vip` cookies, which are sent back to cwa.rocks only.
 
 ## Content from other services
 

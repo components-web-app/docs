@@ -25,7 +25,6 @@
     "quiz:no-llm": "node scripts/quiz/no-llm.ts"
   },
   "dependencies": {
-    "@chenfengyuan/vue-countdown": "^2.1.3",
     "@comark/nuxt": "^0.7.0",
     "@iconify-json/heroicons": "^1.2.3",
     "@iconify-json/simple-icons": "^1.2.99",

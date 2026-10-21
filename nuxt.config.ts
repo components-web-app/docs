@@ -253,7 +253,6 @@ export default defineNuxtConfig({
   vite: {
     optimizeDeps: {
       include: [
-        '@chenfengyuan/vue-countdown',
         '@vue/devtools-core',
         '@vue/devtools-kit',
         'highcharts/esm/highcharts.js',

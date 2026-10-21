@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const isOpen = ref(false)
 const vipIsShown = useCookie<boolean>('vip-shown', {
-  maxAge: 3600 // 1 hour
+  maxAge: 30 * 24 * 3600 // 30 days
 })
 onMounted(async () => {
   await nextTick()
@@ -18,11 +18,12 @@ onMounted(async () => {
       <UButton
         color="neutral"
         variant="solid"
-        class="rounded-full w-20 h-20 justify-center shadow-sm ring-1 ring-inset ring-gray-500 dark:ring-gray-700 text-gray-200 bg-gray-900/60 dark:bg-gray-800/60 hover:bg-gray-900 dark:hover:bg-gray-900 backdrop-blur-sm"
+        aria-label="Become our VIP"
+        class="rounded-full w-14 h-14 justify-center shadow-sm ring-1 ring-inset ring-gray-500 dark:ring-gray-700 text-gray-200 bg-gray-900/60 dark:bg-gray-800/60 hover:bg-gray-900 dark:hover:bg-gray-900 backdrop-blur-sm"
         @click="isOpen = true"
       >
         <SvgoVipCrown
-          class="h-9"
+          class="h-7"
           :font-controlled="false"
           filled
         />
@@ -44,6 +45,7 @@ onMounted(async () => {
               variant="ghost"
               size="sm"
               icon="i-heroicons-x-mark-20-solid"
+              aria-label="Close"
               class="flex absolute end-5 top-5 z-10 text-gray-200 hover:text-white hover:bg-gray-800"
               square
               padded
@@ -66,11 +68,10 @@ onMounted(async () => {
               </div>
             </div>
           </template>
-          <VipCountdown />
           <VipFeatureIcons />
           <div class="prose dark:prose-invert bg-gray-400/5 rounded-xl border border-gray-500 p-4 font-bold text-center">
             <p class="text-sm">
-              We promise to <span class="text-vip">only</span> use your email to stay touch from time to time about <span class="text-vip">relevant VIP topics</span>.
+              We promise to <span class="text-vip">only</span> use your email to stay in touch from time to time about <span class="text-vip">relevant VIP topics</span>.
             </p>
           </div>
           <VipSignUp />
