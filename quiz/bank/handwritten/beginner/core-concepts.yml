@@ -225,7 +225,7 @@ questions:
     author: llm-draft
 
   - id: core.components.admin-tab-saving
-    version: 3
+    version: 4
     status: live
     level: beginner
     area: core-concepts
@@ -243,12 +243,12 @@ questions:
     answer:
       correct: c
       explanation: >-
-        The field's `v-model` is bound to `useCwaResourceModel`'s `model`, and each change sends a debounced
-        PATCH to the API. There is no save button. For a publishable component, the PATCH changes the draft.
+        The input is bound to `useCwaResourceModel`, and each change sends a debounced PATCH to the
+        API. There is no save button. For a publishable component, the PATCH changes the draft.
       optionNotes:
         a: There is no Save button. Each change is sent on its own, shortly after typing stops.
     sources:
-      - { kind: docs, page: /core-concepts/components, anchor: the-admin-tab, sectionHash: 'sha256:4b979741549a18fa', title: 'Components › The Admin Tab' }
+      - { kind: docs, page: /core-concepts/components, anchor: the-admin-tab, sectionHash: 'sha256:572de33af303a129', title: 'Components › The Admin Tab' }
     author: llm-draft
 
   - id: core.identity.group-location

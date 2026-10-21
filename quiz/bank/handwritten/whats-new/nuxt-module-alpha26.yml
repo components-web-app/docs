@@ -1,0 +1,64 @@
+# Hand-written What's new questions about the Nuxt module: changes in 2.0.0-alpha.26.
+# Each one has a `since` naming the release that brought the change in.
+# Format: quiz/README.md. Run `pnpm quiz:stamp <id>` to fill in or refresh the hashes.
+
+questions:
+  - id: nuxt.coedit.same-field-conflict
+    version: 1
+    status: live
+    level: beginner
+    area: nuxt-module
+    tags: [admin, real-time]
+    type: multiple-choice
+    difficulty: 2
+    prompt: >-
+      Two admins have the same page open. Ana is typing a new title in the Title component's admin tab and
+      hasn't saved yet. Ben saves a different title for the same component. What does Ana see?
+    why: >-
+      Neither admin's work is overwritten without a choice, so a team can edit one page at once.
+    since: [{ repo: cwa-nuxt-module, version: '2.0.0-alpha.26' }]
+    options:
+      - { id: a, text: 'Her text replaced by Ben''s title, with no message' }
+      - { id: b, text: 'Her own text, with **Use theirs / Keep mine** beside it' }
+      - { id: c, text: 'A notice that the page is outdated, with an **Update** button' }
+      - { id: d, text: 'An error saying Ben saved first, and her change is lost' }
+    answer:
+      correct: b
+      explanation: >-
+        Ana's text stays in the control and her save waits. **Use theirs** drops her change; **Keep mine**
+        saves hers over Ben's. The outdated notice is for visitors, not signed-in admins.
+    sources:
+      - { kind: docs, page: /nuxt-module/component-helpers/real-time-updates, anchor: when-youre-both-changing-the-same-field, sectionHash: 'sha256:af40b6834ddbca32', title: 'Real-Time Updates in Components › When You''re Both Changing the Same Field' }
+    author: llm-draft
+
+  - id: nuxt.coedit.model-prop
+    version: 1
+    status: live
+    level: intermediate
+    area: nuxt-module
+    tags: [admin, composables]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      An admin tab binds a text input with `<CwaUiFormInput v-model="titleModel.model.value" />`, where
+      `titleModel` comes from `useCwaResourceModel`. An editor changes the title just as another admin saves
+      it. What happens to the editor's change?
+    why: >-
+      A held save that nothing shows looks like a lost edit, so pass the whole model to kit controls.
+    since: [{ repo: cwa-nuxt-module, version: '2.0.0-alpha.26' }]
+    options:
+      - { id: a, text: 'It''s saved over the other admin''s title at once' }
+      - { id: b, text: 'It''s dropped, and the other admin''s title is shown' }
+      - { id: c, text: 'It waits, with no choice shown; publishing saves it' }
+      - { id: d, text: 'It shows **Use theirs / Keep mine** beside the input' }
+    answer:
+      correct: c
+      explanation: >-
+        The save is held until someone picks **Use theirs** or **Keep mine**, but only a control given
+        `:model="titleModel"` shows that choice. With `v-model` nothing shows it, so the change waits until a
+        publish, which counts as **Keep mine**.
+      optionNotes:
+        d: 'Only `<CwaUiFormInput :model="titleModel" />` shows the choice. With `v-model` the input only gets the value.'
+    sources:
+      - { kind: docs, page: /nuxt-module/composables/admin-manager/use-cwa-resource-model, anchor: co-editing-conflicts, sectionHash: 'sha256:af5d78a4bcf07a1b', title: 'useCwaResourceModel › Co-Editing Conflicts' }
+    author: llm-draft

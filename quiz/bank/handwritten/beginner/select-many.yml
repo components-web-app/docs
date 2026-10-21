@@ -196,5 +196,5 @@ questions:
     sources:
       - { kind: docs, page: /core-concepts/admin-panel, anchor: edit-mode, sectionHash: 'sha256:42ae9453304cad0f', title: 'The Admin Panel › Edit Mode' }
       - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:cd76322d674416ff', title: 'Draft & Publish Workflow › How It Works' }
-      - { kind: docs, page: /core-concepts/components, anchor: the-admin-tab, sectionHash: 'sha256:4b979741549a18fa', title: 'Components › The Admin Tab' }
+      - { kind: docs, page: /core-concepts/components, anchor: the-admin-tab, sectionHash: 'sha256:572de33af303a129', title: 'Components › The Admin Tab' }
     author: llm-draft

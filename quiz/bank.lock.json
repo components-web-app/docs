@@ -1550,7 +1550,7 @@
     },
     "core.components.admin-tab-saving": {
       "status": "live",
-      "version": 3,
+      "version": 4,
       "versions": {
         "1": {
           "fingerprint": "sha256:81015fdf9616f427",
@@ -1563,6 +1563,10 @@
         "3": {
           "fingerprint": "sha256:3fcfe427b6bd6de5",
           "docsCommit": "9ff81ee4322ec1346c58b0cfb3bff98d6e868932"
+        },
+        "4": {
+          "fingerprint": "sha256:3fcfe427b6bd6de5",
+          "docsCommit": "eee65cd7d07ef1c9f06f05d14f7e9c2667caaa9b+dirty"
         }
       }
     },
@@ -4772,6 +4776,26 @@
         }
       }
     },
+    "nuxt.coedit.model-prop": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:e876715e26d9079e",
+          "docsCommit": "eee65cd7d07ef1c9f06f05d14f7e9c2667caaa9b+dirty"
+        }
+      }
+    },
+    "nuxt.coedit.same-field-conflict": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:6bf5af9cdd4a16fa",
+          "docsCommit": "eee65cd7d07ef1c9f06f05d14f7e9c2667caaa9b+dirty"
+        }
+      }
+    },
     "nuxt.collection.item-fields": {
       "status": "live",
       "version": 1,
@@ -4818,7 +4842,7 @@
     },
     "nuxt.component.admin-tab-model": {
       "status": "live",
-      "version": 2,
+      "version": 3,
       "versions": {
         "1": {
           "fingerprint": "sha256:6c26cd9dba9a5f2d",
@@ -4827,6 +4851,10 @@
         "2": {
           "fingerprint": "sha256:5f83d5a9b489795c",
           "docsCommit": "9ff81ee4322ec1346c58b0cfb3bff98d6e868932"
+        },
+        "3": {
+          "fingerprint": "sha256:f37b3a6839766177",
+          "docsCommit": "eee65cd7d07ef1c9f06f05d14f7e9c2667caaa9b+dirty"
         }
       }
     },
@@ -5604,11 +5632,15 @@
     },
     "nuxt.resource-model.iri-argument": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:7e18f8346ba6b110",
           "docsCommit": "5a77f55ee091789ec3f314638209e92ca359558c"
+        },
+        "2": {
+          "fingerprint": "sha256:ae810ec731df06fd",
+          "docsCommit": "eee65cd7d07ef1c9f06f05d14f7e9c2667caaa9b+dirty"
         }
       }
     },

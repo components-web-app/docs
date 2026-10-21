@@ -373,7 +373,7 @@ questions:
         Admin tabs live in the component's `admin/` folder, one file per tab. The CLI doesn't write it, so you
         create `app/app/cwa/components/Quote/admin/Quote.vue` yourself.
     sources:
-      - { kind: docs, page: /guides/your-first-component, anchor: the-admin-tab, sectionHash: 'sha256:9a79409981bc2d3e', title: 'Your First Component › The admin tab' }
+      - { kind: docs, page: /guides/your-first-component, anchor: the-admin-tab, sectionHash: 'sha256:d10579651b634d82', title: 'Your First Component › The admin tab' }
       - { kind: docs, page: /nuxt-module/building-your-ui/creating-components, anchor: file-convention, sectionHash: 'sha256:280282ea4133bd3d', title: 'Component Files › File Convention' }
     author: llm-draft
 
@@ -403,7 +403,7 @@ questions:
     author: llm-draft
 
   - id: nuxt.component.admin-tab-model
-    version: 2
+    version: 3
     status: live
     level: beginner
     area: nuxt-module
@@ -416,10 +416,10 @@ questions:
       text: |-
         <template>
           <CwaUiFormLabelWrapper label="Quote">
-            <CwaUiFormInput v-model="textModel.model.value" />
+            <CwaUiFormInput :model="textModel" />
           </CwaUiFormLabelWrapper>
           <CwaUiFormLabelWrapper label="Author">
-            <CwaUiFormInput v-model="authorModel.model.value" />
+            <CwaUiFormInput :model="authorModel" />
           </CwaUiFormLabelWrapper>
         </template>
 
@@ -436,10 +436,10 @@ questions:
       lines: [15]
       explanation: >-
         `useCwaResourceModel(iri, 'author')` returns a model bound to one property of the selected component.
-        Writing to it saves the change to the API, and the input on line 6 is bound to that model.
+        Writing to it saves the change to the API, and the input on line 6 is given that model.
     sources:
-      - { kind: docs, page: /guides/your-first-component, anchor: the-admin-tab, sectionHash: 'sha256:9a79409981bc2d3e', title: 'Your First Component › The admin tab', block: 0, blockHash: 'sha256:921b3ad3f72ff129' }
-      - { kind: docs, page: /nuxt-module/building-your-ui/creating-components, anchor: usecwaresourcemodel, sectionHash: 'sha256:01a1696db9417540', title: 'Component Files › useCwaResourceModel' }
+      - { kind: docs, page: /guides/your-first-component, anchor: the-admin-tab, sectionHash: 'sha256:d10579651b634d82', title: 'Your First Component › The admin tab', block: 0, blockHash: 'sha256:a1e24ff44a105a9a' }
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-components, anchor: usecwaresourcemodel, sectionHash: 'sha256:b6a1edb7e90eee29', title: 'Component Files › useCwaResourceModel' }
     author: llm-draft
 
   - id: core.guides.fixture-add-to-group

@@ -29,11 +29,11 @@ questions:
         Setting `model.value` starts a debounced `PATCH` (250 ms by default), and rapid changes are batched into
         one request.
     sources:
-      - { kind: docs, page: /nuxt-module/composables/admin-manager/use-cwa-resource-model, anchor: return-values, sectionHash: 'sha256:c010dd6af72583af', title: 'useCwaResourceModel › Return Values' }
+      - { kind: docs, page: /nuxt-module/composables/admin-manager/use-cwa-resource-model, anchor: return-values, sectionHash: 'sha256:e59ae7c0d40b3e09', title: 'useCwaResourceModel › Return Values' }
     author: llm-draft
 
   - id: nuxt.resource-model.iri-argument
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: nuxt-module
@@ -53,7 +53,7 @@ questions:
         <template>
             <div class="p-4 space-y-4">
                 <CwaUiFormLabelWrapper label="Title text">
-                    <CwaUiFormInput v-model="titleModel" />
+                    <CwaUiFormInput :model="titleModel" />
                 </CwaUiFormLabelWrapper>
             </div>
         </template>
@@ -63,19 +63,19 @@ questions:
 
         const { exposeMeta, iri } = useCwaResourceManagerTab({ name: 'Content', order: 1 })
 
-        const { model: titleModel } = useCwaResourceModel<string>(iri.value, 'title')
+        const titleModel = useCwaResourceModel<string>(iri.value, 'title')
 
         defineExpose(exposeMeta)
         </script>
     answer:
       line: 15
-      fix: "const { model: titleModel } = useCwaResourceModel<string>(iri, 'title')"
+      fix: "const titleModel = useCwaResourceModel<string>(iri, 'title')"
       explanation: >-
         Pass `iri` itself, the reactive ref `useCwaResourceManagerTab` returns. The composable reads `iri.value`
         to follow the selected component, so a plain string gives it no IRI: the field stays empty and nothing
         is saved.
     sources:
-      - { kind: docs, page: /nuxt-module/building-your-ui/creating-components, anchor: one-tab, sectionHash: 'sha256:4420b05a618dbc39', title: 'Component Files › One Tab', block: 0, blockHash: 'sha256:a585840b691d476e' }
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-components, anchor: one-tab, sectionHash: 'sha256:6597ecb0a8bc5625', title: 'Component Files › One Tab', block: 0, blockHash: 'sha256:d3d2be831b79efd9' }
       - { kind: docs, page: /nuxt-module/composables/admin-manager/use-cwa-resource-manager-tab, anchor: return-values, sectionHash: 'sha256:3b7270f5ed56e80d', title: 'useCwaResourceManagerTab › Return Values' }
     author: llm-draft
 

@@ -390,7 +390,7 @@ questions:
       optionNotes:
         d: The module never swaps the content in by itself; the page keeps the old content until the visitor updates.
     sources:
-      - { kind: docs, page: /nuxt-module/pwa, anchor: offline-and-real-time-updates, sectionHash: 'sha256:457e0a4756e3d0d4', title: 'Progressive Web App & Offline › Offline and Real-Time Updates' }
+      - { kind: docs, page: /nuxt-module/pwa, anchor: offline-and-real-time-updates, sectionHash: 'sha256:79216cfcb2b012e7', title: 'Progressive Web App & Offline › Offline and Real-Time Updates' }
     author: llm-draft
 
   # ---------------------------------------------------------------- Deployment
