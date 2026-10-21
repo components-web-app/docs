@@ -24,7 +24,7 @@ questions:
         The Vue file defines how a layout looks, but it doesn't create the layout in the API. Pages are
         assigned to a saved layout, and the layout's component groups need it as their owner.
     sources:
-      - { kind: docs, page: /guides/your-first-layout, anchor: create-the-layout-in-the-api, sectionHash: 'sha256:92642accfddde492', title: 'Your First Layout › Create the Layout in the API' }
+      - { kind: docs, page: /guides/your-first-layout, anchor: create-the-layout-in-the-api, sectionHash: 'sha256:0c79d58962155234', title: 'Your First Layout › Create the Layout in the API' }
     author: llm-draft
 
   - id: core.guides.layout-then-page-template
@@ -322,7 +322,7 @@ questions:
         The generator writes `app/cwa/components/<Name>/` relative to the current directory, so run it in `app/`.
         From the project root it writes to `app/cwa/components/`, which Nuxt never reads.
     sources:
-      - { kind: docs, page: /guides/your-first-component, anchor: the-vue-file, sectionHash: 'sha256:89e2acc4057f1248', title: 'Your First Component › The Vue file' }
+      - { kind: docs, page: /guides/your-first-component, anchor: the-vue-file, sectionHash: 'sha256:d7675402ce0512d0', title: 'Your First Component › The Vue file' }
     author: llm-draft
 
   - id: nuxt.cli.api-command
@@ -373,7 +373,7 @@ questions:
         Admin tabs live in the component's `admin/` folder, one file per tab. The CLI doesn't write it, so you
         create `app/app/cwa/components/Quote/admin/Quote.vue` yourself.
     sources:
-      - { kind: docs, page: /guides/your-first-component, anchor: the-admin-tab, sectionHash: 'sha256:d10579651b634d82', title: 'Your First Component › The admin tab' }
+      - { kind: docs, page: /guides/your-first-component, anchor: the-admin-tab, sectionHash: 'sha256:02da2d18648b6592', title: 'Your First Component › The admin tab' }
       - { kind: docs, page: /nuxt-module/building-your-ui/creating-components, anchor: file-convention, sectionHash: 'sha256:280282ea4133bd3d', title: 'Component Files › File Convention' }
     author: llm-draft
 
@@ -438,7 +438,7 @@ questions:
         `useCwaResourceModel(iri, 'author')` returns a model bound to one property of the selected component.
         Writing to it saves the change to the API, and the input on line 6 is given that model.
     sources:
-      - { kind: docs, page: /guides/your-first-component, anchor: the-admin-tab, sectionHash: 'sha256:d10579651b634d82', title: 'Your First Component › The admin tab', block: 0, blockHash: 'sha256:a1e24ff44a105a9a' }
+      - { kind: docs, page: /guides/your-first-component, anchor: the-admin-tab, sectionHash: 'sha256:02da2d18648b6592', title: 'Your First Component › The admin tab', block: 0, blockHash: 'sha256:a1e24ff44a105a9a' }
       - { kind: docs, page: /nuxt-module/building-your-ui/creating-components, anchor: usecwaresourcemodel, sectionHash: 'sha256:b6a1edb7e90eee29', title: 'Component Files › useCwaResourceModel' }
     author: llm-draft
 
@@ -500,7 +500,7 @@ questions:
         An alternative template goes in the component's `ui/` folder, beside the default `NavigationLink.vue`. It
         uses the same data, and editors pick it in the manager panel.
     sources:
-      - { kind: docs, page: /guides/alternative-ui-variants, anchor: approach-2-ui-templates-ui-directory, sectionHash: 'sha256:89c55ceb8b7fd102', title: 'Alternative UI Variants › Approach 2: UI Templates (ui/ directory)' }
+      - { kind: docs, page: /guides/alternative-ui-variants, anchor: approach-2-ui-templates-ui-directory, sectionHash: 'sha256:bb9fc1371ba9986a', title: 'Alternative UI Variants › Approach 2: UI Templates (ui/ directory)' }
     author: llm-draft
 
   - id: nuxt.component.ui-vs-styles
@@ -525,7 +525,7 @@ questions:
         Use `styles.classes` when it's the same HTML with different classes. A `ui/` template is for a variant
         that needs different HTML structure.
     sources:
-      - { kind: docs, page: /guides/alternative-ui-variants, anchor: when-to-use-ui-vs-stylesclasses, sectionHash: 'sha256:c387c50693891cdd', title: 'Alternative UI Variants › When to use ui/ vs styles.classes' }
+      - { kind: docs, page: /guides/alternative-ui-variants, anchor: when-to-use-ui-vs-stylesclasses, sectionHash: 'sha256:3994177d9a2d603f', title: 'Alternative UI Variants › When to use ui/ vs styles.classes' }
     author: llm-draft
 
   - id: nuxt.component.ui-registration
@@ -579,7 +579,7 @@ questions:
         `multiple: true` lets editors combine styles. With `false`, they pick one.
     sources:
       - { kind: docs, page: /guides/alternative-ui-variants, anchor: real-example-htmlcontent-in-the-template-app, sectionHash: 'sha256:becd22e7af9638e9', title: 'Alternative UI Variants › Real Example: HtmlContent in the Template App', block: 0, blockHash: 'sha256:e1811c714e3c0cba' }
-      - { kind: docs, page: /guides/alternative-ui-variants, anchor: how-it-works, sectionHash: 'sha256:b08f114aa6f21987', title: 'Alternative UI Variants › How it works' }
+      - { kind: docs, page: /guides/alternative-ui-variants, anchor: how-it-works, sectionHash: 'sha256:67d52f75d5962c58', title: 'Alternative UI Variants › How it works' }
     author: llm-draft
 
   - id: core.dynamic.three-records
@@ -605,7 +605,7 @@ questions:
         A template page (a page that many articles share) holds the structure. Each article is saved as page
         data that names the template page, and each has its own route.
     sources:
-      - { kind: docs, page: /guides/your-first-dynamic-page, anchor: create-in-the-api, sectionHash: 'sha256:baa52a543c4cb510', title: 'Your First Dynamic Page › Create in the API' }
+      - { kind: docs, page: /guides/your-first-dynamic-page, anchor: create-in-the-api, sectionHash: 'sha256:ff510834377e3a52', title: 'Your First Dynamic Page › Create in the API' }
     author: llm-draft
 
   - id: core.dynamic.position-shows
@@ -633,7 +633,7 @@ questions:
         It's a dynamic component position. Instead of holding one component, it shows whatever component the
         current article holds in its `quote` property.
     sources:
-      - { kind: docs, page: /guides/your-first-dynamic-page, anchor: create-in-the-api, sectionHash: 'sha256:baa52a543c4cb510', title: 'Your First Dynamic Page › Create in the API' }
+      - { kind: docs, page: /guides/your-first-dynamic-page, anchor: create-in-the-api, sectionHash: 'sha256:ff510834377e3a52', title: 'Your First Dynamic Page › Create in the API' }
     author: llm-draft
 
   - id: core.dynamic.new-file
@@ -708,7 +708,7 @@ questions:
         The Quote is saved in this article's `quote` property, so it belongs to this article. The next article you
         create gets its own.
     sources:
-      - { kind: docs, page: /guides/your-first-dynamic-page, anchor: via-the-admin, sectionHash: 'sha256:c41dcc6bcd14fe43', title: 'Your First Dynamic Page › Via the admin' }
+      - { kind: docs, page: /guides/your-first-dynamic-page, anchor: via-the-admin, sectionHash: 'sha256:76a8406dce1cba75', title: 'Your First Dynamic Page › Via the admin' }
     author: llm-draft
 
   - id: core.dynamic.page-data-fixture
@@ -796,5 +796,5 @@ questions:
         The Page UI is the page template, such as `TwoColumnPageTemplate.vue`. The page saves it as
         `uiComponent: CwaPageTwoColumnPageTemplate`. The layout is a separate choice on the same form.
     sources:
-      - { kind: docs, page: /guides/your-first-page-template, anchor: via-the-admin, sectionHash: 'sha256:7a86817c667e2a07', title: 'Your First Page Template › Via the admin' }
+      - { kind: docs, page: /guides/your-first-page-template, anchor: via-the-admin, sectionHash: 'sha256:36c12e06f948cd35', title: 'Your First Page Template › Via the admin' }
     author: llm-draft

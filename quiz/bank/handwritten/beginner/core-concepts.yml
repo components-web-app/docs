@@ -146,7 +146,7 @@ questions:
         Anonymous visitors get the published version. Signed-in users with publish rights get the draft, on
         every page view, whether or not edit mode is on.
     sources:
-      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:cd76322d674416ff', title: 'Draft & Publish Workflow › How It Works' }
+      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:6c755a839217faca', title: 'Draft & Publish Workflow › How It Works' }
     author: llm-draft
 
   - id: core.draft.reorder-timing
@@ -198,7 +198,7 @@ questions:
         The navigation guard stops links while editing. Click **Done** first. The browser's back and forward
         buttons still work.
     sources:
-      - { kind: docs, page: /core-concepts/admin-panel, anchor: edit-mode, sectionHash: 'sha256:42ae9453304cad0f', title: 'The Admin Panel › Edit Mode' }
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: edit-mode, sectionHash: 'sha256:059f18d921a3de8a', title: 'The Admin Panel › Edit Mode' }
     author: llm-draft
 
   - id: core.components.two-sides

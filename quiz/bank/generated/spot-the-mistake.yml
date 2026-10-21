@@ -786,7 +786,7 @@ questions:
       - kind: docs
         page: /guides/your-first-component
         anchor: the-vue-file
-        sectionHash: sha256:89e2acc4057f1248
+        sectionHash: sha256:d7675402ce0512d0
         title: Your First Component › The Vue file
         block: 1
         blockHash: sha256:df2358ca3d144100
@@ -847,7 +847,7 @@ questions:
       - kind: docs
         page: /guides/alternative-ui-variants
         anchor: approach-1-style-classes
-        sectionHash: sha256:e84f4c49ad58dc77
+        sectionHash: sha256:1b996abbfde421dc
         title: "Alternative UI Variants › Approach 1: Style Classes"
         block: 0
         blockHash: sha256:32a1bc29f03d7ebd
@@ -1704,7 +1704,7 @@ questions:
       - kind: docs
         page: /guides/your-first-component
         anchor: the-vue-file
-        sectionHash: sha256:89e2acc4057f1248
+        sectionHash: sha256:d7675402ce0512d0
         title: Your First Component › The Vue file
         block: 1
         blockHash: sha256:df2358ca3d144100

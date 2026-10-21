@@ -290,7 +290,7 @@ questions:
         In the Add Component dialog, a type with `instantAdd: true` is added straight away. Otherwise a config
         panel appears first.
     sources:
-      - { kind: docs, page: /core-concepts/admin-panel, anchor: adding-a-component, sectionHash: 'sha256:a7be3b997ea7de32', title: 'The Admin Panel › Adding a Component' }
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: adding-a-component, sectionHash: 'sha256:7ef73d2193940ede', title: 'The Admin Panel › Adding a Component' }
     author: llm-draft
 
   - id: nuxt.real-time.visitor-notice

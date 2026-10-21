@@ -73,7 +73,7 @@ questions:
         e: A caller who can see drafts gets the published version when there is no draft.
     sources:
       - { kind: docs, page: /api/components/annotations/publishable, anchor: how-it-works-at-the-api-level, sectionHash: 'sha256:a4527f37b398b377', title: 'Publishable › How It Works at the API Level' }
-      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:cd76322d674416ff', title: 'Draft & Publish Workflow › How It Works' }
+      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:6c755a839217faca', title: 'Draft & Publish Workflow › How It Works' }
     author: llm-draft
 
   - id: core.caching.page-purges

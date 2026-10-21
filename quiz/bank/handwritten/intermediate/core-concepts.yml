@@ -79,7 +79,7 @@ questions:
         A delete removes only the selected version. To delete the other one, select it first with the Publish
         tab's **Edit live version** toggle.
     sources:
-      - { kind: docs, page: /core-concepts/admin-panel, anchor: deleting-a-component, sectionHash: 'sha256:34cf8e997729d977', title: 'The Admin Panel › Deleting a component' }
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: deleting-a-component, sectionHash: 'sha256:50346d8e4460c38a', title: 'The Admin Panel › Deleting a component' }
     author: llm-draft
 
   - id: core.admin.rename-child-routes
@@ -105,7 +105,7 @@ questions:
         Confirming renames every child path to stay under the new parent prefix and creates redirects from the
         old paths. Without it, only the parent is renamed.
     sources:
-      - { kind: docs, page: /core-concepts/admin-panel, anchor: editing-a-path, sectionHash: 'sha256:03e5ff2517176e16', title: 'The Admin Panel › Editing a path' }
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: editing-a-path, sectionHash: 'sha256:652e19381a151bde', title: 'The Admin Panel › Editing a path' }
     author: llm-draft
 
   - id: core.admin.reorder-where

@@ -45,7 +45,7 @@ questions:
         The `app` container already runs the Nuxt dev server, and Caddy proxies it at `https://localhost`.
         Running `pnpm dev` on your machine starts a second Nuxt that `https://localhost` never reaches.
     sources:
-      - { kind: docs, page: /getting-started/installation, anchor: _3-open-the-site, sectionHash: 'sha256:31450e46c7106927', title: 'Installation › 3. Open the site' }
+      - { kind: docs, page: /getting-started/installation, anchor: _3-open-the-site, sectionHash: 'sha256:314bccb460879a79', title: 'Installation › 3. Open the site' }
     author: llm-draft
 
   - id: deploy.install.admin-role
@@ -70,7 +70,7 @@ questions:
         Editors sign in with `ROLE_ADMIN`. `silverback:api-components:user:create --admin` gives a new account
         that role; without it you can't open the admin panel.
     sources:
-      - { kind: docs, page: /getting-started/installation, anchor: _2-let-binup-start-the-site, sectionHash: 'sha256:3eba2ff39071bf66', title: 'Installation › 2. Let bin/up start the site' }
+      - { kind: docs, page: /getting-started/installation, anchor: _2-let-binup-start-the-site, sectionHash: 'sha256:4a2d114c48e6dfad', title: 'Installation › 2. Let bin/up start the site' }
       - { kind: docs, page: /getting-started/key-ideas, anchor: editing, sectionHash: 'sha256:56ff4c5739a87e28', title: 'Key Ideas › Editing' }
     author: llm-draft
 
@@ -93,7 +93,7 @@ questions:
       explanation: >-
         The admin panel is at `/_cwa` on the site's own host. The API is at `/_api`, and you sign in at `/login`.
     sources:
-      - { kind: docs, page: /getting-started/installation, anchor: _3-open-the-site, sectionHash: 'sha256:31450e46c7106927', title: 'Installation › 3. Open the site' }
+      - { kind: docs, page: /getting-started/installation, anchor: _3-open-the-site, sectionHash: 'sha256:314bccb460879a79', title: 'Installation › 3. Open the site' }
     author: llm-draft
 
   - id: deploy.install.empty-home
@@ -116,7 +116,7 @@ questions:
         It's expected. The database starts empty, so nothing answers at `/` until you build a page with that
         route. Sign in and start with your first layout.
     sources:
-      - { kind: docs, page: /getting-started/installation, anchor: _2-let-binup-start-the-site, sectionHash: 'sha256:3eba2ff39071bf66', title: 'Installation › 2. Let bin/up start the site' }
+      - { kind: docs, page: /getting-started/installation, anchor: _2-let-binup-start-the-site, sectionHash: 'sha256:4a2d114c48e6dfad', title: 'Installation › 2. Let bin/up start the site' }
     author: llm-draft
 
   - id: deploy.install.console-commands

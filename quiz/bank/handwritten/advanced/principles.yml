@@ -89,7 +89,7 @@ questions:
         c: This drops the pages only, and leaves cached API responses alone.
     sources:
       - { kind: docs, page: /api/http-caching, anchor: flushing-the-whole-http-cache, sectionHash: 'sha256:d6247223c88916af', title: 'HTTP Caching › Flushing the Whole HTTP Cache' }
-      - { kind: docs, page: /nuxt-module/page-caching, anchor: purging-all-cached-data, sectionHash: 'sha256:e2845b04299edb08', title: 'Page Caching › Purging All Cached Data' }
+      - { kind: docs, page: /nuxt-module/page-caching, anchor: purging-all-cached-data, sectionHash: 'sha256:53e0217cba5bda9d', title: 'Page Caching › Purging All Cached Data' }
     author: llm-draft
 
   - id: api.cache.route-go-live-all-pages
