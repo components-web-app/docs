@@ -250,6 +250,7 @@ watch(() => messages.value.length, () => nextTick(() => {
             <NuxtLink
               to="/privacy#the-docs-chat-assistant"
               class="underline"
+              @click="open = false"
             >Privacy › The docs chat assistant</NuxtLink>.
             <span v-if="!atLimit"> Up to {{ CHAT_QUESTIONS_PER_CONVERSATION }} questions per conversation.</span>
           </p>
