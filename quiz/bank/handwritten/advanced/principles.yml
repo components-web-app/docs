@@ -89,7 +89,7 @@ questions:
         c: This drops the pages only, and leaves cached API responses alone.
     sources:
       - { kind: docs, page: /api/http-caching, anchor: flushing-the-whole-http-cache, sectionHash: 'sha256:d6247223c88916af', title: 'HTTP Caching › Flushing the Whole HTTP Cache' }
-      - { kind: docs, page: /nuxt-module/page-caching, anchor: purging-all-cached-data, sectionHash: 'sha256:e2845b04299edb08', title: 'Page Caching › Purging All Cached Data' }
+      - { kind: docs, page: /nuxt-module/page-caching, anchor: purging-all-cached-data, sectionHash: 'sha256:53e0217cba5bda9d', title: 'Page Caching › Purging All Cached Data' }
     author: llm-draft
 
   - id: api.cache.route-go-live-all-pages
@@ -335,7 +335,7 @@ questions:
         `NetworkFirst` reads the cache only when the network fails, that is, offline. So no connected visitor
         is served a stale or wrongly scoped response from the service worker.
     sources:
-      - { kind: docs, page: /nuxt-module/pwa, anchor: tier-2-cwa-api-runtime-cache, sectionHash: 'sha256:9eff887af41250a1', title: 'Progressive Web App & Offline › Tier 2 — CWA API Runtime Cache' }
+      - { kind: docs, page: /nuxt-module/pwa, anchor: tier-2-cwa-api-runtime-cache, sectionHash: 'sha256:ec0773b8e3f9e726', title: 'Progressive Web App & Offline › Tier 2 — CWA API Runtime Cache' }
     author: llm-draft
 
   - id: nuxt.pwa.url-pattern
@@ -361,7 +361,7 @@ questions:
         page data and components. A broad match would intercept the Mercure server-sent events connection and
         stop real-time updates.
     sources:
-      - { kind: docs, page: /nuxt-module/pwa, anchor: tier-2-cwa-api-runtime-cache, sectionHash: 'sha256:9eff887af41250a1', title: 'Progressive Web App & Offline › Tier 2 — CWA API Runtime Cache' }
+      - { kind: docs, page: /nuxt-module/pwa, anchor: tier-2-cwa-api-runtime-cache, sectionHash: 'sha256:ec0773b8e3f9e726', title: 'Progressive Web App & Offline › Tier 2 — CWA API Runtime Cache' }
     author: llm-draft
 
   - id: nuxt.pwa.reconnect
@@ -390,7 +390,7 @@ questions:
       optionNotes:
         d: The module never swaps the content in by itself; the page keeps the old content until the visitor updates.
     sources:
-      - { kind: docs, page: /nuxt-module/pwa, anchor: offline-and-real-time-updates, sectionHash: 'sha256:457e0a4756e3d0d4', title: 'Progressive Web App & Offline › Offline and Real-Time Updates' }
+      - { kind: docs, page: /nuxt-module/pwa, anchor: offline-and-real-time-updates, sectionHash: 'sha256:79216cfcb2b012e7', title: 'Progressive Web App & Offline › Offline and Real-Time Updates' }
     author: llm-draft
 
   # ---------------------------------------------------------------- Deployment

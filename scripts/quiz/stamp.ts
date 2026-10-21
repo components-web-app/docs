@@ -85,8 +85,15 @@ function set(node: YAMLMap, key: string, value: string | [number, number]): bool
   }
   if (node.get(key) === value) return false
   const quote = /^['"]/.test(source[target.range[0]]) ? source[target.range[0]] : ''
-  edits.push({ start: target.range[0], end: target.range[1], text: `${quote}${value}${quote}` })
+  edits.push({ start: target.range[0], end: target.range[1], text: quoted(value, quote) })
   return true
+}
+
+/** The value in the quoting it had, escaped for it; a plain value that YAML would misread gets single quotes. */
+function quoted(value: string, quote: string): string {
+  if (quote === '"') return `"${value.replace(/\\/g, '\\\\').replace(/"/g, '\\"')}"`
+  if (quote === '\'' || /^[\s'"&*!|>%@`#,[\]{}?:-]|: | #|\s$/.test(value)) return `'${value.replace(/'/g, "''")}'`
+  return value
 }
 
 /** Sets `title`, adding it after `sectionHash` in the source's own style when it's missing. */
@@ -94,13 +101,13 @@ function setTitle(node: YAMLMap, title: string): boolean {
   if (node.has('title')) return set(node, 'title', title)
   const after = node.get('sectionHash', true) as { range?: [number, number, number] } | undefined
   if (!after?.range) return false
-  const quoted = `'${title.replace(/'/g, "''")}'`
+  const quotedTitle = quoted(title, '\'')
   if (node.flow) {
-    edits.push({ start: after.range[1], end: after.range[1], text: `, title: ${quoted}` })
+    edits.push({ start: after.range[1], end: after.range[1], text: `, title: ${quotedTitle}` })
   } else {
     const lineStart = source.lastIndexOf('\n', after.range[0]) + 1
     const indent = /^\s*/.exec(source.slice(lineStart))![0]
-    edits.push({ start: after.range[1], end: after.range[1], text: `\n${indent}title: ${quoted}` })
+    edits.push({ start: after.range[1], end: after.range[1], text: `\n${indent}title: ${quotedTitle}` })
   }
   return true
 }

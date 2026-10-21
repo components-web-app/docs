@@ -29,7 +29,7 @@ questions:
         A clone isn't a copy. It places the same component, with the same IRI, in another component position, so
         an edit or a publish in either place changes it everywhere.
     sources:
-      - { kind: docs, page: /core-concepts/admin-panel, anchor: cloning-a-component, sectionHash: 'sha256:3156ec7c015a58c0', title: 'The Admin Panel › Cloning a Component' }
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: cloning-a-component, sectionHash: 'sha256:26c77e6eb163a7d5', title: 'The Admin Panel › Cloning a Component' }
     author: llm-draft
 
   - id: nuxt.admin.clone-draft
@@ -58,7 +58,7 @@ questions:
         When the selected component is the draft of a published component, the clone places the published
         component, which the draft belongs to.
     sources:
-      - { kind: docs, page: /core-concepts/admin-panel, anchor: cloning-a-component, sectionHash: 'sha256:3156ec7c015a58c0', title: 'The Admin Panel › Cloning a Component' }
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: cloning-a-component, sectionHash: 'sha256:26c77e6eb163a7d5', title: 'The Admin Panel › Cloning a Component' }
     author: llm-draft
 
   - id: nuxt.admin.delete-shared-component
@@ -86,7 +86,7 @@ questions:
         Removing it from one location keeps the component and deletes the component position it was selected in.
         For a dynamic component position, it clears the page data's property instead.
     sources:
-      - { kind: docs, page: /core-concepts/admin-panel, anchor: deleting-a-component, sectionHash: 'sha256:34cf8e997729d977', title: 'The Admin Panel › Deleting a component' }
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: deleting-a-component, sectionHash: 'sha256:50346d8e4460c38a', title: 'The Admin Panel › Deleting a component' }
     author: llm-draft
 
   - id: nuxt.config.route-cache-cost
@@ -146,7 +146,7 @@ questions:
         The purge sends the page's route paths and every IRI in its manifest as tags. Other pages that share its
         layout or components carry the same tags, so they're dropped too.
     sources:
-      - { kind: docs, page: /nuxt-module/page-caching, anchor: from-the-pages-settings, sectionHash: 'sha256:e2cf86201a908daf', title: 'Page Caching › From the page''s settings' }
+      - { kind: docs, page: /nuxt-module/page-caching, anchor: from-the-pages-settings, sectionHash: 'sha256:64ab145ff124ebf4', title: 'Page Caching › From the page''s settings' }
     author: llm-draft
 
   - id: nuxt.page-cache.missing-component

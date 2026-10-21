@@ -40,8 +40,8 @@ questions:
       - kind: code
         repo: cwa-nuxt-module
         path: src/runtime/storage/stores/resources/actions.ts
-        lines: [646, 656]
-        commit: 80e46f8db184979abf8485e634a7e2c1bb9e8539
+        lines: [640, 650]
+        commit: 75deefa75988fb6ee7c3e02397cfa3cf51cde700
         linesHash: sha256:23f72f170cfb7b8c
 
   - id: nuxt.internals.redirect-base-url
@@ -79,7 +79,7 @@ questions:
         treats it as an app route and adds `baseURL` again. With it, the path is sent as it is, with the
         308 at once.
     sources:
-      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/route-middleware.ts, lines: [69, 77], commit: 80e46f8db184979abf8485e634a7e2c1bb9e8539, linesHash: 'sha256:180e28509b404eee' }
+      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/route-middleware.ts, lines: [69, 77], commit: 75deefa75988fb6ee7c3e02397cfa3cf51cde700, linesHash: 'sha256:180e28509b404eee' }
     author: llm-draft
 
   - id: nuxt.internals.disabled-page-fetch
@@ -107,7 +107,7 @@ questions:
       explanation: >-
         The middleware calls `clearPrimaryFetch()` and returns.
     sources:
-      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/route-middleware.ts, lines: [26, 51], commit: 80e46f8db184979abf8485e634a7e2c1bb9e8539, linesHash: 'sha256:995e77df2ebeeea1' }
+      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/route-middleware.ts, lines: [26, 51], commit: 75deefa75988fb6ee7c3e02397cfa3cf51cde700, linesHash: 'sha256:995e77df2ebeeea1' }
     author: llm-draft
 
   - id: nuxt.internals.hydration-middleware
@@ -138,7 +138,7 @@ questions:
         a: Changes after the render arrive over Mercure. The middleware doesn't fetch again on hydration.
         d: It checks that `from` and `to` are the same path, and nothing in the payload.
     sources:
-      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/route-middleware.ts, lines: [95, 105], commit: 80e46f8db184979abf8485e634a7e2c1bb9e8539, linesHash: 'sha256:d3eaab0bdf60df73' }
+      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/route-middleware.ts, lines: [95, 105], commit: 75deefa75988fb6ee7c3e02397cfa3cf51cde700, linesHash: 'sha256:d3eaab0bdf60df73' }
     author: llm-draft
 
   - id: nuxt.internals.stale-redirect
@@ -167,8 +167,8 @@ questions:
         Each run of the middleware takes a new token. When the first route arrives, its token is no
         longer the current one, so its redirect is dropped.
     sources:
-      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/route-middleware.ts, lines: [107, 118], commit: 80e46f8db184979abf8485e634a7e2c1bb9e8539, linesHash: 'sha256:4274538ab20a44e5' }
-      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/route-middleware.ts, lines: [26, 28], commit: 80e46f8db184979abf8485e634a7e2c1bb9e8539, linesHash: 'sha256:31b0ff80c9ca159b' }
+      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/route-middleware.ts, lines: [107, 118], commit: 75deefa75988fb6ee7c3e02397cfa3cf51cde700, linesHash: 'sha256:4274538ab20a44e5' }
+      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/route-middleware.ts, lines: [26, 28], commit: 75deefa75988fb6ee7c3e02397cfa3cf51cde700, linesHash: 'sha256:31b0ff80c9ca159b' }
     author: llm-draft
 
   - id: nuxt.internals.response-cache-directives
@@ -209,8 +209,8 @@ questions:
         Reading `max-age` first gives every page a lifetime of 0, and a page with no lifetime gets no
         cache headers.
     sources:
-      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/api/http-cache.ts, lines: [86, 95], commit: 80e46f8db184979abf8485e634a7e2c1bb9e8539, linesHash: 'sha256:2cedcd5fcd2332e5' }
-      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/api/http-cache.ts, lines: [114, 117], commit: 80e46f8db184979abf8485e634a7e2c1bb9e8539, linesHash: 'sha256:5d32c9cb5d7dea8d' }
+      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/api/http-cache.ts, lines: [86, 95], commit: 75deefa75988fb6ee7c3e02397cfa3cf51cde700, linesHash: 'sha256:2cedcd5fcd2332e5' }
+      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/api/http-cache.ts, lines: [114, 117], commit: 75deefa75988fb6ee7c3e02397cfa3cf51cde700, linesHash: 'sha256:5d32c9cb5d7dea8d' }
     author: llm-draft
 
   - id: nuxt.internals.expires-lifetime
@@ -241,7 +241,7 @@ questions:
         The module takes `s-maxage` (or `max-age`) and the time from `Date` to `Expires`, and keeps the
         lower. The page then gets the lowest lifetime of all the responses it used.
     sources:
-      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/api/http-cache.ts, lines: [72, 95], commit: 80e46f8db184979abf8485e634a7e2c1bb9e8539, linesHash: 'sha256:5a340a4b3c53446b' }
+      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/api/http-cache.ts, lines: [72, 95], commit: 75deefa75988fb6ee7c3e02397cfa3cf51cde700, linesHash: 'sha256:5a340a4b3c53446b' }
     author: llm-draft
 
   - id: nuxt.internals.no-cwa-resources
@@ -270,7 +270,7 @@ questions:
         `buildPageCacheHeaders()` keeps only CWA resource IRIs, the ones it can tag the page with for
         purging. With none left it sets no `Cache-Control` and no `Surrogate-Key`.
     sources:
-      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/api/http-cache.ts, lines: [104, 128], commit: 80e46f8db184979abf8485e634a7e2c1bb9e8539, linesHash: 'sha256:ab0b3bfe7de5aa0b' }
+      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/api/http-cache.ts, lines: [104, 128], commit: 75deefa75988fb6ee7c3e02397cfa3cf51cde700, linesHash: 'sha256:ab0b3bfe7de5aa0b' }
     author: llm-draft
 
   - id: nuxt.internals.site-config-on-server
@@ -299,7 +299,7 @@ questions:
         On the server it starts `siteConfig.loadConfig()` without awaiting it, and a failure is only
         logged. Then it awaits the route.
     sources:
-      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/route-middleware.ts, lines: [86, 93], commit: 80e46f8db184979abf8485e634a7e2c1bb9e8539, linesHash: 'sha256:7eb0e48ffdf5d468' }
+      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/route-middleware.ts, lines: [86, 93], commit: 75deefa75988fb6ee7c3e02397cfa3cf51cde700, linesHash: 'sha256:7eb0e48ffdf5d468' }
     author: llm-draft
 
   - id: nuxt.internals.navigate-while-adding
@@ -328,8 +328,8 @@ questions:
         The route middleware asks the resources manager to confirm. A "Discard new resource?" dialog
         opens: cancel stops the navigation, and confirm drops the unsaved component and carries on.
     sources:
-      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/route-middleware.ts, lines: [35, 38], commit: 80e46f8db184979abf8485e634a7e2c1bb9e8539, linesHash: 'sha256:41d40238906ac0f0' }
-      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/resources/resources-manager.ts, lines: [484, 502], commit: 80e46f8db184979abf8485e634a7e2c1bb9e8539, linesHash: 'sha256:bfcd9d1e40da8528' }
+      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/route-middleware.ts, lines: [35, 38], commit: 75deefa75988fb6ee7c3e02397cfa3cf51cde700, linesHash: 'sha256:41d40238906ac0f0' }
+      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/resources/resources-manager.ts, lines: [476, 485], commit: 75deefa75988fb6ee7c3e02397cfa3cf51cde700, linesHash: 'sha256:0c7c8d823040a6a1' }
     author: llm-draft
 
   - id: nuxt.internals.page-cache-fallback
@@ -358,7 +358,7 @@ questions:
         `buildPageCacheHeaders()` takes the lower of `sharedMaxAge` and the responses' lifetime, and
         falls back to 3600 seconds only when neither gives one.
     sources:
-      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/api/http-cache.ts, lines: [114, 119], commit: 80e46f8db184979abf8485e634a7e2c1bb9e8539, linesHash: 'sha256:3f396d0339e12fdc' }
+      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/api/http-cache.ts, lines: [114, 119], commit: 75deefa75988fb6ee7c3e02397cfa3cf51cde700, linesHash: 'sha256:3f396d0339e12fdc' }
       - { kind: docs, page: /nuxt-module/page-caching, anchor: how-long-a-page-is-kept, sectionHash: 'sha256:118538e80ad6a936', title: 'Page Caching › How Long a Page Is Kept' }
     author: llm-draft
 
@@ -393,6 +393,6 @@ questions:
         `sharedMaxAge` has no default, so a page lasts as long as the lowest lifetime its API responses
         gave.
     sources:
-      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/api/http-cache.ts, lines: [130, 136], commit: 80e46f8db184979abf8485e634a7e2c1bb9e8539, linesHash: 'sha256:1d07438b19c5235e' }
+      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/api/http-cache.ts, lines: [130, 136], commit: 75deefa75988fb6ee7c3e02397cfa3cf51cde700, linesHash: 'sha256:1d07438b19c5235e' }
       - { kind: docs, page: /nuxt-module/page-caching, anchor: how-long-a-page-is-kept, sectionHash: 'sha256:118538e80ad6a936', title: 'Page Caching › How Long a Page Is Kept' }
     author: llm-draft

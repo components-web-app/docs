@@ -124,6 +124,14 @@ export default defineNuxtConfig({
       // docsChannel: NUXT_PUBLIC_DOCS_CHANNEL would override it at run time, and "2.0" would
       // be read as the number 2.
       docsVersion: docsChannelId,
+      // The docs chat assistant (docs #1). Decided at build time, so a deploy without an
+      // Anthropic key ships no chat button. The key itself is only read by /api/chat.
+      // Cloudflare Turnstile's site key for the chat's bot check; the secret is only read by /api/chat
+      turnstileSiteKey: '',
+      chat: {
+        enabled: Boolean(process.env.NUXT_ANTHROPIC_API_KEY || process.env.ANTHROPIC_API_KEY)
+          || ['1', 'true'].includes(process.env.NUXT_CHAT_MOCK ?? '')
+      },
       scripts: {
         cloudflareWebAnalytics: {
           // .env
@@ -166,6 +174,8 @@ export default defineNuxtConfig({
         '/api/releases.json',
         // The version switcher reads it from the other versions' deployments
         '/api/docs-version.json',
+        // The chat assistant's retrieval corpus, fetched by the /api/chat edge function
+        '/api/chat-index.json',
         // Server-highlighted snippets for the marketing pages (useHighlightedCode)
         '/api/highlighted-code/index.json',
         '/api/highlighted-code/about.json',

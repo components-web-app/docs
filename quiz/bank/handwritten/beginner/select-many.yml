@@ -167,7 +167,7 @@ questions:
         d: Vue files are code in your app. The admin's **Page UI** select only picks which page template a page uses.
     sources:
       - { kind: docs, page: /nuxt-module/cwa-layer/admin-panel, anchor: admin-routes, sectionHash: 'sha256:911e7cd88477b62c', title: 'Admin Panel Reference › Admin Routes' }
-      - { kind: docs, page: /core-concepts/admin-panel, anchor: the-admin-bar, sectionHash: 'sha256:793a65a946bb4316', title: 'The Admin Panel › The Admin Bar' }
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: the-admin-bar, sectionHash: 'sha256:d937fb89ee30c14d', title: 'The Admin Panel › The Admin Bar' }
     author: llm-draft
 
   - id: core.admin.edit-mode-effects
@@ -194,7 +194,7 @@ questions:
         a: Edits go to a publishable component's draft. Visitors see the published version until an editor clicks **Publish**.
         c: An admin tab's fields send a debounced `PATCH` as the editor types. There's no save button, and **Done** only leaves edit mode.
     sources:
-      - { kind: docs, page: /core-concepts/admin-panel, anchor: edit-mode, sectionHash: 'sha256:42ae9453304cad0f', title: 'The Admin Panel › Edit Mode' }
-      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:cd76322d674416ff', title: 'Draft & Publish Workflow › How It Works' }
-      - { kind: docs, page: /core-concepts/components, anchor: the-admin-tab, sectionHash: 'sha256:4b979741549a18fa', title: 'Components › The Admin Tab' }
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: edit-mode, sectionHash: 'sha256:059f18d921a3de8a', title: 'The Admin Panel › Edit Mode' }
+      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:6c755a839217faca', title: 'Draft & Publish Workflow › How It Works' }
+      - { kind: docs, page: /core-concepts/components, anchor: the-admin-tab, sectionHash: 'sha256:572de33af303a129', title: 'Components › The Admin Tab' }
     author: llm-draft

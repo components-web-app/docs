@@ -16,6 +16,8 @@ const { data: files } = useLazyFetch('/api/search.json', {
 })
 
 const { isVip } = useVip()
+// The docs chat assistant only ships when the build had an Anthropic key (nuxt.config.ts)
+const chatEnabled = useRuntimeConfig().public.chat?.enabled
 useHead({
   meta: [
     { name: 'viewport', content: 'width=device-width, initial-scale=1' }
@@ -114,6 +116,10 @@ provide('navigation', navigation)
       <LazyUContentSearch
         :files="files"
         :navigation="navigation"
+      />
+      <LazyDocsChat
+        v-if="chatEnabled"
+        :is-vip="isVip"
       />
     </ClientOnly>
 

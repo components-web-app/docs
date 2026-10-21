@@ -56,7 +56,7 @@ questions:
         The content structure is managed through the API, and the front end renders whatever structure the
         API describes. The module fetches the page's components and renders each one with its Vue file.
     sources:
-      - { kind: docs, page: /core-concepts/architecture, anchor: the-request-lifecycle, sectionHash: 'sha256:b8b584459c4889d1', title: 'How It All Works › The Request Lifecycle' }
+      - { kind: docs, page: /core-concepts/architecture, anchor: the-request-lifecycle, sectionHash: 'sha256:733ab70568b630bf', title: 'How It All Works › The Request Lifecycle' }
     author: llm-draft
 
   - id: core.architecture.three-layers
@@ -128,7 +128,7 @@ questions:
         The page names its layout (such as `CwaLayoutPrimary`) and its page template (such as
         `CwaPagePrimaryPageTemplate`). The layout renders first, and the page template renders inside it.
     sources:
-      - { kind: docs, page: /core-concepts/architecture, anchor: the-request-lifecycle, sectionHash: 'sha256:b8b584459c4889d1', title: 'How It All Works › The Request Lifecycle' }
+      - { kind: docs, page: /core-concepts/architecture, anchor: the-request-lifecycle, sectionHash: 'sha256:733ab70568b630bf', title: 'How It All Works › The Request Lifecycle' }
     author: llm-draft
 
   - id: core.request.concurrent-fetch
@@ -151,7 +151,7 @@ questions:
         Everything is fetched at the same time, helped by a manifest from the API that lists everything the
         page needs. The module's Pinia store updates reactively as the data arrives.
     sources:
-      - { kind: docs, page: /core-concepts/architecture, anchor: the-request-lifecycle, sectionHash: 'sha256:b8b584459c4889d1', title: 'How It All Works › The Request Lifecycle' }
+      - { kind: docs, page: /core-concepts/architecture, anchor: the-request-lifecycle, sectionHash: 'sha256:733ab70568b630bf', title: 'How It All Works › The Request Lifecycle' }
     author: llm-draft
 
   - id: core.data-model.chain-order
@@ -332,7 +332,7 @@ questions:
         A site can have several layouts, each a Vue file in `app/app/cwa/layouts/`. Each page uses one, and
         editors choose it in the admin.
     sources:
-      - { kind: docs, page: /core-concepts/layouts-and-pages, anchor: multiple-layouts, sectionHash: 'sha256:d2fbdbf846b8e68c', title: 'Layouts & Pages › Multiple Layouts' }
+      - { kind: docs, page: /core-concepts/layouts-and-pages, anchor: multiple-layouts, sectionHash: 'sha256:99897e1f7424c1e0', title: 'Layouts & Pages › Multiple Layouts' }
     author: llm-draft
 
   - id: core.pages.static-page
@@ -511,7 +511,7 @@ questions:
         The API decides from the auth cookie and the user's role, not from edit mode, so an editor sees drafts
         on every page view. Adding `?published=true` to a request forces the published version.
     sources:
-      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:cd76322d674416ff', title: 'Draft & Publish Workflow › How It Works' }
+      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:6c755a839217faca', title: 'Draft & Publish Workflow › How It Works' }
     author: llm-draft
 
   - id: core.draft.new-component
@@ -588,8 +588,8 @@ questions:
       optionNotes:
         b: A route's go-live date holds back the whole page, not one component's change.
     sources:
-      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:cd76322d674416ff', title: 'Draft & Publish Workflow › How It Works' }
-      - { kind: docs, page: /core-concepts/admin-panel, anchor: scheduling-a-publish, sectionHash: 'sha256:bfd1b90b562d3d8c', title: 'The Admin Panel › Scheduling a Publish' }
+      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:6c755a839217faca', title: 'Draft & Publish Workflow › How It Works' }
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: scheduling-a-publish, sectionHash: 'sha256:e2edd84d484b44d5', title: 'The Admin Panel › Scheduling a Publish' }
     author: llm-draft
 
   - id: core.draft.publish-promotes
@@ -612,7 +612,7 @@ questions:
         Publishing promotes the draft to the published version, which the live site shows. Mercure then tells
         open browsers about the change.
     sources:
-      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:cd76322d674416ff', title: 'Draft & Publish Workflow › How It Works' }
+      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:6c755a839217faca', title: 'Draft & Publish Workflow › How It Works' }
     author: llm-draft
 
   - id: core.admin.manager-panel
@@ -635,7 +635,7 @@ questions:
         Clicking a component selects it and opens the manager panel. Its tabs are the component type's admin
         tabs, so content is edited on the page itself.
     sources:
-      - { kind: docs, page: /core-concepts/admin-panel, anchor: edit-mode, sectionHash: 'sha256:42ae9453304cad0f', title: 'The Admin Panel › Edit Mode' }
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: edit-mode, sectionHash: 'sha256:059f18d921a3de8a', title: 'The Admin Panel › Edit Mode' }
       - { kind: docs, page: /getting-started/key-ideas, anchor: editing, sectionHash: 'sha256:56ff4c5739a87e28', title: 'Key Ideas › Editing' }
     author: llm-draft
 
@@ -842,5 +842,5 @@ questions:
         other two keep their published versions until an editor publishes their drafts.
     sources:
       - { kind: docs, page: /core-concepts/draft-and-publish, anchor: adding-removing-and-reordering-are-immediate, sectionHash: 'sha256:177d97708ef53e97', title: 'Draft & Publish Workflow › Adding, Removing and Reordering Are Immediate' }
-      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:cd76322d674416ff', title: 'Draft & Publish Workflow › How It Works' }
+      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:6c755a839217faca', title: 'Draft & Publish Workflow › How It Works' }
     author: llm-draft

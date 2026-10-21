@@ -144,5 +144,5 @@ questions:
         A publishable component has a draft that editors change and a published version that visitors see.
         Publishing copies the draft over the live version. Real-time updates come from `mercure: true`.
     sources:
-      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:cd76322d674416ff', title: 'Draft & Publish Workflow › How It Works' }
+      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:6c755a839217faca', title: 'Draft & Publish Workflow › How It Works' }
     author: llm-draft

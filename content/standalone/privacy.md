@@ -23,6 +23,24 @@ Some visitors see a sign-up form for updates about CWA. If you submit it, your e
 
 Every email has an unsubscribe link. To have your address removed completely, email [hello@cwa.rocks](mailto:hello@cwa.rocks).
 
+### The docs chat assistant
+
+The **Ask AI** button opens an assistant that answers questions from these docs. It only sends anything when you ask a question. Then our server function on Vercel sends [Anthropic](https://www.anthropic.com/), whose Claude model writes the answer:
+
+- your question;
+- the earlier questions and answers in the same conversation, so it can follow on;
+- the passages of these docs that best match your question.
+
+It doesn't send your IP address, cookies or anything else about you to Anthropic.
+
+We store nothing. The conversation is kept only in your open browser tab, and it's gone when you reload or close the tab. To stop one address asking too many questions, the server function counts your IP address's questions in memory for up to a day, and doesn't write it anywhere. Hosting logs are covered under [Hosting](#hosting).
+
+To keep bots from using the assistant, each question first passes [Cloudflare Turnstile](https://www.cloudflare.com/products/turnstile/). When you ask a question, your browser loads Turnstile from Cloudflare, which looks at signals from your browser to decide whether you're a person; usually you see nothing, and sometimes it asks you to tick a box. Our server function then sends Cloudflare the result and your IP address to confirm it. Cloudflare handles this under its [Turnstile privacy addendum](https://www.cloudflare.com/turnstile-privacy-policy/).
+
+Anthropic handles what we send under its commercial terms. It doesn't use it to train its models, and it deletes it within 30 days, unless it has to keep it longer to enforce its Usage Policy or by law. See Anthropic's [Is my data used for model training?](https://privacy.claude.com/en/articles/7996868-is-my-data-used-for-model-training) and [How long do you store my organization's data?](https://privacy.claude.com/en/articles/7996866-how-long-do-you-store-my-organization-s-data).
+
+Please don't put personal or confidential details in your questions.
+
 ## Cookies and storage in your browser
 
 We don't use advertising or tracking cookies. The site stores these small values in your browser:

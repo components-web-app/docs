@@ -50,7 +50,7 @@ questions:
         The middleware requests `GET /_/routes//about-us` and, at the same time, the resource manifest, which
         lists everything the page displays. The route points to a page or to page data.
     sources:
-      - { kind: docs, page: /core-concepts/architecture, anchor: the-request-lifecycle, sectionHash: 'sha256:b8b584459c4889d1', title: 'How It All Works › The Request Lifecycle' }
+      - { kind: docs, page: /core-concepts/architecture, anchor: the-request-lifecycle, sectionHash: 'sha256:733ab70568b630bf', title: 'How It All Works › The Request Lifecycle' }
     author: llm-draft
 
   - id: core.data-model.route-target
@@ -146,7 +146,7 @@ questions:
         Anonymous visitors get the published version. Signed-in users with publish rights get the draft, on
         every page view, whether or not edit mode is on.
     sources:
-      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:cd76322d674416ff', title: 'Draft & Publish Workflow › How It Works' }
+      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:6c755a839217faca', title: 'Draft & Publish Workflow › How It Works' }
     author: llm-draft
 
   - id: core.draft.reorder-timing
@@ -198,7 +198,7 @@ questions:
         The navigation guard stops links while editing. Click **Done** first. The browser's back and forward
         buttons still work.
     sources:
-      - { kind: docs, page: /core-concepts/admin-panel, anchor: edit-mode, sectionHash: 'sha256:42ae9453304cad0f', title: 'The Admin Panel › Edit Mode' }
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: edit-mode, sectionHash: 'sha256:059f18d921a3de8a', title: 'The Admin Panel › Edit Mode' }
     author: llm-draft
 
   - id: core.components.two-sides
@@ -225,7 +225,7 @@ questions:
     author: llm-draft
 
   - id: core.components.admin-tab-saving
-    version: 3
+    version: 4
     status: live
     level: beginner
     area: core-concepts
@@ -243,12 +243,12 @@ questions:
     answer:
       correct: c
       explanation: >-
-        The field's `v-model` is bound to `useCwaResourceModel`'s `model`, and each change sends a debounced
-        PATCH to the API. There is no save button. For a publishable component, the PATCH changes the draft.
+        The input is bound to `useCwaResourceModel`, and each change sends a debounced PATCH to the
+        API. There is no save button. For a publishable component, the PATCH changes the draft.
       optionNotes:
         a: There is no Save button. Each change is sent on its own, shortly after typing stops.
     sources:
-      - { kind: docs, page: /core-concepts/components, anchor: the-admin-tab, sectionHash: 'sha256:4b979741549a18fa', title: 'Components › The Admin Tab' }
+      - { kind: docs, page: /core-concepts/components, anchor: the-admin-tab, sectionHash: 'sha256:572de33af303a129', title: 'Components › The Admin Tab' }
     author: llm-draft
 
   - id: core.identity.group-location
