@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useMediaQuery } from '@vueuse/core'
 import type { ComparisonValue } from '~/utils/comparison'
 import { COMPARISON_PRODUCTS, COMPARISON_ROWS } from '~/utils/comparison'
 
@@ -14,17 +15,27 @@ const props = withDefaults(defineProps<{
   compact: false
 })
 
-// The full table compares CWA with up to MAX_CHOSEN products the reader picks, so every column fits and stays readable.
-const MAX_CHOSEN = 3
+// The full table compares CWA with the products the reader picks, so every column fits and stays readable:
+// up to three on wider screens, one at a time on phones. The server renders the wider view.
+// Read only after mount, so hydration matches the server's render before it switches.
+const phoneQuery = useMediaQuery('(max-width: 639px)')
+const mounted = ref(false)
+onMounted(() => {
+  mounted.value = true
+})
+const isPhone = computed(() => mounted.value && phoneQuery.value)
+const maxChosen = computed(() => isPhone.value ? 1 : 3)
 const choices = COMPARISON_PRODUCTS.filter(product => product.id !== 'cwa')
-const chosen = ref<string[]>(['wordpress', 'storyblok', 'sanity'])
+const picks = ref<string[]>(['wordpress', 'storyblok', 'sanity'])
+// The most recent picks that fit; earlier ones come back when the screen is wider.
+const chosen = computed(() => picks.value.slice(-maxChosen.value))
 function toggle(id: string) {
   if (chosen.value.includes(id)) {
-    if (chosen.value.length > 1) chosen.value = chosen.value.filter(c => c !== id)
+    if (chosen.value.length > 1) picks.value = picks.value.filter(c => c !== id)
     return
   }
   // At the limit, the earliest pick makes way for the new one.
-  chosen.value = [...chosen.value.slice(chosen.value.length >= MAX_CHOSEN ? 1 : 0), id]
+  picks.value = [...chosen.value, id].slice(-maxChosen.value)
 }
 
 const products = computed(() => props.products
@@ -75,7 +86,7 @@ const legend = computed(() => {
       role="group"
       aria-label="Products to compare with CWA"
     >
-      <span class="mr-1 text-sm text-muted">Compare CWA with up to {{ MAX_CHOSEN }}:</span>
+      <span class="mr-1 text-sm text-muted">{{ maxChosen === 1 ? 'Compare CWA with:' : `Compare CWA with up to ${maxChosen}:` }}</span>
       <UButton
         v-for="product in choices"
         :key="product.id"
@@ -96,13 +107,14 @@ const legend = computed(() => {
       >
         <table
           class="w-full border-collapse text-sm"
-          :class="compact ? '' : 'table-fixed min-w-[44rem]'"
+          :class="compact ? '' : (maxChosen === 1 ? 'table-fixed' : 'table-fixed min-w-[44rem]')"
         >
           <thead>
             <tr class="border-b border-default">
               <th
                 scope="col"
                 class="sticky left-0 z-10 bg-default p-3 text-left font-semibold"
+                :class="compact ? '' : 'w-32 sm:w-56'"
               >
                 <span class="sr-only">Feature</span>
               </th>
@@ -126,7 +138,7 @@ const legend = computed(() => {
               <th
                 scope="row"
                 class="sticky left-0 z-10 bg-default p-3 text-left font-medium align-top"
-                :class="compact ? 'min-w-48' : 'w-56'"
+                :class="compact ? 'min-w-48' : ''"
               >
                 {{ row.label }}
               </th>
