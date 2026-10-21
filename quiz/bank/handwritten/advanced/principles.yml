@@ -335,7 +335,7 @@ questions:
         `NetworkFirst` reads the cache only when the network fails, that is, offline. So no connected visitor
         is served a stale or wrongly scoped response from the service worker.
     sources:
-      - { kind: docs, page: /nuxt-module/pwa, anchor: tier-2-cwa-api-runtime-cache, sectionHash: 'sha256:9eff887af41250a1', title: 'Progressive Web App & Offline › Tier 2 — CWA API Runtime Cache' }
+      - { kind: docs, page: /nuxt-module/pwa, anchor: tier-2-cwa-api-runtime-cache, sectionHash: 'sha256:ec0773b8e3f9e726', title: 'Progressive Web App & Offline › Tier 2 — CWA API Runtime Cache' }
     author: llm-draft
 
   - id: nuxt.pwa.url-pattern
@@ -361,7 +361,7 @@ questions:
         page data and components. A broad match would intercept the Mercure server-sent events connection and
         stop real-time updates.
     sources:
-      - { kind: docs, page: /nuxt-module/pwa, anchor: tier-2-cwa-api-runtime-cache, sectionHash: 'sha256:9eff887af41250a1', title: 'Progressive Web App & Offline › Tier 2 — CWA API Runtime Cache' }
+      - { kind: docs, page: /nuxt-module/pwa, anchor: tier-2-cwa-api-runtime-cache, sectionHash: 'sha256:ec0773b8e3f9e726', title: 'Progressive Web App & Offline › Tier 2 — CWA API Runtime Cache' }
     author: llm-draft
 
   - id: nuxt.pwa.reconnect

@@ -56,7 +56,7 @@ questions:
         The content structure is managed through the API, and the front end renders whatever structure the
         API describes. The module fetches the page's components and renders each one with its Vue file.
     sources:
-      - { kind: docs, page: /core-concepts/architecture, anchor: the-request-lifecycle, sectionHash: 'sha256:b8b584459c4889d1', title: 'How It All Works › The Request Lifecycle' }
+      - { kind: docs, page: /core-concepts/architecture, anchor: the-request-lifecycle, sectionHash: 'sha256:733ab70568b630bf', title: 'How It All Works › The Request Lifecycle' }
     author: llm-draft
 
   - id: core.architecture.three-layers
@@ -128,7 +128,7 @@ questions:
         The page names its layout (such as `CwaLayoutPrimary`) and its page template (such as
         `CwaPagePrimaryPageTemplate`). The layout renders first, and the page template renders inside it.
     sources:
-      - { kind: docs, page: /core-concepts/architecture, anchor: the-request-lifecycle, sectionHash: 'sha256:b8b584459c4889d1', title: 'How It All Works › The Request Lifecycle' }
+      - { kind: docs, page: /core-concepts/architecture, anchor: the-request-lifecycle, sectionHash: 'sha256:733ab70568b630bf', title: 'How It All Works › The Request Lifecycle' }
     author: llm-draft
 
   - id: core.request.concurrent-fetch
@@ -151,7 +151,7 @@ questions:
         Everything is fetched at the same time, helped by a manifest from the API that lists everything the
         page needs. The module's Pinia store updates reactively as the data arrives.
     sources:
-      - { kind: docs, page: /core-concepts/architecture, anchor: the-request-lifecycle, sectionHash: 'sha256:b8b584459c4889d1', title: 'How It All Works › The Request Lifecycle' }
+      - { kind: docs, page: /core-concepts/architecture, anchor: the-request-lifecycle, sectionHash: 'sha256:733ab70568b630bf', title: 'How It All Works › The Request Lifecycle' }
     author: llm-draft
 
   - id: core.data-model.chain-order
