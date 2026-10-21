@@ -1,5 +1,5 @@
 // How CWA compares with other ways to build an editable website, product by product.
-// One source for the full table on /why-cwa and the five-row summary on the home page.
+// One source for the full table on /built-for-business and the five-row summary on the home page.
 // Every cell came from the product's own docs, feature or pricing pages, read on COMPARISON_AS_OF.
 // Re-check prices and plan limits before changing a cell: they move often.
 

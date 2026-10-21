@@ -1,11 +1,18 @@
 title: 'About'
-description: 'Why the CWA exists: a predictable data structure for every website, an API in Symfony and API Platform, and a Nuxt front end with page building and editing on the page.'
+description: 'Why CWA (Components Web App) exists: a predictable data structure for every website, an API in Symfony and API Platform, and a Nuxt front end with page building and editing on the page.'
 navigation: false
 hero:
   title:
-    default: 'Welcome to <br><span class="text-primary-400 font-semibold">the CWA</span>'
-    vip: '<span class="text-vip">Your VIP introduction</span> <br><span class="text-primary-400 font-semibold">to the CWA</span>'
+    default: 'About <br><span class="text-primary-400 font-semibold">Components Web App</span>'
+    vip: '<span class="text-vip">Your VIP introduction</span> <br><span class="text-primary-400 font-semibold">to CWA</span>'
   align: center
+  links:
+    - label: How CWA compares
+      icon: i-heroicons-scale
+      to: '/built-for-business#how-cwa-compares'
+      size: xl
+      color: neutral
+      variant: subtle
 cta:
   title: 'The power of a <br><span class="text-primary-400 font-semibold">predictable data structure</span>'
   class: 'mb-8'
@@ -24,10 +31,10 @@ pageCards:
       description: 'Easily use abstract classes, traits, and PHP annotations for the API. The front-end module builds on top of a UI layer and has ready-to-use components and powerful composables to get you up and running quickly.'
       icon: 'i-heroicons-face-smile'
     - title: 'Convention over configuration'
-      description: 'Using a pre-defined directory and file structure allows the CWA Nuxt module to get you up and running fast. You can also add custom configuration to improve the user experience.'
+      description: 'Using a pre-defined directory and file structure allows the Nuxt module to get you up and running fast. You can also add custom configuration to improve the user experience.'
       icon: 'i-ph-folders'
     - title: 'Free & Open-Source'
-      description: 'The CWA is free, open-source and MIT licenced. Everyone can access, audit, contribute and explore the code and documentation.'
+      description: 'CWA is free, open source and MIT licensed. Everyone can access, audit, contribute and explore the code and documentation.'
       icon: 'i-simple-icons-opensourceinitiative'
 sections:
   - title: 'Love writing content<br><span class="text-primary">draft, refine, publish</span>'
@@ -87,13 +94,13 @@ sections:
     imageFirstMobile: true
     image:
       src: '/images/about/about-sync.svg'
-      alt: 'Stay In Sync with the CWA'
+      alt: 'Stay in sync with CWA'
     features:
       - name: 'Publish changes immediately'
         description: 'When you make a change, affected users get an immediate notification so they can stay up to date.'
         icon: i-ph-paper-plane-tilt
       - name: 'Collaborate on changes'
-        description: 'Multiple website admins can work together on changes without external tools.'
+        description: 'When another admin saves or publishes, the change reaches your open page straight away, with no external tools. Showing who else is editing is planned.'
         icon: i-ph-arrows-in-cardinal
       - name: 'Authenticated updates'
         description: 'With authentication built in by default, the browser will only receive updates for relevant resources. Website visitors will not be exposed to draft component updates.'
@@ -111,10 +118,10 @@ sections:
         description: 'Each API request returns a small amount of data and a single resource instead of complex and deeply nested data. '
         icon: i-ph-brackets-curly
       - name: 'UX: Speedy first impressions'
-        description: 'The page UI updates as soon as the primary resources are loaded from the API or local cache for the fastest FCP (First Contentful Paint) possible. The CWA only loads resources that are required for each page, and reuses resources from a local cache if they exist on multiple pages.'
+        description: 'The page UI updates as soon as the primary resources are loaded from the API or local cache for the fastest FCP (First Contentful Paint) possible. CWA only loads the resources each page needs, and reuses resources from a local cache if they exist on multiple pages.'
         icon: i-ph-devices
       - name: 'Caching and Preload Hints'
-        description: 'We leverage a smart static cache layer, which is only cleared when resources change. We also leverage Vulcain with preload hints to improve response times.'
+        description: 'Rendered pages and API responses are cached, and purged by cache tag only when the content in them changes. Vulcain preload hints speed up the requests that remain.'
         icon: i-ph-speedometer
   - title: 'Freedom to choose<br><span class="text-primary">your own (file) path</span>'
     description: 'We have built in easily configurable file uploads and a file storage abstraction layer with Flysystem.'
@@ -155,7 +162,7 @@ sections:
         description: 'We have built the tech stack into Docker containers and Docker Compose configurations so it is vendor agnostic and can be easily deployed.'
         icon: 'i-simple-icons-docker'
       - name: 'Kubernetes & Helm'
-        description: 'Deploy to your own Kubernetes cluster with the included Helm chart. The Nuxt front end autoscales out of the box, and the templates are easy to customise.'
+        description: 'Deploy to your own Kubernetes cluster with the included Helm chart. The Nuxt front end autoscales out of the box, and scaled mode lets the API autoscale too, with a shared cache and real-time hub.'
         icon: 'i-simple-icons-kubernetes'
       - name: 'Bash scripts for CI'
         description: 'The template has pipelines for GitLab and GitHub. Both call a bash script with functions for the common tasks, so it is easy to create your own for other CI providers.'
@@ -175,6 +182,8 @@ sections:
       - name: 'GitLab'
         icon: 'i-custom-gitlab'
         class: 'scale-150'
+      - name: 'GitHub'
+        icon: 'i-simple-icons-github'
       - name: 'Caddy'
         icon: 'i-custom-caddy'
       - name: 'FrankenPHP'
@@ -188,7 +197,7 @@ sections:
         class: text-primary
 faq:
   title: Technical FAQs
-  description: Some common technical questions we have about the CWA
+  description: Common technical questions about CWA
   items:
     - label: Why did you choose these frameworks?
       content: |
@@ -200,13 +209,11 @@ faq:
       defaultOpen: false
     - label: How is the data loaded?
       content: |
-        Each individual resource is loaded with a separate request. It results in a lot of HTTP requests, however each part has very small, and most importantly, cacheable, chunks of data.
+        Each resource is loaded with its own request. That means more HTTP requests, but each one is small and, most importantly, cacheable.
         <br><br>
-        We only need to load in the data that is required for each individual page which can result in incredibly fast load times.
+        Each page loads only the data it needs. The API caches every response and purges it by cache tag when the content changes, and the rendered pages are cached too, so most visits never reach PHP. See <a href="/core-concepts/caching">Caching</a>.
 #    - label: What does “Unlimited minor & patch updates” include?
 #      content: The CWA is free and open source forever. You will always be able to upgrade to the latest version without warranty or guarantees.
     - label: Do you offer technical support?
       content: |
-        Contact us at hello@cwa.rocks or raise issues in our GitHub repositories and we will be happy to help.
-        <br><br>
-        If you need more personal technical help, <a href="https://silverbackwebapps.com/">Silverback Web Apps</a> will be able to assist.
+        Ask questions and report bugs in the <a href="https://github.com/components-web-app">GitHub repositories</a>, or email hello@cwa.rocks. Report a security problem privately, as each repository's SECURITY.md describes.

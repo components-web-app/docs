@@ -38,6 +38,8 @@ function vercelRedirects(rules: RouteRulesMap) {
 
 const routeRules = withVersionPrefix({
   '/api/search.json': { prerender: true },
+  // Why CWA was folded into Built for Business
+  '/why-cwa': { redirect: { to: '/built-for-business#how-cwa-compares', statusCode: 301 } },
   // cwa-api was one page until it was split into per-service sub-pages
   '/nuxt-module/cwa-api': { redirect: { to: '/nuxt-module/cwa-api/overview', statusCode: 301 } },
   // The template replaced Behat with PHPUnit functional tests
@@ -170,9 +172,6 @@ export default defineNuxtConfig({
         // The quiz: two page shells, and its data, which no page links to
         '/quiz',
         '/quiz/play',
-        // Drafts for review, which nothing links to (content/drafts/)
-        '/draft/about',
-        '/draft/why-cwa',
         '/api/quiz/config.json',
         ...['beginner', 'intermediate', 'advanced', 'expert', 'whats-new'].flatMap(level => [
           `/api/quiz/questions/${level}.json`,

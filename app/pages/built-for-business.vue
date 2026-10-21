@@ -1,14 +1,9 @@
 <script setup lang="ts">
-// /draft/why-cwa renders the draft that merges this page into Why CWA (content/drafts/why-cwa.yml and why-cwa-body.md).
-const isDraft = useRoute().path.startsWith('/draft/')
+// The page's sections and FAQ are in content/built-for-business.yml; the part that helps a buyer decide
+// (what sets CWA apart, the comparison, when to choose it) is markdown in content/standalone/built-for-business.md.
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const { data: page } = await useAsyncData<any>(isDraft ? 'draft-why-cwa' : 'built-for-business', () => isDraft
-  ? queryCollection('drafts').path('/drafts/why-cwa').first()
-  : queryCollection('pages').path('/built-for-business').first())
-// Only the draft fetches the body: prerendered pages share useAsyncData results by key.
-const body = isDraft
-  ? (await useAsyncData('draft-why-cwa-body', () => queryCollection('drafts').path('/drafts/why-cwa-body').first())).data
-  : ref(null)
+const { data: page } = await useAsyncData<any>('built-for-business', () => queryCollection('pages').path('/built-for-business').first())
+const { data: body } = await useAsyncData('built-for-business-body', () => queryCollection('standalone').path('/built-for-business').first())
 
 useSeoMeta({
   title: page.value?.title,
@@ -24,24 +19,12 @@ defineOgImage('Docs.satori', {
 })
 
 definePageMeta({
-  scrollToTop: true,
-  alias: ['/draft/why-cwa']
+  scrollToTop: true
 })
-
-if (isDraft) {
-  useSeoMeta({ robots: 'noindex, nofollow' })
-}
 </script>
 
 <template>
   <div>
-    <DraftNotice
-      v-if="isDraft"
-      current="/built-for-business"
-      current-label="Built for Business"
-      also="/why-cwa"
-      also-label="Why CWA"
-    />
     <div class="bg-primary/5 dark:bg-feature/65">
       <UPageHero
         orientation="horizontal"
@@ -201,10 +184,15 @@ if (isDraft) {
         </UAccordion>
       </UPageSection>
     </div>
-    <UContainer
-      v-if="isDraft"
-      class="max-w-3xl pb-16"
-    >
+    <UPageCTA
+      v-if="page?.cta"
+      :title="page.cta.title"
+      :description="page.cta.description"
+      :links="page.cta.links"
+      variant="naked"
+      :ui="{ container: 'py-16 sm:py-20 lg:py-20' }"
+    />
+    <UContainer class="max-w-3xl pb-16">
       <ComparisonSources />
     </UContainer>
   </div>

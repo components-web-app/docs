@@ -1,5 +1,5 @@
 title: 'Built for Business'
-description: 'Who CWA is for, what it costs to run, and the project''s status.'
+description: 'Who CWA is for, how it compares with WordPress, Storyblok, Sanity, Payload, Webflow and others, when not to choose it, what it costs and the project''s status.'
 navigation: false
 hero:
   title: 'Built for <span class="text-primary-400 font-semibold">Business</span>'
@@ -8,12 +8,17 @@ hero:
   ui:
     base: 'order-last lg:order-first'
   links:
-    - label: Why CWA
+    - label: How CWA compares
       icon: i-heroicons-scale
-      to: '/why-cwa'
+      to: '#how-cwa-compares'
       size: xl
       color: neutral
       variant: subtle
+    - label: Open the playground
+      icon: i-ph-play-duotone
+      to: 'https://preview.cwa.rocks/login'
+      target: _blank
+      size: xl
 pageCards:
   items:
     - title: 'Free and MIT licensed'
@@ -118,6 +123,21 @@ timeline:
   - title: Built for <span class="text-primary-400 font-semibold">the future</span>
     description: |
       Websites evolve and grow, and we aim to make the process of keeping up to date with changes easy. As your business grows requirements will change, so you can easily create new components which can fit the needs of ever evolving business.
+cta:
+  title: Try it yourself
+  description: Edit a CWA site in the playground, or install CWA and build your first site.
+  links:
+    - label: Open the playground
+      icon: i-ph-play-duotone
+      to: 'https://preview.cwa.rocks/login'
+      target: _blank
+      size: xl
+    - label: Get started
+      icon: i-ph-rocket-launch-duotone
+      to: '/getting-started/installation'
+      size: xl
+      color: neutral
+      variant: subtle
 faq:
   title: Business FAQs
   description: Common questions about cost, skills, support and the project's status
@@ -143,19 +163,19 @@ faq:
         Release notes: <a href="https://github.com/components-web-app/api-components-bundle/blob/main/CHANGELOG.md">API bundle</a>, <a href="https://github.com/components-web-app/cwa-nuxt-module/blob/main/CHANGELOG.md">Nuxt module</a>, <a href="https://github.com/components-web-app/components-web-app/blob/main/CHANGELOG.md">template</a>.
     - label: What guarantees are given?
       content: |
-        The code is MIT licensed and provided as is, with no warranty. Until 2.0.0, plan for upgrade work between releases.
+        The code is MIT licensed and provided as is, with no warranty and no guaranteed response time. Until 2.0.0, plan for upgrade work between releases. Only the latest 2.0.0 prerelease gets security fixes.
         <br><br>
-        Report bugs and ask about the core project in the <a href="https://github.com/components-web-app">GitHub repositories</a>.
+        Report a security problem privately, as each repository's security policy describes: the <a href="https://github.com/components-web-app/components-web-app/blob/main/SECURITY.md">template</a>, the <a href="https://github.com/components-web-app/api-components-bundle/blob/main/SECURITY.md">API bundle</a> and the <a href="https://github.com/components-web-app/cwa-nuxt-module/blob/main/SECURITY.md">Nuxt module</a>. See <a href="/getting-started#licence-security-and-contributing">Introduction › Licence, security and contributing</a>.
     - label: What developers do I need?
       content: Most developers with some experience will be able to pick up the basic concepts from both the API and front-end quickly. Developers with experience with Symfony, API Platform or just PHP will gravitate more to the back-end. Those with experience and interest with VueJS and Nuxt will gravitate to the front-end.
-    - label: Can we commission you to make a website?
-      content: Yes. If you would like a website built using the CWA, contact <a href="https://silverbackwebapps.com/">Silverback Web Apps</a>, the creators and primary sponsors of the CWA.
+    - label: Who can build a CWA site for us?
+      content: Any developer or agency that knows Symfony and Nuxt; the docs and the template are public. <a href="https://silverbackwebapps.com/">Silverback Web Apps</a>, who created CWA and maintain it, also build CWA sites for clients.
     - label: Can CWA scale?
       content: |
-        The Nuxt front end scales out: the template's Helm chart autoscales it, up to 6 pods by default.
+        Yes, on Kubernetes. The template's Helm chart autoscales the Nuxt front end, up to 6 pods by default.
         <br><br>
-        The API runs as one pod by default. The template's page cache store and Mercure transport are kept inside that pod, so a second pod would not see the first pod's cache purges. Running more than one API pod needs a shared cache store and Mercure transport. See <a href="/deployment/kubernetes#autoscaling">Autoscaling</a>.
+        The API runs as one pod by default. Turn on scaled mode and it runs on two or more pods: the page cache moves to a shared Redis store and real-time updates go through one shared Mercure hub, so losing a pod isn't an outage. See <a href="/deployment/scaled-mode">Scaled Mode</a>.
         <br><br>
-        The template includes a k6 load-testing harness so you can measure your own site. See <a href="/deployment/load-testing">Load testing</a>.
-    - label: Do you provide support?
-      content: Yes. Bug fixes and development of the core project happen on <a href="https://github.com/components-web-app">GitHub</a>. For support with your own project or its components, contact <a href="https://silverbackwebapps.com/">Silverback Web Apps</a>.
+        The template includes a k6 load-testing harness so you can measure your own site. See <a href="/deployment/load-testing">Load Testing</a>.
+    - label: Where do we get help?
+      content: Ask questions and report bugs in the <a href="https://github.com/components-web-app">GitHub repositories</a>, where the core project is developed. For help with your own site, ask the developer or agency that built it.

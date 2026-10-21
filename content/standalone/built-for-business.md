@@ -1,11 +1,7 @@
 ---
-title: Why CWA
-description: What CWA does differently, how it compares with WordPress, Storyblok, Sanity, Payload, Webflow and others, when not to choose it, and the project's status.
+title: Built for Business
+description: What sets CWA apart, how it compares with other products and approaches, and when to choose it or not. Rendered in the middle of the Built for Business page.
 ---
-
-CWA (Components Web App) is an open-source, self-hosted website platform for Symfony and Nuxt. Your developers build the components. Your clients edit, draft, schedule and publish pages directly on the live site. The template ships the whole production stack.
-
-This page helps you decide whether it fits your project.
 
 ## What sets it apart
 
@@ -26,7 +22,7 @@ See [Deployment](/deployment) for the full list.
 
 ## How CWA compares
 
-Pick up to three of the eight products people often weigh CWA against, and the table shows them side by side with CWA. **Accurate as of October 2026:** products and prices change quickly, so check each one's current documentation and pricing before you decide.
+Pick up to three of the eight products teams often weigh CWA against, and the table shows them side by side with CWA. **Accurate as of October 2026:** products and prices change quickly, so check each one's current documentation and pricing before you decide.
 
 ::comparison-table
 ::
@@ -70,33 +66,8 @@ CWA's closest neighbours are Symfony content platforms. If your team already run
 CWA isn't the right choice for every project.
 
 - **You want a single JavaScript stack.** CWA's API is PHP (Symfony). If your team only writes JavaScript or TypeScript, a Node.js CMS fits better.
-- **You need a stable release now.** CWA 2 is a prerelease (2.0.0-alpha), heading for a beta. It runs production sites; configuration can still change between releases, always with upgrade notes. See [Project status](#project-status).
+- **You need a stable release now.** CWA 2 is a prerelease (2.0.0-alpha), heading for a beta. It runs production sites; configuration can still change between releases, always with upgrade notes. See [Releases › Versions and support](/getting-started/releases#versions-and-support).
 - **You have no PHP skills on the team.** Every component has a PHP entity as well as a Vue file.
 - **Your editors want free design control.** CWA deliberately limits editors to the components and styles your developers provide. If editors should design pages freely, a page builder fits better.
 - **You don't want to run servers.** CWA is self-hosted. In production it runs on Docker on your own server (a preview for now) or on Kubernetes, which is supported and the way to scale (see [Deploying a CWA Site](/deployment)). A hosted CMS removes that work.
 - **Your content lives in Git.** If your editors are happy committing Markdown and you don't need draft and publish states, a Git-based editor is simpler.
-
-## Project status
-
-CWA 2 is a prerelease (2.0.0-alpha), heading for a beta. It runs production sites; configuration can still change between releases, always with upgrade notes.
-
-- The API bundle (`components-web-app/api-components-bundle`), the Nuxt module (`@cwa/nuxt`) and the template are released as `2.0.0-alpha` versions.
-- The core model is in place: layouts, pages, component groups, components, routes, and draft and publish.
-- How versions, the beta and support work is on [Releases › Versions and support](/getting-started/releases#versions-and-support).
-
-::callout{icon="i-heroicons-exclamation-triangle" color="warning"}
-**Read the upgrade notes before you update.** Each release lists its manual steps on the [Releases](/getting-started/releases) page.
-::
-
-Release notes are in each repository's changelog: [API bundle](https://github.com/components-web-app/api-components-bundle/blob/main/CHANGELOG.md), [Nuxt module](https://github.com/components-web-app/cwa-nuxt-module/blob/main/CHANGELOG.md) and [template](https://github.com/components-web-app/components-web-app/blob/main/CHANGELOG.md).
-
-CWA is MIT-licensed (the template's [LICENSE](https://github.com/components-web-app/components-web-app/blob/main/LICENSE), the API bundle's [LICENSE](https://github.com/components-web-app/api-components-bundle/blob/main/LICENSE) and the Nuxt module's [LICENSE](https://github.com/components-web-app/cwa-nuxt-module/blob/main/LICENSE)). Report a security problem privately, as each repository's security policy describes (the template's [SECURITY.md](https://github.com/components-web-app/components-web-app/blob/main/SECURITY.md), the API bundle's [SECURITY.md](https://github.com/components-web-app/api-components-bundle/blob/main/SECURITY.md) and the Nuxt module's [SECURITY.md](https://github.com/components-web-app/cwa-nuxt-module/blob/main/SECURITY.md)), never in a public issue. Only the latest 2.0.0 prerelease gets security fixes. There's no warranty and no guaranteed response time. To contribute, start with [CONTRIBUTING.md](https://github.com/components-web-app/components-web-app/blob/main/CONTRIBUTING.md). See [Introduction › Licence, security and contributing](/getting-started#licence-security-and-contributing).
-
-## Next steps
-
-- [Open the playground](https://preview.cwa.rocks/login) to try editing a CWA site. Sign in with the username and password `admin`.
-- [Install CWA](/getting-started/installation) and build your first site.
-- Read [Key Ideas](/getting-started/key-ideas) for the terms the guides use.
-
-::comparison-sources
-::

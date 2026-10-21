@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { COMPARISON_AS_OF, COMPARISON_HOME_PRODUCTS, COMPARISON_HOME_ROWS, COMPARISON_PRODUCTS } from '~/utils/comparison'
 
-// The five comparison rows where CWA differs most; the full table is on /why-cwa.
+// The five comparison rows where CWA differs most; the full table is on /built-for-business.
 const comparedCount = COMPARISON_PRODUCTS.length - 1
 </script>
 
@@ -20,12 +20,12 @@ const comparedCount = COMPARISON_PRODUCTS.length - 1
     />
     <div class="flex flex-col items-center gap-3 text-center">
       <UButton
-        to="/why-cwa#how-cwa-compares"
+        to="/built-for-business#how-cwa-compares"
         size="xl"
         variant="subtle"
         trailing-icon="i-heroicons-arrow-right"
       >
-        Why CWA › How CWA compares, with {{ comparedCount }} products
+        Built for Business › How CWA compares, with {{ comparedCount }} products
       </UButton>
       <p class="text-sm text-muted">
         Accurate as of {{ COMPARISON_AS_OF }}.
