@@ -1,6 +1,6 @@
 ---
 title: Built for Business
-description: What sets CWA apart, a summary of how it compares, and when to choose it or not. Rendered in the middle of the Built for Business page.
+description: What sets CWA apart, a link to how it compares, and when to choose it or not. Rendered in the middle of the Built for Business page.
 ---
 
 ## What sets it apart
@@ -22,10 +22,7 @@ See [Deployment](/deployment) for the full list.
 
 ## How CWA compares
 
-Five ways CWA differs from the products teams usually weigh it against. The full table on [How CWA Compares](/compare) has every product, the reason behind each mark, and a comparison of the main approaches.
-
-::comparison-summary
-::
+Weighing CWA against a headless CMS, a page builder or WordPress? [How CWA Compares](/compare) puts CWA side by side with the products teams usually consider, with the reason behind each mark.
 
 ## When to choose CWA
 

@@ -83,7 +83,7 @@ const legend = computed(() => {
 </script>
 
 <template>
-  <div :class="compact ? 'w-full min-w-0 max-w-full' : 'not-prose my-8 relative left-1/2 w-[min(calc(100vw-2rem),80rem)] -translate-x-1/2'">
+  <div :class="compact ? 'w-full min-w-0 max-w-full' : 'not-prose my-8 w-full'">
     <p
       v-if="!compact"
       class="mb-3 flex items-center gap-1.5 text-sm text-muted"

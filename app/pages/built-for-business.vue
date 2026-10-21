@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // The page's sections and FAQ are in content/built-for-business.yml; the part that helps a buyer decide
-// (what sets CWA apart, the comparison, when to choose it) is markdown in content/standalone/built-for-business.md.
+// (what sets CWA apart, a link to the comparison, when to choose it) is markdown in content/standalone/built-for-business.md.
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const { data: page } = await useAsyncData<any>('built-for-business', () => queryCollection('pages').path('/built-for-business').first())
 const { data: body } = await useAsyncData('built-for-business-body', () => queryCollection('standalone').path('/built-for-business').first())

@@ -1,7 +1,9 @@
 <script setup lang="ts">
 // Renders a page from the `standalone` collection (content/standalone/), outside the docs layout.
+// `wide` gives the page a column wide enough for a full-width table, such as /compare's.
 const props = defineProps<{
   path: string
+  wide?: boolean
 }>()
 
 const { data: page } = await useAsyncData(`standalone-${props.path}`, () => queryCollection('standalone').path(props.path).first())
@@ -23,7 +25,7 @@ defineOgImage('Docs.satori', {
 </script>
 
 <template>
-  <UContainer class="max-w-3xl">
+  <UContainer :class="wide ? 'max-w-6xl' : 'max-w-3xl'">
     <UPage>
       <UPageHeader
         :title="page?.title"

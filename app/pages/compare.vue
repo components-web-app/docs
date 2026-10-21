@@ -1,3 +1,6 @@
 <template>
-  <StandalonePage path="/compare" />
+  <StandalonePage
+    path="/compare"
+    wide
+  />
 </template>
