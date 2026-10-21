@@ -1,6 +1,10 @@
 <script setup lang="ts">
+// /draft/about renders the draft in content/drafts/about.yml for review.
+const isDraft = useRoute().path.startsWith('/draft/')
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const { data: page } = await useAsyncData<any>('about', () => queryCollection('pages').path('/about').first())
+const { data: page } = await useAsyncData<any>(isDraft ? 'draft-about' : 'about', () => isDraft
+  ? queryCollection('drafts').path('/drafts/about').first()
+  : queryCollection('pages').path('/about').first())
 
 // Highlighted at prerender time, so the snippets are in the HTML and Shiki never ships.
 const { data: highlightedCode } = await useHighlightedCode('about')
@@ -40,12 +44,22 @@ function mapFeatures(features: any[]) {
 }
 
 definePageMeta({
-  scrollToTop: true
+  scrollToTop: true,
+  alias: ['/draft/about']
 })
+
+if (isDraft) {
+  useSeoMeta({ robots: 'noindex, nofollow' })
+}
 </script>
 
 <template>
   <div>
+    <DraftNotice
+      v-if="isDraft"
+      current="/about"
+      current-label="About"
+    />
     <div class="bg-primary/5 dark:bg-feature/65">
       <UContainer>
         <UPageHero

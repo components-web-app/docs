@@ -35,11 +35,6 @@ Pick up to three of the eight products people often weigh CWA against, and the t
 **Partly** means the product does some of it, as the note says. **Paid plan** means the free version doesn't include it. **Not checked** means we couldn't confirm it from the product's own pages.
 ::
 
-### Where the comparison comes from
-
-::comparison-sources
-::
-
 ## Compared with other approaches
 
 There are several ways to give clients an editable website. This table compares the approaches rather than products.
@@ -102,3 +97,6 @@ CWA is MIT-licensed (the template's [LICENSE](https://github.com/components-web-
 - [Open the playground](https://preview.cwa.rocks/login) to try editing a CWA site. Sign in with the username and password `admin`.
 - [Install CWA](/getting-started/installation) and build your first site.
 - Read [Key Ideas](/getting-started/key-ideas) for the terms the guides use.
+
+::comparison-sources
+::

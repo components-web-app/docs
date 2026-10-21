@@ -170,6 +170,9 @@ export default defineNuxtConfig({
         // The quiz: two page shells, and its data, which no page links to
         '/quiz',
         '/quiz/play',
+        // Drafts for review, which nothing links to (content/drafts/)
+        '/draft/about',
+        '/draft/why-cwa',
         '/api/quiz/config.json',
         ...['beginner', 'intermediate', 'advanced', 'expert', 'whats-new'].flatMap(level => [
           `/api/quiz/questions/${level}.json`,

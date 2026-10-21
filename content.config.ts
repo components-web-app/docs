@@ -8,7 +8,7 @@ export default defineContentConfig({
         // Each section's .navigation.yml gives its sidebar title.
         include: '**/{*.md,.navigation.yml}',
         // Pages outside the docs (privacy, why CWA) are their own collection, so they stay out of the sidebar and search.
-        exclude: ['standalone/**']
+        exclude: ['standalone/**', 'drafts/**']
       },
       schema: z.object({
         badge: z.object({
@@ -44,7 +44,28 @@ export default defineContentConfig({
         features: z.record(z.string(), z.any()).optional(),
         benefits: z.record(z.string(), z.any()).optional(),
         code: z.record(z.string(), z.any()).optional(),
-        contributors: z.record(z.string(), z.any()).optional(),
+        contributors: z.record(z.string(), z.any()).optional()
+      })
+    }),
+    // Drafts of marketing pages for review (content/drafts/), served under /draft/. Kept out of the sitemap, llms files and search.
+    drafts: defineCollection({
+      type: 'page',
+      source: {
+        include: 'drafts/*.{yml,md}'
+      },
+      schema: z.object({
+        hero: z.record(z.string(), z.any()).optional(),
+        cta: z.record(z.string(), z.any()).optional(),
+        pageCards: z.record(z.string(), z.any()).optional(),
+        sections: z.array(z.any()).optional(),
+        faq: z.record(z.string(), z.any()).optional(),
+        businessSizes: z.record(z.string(), z.any()).optional(),
+        teamwork: z.record(z.string(), z.any()).optional(),
+        timeline: z.array(z.any()).optional(),
+        features: z.record(z.string(), z.any()).optional(),
+        benefits: z.record(z.string(), z.any()).optional(),
+        code: z.record(z.string(), z.any()).optional(),
+        contributors: z.record(z.string(), z.any()).optional()
       })
     })
   }
