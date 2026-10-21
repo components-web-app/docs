@@ -10,7 +10,7 @@ const props = defineProps<{
 const { header } = useAppConfig()
 const route = useRoute()
 
-const isDocsPage = computed(() => !['/', '/about', '/built-for-business'].includes(route.path) && !route.path.startsWith('/quiz'))
+const isDocsPage = computed(() => !['/', '/about', '/built-for-business'].includes(route.path))
 
 const linksWithoutIcons = computed(() =>
   (props.links || []).map(({ icon: _icon, ...link }) => link)

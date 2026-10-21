@@ -3,6 +3,8 @@ import { AREAS, LEVELS, QUIZ_SETS, quizLengthFor, setConfigFor, WHATS_NEW, type 
 import { newSeed, SEED_PATTERN } from '~~/quiz/lib/select'
 import type { QuizChoice } from '~/composables/useQuiz'
 
+definePageMeta({ layout: 'docs' })
+
 /**
  * /quiz/play?level=advanced&topic=all&seed=k3j9x2ab, or level=whats-new for the latest releases
  *
@@ -244,7 +246,7 @@ async function share() {
 </script>
 
 <template>
-  <UContainer class="max-w-3xl py-8 sm:py-12">
+  <div class="max-w-3xl py-8 sm:py-12">
     <!-- Prerendered and first client render: nothing depends on the query yet -->
     <div
       v-if="!mounted || quiz.phase.value === 'loading'"
@@ -420,5 +422,5 @@ async function share() {
         />
       </div>
     </div>
-  </UContainer>
+  </div>
 </template>
