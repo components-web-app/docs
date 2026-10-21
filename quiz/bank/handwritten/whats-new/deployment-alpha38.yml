@@ -224,7 +224,7 @@ questions:
       optionNotes:
         c: Kubernetes starts no probe until the `postStart` hook returns, so the pod isn't ready while it warms.
     sources:
-      - { kind: docs, page: /deployment/ci-cd, anchor: why-every-deploy-clears-the-page-cache, sectionHash: 'sha256:a1715fec4542586c', title: 'CI/CD › Why every deploy clears the page cache' }
+      - { kind: docs, page: /deployment/ci-cd, anchor: why-every-deploy-clears-the-page-cache, sectionHash: 'sha256:805acb4317301cb3', title: 'CI/CD › Why every deploy clears the page cache' }
     author: llm-draft
 
   - id: deploy.k8s.warm-two-passes
@@ -253,5 +253,5 @@ questions:
         The first pass warms the `gzip` entries server-side rendering reads. The cache stores one entry per
         encoding, so the `br` pass warms the entries browsers and Cloudflare read.
     sources:
-      - { kind: docs, page: /deployment/kubernetes, anchor: warming-the-api-cache-on-start, sectionHash: 'sha256:f822ecf36f65ae2f', title: 'Kubernetes & Helm › Warming the API cache on start' }
+      - { kind: docs, page: /deployment/kubernetes, anchor: warming-the-api-cache-on-start, sectionHash: 'sha256:a44fb2dc81e061b6', title: 'Kubernetes & Helm › Warming the API cache on start' }
     author: llm-draft

@@ -77,11 +77,11 @@ questions:
         A new front-end build renames its JavaScript and CSS files and deletes the old ones. Cached pages would
         point at files that no longer exist, so visitors would get an unstyled page.
     sources:
-      - { kind: docs, page: /deployment/ci-cd, anchor: why-every-deploy-clears-the-page-cache, sectionHash: 'sha256:a1715fec4542586c', title: 'CI/CD › Why every deploy clears the page cache' }
+      - { kind: docs, page: /deployment/ci-cd, anchor: why-every-deploy-clears-the-page-cache, sectionHash: 'sha256:805acb4317301cb3', title: 'CI/CD › Why every deploy clears the page cache' }
     author: llm-draft
 
   - id: deploy.cicd.purge-waits-for-rollout
-    version: 2
+    version: 3
     status: live
     level: advanced
     area: deployment
@@ -101,10 +101,9 @@ questions:
       correct: c
       explanation: >-
         While an old pod is still serving, it could render a page that points at the old build and put it back
-        in the cache. Only then does the deploy purge the cached pages from the php pod (`purge-rendered-html`,
-        or `purge-http-cache` when Cloudflare is configured).
+        in the cache. Only then does the deploy purge the cached pages from the php pod (`purge-rendered-html`).
     sources:
-      - { kind: docs, page: /deployment/ci-cd, anchor: why-every-deploy-clears-the-page-cache, sectionHash: 'sha256:a1715fec4542586c', title: 'CI/CD › Why every deploy clears the page cache' }
+      - { kind: docs, page: /deployment/ci-cd, anchor: why-every-deploy-clears-the-page-cache, sectionHash: 'sha256:805acb4317301cb3', title: 'CI/CD › Why every deploy clears the page cache' }
     author: llm-draft
 
   - id: deploy.cloudflare.option-a-rules
