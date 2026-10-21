@@ -429,5 +429,5 @@ questions:
         The cookie name has to match in three places: `set_cookies.<name>`, `token_extractors.cookie.name` and
         the bundle's `refresh_token.cookie_name`. Here the extractor looks for a cookie that is never set.
     sources:
-      - { kind: docs, page: /api/users/authentication, anchor: lexik_jwt_authentication-configuration, sectionHash: 'sha256:9151c9149be3685a', title: 'API Authentication › lexikjwtauthentication Configuration', block: 0, blockHash: 'sha256:8f5c05746c1d7ae7' }
+      - { kind: docs, page: /api/users/authentication, anchor: lexik_jwt_authentication-configuration, sectionHash: 'sha256:8111c13ca3902105', title: 'API Authentication › lexikjwtauthentication Configuration', block: 0, blockHash: 'sha256:8f5c05746c1d7ae7' }
     author: llm-draft
