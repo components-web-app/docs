@@ -175,6 +175,11 @@ export default defineNuxtConfig({
   },
 
   icon: {
+    // Icons rendered only in the browser (the version switcher's menu) must be in the client
+    // bundle: the prerendered site has no icon API to fetch them from
+    clientBundle: {
+      icons: ['heroicons:check-20-solid']
+    },
     customCollections: [
       {
         prefix: 'custom',

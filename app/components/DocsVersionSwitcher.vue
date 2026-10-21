@@ -13,7 +13,7 @@ withDefaults(defineProps<{
 }>(), { size: 'sm', block: false })
 
 const route = useRoute()
-const { channel, switchable, originOf, refreshChannels, urlOn } = useDocsChannel()
+const { channel, switchable, refreshChannels, urlOn } = useDocsChannel()
 
 onMounted(refreshChannels)
 
@@ -24,22 +24,20 @@ function describe(target: DocsChannel) {
   return `Template ${target.sources.template}`
 }
 
-async function go(event: Event, target: DocsChannel) {
+async function go(target: DocsChannel) {
   if (target.id === channel.value.id) {
     return
   }
-  // The item is a link to the same path; ask the version whether it has the page first
-  event.preventDefault()
+  // Ask the version whether it has this page first
   window.location.href = await urlOn(target, route.path, route.hash)
 }
 
 const items = computed<DropdownMenuItem[]>(() => switchable.value.map(target => ({
   label: target.label,
   description: describe(target),
-  icon: target.id === channel.value.id ? 'i-heroicons-check' : 'i-heroicons-book-open',
-  to: target.id === channel.value.id ? undefined : `${originOf(target)}${route.path}`,
-  external: true,
-  onSelect: (event: Event) => go(event, target)
+  type: 'checkbox' as const,
+  checked: target.id === channel.value.id,
+  onSelect: () => go(target)
 })))
 </script>
 
@@ -47,6 +45,7 @@ const items = computed<DropdownMenuItem[]>(() => switchable.value.map(target => 
   <div v-if="switchable.length > 1">
     <UDropdownMenu
       :items="items"
+      checked-icon="i-heroicons-check-20-solid"
       :content="{ align: 'start' }"
       :ui="{ content: 'min-w-64' }"
     >
