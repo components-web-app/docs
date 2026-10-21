@@ -4,8 +4,8 @@
  * and the marketing pages (content/*.yml), split into passages of a few hundred words.
  */
 import { queryCollection, queryCollectionSearchSections } from '@nuxt/content/server'
-import type { ChatChunk, ChatIndex } from '#shared/chat/types.ts'
-import { encodeTerms, termsOf } from '#shared/chat/retrieval.ts'
+import type { ChatChunk, ChatIndex } from '#shared/chat/types'
+import { encodeTerms, termsOf } from '#shared/chat/retrieval'
 
 /** Passages longer than this are split, so one long section can't fill the context alone. */
 const MAX_CHUNK_CHARS = 1800

@@ -16,7 +16,7 @@
     "generate-pwa-assets": "pwa-assets-generator --preset minimal-2023 public/icon.png",
     "test": "playwright test",
     "test:update": "playwright test --update-snapshots",
-    "test:chat": "node --test scripts/chat/chat.test.ts",
+    "test:chat": "esbuild scripts/chat/chat.test.ts --bundle --platform=node --format=esm --packages=external --log-level=warning --outfile=scripts/chat/.chat.test.mjs && node --test scripts/chat/.chat.test.mjs",
     "quiz:generate": "node scripts/quiz/generate.ts",
     "quiz:stamp": "node scripts/quiz/stamp.ts",
     "quiz:check": "node scripts/quiz/check.ts",

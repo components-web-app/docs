@@ -8,7 +8,7 @@
  *
  * Runs on Vercel's edge runtime and in Nitro, so it uses no Node APIs.
  */
-import type { ChatChunk, ChatSource } from './types.ts'
+import type { ChatChunk, ChatSource } from './types'
 
 const STOPWORDS = new Set(`a about above after again all also am an and any are as at be because been before
 being below between both but by can could did do does doing done down during each else ever few for from

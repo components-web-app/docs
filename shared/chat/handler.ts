@@ -12,9 +12,9 @@
  * fallbacks dynamically import node:fs and node:path, which Vercel's edge bundler
  * refuses, and this endpoint needs only one streamed Messages API call.
  */
-import type { ChatChunk, ChatEvent, ChatIndex, ChatTurn } from './types.ts'
-import { createRetriever, sourcesOf, type Retriever } from './retrieval.ts'
-import { SYSTEM_PROMPT, buildUserMessage } from './prompt.ts'
+import type { ChatChunk, ChatEvent, ChatIndex, ChatTurn } from './types'
+import { createRetriever, sourcesOf, type Retriever } from './retrieval'
+import { SYSTEM_PROMPT, buildUserMessage } from './prompt'
 
 export const CHAT_MODEL = 'claude-haiku-5-5'
 

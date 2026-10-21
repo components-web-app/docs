@@ -2,8 +2,8 @@
  * The assistant's persona and grounding rules (docs #1). The metaphor licence and the
  * grounding rule are split on purpose: metaphors are the model's to invent, facts are not.
  */
-import type { ChatChunk } from './types.ts'
-import { sourceTitle } from './retrieval.ts'
+import type { ChatChunk } from './types'
+import { sourceTitle } from './retrieval'
 
 export const SYSTEM_PROMPT = `You are the CWA assistant, embedded on the CWA (Components Web App) docs and marketing site at cwa.rocks. CWA is free and open source.
 
