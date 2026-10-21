@@ -14,9 +14,22 @@ const props = withDefaults(defineProps<{
   compact: false
 })
 
+// The full table compares CWA with up to MAX_CHOSEN products the reader picks, so every column fits and stays readable.
+const MAX_CHOSEN = 3
+const choices = COMPARISON_PRODUCTS.filter(product => product.id !== 'cwa')
+const chosen = ref<string[]>(['wordpress', 'storyblok', 'sanity'])
+function toggle(id: string) {
+  if (chosen.value.includes(id)) {
+    if (chosen.value.length > 1) chosen.value = chosen.value.filter(c => c !== id)
+    return
+  }
+  // At the limit, the earliest pick makes way for the new one.
+  chosen.value = [...chosen.value.slice(chosen.value.length >= MAX_CHOSEN ? 1 : 0), id]
+}
+
 const products = computed(() => props.products
   ? COMPARISON_PRODUCTS.filter(product => props.products!.includes(product.id))
-  : COMPARISON_PRODUCTS)
+  : COMPARISON_PRODUCTS.filter(product => product.id === 'cwa' || chosen.value.includes(product.id)))
 const rows = computed(() => props.rows
   ? COMPARISON_ROWS.filter(row => props.rows!.includes(row.id))
   : COMPARISON_ROWS)
@@ -45,6 +58,7 @@ onMounted(() => {
   window.addEventListener('resize', measure, { passive: true })
 })
 onBeforeUnmount(() => window.removeEventListener('resize', measure))
+watch(chosen, () => nextTick(measure))
 
 // Only the marks the shown cells use, for the compact table's key.
 const legend = computed(() => {
@@ -55,13 +69,35 @@ const legend = computed(() => {
 
 <template>
   <div :class="compact ? 'w-full min-w-0 max-w-full' : 'not-prose my-8 relative left-1/2 w-[min(calc(100vw-2rem),80rem)] -translate-x-1/2'">
+    <div
+      v-if="!compact"
+      class="mb-4 flex flex-wrap items-center gap-2"
+      role="group"
+      aria-label="Products to compare with CWA"
+    >
+      <span class="mr-1 text-sm text-muted">Compare CWA with up to {{ MAX_CHOSEN }}:</span>
+      <UButton
+        v-for="product in choices"
+        :key="product.id"
+        :label="product.name"
+        size="sm"
+        :color="chosen.includes(product.id) ? 'primary' : 'neutral'"
+        :variant="chosen.includes(product.id) ? 'solid' : 'outline'"
+        :icon="chosen.includes(product.id) ? 'i-heroicons-check' : 'i-heroicons-plus'"
+        :aria-pressed="chosen.includes(product.id)"
+        @click="toggle(product.id)"
+      />
+    </div>
     <div class="relative">
       <div
         ref="scroller"
         class="relative overflow-x-auto rounded-lg border border-default"
         @scroll.passive="measure"
       >
-        <table class="w-full border-collapse text-sm">
+        <table
+          class="w-full border-collapse text-sm"
+          :class="compact ? '' : 'table-fixed min-w-[44rem]'"
+        >
           <thead>
             <tr class="border-b border-default">
               <th
@@ -90,7 +126,7 @@ const legend = computed(() => {
               <th
                 scope="row"
                 class="sticky left-0 z-10 bg-default p-3 text-left font-medium align-top"
-                :class="compact ? 'min-w-48' : 'min-w-56'"
+                :class="compact ? 'min-w-48' : 'w-56'"
               >
                 {{ row.label }}
               </th>
@@ -98,7 +134,7 @@ const legend = computed(() => {
                 v-for="product in products"
                 :key="product.id"
                 class="p-3 align-top"
-                :class="[product.id === 'cwa' ? 'bg-primary/10' : '', compact ? 'text-center' : 'min-w-44']"
+                :class="[product.id === 'cwa' ? 'bg-primary/10' : '', compact ? 'text-center' : '']"
               >
                 <template v-if="row.cells[product.id]?.value === 'text'">
                   <span class="text-muted">{{ row.cells[product.id]?.note }}</span>
@@ -145,7 +181,7 @@ const legend = computed(() => {
         name="i-heroicons-arrows-right-left"
         class="size-4"
       />
-      Scroll the table sideways to see all {{ products.length - 1 }} products.
+      Scroll the table sideways to see every column.
     </p>
     <ul
       v-if="compact"

@@ -26,7 +26,7 @@ See [Deployment](/deployment) for the full list.
 
 ## How CWA compares
 
-The table compares CWA with eight products people often weigh it against. **Accurate as of October 2026:** products and prices change quickly, so check each one's current documentation and pricing before you decide.
+Pick up to three of the eight products people often weigh CWA against, and the table shows them side by side with CWA. **Accurate as of October 2026:** products and prices change quickly, so check each one's current documentation and pricing before you decide.
 
 ::comparison-table
 ::
