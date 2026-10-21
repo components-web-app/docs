@@ -2668,7 +2668,7 @@
     },
     "deploy.cicd.purge-waits-for-rollout": {
       "status": "live",
-      "version": 2,
+      "version": 3,
       "versions": {
         "1": {
           "fingerprint": "sha256:be82b85168bd9155",
@@ -2677,6 +2677,10 @@
         "2": {
           "fingerprint": "sha256:4dad8d603c833d36",
           "docsCommit": "9ff81ee4322ec1346c58b0cfb3bff98d6e868932"
+        },
+        "3": {
+          "fingerprint": "sha256:4dad8d603c833d36",
+          "docsCommit": "779fa402e2c8dc801db116856bc45f586f9c1c39"
         }
       }
     },
@@ -3016,7 +3020,7 @@
     },
     "deploy.internals.cloudflare-flush": {
       "status": "live",
-      "version": 4,
+      "version": 5,
       "versions": {
         "1": {
           "fingerprint": "sha256:14bd53ae2f50c873",
@@ -3033,6 +3037,10 @@
         "4": {
           "fingerprint": "sha256:93ae3a5ab1920923",
           "docsCommit": "9ff81ee4322ec1346c58b0cfb3bff98d6e868932"
+        },
+        "5": {
+          "fingerprint": "sha256:fcf2975438e79a9c",
+          "docsCommit": "779fa402e2c8dc801db116856bc45f586f9c1c39"
         }
       }
     },
