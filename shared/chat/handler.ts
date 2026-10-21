@@ -132,9 +132,14 @@ export function validateTurns(body: unknown): ValidatedTurns {
 
 let retrieverPromise: Promise<Retriever> | undefined
 
-async function loadRetriever(url: string): Promise<Retriever> {
+/**
+ * Loads the index once per instance. `cookie` is the visitor's own, passed on only when the
+ * index is on the request's own origin: on a preview behind Vercel Authentication, the
+ * visitor's sign-in cookie is what lets the function read its own site.
+ */
+async function loadRetriever(url: string, cookie?: string): Promise<Retriever> {
   if (!retrieverPromise) {
-    retrieverPromise = fetch(url)
+    retrieverPromise = fetch(url, { headers: cookie ? { cookie } : {}, redirect: 'manual' })
       .then(async (response) => {
         if (!response.ok) throw new Error(`The chat index returned ${response.status}`)
         const index = await response.json() as ChatIndex
@@ -199,7 +204,9 @@ export async function handleChatRequest(request: Request, env: ChatEnv): Promise
 
   let chunks: ChatChunk[]
   try {
-    const retriever = await loadRetriever(env.indexUrl || new URL('/api/chat-index.json', request.url).toString())
+    const retriever = env.indexUrl
+      ? await loadRetriever(env.indexUrl)
+      : await loadRetriever(new URL('/api/chat-index.json', request.url).toString(), request.headers.get('cookie') ?? undefined)
     chunks = retriever.search(retrievalQuery(turns), { maxChars: CHAT_LIMITS.contextChars })
   } catch (error) {
     console.error('[chat] could not load the index', error)
