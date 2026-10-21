@@ -10,18 +10,18 @@ shamefullyHoist: true
 overrides:
   "@nuxtjs/tailwindcss": "6.12.2-20241014-164133-9d42549"
   h3: "1.x"
-  "devframe>h3": "^2.0.1"           # 2026-10-16: @nuxt/fonts 1 devtools (devframe) imports h3 v2's `H3`; the global 1.x broke `nuxt dev`
+  "devframe>h3": "^2.0.1" # 2026-10-16: @nuxt/fonts 1 devtools (devframe) imports h3 v2's `H3`; the global 1.x broke `nuxt dev`
   # Security: force patched transitive build-time deps (Dependabot alerts)
-  esbuild: ">=0.28.1"              # alerts #8, #148 — dev-server file read / cross-origin requests
+  esbuild: ">=0.28.1" # alerts #8, #148 — dev-server file read / cross-origin requests
   serialize-javascript: ">=7.0.5" # alerts #84, #136 — XSS / CPU-exhaustion DoS
   # 2026-08-12 audit sweep. The site is prerendered (`nuxt generate`), so none of these
   # reach a production runtime — they are build-machine, dev-server and CI exposure.
   # NOTE: every range is upper-bounded to the installed major. A bare ">=x" lets pnpm pull
   # the newest major instead of the patch — linkify-it jumped 5 -> 6 that way and broke the
   # build (markdown-exit imports its dropped default export).
-  "@nuxt/devtools": ">=3.3.1 <4"   # CRITICAL — unauthenticated DevTools RPC → RCE on the dev host
-  tar: ">=7.5.21 <8"               # CRITICAL — decompression/parse DoS (package extraction)
-  brace-expansion: ">=5.0.9 <6"    # ReDoS — every consumer (all minimatch) is on the 5.x line
+  "@nuxt/devtools": ">=3.3.1 <4" # CRITICAL — unauthenticated DevTools RPC → RCE on the dev host
+  tar: ">=7.5.21 <8" # CRITICAL — decompression/parse DoS (package extraction)
+  brace-expansion: ">=5.0.9 <6" # ReDoS — every consumer (all minimatch) is on the 5.x line
   fast-uri: ">=3.1.5 <4"
   js-yaml: ">=4.3.1 <5"
   linkify-it: ">=5.0.2 <6"
@@ -29,11 +29,18 @@ overrides:
   postcss: ">=8.5.23 <9"
   sharp: ">=0.35.0 <1"
   shell-quote: ">=1.9.0 <2"
-  socket.io-parser: ">=4.2.7 <5"   # dev-server HMR transport only
+  socket.io-parser: ">=4.2.7 <5" # dev-server HMR transport only
   svgo: ">=4.0.2 <5"
   valibot: ">=1.4.2 <2"
-  fflate: ">=0.7.5 <0.8"            # 2026-10-13: satori 0.33 pins 0.7.3 (malformed-ZIP infinite loop)
-  # Not overridden (2026-10-13): simple-git's fixes are only in 4.x, which @nuxt/devtools 3.x can't
-  # import (no default export, so `nuxt prepare` fails). DevTools 4 drops simple-git but is still beta.
-  # node-forge (listhen, dev HTTPS) and braces (fast-glob) have no patched release yet.
+  fflate: ">=0.7.5 <0.8" # 2026-10-13: satori 0.33 pins 0.7.3 (malformed-ZIP infinite loop)
+  # 2026-10-21: simple-git's fixes are only in 4.x, which has no default export. DevTools 3 does
+  # `import Git from 'simple-git'`, so patches/@nuxt__devtools@3.4.2.patch imports `simpleGit` by
+  # name. A new DevTools 3.x makes pnpm stop on the unused patch: redo the patch for that version.
+  # DevTools 4 drops simple-git (drop this override and the patch then); it's still beta.
+  simple-git: ">=4.0.2 <5"         # CRITICAL — argument injection through the git command line
+  "@simple-git/argv-parser": ">=2.0.1 <3"
+  # Not overridden: node-forge (listhen, dev HTTPS) and braces (micromatch) have no patched release.
 
+
+patchedDependencies:
+  '@nuxt/devtools@3.4.2': patches/@nuxt__devtools@3.4.2.patch
