@@ -17,13 +17,6 @@ hero:
       size: xl
       color: neutral
       variant: subtle
-    - label: GitHub
-      icon: i-simple-icons-github
-      to: 'https://github.com/components-web-app'
-      target: _blank
-      size: xl
-      color: neutral
-      variant: ghost
   code: |
     ```bash [Terminal]
     pnpm create cwa my-project
@@ -71,14 +64,6 @@ benefits:
         - name: New pages fit right in
           description: The right balance of freedom and guardrails means every new page looks like it belongs.
           icon: i-heroicons-puzzle-piece
-      links:
-        - label: More about the CWA
-          to: /about
-          color: gray
-          icon: i-heroicons-arrow-right-20-solid
-          trailing: true
-          size: xl
-          class: ml-0
     - title: 'A real editorial workflow,<br><span class="text-primary-400">included</span>'
       description: The tools content teams usually pay extra for come with every site.
       id: workflow
