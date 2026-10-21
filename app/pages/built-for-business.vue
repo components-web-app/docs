@@ -192,9 +192,6 @@ definePageMeta({
       variant="naked"
       :ui="{ container: 'py-16 sm:py-20 lg:py-20' }"
     />
-    <UContainer class="max-w-3xl pb-16">
-      <ComparisonSources />
-    </UContainer>
   </div>
 </template>
 

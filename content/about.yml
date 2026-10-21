@@ -9,7 +9,7 @@ hero:
   links:
     - label: How CWA compares
       icon: i-heroicons-scale
-      to: '/built-for-business#how-cwa-compares'
+      to: '/compare'
       size: xl
       color: neutral
       variant: subtle

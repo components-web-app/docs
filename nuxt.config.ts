@@ -38,8 +38,8 @@ function vercelRedirects(rules: RouteRulesMap) {
 
 const routeRules = withVersionPrefix({
   '/api/search.json': { prerender: true },
-  // Why CWA was folded into Built for Business
-  '/why-cwa': { redirect: { to: '/built-for-business#how-cwa-compares', statusCode: 301 } },
+  // Why CWA was split between Built for Business and the comparison page
+  '/why-cwa': { redirect: { to: '/compare', statusCode: 301 } },
   // cwa-api was one page until it was split into per-service sub-pages
   '/nuxt-module/cwa-api': { redirect: { to: '/nuxt-module/cwa-api/overview', statusCode: 301 } },
   // The template replaced Behat with PHPUnit functional tests

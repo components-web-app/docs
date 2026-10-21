@@ -10,7 +10,7 @@ hero:
   links:
     - label: How CWA compares
       icon: i-heroicons-scale
-      to: '#how-cwa-compares'
+      to: '/compare'
       size: xl
       color: neutral
       variant: subtle

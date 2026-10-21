@@ -15,32 +15,36 @@ const props = withDefaults(defineProps<{
   compact: false
 })
 
-// The full table compares CWA with the products the reader picks, so every column fits and stays readable:
-// up to three on wider screens, one at a time on phones. The server renders the wider view.
-// Read only after mount, so hydration matches the server's render before it switches.
+// The full table compares CWA with three products, each column picked from its own menu, so columns never move:
+// changing one changes only that column. Phones show one product column. The server renders the wider view;
+// the phone query is read only after mount, so hydration matches before it switches.
 const phoneQuery = useMediaQuery('(max-width: 639px)')
 const mounted = ref(false)
 onMounted(() => {
   mounted.value = true
 })
 const isPhone = computed(() => mounted.value && phoneQuery.value)
-const maxChosen = computed(() => isPhone.value ? 1 : 3)
-const choices = COMPARISON_PRODUCTS.filter(product => product.id !== 'cwa')
-const picks = ref<string[]>(['wordpress', 'storyblok', 'sanity'])
-// The most recent picks that fit; earlier ones come back when the screen is wider.
-const chosen = computed(() => picks.value.slice(-maxChosen.value))
-function toggle(id: string) {
-  if (chosen.value.includes(id)) {
-    if (chosen.value.length > 1) picks.value = picks.value.filter(c => c !== id)
-    return
-  }
-  // At the limit, the earliest pick makes way for the new one.
-  picks.value = [...chosen.value, id].slice(-maxChosen.value)
+const slots = ref<string[]>(['wordpress', 'storyblok', 'sanity'])
+const visibleSlots = computed(() => slots.value.slice(0, isPhone.value ? 1 : 3))
+const choices = COMPARISON_PRODUCTS.filter(product => product.id !== 'cwa').map(product => ({ label: product.name, value: product.id }))
+// Picking a product another column already shows swaps the two, so no product appears twice.
+function pick(index: number, id: string) {
+  const next = [...slots.value]
+  const other = next.indexOf(id)
+  if (other !== -1) next[other] = next[index]!
+  next[index] = id
+  slots.value = next
 }
+const byId = (id: string) => COMPARISON_PRODUCTS.find(product => product.id === id)!
 
-const products = computed(() => props.products
-  ? COMPARISON_PRODUCTS.filter(product => props.products!.includes(product.id))
-  : COMPARISON_PRODUCTS.filter(product => product.id === 'cwa' || chosen.value.includes(product.id)))
+// Each column: the product it shows, and for a picked column, which slot it is.
+const columns = computed(() => props.products
+  ? COMPARISON_PRODUCTS.filter(product => props.products!.includes(product.id)).map(product => ({ key: product.id, product, slot: undefined as number | undefined }))
+  : [
+      { key: 'cwa', product: byId('cwa'), slot: undefined as number | undefined },
+      ...visibleSlots.value.map((id, slot) => ({ key: `slot-${slot}`, product: byId(id), slot }))
+    ])
+const shownProducts = computed(() => columns.value.map(column => column.product))
 const rows = computed(() => props.rows
   ? COMPARISON_ROWS.filter(row => props.rows!.includes(row.id))
   : COMPARISON_ROWS)
@@ -69,36 +73,27 @@ onMounted(() => {
   window.addEventListener('resize', measure, { passive: true })
 })
 onBeforeUnmount(() => window.removeEventListener('resize', measure))
-watch(chosen, () => nextTick(measure))
+watch(visibleSlots, () => nextTick(measure))
 
 // Only the marks the shown cells use, for the compact table's key.
 const legend = computed(() => {
-  const used = new Set(rows.value.flatMap(row => products.value.map(product => row.cells[product.id]?.value)))
+  const used = new Set(rows.value.flatMap(row => shownProducts.value.map(product => row.cells[product.id]?.value)))
   return (Object.keys(MARKS) as (keyof typeof MARKS)[]).filter(value => used.has(value)).map(value => MARKS[value])
 })
 </script>
 
 <template>
   <div :class="compact ? 'w-full min-w-0 max-w-full' : 'not-prose my-8 relative left-1/2 w-[min(calc(100vw-2rem),80rem)] -translate-x-1/2'">
-    <div
+    <p
       v-if="!compact"
-      class="mb-4 flex flex-wrap items-center gap-2"
-      role="group"
-      aria-label="Products to compare with CWA"
+      class="mb-3 flex items-center gap-1.5 text-sm text-muted"
     >
-      <span class="mr-1 text-sm text-muted">{{ maxChosen === 1 ? 'Compare CWA with:' : `Compare CWA with up to ${maxChosen}:` }}</span>
-      <UButton
-        v-for="product in choices"
-        :key="product.id"
-        :label="product.name"
-        size="sm"
-        :color="chosen.includes(product.id) ? 'primary' : 'neutral'"
-        :variant="chosen.includes(product.id) ? 'solid' : 'outline'"
-        :icon="chosen.includes(product.id) ? 'i-heroicons-check' : 'i-heroicons-plus'"
-        :aria-pressed="chosen.includes(product.id)"
-        @click="toggle(product.id)"
+      <UIcon
+        name="i-heroicons-chevron-up-down"
+        class="size-4"
       />
-    </div>
+      {{ isPhone ? 'Pick the product to compare with CWA from the menu in its column.' : 'Pick the products to compare with CWA from the menu in each column.' }}
+    </p>
     <div class="relative">
       <div
         ref="scroller"
@@ -107,25 +102,42 @@ const legend = computed(() => {
       >
         <table
           class="w-full border-collapse text-sm"
-          :class="compact ? '' : (maxChosen === 1 ? 'table-fixed' : 'table-fixed min-w-[44rem]')"
+          :class="compact ? '' : (isPhone ? 'table-fixed' : 'table-fixed min-w-[44rem]')"
         >
+          <colgroup v-if="!compact">
+            <col class="w-22 sm:w-56">
+            <col
+              v-for="column in columns"
+              :key="column.key"
+              :class="isPhone && column.slot === undefined ? 'w-24' : ''"
+            >
+          </colgroup>
           <thead>
             <tr class="border-b border-default">
               <th
                 scope="col"
                 class="sticky left-0 z-10 bg-default p-3 text-left font-semibold"
-                :class="compact ? '' : 'w-32 sm:w-56'"
               >
                 <span class="sr-only">Feature</span>
               </th>
               <th
-                v-for="product in products"
-                :key="product.id"
+                v-for="column in columns"
+                :key="column.key"
                 scope="col"
-                class="p-3 text-center font-semibold whitespace-nowrap"
-                :class="product.id === 'cwa' ? 'bg-primary/10 text-primary' : ''"
+                class="p-3 font-semibold whitespace-nowrap"
+                :class="[column.product.id === 'cwa' ? 'bg-primary/10 text-primary' : '', column.slot === undefined ? 'text-center' : 'text-left']"
               >
-                {{ product.name }}
+                <USelect
+                  v-if="column.slot !== undefined"
+                  :model-value="column.product.id"
+                  :items="choices"
+                  :aria-label="`Product in column ${column.slot + 1}`"
+                  class="w-full"
+                  @update:model-value="(id) => pick(column.slot!, String(id))"
+                />
+                <template v-else>
+                  {{ column.product.name }}
+                </template>
               </th>
             </tr>
           </thead>
@@ -143,8 +155,8 @@ const legend = computed(() => {
                 {{ row.label }}
               </th>
               <td
-                v-for="product in products"
-                :key="product.id"
+                v-for="(product, index) in shownProducts"
+                :key="columns[index]!.key"
                 class="p-3 align-top"
                 :class="[product.id === 'cwa' ? 'bg-primary/10' : '', compact ? 'text-center' : '']"
               >
