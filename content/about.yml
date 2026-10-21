@@ -85,7 +85,7 @@ sections:
         description: Designers and developers define the styles that a website admin can select from. This keeps your client on brand, no matter who updates the site.
         icon: i-heroicons-paint-brush
       - name: Build components your way
-        description: Web designers and developers are provided with helpers. We do not impose any HTML structure of stylistic choices. Build, extend and express as you want.
+        description: Web designers and developers are provided with helpers. We do not impose any HTML structure or stylistic choices. Build, extend and express as you want.
         icon: i-heroicons-square-3-stack-3d
   - title: 'Feel united with<br><span class="text-primary">real-time updates</span>'
     description: 'We integrate with Mercure to push real-time updates from the API to website users.'
@@ -154,7 +154,6 @@ sections:
         class: text-primary
   - title: 'Easy & flexible to<br><span class="text-primary">build & deploy</span>'
     description: 'When it comes to deploying your application, we know designing the tech stack can be difficult. We have done all the heavy lifting.'
-    # description: 'We have included configurations in our CWA template repository which will be an easy setup for your first CWA project. Using Docker you’ll be able to try this out on your own machine quickly - and with our example CI/CD scripts and Helm charts, deploying to a Kubernetes cluster will be a breeze.'
     align: right
     slot: grid
     features:
@@ -188,7 +187,7 @@ sections:
         icon: 'i-custom-caddy'
       - name: 'FrankenPHP'
         icon: 'i-custom-franken-php'
-      - name: 'Vulcain Cache'
+      - name: 'Vulcain'
         icon: 'i-custom-vulcain'
       - name: 'Mercure'
         icon: 'i-custom-mercure'
@@ -212,8 +211,6 @@ faq:
         Each resource is loaded with its own request. That means more HTTP requests, but each one is small and, most importantly, cacheable.
         <br><br>
         Each page loads only the data it needs. The API caches every response and purges it by cache tag when the content changes, and the rendered pages are cached too, so most visits never reach PHP. See <a href="/core-concepts/caching">Caching</a>.
-#    - label: What does “Unlimited minor & patch updates” include?
-#      content: The CWA is free and open source forever. You will always be able to upgrade to the latest version without warranty or guarantees.
     - label: Do you offer technical support?
       content: |
         Ask questions and report bugs in the <a href="https://github.com/components-web-app">GitHub repositories</a>, or email hello@cwa.rocks. Report a security problem privately, as each repository's SECURITY.md describes.

@@ -49,11 +49,11 @@ teamwork:
   description: |
     The CWA has been built with first-hand knowledge of the agile web development workflow, from concept and discovery to delivery, monitoring and maintenance.
     <br><br>
-    Streamline your team's scrum workflow from building company branding and UI kits, to how the website and product managers interact with the developers and clients. The CWA gives a clear structure of building individual UI components and provides flexibility to for the right people in the right teams who can work in their areas of expertise.
+    Streamline your team's scrum workflow from building company branding and UI kits, to how the website and product managers interact with the developers and clients. The CWA gives a clear structure for building individual UI components, and lets the right people in the right teams work in their areas of expertise.
 timeline:
   - title: Built for <span class="text-primary-400 font-semibold">structured planning</span>
     description: |
-      During the discovery phase, a manager will work with a client to build an understanding of requirements. Usually a plan is drawn up in the form of wireframes (also know as website blueprints) as user flows. <span class="text-primary-400 font-semibold">Each section within the blueprint can be considered a component that will need to be created.</span> Each with it's own specific purpose and requirements.
+      During the discovery phase, a manager will work with a client to build an understanding of requirements. Usually a plan is drawn up in the form of wireframes (also known as website blueprints) as user flows. <span class="text-primary-400 font-semibold">Each section within the blueprint can be considered a component that will need to be created.</span> Each has its own specific purpose and requirements.
   - title: Built for <span class="text-primary-400 font-semibold">clarity in design</span>
     description: |
       Once you have a blueprint, <span class="text-primary-400 font-semibold">the choice of style frameworks and UI kits is flexible and a business decision for you to make with your UI designer.</span> Each component can be designed with the branding and UI kit to the specification provided which can then be passed to the developer.
@@ -65,7 +65,7 @@ timeline:
         description: Happy developers are productive developers. It is easy for developers to build in advanced functionality and to get up and running.
         icon: i-heroicons-face-smile
       - title: CSS framework agnostic
-        description: While we ship with Tailwind configured by default, you can use whichever framework best is best for your needs.
+        description: While we ship with Tailwind configured by default, you can use whichever framework is best for your needs.
         icon: i-ph-file-css
       - title: Feeling familiar
         description: We have built the CWA on top of very well documented and supported frameworks. You'll find developers are quick to learn how the CWA sits on top and the talent is available in the job seekers market.

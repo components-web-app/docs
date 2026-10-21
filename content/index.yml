@@ -121,14 +121,6 @@ benefits:
         - name: Front-end Nuxt module
           description: Nuxt and Vue are among the most enjoyable front-end frameworks to use. Our CWA Nuxt module provides easy to use composables along with a full management system.
           icon: i-simple-icons-nuxtdotjs
-#      links:
-#        - label: Discover more
-#          to: /
-#          color: gray
-#          icon: i-heroicons-arrow-right-20-solid
-#          trailing: true
-#          size: xl
-#          class: ml-0
 
 code:
   tabs:
