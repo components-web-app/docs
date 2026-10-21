@@ -1052,6 +1052,16 @@
         }
       }
     },
+    "api.realtime.channel-payload": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:20c9f36e8ec468b8",
+          "docsCommit": "46dca22aee05b79f295e3514f322215cf92acd57+dirty"
+        }
+      }
+    },
     "api.routes.cascade-child-paths": {
       "status": "live",
       "version": 2,

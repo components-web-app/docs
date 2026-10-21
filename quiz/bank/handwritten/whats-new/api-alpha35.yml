@@ -1,0 +1,33 @@
+# Hand-written What's new questions about the API bundle: changes in 2.0.0-alpha.35.
+# Each one has a `since` naming the release that brought the change in.
+# Format: quiz/README.md. Run `pnpm quiz:stamp <id>` to fill in or refresh the hashes.
+
+questions:
+  - id: api.realtime.channel-payload
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [real-time]
+    type: multiple-choice
+    difficulty: 2
+    prompt: >-
+      An admin's browser sends `{"clientId": "…", "event": "presence", "data": {"state": "editing"}}` to
+      `POST /_/realtime`. What happens to it?
+    why: >-
+      The channel is for things admins tell each other that are never saved, such as who is editing what.
+    since: [{ repo: api-components-bundle, version: '2.0.0-alpha.35' }]
+    options:
+      - { id: a, text: 'Signed-in admins get it privately, and nothing is stored' }
+      - { id: b, text: 'It is saved so admins who open the page later see it' }
+      - { id: c, text: 'It goes out on the public topic of the component it names' }
+      - { id: d, text: 'Only the other tabs with the same `clientId` get it' }
+    answer:
+      correct: a
+      explanation: >-
+        The endpoint answers `202` and stores nothing. The event goes out on one site-wide topic that only admins'
+        subscriber cookies include, as a `CwaRealtimeEvent` whose `user` comes from the session, not the body. It
+        expires 45 seconds after it was sent.
+    sources:
+      - { kind: docs, page: /api/real-time, anchor: what-admins-receive, sectionHash: 'sha256:cc78e49478ad914d', title: 'Real-Time Updates (Mercure) › What admins receive' }
+    author: llm-draft
