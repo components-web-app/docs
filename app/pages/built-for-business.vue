@@ -1,9 +1,7 @@
 <script setup lang="ts">
-// The page's sections and FAQ are in content/built-for-business.yml; the part that helps a buyer decide
-// (what sets CWA apart, a link to the comparison, when to choose it) is markdown in content/standalone/built-for-business.md.
+// The page's sections and FAQ are in content/built-for-business.yml.
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const { data: page } = await useAsyncData<any>('built-for-business', () => queryCollection('pages').path('/built-for-business').first())
-const { data: body } = await useAsyncData('built-for-business-body', () => queryCollection('standalone').path('/built-for-business').first())
 
 useSeoMeta({
   title: page.value?.title,
@@ -79,13 +77,6 @@ definePageMeta({
               />
             </UPageGrid>
           </UPageCTA>
-
-          <div
-            v-if="body"
-            class="mx-auto max-w-3xl py-12"
-          >
-            <ContentRenderer :value="body" />
-          </div>
 
           <!-- A section, not a second UPageHero: the page keeps a single <h1>. -->
           <UPageSection :ui="{ container: 'py-8 sm:py-16 lg:py-16 gap-8 sm:gap-y-16' }">
