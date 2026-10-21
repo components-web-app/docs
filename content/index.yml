@@ -3,7 +3,7 @@ description: 'Developers build the blocks. Editors build the website: the low-co
 navigation: false
 hero:
   title: 'Developers build the blocks.<br><span class="text-primary-400">Editors build the website.</span>'
-  description: 'The <span class="text-primary-400 font-semibold">low-code website builder</span> for custom web apps. Editors build pages <span class="text-primary-400 font-semibold">right on the live site</span> from components your developers made, and everything stays on brand. A new component starts at a few lines of code.'
+  description: 'Components Web App (CWA) is the <span class="text-primary-400 font-semibold">low-code website builder</span> for custom web apps. Editors build pages <span class="text-primary-400 font-semibold">right on the live site</span> from components your developers made, and everything stays on brand. A new component starts at a few lines of code.'
   orientation: vertical
   links:
     - label: Open the playground

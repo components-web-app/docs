@@ -111,7 +111,7 @@ const links = computed(() => [toc?.bottom?.edit && {
       @update:open="dismissAlphaNotice"
     >
       <template #title>
-        CWA 2 is a prerelease (2.0.0-alpha), heading for a beta. It runs production sites; configuration can still change between releases, always with upgrade notes. See <NuxtLink to="/getting-started/releases#versions-and-support" class="underline">Releases › Versions and support</NuxtLink>.
+        CWA 2 is a prerelease (2.0.0-alpha), heading for a beta. It runs production sites; configuration can still change between releases, always with upgrade notes. <NuxtLink to="/getting-started/releases#versions-and-support" class="underline">View releases workflow</NuxtLink>
       </template>
     </UAlert>
 
