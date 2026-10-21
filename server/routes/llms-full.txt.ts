@@ -4,7 +4,7 @@ import { setResponseHeader } from 'h3'
 
 export default defineEventHandler(async (event) => {
   setResponseHeader(event, 'Content-Type', 'text/plain; charset=utf-8')
-  const { origin: SITE_URL, versionLine } = docsSite(event)
+  const { siteUrl: SITE_URL, versionLine } = docsSite(event)
 
   const [docs, sections, marketing] = await Promise.all([
     queryCollection(event, 'docs')

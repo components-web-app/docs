@@ -4,7 +4,7 @@ import type { DocsChannel } from '#shared/docs-versions'
 
 /**
  * Switches between documentation versions (shared/docs-versions.ts). Each version is its own
- * deployment, so a switch is a full page load on another origin, on the same page when that
+ * build under its own path, so a switch is a full page load, onto the same page when that
  * version has it. Hidden while only one version is live.
  */
 withDefaults(defineProps<{

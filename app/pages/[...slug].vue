@@ -10,7 +10,7 @@ definePageMeta({
 
 const route = useRoute()
 const { toc, seo } = useAppConfig()
-const { origin, channel } = useDocsChannel()
+const { siteUrl, channel } = useDocsChannel()
 
 const navigation = inject<Ref<ContentNavigationItem[]>>('navigation')
 
@@ -59,7 +59,7 @@ useHead({
           '@type': 'ListItem',
           'position': index + 1,
           'name': item.title,
-          'item': absoluteUrl(item.path, origin)
+          'item': absoluteUrl(item.path, siteUrl)
         }))
       })
     }]

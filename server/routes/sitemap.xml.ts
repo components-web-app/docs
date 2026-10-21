@@ -17,7 +17,7 @@ function escapeXml(value: string) {
  */
 export default defineEventHandler(async (event) => {
   setResponseHeader(event, 'Content-Type', 'application/xml; charset=utf-8')
-  const { origin: SITE_URL, indexed } = docsSite(event)
+  const { siteUrl: SITE_URL, indexed } = docsSite(event)
 
   const [docs, marketing] = await Promise.all([
     queryCollection(event, 'docs').where('extension', '=', 'md').select('path').order('path', 'ASC').all(),

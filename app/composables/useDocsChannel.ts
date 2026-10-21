@@ -1,47 +1,52 @@
 import {
   DOCS_CHANNELS,
   DEFAULT_CHANNEL_ID,
-  PRIMARY_ORIGIN,
-  channelOrigin,
+  SITE_ORIGIN,
+  channelPrefix,
+  currentChannel,
   findChannel,
   liveChannels,
-  primaryChannel,
   type DocsChannel
 } from '#shared/docs-versions'
 
-/** What a deployment publishes at /api/docs-version.json (server/api/docs-version.json.get.ts). */
+/** What a version publishes at <prefix>/api/docs-version.json (server/api/docs-version.json.get.ts). */
 export interface DocsVersionManifest {
   channel: string
   channels: DocsChannel[]
   paths: string[]
 }
 
+// Same-origin paths that already include a version's prefix: don't add this build's base URL
+const fetchRaw = <T>(url: string) => $fetch<T>(url, { baseURL: '/', timeout: 3000 })
+
 /**
- * The documentation version this build documents, and the others. The channel list starts
- * as the one built in; on a version that isn't the primary site, it's refreshed from the
- * primary site, so an older version learns about versions cut after it.
+ * The documentation version this build documents, and the others. Every version is on the
+ * same origin under its own path prefix. The channel list starts as the one built in; on a
+ * version that isn't current it's refreshed from the current one, so an older version
+ * learns about versions cut after it.
  */
 export function useDocsChannel() {
   const config = useRuntimeConfig()
-  const channelId = (config.public.docsChannel as string) || DEFAULT_CHANNEL_ID
+  const channelId = (config.public.docsVersion as string) || DEFAULT_CHANNEL_ID
 
   const channels = useState<DocsChannel[]>('docs-channels', () => DOCS_CHANNELS)
-  const channel = computed(() => findChannel(channelId) ?? channels.value.find(c => c.id === channelId) ?? DOCS_CHANNELS[0]!)
-  const primary = computed(() => primaryChannel(channels.value))
-  // Only the primary channel is indexed by search engines
-  const indexed = computed(() => primary.value.id === channel.value.id)
-  // Origins are worked out from the list built in, so canonical URLs never change after hydration
-  const origin = channelOrigin(findChannel(channelId) ?? DOCS_CHANNELS[0]!)
+  const channel = computed(() => findChannel(channelId, channels.value) ?? findChannel(channelId) ?? DOCS_CHANNELS[0]!)
+  const current = computed(() => currentChannel(channels.value))
+  // Only the current version is indexed by search engines. Worked out from the list built in,
+  // like the prefix, so neither changes after hydration.
+  const indexed = currentChannel().id === channelId
+  /** This version's absolute URL base, such as `https://cwa.rocks/edge` (no trailing slash). */
+  const siteUrl = `${SITE_ORIGIN}${channelPrefix(findChannel(channelId) ?? DOCS_CHANNELS[0]!)}`
   const switchable = computed(() => liveChannels(channels.value))
-  const latest = computed(() => channels.value.find(c => c.kind === 'latest' && c.live))
 
-  function originOf(target: DocsChannel) {
-    return channelOrigin(target, channels.value)
+  /** The path prefix of another version: '' for the current one, `/edge`, `/2.0`... */
+  function prefixOf(target: DocsChannel) {
+    return channelPrefix(target, channels.value)
   }
 
-  /** Fetch the channel list from the primary site, once, in the browser. */
+  /** Fetch the channel list from the current version, once, in the browser. */
   async function refreshChannels() {
-    if (import.meta.server || indexed.value) {
+    if (import.meta.server || indexed) {
       return
     }
     const refreshed = useState<boolean>('docs-channels-refreshed', () => false)
@@ -50,32 +55,33 @@ export function useDocsChannel() {
     }
     refreshed.value = true
     try {
-      const manifest = await $fetch<DocsVersionManifest>(`${PRIMARY_ORIGIN}/api/docs-version.json`, { timeout: 3000 })
+      const manifest = await fetchRaw<DocsVersionManifest>('/api/docs-version.json')
       if (Array.isArray(manifest?.channels) && manifest.channels.some(c => c.id === channelId)) {
         channels.value = manifest.channels
       }
     } catch {
-      // the primary site is unreachable or older than versioning: keep the list built in
+      // the current version is unreachable or older than versioning: keep the list built in
     }
   }
 
   /**
-   * The URL of `path` on another channel: the same path when that channel has the page,
-   * otherwise its docs home. Falls back to the same path when the channel can't be asked.
+   * The URL of `path` (without any prefix) in another version: the same page when that
+   * version has it, otherwise its Getting Started. Falls back to the same page when the
+   * version can't be asked.
    */
   async function urlOn(target: DocsChannel, path: string, hash = '') {
-    const base = originOf(target)
+    const prefix = prefixOf(target)
+    const clean = path.length > 1 ? path.replace(/\/+$/, '') : path
     try {
-      const manifest = await $fetch<DocsVersionManifest>(`${base}/api/docs-version.json`, { timeout: 3000 })
-      const clean = path.length > 1 ? path.replace(/\/+$/, '') : path
+      const manifest = await fetchRaw<DocsVersionManifest>(`${prefix}/api/docs-version.json`)
       if (Array.isArray(manifest?.paths) && !manifest.paths.includes(clean)) {
-        return `${base}/getting-started`
+        return `${prefix}/getting-started`
       }
     } catch {
-      // keep the same path
+      // keep the same page
     }
-    return `${base}${path}${hash}`
+    return `${prefix}${clean === '/' && prefix ? '/' : clean}${hash}`
   }
 
-  return { channel, channels, primary, indexed, origin, switchable, latest, originOf, refreshChannels, urlOn }
+  return { channel, channels, current, indexed, siteUrl, switchable, prefixOf, refreshChannels, urlOn }
 }

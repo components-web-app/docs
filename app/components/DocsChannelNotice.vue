@@ -1,13 +1,13 @@
 <script setup lang="ts">
 /**
- * A one-line notice on docs pages of a version that isn't the latest release
- * (shared/docs-versions.ts): edge describes unreleased changes, an archived version is old.
- * Shown only once a latest deployment exists. Dismissing it is remembered in this browser.
+ * A one-line notice on docs pages of a version that isn't the current release
+ * (shared/docs-versions.ts): edge describes unreleased changes, an older line is old. There
+ * is none while edge is the only version. Dismissing it is remembered in this browser.
  */
 const route = useRoute()
-const { channel, latest, originOf, urlOn } = useDocsChannel()
+const { channel, current, prefixOf, urlOn } = useDocsChannel()
 
-const shown = computed(() => !!latest.value && channel.value.kind !== 'latest')
+const shown = computed(() => channel.value.id !== current.value.id)
 const storageKey = computed(() => `cwa-docs-channel-notice-dismissed:${channel.value.id}`)
 const open = ref(true)
 
@@ -33,20 +33,21 @@ function dismiss(isOpen: boolean) {
   }
 }
 
-const latestHref = computed(() => latest.value ? `${originOf(latest.value)}${route.path}` : '#')
+// A plain link: the current version is another build, so the router can't navigate to it
+const currentHref = computed(() => `${prefixOf(current.value)}${route.path}`)
 
-async function goToLatest(event: MouseEvent) {
-  if (!latest.value || event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0) {
+async function goToCurrent(event: MouseEvent) {
+  if (event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0) {
     return
   }
   event.preventDefault()
-  window.location.href = await urlOn(latest.value, route.path, route.hash)
+  window.location.href = await urlOn(current.value, route.path, route.hash)
 }
 </script>
 
 <template>
   <UAlert
-    v-if="shown && open && latest"
+    v-if="shown && open"
     :icon="channel.kind === 'edge' ? 'i-heroicons-code-bracket' : 'i-heroicons-clock'"
     color="info"
     variant="subtle"
@@ -59,13 +60,13 @@ async function goToLatest(event: MouseEvent) {
         You're reading the edge docs: they describe unreleased changes on the development branches.
       </template>
       <template v-else>
-        You're reading the docs for CWA {{ channel.label }}, an older release.
+        You're reading the docs for an older version, CWA {{ channel.label }}.
       </template>
-      For the latest release, read the <a
-        :href="latestHref"
+      For the current release, read the <a
+        :href="currentHref"
         class="underline"
-        @click="goToLatest"
-      >{{ latest.label }} docs</a>.
+        @click="goToCurrent"
+      >{{ current.label }} docs</a>.
     </template>
   </UAlert>
 </template>

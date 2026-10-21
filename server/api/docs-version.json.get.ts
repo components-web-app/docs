@@ -5,14 +5,15 @@ import { DOCS_CHANNELS, DEFAULT_CHANNEL_ID } from '#shared/docs-versions'
 const APP_PAGES = ['/', '/about', '/built-for-business', '/quiz', '/quiz/play']
 
 /**
- * /api/docs-version.json: which documentation version this deployment is, the channel list
- * built into it, and every page path it has. Prerendered. Other versions' switchers read it
- * (cross-origin, so vercel.json sends Access-Control-Allow-Origin) to keep the reader on the
- * same page when it exists here, and older versions read the channel list from the primary site.
+ * <prefix>/api/docs-version.json: which documentation version this build is, the channel
+ * list built into it, and every page path it has (without its prefix). Prerendered. Other
+ * versions' switchers read it to keep the reader on the same page when it exists here, and
+ * older versions read the channel list from the current version's copy at the root.
  */
 export default defineEventHandler(async (event) => {
   const [docs, standalone, pages] = await Promise.all([
-    queryCollection(event, 'docs').select('path').all(),
+    // Each section's .navigation.yml is in the docs collection for its sidebar title; it isn't a page
+    queryCollection(event, 'docs').where('extension', '=', 'md').select('path').all(),
     queryCollection(event, 'standalone').select('path').all(),
     queryCollection(event, 'pages').select('path').all()
   ])
@@ -22,7 +23,7 @@ export default defineEventHandler(async (event) => {
     .sort()
 
   return {
-    channel: (useRuntimeConfig(event).public.docsChannel as string) || DEFAULT_CHANNEL_ID,
+    channel: (useRuntimeConfig(event).public.docsVersion as string) || DEFAULT_CHANNEL_ID,
     channels: DOCS_CHANNELS,
     paths
   }

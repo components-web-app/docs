@@ -30,8 +30,8 @@ export const siteLinks: SiteLink[] = [
   }
 ]
 
-/** `<origin>/<path>` without a trailing slash (except the home page). Pass `useDocsChannel().origin`. */
-export function absoluteUrl(path: string, origin: string) {
+/** `<siteUrl><path>` without a trailing slash (except the home page). Pass `useDocsChannel().siteUrl`, which includes the version's path. */
+export function absoluteUrl(path: string, siteUrl: string) {
   const clean = path.length > 1 ? path.replace(/\/+$/, '') : path
-  return `${origin}${clean}`
+  return `${siteUrl}${clean}`
 }
