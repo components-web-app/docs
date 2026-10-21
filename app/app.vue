@@ -3,7 +3,11 @@ import VipSlideover from '~/components/VipSlideover.vue'
 
 const { seo } = useAppConfig()
 const route = useRoute()
-const canonicalUrl = computed(() => absoluteUrl(route.path))
+// Each documentation version is its own build, served under its own path on the one origin
+// (shared/docs-versions.ts). Only the current version is indexed; the others say noindex.
+const { siteUrl: SITE_URL, indexed } = useDocsChannel()
+const { baseURL } = useRuntimeConfig().app
+const canonicalUrl = computed(() => absoluteUrl(route.path, SITE_URL))
 
 const { data: navigation } = await useAsyncData('navigation', () => queryCollectionNavigation('docs'))
 const { data: files } = useLazyFetch('/api/search.json', {
@@ -17,9 +21,10 @@ useHead({
     { name: 'viewport', content: 'width=device-width, initial-scale=1' }
   ],
   link: [
-    { rel: 'icon', href: '/favicon.ico' },
-    { rel: 'apple-touch-icon', href: '/apple-touch-icon-180x180.png' },
-    { rel: 'manifest', href: '/site.webmanifest' },
+    // Under a version's path (/edge), its own copies: app.baseURL ends with /
+    { rel: 'icon', href: `${baseURL}favicon.ico` },
+    { rel: 'apple-touch-icon', href: `${baseURL}apple-touch-icon-180x180.png` },
+    { rel: 'manifest', href: `${baseURL}site.webmanifest` },
     // One URL per page for search engines, without a trailing slash.
     { rel: 'canonical', href: canonicalUrl }
   ],
@@ -38,7 +43,8 @@ useSeoMeta({
   twitterImage: `${SITE_URL}/social-card.png`,
   twitterCard: 'summary_large_image',
   twitterSite: '@cwa_rocks',
-  themeColor: '#000000'
+  themeColor: '#000000',
+  robots: indexed ? undefined : 'noindex, follow'
 })
 
 // Structured data for the home page: who publishes the site, and the site itself.

@@ -10,6 +10,7 @@ definePageMeta({
 
 const route = useRoute()
 const { toc, seo } = useAppConfig()
+const { siteUrl, channel } = useDocsChannel()
 
 const navigation = inject<Ref<ContentNavigationItem[]>>('navigation')
 
@@ -58,7 +59,7 @@ useHead({
           '@type': 'ListItem',
           'position': index + 1,
           'name': item.title,
-          'item': absoluteUrl(item.path)
+          'item': absoluteUrl(item.path, siteUrl)
         }))
       })
     }]
@@ -93,13 +94,16 @@ function dismissAlphaNotice(open: boolean) {
 const links = computed(() => [toc?.bottom?.edit && {
   icon: 'i-heroicons-pencil-square',
   label: 'Edit this page',
-  to: `${toc.bottom.edit}/${page?.value?.stem}.md`,
+  // Edit on this version's own branch (shared/docs-versions.ts)
+  to: `${toc.bottom.edit}/${channel.value.branch}/content/${page?.value?.stem}.md`,
   target: '_blank'
 }, ...(toc?.bottom?.links || [])].filter(Boolean))
 </script>
 
 <template>
   <UPage>
+    <DocsChannelNotice class="mt-6" />
+
     <UAlert
       v-if="showAlphaNotice"
       icon="i-heroicons-beaker"

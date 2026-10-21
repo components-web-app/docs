@@ -1,6 +1,3 @@
-/** The production origin. Used for canonical URLs, og:url, the sitemap and structured data. */
-export const SITE_URL = 'https://cwa.rocks'
-
 export type SiteLink = {
   label: string
   icon?: string
@@ -33,8 +30,8 @@ export const siteLinks: SiteLink[] = [
   }
 ]
 
-/** `https://cwa.rocks/<path>` without a trailing slash (except the home page). */
-export function absoluteUrl(path: string) {
+/** `<siteUrl><path>` without a trailing slash (except the home page). Pass `useDocsChannel().siteUrl`, which includes the version's path. */
+export function absoluteUrl(path: string, siteUrl: string) {
   const clean = path.length > 1 ? path.replace(/\/+$/, '') : path
-  return `${SITE_URL}${clean}`
+  return `${siteUrl}${clean}`
 }

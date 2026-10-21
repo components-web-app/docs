@@ -106,7 +106,8 @@ export default defineAppConfig({
     title: 'Table of Contents',
     bottom: {
       title: 'Community',
-      edit: 'https://github.com/components-web-app/docs/edit/main/content',
+      // The page adds `/<branch>/content/<file>.md`, the branch of the version being read
+      edit: 'https://github.com/components-web-app/docs/edit',
       links: [{
         icon: 'i-heroicons-star',
         label: 'Star on GitHub',

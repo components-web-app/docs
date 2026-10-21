@@ -842,6 +842,9 @@ ui: {
 - Theme config: `highlight({ themes: { light: 'github-light', dark: 'github-dark' }, languages: [...] })`
 - Docs: https://comark.dev/
 
+### Documentation versions (docs #289)
+Each version is a branch built on its own, all served from cwa.rocks by path: `main` is **edge** (the source repos' development branches), `2.0` the 2.0 line (moved forward to each template release until 2.0.0), later `2.1`, …. The current version (the newest live release line, edge while there's none) is at the root and the only one indexed; the others are under `/edge/`, `/2.0/` (their `app.baseURL`), and the current build's Vercel routes rewrite those paths to each version's own project. `shared/docs-versions.ts` is the single source (labels, branches, `origin`, `live`, source versions); the build picks its channel from `NUXT_PUBLIC_DOCS_CHANNEL`, else the Vercel branch, else edge. Moving `2.0`, cutting a minor, carrying fixes (fix on `main` first, then `git cherry-pick -x`) and the Vercel setup are in `VERSIONS.md`. For absolute URLs use `useDocsChannel().siteUrl` (app) or `docsSite(event).siteUrl` (server), never a hard-coded `https://cwa.rocks`; for site files in the head, `useRuntimeConfig().app.baseURL`.
+
 ### @nuxt/content v3 content refresh
 If you see "no such table: _content_docs": `rm -rf .nuxt && pnpm run dev`
 

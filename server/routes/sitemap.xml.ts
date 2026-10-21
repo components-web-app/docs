@@ -1,8 +1,6 @@
 import { queryCollection } from '@nuxt/content/server'
 import { setResponseHeader } from 'h3'
 
-const SITE_URL = 'https://cwa.rocks'
-
 function escapeXml(value: string) {
   return value
     .replace(/&/g, '&amp;')
@@ -14,17 +12,19 @@ function escapeXml(value: string) {
 
 /**
  * /sitemap.xml: every marketing page and every docs page. Prerendered (nuxt.config.ts),
- * so it is a static file on Vercel.
+ * so it is a static file on Vercel. Empty on a documentation version that isn't indexed
+ * (shared/docs-versions.ts).
  */
 export default defineEventHandler(async (event) => {
   setResponseHeader(event, 'Content-Type', 'application/xml; charset=utf-8')
+  const { siteUrl: SITE_URL, indexed } = docsSite(event)
 
   const [docs, marketing] = await Promise.all([
     queryCollection(event, 'docs').where('extension', '=', 'md').select('path').order('path', 'ASC').all(),
     queryCollection(event, 'pages').select('path').order('path', 'ASC').all()
   ])
 
-  const paths = [...new Set([...marketing, ...docs].map(item => item.path).filter(Boolean))]
+  const paths = indexed ? [...new Set([...marketing, ...docs].map(item => item.path).filter(Boolean))] : []
 
   const urls = paths.map((path) => {
     const clean = path.length > 1 ? path.replace(/\/+$/, '') : path
