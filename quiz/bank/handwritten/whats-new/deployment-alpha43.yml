@@ -118,7 +118,7 @@ questions:
         Migrations and `ANALYZE` run through `app:database:migrate` under a PostgreSQL advisory lock. The other process
         prints that another is migrating, waits up to 600 seconds, then has nothing left to do.
     sources:
-      - { kind: docs, page: /deployment/kubernetes, anchor: running-migrations, sectionHash: 'sha256:6d7e5158ef3a9734', title: 'Kubernetes & Helm › Running Migrations' }
+      - { kind: docs, page: /deployment/kubernetes, anchor: running-migrations, sectionHash: 'sha256:23300e7354f7b8ec', title: 'Kubernetes & Helm › Running Migrations' }
     author: llm-draft
 
   - id: deploy.mercure.hub-settings-file
