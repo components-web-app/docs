@@ -574,5 +574,5 @@ questions:
         The reference names the stored group, so the page gets a new, empty `body` group, and `content` stays
         attached with its components. The admin bar warns about the stranded group and lets you merge it.
     sources:
-      - { kind: docs, page: /nuxt-module/cwa-components/cwa-component-group, anchor: how-it-works, sectionHash: 'sha256:adcb2c0f402b205e', title: '<CwaComponentGroup /> › How It Works' }
+      - { kind: docs, page: /nuxt-module/cwa-components/cwa-component-group, anchor: how-it-works, sectionHash: 'sha256:87ec2d07d543b9e6', title: '<CwaComponentGroup /> › How It Works' }
     author: llm-draft

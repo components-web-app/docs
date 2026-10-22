@@ -25,7 +25,7 @@ questions:
         The server replaces `now` with its own time. A client's current time can still be in the future when it
         arrives, which would leave the resource scheduled instead of published.
     sources:
-      - { kind: docs, page: /api/components/annotations/publishable, anchor: publishing-now, sectionHash: 'sha256:3648cbb8f27a8655', title: 'Publishable › Publishing Now' }
+      - { kind: docs, page: /api/components/annotations/publishable, anchor: publishing-now, sectionHash: 'sha256:66405e68cbb035af', title: 'Publishable › Publishing Now' }
     author: llm-draft
 
   - id: api.publishable.take-offline
@@ -54,7 +54,7 @@ questions:
         a: That creates or updates a draft and leaves the published version live.
         c: A past date on a live resource is ignored.
     sources:
-      - { kind: docs, page: /api/components/annotations/publishable, anchor: publishing-a-resource, sectionHash: 'sha256:b5f4197d5ee863fa', title: 'Publishable › Publishing a Resource' }
+      - { kind: docs, page: /api/components/annotations/publishable, anchor: publishing-a-resource, sectionHash: 'sha256:29886ec005f6f69f', title: 'Publishable › Publishing a Resource' }
     author: llm-draft
 
   - id: api.routes.redirect-storage
@@ -210,7 +210,7 @@ questions:
         Creating page data through the API or the admin never creates a route. Create one with `POST /_/routes`,
         or generate it from the title with `POST /_/routes/generate`.
     sources:
-      - { kind: docs, page: /api/routes, anchor: route-generation, sectionHash: 'sha256:b555eceb06c10ff8', title: 'Routes › Route Generation' }
+      - { kind: docs, page: /api/routes, anchor: route-generation, sectionHash: 'sha256:0b71d54606580151', title: 'Routes › Route Generation' }
     author: llm-draft
 
   - id: api.fixtures.after-routes
@@ -242,7 +242,7 @@ questions:
         d: '`linkIri()` writes an IRI string, for a string or array field. A `route` field holds the `Route` itself.'
     since: [{ repo: api-components-bundle, version: '2.0.0-alpha.22' }]
     sources:
-      - { kind: docs, page: /api/data-fixtures/writing-a-scaffold, anchor: linking-routes-and-iris, sectionHash: 'sha256:87e67160f8a7aec6', title: 'Writing a Scaffold › Linking Routes and IRIs' }
+      - { kind: docs, page: /api/data-fixtures/writing-a-scaffold, anchor: linking-routes-and-iris, sectionHash: 'sha256:c35f778b8e21b119', title: 'Writing a Scaffold › Linking Routes and IRIs' }
       - { kind: docs, page: /api/data-fixtures/builder-reference, anchor: afterroutes, sectionHash: 'sha256:675501e7417f2840', title: 'Builder Reference › afterRoutes()' }
     author: llm-draft
 
@@ -273,7 +273,7 @@ questions:
       optionNotes:
         a: On a page builder the second argument is the `configure` closure.
     sources:
-      - { kind: docs, page: /api/data-fixtures/builder-reference, anchor: pagebuilder-from-cwa-page, sectionHash: 'sha256:09fa85294badea1e', title: 'Builder Reference › PageBuilder — from $cwa->page()' }
+      - { kind: docs, page: /api/data-fixtures/builder-reference, anchor: pagebuilder-from-cwa-page, sectionHash: 'sha256:a16b5b7f40d840b0', title: 'Builder Reference › PageBuilder — from $cwa->page()' }
     author: llm-draft
 
   - id: api.fixtures.redirect-target-name
@@ -305,7 +305,7 @@ questions:
         c: That is the route's path. A path is the first argument of `redirect()`, the URL it redirects from.
     sources:
       - { kind: docs, page: /api/data-fixtures/writing-a-scaffold, anchor: references-route-names-and-paths, sectionHash: 'sha256:03d81e735ac1b09c', title: 'Writing a Scaffold › References, Route Names and Paths' }
-      - { kind: docs, page: /api/data-fixtures/builder-reference, anchor: redirect, sectionHash: 'sha256:f678fc37f40ec790', title: 'Builder Reference › redirect()' }
+      - { kind: docs, page: /api/data-fixtures/builder-reference, anchor: redirect, sectionHash: 'sha256:ee98bdb545db0c2b', title: 'Builder Reference › redirect()' }
     author: llm-draft
 
   - id: api.uploads.uploaded-image-svg
@@ -336,8 +336,8 @@ questions:
         d: '`allowSvg` is `true` by default. Set it to `false` to refuse SVGs.'
     since: [{ repo: api-components-bundle, version: '2.0.0-alpha.23' }]
     sources:
-      - { kind: docs, page: /api/components/annotations/uploadable, anchor: capping-uploads-to-fit-the-budget, sectionHash: 'sha256:44a8df06f40989a6', title: 'Uploadable › Capping Uploads to Fit the Budget' }
-      - { kind: docs, page: /api/components/annotations/uploadable, anchor: liipimaginebundle-integration, sectionHash: 'sha256:2dc7bff380211595', title: 'Uploadable › LiipImagineBundle Integration' }
+      - { kind: docs, page: /api/components/annotations/uploadable, anchor: capping-uploads-to-fit-the-budget, sectionHash: 'sha256:e2ed21162bc2d319', title: 'Uploadable › Capping Uploads to Fit the Budget' }
+      - { kind: docs, page: /api/components/annotations/uploadable, anchor: liipimaginebundle-integration, sectionHash: 'sha256:dd9ce223808c764c', title: 'Uploadable › LiipImagineBundle Integration' }
     author: llm-draft
 
   - id: api.real-time.draft-updates

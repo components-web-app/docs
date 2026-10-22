@@ -24,7 +24,7 @@ questions:
         Anonymous visitors only ever get the published version, and a component with none is a 404 for them.
         Callers who may publish get the draft.
     sources:
-      - { kind: docs, page: /api/components/annotations/publishable, anchor: how-it-works-at-the-api-level, sectionHash: 'sha256:a4527f37b398b377', title: 'Publishable › How It Works at the API Level' }
+      - { kind: docs, page: /api/components/annotations/publishable, anchor: how-it-works-at-the-api-level, sectionHash: 'sha256:20c0c1abb9c73d69', title: 'Publishable › How It Works at the API Level' }
     author: llm-draft
 
   - id: api.page-data.base-class

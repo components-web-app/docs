@@ -28,7 +28,7 @@ questions:
         The backup needs a private bucket of its own. The deploy refuses `GCLOUD_BUCKET`, which is public and which
         the daily orphan scan cleans, and after each upload it deletes a dump that it can read without credentials.
     sources:
-      - { kind: docs, page: /deployment/migrations-and-backups, anchor: the-backup-bucket, sectionHash: 'sha256:31e7d06db99078ba', title: 'Migrations and Backups › The backup bucket' }
+      - { kind: docs, page: /deployment/migrations-and-backups, anchor: the-backup-bucket, sectionHash: 'sha256:4c00ed94b6c95e7b', title: 'Migrations and Backups › The backup bucket' }
     author: llm-draft
 
   - id: deploy.db.window-failure
@@ -58,7 +58,7 @@ questions:
         restore it, and how to turn maintenance off. The next production deploy also ends the window, with or
         without the variable. A failed migration is rolled back in one transaction, so a restore is rarely needed.
     sources:
-      - { kind: docs, page: /deployment/migrations-and-backups, anchor: when-the-window-fails, sectionHash: 'sha256:031fb5134b828bdc', title: 'Migrations and Backups › When the window fails' }
+      - { kind: docs, page: /deployment/migrations-and-backups, anchor: when-the-window-fails, sectionHash: 'sha256:45499c30eab5cc79', title: 'Migrations and Backups › When the window fails' }
     author: llm-draft
 
   - id: deploy.db.window-steps
@@ -90,7 +90,7 @@ questions:
         d: 'The window only covers production''s own deploy.'
         e: 'A failure leaves maintenance on and prints how to restore. Restoring is up to you.'
     sources:
-      - { kind: docs, page: /deployment/migrations-and-backups, anchor: the-maintenance-window, sectionHash: 'sha256:93a1e665ea5f8fa8', title: 'Migrations and Backups › The maintenance window' }
+      - { kind: docs, page: /deployment/migrations-and-backups, anchor: the-maintenance-window, sectionHash: 'sha256:4fa7217bbd036276', title: 'Migrations and Backups › The maintenance window' }
     author: llm-draft
 
   - id: deploy.k8s.migration-lock
@@ -118,7 +118,7 @@ questions:
         Migrations and `ANALYZE` run through `app:database:migrate` under a PostgreSQL advisory lock. The other process
         prints that another is migrating, waits up to 600 seconds, then has nothing left to do.
     sources:
-      - { kind: docs, page: /deployment/kubernetes, anchor: running-migrations, sectionHash: 'sha256:51b05faa17fdf8fe', title: 'Kubernetes & Helm › Running Migrations' }
+      - { kind: docs, page: /deployment/kubernetes, anchor: running-migrations, sectionHash: 'sha256:6d7e5158ef3a9734', title: 'Kubernetes & Helm › Running Migrations' }
     author: llm-draft
 
   - id: deploy.mercure.hub-settings-file
@@ -148,7 +148,7 @@ questions:
         into the `mercure` block. Copy it (and `mercure-hub.Caddyfile`) with the Caddyfile, and move any hub settings
         you changed into it.
     sources:
-      - { kind: docs, page: /api/real-time, anchor: in-the-template, sectionHash: 'sha256:95a40157c5dcae70', title: 'Real-Time Updates (Mercure) › In the Template' }
+      - { kind: docs, page: /api/real-time, anchor: in-the-template, sectionHash: 'sha256:9a095622be439007', title: 'Real-Time Updates (Mercure) › In the Template' }
     author: llm-draft
 
   - id: deploy.db.backup-key
@@ -180,7 +180,7 @@ questions:
       optionNotes:
         b: 'Before this change the upload used `GCLOUD_JSON`. Now the deploy refuses the same service account.'
     sources:
-      - { kind: docs, page: /deployment/migrations-and-backups, anchor: the-backup-bucket, sectionHash: 'sha256:31e7d06db99078ba', title: 'Migrations and Backups › The backup bucket' }
+      - { kind: docs, page: /deployment/migrations-and-backups, anchor: the-backup-bucket, sectionHash: 'sha256:4c00ed94b6c95e7b', title: 'Migrations and Backups › The backup bucket' }
 
   - id: deploy.cicd.failed-rollout-tag
     version: 1
@@ -209,7 +209,7 @@ questions:
         build to the track's tag only once the migrations and both rollouts have succeeded. The failed deploy
         stops with `THE cwa ROLLOUT DID NOT FINISH`, while the old pods keep serving.
     sources:
-      - { kind: docs, page: /deployment/ci-cd, anchor: which-build-a-deploy-runs, sectionHash: 'sha256:59cb7d65c3616962', title: 'CI/CD › Which build a deploy runs' }
+      - { kind: docs, page: /deployment/ci-cd, anchor: which-build-a-deploy-runs, sectionHash: 'sha256:87e6488d5b8bf578', title: 'CI/CD › Which build a deploy runs' }
 
   - id: deploy.db.staging-shared-database
     version: 1
@@ -238,7 +238,7 @@ questions:
         never migrate, and with migrations pending the job succeeds with a warning while the old staging keeps
         running. Production's deploy migrates, with its own plan, backup and window. A canary fails instead.
     sources:
-      - { kind: docs, page: /deployment/migrations-and-backups, anchor: a-track-on-productions-database, sectionHash: 'sha256:0d80838ccd7065b3', title: 'Migrations and Backups › A track on production''s database' }
+      - { kind: docs, page: /deployment/migrations-and-backups, anchor: a-track-on-productions-database, sectionHash: 'sha256:b9ea13097ff22805', title: 'Migrations and Backups › A track on production''s database' }
 
   - id: deploy.cicd.retry-ci-only
     version: 1
@@ -266,7 +266,7 @@ questions:
         The staging and production jobs retry once only for CI failures: a runner or scheduler failure, a GitLab
         API failure or the job's timeout. A failed deploy is never run again by itself.
     sources:
-      - { kind: docs, page: /deployment/ci-cd, anchor: production, sectionHash: 'sha256:d57a4e495b1b5468', title: 'CI/CD › Production' }
+      - { kind: docs, page: /deployment/ci-cd, anchor: production, sectionHash: 'sha256:face01a6120317be', title: 'CI/CD › Production' }
 
   - id: deploy.db.window-left-on
     version: 1
@@ -297,7 +297,7 @@ questions:
       optionNotes:
         b: 'That was true before `abcc4a1`, and still is for a window left on before it, which has no marker.'
     sources:
-      - { kind: docs, page: /deployment/migrations-and-backups, anchor: when-the-window-fails, sectionHash: 'sha256:031fb5134b828bdc', title: 'Migrations and Backups › When the window fails' }
+      - { kind: docs, page: /deployment/migrations-and-backups, anchor: when-the-window-fails, sectionHash: 'sha256:45499c30eab5cc79', title: 'Migrations and Backups › When the window fails' }
 
   - id: deploy.db.review-production-database
     version: 2
@@ -329,4 +329,4 @@ questions:
       optionNotes:
         c: 'Skipping migrations is the guard for staging and canary, which share production''s namespace.'
     sources:
-      - { kind: docs, page: /deployment/migrations-and-backups, anchor: review-apps, sectionHash: 'sha256:617fd82b4b585274', title: 'Migrations and Backups › Review apps' }
+      - { kind: docs, page: /deployment/migrations-and-backups, anchor: review-apps, sectionHash: 'sha256:871fbf5bbd5cdda2', title: 'Migrations and Backups › Review apps' }

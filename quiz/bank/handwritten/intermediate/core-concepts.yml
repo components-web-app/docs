@@ -53,7 +53,7 @@ questions:
         nothing routes to is visible only to admins, unless an admin marks it **Public without a route**. Layouts
         aren't published or drafted.
     sources:
-      - { kind: docs, page: /core-concepts/layouts-and-pages, anchor: what-the-public-can-see, sectionHash: 'sha256:ea71aea0e2941373', title: 'Layouts & Pages › What the Public Can See' }
+      - { kind: docs, page: /core-concepts/layouts-and-pages, anchor: what-the-public-can-see, sectionHash: 'sha256:fe546c126aad6e0f', title: 'Layouts & Pages › What the Public Can See' }
     author: llm-draft
 
   - id: core.admin.delete-one-version
@@ -79,7 +79,7 @@ questions:
         A delete removes only the selected version. To delete the other one, select it first with the Publish
         tab's **Edit live version** toggle.
     sources:
-      - { kind: docs, page: /core-concepts/admin-panel, anchor: deleting-a-component, sectionHash: 'sha256:50346d8e4460c38a', title: 'The Admin Panel › Deleting a component' }
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: deleting-a-component, sectionHash: 'sha256:b5a83ef51f795064', title: 'The Admin Panel › Deleting a component' }
     author: llm-draft
 
   - id: core.admin.rename-child-routes
@@ -133,7 +133,7 @@ questions:
         Select a component, open the manager panel's **Order** tab and turn on **Enable reordering**. Then use
         **Move Up**, **Move Down** or a position number.
     sources:
-      - { kind: docs, page: /core-concepts/admin-panel, anchor: reordering, sectionHash: 'sha256:fd0ebb9fa7076f40', title: 'The Admin Panel › Reordering' }
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: reordering, sectionHash: 'sha256:59cdff50926702be', title: 'The Admin Panel › Reordering' }
     author: llm-draft
 
   - id: core.caching.save-refreshes-pages
@@ -160,7 +160,7 @@ questions:
         Every cached response and page is tagged with the IRIs (API paths) of the resources in it. Saving a
         resource purges its IRI, so everything that used it is dropped.
     sources:
-      - { kind: docs, page: /core-concepts/caching, anchor: purges, sectionHash: 'sha256:c37d1bc5ca595f58', title: 'Caching › Purges' }
+      - { kind: docs, page: /core-concepts/caching, anchor: purges, sectionHash: 'sha256:be2ecb136ea04d20', title: 'Caching › Purges' }
     author: llm-draft
 
   - id: core.caching.editors-get-fresh-pages
@@ -214,5 +214,5 @@ questions:
         The module registers layouts with the `CwaLayout` prefix, and a layout's `uiComponent` holds that full
         name. It is rendered as stored, so `Landing` wouldn't resolve.
     sources:
-      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: how-uicomponent-names-resolve, sectionHash: 'sha256:5dc45450ae61e9df', title: 'Layouts › How uiComponent Names Resolve' }
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: how-uicomponent-names-resolve, sectionHash: 'sha256:20bb5b33597a1aac', title: 'Layouts › How uiComponent Names Resolve' }
     author: llm-draft

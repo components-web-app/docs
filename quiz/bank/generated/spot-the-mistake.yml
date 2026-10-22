@@ -178,7 +178,7 @@ questions:
       - kind: docs
         page: /nuxt-module/pwa
         anchor: applying-updates
-        sectionHash: sha256:9e0cef773e3c77ed
+        sectionHash: sha256:bbe92a4728bdb58b
         title: Progressive Web App & Offline › Applying Updates
         block: 1
         blockHash: sha256:60c62f519ea31f5a
@@ -1207,7 +1207,7 @@ questions:
       - kind: docs
         page: /guides/your-first-component
         anchor: via-fixtures
-        sectionHash: sha256:e1c9ba97c217434a
+        sectionHash: sha256:8ca1245ddc22e4b3
         title: Your First Component › Via fixtures
         block: 0
         blockHash: sha256:825d8146891df7f1
@@ -1284,7 +1284,7 @@ questions:
       - kind: docs
         page: /api/data-fixtures/builder-reference
         anchor: pagebuilder-from-cwa-page
-        sectionHash: sha256:09fa85294badea1e
+        sectionHash: sha256:a16b5b7f40d840b0
         title: Builder Reference › PageBuilder — from $cwa->page()
       - kind: docs
         page: /api/data-fixtures/writing-a-scaffold
@@ -1324,7 +1324,7 @@ questions:
       - kind: docs
         page: /api/data-fixtures/builder-reference
         anchor: pagebuilder-from-cwa-page
-        sectionHash: sha256:09fa85294badea1e
+        sectionHash: sha256:a16b5b7f40d840b0
         title: Builder Reference › PageBuilder — from $cwa->page()
       - kind: docs
         page: /api/data-fixtures/builder-reference
@@ -1382,7 +1382,7 @@ questions:
       - kind: docs
         page: /api/data-fixtures/getting-started
         anchor: seeding-users
-        sectionHash: sha256:9672346de1b4d366
+        sectionHash: sha256:64c945fadb43370c
         title: Getting Started with Fixtures › Seeding Users
         block: 0
         blockHash: sha256:c397d856800f4dcc
@@ -2142,7 +2142,7 @@ questions:
       - kind: docs
         page: /api/data-fixtures/builder-reference
         anchor: pagebuilder-from-cwa-page
-        sectionHash: sha256:09fa85294badea1e
+        sectionHash: sha256:a16b5b7f40d840b0
         title: Builder Reference › PageBuilder — from $cwa->page()
         block: 2
         blockHash: sha256:eaec88680c1e538a

@@ -299,7 +299,7 @@ questions:
         The module creates a page's groups the first time a signed-in admin opens it, and `--append` never adds
         to a group that already exists. Add the quote in the admin, or reload from empty without `--append`.
     sources:
-      - { kind: docs, page: /guides/your-first-component, anchor: via-fixtures, sectionHash: 'sha256:e1c9ba97c217434a', title: 'Your First Component › Via fixtures' }
+      - { kind: docs, page: /guides/your-first-component, anchor: via-fixtures, sectionHash: 'sha256:8ca1245ddc22e4b3', title: 'Your First Component › Via fixtures' }
     author: llm-draft
 
   - id: nuxt.cli.where-to-run
@@ -473,7 +473,7 @@ questions:
         `->group('main')->add($quote)` adds the Quote to the page's `main` group. The name matches the
         `reference` of the `<CwaComponentGroup>` in `TwoColumnPageTemplate.vue`.
     sources:
-      - { kind: docs, page: /guides/your-first-component, anchor: via-fixtures, sectionHash: 'sha256:e1c9ba97c217434a', title: 'Your First Component › Via fixtures', block: 0, blockHash: 'sha256:825d8146891df7f1' }
+      - { kind: docs, page: /guides/your-first-component, anchor: via-fixtures, sectionHash: 'sha256:8ca1245ddc22e4b3', title: 'Your First Component › Via fixtures', block: 0, blockHash: 'sha256:825d8146891df7f1' }
     author: llm-draft
 
   - id: nuxt.component.ui-file-location

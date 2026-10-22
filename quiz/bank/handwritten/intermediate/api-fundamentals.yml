@@ -226,7 +226,7 @@ questions:
         A route can only be generated when the parent has one. Give the parent a route, or give the child an
         explicit path with `POST /_/routes` or `route:` in a fixture.
     sources:
-      - { kind: docs, page: /api/routes, anchor: route-generation, sectionHash: 'sha256:b555eceb06c10ff8', title: 'Routes › Route Generation' }
+      - { kind: docs, page: /api/routes, anchor: route-generation, sectionHash: 'sha256:0b71d54606580151', title: 'Routes › Route Generation' }
     author: llm-draft
 
   - id: api.routes.generate-replaces
@@ -253,7 +253,7 @@ questions:
       explanation: >-
         If the article already had a route, the old route becomes a redirect to the new one.
     sources:
-      - { kind: docs, page: /api/routes, anchor: route-generation, sectionHash: 'sha256:b555eceb06c10ff8', title: 'Routes › Route Generation' }
+      - { kind: docs, page: /api/routes, anchor: route-generation, sectionHash: 'sha256:0b71d54606580151', title: 'Routes › Route Generation' }
     author: llm-draft
 
   - id: api.fixtures.template-argument
@@ -355,7 +355,7 @@ questions:
         c: 'The file is stored as `hero-<token>.jpg`, so its name can''t be predicted.'
     sources:
       - { kind: docs, page: /api/components/annotations/uploadable, anchor: the-_metadata-response, sectionHash: 'sha256:3f7a3f20bd0abb70', title: 'Uploadable › The metadata Response' }
-      - { kind: docs, page: /api/components/annotations/uploadable, anchor: stored-filenames, sectionHash: 'sha256:06c2532c9882dcf7', title: 'Uploadable › Stored Filenames' }
+      - { kind: docs, page: /api/components/annotations/uploadable, anchor: stored-filenames, sectionHash: 'sha256:e1fd105834c7fba9', title: 'Uploadable › Stored Filenames' }
     author: llm-draft
 
   - id: api.uploads.remove-file
@@ -429,5 +429,5 @@ questions:
         The cookie name has to match in three places: `set_cookies.<name>`, `token_extractors.cookie.name` and
         the bundle's `refresh_token.cookie_name`. Here the extractor looks for a cookie that is never set.
     sources:
-      - { kind: docs, page: /api/users/authentication, anchor: lexik_jwt_authentication-configuration, sectionHash: 'sha256:8111c13ca3902105', title: 'API Authentication › lexikjwtauthentication Configuration', block: 0, blockHash: 'sha256:8f5c05746c1d7ae7' }
+      - { kind: docs, page: /api/users/authentication, anchor: lexik_jwt_authentication-configuration, sectionHash: 'sha256:9341fa279fd472da', title: 'API Authentication › lexikjwtauthentication Configuration', block: 0, blockHash: 'sha256:8f5c05746c1d7ae7' }
     author: llm-draft

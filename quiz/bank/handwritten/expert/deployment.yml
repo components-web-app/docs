@@ -34,7 +34,7 @@ questions:
         b: The deploy decides on the CDN config, and the purge uses the token written in it.
     sources:
       - { kind: code, repo: components-web-app, path: bin/devops/k8s.sh, lines: [1596, 1613], commit: 2e93ac10490998d19a0807aab91fb7dc9248b61f, linesHash: 'sha256:57262d81213ff43c' }
-      - { kind: docs, page: /deployment/ci-cd, anchor: why-every-deploy-clears-the-page-cache, sectionHash: 'sha256:805acb4317301cb3', title: 'CI/CD › Why every deploy clears the page cache' }
+      - { kind: docs, page: /deployment/ci-cd, anchor: why-every-deploy-clears-the-page-cache, sectionHash: 'sha256:72da8df4899fc1b1', title: 'CI/CD › Why every deploy clears the page cache' }
     author: llm-draft
 
   - id: deploy.internals.fixtures-purge-production
@@ -97,7 +97,7 @@ questions:
         d: That leaves out the imagine headroom. One request at a time may use the imagine limit in place of a worker's.
     sources:
       - { kind: code, repo: components-web-app, path: bin/devops/k8s.sh, lines: [984, 1015], commit: 2e93ac10490998d19a0807aab91fb7dc9248b61f, linesHash: 'sha256:0fbedb863b5d2572' }
-      - { kind: docs, page: /deployment/variables, anchor: php-memory-budget, sectionHash: 'sha256:e1cae31fe58f5738', title: 'CI/CD Variables › php memory budget' }
+      - { kind: docs, page: /deployment/variables, anchor: php-memory-budget, sectionHash: 'sha256:4e39ed971f73ef07', title: 'CI/CD Variables › php memory budget' }
     author: llm-draft
 
   - id: deploy.internals.fixtures-mercure

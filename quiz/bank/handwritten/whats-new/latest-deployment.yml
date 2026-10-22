@@ -31,7 +31,7 @@ questions:
       optionNotes:
         b: '`GCLOUD_PATH_PREFIX` is reserved, so `CWA_API_GCLOUD_PATH_PREFIX` fails the deploy.'
     sources:
-      - { kind: docs, page: /deployment/variables, anchor: storage-path-prefix, sectionHash: 'sha256:0fd6cf4c8802eb79', title: 'CI/CD Variables › Storage path prefix' }
+      - { kind: docs, page: /deployment/variables, anchor: storage-path-prefix, sectionHash: 'sha256:2ff636ef9d406c07', title: 'CI/CD Variables › Storage path prefix' }
     author: llm-draft
 
   - id: deploy.storage.prefix-media-urls
@@ -62,7 +62,7 @@ questions:
       optionNotes:
         b: php tidies the value, removing a leading slash, so `/site-a` becomes `site-a/` anyway.
     sources:
-      - { kind: docs, page: /deployment/variables, anchor: storage-path-prefix, sectionHash: 'sha256:0fd6cf4c8802eb79', title: 'CI/CD Variables › Storage path prefix' }
+      - { kind: docs, page: /deployment/variables, anchor: storage-path-prefix, sectionHash: 'sha256:2ff636ef9d406c07', title: 'CI/CD Variables › Storage path prefix' }
     author: llm-draft
 
   - id: deploy.storage.prefix-live-app
@@ -121,6 +121,6 @@ questions:
         The delete runs only when the pod's prefix ends in `review/<slug>/`. An older review app has no prefix, so
         the guard refuses. The job warns and uninstalls the release anyway, and the files stay at the root.
     sources:
-      - { kind: docs, page: /deployment/ci-cd, anchor: review-app-storage, sectionHash: 'sha256:9ac5d633066cedfc', title: 'CI/CD › Review app storage' }
-      - { kind: docs, page: /deployment/variables, anchor: review-app-paths, sectionHash: 'sha256:56dfd62e9abdd006', title: 'CI/CD Variables › Review app paths' }
+      - { kind: docs, page: /deployment/ci-cd, anchor: review-app-storage, sectionHash: 'sha256:226f79017026d23d', title: 'CI/CD › Review app storage' }
+      - { kind: docs, page: /deployment/variables, anchor: review-app-paths, sectionHash: 'sha256:195ec15f8d383372', title: 'CI/CD Variables › Review app paths' }
     author: llm-draft

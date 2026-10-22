@@ -356,7 +356,7 @@ questions:
       - kind: docs
         page: /api/data-fixtures/builder-reference
         anchor: groupbuilder-from-any-group-call
-        sectionHash: sha256:1297bf39d87b7f81
+        sectionHash: sha256:65f7108ed061378e
         title: Builder Reference › GroupBuilder — from Any ->group() Call
       - kind: docs
         page: /core-concepts/dynamic-pages
@@ -417,7 +417,7 @@ questions:
       - kind: docs
         page: /api/data-fixtures/builder-reference
         anchor: groupbuilder-from-any-group-call
-        sectionHash: sha256:1297bf39d87b7f81
+        sectionHash: sha256:65f7108ed061378e
         title: Builder Reference › GroupBuilder — from Any ->group() Call
       - kind: docs
         page: /guides/your-first-dynamic-page
@@ -470,7 +470,7 @@ questions:
       - kind: docs
         page: /api/data-fixtures/builder-reference
         anchor: groupbuilder-from-any-group-call
-        sectionHash: sha256:1297bf39d87b7f81
+        sectionHash: sha256:65f7108ed061378e
         title: Builder Reference › GroupBuilder — from Any ->group() Call
       - kind: docs
         page: /api/data-fixtures/getting-started
@@ -622,7 +622,7 @@ questions:
       - kind: docs
         page: /api/data-fixtures/builder-reference
         anchor: groupbuilder-from-any-group-call
-        sectionHash: sha256:1297bf39d87b7f81
+        sectionHash: sha256:65f7108ed061378e
         title: Builder Reference › GroupBuilder — from Any ->group() Call
         block: 1
         blockHash: sha256:06c07e23e428b501
@@ -1312,7 +1312,7 @@ questions:
       - kind: docs
         page: /api/data-fixtures/builder-reference
         anchor: seeding-redirects
-        sectionHash: sha256:668bdbf85ddf57a0
+        sectionHash: sha256:fe8818e54b4db4be
         title: Builder Reference › Seeding Redirects
       - kind: docs
         page: /api/data-fixtures/writing-a-scaffold
@@ -1354,12 +1354,12 @@ questions:
       - kind: docs
         page: /api/data-fixtures/builder-reference
         anchor: seeding-redirects
-        sectionHash: sha256:668bdbf85ddf57a0
+        sectionHash: sha256:fe8818e54b4db4be
         title: Builder Reference › Seeding Redirects
       - kind: docs
         page: /api/data-fixtures/builder-reference
         anchor: a-builder-as-the-target
-        sectionHash: sha256:cba05e76a565fe2f
+        sectionHash: sha256:c4c31bd50e2863fd
         title: Builder Reference › A Builder as the Target
         block: 0
         blockHash: sha256:99ff70a86137c443
@@ -1405,7 +1405,7 @@ questions:
       - kind: docs
         page: /api/data-fixtures/builder-reference
         anchor: seeding-redirects
-        sectionHash: sha256:668bdbf85ddf57a0
+        sectionHash: sha256:fe8818e54b4db4be
         title: Builder Reference › Seeding Redirects
       - kind: docs
         page: /api/data-fixtures/appending
@@ -1435,7 +1435,7 @@ questions:
       - kind: docs
         page: /api/data-fixtures/builder-reference
         anchor: groupbuilder-from-any-group-call
-        sectionHash: sha256:1297bf39d87b7f81
+        sectionHash: sha256:65f7108ed061378e
         title: Builder Reference › GroupBuilder — from Any ->group() Call
       - kind: docs
         page: /core-concepts/dynamic-pages
@@ -1525,7 +1525,7 @@ questions:
       - kind: docs
         page: /api/data-fixtures/builder-reference
         anchor: seeding-redirects
-        sectionHash: sha256:668bdbf85ddf57a0
+        sectionHash: sha256:fe8818e54b4db4be
         title: Builder Reference › Seeding Redirects
         block: 0
         blockHash: sha256:9a291fce9b0fdb20
@@ -1568,7 +1568,7 @@ questions:
       - kind: docs
         page: /api/data-fixtures/builder-reference
         anchor: pagebuilder-from-cwa-page
-        sectionHash: sha256:09fa85294badea1e
+        sectionHash: sha256:a16b5b7f40d840b0
         title: Builder Reference › PageBuilder — from $cwa->page()
         block: 2
         blockHash: sha256:eaec88680c1e538a

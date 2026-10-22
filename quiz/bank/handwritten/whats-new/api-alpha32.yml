@@ -30,7 +30,7 @@ questions:
         with `after` or `before` would place it, so its IRI doesn't change. A new position is created only when
         the component comes out of a page data property.
     sources:
-      - { kind: docs, page: /api/components/component-groups, anchor: what-a-move-does, sectionHash: 'sha256:7ebeeb9d88ebd448', title: 'Component Groups & Positions › What a move does' }
+      - { kind: docs, page: /api/components/component-groups, anchor: what-a-move-does, sectionHash: 'sha256:d32cf5ddc5edbc2b', title: 'Component Groups & Positions › What a move does' }
     author: llm-draft
 
   - id: api.groups.move-into-full-property
@@ -88,7 +88,7 @@ questions:
         The property is set and the position is removed in one database write. The component isn't deleted,
         even though that position was its only use.
     sources:
-      - { kind: docs, page: /api/components/component-groups, anchor: what-a-move-does, sectionHash: 'sha256:7ebeeb9d88ebd448', title: 'Component Groups & Positions › What a move does' }
+      - { kind: docs, page: /api/components/component-groups, anchor: what-a-move-does, sectionHash: 'sha256:d32cf5ddc5edbc2b', title: 'Component Groups & Positions › What a move does' }
     author: llm-draft
 
   - id: api.groups.usage-admin-only
@@ -103,8 +103,8 @@ questions:
       A signed-in user with `ROLE_USER` only, who can read a component, requests `GET {component}/usage`.
       What do they get?
     why: >-
-      The list of places names pages a user may not be allowed to see, so a front end that showed usage counts
-      to anyone but admins has to stop.
+      The list of places names pages a user may not be allowed to see, so a front end can show usage only to
+      admins.
     since: [{ repo: api-components-bundle, version: '2.0.0-alpha.32' }]
     options:
       - { id: a, text: 'The counts, without the list of `locations`' }
@@ -115,9 +115,9 @@ questions:
       correct: d
       explanation: >-
         The usage endpoint is `ROLE_ADMIN` only. Any other signed-in user gets a `403`, and an anonymous request a
-        `401`. Before bundle 2.0.0-alpha.32 anyone who could read the component got the counts.
+        `401`.
     sources:
-      - { kind: docs, page: /api/components/component-groups, anchor: who-can-read-it, sectionHash: 'sha256:33a348856ee6bc26', title: 'Component Groups & Positions › Who can read it' }
+      - { kind: docs, page: /api/components/component-groups, anchor: who-can-read-it, sectionHash: 'sha256:8d7f32e5c8a2f59a', title: 'Component Groups & Positions › Who can read it' }
     author: llm-draft
 
   - id: api.security.route-pattern-whole-path
@@ -131,8 +131,8 @@ questions:
     prompt: >-
       A `route_security` rule uses the pattern `/admin*`. Which route does it cover?
     why: >-
-      A pattern without a leading `*` no longer reaches into the middle of a path, and its letters must match
-      the path's exactly, so a rule written to catch a segment anywhere needs `*/admin*`.
+      A pattern without a leading `*` doesn't reach into the middle of a path, and its letters must match the
+      path's exactly, so a rule written to catch a segment anywhere needs `*/admin*`.
     since: [{ repo: api-components-bundle, version: '2.0.0-alpha.33' }]
     options:
       - { id: a, text: '`/team/admin/settings`' }
@@ -146,7 +146,7 @@ questions:
         itself, so letters are case-sensitive. `/admin*` is a prefix: it covers `/administration`, but not
         `/Admin` or a path with `/admin` in the middle.
     sources:
-      - { kind: docs, page: /api/users/access-control, anchor: how-a-pattern-matches, sectionHash: 'sha256:1d59392459a892e6', title: 'Access Control › How a pattern matches' }
+      - { kind: docs, page: /api/users/access-control, anchor: how-a-pattern-matches, sectionHash: 'sha256:7709e33eed3f4147', title: 'Access Control › How a pattern matches' }
     author: llm-draft
 
   - id: api.security.route-pattern-select
@@ -177,10 +177,10 @@ questions:
         doesn't match mid-path.
       optionNotes:
         b: '`*` matches any characters after the prefix, not only a `/` and what follows.'
-        d: 'Letters are case-sensitive, from bundle 2.0.0-alpha.33. Add a rule for each spelling you need.'
+        d: 'Letters are case-sensitive. Add a rule for each spelling you need.'
         e: 'The pattern matches from the start of the path. `*/user-area*` would match this one.'
     sources:
-      - { kind: docs, page: /api/users/access-control, anchor: how-a-pattern-matches, sectionHash: 'sha256:1d59392459a892e6', title: 'Access Control › How a pattern matches' }
+      - { kind: docs, page: /api/users/access-control, anchor: how-a-pattern-matches, sectionHash: 'sha256:7709e33eed3f4147', title: 'Access Control › How a pattern matches' }
     author: llm-draft
 
   - id: api.publishable.draft-reference
@@ -210,7 +210,7 @@ questions:
         instead. Admins still see the draft through the position. A draft that has never been published is
         stored as it is.
     sources:
-      - { kind: docs, page: /api/components/annotations/publishable, anchor: a-reference-to-a-draft-stores-the-published-component, sectionHash: 'sha256:c346c09e9f0b34fe', title: 'Publishable › A Reference to a Draft Stores the Published Component' }
+      - { kind: docs, page: /api/components/annotations/publishable, anchor: a-reference-to-a-draft-stores-the-published-component, sectionHash: 'sha256:bab59f3fe585edec', title: 'Publishable › A Reference to a Draft Stores the Published Component' }
     author: llm-draft
 
   - id: api.console.maintenance-already-on
@@ -239,7 +239,7 @@ questions:
         It prints `Maintenance mode is already on` and writes nothing, then purges the rendered pages' `cwa-html` tag
         and the site config's tags as it always does, and exits `0`.
     sources:
-      - { kind: docs, page: /api/console-commands, anchor: maintenance, sectionHash: 'sha256:c71b2d3ff0852773', title: 'Console Commands › maintenance' }
+      - { kind: docs, page: /api/console-commands, anchor: maintenance, sectionHash: 'sha256:1428a26e8112008a', title: 'Console Commands › maintenance' }
     author: llm-draft
 
   - id: api.console.maintenance-exit-codes
@@ -269,7 +269,7 @@ questions:
         read or written, `2` for an argument other than `on`, `off` or `status`, and `0` when it's done. A
         `status` check can say `on` even when the purge failed.
     sources:
-      - { kind: docs, page: /api/console-commands, anchor: maintenance, sectionHash: 'sha256:c71b2d3ff0852773', title: 'Console Commands › maintenance' }
+      - { kind: docs, page: /api/console-commands, anchor: maintenance, sectionHash: 'sha256:1428a26e8112008a', title: 'Console Commands › maintenance' }
     author: llm-draft
 
   - id: api.uploads.manifest-no-variants
@@ -299,5 +299,5 @@ questions:
         manifest doesn't generate variants or write file info rows, because the manifest's body has no
         `mediaObjects`. `imagine:generate` makes them before visitors ask.
     sources:
-      - { kind: docs, page: /api/components/annotations/uploadable, anchor: liipimaginebundle-integration, sectionHash: 'sha256:2dc7bff380211595', title: 'Uploadable › LiipImagineBundle Integration' }
+      - { kind: docs, page: /api/components/annotations/uploadable, anchor: liipimaginebundle-integration, sectionHash: 'sha256:dd9ce223808c764c', title: 'Uploadable › LiipImagineBundle Integration' }
     author: llm-draft

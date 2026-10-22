@@ -36,8 +36,8 @@ questions:
         d: A load flushes the whole HTTP cache once at the end, API responses and pages together.
     sources:
       - { kind: docs, page: /api/http-caching, anchor: purging-every-rendered-page, sectionHash: 'sha256:ef0a84284564cd0d', title: 'HTTP Caching › Purging Every Rendered Page' }
-      - { kind: docs, page: /api/http-caching, anchor: flushing-the-whole-http-cache, sectionHash: 'sha256:d6247223c88916af', title: 'HTTP Caching › Flushing the Whole HTTP Cache' }
-      - { kind: docs, page: /api/http-caching, anchor: purging-one-page-or-tag, sectionHash: 'sha256:a5d8610cdfcc29eb', title: 'HTTP Caching › Purging One Page or Tag' }
+      - { kind: docs, page: /api/http-caching, anchor: flushing-the-whole-http-cache, sectionHash: 'sha256:184455a9ac713993', title: 'HTTP Caching › Flushing the Whole HTTP Cache' }
+      - { kind: docs, page: /api/http-caching, anchor: purging-one-page-or-tag, sectionHash: 'sha256:0347603ba48359bb', title: 'HTTP Caching › Purging One Page or Tag' }
     author: llm-draft
 
   - id: api.cache.private-responses
@@ -112,8 +112,8 @@ questions:
         d: '`CORS_ALLOW_ORIGIN` is derived from the release''s hosts unless you set it.'
         f: The JWT key is kept with its own passphrase, and the public key is derived from the pair.
     sources:
-      - { kind: docs, page: /deployment/variables, anchor: secrets, sectionHash: 'sha256:3a053dabe537216c', title: 'CI/CD Variables › Secrets' }
-      - { kind: docs, page: /deployment/variables, anchor: application, sectionHash: 'sha256:3941489124d256ff', title: 'CI/CD Variables › Application' }
+      - { kind: docs, page: /deployment/variables, anchor: secrets, sectionHash: 'sha256:ad0c8c15c28e4ba1', title: 'CI/CD Variables › Secrets' }
+      - { kind: docs, page: /deployment/variables, anchor: application, sectionHash: 'sha256:b42328719a75e00d', title: 'CI/CD Variables › Application' }
     author: llm-draft
 
   - id: api.cache.manifest-purge-writes

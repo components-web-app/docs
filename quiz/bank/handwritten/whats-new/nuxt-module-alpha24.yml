@@ -30,7 +30,7 @@ questions:
         Move takes the instance you selected out of its place and puts it somewhere else. Any other place that
         shows the component keeps it, so Contact still has it and Home doesn't.
     sources:
-      - { kind: docs, page: /core-concepts/admin-panel, anchor: moving-a-component, sectionHash: 'sha256:5f9278a93eccd0f6', title: 'The Admin Panel › Moving a Component' }
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: moving-a-component, sectionHash: 'sha256:8ec9dc024dea5e50', title: 'The Admin Panel › Moving a Component' }
     author: llm-draft
 
   - id: nuxt.admin.move-into-full-property
@@ -60,7 +60,7 @@ questions:
         **Use here** is disabled with the reason "a move cannot replace it". A clone, by contrast, offers
         **Use here** with a warning that it replaces the other component. Moving into an empty property works.
     sources:
-      - { kind: docs, page: /core-concepts/admin-panel, anchor: moving-a-component, sectionHash: 'sha256:5f9278a93eccd0f6', title: 'The Admin Panel › Moving a Component' }
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: moving-a-component, sectionHash: 'sha256:8ec9dc024dea5e50', title: 'The Admin Panel › Moving a Component' }
     author: llm-draft
 
   - id: nuxt.admin.needs-bundle-alpha32
@@ -94,6 +94,6 @@ questions:
         c: 'A clone is an ordinary component position write, which every supported bundle accepts.'
         d: 'With an older bundle the badge is only a count, but the count still shows.'
     sources:
-      - { kind: docs, page: /core-concepts/admin-panel, anchor: shared-components, sectionHash: 'sha256:7eb4b961b1aa9164', title: 'The Admin Panel › Shared Components' }
-      - { kind: docs, page: /core-concepts/admin-panel, anchor: moving-a-component, sectionHash: 'sha256:5f9278a93eccd0f6', title: 'The Admin Panel › Moving a Component' }
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: shared-components, sectionHash: 'sha256:24ae00cebb4a0a42', title: 'The Admin Panel › Shared Components' }
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: moving-a-component, sectionHash: 'sha256:8ec9dc024dea5e50', title: 'The Admin Panel › Moving a Component' }
     author: llm-draft

@@ -30,7 +30,7 @@ questions:
         `maxComponents` is a field of the group, read and written like `allowedComponents`. `null` is unlimited.
         When the group is full, adding or moving a position into it is a `422`.
     sources:
-      - { kind: docs, page: /api/components/component-groups, anchor: limiting-how-many-components-a-group-holds, sectionHash: 'sha256:687450063895fc95', title: 'Component Groups & Positions › Limiting How Many Components a Group Holds' }
+      - { kind: docs, page: /api/components/component-groups, anchor: limiting-how-many-components-a-group-holds, sectionHash: 'sha256:9ce3871d6fb83fd4', title: 'Component Groups & Positions › Limiting How Many Components a Group Holds' }
     author: llm-draft
 
   - id: api.groups.position-placement
@@ -62,7 +62,7 @@ questions:
         c: An anchor sent with a `sortValue` is a `422`.
         d: A `PATCH` with no anchor and no change of group leaves the position where it is.
     sources:
-      - { kind: docs, page: /api/components/component-groups, anchor: how-positions-are-ordered, sectionHash: 'sha256:f3f6eb4926455708', title: 'Component Groups & Positions › How Positions Are Ordered' }
+      - { kind: docs, page: /api/components/component-groups, anchor: how-positions-are-ordered, sectionHash: 'sha256:d0770c5943bb73c1', title: 'Component Groups & Positions › How Positions Are Ordered' }
     author: llm-draft
 
   - id: api.groups.order-partial-list
@@ -107,7 +107,7 @@ questions:
       You run `doctrine:fixtures:load` for a scaffold that seeds many images. The command ends with a reminder
       about image variants, the resized copies the API makes of each image. What do you run next?
     why: >-
-      A load no longer generates variants, so unless you run `imagine:generate`, the first read of each image has
+      A load doesn't generate variants, so unless you run `imagine:generate`, the first read of each image has
       to make them, which is slow on a large site.
     since: [{ repo: api-components-bundle, version: '2.0.0-alpha.23' }]
     options:
@@ -123,7 +123,7 @@ questions:
       optionNotes:
         a: The load already flushes the whole cache once when it ends. The variants still don't exist.
     sources:
-      - { kind: docs, page: /api/data-fixtures/getting-started, anchor: what-a-load-leaves-until-later, sectionHash: 'sha256:fece5627707d2d0c', title: 'Getting Started with Fixtures › What a Load Leaves Until Later' }
+      - { kind: docs, page: /api/data-fixtures/getting-started, anchor: what-a-load-leaves-until-later, sectionHash: 'sha256:b6b00c4afcfe26ee', title: 'Getting Started with Fixtures › What a Load Leaves Until Later' }
     author: llm-draft
 
   - id: api.fixtures.asset-store-load
@@ -153,7 +153,7 @@ questions:
         `--assets-store` and `--assets-dir` change only where the command writes. The load always reads the
         configured store, which without config is `assets/` beside the class, so it can't find the files.
     sources:
-      - { kind: docs, page: /api/data-fixtures/generating-fixtures, anchor: keeping-files-in-an-asset-store, sectionHash: 'sha256:b7b3142acdcc60f1', title: 'Generating Fixtures › Keeping Files in an Asset Store' }
+      - { kind: docs, page: /api/data-fixtures/generating-fixtures, anchor: keeping-files-in-an-asset-store, sectionHash: 'sha256:859535af4cb726ce', title: 'Generating Fixtures › Keeping Files in an Asset Store' }
     author: llm-draft
 
   - id: api.fixtures.page-own-redirect
@@ -184,7 +184,7 @@ questions:
       optionNotes:
         a: '`redirect()` creates a separate route. The home page already has `/`, so the builder keeps that route and creates nothing.'
     sources:
-      - { kind: docs, page: /api/data-fixtures/builder-reference, anchor: a-page-that-redirects, sectionHash: 'sha256:0120fc14aaa2dd95', title: 'Builder Reference › A Page That Redirects' }
+      - { kind: docs, page: /api/data-fixtures/builder-reference, anchor: a-page-that-redirects, sectionHash: 'sha256:6c32f6fea06ad301', title: 'Builder Reference › A Page That Redirects' }
     author: llm-draft
 
   - id: api.storage.delete-stored-files-rows
@@ -213,5 +213,5 @@ questions:
         `delete-stored-files` deletes files only. The components that hold the deleted paths, and their file info,
         stay as they are, so each one is listed as a missing file.
     sources:
-      - { kind: docs, page: /api/console-commands, anchor: delete-stored-files, sectionHash: 'sha256:533afe5049f0ba0c', title: 'Console Commands › delete-stored-files' }
+      - { kind: docs, page: /api/console-commands, anchor: delete-stored-files, sectionHash: 'sha256:b0ad49b257e8b2d7', title: 'Console Commands › delete-stored-files' }
     author: llm-draft

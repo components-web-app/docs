@@ -60,5 +60,5 @@ questions:
       optionNotes:
         d: 'Only `<CwaUiFormInput :model="titleModel" />` shows the choice. With `v-model` the input only gets the value.'
     sources:
-      - { kind: docs, page: /nuxt-module/composables/admin-manager/use-cwa-resource-model, anchor: co-editing-conflicts, sectionHash: 'sha256:af5d78a4bcf07a1b', title: 'useCwaResourceModel › Co-Editing Conflicts' }
+      - { kind: docs, page: /nuxt-module/composables/admin-manager/use-cwa-resource-model, anchor: co-editing-conflicts, sectionHash: 'sha256:9a37f092d9286870', title: 'useCwaResourceModel › Co-Editing Conflicts' }
     author: llm-draft

@@ -30,7 +30,7 @@ questions:
         Older layouts rendered `<CwaUiProgressBar>`, driven by `pageLoadProgress`. `<CwaLoadingIndicator>` covers
         CWA pages and your own Nuxt pages with one bar, so remove the old one.
     sources:
-      - { kind: docs, page: /nuxt-module/building-your-ui/creating-page-templates, anchor: loading-bar, sectionHash: 'sha256:abab6daea170c1d9', title: 'Page Templates › Loading Bar' }
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-page-templates, anchor: loading-bar, sectionHash: 'sha256:755a5d7309dea992', title: 'Page Templates › Loading Bar' }
     author: llm-draft
 
   - id: nuxt.ui.page-loading-end
@@ -45,8 +45,8 @@ questions:
       Your app sends a page view to analytics from Nuxt's `page:loading:end` hook. A visitor clicks a link to
       another CWA page. When does your hook run?
     why: >-
-      Code on `page:loading:end`, such as analytics or a scroll handler, now runs when the new page is visible,
-      not while the old one is still on screen.
+      Code on `page:loading:end`, such as analytics or a scroll handler, runs when the new page is visible, not
+      while the old one is still on screen.
     since: [{ repo: cwa-nuxt-module, version: '2.0.0-alpha.16' }]
     options:
       - { id: a, text: 'As soon as the new route''s component resolves' }
@@ -59,7 +59,7 @@ questions:
         The module holds `page:loading:end` until the new CWA page shows, so the loading bar finishes and the page
         scrolls to the top then. Pages with `cwa: { disabled: true }` are never held.
     sources:
-      - { kind: docs, page: /nuxt-module/building-your-ui/creating-page-templates, anchor: loading-bar, sectionHash: 'sha256:abab6daea170c1d9', title: 'Page Templates › Loading Bar' }
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-page-templates, anchor: loading-bar, sectionHash: 'sha256:755a5d7309dea992', title: 'Page Templates › Loading Bar' }
     author: llm-draft
 
   - id: nuxt.seo.og-image-secret
@@ -89,10 +89,10 @@ questions:
         characters) every `/_og/` image is a 500. One pod renders the signed URL and another may serve the image,
         so every pod needs the same value.
       optionNotes:
-        b: '`NUXT_OG_IMAGE_SECRET` is the older, deprecated name, read by Nuxt as a fallback. The API never signs these URLs.'
+        b: 'The API never signs these URLs. `nuxt-og-image` signs them with Nuxt''s `appSecret`, set by `NUXT_APP_SECRET`.'
         c: Without the renderers the module logs that open graph image generation is disabled, and pages get no OG image at all.
     sources:
-      - { kind: docs, page: /nuxt-module/configuration/site-config-and-seo, anchor: the-og-image-secret, sectionHash: 'sha256:3f98dbbd1384e0c2', title: 'Site Config & SEO › The OG image secret' }
+      - { kind: docs, page: /nuxt-module/configuration/site-config-and-seo, anchor: the-og-image-secret, sectionHash: 'sha256:371390c9a8a64c1c', title: 'Site Config & SEO › The OG image secret' }
     author: llm-draft
 
   - id: nuxt.seo.skew-protection
@@ -124,7 +124,7 @@ questions:
         `@nuxtjs/seo` 6 turns both on. The module doesn't register `@nuxtjs/seo`, so only an app that does needs
         these lines.
     sources:
-      - { kind: docs, page: /nuxt-module/module-setup, anchor: nuxt-seo-v6, sectionHash: 'sha256:87a00bcdafa81714', title: 'Module Setup › Nuxt SEO v6', block: 1, blockHash: 'sha256:869ce22d8f66f1bc' }
+      - { kind: docs, page: /nuxt-module/module-setup, anchor: nuxt-seo-v6, sectionHash: 'sha256:0026a1c7d1d142c4', title: 'Module Setup › Nuxt SEO v6', block: 1, blockHash: 'sha256:869ce22d8f66f1bc' }
     author: llm-draft
 
   - id: nuxt.admin.add-page-data-route
@@ -157,5 +157,5 @@ questions:
       optionNotes:
         c: Creating page data in the admin never creates a route. The editor generates or adds one in the Routes tab.
     sources:
-      - { kind: docs, page: /nuxt-module/cwa-layer/admin-panel, anchor: linking-to-the-add-page-data-form, sectionHash: 'sha256:1ac8260e0abef39d', title: 'Admin Panel Reference › Linking to the add page data form' }
+      - { kind: docs, page: /nuxt-module/cwa-layer/admin-panel, anchor: linking-to-the-add-page-data-form, sectionHash: 'sha256:de5fd5abe0771819', title: 'Admin Panel Reference › Linking to the add page data form' }
     author: llm-draft

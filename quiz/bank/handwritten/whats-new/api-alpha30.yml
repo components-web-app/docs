@@ -29,7 +29,7 @@ questions:
         Only a request with no body at all flushes the whole cache. Any other body that isn't a valid scope,
         including `{}`, `null` and an empty list, is a `422`, and nothing is purged.
     sources:
-      - { kind: docs, page: /api/http-caching, anchor: from-the-api, sectionHash: 'sha256:697d70579e4d0ac0', title: 'HTTP Caching › From the API' }
+      - { kind: docs, page: /api/http-caching, anchor: from-the-api, sectionHash: 'sha256:623278e2bb05c07b', title: 'HTTP Caching › From the API' }
     author: llm-draft
 
   - id: api.cache.warm-after-flush-trigger
@@ -58,7 +58,7 @@ questions:
         A warm follows every successful full flush: the endpoint with no body, `purge-http-cache` with no
         options, and the flush at the end of each fixture load. A tag purge never starts one.
     sources:
-      - { kind: docs, page: /api/http-caching, anchor: warming-after-a-flush, sectionHash: 'sha256:060035bcd2414209', title: 'HTTP Caching › Warming after a flush' }
+      - { kind: docs, page: /api/http-caching, anchor: warming-after-a-flush, sectionHash: 'sha256:b80fa7e5a0e3883c', title: 'HTTP Caching › Warming after a flush' }
     author: llm-draft
 
   - id: api.cache.warm-after-flush-async
@@ -88,7 +88,7 @@ questions:
         in the request or command that flushed. Nothing is warmed, with a warning, only when there is no
         Messenger bus at all.
     sources:
-      - { kind: docs, page: /api/http-caching, anchor: warming-after-a-flush, sectionHash: 'sha256:060035bcd2414209', title: 'HTTP Caching › Warming after a flush' }
+      - { kind: docs, page: /api/http-caching, anchor: warming-after-a-flush, sectionHash: 'sha256:b80fa7e5a0e3883c', title: 'HTTP Caching › Warming after a flush' }
     author: llm-draft
 
   - id: api.publishable.position-unpublished-component
@@ -117,9 +117,9 @@ questions:
         A caller who can't see drafts never sees an unpublished component through a position: it comes back with
         no `component` and no `_metadata.staticComponent`. Admins still get the draft.
       optionNotes:
-        a: That was the behaviour before bundle 2.0.0-alpha.27.
+        a: 'The position never names a component the caller can''t see, so there''s no IRI to request.'
     sources:
-      - { kind: docs, page: /api/components/annotations/publishable, anchor: positions-holding-an-unpublished-component, sectionHash: 'sha256:83ecc7172f387e26', title: 'Publishable › Positions Holding an Unpublished Component' }
+      - { kind: docs, page: /api/components/annotations/publishable, anchor: positions-holding-an-unpublished-component, sectionHash: 'sha256:09bdf52b4fbccb01', title: 'Publishable › Positions Holding an Unpublished Component' }
     author: llm-draft
 
   - id: api.publishable.position-scheduled-expiry
@@ -152,7 +152,7 @@ questions:
       optionNotes:
         a: Publishing or rescheduling purges and publishes over Mercure, but a go-live time passing is not a write.
     sources:
-      - { kind: docs, page: /api/components/annotations/publishable, anchor: positions-holding-an-unpublished-component, sectionHash: 'sha256:83ecc7172f387e26', title: 'Publishable › Positions Holding an Unpublished Component' }
+      - { kind: docs, page: /api/components/annotations/publishable, anchor: positions-holding-an-unpublished-component, sectionHash: 'sha256:09bdf52b4fbccb01', title: 'Publishable › Positions Holding an Unpublished Component' }
     author: llm-draft
 
   - id: api.real-time.public-update-payload
@@ -181,9 +181,9 @@ questions:
         The bundle reads the public payload with an internal anonymous `GET`. The writer's view goes out
         privately on `<iri>?draft=1`, and only when it differs from the public payload.
       optionNotes:
-        a: That was the public payload before bundle 2.0.0-alpha.27, so an admin's write could publish content visitors can't read.
+        a: 'The admin''s view goes out only on the private `<iri>?draft=1` topic, and only when it differs from the public payload.'
     sources:
-      - { kind: docs, page: /api/real-time, anchor: public-and-admin-updates, sectionHash: 'sha256:c2e09b9e3b1eb3cb', title: 'Real-Time Updates (Mercure) › Public and Admin Updates' }
+      - { kind: docs, page: /api/real-time, anchor: public-and-admin-updates, sectionHash: 'sha256:c1a731eb7c126817', title: 'Real-Time Updates (Mercure) › Public and Admin Updates' }
     author: llm-draft
 
   - id: api.real-time.write-hides-resource
@@ -214,7 +214,7 @@ questions:
       optionNotes:
         a: Nothing goes out publicly only when the resource wasn't readable and the write didn't hide it.
     sources:
-      - { kind: docs, page: /api/real-time, anchor: public-and-admin-updates, sectionHash: 'sha256:c2e09b9e3b1eb3cb', title: 'Real-Time Updates (Mercure) › Public and Admin Updates' }
+      - { kind: docs, page: /api/real-time, anchor: public-and-admin-updates, sectionHash: 'sha256:c1a731eb7c126817', title: 'Real-Time Updates (Mercure) › Public and Admin Updates' }
     author: llm-draft
 
   - id: api.real-time.cookie-session-end
@@ -243,9 +243,9 @@ questions:
         Signing out, an invalid or expired JWT, and a failed `/me` that carries the cookie expire it. Anonymous
         visitors get no Mercure cookie at all, because public updates need none.
       optionNotes:
-        a: Before bundle 2.0.0-alpha.27, these responses issued a new cookie. Now an anonymous visitor gets none.
+        a: An anonymous visitor gets no Mercure cookie at all, because public updates need none.
     sources:
-      - { kind: docs, page: /api/real-time, anchor: the-subscriber-cookie, sectionHash: 'sha256:fb0632bbcb874cf8', title: 'Real-Time Updates (Mercure) › The Subscriber Cookie' }
+      - { kind: docs, page: /api/real-time, anchor: the-subscriber-cookie, sectionHash: 'sha256:1b238ae47ee1ac9a', title: 'Real-Time Updates (Mercure) › The Subscriber Cookie' }
     author: llm-draft
 
   - id: api.groups.component-in-own-subtree
@@ -260,8 +260,8 @@ questions:
       `Columns` is a publishable component with component groups of its own, so other components can be placed
       inside it. Which of these writes does the API refuse with a `422`?
     why: >-
-      A component inside its own subtree would render itself without end, and older bundles' access check
-      recursed without end on such a cycle; sharing a component in several places is still fine.
+      A component inside its own subtree would render itself without end, so the API refuses the write; sharing
+      a component in several places is still fine.
     since: [{ repo: api-components-bundle, version: '2.0.0-alpha.30' }]
     options:
       - { id: a, text: 'Placing one Quote in a group of each of two sibling `Columns`' }
@@ -275,7 +275,7 @@ questions:
         draft count as one component, so a draft inside its published version is refused too. Sharing one
         component in several places isn't a cycle.
     sources:
-      - { kind: docs, page: /api/components/component-groups, anchor: a-component-cant-contain-itself, sectionHash: 'sha256:a30955ea760b7bc6', title: 'Component Groups & Positions › A Component Can''t Contain Itself' }
+      - { kind: docs, page: /api/components/component-groups, anchor: a-component-cant-contain-itself, sectionHash: 'sha256:8db7d663a56179cb', title: 'Component Groups & Positions › A Component Can''t Contain Itself' }
     author: llm-draft
 
   - id: api.fixtures.shared-asset-folder
@@ -291,7 +291,7 @@ questions:
       asset folder. You run `generate-fixtures` again for A, which no longer uses image X. B's manifest still
       lists X. What happens to the file for X?
     why: >-
-      Scaffolds can share a local asset folder, and regenerating one no longer breaks the other's next load.
+      Scaffolds can share a local asset folder, and regenerating one doesn't break the other's next load.
     since: [{ repo: api-components-bundle, version: '2.0.0-alpha.26' }]
     options:
       - { id: a, text: 'It''s kept, because another manifest lists it' }
@@ -304,7 +304,7 @@ questions:
         Generating deletes only files the scaffold's previous manifest listed and the new one doesn't, and keeps
         any file another manifest in the class's directory still lists.
       optionNotes:
-        b: Before bundle 2.0.0-alpha.26, X was deleted.
+        b: 'A file another manifest in the class''s directory still lists is kept, even when A''s new manifest drops it.'
     sources:
-      - { kind: docs, page: /api/data-fixtures/generating-fixtures, anchor: pruning, sectionHash: 'sha256:b0ac57f911181603', title: 'Generating Fixtures › Pruning' }
+      - { kind: docs, page: /api/data-fixtures/generating-fixtures, anchor: pruning, sectionHash: 'sha256:828a7d2a21e7832b', title: 'Generating Fixtures › Pruning' }
     author: llm-draft

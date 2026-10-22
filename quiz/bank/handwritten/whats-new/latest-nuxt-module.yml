@@ -33,7 +33,7 @@ questions:
         a: '`0` isn''t a positive whole number, so the module logs a warning and doesn''t send it.'
         c: '`null` for `allowed-components` allows every type. It has nothing to do with the limit.'
     sources:
-      - { kind: docs, page: /nuxt-module/cwa-components/cwa-component-group, anchor: limiting-the-number-of-components, sectionHash: 'sha256:46781eb729d3d7e7', title: '<CwaComponentGroup /> › Limiting the Number of Components' }
+      - { kind: docs, page: /nuxt-module/cwa-components/cwa-component-group, anchor: limiting-the-number-of-components, sectionHash: 'sha256:11ee29862e31fb71', title: '<CwaComponentGroup /> › Limiting the Number of Components' }
     author: llm-draft
 
   - id: nuxt.group.max-components-binding
@@ -67,7 +67,7 @@ questions:
         Without the `:`, Vue passes the string `"1"`. The module only syncs a positive whole number, so it logs
         `[CWA] maxComponents was not synced` and leaves the stored limit unchanged.
     sources:
-      - { kind: docs, page: /nuxt-module/cwa-components/cwa-component-group, anchor: limiting-the-number-of-components, sectionHash: 'sha256:46781eb729d3d7e7', title: '<CwaComponentGroup /> › Limiting the Number of Components', block: 0, blockHash: 'sha256:f975d83a1dd787cc' }
+      - { kind: docs, page: /nuxt-module/cwa-components/cwa-component-group, anchor: limiting-the-number-of-components, sectionHash: 'sha256:11ee29862e31fb71', title: '<CwaComponentGroup /> › Limiting the Number of Components', block: 0, blockHash: 'sha256:f975d83a1dd787cc' }
     author: llm-draft
 
   - id: nuxt.resources.reorder-group
@@ -103,7 +103,7 @@ questions:
         a: '`refreshComponentGroupOrder()` only reads the group''s order again. It changes nothing.'
         d: '`storeResource` writes to the local store only. Nothing reaches the API.'
     sources:
-      - { kind: docs, page: /nuxt-module/cwa-api/resources-manager, anchor: reordering-a-component-group, sectionHash: 'sha256:b817c6c4f9eb9e30', title: 'cwa.resourcesManager › Reordering a Component Group' }
+      - { kind: docs, page: /nuxt-module/cwa-api/resources-manager, anchor: reordering-a-component-group, sectionHash: 'sha256:11e2004f745f1fa1', title: 'cwa.resourcesManager › Reordering a Component Group' }
     author: llm-draft
 
   - id: nuxt.admin.reorder-versions
@@ -136,6 +136,6 @@ questions:
         field is read-only and ignored, so the request succeeds and the API keeps the old order. The admin shows the
         move until the page is loaded again. Upgrade the module to 2.0.0-alpha.19.
     sources:
-      - { kind: docs, page: /api/components/component-groups, anchor: how-positions-are-ordered, sectionHash: 'sha256:f3f6eb4926455708', title: 'Component Groups & Positions › How Positions Are Ordered' }
-      - { kind: docs, page: /core-concepts/admin-panel, anchor: reordering, sectionHash: 'sha256:fd0ebb9fa7076f40', title: 'The Admin Panel › Reordering' }
+      - { kind: docs, page: /api/components/component-groups, anchor: how-positions-are-ordered, sectionHash: 'sha256:d0770c5943bb73c1', title: 'Component Groups & Positions › How Positions Are Ordered' }
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: reordering, sectionHash: 'sha256:59cdff50926702be', title: 'The Admin Panel › Reordering' }
     author: llm-draft

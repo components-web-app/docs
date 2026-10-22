@@ -102,11 +102,10 @@ questions:
     answer:
       correct: b
       explanation: >-
-        From bundle 2.0.0-alpha.27 the visitor's position has no component, so the module requests nothing.
-        With an older bundle the request is a private 404, and a 4xx doesn't count towards the page's headers.
-        The page carries the component's tag, so publishing it drops the page.
+        The API leaves the unpublished component out of the visitor's position, so the module renders nothing
+        there and requests nothing. The page carries the component's tag, so publishing it drops the page.
     sources:
-      - { kind: docs, page: /nuxt-module/page-caching, anchor: when-a-page-is-not-cached, sectionHash: 'sha256:f63ee631045cc1d2', title: 'Page Caching › When a Page Is Not Cached' }
+      - { kind: docs, page: /nuxt-module/page-caching, anchor: when-a-page-is-not-cached, sectionHash: 'sha256:d4260c3b7504992a', title: 'Page Caching › When a Page Is Not Cached' }
     author: llm-draft
 
   - id: nuxt.setup.load-by-iri-public

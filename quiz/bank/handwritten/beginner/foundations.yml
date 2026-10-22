@@ -178,7 +178,7 @@ questions:
         and each position holds one component. The page also names its layout, which has groups of its own.
     sources:
       - { kind: docs, page: /core-concepts/the-data-model, anchor: the-resource-chain, sectionHash: 'sha256:023f6eb636d90d06', title: 'The Data Model › The Resource Chain' }
-      - { kind: docs, page: /core-concepts/layouts-and-pages, anchor: pages, sectionHash: 'sha256:55b332d0181ed163', title: 'Layouts & Pages › Pages' }
+      - { kind: docs, page: /core-concepts/layouts-and-pages, anchor: pages, sectionHash: 'sha256:9301abbda6ad87a7', title: 'Layouts & Pages › Pages' }
     author: llm-draft
 
   - id: core.data-model.position-holds
@@ -589,7 +589,7 @@ questions:
         b: A route's go-live date holds back the whole page, not one component's change.
     sources:
       - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:6c755a839217faca', title: 'Draft & Publish Workflow › How It Works' }
-      - { kind: docs, page: /core-concepts/admin-panel, anchor: scheduling-a-publish, sectionHash: 'sha256:e2edd84d484b44d5', title: 'The Admin Panel › Scheduling a Publish' }
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: scheduling-a-publish, sectionHash: 'sha256:79ac25c3cf21d520', title: 'The Admin Panel › Scheduling a Publish' }
     author: llm-draft
 
   - id: core.draft.publish-promotes

@@ -30,5 +30,5 @@ questions:
         can send to another pod. No other header changes, so the cache keys are the same. It only helps over
         plain HTTP/1.1, and against `http://localhost` there's only one pod to fill.
     sources:
-      - { kind: docs, page: /api/console-commands, anchor: spreading-a-warm-across-pods, sectionHash: 'sha256:2c7df3952c0b80b2', title: 'Console Commands › Spreading a warm across pods' }
+      - { kind: docs, page: /api/console-commands, anchor: spreading-a-warm-across-pods, sectionHash: 'sha256:a65feeb359655eca', title: 'Console Commands › Spreading a warm across pods' }
     author: llm-draft

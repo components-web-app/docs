@@ -438,7 +438,7 @@ questions:
         Files in `app/app/cwa/pages/` are registered with the `CwaPage` prefix in front of the PascalCased file
         name, so `BlogDetail.vue` is `CwaPageBlogDetail`.
     sources:
-      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: how-uicomponent-names-resolve, sectionHash: 'sha256:5dc45450ae61e9df', title: 'Layouts › How uiComponent Names Resolve' }
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: how-uicomponent-names-resolve, sectionHash: 'sha256:20bb5b33597a1aac', title: 'Layouts › How uiComponent Names Resolve' }
     author: llm-draft
 
   - id: core.naming.file-name-casing
@@ -461,7 +461,7 @@ questions:
         Nuxt builds the name from the `CwaLayout` prefix and the PascalCased file name, so `site-header.vue`
         becomes `CwaLayoutSiteHeader`.
     sources:
-      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: how-uicomponent-names-resolve, sectionHash: 'sha256:5dc45450ae61e9df', title: 'Layouts › How uiComponent Names Resolve' }
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: how-uicomponent-names-resolve, sectionHash: 'sha256:20bb5b33597a1aac', title: 'Layouts › How uiComponent Names Resolve' }
     author: llm-draft
 
   - id: core.naming.nuxt-config-keys
@@ -485,7 +485,7 @@ questions:
         `Primary` and `BlogDetail`. The full name, with the prefix, is what a layout or page saved in the API
         holds in its `uiComponent`.
     sources:
-      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: how-uicomponent-names-resolve, sectionHash: 'sha256:5dc45450ae61e9df', title: 'Layouts › How uiComponent Names Resolve' }
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: how-uicomponent-names-resolve, sectionHash: 'sha256:20bb5b33597a1aac', title: 'Layouts › How uiComponent Names Resolve' }
       - { kind: docs, page: /core-concepts/architecture, anchor: naming-conventions, sectionHash: 'sha256:16de6a5c40411e2c', title: 'How It All Works › Naming Conventions' }
     author: llm-draft
 
@@ -536,7 +536,7 @@ questions:
       optionNotes:
         b: That is the name of `primary.vue`. The module doesn't strip a `Layout` suffix from the file name.
     sources:
-      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: how-uicomponent-names-resolve, sectionHash: 'sha256:5dc45450ae61e9df', title: 'Layouts › How uiComponent Names Resolve' }
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: how-uicomponent-names-resolve, sectionHash: 'sha256:20bb5b33597a1aac', title: 'Layouts › How uiComponent Names Resolve' }
     author: llm-draft
 
   - id: core.naming.page-short-name
@@ -565,7 +565,7 @@ questions:
       optionNotes:
         a: That is what happens for a layout. Layouts are stored as sent, with no prefix added.
     sources:
-      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: how-uicomponent-names-resolve, sectionHash: 'sha256:5dc45450ae61e9df', title: 'Layouts › How uiComponent Names Resolve' }
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: how-uicomponent-names-resolve, sectionHash: 'sha256:20bb5b33597a1aac', title: 'Layouts › How uiComponent Names Resolve' }
     author: llm-draft
 
   - id: core.naming.layout-short-name
@@ -592,7 +592,7 @@ questions:
         sent, with no prefix added, and rendered by the name as stored, so `Primary` doesn't resolve. The module
         falls back to the default layout and logs that the layout component cannot be resolved.
     sources:
-      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: how-uicomponent-names-resolve, sectionHash: 'sha256:5dc45450ae61e9df', title: 'Layouts › How uiComponent Names Resolve' }
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: how-uicomponent-names-resolve, sectionHash: 'sha256:20bb5b33597a1aac', title: 'Layouts › How uiComponent Names Resolve' }
       - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: renaming-or-deleting-a-layout, sectionHash: 'sha256:a66804030913aff5', title: 'Layouts › Renaming or Deleting a Layout' }
     author: llm-draft
 
@@ -621,5 +621,5 @@ questions:
         `Title/Title.vue`.
     sources:
       - { kind: docs, page: /api/components/creating-components, anchor: the-class-name-vue-component-convention, sectionHash: 'sha256:22b4c3a09af7ba18', title: 'Creating Components › The Class Name → Vue Component Convention' }
-      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: how-uicomponent-names-resolve, sectionHash: 'sha256:5dc45450ae61e9df', title: 'Layouts › How uiComponent Names Resolve' }
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: how-uicomponent-names-resolve, sectionHash: 'sha256:20bb5b33597a1aac', title: 'Layouts › How uiComponent Names Resolve' }
     author: llm-draft

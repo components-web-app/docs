@@ -74,7 +74,7 @@ questions:
         so the template is never filled in.
     since: [{ repo: cwa-nuxt-module, version: '2.0.0-alpha.15' }]
     sources:
-      - { kind: docs, page: /nuxt-module/cwa-layer/admin-panel, anchor: linking-to-the-add-page-data-form, sectionHash: 'sha256:1ac8260e0abef39d', title: 'Admin Panel Reference › Linking to the add page data form', block: 0, blockHash: 'sha256:cbd5be71df6d7a72' }
+      - { kind: docs, page: /nuxt-module/cwa-layer/admin-panel, anchor: linking-to-the-add-page-data-form, sectionHash: 'sha256:de5fd5abe0771819', title: 'Admin Panel Reference › Linking to the add page data form', block: 0, blockHash: 'sha256:cbd5be71df6d7a72' }
     author: llm-draft
 
   - id: nuxt.page-data.read-in-computed
@@ -322,5 +322,5 @@ questions:
         c: Mercure tells the open page about the change; no reload is needed to apply it.
     sources:
       - { kind: docs, page: /nuxt-module/component-helpers/real-time-updates, anchor: the-visitor-notification, sectionHash: 'sha256:10fd30b86ef2648c', title: 'Real-Time Updates in Components › The Visitor Notification' }
-      - { kind: docs, page: /nuxt-module/component-helpers/real-time-updates, anchor: how-it-works, sectionHash: 'sha256:e47cf24048190bf8', title: 'Real-Time Updates in Components › How It Works' }
+      - { kind: docs, page: /nuxt-module/component-helpers/real-time-updates, anchor: how-it-works, sectionHash: 'sha256:94d6d6b22665528b', title: 'Real-Time Updates in Components › How It Works' }
     author: llm-draft

@@ -123,7 +123,7 @@ questions:
         The module registers the files in `app/app/cwa/layouts/` as global components with the `CwaLayout`
         prefix. Nuxt's own layouts are something else: a CWA layout renders inside the module's root layout.
     sources:
-      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: how-uicomponent-names-resolve, sectionHash: 'sha256:5dc45450ae61e9df', title: 'Layouts › How uiComponent Names Resolve' }
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: how-uicomponent-names-resolve, sectionHash: 'sha256:20bb5b33597a1aac', title: 'Layouts › How uiComponent Names Resolve' }
     author: llm-draft
 
   - id: nuxt.admin.start-editing

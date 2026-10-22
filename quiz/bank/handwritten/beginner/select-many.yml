@@ -166,7 +166,7 @@ questions:
         b: A component type is a PHP entity plus Vue files. The admin only adds components of types that already exist.
         d: Vue files are code in your app. The admin's **Page UI** select only picks which page template a page uses.
     sources:
-      - { kind: docs, page: /nuxt-module/cwa-layer/admin-panel, anchor: admin-routes, sectionHash: 'sha256:911e7cd88477b62c', title: 'Admin Panel Reference › Admin Routes' }
+      - { kind: docs, page: /nuxt-module/cwa-layer/admin-panel, anchor: admin-routes, sectionHash: 'sha256:6556be2fa9ca9f4d', title: 'Admin Panel Reference › Admin Routes' }
       - { kind: docs, page: /core-concepts/admin-panel, anchor: the-admin-bar, sectionHash: 'sha256:d937fb89ee30c14d', title: 'The Admin Panel › The Admin Bar' }
     author: llm-draft
 

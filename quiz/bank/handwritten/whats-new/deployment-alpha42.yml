@@ -30,7 +30,7 @@ questions:
         `autoscaling.minReplicas` pods. A `maxReplicas` above 1 brings it back, but the API's cache lives in each pod, so
         more than one API pod needs scaled mode, which shares the cache in Redis.
     sources:
-      - { kind: docs, page: /deployment/kubernetes, anchor: php-stays-at-one-replica, sectionHash: 'sha256:6c0d38d328f2ea54', title: 'Kubernetes & Helm › php stays at one replica' }
+      - { kind: docs, page: /deployment/kubernetes, anchor: php-stays-at-one-replica, sectionHash: 'sha256:7aec8b9c572356e4', title: 'Kubernetes & Helm › php stays at one replica' }
     author: llm-draft
 
   - id: deploy.browser-tests.sitemap-pages
@@ -57,9 +57,9 @@ questions:
       correct: b
       explanation: >-
         The loading bar test navigates from the first sitemap page to the second, so the sitemap needs at least
-        two pages. The tests no longer use the template's sample content.
+        two pages. The tests don't use the template's sample content.
     sources:
-      - { kind: docs, page: /deployment/browser-tests, anchor: what-they-check, sectionHash: 'sha256:0eb98e145315de38', title: 'Browser Tests › What they check' }
+      - { kind: docs, page: /deployment/browser-tests, anchor: what-they-check, sectionHash: 'sha256:09aa9c146d651a76', title: 'Browser Tests › What they check' }
     author: llm-draft
 
   - id: deploy.cicd.warm-after-fixtures
@@ -88,5 +88,5 @@ questions:
         After the flush, the deploy runs `warm_api_cache`, the same gzip and br passes of `warm-http-cache` a deploy
         runs after any full flush. Pages aren't warmed, and a failed pass only warns.
     sources:
-      - { kind: docs, page: /deployment/ci-cd, anchor: fixtures-on-a-deploy, sectionHash: 'sha256:47811d21cdab86ae', title: 'CI/CD › Fixtures on a deploy' }
+      - { kind: docs, page: /deployment/ci-cd, anchor: fixtures-on-a-deploy, sectionHash: 'sha256:6cec51b620d64bda', title: 'CI/CD › Fixtures on a deploy' }
     author: llm-draft

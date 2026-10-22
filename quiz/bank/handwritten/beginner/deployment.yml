@@ -70,7 +70,7 @@ questions:
         Editors sign in with `ROLE_ADMIN`. `silverback:api-components:user:create --admin` gives a new account
         that role; without it you can't open the admin panel.
     sources:
-      - { kind: docs, page: /getting-started/installation, anchor: _2-let-binup-start-the-site, sectionHash: 'sha256:4a2d114c48e6dfad', title: 'Installation › 2. Let bin/up start the site' }
+      - { kind: docs, page: /getting-started/installation, anchor: _2-let-binup-start-the-site, sectionHash: 'sha256:bcb5b937a33fb163', title: 'Installation › 2. Let bin/up start the site' }
       - { kind: docs, page: /getting-started/key-ideas, anchor: editing, sectionHash: 'sha256:56ff4c5739a87e28', title: 'Key Ideas › Editing' }
     author: llm-draft
 
@@ -116,7 +116,7 @@ questions:
         It's expected. The database starts empty, so nothing answers at `/` until you build a page with that
         route. Sign in and start with your first layout.
     sources:
-      - { kind: docs, page: /getting-started/installation, anchor: _2-let-binup-start-the-site, sectionHash: 'sha256:4a2d114c48e6dfad', title: 'Installation › 2. Let bin/up start the site' }
+      - { kind: docs, page: /getting-started/installation, anchor: _2-let-binup-start-the-site, sectionHash: 'sha256:bcb5b937a33fb163', title: 'Installation › 2. Let bin/up start the site' }
     author: llm-draft
 
   - id: deploy.install.console-commands

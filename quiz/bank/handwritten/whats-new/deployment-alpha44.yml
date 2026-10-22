@@ -31,7 +31,7 @@ questions:
         b: 'Refusing is what `compose.prod.yaml` does, not the Kubernetes deploy.'
         c: '`ADMIN_PASSWORD` isn''t one of the secrets a deploy generates and keeps.'
     sources:
-      - { kind: docs, page: /deployment/variables, anchor: the-admin-password, sectionHash: 'sha256:00d0ac732805ace7', title: 'CI/CD Variables › The admin password' }
+      - { kind: docs, page: /deployment/variables, anchor: the-admin-password, sectionHash: 'sha256:91c03cc79cfe20ee', title: 'CI/CD Variables › The admin password' }
     author: llm-draft
 
   - id: deploy.docker.wait-ready
@@ -59,7 +59,7 @@ questions:
         php's health check calls the API's health endpoint on a loopback-only Caddy site, which answers 503
         while the database is down, and app checks `/_cwa/healthcheck`. `--wait` returns when both are healthy.
     sources:
-      - { kind: docs, page: /deployment/docker, anchor: waiting-for-the-stack, sectionHash: 'sha256:f7dfcaf1245c229e', title: 'Docker › Waiting for the stack' }
+      - { kind: docs, page: /deployment/docker, anchor: waiting-for-the-stack, sectionHash: 'sha256:eff7676c72168378', title: 'Docker › Waiting for the stack' }
     author: llm-draft
 
   - id: deploy.scaled.shared-cache-check
@@ -89,5 +89,5 @@ questions:
         cached in Redis. If none is, it prints the warning and carries on: the deploy isn't failed. Check the
         Redis pod's logs and the API pods' Redis errors, then press **Purge all cached data**.
     sources:
-      - { kind: docs, page: /deployment/scaled-mode, anchor: checking-the-cache-is-shared, sectionHash: 'sha256:de3d47935f967dee', title: 'Scaled Mode › Checking the cache is shared' }
+      - { kind: docs, page: /deployment/scaled-mode, anchor: checking-the-cache-is-shared, sectionHash: 'sha256:f51241595b51c32b', title: 'Scaled Mode › Checking the cache is shared' }
     author: llm-draft
