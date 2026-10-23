@@ -42,7 +42,7 @@ questions:
       name: spot-the-mistake
       ref: builder-get-entity
   - id: gen.mistake.is-editing-value.1
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: nuxt-module
@@ -59,7 +59,7 @@ questions:
       text: |-
         <template>
           <article>
-            <TipTapHtmlEditor v-if="$cwa.admin.isEditing.value" v-model="model" />
+            <TipTapHtmlEditor v-if="$cwa.admin.isEditing.value" :model="resourceModel" :iri="iri" />
             <div v-else ref="container" v-cwa-html="content" class="prose" />
           </article>
         </template>
@@ -73,26 +73,69 @@ questions:
         </script>
     answer:
       line: 3
-      fix: '    <TipTapHtmlEditor v-if="$cwa.admin.isEditing" v-model="model" />'
+      fix: '    <TipTapHtmlEditor v-if="$cwa.admin.isEditing" :model="resourceModel" :iri="iri" />'
       explanation: "`$cwa.admin.isEditing` is a plain boolean on a reactive object, not a ref. Reading `.value` on
         it gives `undefined`, so the check never sees edit mode."
     sources:
       - kind: docs
         page: /nuxt-module/cwa-layer/admin-panel
         anchor: edit-mode
-        sectionHash: sha256:1708eff0dfb948f0
+        sectionHash: sha256:b4a6e117668a3bd1
         title: Admin Panel Reference › Edit Mode
       - kind: docs
         page: /nuxt-module/component-helpers/rich-text-editor
         anchor: loading-an-editor-lazily
-        sectionHash: sha256:7fce4f11b07ffd0b
+        sectionHash: sha256:a90bace9db7c8229
         title: Rich-Text Editor › Loading an Editor Lazily
         block: 0
-        blockHash: sha256:0e7f745cec50bbb2
+        blockHash: sha256:fc7b4d926d603034
     generator:
       name: spot-the-mistake
       ref: is-editing-value
   - id: gen.mistake.is-editing-value.2
+    version: 2
+    status: live
+    level: intermediate
+    area: nuxt-module
+    tags:
+      - cwa-api
+      - admin
+    type: spot-the-mistake
+    family: mistake:is-editing-value
+    prompt: One line in this code is wrong. Click it.
+    why: Read `$cwa.admin.isEditing` with `.value` and your edit-only UI never appears, with no error to tell you
+      why.
+    code:
+      lang: vue
+      text: |-
+        <TipTapHtmlEditor
+          v-if="$cwa.admin.isEditing.value"
+          :model="resourceModel"
+          :iri="iri"
+          :config="{ h1: false, h2: false, underline: false, bulletList: false }"
+        />
+    answer:
+      line: 2
+      fix: '  v-if="$cwa.admin.isEditing"'
+      explanation: "`$cwa.admin.isEditing` is a plain boolean on a reactive object, not a ref. Reading `.value` on
+        it gives `undefined`, so the check never sees edit mode."
+    sources:
+      - kind: docs
+        page: /nuxt-module/cwa-layer/admin-panel
+        anchor: edit-mode
+        sectionHash: sha256:b4a6e117668a3bd1
+        title: Admin Panel Reference › Edit Mode
+      - kind: docs
+        page: /nuxt-module/component-helpers/rich-text-editor
+        anchor: choosing-the-editors-buttons
+        sectionHash: sha256:8613799c63afe3d4
+        title: Rich-Text Editor › Choosing the Editor's Buttons
+        block: 0
+        blockHash: sha256:8db892a9f7899e3c
+    generator:
+      name: spot-the-mistake
+      ref: is-editing-value
+  - id: gen.mistake.is-editing-value.4
     version: 1
     status: live
     level: intermediate
@@ -110,8 +153,9 @@ questions:
       text: |-
         <TipTapHtmlEditor
           v-if="$cwa.admin.isEditing.value"
-          v-model="model"
-          :config="{ h1: false, h2: false, underline: false, bulletList: false }"
+          :model="resourceModel"
+          :iri="iri"
+          field="html"
         />
     answer:
       line: 2
@@ -122,15 +166,15 @@ questions:
       - kind: docs
         page: /nuxt-module/cwa-layer/admin-panel
         anchor: edit-mode
-        sectionHash: sha256:1708eff0dfb948f0
+        sectionHash: sha256:b4a6e117668a3bd1
         title: Admin Panel Reference › Edit Mode
       - kind: docs
         page: /nuxt-module/component-helpers/rich-text-editor
-        anchor: choosing-the-editors-buttons
-        sectionHash: sha256:0185d0498eaba132
-        title: Rich-Text Editor › Choosing the Editor's Buttons
-        block: 0
-        blockHash: sha256:cd4c2bec1c8cdb59
+        anchor: typing-at-the-same-time
+        sectionHash: sha256:7c5c8bd303b0cab5
+        title: Rich-Text Editor › Typing at the Same Time
+        block: 1
+        blockHash: sha256:c3adb4a218015a36
     generator:
       name: spot-the-mistake
       ref: is-editing-value
@@ -173,7 +217,7 @@ questions:
       - kind: docs
         page: /nuxt-module/cwa-layer/admin-panel
         anchor: edit-mode
-        sectionHash: sha256:1708eff0dfb948f0
+        sectionHash: sha256:b4a6e117668a3bd1
         title: Admin Panel Reference › Edit Mode
       - kind: docs
         page: /nuxt-module/pwa

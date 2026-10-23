@@ -216,6 +216,16 @@
         }
       }
     },
+    "api.collaboration-states.draft": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:04e524efac3e426f",
+          "docsCommit": "4fd8ae35a7b840e26a1fd46d6c9b49d570ff2cd2+dirty"
+        }
+      }
+    },
     "api.components.endpoint-prefix": {
       "status": "live",
       "version": 2,
@@ -269,6 +279,26 @@
         "1": {
           "fingerprint": "sha256:90927311590066c4",
           "docsCommit": "5a77f55ee091789ec3f314638209e92ca359558c"
+        }
+      }
+    },
+    "api.concurrency.draft-if-match": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:ab0dc22f388fcc98",
+          "docsCommit": "4fd8ae35a7b840e26a1fd46d6c9b49d570ff2cd2+dirty"
+        }
+      }
+    },
+    "api.concurrency.stale-if-match": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:f3d0bdcf439174a9",
+          "docsCommit": "4fd8ae35a7b840e26a1fd46d6c9b49d570ff2cd2+dirty"
         }
       }
     },
@@ -3546,21 +3576,29 @@
     },
     "gen.mistake.is-editing-value.1": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:f3eaa6ed8ef4c6bd",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:3340fc0514df690e",
+          "docsCommit": "4fd8ae35a7b840e26a1fd46d6c9b49d570ff2cd2+dirty"
         }
       }
     },
     "gen.mistake.is-editing-value.2": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:89e4eae683fc30f9",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:801c96bd12c479a8",
+          "docsCommit": "4fd8ae35a7b840e26a1fd46d6c9b49d570ff2cd2+dirty"
         }
       }
     },
@@ -3571,6 +3609,16 @@
         "1": {
           "fingerprint": "sha256:ae251c1ce76171da",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        }
+      }
+    },
+    "gen.mistake.is-editing-value.4": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:2a5f75aaa02f9bb6",
+          "docsCommit": "4fd8ae35a7b840e26a1fd46d6c9b49d570ff2cd2+dirty"
         }
       }
     },
@@ -4786,6 +4834,16 @@
         }
       }
     },
+    "nuxt.coedit.refused-save-without-realtime": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:3c477d6e064f7eed",
+          "docsCommit": "4fd8ae35a7b840e26a1fd46d6c9b49d570ff2cd2+dirty"
+        }
+      }
+    },
     "nuxt.coedit.same-field-conflict": {
       "status": "live",
       "version": 1,
@@ -5572,6 +5630,26 @@
         }
       }
     },
+    "nuxt.presence.live-editing-paused": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:d98b2d946a2c4def",
+          "docsCommit": "4fd8ae35a7b840e26a1fd46d6c9b49d570ff2cd2+dirty"
+        }
+      }
+    },
+    "nuxt.presence.own-field-editor": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:fc779d3568dd0e3f",
+          "docsCommit": "4fd8ae35a7b840e26a1fd46d6c9b49d570ff2cd2+dirty"
+        }
+      }
+    },
     "nuxt.pwa.network-first": {
       "status": "live",
       "version": 1,
@@ -5627,6 +5705,16 @@
         "2": {
           "fingerprint": "sha256:01c43bf3dbaf275e",
           "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
+        }
+      }
+    },
+    "nuxt.realtime.send-keeps-newest": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:f8be2e2f33a814d7",
+          "docsCommit": "4fd8ae35a7b840e26a1fd46d6c9b49d570ff2cd2+dirty"
         }
       }
     },

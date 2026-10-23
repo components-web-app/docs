@@ -38,7 +38,7 @@ CWA's closest neighbours are Symfony content platforms. If your team already run
 
 ## Is CWA right for you?
 
-The comparison shows what CWA does. Whether it fits your project depends on your team and your clients: see [Built for Business › When to choose CWA](/built-for-business#when-to-choose-cwa) and [Built for Business › When not to choose CWA](/built-for-business#when-not-to-choose-cwa), or [open the playground](https://preview.cwa.rocks/login) and edit a CWA site yourself.
+The comparison shows what CWA does. Whether it fits your project depends on your team and your clients: read [Built for Business](/built-for-business), or [open the playground](https://preview.cwa.rocks/login) and edit a CWA site yourself.
 
 ::comparison-sources
 ::

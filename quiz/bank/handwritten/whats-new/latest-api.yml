@@ -62,7 +62,7 @@ questions:
         c: An anchor sent with a `sortValue` is a `422`.
         d: A `PATCH` with no anchor and no change of group leaves the position where it is.
     sources:
-      - { kind: docs, page: /api/components/component-groups, anchor: how-positions-are-ordered, sectionHash: 'sha256:d0770c5943bb73c1', title: 'Component Groups & Positions › How Positions Are Ordered' }
+      - { kind: docs, page: /api/components/component-groups, anchor: how-positions-are-ordered, sectionHash: 'sha256:61490335307eea17', title: 'Component Groups & Positions › How Positions Are Ordered' }
     author: llm-draft
 
   - id: api.groups.order-partial-list
@@ -92,7 +92,7 @@ questions:
         follows now, so `C` goes with `B` and `E` with `D`. `A` comes before the first listed one, so it stays
         at the start.
     sources:
-      - { kind: docs, page: /api/components/component-groups, anchor: reordering-a-group-in-one-request, sectionHash: 'sha256:7d66d6856fba894b', title: 'Component Groups & Positions › Reordering a group in one request' }
+      - { kind: docs, page: /api/components/component-groups, anchor: reordering-a-group-in-one-request, sectionHash: 'sha256:1adb6ce578419e46', title: 'Component Groups & Positions › Reordering a group in one request' }
     author: llm-draft
 
   - id: api.fixtures.load-variants

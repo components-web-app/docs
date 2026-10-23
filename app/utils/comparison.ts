@@ -191,7 +191,7 @@ export const COMPARISON_ROWS: ComparisonRow[] = [
     id: 'realtime',
     label: 'Editors see each other working, in real time',
     cells: {
-      cwa: c('planned', 'Changes already reach open pages live; showing who\'s editing is planned'),
+      cwa: c('yes', 'See who\'s on each page and in each field; rich text merges as you type, with live cursors'),
       wordpress: c('no', 'Taken out of WordPress 7.0, not on the 7.2 roadmap'),
       storyblok: c('unknown', 'Claimed in its marketing; not found in its docs'),
       contentful: c('paid', 'Live collaboration on paid plans'),

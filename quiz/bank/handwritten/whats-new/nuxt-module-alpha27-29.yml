@@ -1,0 +1,129 @@
+# Hand-written What's new questions about the Nuxt module: changes in 2.0.0-alpha.27 to 2.0.0-alpha.29.
+# Each one has a `since` naming the release that brought the change in.
+# Format: quiz/README.md. Run `pnpm quiz:stamp <id>` to fill in or refresh the hashes.
+
+questions:
+  - id: nuxt.presence.live-editing-paused
+    version: 1
+    status: live
+    level: beginner
+    area: nuxt-module
+    tags: [admin, real-time]
+    type: multiple-choice
+    difficulty: 2
+    prompt: >-
+      An admin is editing a page. The avatars of the other admins disappear from the admin bar, and it reads
+      **Live editing paused** instead. What has happened?
+    why: >-
+      Knowing the pause is harmless stops an editor from reloading and losing what they were doing.
+    since: [{ repo: cwa-nuxt-module, version: '2.0.0-alpha.27' }]
+    options:
+      - { id: a, text: 'Another admin has locked the page, so nothing can be changed until they finish' }
+      - { id: b, text: 'The real-time connection is down; editing goes on and the others catch up when it returns' }
+      - { id: c, text: 'The session has expired, so the admin has to sign in again before saving' }
+      - { id: d, text: 'Edit mode was turned off because no one has typed for 5 minutes' }
+    answer:
+      correct: b
+      explanation: >-
+        While the real-time connection is down, the header says **Live editing paused** instead of showing
+        avatars. The admin can keep editing; other admins' changes and who's here catch up when the connection
+        returns.
+      optionNotes:
+        d: 'After 5 minutes without input an admin is only shown as idle, dimmed in the others'' list. Edit mode stays on.'
+    sources:
+      - { kind: docs, page: /nuxt-module/component-helpers/real-time-updates, anchor: who-else-is-here, sectionHash: 'sha256:5e4d3377c14e806d', title: 'Real-Time Updates in Components › Who Else Is Here' }
+    author: llm-draft
+
+  - id: nuxt.presence.own-field-editor
+    version: 1
+    status: live
+    level: intermediate
+    area: nuxt-module
+    tags: [admin, composables]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      An admin tab has your own colour picker, bound to a field's `useCwaResourceModel`. When another admin
+      clicks into it, the other admins should see it outlined with that admin's name, as kit fields are. What
+      does the picker need?
+    why: >-
+      Without it, two admins can work in the same custom field without either knowing.
+    since: [{ repo: cwa-nuxt-module, version: '2.0.0-alpha.28' }]
+    options:
+      - { id: a, text: 'Nothing: any control bound to `model.value` reports its own focus' }
+      - { id: b, text: 'A `presence` event sent with `useCwaRealtime` each time it gets focus' }
+      - { id: c, text: 'A `<CwaUiFieldPresence :model>` wrapper binding `focusListeners`' }
+      - { id: d, text: 'An `onRemoteChange` handler on the component''s own IRI' }
+    answer:
+      correct: c
+      explanation: >-
+        `<CwaUiFieldPresence>` draws the outline from the model's `focusedBy`, and the model's `focusListeners`
+        tell the other admins when you're in the field. Kit fields given `:model` do both by themselves.
+      optionNotes:
+        b: '`presence` is reserved for the module''s own events: `send` refuses it.'
+        d: '`onRemoteChange` hears other admins'' saves, not where they are.'
+    sources:
+      - { kind: docs, page: /nuxt-module/composables/admin-manager/use-cwa-resource-model, anchor: your-own-field-editor, sectionHash: 'sha256:87b03867ace4f1df', title: 'useCwaResourceModel › Your Own Field Editor' }
+    author: llm-draft
+
+  - id: nuxt.realtime.send-keeps-newest
+    version: 1
+    status: live
+    level: advanced
+    area: nuxt-module
+    tags: [admin, composables, real-time]
+    type: multiple-choice
+    difficulty: 4
+    prompt: >-
+      A component sends a `note-added` event with `useCwaRealtime(iri).send` for each note an admin adds. When an
+      admin adds three notes in quick succession, the other admins' handlers only hear about the last one. Why?
+    why: >-
+      `send` suits state such as a caret, where only the latest value matters, not a log of changes.
+    since: [{ repo: cwa-nuxt-module, version: '2.0.0-alpha.28' }]
+    options:
+      - { id: a, text: 'The API drops events that arrive less than a second apart' }
+      - { id: b, text: 'A waiting send of the same event on the same resource is replaced by the newest data' }
+      - { id: c, text: 'Handlers only run for events from another admin, never from the same user' }
+      - { id: d, text: 'The admin was idle, so their events were held back' }
+    answer:
+      correct: b
+      explanation: >-
+        A tab sends one real-time request at a time, at most 8 a second, presence first. While an event waits,
+        a newer `send` of the same event on the same resource replaces its data, so only the newest goes.
+      optionNotes:
+        c: 'Handlers hear every other tab, including the same admin''s other windows. Only the sending tab is left out.'
+    sources:
+      - { kind: docs, page: /nuxt-module/composables/admin-manager/use-cwa-realtime, anchor: send, sectionHash: 'sha256:500956e3dd698697', title: 'useCwaRealtime › send' }
+    author: llm-draft
+
+  - id: nuxt.coedit.refused-save-without-realtime
+    version: 1
+    status: live
+    level: intermediate
+    area: nuxt-module
+    tags: [admin, real-time]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      A site sets `cwa.realtime.enabled: false`. Two admins edit the same component's title from copies they
+      loaded at the same time, and Ben saves first. What happens when Ana's save reaches the API?
+    why: >-
+      Saves are checked against the version whether or not co-editing is on, so turning it off doesn't bring back
+      silent overwrites.
+    since: [{ repo: cwa-nuxt-module, version: '2.0.0-alpha.29' }]
+    options:
+      - { id: a, text: 'Her title replaces Ben''s, because the last save wins' }
+      - { id: b, text: '**Use theirs / Keep mine** shows beside her title field' }
+      - { id: c, text: 'It''s refused, and she sees an error saying someone else saved first' }
+      - { id: d, text: 'Her change is saved to a new draft, beside Ben''s saved title' }
+    answer:
+      correct: c
+      explanation: >-
+        Every admin save sends `If-Match` with the version it was based on, and the API answers `412` to an
+        older one. Without co-editing, the module shows *Someone else saved this first, so your change was not
+        saved. Reload to see their version.*
+      optionNotes:
+        b: 'That choice is shown for a refused save only while co-editing is on.'
+    sources:
+      - { kind: docs, page: /nuxt-module/composables/admin-manager/use-cwa-resource-model, anchor: co-editing-conflicts, sectionHash: 'sha256:ee6867f6ee8ec54e', title: 'useCwaResourceModel › Co-Editing Conflicts' }
+    author: llm-draft

@@ -29,7 +29,7 @@ questions:
         Setting `model.value` starts a debounced `PATCH` (250 ms by default), and rapid changes are batched into
         one request.
     sources:
-      - { kind: docs, page: /nuxt-module/composables/admin-manager/use-cwa-resource-model, anchor: return-values, sectionHash: 'sha256:e59ae7c0d40b3e09', title: 'useCwaResourceModel › Return Values' }
+      - { kind: docs, page: /nuxt-module/composables/admin-manager/use-cwa-resource-model, anchor: return-values, sectionHash: 'sha256:a470df5f3cdb75a7', title: 'useCwaResourceModel › Return Values' }
     author: llm-draft
 
   - id: nuxt.resource-model.iri-argument

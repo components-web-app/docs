@@ -100,7 +100,7 @@ sections:
         description: 'When you make a change, affected users get an immediate notification so they can stay up to date.'
         icon: i-ph-paper-plane-tilt
       - name: 'Collaborate on changes'
-        description: 'When another admin saves or publishes, the change reaches your open page straight away, with no external tools. Showing who else is editing is planned.'
+        description: 'See who else is editing, on which page and in which field. Type in the same text together and your changes merge as you go, with each person''s cursor on screen.'
         icon: i-ph-arrows-in-cardinal
       - name: 'Authenticated updates'
         description: 'With authentication built in by default, the browser will only receive updates for relevant resources. Website visitors will not be exposed to draft component updates.'

@@ -109,7 +109,7 @@ timeline:
         description: Publish a draft now, or pick a date and time. Visitors keep seeing the live version until then.
         icon: i-ph-clock
       - title: Real-time collaboration
-        description: Work on content together. When someone saves or publishes a change, other signed-in editors are told straight away.
+        description: Work on content together. See who else is editing and where, type in the same text at once with live cursors, and get every saved change straight away.
         icon: i-ph-arrows-in-cardinal
       - title: Live editing
         description: If you are in the middle of drafting changes, but you notice the live version needs an update, no problem - switch to edit the live version and continue with your draft when you are done.

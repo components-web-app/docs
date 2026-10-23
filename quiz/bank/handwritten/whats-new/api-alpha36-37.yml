@@ -1,0 +1,93 @@
+# Hand-written What's new questions about the API bundle: changes in 2.0.0-alpha.36 and 2.0.0-alpha.37.
+# Each one has a `since` naming the release that brought the change in.
+# Format: quiz/README.md. Run `pnpm quiz:stamp <id>` to fill in or refresh the hashes.
+
+questions:
+  - id: api.concurrency.stale-if-match
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [components]
+    type: multiple-choice
+    difficulty: 2
+    prompt: >-
+      An admin reads a component at version 4, and another admin saves it, so it's now at version 5. The first
+      admin then sends a `PATCH` with `If-Match: "4"`. What does the API answer?
+    why: >-
+      A client that sends `If-Match` must handle the 412, or an editor's change is lost without them knowing.
+    since: [{ repo: api-components-bundle, version: '2.0.0-alpha.36' }]
+    options:
+      - { id: a, text: '`409`, with an empty body' }
+      - { id: b, text: '`200`, and the change replaces the other admin''s save' }
+      - { id: c, text: '`412`, with the component as it is now as the body' }
+      - { id: d, text: '`422`, with a violation on `_metadata.version`' }
+    answer:
+      correct: c
+      explanation: >-
+        The version in `If-Match` isn't the component's current version, so nothing is written. Every 412 has the
+        current resource as its body, in the shape a `GET` of the same URL returns, so the client can show both
+        versions or apply its change again with version 5.
+    sources:
+      - { kind: docs, page: /api/versions-and-conflicts, anchor: what-a-412-contains, sectionHash: 'sha256:5270daa6ae5606ad', title: 'Versions & Conflicts › What a 412 contains' }
+    author: llm-draft
+
+  - id: api.concurrency.draft-if-match
+    version: 1
+    status: live
+    level: advanced
+    area: api
+    tags: [components, draft-and-publish]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      A published component has a draft. An admin sends a `PATCH` to the published component's IRI, which the API
+      sends to the draft, with an `If-Match` holding the published component's current version. What happens?
+    why: >-
+      A client that edits drafts must send `If-Match` to the draft's own IRI with the draft's version, or every
+      save is refused.
+    since: [{ repo: api-components-bundle, version: '2.0.0-alpha.36' }]
+    options:
+      - { id: a, text: 'The draft is saved, because the published version matched' }
+      - { id: b, text: 'A `412` with the draft, whatever version was sent' }
+      - { id: c, text: 'The published component is saved, and the draft is left alone' }
+      - { id: d, text: 'The `If-Match` is ignored and the draft is saved' }
+    answer:
+      correct: b
+      explanation: >-
+        A live component and its draft each have their own version and can share a number, so the API can't tell
+        which one the client read. Any `If-Match` on a write redirected to an existing draft is a 412 with the
+        draft. Without `If-Match`, the write edits the draft as usual.
+    sources:
+      - { kind: docs, page: /api/versions-and-conflicts, anchor: when-a-save-is-refused, sectionHash: 'sha256:c98ec370b78a31bf', title: 'Versions & Conflicts › When a save is refused' }
+    author: llm-draft
+
+  - id: api.collaboration-states.draft
+    version: 1
+    status: live
+    level: advanced
+    area: api
+    tags: [components, draft-and-publish]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      An admin's editor posts a collaboration state (the shared editing state of a rich text field) to
+      `/_/collaboration_states`, naming the draft of a published component. Which component is the state stored
+      under?
+    why: >-
+      To find the state again, look it up with the published component's IRI, even while a draft exists.
+    since: [{ repo: api-components-bundle, version: '2.0.0-alpha.37' }]
+    options:
+      - { id: a, text: 'The draft, and it''s deleted when the draft is published' }
+      - { id: b, text: 'The draft, and it moves to the published component on publish' }
+      - { id: c, text: 'Both, as two states that are kept in step' }
+      - { id: d, text: 'The published component, shared with its draft' }
+    answer:
+      correct: d
+      explanation: >-
+        A draft and its published component share one state per field: a state posted with the draft's IRI is
+        stored under the published component, and publishing keeps it. A draft that was never published is stored
+        as itself.
+    sources:
+      - { kind: docs, page: /api/versions-and-conflicts, anchor: drafts-and-deletes, sectionHash: 'sha256:fa1959b52bd3c09b', title: 'Versions & Conflicts › Drafts and deletes' }
+    author: llm-draft

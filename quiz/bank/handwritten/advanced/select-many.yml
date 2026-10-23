@@ -75,7 +75,7 @@ questions:
         e: The manifest class is in the set, but only authenticated requests are marked.
         f: Every Publishable resource is matched without being listed, because an admin's view can be the draft.
     sources:
-      - { kind: docs, page: /api/http-caching, anchor: http-cache-safety, sectionHash: 'sha256:f7732bd3730f4608', title: 'HTTP Caching › HTTP Cache Safety' }
+      - { kind: docs, page: /api/http-caching, anchor: http-cache-safety, sectionHash: 'sha256:66bdc0f5284c06e6', title: 'HTTP Caching › HTTP Cache Safety' }
     author: llm-draft
 
   - id: deploy.secrets.kept

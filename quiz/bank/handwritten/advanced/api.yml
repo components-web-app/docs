@@ -29,7 +29,7 @@ questions:
       optionNotes:
         a: An anonymous visitor's route response is publicly cacheable.
     sources:
-      - { kind: docs, page: /api/http-caching, anchor: http-cache-safety, sectionHash: 'sha256:f7732bd3730f4608', title: 'HTTP Caching › HTTP Cache Safety' }
+      - { kind: docs, page: /api/http-caching, anchor: http-cache-safety, sectionHash: 'sha256:66bdc0f5284c06e6', title: 'HTTP Caching › HTTP Cache Safety' }
     author: llm-draft
 
   - id: api.cache.vary-cookie
@@ -55,7 +55,7 @@ questions:
         Varying on the cookie would split the cache for anonymous visitors. It isn't needed either: the
         responses that differ are marked non-cacheable outright, and the anonymous variant carries no cookie.
     sources:
-      - { kind: docs, page: /api/http-caching, anchor: http-cache-safety, sectionHash: 'sha256:f7732bd3730f4608', title: 'HTTP Caching › HTTP Cache Safety' }
+      - { kind: docs, page: /api/http-caching, anchor: http-cache-safety, sectionHash: 'sha256:66bdc0f5284c06e6', title: 'HTTP Caching › HTTP Cache Safety' }
     author: llm-draft
 
   - id: api.cache.component-save-purge
@@ -382,7 +382,7 @@ questions:
         A class in `personalised_resource_classes` gets `private, no-store` on authenticated `GET`s. The first
         three are the defaults; publishable resources are matched without being listed.
     sources:
-      - { kind: docs, page: /api/http-caching, anchor: http-cache-safety, sectionHash: 'sha256:f7732bd3730f4608', title: 'HTTP Caching › HTTP Cache Safety', block: 1, blockHash: 'sha256:4b182f6dadb04642' }
+      - { kind: docs, page: /api/http-caching, anchor: http-cache-safety, sectionHash: 'sha256:66bdc0f5284c06e6', title: 'HTTP Caching › HTTP Cache Safety', block: 1, blockHash: 'sha256:4b182f6dadb04642' }
     author: llm-draft
 
   - id: api.fixtures.link-iri-page-data

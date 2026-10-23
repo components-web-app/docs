@@ -136,6 +136,6 @@ questions:
         field is read-only and ignored, so the request succeeds and the API keeps the old order. The admin shows the
         move until the page is loaded again. Upgrade the module to 2.0.0-alpha.19.
     sources:
-      - { kind: docs, page: /api/components/component-groups, anchor: how-positions-are-ordered, sectionHash: 'sha256:d0770c5943bb73c1', title: 'Component Groups & Positions › How Positions Are Ordered' }
+      - { kind: docs, page: /api/components/component-groups, anchor: how-positions-are-ordered, sectionHash: 'sha256:61490335307eea17', title: 'Component Groups & Positions › How Positions Are Ordered' }
       - { kind: docs, page: /core-concepts/admin-panel, anchor: reordering, sectionHash: 'sha256:59cdff50926702be', title: 'The Admin Panel › Reordering' }
     author: llm-draft

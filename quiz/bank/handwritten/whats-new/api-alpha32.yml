@@ -30,7 +30,7 @@ questions:
         with `after` or `before` would place it, so its IRI doesn't change. A new position is created only when
         the component comes out of a page data property.
     sources:
-      - { kind: docs, page: /api/components/component-groups, anchor: what-a-move-does, sectionHash: 'sha256:d32cf5ddc5edbc2b', title: 'Component Groups & Positions › What a move does' }
+      - { kind: docs, page: /api/components/component-groups, anchor: what-a-move-does, sectionHash: 'sha256:de74579a2eb581e2', title: 'Component Groups & Positions › What a move does' }
     author: llm-draft
 
   - id: api.groups.move-into-full-property
@@ -88,7 +88,7 @@ questions:
         The property is set and the position is removed in one database write. The component isn't deleted,
         even though that position was its only use.
     sources:
-      - { kind: docs, page: /api/components/component-groups, anchor: what-a-move-does, sectionHash: 'sha256:d32cf5ddc5edbc2b', title: 'Component Groups & Positions › What a move does' }
+      - { kind: docs, page: /api/components/component-groups, anchor: what-a-move-does, sectionHash: 'sha256:de74579a2eb581e2', title: 'Component Groups & Positions › What a move does' }
     author: llm-draft
 
   - id: api.groups.usage-admin-only
