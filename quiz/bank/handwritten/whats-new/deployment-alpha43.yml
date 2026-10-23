@@ -209,7 +209,7 @@ questions:
         build to the track's tag only once the migrations and both rollouts have succeeded. The failed deploy
         stops with `THE cwa ROLLOUT DID NOT FINISH`, while the old pods keep serving.
     sources:
-      - { kind: docs, page: /deployment/ci-cd, anchor: which-build-a-deploy-runs, sectionHash: 'sha256:87e6488d5b8bf578', title: 'CI/CD › Which build a deploy runs' }
+      - { kind: docs, page: /deployment/ci-cd, anchor: which-build-a-deploy-runs, sectionHash: 'sha256:9391dc6b16c87d4d', title: 'CI/CD › Which build a deploy runs' }
 
   - id: deploy.db.staging-shared-database
     version: 1

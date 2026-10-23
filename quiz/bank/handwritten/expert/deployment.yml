@@ -34,7 +34,7 @@ questions:
         b: The deploy decides on the CDN config, and the purge uses the token written in it.
     sources:
       - { kind: code, repo: components-web-app, path: bin/devops/k8s.sh, lines: [1596, 1613], commit: 884876d55ff5438016850714df60c6f4583b61ca, linesHash: 'sha256:57262d81213ff43c' }
-      - { kind: docs, page: /deployment/ci-cd, anchor: why-every-deploy-clears-the-page-cache, sectionHash: 'sha256:72da8df4899fc1b1', title: 'CI/CD › Why every deploy clears the page cache' }
+      - { kind: docs, page: /deployment/ci-cd, anchor: why-every-deploy-clears-the-page-cache, sectionHash: 'sha256:efa29d03b6a2e05d', title: 'CI/CD › Why every deploy clears the page cache' }
     author: llm-draft
 
   - id: deploy.internals.fixtures-purge-production

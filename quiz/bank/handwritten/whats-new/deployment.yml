@@ -32,7 +32,7 @@ questions:
       optionNotes:
         a: 'Pods run the pinned digest, not the moving `:main` tag, so a new build on `:main` doesn''t reach them.'
     sources:
-      - { kind: docs, page: /deployment/ci-cd, anchor: which-build-a-deploy-runs, sectionHash: 'sha256:87e6488d5b8bf578', title: 'CI/CD › Which build a deploy runs' }
+      - { kind: docs, page: /deployment/ci-cd, anchor: which-build-a-deploy-runs, sectionHash: 'sha256:9391dc6b16c87d4d', title: 'CI/CD › Which build a deploy runs' }
     author: llm-draft
 
   - id: deploy.k8s.rollback-github
