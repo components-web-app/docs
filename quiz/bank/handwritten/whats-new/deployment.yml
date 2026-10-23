@@ -184,5 +184,5 @@ questions:
       optionNotes:
         d: '`check-all-ran.mjs` fails a run when a listed test was skipped or didn''t run.'
     sources:
-      - { kind: docs, page: /deployment/browser-tests, anchor: what-they-check, sectionHash: 'sha256:e646b312ebf31b12', title: 'Browser Tests › What they check' }
+      - { kind: docs, page: /deployment/browser-tests, anchor: what-they-check, sectionHash: 'sha256:1c739bb0ae75dbdd', title: 'Browser Tests › What they check' }
     author: llm-draft
