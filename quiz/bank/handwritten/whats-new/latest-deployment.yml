@@ -31,7 +31,7 @@ questions:
       optionNotes:
         b: '`GCLOUD_PATH_PREFIX` is reserved, so `CWA_API_GCLOUD_PATH_PREFIX` fails the deploy.'
     sources:
-      - { kind: docs, page: /deployment/variables, anchor: storage-path-prefix, sectionHash: 'sha256:2ff636ef9d406c07', title: 'CI/CD Variables › Storage path prefix' }
+      - { kind: docs, page: /deployment/variables, anchor: storage-path-prefix, sectionHash: 'sha256:62eaf628ee629c1c', title: 'CI/CD Variables › Storage path prefix' }
     author: llm-draft
 
   - id: deploy.storage.prefix-media-urls
@@ -62,7 +62,7 @@ questions:
       optionNotes:
         b: php tidies the value, removing a leading slash, so `/site-a` becomes `site-a/` anyway.
     sources:
-      - { kind: docs, page: /deployment/variables, anchor: storage-path-prefix, sectionHash: 'sha256:2ff636ef9d406c07', title: 'CI/CD Variables › Storage path prefix' }
+      - { kind: docs, page: /deployment/variables, anchor: storage-path-prefix, sectionHash: 'sha256:62eaf628ee629c1c', title: 'CI/CD Variables › Storage path prefix' }
     author: llm-draft
 
   - id: deploy.storage.prefix-live-app

@@ -29,5 +29,5 @@ questions:
         `SITE_HOST` is required, with no scheme or port. Caddy's `SERVER_NAME`, `NUXT_SITE_URL`, the Mercure public
         URL, `TRUSTED_HOSTS` and the CORS origins all come from it; more hosts go in `SITE_ALIASES`.
     sources:
-      - { kind: docs, page: /deployment/docker, anchor: production-docker-compose, sectionHash: 'sha256:7a22b7437dd0989c', title: 'Docker › Production Docker Compose' }
+      - { kind: docs, page: /deployment/docker, anchor: production-docker-compose, sectionHash: 'sha256:a4658f1d6d1d17b2', title: 'Docker › Production Docker Compose' }
     author: llm-draft

@@ -45,8 +45,8 @@ questions:
       A new project keeps the template's `e2e/` tests unchanged. Its sitemap lists only the home page. What
       happens when the browser tests run?
     why: >-
-      The template's tests rely only on the admin user and the sitemap, so the sitemap is what a project must
-      get right for them to pass.
+      The template's tests rely on the admin user and the sitemap, not on sample content, so the sitemap is what
+      a project must get right for them to pass.
     since: [{ repo: components-web-app, version: '2.0.0-alpha.42' }]
     options:
       - { id: a, text: 'They pass: the tests use the template''s sample pages' }
@@ -59,7 +59,7 @@ questions:
         The loading bar test navigates from the first sitemap page to the second, so the sitemap needs at least
         two pages. The tests don't use the template's sample content.
     sources:
-      - { kind: docs, page: /deployment/browser-tests, anchor: what-they-check, sectionHash: 'sha256:09aa9c146d651a76', title: 'Browser Tests › What they check' }
+      - { kind: docs, page: /deployment/browser-tests, anchor: what-they-check, sectionHash: 'sha256:e646b312ebf31b12', title: 'Browser Tests › What they check' }
     author: llm-draft
 
   - id: deploy.cicd.warm-after-fixtures
