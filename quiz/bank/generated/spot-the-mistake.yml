@@ -135,7 +135,7 @@ questions:
     generator:
       name: spot-the-mistake
       ref: is-editing-value
-  - id: gen.mistake.is-editing-value.4
+  - id: gen.mistake.is-editing-value.5
     version: 1
     status: live
     level: intermediate
@@ -171,9 +171,9 @@ questions:
       - kind: docs
         page: /nuxt-module/component-helpers/rich-text-editor
         anchor: typing-at-the-same-time
-        sectionHash: sha256:7c5c8bd303b0cab5
+        sectionHash: sha256:89101653984144dd
         title: Rich-Text Editor › Typing at the Same Time
-        block: 1
+        block: 0
         blockHash: sha256:c3adb4a218015a36
     generator:
       name: spot-the-mistake
@@ -2170,6 +2170,51 @@ questions:
     generator:
       name: spot-the-mistake
       ref: publish-group-name
+  - id: gen.mistake.is-editing-value.4
+    version: 1
+    status: retired
+    level: intermediate
+    area: nuxt-module
+    tags:
+      - cwa-api
+      - admin
+    family: mistake:is-editing-value
+    prompt: One line in this code is wrong. Click it.
+    why: Read `$cwa.admin.isEditing` with `.value` and your edit-only UI never appears, with no error to tell you
+      why.
+    sources:
+      - kind: docs
+        page: /nuxt-module/cwa-layer/admin-panel
+        anchor: edit-mode
+        sectionHash: sha256:b4a6e117668a3bd1
+        title: Admin Panel Reference › Edit Mode
+      - kind: docs
+        page: /nuxt-module/component-helpers/rich-text-editor
+        anchor: typing-at-the-same-time
+        sectionHash: sha256:7c5c8bd303b0cab5
+        title: Rich-Text Editor › Typing at the Same Time
+        block: 1
+        blockHash: sha256:c3adb4a218015a36
+    generator:
+      name: spot-the-mistake
+      ref: is-editing-value
+    type: spot-the-mistake
+    code:
+      lang: vue
+      text: |-
+        <TipTapHtmlEditor
+          v-if="$cwa.admin.isEditing.value"
+          :model="resourceModel"
+          :iri="iri"
+          field="html"
+        />
+    answer:
+      line: 2
+      fix: '  v-if="$cwa.admin.isEditing"'
+      explanation: "`$cwa.admin.isEditing` is a plain boolean on a reactive object, not a ref. Reading `.value` on
+        it gives `undefined`, so the check never sees edit mode."
+    retired:
+      reason: "stale-source: the source block is gone or no longer matches the catalogue entry"
   - id: gen.mistake.page-title-property.1
     version: 1
     status: retired
