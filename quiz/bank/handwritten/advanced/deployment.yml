@@ -212,5 +212,5 @@ questions:
         The limit runs inside the cache, so cache hits are never counted or refused. Over the limit, a visitor
         gets a `429` with `Retry-After`.
     sources:
-      - { kind: docs, page: /deployment/origin-protection, anchor: rate-limit-on-cache-misses, sectionHash: 'sha256:1f78ec443fe8a5be', title: 'Origin Protection › Rate Limit on Cache Misses' }
+      - { kind: docs, page: /deployment/origin-protection, anchor: rate-limit-on-cache-misses, sectionHash: 'sha256:2ba5fc1b86c97846', title: 'Origin Protection › Rate Limit on Cache Misses' }
     author: llm-draft
