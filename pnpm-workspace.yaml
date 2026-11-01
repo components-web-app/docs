@@ -33,6 +33,11 @@ overrides:
   svgo: ">=4.0.2 <5"
   valibot: ">=1.4.2 <2"
   fflate: ">=0.7.5 <0.8" # 2026-10-13: satori 0.33 pins 0.7.3 (malformed-ZIP infinite loop)
-  # Not overridden: node-forge (listhen, dev HTTPS) and braces (micromatch) have no patched release.
+  "undici@6": ">=6.29.1 <7" # 2026-11-01: alerts #248, #249, #251–#253 (@nuxt/scripts pins 6.29.0)
+  # Not overridden (2026-11-01), all build-time only on our own files:
+  # - node-forge (listhen, dev HTTPS), braces and deepmerge (nitropack's rollup): no patched release.
+  # - zod 3 (@nuxt/content requires ^3.25.76): the fix is only in zod 4.6.6, alert #250.
+  # - minimatch (archiver, eslint) and glob (archiver, @vercel/nft): fixed only in minimatch 11 and
+  #   glob 14, new majors their consumers don't accept; alerts #255, #256.
 
 
