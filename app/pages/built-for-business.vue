@@ -10,7 +10,7 @@ useSeoMeta({
   ogDescription: page.value?.description
 })
 
-// Its own share card instead of the site-wide social-card.png.
+// Its own share card instead of the site-wide social-card-2026-11.png.
 defineOgImage('Docs.satori', {
   title: page.value?.title,
   description: page.value?.description
