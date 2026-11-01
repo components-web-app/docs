@@ -33,14 +33,6 @@ overrides:
   svgo: ">=4.0.2 <5"
   valibot: ">=1.4.2 <2"
   fflate: ">=0.7.5 <0.8" # 2026-10-13: satori 0.33 pins 0.7.3 (malformed-ZIP infinite loop)
-  # 2026-10-21: simple-git's fixes are only in 4.x, which has no default export. DevTools 3 does
-  # `import Git from 'simple-git'`, so patches/@nuxt__devtools@3.4.2.patch imports `simpleGit` by
-  # name. A new DevTools 3.x makes pnpm stop on the unused patch: redo the patch for that version.
-  # DevTools 4 drops simple-git (drop this override and the patch then); it's still beta.
-  simple-git: ">=4.0.2 <5"         # CRITICAL — argument injection through the git command line
-  "@simple-git/argv-parser": ">=2.0.1 <3"
   # Not overridden: node-forge (listhen, dev HTTPS) and braces (micromatch) have no patched release.
 
 
-patchedDependencies:
-  '@nuxt/devtools@3.4.2': patches/@nuxt__devtools@3.4.2.patch
