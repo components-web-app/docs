@@ -191,7 +191,7 @@ questions:
         lists records with their own live route.
     sources:
       - { kind: docs, page: /api/users/access-control, anchor: public-access-follows-routes, sectionHash: 'sha256:0f66cb5cfc7476bb', title: 'Access Control › Public Access Follows Routes' }
-      - { kind: docs, page: /api/users/access-control, anchor: routable_security, sectionHash: 'sha256:02b59895a065fe67', title: 'Access Control › routablesecurity' }
+      - { kind: docs, page: /api/users/access-control, anchor: routable_security, sectionHash: 'sha256:629bea713d1b801f', title: 'Access Control › routablesecurity' }
     author: llm-draft
 
   - id: api.filters.or-where
@@ -255,29 +255,33 @@ questions:
     author: llm-draft
 
   - id: api.publishable.permission-writes
-    version: 2
+    version: 3
     status: live
     level: advanced
     area: api
     tags: [draft-and-publish, security]
     type: multiple-choice
     difficulty: 4
-    prompt: A user who doesn't pass `publishable.permission` sends a `PATCH` to a publishable component. What does the `PATCH` change?
+    prompt: >-
+      A signed-in user who doesn't pass `publishable.permission` sends a `PATCH` to a publishable component.
+      Nothing in the project changes the component's operations. What happens?
     why: >-
-      Before you give a role write access, decide whether it should also pass `publishable.permission`, or its
-      edits reach visitors with no chance to review them.
+      A member or guest account can't edit the site by accident: editing rights come from
+      `publishable.permission`, not from being signed in.
     options:
       - { id: a, text: 'Its draft, which an admin must publish' }
       - { id: b, text: 'Nothing: the API answers `403`' }
       - { id: c, text: A new draft twin is created for them }
       - { id: d, text: 'The published version, directly' }
     answer:
-      correct: d
+      correct: b
       explanation: >-
-        Users who don't match `publishable.permission` never see drafts, and their writes skip the draft stage:
-        a `POST` is published straight away and a `PATCH` updates the published version.
+        Every write to a component needs `publishable.permission`, so a signed-in user without it gets a `403`.
+        Only on an operation opened with `publishable_permission: false` would their `PATCH` reach the component,
+        and then it would update the published version directly, skipping the draft stage.
     sources:
-      - { kind: docs, page: /api/components/annotations/publishable, anchor: configuring-who-can-publish, sectionHash: 'sha256:c3230d5afeef2686', title: 'Publishable › Configuring Who Can Publish' }
+      - { kind: docs, page: /api/components/annotations/publishable, anchor: configuring-who-can-publish, sectionHash: 'sha256:36fe7b0979cf41d5', title: 'Publishable › Configuring Who Can Publish' }
+      - { kind: docs, page: /api/users/non-admin-users, anchor: what-only-editors-can-write, sectionHash: 'sha256:f3e4f59667ed5b10', title: 'Sites with Non-Admin Users › What Only Editors Can Write' }
     author: llm-draft
 
   - id: api.real-time.protocol-version

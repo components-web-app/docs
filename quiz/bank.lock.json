@@ -902,7 +902,7 @@
     },
     "api.publishable.permission-writes": {
       "status": "live",
-      "version": 2,
+      "version": 3,
       "versions": {
         "1": {
           "fingerprint": "sha256:75bf4a082afe71d4",
@@ -911,6 +911,10 @@
         "2": {
           "fingerprint": "sha256:4f8e7622ae3496ef",
           "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
+        },
+        "3": {
+          "fingerprint": "sha256:b5b33e9b1adc76f8",
+          "docsCommit": "2536eaacc17b57cc17d5a398b353dd8aa188daf5"
         }
       }
     },

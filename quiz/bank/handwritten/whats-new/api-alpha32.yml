@@ -59,7 +59,7 @@ questions:
         A target property that already holds a component is refused rather than replaced: a `422` with the
         violation on `to.property`, and nothing changes.
     sources:
-      - { kind: docs, page: /api/components/component-groups, anchor: when-a-move-is-refused, sectionHash: 'sha256:fd69c38d0e229496', title: 'Component Groups & Positions › When a move is refused' }
+      - { kind: docs, page: /api/components/component-groups, anchor: when-a-move-is-refused, sectionHash: 'sha256:3afa96dcc8dd363f', title: 'Component Groups & Positions › When a move is refused' }
     author: llm-draft
 
   - id: api.groups.move-position-into-property
