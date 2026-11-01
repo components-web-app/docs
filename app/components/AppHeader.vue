@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import type { ContentNavigationItem } from '@nuxt/content'
 import type { SiteLink } from '~/utils/site'
 
-const { data: navigation } = useNuxtData<any>('navigation')
+const { data: navigation } = useNuxtData<ContentNavigationItem[]>('navigation')
 
 const props = defineProps<{
   links?: SiteLink[]

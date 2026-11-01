@@ -8,7 +8,7 @@ import type { Component } from 'vue'
 // components/content/Diagram/ is registered without editing this plugin.
 const diagrams = import.meta.glob<{ default: Component }>(
   '../components/content/Diagram/*.vue',
-  { eager: true },
+  { eager: true }
 )
 
 export default defineNuxtPlugin((nuxtApp) => {

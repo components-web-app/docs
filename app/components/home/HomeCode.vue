@@ -58,8 +58,8 @@ const frontEndTabsUI = {
                 <UTabs
                   :items="page?.code?.frontEnd?.tabs"
                   class="mb-6 -mx-5 sm:mx-0"
-                  @update:model-value="onFrontEndChange"
                   :ui="frontEndTabsUI"
+                  @update:model-value="onFrontEndChange"
                 />
               </div>
               <div

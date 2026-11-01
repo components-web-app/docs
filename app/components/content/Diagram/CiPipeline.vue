@@ -20,17 +20,17 @@ const options: Highcharts.Options = {
       { from: 'browser', to: 'review' },
       { from: 'browser', to: 'staging' },
       { from: 'staging', to: 'canary' },
-      { from: 'canary', to: 'production' },
+      { from: 'canary', to: 'production' }
     ],
     nodes: [
-      { id: 'build',      name: 'Build',       ...nodeColor.stone, description: 'docker buildx' },
-      { id: 'test',       name: 'Test',        ...nodeColor.stone, description: 'PHPUnit unit + functional' },
-      { id: 'browser',    name: 'Browser Tests', ...nodeColor.violet, description: 'Playwright — opt-in' },
-      { id: 'review',     name: 'Review App',  ...nodeColor.blue,  description: 'per-branch — all branches' },
-      { id: 'staging',    name: 'Staging',     ...nodeColor.blue,  description: 'auto on merge to main' },
-      { id: 'canary',     name: 'Canary',      ...nodeColor.blue,  description: 'manual promotion' },
-      { id: 'production', name: 'Production',  ...nodeColor.blue,  description: 'manual promotion' },
-    ],
-  }],
+      { id: 'build', name: 'Build', ...nodeColor.stone, description: 'docker buildx' },
+      { id: 'test', name: 'Test', ...nodeColor.stone, description: 'PHPUnit unit + functional' },
+      { id: 'browser', name: 'Browser Tests', ...nodeColor.violet, description: 'Playwright — opt-in' },
+      { id: 'review', name: 'Review App', ...nodeColor.blue, description: 'per-branch — all branches' },
+      { id: 'staging', name: 'Staging', ...nodeColor.blue, description: 'auto on merge to main' },
+      { id: 'canary', name: 'Canary', ...nodeColor.blue, description: 'manual promotion' },
+      { id: 'production', name: 'Production', ...nodeColor.blue, description: 'manual promotion' }
+    ]
+  }]
 }
 </script>

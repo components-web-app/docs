@@ -16,15 +16,15 @@ const options: Highcharts.Options = {
       { from: 'route', to: 'blogarticle' },
       { from: 'blogarticle', to: 'blogtemplate' },
       { from: 'blogtemplate', to: 'componentgroup' },
-      { from: 'componentgroup', to: 'componentposition' },
+      { from: 'componentgroup', to: 'componentposition' }
     ],
     nodes: [
-      { id: 'route',             name: 'Route',             ...nodeColor.stone },
-      { id: 'blogarticle',       name: 'BlogArticle',       ...nodeColor.violet, description: 'PageData — carries title, body, htmlContent' },
-      { id: 'blogtemplate',      name: 'BlogTemplate',      ...nodeColor.blue,   description: 'Page — isTemplate: true, shared across all articles' },
-      { id: 'componentgroup',    name: 'ComponentGroup',    ...nodeColor.stone },
-      { id: 'componentposition', name: 'ComponentPosition', ...nodeColor.stone,  description: "pageDataProperty: 'htmlContent' — resolves BlogArticle's component at render time" },
-    ],
-  }],
+      { id: 'route', name: 'Route', ...nodeColor.stone },
+      { id: 'blogarticle', name: 'BlogArticle', ...nodeColor.violet, description: 'PageData — carries title, body, htmlContent' },
+      { id: 'blogtemplate', name: 'BlogTemplate', ...nodeColor.blue, description: 'Page — isTemplate: true, shared across all articles' },
+      { id: 'componentgroup', name: 'ComponentGroup', ...nodeColor.stone },
+      { id: 'componentposition', name: 'ComponentPosition', ...nodeColor.stone, description: 'pageDataProperty: \'htmlContent\' — resolves BlogArticle\'s component at render time' }
+    ]
+  }]
 }
 </script>

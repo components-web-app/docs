@@ -74,19 +74,6 @@ export default defineNuxtConfig({
     '@nuxt/scripts'
   ],
 
-  // Used by nuxt-og-image (absolute og:image URLs). Canonical URLs, the sitemap and
-  // structured data use the same origin, plus the version's path (shared/docs-versions.ts).
-  site: {
-    url: SITE_ORIGIN,
-    name: 'CWA (Components Web App)'
-  },
-
-  // The site is prerendered (nuxt generate), so OG images are generated at build time
-  // only. There is no runtime image endpoint to abuse, so no signing secret is needed.
-  ogImage: {
-    zeroRuntime: true
-  },
-
   devtools: {
     enabled: true
   },
@@ -98,9 +85,16 @@ export default defineNuxtConfig({
 
   css: ['~/assets/css/main.css'],
 
+  // Used by nuxt-og-image (absolute og:image URLs). Canonical URLs, the sitemap and
+  // structured data use the same origin, plus the version's path (shared/docs-versions.ts).
+  site: {
+    url: SITE_ORIGIN,
+    name: 'CWA (Components Web App)'
+  },
+
   colorMode: {
     disableTransition: true,
-    preference: 'dark',
+    preference: 'dark'
   },
 
   content: {
@@ -112,6 +106,9 @@ export default defineNuxtConfig({
         }
       }
     }
+  },
+  ui: {
+    prose: true
   },
 
   runtimeConfig: {
@@ -192,6 +189,21 @@ export default defineNuxtConfig({
     }
   },
 
+  vite: {
+    optimizeDeps: {
+      include: [
+        '@vue/devtools-core',
+        '@vue/devtools-kit',
+        'highcharts/esm/highcharts.js',
+        'highcharts/esm/modules/sankey.js',
+        'highcharts/esm/modules/organization.js'
+      ]
+    },
+    ssr: {
+      noExternal: ['highcharts']
+    }
+  },
+
   typescript: {
     strict: false
   },
@@ -201,7 +213,7 @@ export default defineNuxtConfig({
     'components:extend': (components) => {
       components
         .filter(c => ['UButton', 'UIcon'].includes(c.pascalName))
-        .forEach(c => { c.global = true })
+        .forEach((c) => { c.global = true })
     }
   },
 
@@ -234,12 +246,6 @@ export default defineNuxtConfig({
     ]
   },
 
-  // Under a path (/edge, /2.0), image sources carry the base URL, so the image server would
-  // read `/edge/logo.svg` as `public/edge/logo.svg`. The alias sends it to `public/logo.svg`.
-  image: {
-    alias: docsPrefix ? { [`${docsPrefix}/`]: '/' } : {}
-  },
-
   icon: {
     // Icons rendered only in the browser (the version switcher's menu) must be in the client
     // bundle: the prerendered site has no icon API to fetch them from
@@ -254,27 +260,21 @@ export default defineNuxtConfig({
     ]
   },
 
+  // Under a path (/edge, /2.0), image sources carry the base URL, so the image server would
+  // read `/edge/logo.svg` as `public/edge/logo.svg`. The alias sends it to `public/logo.svg`.
+  image: {
+    alias: docsPrefix ? { [`${docsPrefix}/`]: '/' } : {}
+  },
+
+  // The site is prerendered (nuxt generate), so OG images are generated at build time
+  // only. There is no runtime image endpoint to abuse, so no signing secret is needed.
+  ogImage: {
+    zeroRuntime: true
+  },
+
   scripts: {
     registry: {
       cloudflareWebAnalytics: { trigger: 'onNuxtReady' }
     }
-  },
-
-  vite: {
-    optimizeDeps: {
-      include: [
-        '@vue/devtools-core',
-        '@vue/devtools-kit',
-        'highcharts/esm/highcharts.js',
-        'highcharts/esm/modules/sankey.js',
-        'highcharts/esm/modules/organization.js'
-      ]
-    },
-    ssr: {
-      noExternal: ['highcharts']
-    }
-  },
-  ui: {
-    prose: true
   }
 })

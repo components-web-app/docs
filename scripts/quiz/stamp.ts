@@ -92,7 +92,7 @@ function set(node: YAMLMap, key: string, value: string | [number, number]): bool
 /** The value in the quoting it had, escaped for it; a plain value that YAML would misread gets single quotes. */
 function quoted(value: string, quote: string): string {
   if (quote === '"') return `"${value.replace(/\\/g, '\\\\').replace(/"/g, '\\"')}"`
-  if (quote === '\'' || /^[\s'"&*!|>%@`#,[\]{}?:-]|: | #|\s$/.test(value)) return `'${value.replace(/'/g, "''")}'`
+  if (quote === '\'' || /^[\s'"&*!|>%@`#,[\]{}?:-]|: | #|\s$/.test(value)) return `'${value.replace(/'/g, '\'\'')}'`
   return value
 }
 

@@ -14,7 +14,7 @@ export default defineEventHandler(async (event) => {
     queryCollection(event, 'pages')
       .select('title', 'description', 'path')
       .order('path', 'ASC')
-      .all(),
+      .all()
   ])
 
   const sections: Record<string, typeof docs> = {}
@@ -30,7 +30,7 @@ export default defineEventHandler(async (event) => {
     'core-concepts': 'Core Concepts',
     'api': 'API Bundle',
     'nuxt-module': 'Nuxt Module',
-    'deployment': 'Deployment',
+    'deployment': 'Deployment'
   }
 
   const lines: string[] = [
@@ -43,7 +43,7 @@ export default defineEventHandler(async (event) => {
     '',
     `Full documentation: ${SITE_URL}/getting-started`,
     `Full text for AI ingestion: ${SITE_URL}/llms-full.txt`,
-    '',
+    ''
   ]
 
   if (marketing.length) {

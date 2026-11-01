@@ -10,7 +10,9 @@ const isDesktop = breakpoints.greaterOrEqual('lg')
 // After mount we know the real breakpoint; before mount (SSR) we assume desktop
 // so the server renders the top sections open — correct for the majority of docs readers.
 const mounted = ref(false)
-onMounted(() => { mounted.value = true })
+onMounted(() => {
+  mounted.value = true
+})
 
 // Key only changes when we need to force a remount: mobile client closing the top sections.
 // Desktop: key stays 'open' (no remount, no flash).
@@ -41,7 +43,10 @@ const bottomNavigation = computed<ContentNavigationItem[]>(() =>
       <template #left>
         <UPageAside>
           <template #top>
-            <UContentSearchButton size="md" :collapsed="false" />
+            <UContentSearchButton
+              size="md"
+              :collapsed="false"
+            />
           </template>
           <UContentNavigation
             :key="topNavKey"

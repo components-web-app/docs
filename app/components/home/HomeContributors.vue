@@ -11,6 +11,7 @@ const orderedContributors = computed(() => {
   return Object.values(stats.value.contributors).sort((a: any, b: any) => (b.contributions - a.contributions))
 })
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const { data: page } = useNuxtData<any>('home')
 </script>
 

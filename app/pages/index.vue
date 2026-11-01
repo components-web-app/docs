@@ -54,7 +54,6 @@ definePageMeta({
       </UPageSection>
     </div>
 
-
     <UPageSection
       v-for="(section, index) in page?.benefits?.sections"
       :key="index"

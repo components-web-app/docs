@@ -35,8 +35,8 @@ const heroProps = computed(() => {
   return rest
 })
 
-function mapFeatures(features: any[]) {
-  return features?.map((f: any) => ({ ...f, title: f.name })) ?? []
+function mapFeatures<T extends { name?: string }>(features?: T[]) {
+  return features?.map(f => ({ ...f, title: f.name })) ?? []
 }
 
 definePageMeta({

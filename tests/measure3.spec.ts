@@ -8,9 +8,15 @@ test('measure footer and full layout', async ({ page }) => {
   const data = await page.evaluate(() => {
     const totalH = document.body.scrollHeight
 
-    function getEl(sel: string) { return document.querySelector(sel) }
-    function getH(el: Element | null) { return el ? Math.round(el.getBoundingClientRect().height) : null }
-    function getTop(el: Element | null) { return el ? Math.round(el.getBoundingClientRect().top + window.scrollY) : null }
+    function getEl(sel: string) {
+      return document.querySelector(sel)
+    }
+    function getH(el: Element | null) {
+      return el ? Math.round(el.getBoundingClientRect().height) : null
+    }
+    function getTop(el: Element | null) {
+      return el ? Math.round(el.getBoundingClientRect().top + window.scrollY) : null
+    }
 
     // Footer
     const footer = getEl('footer')
@@ -23,7 +29,7 @@ test('measure footer and full layout', async ({ page }) => {
     const sponsorsH = getH(sponsors)
     const sponsorsTop = getTop(sponsors)
 
-    // HomeHero  
+    // HomeHero
     const heroSection = document.querySelector('#__nuxt > div > div > div.relative.overflow-hidden')
     const heroH = getH(heroSection)
     const heroTop = getTop(heroSection)

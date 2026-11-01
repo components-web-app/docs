@@ -8,9 +8,15 @@ test('measure all sections precisely', async ({ page }) => {
   const data = await page.evaluate(() => {
     const totalH = document.body.scrollHeight
 
-    function getH(el: Element | null) { return el ? Math.round(el.getBoundingClientRect().height) : null }
-    function getTop(el: Element | null) { return el ? Math.round(el.getBoundingClientRect().top + window.scrollY) : null }
-    function getBot(el: Element | null) { return el && getH(el) !== null && getTop(el) !== null ? (getTop(el)! + getH(el)!) : null }
+    function getH(el: Element | null) {
+      return el ? Math.round(el.getBoundingClientRect().height) : null
+    }
+    function getTop(el: Element | null) {
+      return el ? Math.round(el.getBoundingClientRect().top + window.scrollY) : null
+    }
+    function getBot(el: Element | null) {
+      return el && getH(el) !== null && getTop(el) !== null ? (getTop(el)! + getH(el)!) : null
+    }
 
     const header = document.querySelector('header')
     const main = document.querySelector('main')
@@ -39,7 +45,7 @@ test('measure all sections precisely', async ({ page }) => {
       header: { h: getH(header), top: getTop(header) },
       footer: { h: getH(footer), top: getTop(footer) },
       sections,
-      benefitCount: benefitSections.length,
+      benefitCount: benefitSections.length
     }
   })
 
@@ -48,7 +54,7 @@ test('measure all sections precisely', async ({ page }) => {
   console.log('Header:', data.header.h, 'top:', data.header.top)
   console.log('Footer:', data.footer.h, 'top:', data.footer.top)
   console.log('\n--- Main Home Children ---')
-  data.sections.forEach(s => {
+  data.sections.forEach((s) => {
     console.log(`[${s.i}] top=${s.top} h=${s.h} bot=${s.bot} cls="${s.cls}"`)
   })
   console.log('\nBenefit sections found:', data.benefitCount)

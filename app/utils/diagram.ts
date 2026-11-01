@@ -5,12 +5,12 @@ export const nodeColor = {
   stone: { color: '#e7e5e4', dataLabels: { color: '#292524' } },
   blue: { color: '#dbeafe', dataLabels: { color: '#1e3a8a' } },
   violet: { color: '#ede9fe', dataLabels: { color: '#2e1065' } },
-  neutral: { color: '#f5f5f4', dataLabels: { color: '#44403c' } },
+  neutral: { color: '#f5f5f4', dataLabels: { color: '#44403c' } }
 } satisfies Record<string, Partial<Highcharts.SeriesSankeyNodesOptionsObject>>
 
 export const diagramChart = {
   inverted: true,
-  animation: { duration: 0 },
+  animation: { duration: 0 }
 } satisfies Highcharts.ChartOptions
 
 export const diagramSeries = {
@@ -23,13 +23,13 @@ export const diagramSeries = {
       fontSize: '12px',
       fontWeight: '600',
       fontFamily: 'system-ui, sans-serif',
-      textOutline: 'none',
-    },
-  },
+      textOutline: 'none'
+    }
+  }
 } satisfies Partial<Highcharts.SeriesOrganizationOptions>
 
 export const diagramBase = {
   title: { text: undefined },
   credits: { enabled: false },
-  tooltip: { enabled: false },
+  tooltip: { enabled: false }
 } satisfies Highcharts.Options

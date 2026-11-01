@@ -30,7 +30,7 @@ export default defineAppConfig({
       slots: {
         root: 'lg:gap-8 lg:grid-cols-8',
         left: 'lg:col-span-2',
-        center: 'lg:col-span-6',
+        center: 'lg:col-span-6'
       },
       compoundVariants: [{
         left: true,

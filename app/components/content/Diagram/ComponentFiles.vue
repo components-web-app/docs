@@ -40,7 +40,10 @@
         <!-- admin/Title.vue -->
         <div class="flex items-center gap-2 pl-[3.75rem]">
           <span class="text-slate-300 dark:text-slate-600 select-none">└─</span>
-          <VueFileIcon class="w-4 h-4 shrink-0" variant="blue" />
+          <VueFileIcon
+            class="w-4 h-4 shrink-0"
+            variant="blue"
+          />
           <span class="text-slate-700 dark:text-slate-200">Title.vue</span>
           <span class="ml-2 text-[11px] text-slate-400 dark:text-slate-500">admin editing tab</span>
         </div>
@@ -54,7 +57,7 @@ import { h } from 'vue'
 
 // Render functions, not `template:` strings: the site has no runtime compiler.
 const FolderIcon = {
-  render: () => h('svg', { viewBox: '0 0 20 20', fill: 'currentColor', 'aria-hidden': 'true' }, [
+  render: () => h('svg', { 'viewBox': '0 0 20 20', 'fill': 'currentColor', 'aria-hidden': 'true' }, [
     h('path', { d: 'M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z' })
   ])
 }
@@ -64,10 +67,10 @@ const VueFileIcon = {
   setup(p: { variant: string }) {
     return () => {
       const isBlue = p.variant === 'blue'
-      return h('svg', { viewBox: '0 0 20 20', fill: 'none', 'aria-hidden': 'true' }, [
+      return h('svg', { 'viewBox': '0 0 20 20', 'fill': 'none', 'aria-hidden': 'true' }, [
         h('rect', { width: '20', height: '20', rx: '4', fill: isBlue ? '#dbeafe' : '#dcfce7', class: 'dark:opacity-20' }),
         h('rect', { width: '20', height: '20', rx: '4', fill: isBlue ? '#1d4ed8' : '#16a34a', class: 'opacity-0 dark:opacity-30' }),
-        h('text', { x: '4', y: '14', 'font-family': 'system-ui', 'font-size': '9', 'font-weight': '700', fill: isBlue ? '#1d4ed8' : '#15803d' }, 'V')
+        h('text', { 'x': '4', 'y': '14', 'font-family': 'system-ui', 'font-size': '9', 'font-weight': '700', 'fill': isBlue ? '#1d4ed8' : '#15803d' }, 'V')
       ])
     }
   }

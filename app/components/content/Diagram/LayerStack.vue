@@ -35,7 +35,9 @@
               <span class="text-xs text-slate-400 dark:text-slate-500 truncate">what you build · titles, images, text, links</span>
               <span class="ml-auto shrink-0 text-[10px] font-semibold text-sky-700 dark:text-sky-300 bg-sky-100 dark:bg-sky-900/50 border border-sky-200 dark:border-sky-800 px-2 py-0.5 rounded-full">Vue + PHP</span>
             </div>
-            <p class="px-5 pb-4 text-[11px] text-slate-400 dark:text-slate-500">one PHP entity · one Vue component · one admin tab</p>
+            <p class="px-5 pb-4 text-[11px] text-slate-400 dark:text-slate-500">
+              one PHP entity · one Vue component · one admin tab
+            </p>
           </div>
         </div>
       </div>

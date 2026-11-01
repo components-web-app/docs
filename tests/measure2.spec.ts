@@ -10,12 +10,13 @@ test('measure contributor section', async ({ page }) => {
     const contribSection = [...document.querySelectorAll('section')].find(s => s.querySelector('[data-slot="title"]')?.textContent?.includes('community'))
     if (!contribSection) return { error: 'not found' }
 
-    const cta = contribSection.querySelector('[class*="UPageCTA"], div')
-    const container = contribSection.querySelector('[data-slot="container"]') || contribSection.querySelector(':scope > div')
-
-    // Get all direct slot children  
-    function getH(el: Element | null) { return el ? Math.round(el.getBoundingClientRect().height) : null }
-    function getTop(el: Element | null) { return el ? Math.round(el.getBoundingClientRect().top + window.scrollY) : null }
+    // Get all direct slot children
+    function getH(el: Element | null) {
+      return el ? Math.round(el.getBoundingClientRect().height) : null
+    }
+    function getTop(el: Element | null) {
+      return el ? Math.round(el.getBoundingClientRect().top + window.scrollY) : null
+    }
 
     const sectionH = getH(contribSection)
     const sectionTop = getTop(contribSection)
@@ -54,10 +55,9 @@ test('measure contributor section', async ({ page }) => {
     const sections = [...document.querySelectorAll('section')]
     const homeCodeSection = sections[4] // should be the outer HomeCode section
 
-    function getH(el: Element | null) { return el ? Math.round(el.getBoundingClientRect().height) : null }
-
-    const tabs = homeCodeSection?.querySelector('[role="tablist"]') || homeCodeSection?.querySelector('[data-slot="list"]')
-    const tabsParent = homeCodeSection?.querySelectorAll('[data-slot="list"]')
+    function getH(el: Element | null) {
+      return el ? Math.round(el.getBoundingClientRect().height) : null
+    }
 
     // Find the UTabs components
     const allLists = [...document.querySelectorAll('[role="tablist"]')]

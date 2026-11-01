@@ -17,7 +17,7 @@ const SKIP_KEYS = new Set([
   // and the `alt` text is real descriptive copy. `src` below drops the path.
   'src', 'avatar', 'srcset', 'width', 'height', 'loading',
   'color', 'size', 'variant', 'orientation', 'align', 'class', 'ui', 'id',
-  'spotlight', 'navigation', 'reverse', 'external',
+  'spotlight', 'navigation', 'reverse', 'external'
 ])
 
 /** Keys that introduce a new labelled block rather than a bare paragraph. */
@@ -25,7 +25,7 @@ const HEADING_KEYS = new Set(['title', 'name', 'label', 'question'])
 
 const ENTITIES: Record<string, string> = {
   '&nbsp;': ' ', '&amp;': '&', '&lt;': '<', '&gt;': '>',
-  '&quot;': '"', '&#39;': "'", '&apos;': "'",
+  '&quot;': '"', '&#39;': '\'', '&apos;': '\''
 }
 
 export function cleanText(input: string, preserveNewlines = false): string {
@@ -89,7 +89,7 @@ export function marketingPageToText(page: Record<string, unknown>): string[] {
   if (description) seen.add(description)
 
   const body = Object.fromEntries(
-    Object.entries(page).filter(([key]) => !PAGE_META_KEYS.has(key)),
+    Object.entries(page).filter(([key]) => !PAGE_META_KEYS.has(key))
   )
 
   for (const line of extractProse(body, seen)) lines.push(line, '')

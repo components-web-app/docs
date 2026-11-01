@@ -1,5 +1,8 @@
 <template>
-  <div ref="container" class="my-8 not-prose" />
+  <div
+    ref="container"
+    class="my-8 not-prose"
+  />
 </template>
 
 <script setup lang="ts">
@@ -13,51 +16,69 @@ let chart: Highcharts.Chart | null = null
 
 const ANIM = { duration: 250 }
 
+// The organization series' runtime nodes and links, which Highcharts' types don't describe
+interface Animatable {
+  animate: (attribs: { opacity: number }, options: typeof ANIM) => void
+}
+interface OrgNode {
+  id?: string
+  graphic?: Animatable
+  dataLabel?: Animatable
+}
+interface OrgLink extends OrgNode {
+  fromNode?: OrgNode
+  toNode?: OrgNode
+}
+interface OrgPoint extends OrgNode {
+  series: { nodes?: OrgNode[], points?: OrgLink[] }
+  linksFrom?: OrgLink[]
+  linksTo?: OrgLink[]
+}
+
 function buildOptions(base: Highcharts.Options): Highcharts.Options {
   return {
     ...base,
     plotOptions: {
       ...base.plotOptions,
       organization: {
-        ...((base.plotOptions as any)?.organization ?? {}),
+        ...((base.plotOptions as { organization?: object } | undefined)?.organization ?? {}),
         // Disable built-in state fading — we handle it ourselves
         inactiveOtherPoints: false,
         states: {
           hover: { opacity: 1, linkOpacity: 1 },
-          inactive: { opacity: 1, linkOpacity: 1 },
+          inactive: { opacity: 1, linkOpacity: 1 }
         },
         point: {
           events: {
-            mouseOver(this: any) {
-              const hovered = this
-              const nodes: any[] = hovered.series.nodes ?? []
-              const links: any[] = hovered.series.points ?? []
+            mouseOver(this: OrgPoint) {
+              const nodes = this.series.nodes ?? []
+              const links = this.series.points ?? []
               const connectedIds = new Set<string>()
-              ;[...(hovered.linksFrom ?? []), ...(hovered.linksTo ?? [])].forEach((l: any) => {
+              ;[...(this.linksFrom ?? []), ...(this.linksTo ?? [])].forEach((l) => {
                 if (l.fromNode?.id) connectedIds.add(l.fromNode.id)
                 if (l.toNode?.id) connectedIds.add(l.toNode.id)
               })
-              nodes.forEach((node: any) => {
-                const op = node === hovered ? 1 : connectedIds.has(node.id) ? 0.8 : 0.35
+              nodes.forEach((node) => {
+                const op = node === this ? 1 : connectedIds.has(node.id) ? 0.8 : 0.35
                 node.graphic?.animate({ opacity: op }, ANIM)
                 node.dataLabel?.animate({ opacity: op }, ANIM)
               })
-              links.forEach((link: any) => {
-                const connected = link.fromNode === hovered || link.toNode === hovered
+              links.forEach((link) => {
+                const connected = link.fromNode === this || link.toNode === this
                 link.graphic?.animate({ opacity: connected ? 0.7 : 0.08 }, ANIM)
               })
             },
-            mouseOut(this: any) {
+            mouseOut(this: OrgPoint) {
               const series = this.series
-              ;[...(series.nodes ?? []), ...(series.points ?? [])].forEach((p: any) => {
+              ;[...(series.nodes ?? []), ...(series.points ?? [])].forEach((p: OrgNode) => {
                 p.graphic?.animate({ opacity: 1 }, ANIM)
                 p.dataLabel?.animate({ opacity: 1 }, ANIM)
               })
-            },
-          },
-        },
-      },
-    },
+            }
+          }
+        }
+      }
+    }
   }
 }
 

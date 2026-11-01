@@ -7,7 +7,7 @@ const ROUTES = [
   { path: '/getting-started', name: 'getting-started' },
   { path: '/getting-started/installation', name: 'installation' },
   { path: '/guides/your-first-layout', name: 'your-first-layout' },
-  { path: '/guides/your-first-component', name: 'your-first-component' },
+  { path: '/guides/your-first-component', name: 'your-first-component' }
 ]
 
 for (const route of ROUTES) {
@@ -87,7 +87,7 @@ for (const route of ROUTES) {
     await page.waitForTimeout(1000)
     await expect(page).toHaveScreenshot(`${route.name}.png`, {
       fullPage: true,
-      maxDiffPixelRatio: 0.02,
+      maxDiffPixelRatio: 0.02
     })
   })
 }

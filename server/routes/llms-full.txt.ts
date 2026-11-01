@@ -1,5 +1,4 @@
-import { queryCollectionSearchSections } from '@nuxt/content/server'
-import { queryCollection } from '@nuxt/content/server'
+import { queryCollectionSearchSections, queryCollection } from '@nuxt/content/server'
 import { setResponseHeader } from 'h3'
 
 export default defineEventHandler(async (event) => {
@@ -15,13 +14,13 @@ export default defineEventHandler(async (event) => {
     queryCollectionSearchSections(event, 'docs'),
     // Marketing/landing pages (content/*.yml) — structured YAML, not markdown, so
     // they carry the "what is CWA and who is it for" copy the docs never state.
-    queryCollection(event, 'pages').order('path', 'ASC').all(),
+    queryCollection(event, 'pages').order('path', 'ASC').all()
   ])
 
   // Build a map of path → sections for ordered output
   const sectionsByPath: Record<string, typeof sections> = {}
   for (const section of sections) {
-    const path = (section as any).id?.split('#')[0] ?? ''
+    const path = section.id?.split('#')[0] ?? ''
     if (!sectionsByPath[path]) sectionsByPath[path] = []
     sectionsByPath[path].push(section)
   }
@@ -34,7 +33,7 @@ export default defineEventHandler(async (event) => {
     '> For a structured index see /llms.txt',
     '',
     '---',
-    '',
+    ''
   ]
 
   // Product/overview pages first — they answer "what is this and is it for me?",
@@ -57,11 +56,11 @@ export default defineEventHandler(async (event) => {
 
     const pageSections = sectionsByPath[doc.path ?? ''] ?? []
     for (const section of pageSections) {
-      const heading = (section as any).titles?.length
-        ? [...(section as any).titles, section.title].filter(Boolean).join(' > ')
+      const heading = section.titles?.length
+        ? [...section.titles, section.title].filter(Boolean).join(' > ')
         : section.title
       if (heading) lines.push(`## ${heading}`, '')
-      if ((section as any).content) lines.push((section as any).content, '')
+      if (section.content) lines.push(section.content, '')
     }
 
     lines.push('---', '')

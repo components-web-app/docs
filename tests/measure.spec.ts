@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test'
+import { test } from '@playwright/test'
 
 test('measure section heights', async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 900 })
@@ -20,16 +20,17 @@ test('measure section heights', async ({ page }) => {
     const bgDivHeight = bgDiv ? Math.round(bgDiv.getBoundingClientRect().height) : null
 
     // HomeCode bg div
-    const allBgDivs = [...document.querySelectorAll('.bg-primary\\/5, .dark\\:bg-feature\\/65')].filter(el => el.tagName === 'DIV')
 
     // Get all main children
     const mainEl = document.querySelector('#__nuxt > div > div')
-    const children = mainEl ? [...mainEl.children].map(c => ({
-      tag: c.tagName,
-      cls: c.className.substring(0, 60),
-      h: Math.round(c.getBoundingClientRect().height),
-      top: Math.round(c.getBoundingClientRect().top + window.scrollY)
-    })) : []
+    const children = mainEl
+      ? [...mainEl.children].map(c => ({
+          tag: c.tagName,
+          cls: c.className.substring(0, 60),
+          h: Math.round(c.getBoundingClientRect().height),
+          top: Math.round(c.getBoundingClientRect().top + window.scrollY)
+        }))
+      : []
 
     return { totalHeight, sectionData, bgDivHeight, children }
   })

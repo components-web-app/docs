@@ -15,14 +15,14 @@ const options: Highcharts.Options = {
     data: [
       { from: 'url', to: 'route' },
       { from: 'route', to: 'page' },
-      { from: 'page', to: 'layout' },
+      { from: 'page', to: 'layout' }
     ],
     nodes: [
-      { id: 'url',    name: '/about',  ...nodeColor.neutral },
-      { id: 'route',  name: 'Route',   ...nodeColor.stone },
-      { id: 'page',   name: 'Page',    ...nodeColor.blue, description: 'About — uiComponent: AboutPage' },
-      { id: 'layout', name: 'Layout',  ...nodeColor.blue, description: 'uiComponent: PrimaryLayout' },
-    ],
-  }],
+      { id: 'url', name: '/about', ...nodeColor.neutral },
+      { id: 'route', name: 'Route', ...nodeColor.stone },
+      { id: 'page', name: 'Page', ...nodeColor.blue, description: 'About — uiComponent: AboutPage' },
+      { id: 'layout', name: 'Layout', ...nodeColor.blue, description: 'uiComponent: PrimaryLayout' }
+    ]
+  }]
 }
 </script>

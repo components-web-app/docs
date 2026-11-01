@@ -20,18 +20,18 @@ const options: Highcharts.Options = {
       { from: 'article1', to: 'template' },
       { from: 'article2', to: 'template' },
       { from: 'article3', to: 'template' },
-      { from: 'template', to: 'layout' },
+      { from: 'template', to: 'layout' }
     ],
     nodes: [
-      { id: 'route1',   name: '/blog/post-1', ...nodeColor.stone },
-      { id: 'route2',   name: '/blog/post-2', ...nodeColor.stone },
-      { id: 'route3',   name: '/blog/post-3', ...nodeColor.stone },
+      { id: 'route1', name: '/blog/post-1', ...nodeColor.stone },
+      { id: 'route2', name: '/blog/post-2', ...nodeColor.stone },
+      { id: 'route3', name: '/blog/post-3', ...nodeColor.stone },
       { id: 'article1', name: 'BlogArticle #1', ...nodeColor.violet },
       { id: 'article2', name: 'BlogArticle #2', ...nodeColor.violet },
       { id: 'article3', name: 'BlogArticle #3', ...nodeColor.violet },
-      { id: 'template', name: 'BlogDetail',     ...nodeColor.blue, description: 'Page — isTemplate: true' },
-      { id: 'layout',   name: 'Layout',         ...nodeColor.blue },
-    ],
-  }],
+      { id: 'template', name: 'BlogDetail', ...nodeColor.blue, description: 'Page — isTemplate: true' },
+      { id: 'layout', name: 'Layout', ...nodeColor.blue }
+    ]
+  }]
 }
 </script>
