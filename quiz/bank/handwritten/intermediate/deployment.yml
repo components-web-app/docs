@@ -30,8 +30,8 @@ questions:
       optionNotes:
         c: It creates the admin account, and resets its password each time it runs.
     sources:
-      - { kind: docs, page: /getting-started/installation, anchor: _2-let-binup-start-the-site, sectionHash: 'sha256:bcb5b937a33fb163', title: 'Installation › 2. Let bin/up start the site' }
-      - { kind: docs, page: /api/data-fixtures/getting-started, anchor: setup, sectionHash: 'sha256:6d560c44ebc4bd0b', title: 'Getting Started with Fixtures › Setup' }
+      - { kind: docs, page: /getting-started/installation, anchor: _2-let-binup-start-the-site, sectionHash: 'sha256:aeca1527518923c3', title: 'Installation › 2. Let bin/up start the site' }
+      - { kind: docs, page: /api/data-fixtures/getting-started, anchor: setup, sectionHash: 'sha256:ac95ff9cc1f351ee', title: 'Getting Started with Fixtures › Setup' }
     author: llm-draft
 
   - id: deploy.install.certificate-warning

@@ -503,7 +503,7 @@ questions:
         Staging runs under the production environment and gets production's variables. With an external
         `DATABASE_URL` it uses production's database, so a fixture load there would write to production.
     sources:
-      - { kind: docs, page: /deployment/ci-cd, anchor: fixtures-on-a-deploy, sectionHash: 'sha256:6cec51b620d64bda', title: 'CI/CD › Fixtures on a deploy' }
+      - { kind: docs, page: /deployment/ci-cd, anchor: fixtures-on-a-deploy, sectionHash: 'sha256:bd195e42397313b6', title: 'CI/CD › Fixtures on a deploy' }
     author: llm-draft
 
   - id: deploy.cloudflare.api-accept
@@ -607,7 +607,7 @@ questions:
         A deploy with that config ends with a purge of everything in the zone, and so does every fixture load. A
         purge everything can't be limited to one hostname, so production's edge is emptied too.
     sources:
-      - { kind: docs, page: /deployment/cloudflare, anchor: secrets, sectionHash: 'sha256:41dd0a664d55b699', title: 'Cloudflare › Secrets' }
+      - { kind: docs, page: /deployment/cloudflare, anchor: secrets, sectionHash: 'sha256:909fc788ab79a7ff', title: 'Cloudflare › Secrets' }
     author: llm-draft
 
   - id: deploy.docker.mercure-not-cached

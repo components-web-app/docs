@@ -88,5 +88,5 @@ questions:
         After the flush, the deploy runs `warm_api_cache`, the same gzip and br passes of `warm-http-cache` a deploy
         runs after any full flush. Pages aren't warmed, and a failed pass only warns.
     sources:
-      - { kind: docs, page: /deployment/ci-cd, anchor: fixtures-on-a-deploy, sectionHash: 'sha256:6cec51b620d64bda', title: 'CI/CD › Fixtures on a deploy' }
+      - { kind: docs, page: /deployment/ci-cd, anchor: fixtures-on-a-deploy, sectionHash: 'sha256:bd195e42397313b6', title: 'CI/CD › Fixtures on a deploy' }
     author: llm-draft
