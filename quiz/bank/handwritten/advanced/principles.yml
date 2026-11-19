@@ -58,7 +58,7 @@ questions:
         The failure is logged at error level with the tags, and those responses stay stale until they expire or
         someone purges again.
     sources:
-      - { kind: docs, page: /api/http-caching, anchor: cache-tags-and-purging, sectionHash: 'sha256:265b323fb734a064', title: 'HTTP Caching › Cache Tags and Purging' }
+      - { kind: docs, page: /api/http-caching, anchor: cache-tags-and-purging, sectionHash: 'sha256:758206fbf287b9f7', title: 'HTTP Caching › Cache Tags and Purging' }
     author: llm-draft
 
   - id: api.cache.direct-database-edit

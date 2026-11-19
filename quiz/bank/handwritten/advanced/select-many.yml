@@ -37,7 +37,7 @@ questions:
     sources:
       - { kind: docs, page: /api/http-caching, anchor: purging-every-rendered-page, sectionHash: 'sha256:ef0a84284564cd0d', title: 'HTTP Caching › Purging Every Rendered Page' }
       - { kind: docs, page: /api/http-caching, anchor: flushing-the-whole-http-cache, sectionHash: 'sha256:184455a9ac713993', title: 'HTTP Caching › Flushing the Whole HTTP Cache' }
-      - { kind: docs, page: /api/http-caching, anchor: purging-one-page-or-tag, sectionHash: 'sha256:0347603ba48359bb', title: 'HTTP Caching › Purging One Page or Tag' }
+      - { kind: docs, page: /api/http-caching, anchor: purging-one-page-or-tag, sectionHash: 'sha256:031247e6d5765fb9', title: 'HTTP Caching › Purging One Page or Tag' }
     author: llm-draft
 
   - id: api.cache.private-responses
@@ -66,7 +66,7 @@ questions:
       correct: [b, d, f]
       explanation: >-
         The bundle marks a `GET` or `HEAD` private, no-store when the user is authenticated and the resource is
-        in the affected set: `Route`, `ResourceManifest`, `ComponentPosition` and every Publishable resource. It
+        in the affected set: `Route`, `ResourceManifest`, `ComponentPosition`, `Page` and every Publishable resource. It
         also strips `s-maxage`. Anonymous requests and resources outside the set, such as a layout, stay
         publicly cacheable.
       optionNotes:
@@ -75,7 +75,7 @@ questions:
         e: The manifest class is in the set, but only authenticated requests are marked.
         f: Every Publishable resource is matched without being listed, because an admin's view can be the draft.
     sources:
-      - { kind: docs, page: /api/http-caching, anchor: http-cache-safety, sectionHash: 'sha256:66bdc0f5284c06e6', title: 'HTTP Caching › HTTP Cache Safety' }
+      - { kind: docs, page: /api/http-caching, anchor: http-cache-safety, sectionHash: 'sha256:92970fec63b25fcd', title: 'HTTP Caching › HTTP Cache Safety' }
     author: llm-draft
 
   - id: deploy.secrets.kept
