@@ -102,11 +102,15 @@
     },
     "api.cache.personalised-classes": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:d9ad5e2b991cf4a2",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:99c70eb93ecd0ad1",
+          "docsCommit": "f8f046bc2ed3fbbc0924ae443f7ced3cc25065f2"
         }
       }
     },
@@ -876,6 +880,16 @@
         }
       }
     },
+    "api.pages.page-data-count": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:829ced313971fd74",
+          "docsCommit": "f8f046bc2ed3fbbc0924ae443f7ced3cc25065f2"
+        }
+      }
+    },
     "api.publishable.draft-reference": {
       "status": "live",
       "version": 1,
@@ -1110,9 +1124,29 @@
         }
       }
     },
+    "api.routes.embedded-route-name": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:68880c081250c603",
+          "docsCommit": "f8f046bc2ed3fbbc0924ae443f7ced3cc25065f2"
+        }
+      }
+    },
+    "api.routes.filter-by-pages": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:de71b4474e544806",
+          "docsCommit": "f8f046bc2ed3fbbc0924ae443f7ced3cc25065f2"
+        }
+      }
+    },
     "api.routes.generate-replaces": {
       "status": "live",
-      "version": 2,
+      "version": 3,
       "versions": {
         "1": {
           "fingerprint": "sha256:a9709d2792720f96",
@@ -1121,12 +1155,16 @@
         "2": {
           "fingerprint": "sha256:e8fdc3a5201c1ba5",
           "docsCommit": "9ff81ee4322ec1346c58b0cfb3bff98d6e868932"
+        },
+        "3": {
+          "fingerprint": "sha256:1e5e165be0da1649",
+          "docsCommit": "f8f046bc2ed3fbbc0924ae443f7ced3cc25065f2"
         }
       }
     },
     "api.routes.generate-under-unrouted": {
       "status": "live",
-      "version": 2,
+      "version": 3,
       "versions": {
         "1": {
           "fingerprint": "sha256:380eb9eff57f3331",
@@ -1135,6 +1173,10 @@
         "2": {
           "fingerprint": "sha256:4e9b1a2eb016bfb5",
           "docsCommit": "9ff81ee4322ec1346c58b0cfb3bff98d6e868932"
+        },
+        "3": {
+          "fingerprint": "sha256:b495921d169f2ce7",
+          "docsCommit": "f8f046bc2ed3fbbc0924ae443f7ced3cc25065f2"
         }
       }
     },
@@ -1172,7 +1214,7 @@
     },
     "api.routes.page-data-without-route": {
       "status": "live",
-      "version": 3,
+      "version": 4,
       "versions": {
         "1": {
           "fingerprint": "sha256:d1f79cc4f22d3021",
@@ -1185,6 +1227,10 @@
         "3": {
           "fingerprint": "sha256:cb6fbb323365ff36",
           "docsCommit": "9ff81ee4322ec1346c58b0cfb3bff98d6e868932"
+        },
+        "4": {
+          "fingerprint": "sha256:b4d7938ca74a5f2d",
+          "docsCommit": "f8f046bc2ed3fbbc0924ae443f7ced3cc25065f2"
         }
       }
     },
@@ -1343,6 +1389,16 @@
         "1": {
           "fingerprint": "sha256:1c3dc20bf86b6080",
           "docsCommit": "b49338190931bcda931feed91ba6bca5e8f67440"
+        }
+      }
+    },
+    "api.uploads.item-upload-security": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:5818a1d7074000f2",
+          "docsCommit": "f8f046bc2ed3fbbc0924ae443f7ced3cc25065f2"
         }
       }
     },

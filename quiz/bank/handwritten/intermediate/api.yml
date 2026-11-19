@@ -80,7 +80,7 @@ questions:
         There is no separate redirect entity. A redirect is a `Route` whose `redirect` property points at
         another `Route`. The API resolves the chain and exposes the final destination as `redirectPath`.
     sources:
-      - { kind: docs, page: /api/routes, anchor: redirects, sectionHash: 'sha256:5855f313533c87a6', title: 'Routes › Redirects' }
+      - { kind: docs, page: /api/routes, anchor: redirects, sectionHash: 'sha256:5e02add3f7b2cf92', title: 'Routes › Redirects' }
     author: llm-draft
 
   - id: api.routes.redirect-status
@@ -106,7 +106,7 @@ questions:
         The middleware issues a `308` to the route's `redirectPath`. It holds back while an admin is in edit
         mode, so redirecting routes stay navigable.
     sources:
-      - { kind: docs, page: /api/routes, anchor: redirects, sectionHash: 'sha256:5855f313533c87a6', title: 'Routes › Redirects' }
+      - { kind: docs, page: /api/routes, anchor: redirects, sectionHash: 'sha256:5e02add3f7b2cf92', title: 'Routes › Redirects' }
     author: llm-draft
 
   - id: api.routes.live-at-null
@@ -188,29 +188,29 @@ questions:
     author: llm-draft
 
   - id: api.routes.page-data-without-route
-    version: 3
+    version: 4
     status: live
     level: intermediate
     area: api
     tags: [routes, dynamic-pages]
     type: multiple-choice
     difficulty: 3
-    prompt: You create a blog article, stored as page data, by sending a `POST` request to the API. Which route does the article get?
+    prompt: You create a blog article, stored as page data, by sending a `POST` request with no `route` to the API. Which route does the article get?
     why: >-
       Page data you import through the API can't be visited until it has routes, so add that step to any
       import script.
     options:
-      - { id: a, text: None until you create or generate one }
+      - { id: a, text: None until you create one }
       - { id: b, text: 'One made from its title''s slug, under the root' }
       - { id: c, text: One under its template page's path }
       - { id: d, text: A temporary `/unnamed-page` route }
     answer:
       correct: a
       explanation: >-
-        Creating page data through the API or the admin never creates a route. Create one with `POST /_/routes`,
-        or generate it from the title with `POST /_/routes/generate`.
+        Creating page data doesn't create a route by itself. Create one with `POST /_/routes`, or embed a new
+        route in the article's `POST`.
     sources:
-      - { kind: docs, page: /api/routes, anchor: route-generation, sectionHash: 'sha256:0b71d54606580151', title: 'Routes › Route Generation' }
+      - { kind: docs, page: /api/routes, anchor: creating-a-route, sectionHash: 'sha256:3f368db614fc454c', title: 'Routes › Creating a Route' }
     author: llm-draft
 
   - id: api.fixtures.after-routes

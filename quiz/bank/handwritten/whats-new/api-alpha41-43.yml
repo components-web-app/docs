@@ -1,0 +1,116 @@
+# Hand-written What's new questions about the API bundle: changes in 2.0.0-alpha.41, 2.0.0-alpha.42 and 2.0.0-alpha.43.
+# Each one has a `since` naming the release that brought the change in.
+# Format: quiz/README.md. Run `pnpm quiz:stamp <id>` to fill in or refresh the hashes.
+
+questions:
+  - id: api.uploads.item-upload-security
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [components, security]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      You want only some users to be able to upload a new file to an existing resource with
+      `POST {iri}/upload`. Which of the resource's operations do you secure?
+    why: >-
+      Securing the wrong operation leaves uploads open to anyone who can do whatever that operation allows.
+    since: [{ repo: api-components-bundle, version: '2.0.0-alpha.41' }]
+    options:
+      - { id: a, text: 'Its `Get`, the operation that reads it' }
+      - { id: b, text: 'Its `Patch`, or its `Put` without a `Patch`' }
+      - { id: c, text: 'Its `Post`, the operation that creates it' }
+      - { id: d, text: 'Its `Delete`, the operation that removes it' }
+    answer:
+      correct: b
+      explanation: >-
+        Uploading to a resource edits it, so the upload route takes its security from the resource's `Patch`,
+        else its `Put`. A resource with neither has no item upload route. Creating a resource with a file
+        follows the `Post`, and a download follows the `Get`.
+    sources:
+      - { kind: docs, page: /api/components/annotations/uploadable, anchor: who-can-upload-and-download, sectionHash: 'sha256:b985912aa71fff58', title: 'Uploadable › Who Can Upload and Download' }
+    author: llm-draft
+
+  - id: api.routes.filter-by-pages
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [routes]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      An admin list shows 20 pages and needs each one's route. Which request gets them all at once?
+    why: >-
+      One request for the whole list is much faster than one request per page.
+    since: [{ repo: api-components-bundle, version: '2.0.0-alpha.42' }]
+    options:
+      - { id: a, text: '`GET /_/routes?page[]=<page IRI>&page[]=…&perPage=100`' }
+      - { id: b, text: '`GET /_/routes?pages[]=<page IRI>&pages[]=…&perPage=100`' }
+      - { id: c, text: '`GET /_/pages?embed=route&perPage=100`' }
+      - { id: d, text: '`GET /_/routes?search=<page IRI>&perPage=100`' }
+    answer:
+      correct: b
+      explanation: >-
+        `pages[]` (or `pageData[]`) takes up to 100 IRIs and returns the route of each. It isn't called `page`
+        because `page` is the pagination parameter, and `perPage=100` makes every match fit on one page.
+    sources:
+      - { kind: docs, page: /api/routes, anchor: finding-the-routes-of-pages, sectionHash: 'sha256:26eafdfef7342540', title: 'Routes › Finding the Routes of Pages' }
+    author: llm-draft
+
+  - id: api.pages.page-data-count
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [dynamic-pages]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      A template page is used by 14 page data records. An anonymous visitor fetches the page. What does its
+      `_metadata` say about those records?
+    why: >-
+      The count is for admins deciding whether a template is safe to change or delete. Visitors never need it.
+    since: [{ repo: api-components-bundle, version: '2.0.0-alpha.42' }]
+    options:
+      - { id: a, text: '`"pageDataCount": 14`' }
+      - { id: b, text: '`"pageDataCount": 0`' }
+      - { id: c, text: 'No `pageDataCount` key' }
+      - { id: d, text: 'A count per class' }
+    answer:
+      correct: c
+      explanation: >-
+        Only a caller granted the publishable permission gets `_metadata.pageDataCount`. For anyone else, the key
+        isn't there. It's a single total, with no count per class.
+    sources:
+      - { kind: docs, page: /api/dynamic-pages, anchor: how-many-records-use-a-template-page, sectionHash: 'sha256:0c689bc200fb6c32', title: 'Page Data & Nested Pages › How Many Records Use a Template Page' }
+    author: llm-draft
+
+  - id: api.routes.embedded-route-name
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [routes]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      You create a page with `"route": { "path": "/about/team" }` and no `name`. No other route has the name
+      `about-team`. What is the new route's name?
+    why: >-
+      Fixtures and redirects look routes up by name, so it helps to know the name a route gets.
+    since: [{ repo: api-components-bundle, version: '2.0.0-alpha.43' }]
+    options:
+      - { id: a, text: '`about-team`' }
+      - { id: b, text: '`/about/team`' }
+      - { id: c, text: 'None: the request is a 422 on `route.name`' }
+      - { id: d, text: 'A random identifier' }
+    answer:
+      correct: a
+      explanation: >-
+        A missing name is made from the path: each `/` becomes `-`, and a `-` at either end is dropped. If the
+        name were taken, `-1`, `-2` and so on would be added.
+    sources:
+      - { kind: docs, page: /api/routes, anchor: embedding-a-new-route, sectionHash: 'sha256:1513759c52654fbc', title: 'Routes › Embedding a New Route' }
+    author: llm-draft
