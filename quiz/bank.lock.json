@@ -2812,11 +2812,15 @@
     },
     "deploy.cloudflare.option-a-rules": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:3f085e70b330a3ce",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:3f085e70b330a3ce",
+          "docsCommit": "edab21b241bb12345003af579d3c585c11f876b4"
         }
       }
     },
@@ -2831,6 +2835,16 @@
         "2": {
           "fingerprint": "sha256:b3f97aa168bc5db3",
           "docsCommit": "9ff81ee4322ec1346c58b0cfb3bff98d6e868932"
+        }
+      }
+    },
+    "deploy.cloudflare.purge-option-a": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:52e0096a3e58c202",
+          "docsCommit": "edab21b241bb12345003af579d3c585c11f876b4"
         }
       }
     },
@@ -3016,11 +3030,15 @@
     },
     "deploy.install.empty-home": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:e3d3a00e441360e8",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:cb9f3423267e134c",
+          "docsCommit": "edab21b241bb12345003af579d3c585c11f876b4"
         }
       }
     },
@@ -3173,6 +3191,16 @@
         "2": {
           "fingerprint": "sha256:ff6007266dfb28da",
           "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
+        }
+      }
+    },
+    "deploy.k8s.fixtures-console-job": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:c95977a864ffc517",
+          "docsCommit": "edab21b241bb12345003af579d3c585c11f876b4"
         }
       }
     },
@@ -3393,6 +3421,16 @@
         "1": {
           "fingerprint": "sha256:282e92a86fcea2ac",
           "docsCommit": "5a77f55ee091789ec3f314638209e92ca359558c"
+        }
+      }
+    },
+    "deploy.server.host-variable": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:b1c4a625fdf316b5",
+          "docsCommit": "edab21b241bb12345003af579d3c585c11f876b4"
         }
       }
     },
