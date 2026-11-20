@@ -466,7 +466,10 @@ questions:
 
   - id: core.naming.nuxt-config-keys
     version: 2
-    status: live
+    status: retired
+    retired:
+      reason: "superseded: from @cwa/nuxt 2.0.0-alpha.36 the module no longer reads cwa.layouts or cwa.pages; a layout or page template names itself with defineCwaConfig"
+    until: [{ repo: cwa-nuxt-module, version: '2.0.0-alpha.36' }]
     level: beginner
     area: core-concepts
     tags: [layouts-and-pages, module-setup]
