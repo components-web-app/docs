@@ -92,5 +92,5 @@ questions:
       optionNotes:
         b: Without a Cache Rule, Cloudflare caches no HTML or JSON.
     sources:
-      - { kind: docs, page: /deployment/cloudflare, anchor: the-deploy-purge, sectionHash: 'sha256:619d83379c0c0095', title: 'Cloudflare › The deploy purge' }
+      - { kind: docs, page: /deployment/cloudflare, anchor: the-deploy-purge, sectionHash: 'sha256:e76c0ede5aba4357', title: 'Cloudflare › The deploy purge' }
     author: llm-draft

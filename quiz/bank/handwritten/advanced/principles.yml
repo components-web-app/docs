@@ -607,7 +607,7 @@ questions:
         A deploy with that config ends with a purge of everything in the zone, and so does every fixture load. A
         purge everything can't be limited to one hostname, so production's edge is emptied too.
     sources:
-      - { kind: docs, page: /deployment/cloudflare, anchor: secrets, sectionHash: 'sha256:909fc788ab79a7ff', title: 'Cloudflare › Secrets' }
+      - { kind: docs, page: /deployment/cloudflare, anchor: secrets, sectionHash: 'sha256:c5f47bc4ac58a40e', title: 'Cloudflare › Secrets' }
     author: llm-draft
 
   - id: deploy.docker.mercure-not-cached
