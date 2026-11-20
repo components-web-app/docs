@@ -341,7 +341,7 @@ questions:
         e: Nuxt only looks in `app/app/cwa/`, so a file at `app/cwa/` from the repository root is never found.
     sources:
       - { kind: docs, page: /api/components/creating-components, anchor: the-class-name-vue-component-convention, sectionHash: 'sha256:22b4c3a09af7ba18', title: 'Creating Components › The Class Name → Vue Component Convention' }
-      - { kind: docs, page: /getting-started/installation, anchor: where-things-live, sectionHash: 'sha256:567f995785fc4015', title: 'Installation › Where things live' }
+      - { kind: docs, page: /getting-started/installation, anchor: where-things-live, sectionHash: 'sha256:3a1300d50f7447b9', title: 'Installation › Where things live' }
     author: llm-draft
 
   - id: core.naming.endpoint-path

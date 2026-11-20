@@ -123,7 +123,7 @@ questions:
       optionNotes:
         a: The load already flushes the whole cache once when it ends. The variants still don't exist.
     sources:
-      - { kind: docs, page: /api/data-fixtures/getting-started, anchor: what-a-load-leaves-until-later, sectionHash: 'sha256:b6b00c4afcfe26ee', title: 'Getting Started with Fixtures › What a Load Leaves Until Later' }
+      - { kind: docs, page: /api/data-fixtures/getting-started, anchor: what-a-load-leaves-until-later, sectionHash: 'sha256:0dc458bf37c9736a', title: 'Getting Started with Fixtures › What a Load Leaves Until Later' }
     author: llm-draft
 
   - id: api.fixtures.asset-store-load
