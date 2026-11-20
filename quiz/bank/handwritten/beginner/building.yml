@@ -688,7 +688,7 @@ questions:
         A template page (a page that many articles share) holds the structure. Each article is saved as page
         data that names the template page, and each has its own route.
     sources:
-      - { kind: docs, page: /guides/your-first-dynamic-page, anchor: create-in-the-api, sectionHash: 'sha256:4d88e26bece82651', title: 'Your First Dynamic Page › Create in the API' }
+      - { kind: docs, page: /guides/your-first-dynamic-page, anchor: create-in-the-api, sectionHash: 'sha256:1d696102e1038f44', title: 'Your First Dynamic Page › Create in the API' }
     author: llm-draft
 
   - id: core.dynamic.position-shows
@@ -716,7 +716,7 @@ questions:
         It's a dynamic component position. Instead of holding one component, it shows whatever component the
         current article holds in its `quote` property.
     sources:
-      - { kind: docs, page: /guides/your-first-dynamic-page, anchor: create-in-the-api, sectionHash: 'sha256:4d88e26bece82651', title: 'Your First Dynamic Page › Create in the API' }
+      - { kind: docs, page: /guides/your-first-dynamic-page, anchor: create-in-the-api, sectionHash: 'sha256:1d696102e1038f44', title: 'Your First Dynamic Page › Create in the API' }
     author: llm-draft
 
   - id: core.dynamic.new-file
@@ -791,7 +791,7 @@ questions:
         The Quote is saved in this article's `quote` property, so it belongs to this article. The next article you
         create gets its own.
     sources:
-      - { kind: docs, page: /guides/your-first-dynamic-page, anchor: via-the-admin, sectionHash: 'sha256:f966c2c8c22c37f4', title: 'Your First Dynamic Page › Via the admin' }
+      - { kind: docs, page: /guides/your-first-dynamic-page, anchor: via-the-admin, sectionHash: 'sha256:e5071a9cef6ffe94', title: 'Your First Dynamic Page › Via the admin' }
     author: llm-draft
 
   - id: core.dynamic.page-data-fixture

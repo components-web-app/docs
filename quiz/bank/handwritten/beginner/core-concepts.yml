@@ -146,7 +146,7 @@ questions:
         Anonymous visitors get the published version. Signed-in users with publish rights get the draft, on
         every page view, whether or not edit mode is on.
     sources:
-      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:6c755a839217faca', title: 'Draft & Publish Workflow › How It Works' }
+      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:bafa42963b5d779b', title: 'Draft & Publish Workflow › How It Works' }
     author: llm-draft
 
   - id: core.draft.reorder-timing

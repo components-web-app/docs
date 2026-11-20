@@ -132,7 +132,7 @@ questions:
         `null` means not live: visitors get a 404, while the route keeps its path, its redirects and its
         children. Admins can still preview and edit the page.
     sources:
-      - { kind: docs, page: /api/routes, anchor: scheduling-and-taking-routes-offline, sectionHash: 'sha256:ae95d3eaea1a4317', title: 'Routes › Scheduling and Taking Routes Offline' }
+      - { kind: docs, page: /api/routes, anchor: scheduling-and-taking-routes-offline, sectionHash: 'sha256:92efb21a49a815b3', title: 'Routes › Scheduling and Taking Routes Offline' }
     author: llm-draft
 
   - id: api.routes.live-at-inheritance

@@ -511,7 +511,7 @@ questions:
         The API decides from the auth cookie and the user's role, not from edit mode, so an editor sees drafts
         on every page view. Adding `?published=true` to a request forces the published version.
     sources:
-      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:6c755a839217faca', title: 'Draft & Publish Workflow › How It Works' }
+      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:bafa42963b5d779b', title: 'Draft & Publish Workflow › How It Works' }
     author: llm-draft
 
   - id: core.draft.new-component
@@ -561,7 +561,7 @@ questions:
         Draft and publish work per component. A whole page is held back by its route, which can be Live,
         Scheduled or Not live. Until it's live, visitors get a 404 while admins can still preview and edit it.
     sources:
-      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: scheduling-a-whole-page, sectionHash: 'sha256:9f24518865adfd32', title: 'Draft & Publish Workflow › Scheduling a Whole Page' }
+      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: scheduling-a-whole-page, sectionHash: 'sha256:0e8734735db5dc19', title: 'Draft & Publish Workflow › Scheduling a Whole Page' }
     author: llm-draft
 
   - id: core.draft.scheduled-component
@@ -588,7 +588,7 @@ questions:
       optionNotes:
         b: A route's go-live date holds back the whole page, not one component's change.
     sources:
-      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:6c755a839217faca', title: 'Draft & Publish Workflow › How It Works' }
+      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:bafa42963b5d779b', title: 'Draft & Publish Workflow › How It Works' }
       - { kind: docs, page: /core-concepts/admin-panel, anchor: scheduling-a-publish, sectionHash: 'sha256:4c060250a3de42d7', title: 'The Admin Panel › Scheduling a Publish' }
     author: llm-draft
 
@@ -612,7 +612,7 @@ questions:
         Publishing promotes the draft to the published version, which the live site shows. Mercure then tells
         open browsers about the change.
     sources:
-      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:6c755a839217faca', title: 'Draft & Publish Workflow › How It Works' }
+      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:bafa42963b5d779b', title: 'Draft & Publish Workflow › How It Works' }
     author: llm-draft
 
   - id: core.admin.manager-panel
@@ -842,5 +842,5 @@ questions:
         other two keep their published versions until an editor publishes their drafts.
     sources:
       - { kind: docs, page: /core-concepts/draft-and-publish, anchor: adding-removing-and-reordering-are-immediate, sectionHash: 'sha256:177d97708ef53e97', title: 'Draft & Publish Workflow › Adding, Removing and Reordering Are Immediate' }
-      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:6c755a839217faca', title: 'Draft & Publish Workflow › How It Works' }
+      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:bafa42963b5d779b', title: 'Draft & Publish Workflow › How It Works' }
     author: llm-draft

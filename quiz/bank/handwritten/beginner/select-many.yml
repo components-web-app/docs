@@ -195,6 +195,6 @@ questions:
         c: An admin tab's fields send a debounced `PATCH` as the editor types. There's no save button, and **Done** only leaves edit mode.
     sources:
       - { kind: docs, page: /core-concepts/admin-panel, anchor: edit-mode, sectionHash: 'sha256:6036f3702b5f7978', title: 'The Admin Panel › Edit Mode' }
-      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:6c755a839217faca', title: 'Draft & Publish Workflow › How It Works' }
+      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:bafa42963b5d779b', title: 'Draft & Publish Workflow › How It Works' }
       - { kind: docs, page: /core-concepts/components, anchor: the-admin-tab, sectionHash: 'sha256:d19be61184fdba36', title: 'Components › The Admin Tab' }
     author: llm-draft

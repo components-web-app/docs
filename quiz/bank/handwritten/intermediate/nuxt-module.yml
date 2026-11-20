@@ -293,7 +293,7 @@ questions:
         reads **Add**: the component appears unsaved with the manager panel open, and the editor fills in its
         tabs, then clicks **+ Draft** (or **Add and publish**).
     sources:
-      - { kind: docs, page: /core-concepts/admin-panel, anchor: adding-a-component, sectionHash: 'sha256:e4853822bf1f5e08', title: 'The Admin Panel › Adding a Component' }
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: adding-a-component, sectionHash: 'sha256:c78ab333ab22ea96', title: 'The Admin Panel › Adding a Component' }
     author: llm-draft
 
   - id: nuxt.real-time.visitor-notice

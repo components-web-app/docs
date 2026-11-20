@@ -72,8 +72,8 @@ questions:
         d: Mercure only carries updates to open pages. It plays no part in which version a request gets.
         e: A caller who can see drafts gets the published version when there is no draft.
     sources:
-      - { kind: docs, page: /api/components/annotations/publishable, anchor: how-it-works-at-the-api-level, sectionHash: 'sha256:20c0c1abb9c73d69', title: 'Publishable › How It Works at the API Level' }
-      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:6c755a839217faca', title: 'Draft & Publish Workflow › How It Works' }
+      - { kind: docs, page: /api/components/annotations/publishable, anchor: how-it-works-at-the-api-level, sectionHash: 'sha256:2d6f74f3eb81fb36', title: 'Publishable › How It Works at the API Level' }
+      - { kind: docs, page: /core-concepts/draft-and-publish, anchor: how-it-works, sectionHash: 'sha256:bafa42963b5d779b', title: 'Draft & Publish Workflow › How It Works' }
     author: llm-draft
 
   - id: core.caching.page-purges
