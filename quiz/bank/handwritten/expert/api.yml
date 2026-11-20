@@ -230,6 +230,6 @@ questions:
         `resolveConflicts()` adds the same `-1`, `-2`… to the name and the path together, until neither
         clashes.
     sources:
-      - { kind: code, repo: api-components-bundle, path: src/Helper/Route/RouteGenerator.php, lines: [146, 177], commit: 4b50321592c92720443a3eb54724dfac4993d71c, linesHash: 'sha256:676ce15209789418' }
-      - { kind: code, repo: api-components-bundle, path: src/Helper/Route/RouteGenerator.php, lines: [80, 102], commit: 4b50321592c92720443a3eb54724dfac4993d71c, linesHash: 'sha256:903fd398f535e642' }
+      - { kind: code, repo: api-components-bundle, path: src/Helper/Route/RouteGenerator.php, lines: [141, 172], commit: 1dae9e17911faa75bbe3129295ceeba3daedb90c, linesHash: 'sha256:676ce15209789418' }
+      - { kind: code, repo: api-components-bundle, path: src/Helper/Route/RouteGenerator.php, lines: [81, 103], commit: 1dae9e17911faa75bbe3129295ceeba3daedb90c, linesHash: 'sha256:903fd398f535e642' }
     author: llm-draft
