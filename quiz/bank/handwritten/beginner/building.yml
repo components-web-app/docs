@@ -24,7 +24,7 @@ questions:
         The Vue file defines how a layout looks, but it doesn't create the layout in the API. Pages are
         assigned to a saved layout, and the layout's component groups need it as their owner.
     sources:
-      - { kind: docs, page: /guides/your-first-layout, anchor: create-the-layout-in-the-api, sectionHash: 'sha256:0c79d58962155234', title: 'Your First Layout › Create the Layout in the API' }
+      - { kind: docs, page: /guides/your-first-layout, anchor: create-the-layout-in-the-api, sectionHash: 'sha256:67fc9bb5b7d40394', title: 'Your First Layout › Create the Layout in the API' }
     author: llm-draft
 
   - id: core.guides.layout-then-page-template
@@ -688,7 +688,7 @@ questions:
         A template page (a page that many articles share) holds the structure. Each article is saved as page
         data that names the template page, and each has its own route.
     sources:
-      - { kind: docs, page: /guides/your-first-dynamic-page, anchor: create-in-the-api, sectionHash: 'sha256:a35f27e2cdbc4641', title: 'Your First Dynamic Page › Create in the API' }
+      - { kind: docs, page: /guides/your-first-dynamic-page, anchor: create-in-the-api, sectionHash: 'sha256:4d88e26bece82651', title: 'Your First Dynamic Page › Create in the API' }
     author: llm-draft
 
   - id: core.dynamic.position-shows
@@ -716,7 +716,7 @@ questions:
         It's a dynamic component position. Instead of holding one component, it shows whatever component the
         current article holds in its `quote` property.
     sources:
-      - { kind: docs, page: /guides/your-first-dynamic-page, anchor: create-in-the-api, sectionHash: 'sha256:a35f27e2cdbc4641', title: 'Your First Dynamic Page › Create in the API' }
+      - { kind: docs, page: /guides/your-first-dynamic-page, anchor: create-in-the-api, sectionHash: 'sha256:4d88e26bece82651', title: 'Your First Dynamic Page › Create in the API' }
     author: llm-draft
 
   - id: core.dynamic.new-file
@@ -791,7 +791,7 @@ questions:
         The Quote is saved in this article's `quote` property, so it belongs to this article. The next article you
         create gets its own.
     sources:
-      - { kind: docs, page: /guides/your-first-dynamic-page, anchor: via-the-admin, sectionHash: 'sha256:a8c3672208da91a3', title: 'Your First Dynamic Page › Via the admin' }
+      - { kind: docs, page: /guides/your-first-dynamic-page, anchor: via-the-admin, sectionHash: 'sha256:f966c2c8c22c37f4', title: 'Your First Dynamic Page › Via the admin' }
     author: llm-draft
 
   - id: core.dynamic.page-data-fixture
@@ -879,5 +879,5 @@ questions:
         The Page UI is the page template, such as `TwoColumnPageTemplate.vue`. The page saves it as
         `uiComponent: CwaPageTwoColumnPageTemplate`. The layout is a separate choice on the same form.
     sources:
-      - { kind: docs, page: /guides/your-first-page-template, anchor: via-the-admin, sectionHash: 'sha256:36c12e06f948cd35', title: 'Your First Page Template › Via the admin' }
+      - { kind: docs, page: /guides/your-first-page-template, anchor: via-the-admin, sectionHash: 'sha256:9543b317b9f250a8', title: 'Your First Page Template › Via the admin' }
     author: llm-draft

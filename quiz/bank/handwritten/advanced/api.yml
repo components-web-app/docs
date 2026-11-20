@@ -190,7 +190,7 @@ questions:
         So the parent renders at its depth on the child's URL. It isn't listed in `GET /_/pages`, which only
         lists records with their own live route.
     sources:
-      - { kind: docs, page: /api/users/access-control, anchor: public-access-follows-routes, sectionHash: 'sha256:0f66cb5cfc7476bb', title: 'Access Control › Public Access Follows Routes' }
+      - { kind: docs, page: /api/users/access-control, anchor: public-access-follows-routes, sectionHash: 'sha256:6c2a38e8e833d3c8', title: 'Access Control › Public Access Follows Routes' }
       - { kind: docs, page: /api/users/access-control, anchor: routable_security, sectionHash: 'sha256:629bea713d1b801f', title: 'Access Control › routablesecurity' }
     author: llm-draft
 

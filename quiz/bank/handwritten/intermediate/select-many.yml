@@ -184,7 +184,7 @@ questions:
         e: Page data is displayed with its template page, so the template page's components are reachable through the article.
     sources:
       - { kind: docs, page: /api/users/access-control, anchor: component-security, sectionHash: 'sha256:92f2ea65acea4a29', title: 'Access Control › Component Security' }
-      - { kind: docs, page: /api/users/access-control, anchor: public-access-follows-routes, sectionHash: 'sha256:0f66cb5cfc7476bb', title: 'Access Control › Public Access Follows Routes' }
+      - { kind: docs, page: /api/users/access-control, anchor: public-access-follows-routes, sectionHash: 'sha256:6c2a38e8e833d3c8', title: 'Access Control › Public Access Follows Routes' }
     author: llm-draft
 
   - id: api.security.public-without-route
@@ -219,5 +219,5 @@ questions:
         b: Set the flag on the page data itself. Page data's flag makes its template readable, but not the other way round.
         e: Flagged pages are readable by IRI but aren't listed in `GET /_/pages`.
     sources:
-      - { kind: docs, page: /api/users/access-control, anchor: public-pages-without-a-route, sectionHash: 'sha256:51ffd66126651be7', title: 'Access Control › Public Pages Without a Route' }
+      - { kind: docs, page: /api/users/access-control, anchor: public-pages-without-a-route, sectionHash: 'sha256:3b4b2c294ee9e1f8', title: 'Access Control › Public Pages Without a Route' }
     author: llm-draft

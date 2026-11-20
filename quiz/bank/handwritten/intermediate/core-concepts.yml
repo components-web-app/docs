@@ -57,17 +57,18 @@ questions:
     author: llm-draft
 
   - id: core.admin.delete-one-version
-    version: 2
+    version: 3
     status: live
     level: intermediate
     area: core-concepts
     tags: [admin, draft-and-publish]
     type: multiple-choice
     difficulty: 3
-    prompt: A component has a published version and a draft. An editor selects the draft and clicks **Delete Draft**. What is removed?
+    prompt: >-
+      A component has a published version and a draft. An editor selects the draft, clicks **Delete** on its
+      Info tab and chooses **Delete draft**. What is removed?
     why: >-
-      Removing a component completely takes two deletes, so check the other version is gone too before you
-      assume it has left the site.
+      Delete draft is how to throw away unpublished changes without taking the component off the site.
     options:
       - { id: a, text: The draft and the live version together }
       - { id: b, text: Only the draft; the live version stays }
@@ -76,23 +77,25 @@ questions:
     answer:
       correct: b
       explanation: >-
-        A delete removes only the selected version. To delete the other one, select it first with the Publish
-        tab's **Edit live version** toggle.
+        **Delete draft** discards the unpublished changes, and the live version stays. To remove both, the
+        same dialog offers **Delete entire component**.
     sources:
-      - { kind: docs, page: /core-concepts/admin-panel, anchor: deleting-a-component, sectionHash: 'sha256:b5a83ef51f795064', title: 'The Admin Panel › Deleting a component' }
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: deleting-a-component, sectionHash: 'sha256:054c823de925dbab', title: 'The Admin Panel › Deleting a component' }
     author: llm-draft
 
   - id: core.admin.rename-child-routes
-    version: 3
+    version: 4
     status: live
     level: intermediate
     area: core-concepts
     tags: [admin, routes]
     type: multiple-choice
     difficulty: 3
-    prompt: In the admin, an editor changes a route's path from `/events` to `/happenings`. A dialog asks **Update child routes?** and they confirm. What happens to child routes such as `/events/2024`?
+    prompt: >-
+      In the admin, an editor changes a route's path from `/events` to `/happenings`, ticks **Also change the 3
+      child routes that start with /events/** and saves. What happens to child routes such as `/events/2024`?
     why: >-
-      Confirm it when you restructure a section, so old links and search results for its child pages keep
+      Tick it when you restructure a section, so old links and search results for its child pages keep
       landing.
     options:
       - { id: a, text: 'They keep their old paths, and the old URLs stop working' }
@@ -102,10 +105,10 @@ questions:
     answer:
       correct: d
       explanation: >-
-        Confirming renames every child path to stay under the new parent prefix and creates redirects from the
-        old paths. Without it, only the parent is renamed.
+        Ticking it renames every child path to stay under the new path and creates redirects from the old
+        paths. Left unticked, only the parent is renamed.
     sources:
-      - { kind: docs, page: /core-concepts/admin-panel, anchor: editing-a-path, sectionHash: 'sha256:652e19381a151bde', title: 'The Admin Panel › Editing a path' }
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: editing-a-path, sectionHash: 'sha256:31287e077f84af8e', title: 'The Admin Panel › Editing a path' }
     author: llm-draft
 
   - id: core.admin.reorder-where
@@ -134,7 +137,7 @@ questions:
         on **Enable reordering** in its **Group** tab. A component's **Order** tab has a **Position** field with
         **Move up** and **Move down** instead.
     sources:
-      - { kind: docs, page: /core-concepts/admin-panel, anchor: reordering, sectionHash: 'sha256:85235e8b8d3c72d9', title: 'The Admin Panel › Reordering' }
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: reordering, sectionHash: 'sha256:bedf46c74e5e3c43', title: 'The Admin Panel › Reordering' }
     author: llm-draft
 
   - id: core.caching.save-refreshes-pages

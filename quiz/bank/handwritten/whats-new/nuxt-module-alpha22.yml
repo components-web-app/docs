@@ -29,7 +29,7 @@ questions:
         A clone isn't a copy. It places the same component, with the same IRI, in another component position, so
         an edit or a publish in either place changes it everywhere.
     sources:
-      - { kind: docs, page: /core-concepts/admin-panel, anchor: cloning-a-component, sectionHash: 'sha256:660a62c0b43cae72', title: 'The Admin Panel › Cloning a Component' }
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: cloning-a-component, sectionHash: 'sha256:58a22875be601b74', title: 'The Admin Panel › Cloning a Component' }
     author: llm-draft
 
   - id: nuxt.admin.clone-draft
@@ -58,11 +58,11 @@ questions:
         When the selected component is the draft of a published component, the clone places the published
         component, which the draft belongs to.
     sources:
-      - { kind: docs, page: /core-concepts/admin-panel, anchor: cloning-a-component, sectionHash: 'sha256:660a62c0b43cae72', title: 'The Admin Panel › Cloning a Component' }
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: cloning-a-component, sectionHash: 'sha256:58a22875be601b74', title: 'The Admin Panel › Cloning a Component' }
     author: llm-draft
 
   - id: nuxt.admin.delete-shared-component
-    version: 2
+    version: 3
     status: live
     level: intermediate
     area: nuxt-module
@@ -70,8 +70,8 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: >-
-      A component shows in three places on the site. An editor selects it in one of them, clicks delete, and
-      chooses to remove it from this location only. What happens?
+      A component shows in three places on the site. An editor selects it in one of them, clicks **Delete**,
+      and chooses **Remove from here**. What happens?
     why: >-
       Taking a shared component off one page doesn't delete it from the others, which a plain delete would.
     since: [{ repo: cwa-nuxt-module, version: '2.0.0-alpha.22' }]
@@ -83,10 +83,10 @@ questions:
     answer:
       correct: d
       explanation: >-
-        Removing it from one location keeps the component and deletes the component position it was selected in.
+        **Remove from here** keeps the component and deletes the component position it was selected in.
         For a dynamic component position, it clears the page data's property instead.
     sources:
-      - { kind: docs, page: /core-concepts/admin-panel, anchor: deleting-a-component, sectionHash: 'sha256:b5a83ef51f795064', title: 'The Admin Panel › Deleting a component' }
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: deleting-a-component, sectionHash: 'sha256:054c823de925dbab', title: 'The Admin Panel › Deleting a component' }
     author: llm-draft
 
   - id: nuxt.config.route-cache-cost

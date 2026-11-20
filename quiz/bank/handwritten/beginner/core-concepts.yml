@@ -177,7 +177,7 @@ questions:
     author: llm-draft
 
   - id: core.admin.link-in-edit-mode
-    version: 2
+    version: 3
     status: live
     level: beginner
     area: core-concepts
@@ -191,14 +191,14 @@ questions:
       - { id: a, text: The admin asks them to publish first }
       - { id: b, text: The link opens in a new tab }
       - { id: c, text: The next page opens and drafts are discarded }
-      - { id: d, text: 'Nothing, so an edit in progress isn''t lost' }
+      - { id: d, text: 'A menu opens with **Edit** and **Visit**' }
     answer:
       correct: d
       explanation: >-
-        The navigation guard stops links while editing. Click **Done** first. The browser's back and forward
-        buttons still work.
+        In edit mode a click on a link opens a menu at the click point. **Edit** selects the component the link
+        is in, and **Visit** saves any field still waiting to be saved, then follows the link.
     sources:
-      - { kind: docs, page: /core-concepts/admin-panel, anchor: edit-mode, sectionHash: 'sha256:059f18d921a3de8a', title: 'The Admin Panel › Edit Mode' }
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: edit-mode, sectionHash: 'sha256:6036f3702b5f7978', title: 'The Admin Panel › Edit Mode' }
     author: llm-draft
 
   - id: core.components.two-sides
