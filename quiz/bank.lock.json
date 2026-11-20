@@ -1212,6 +1212,16 @@
         }
       }
     },
+    "api.routes.move-page": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:750f70b574c20e71",
+          "docsCommit": "585e3007317c81be3473a5204641ee9463772fb7"
+        }
+      }
+    },
     "api.routes.page-data-without-route": {
       "status": "live",
       "version": 4,
@@ -1263,6 +1273,16 @@
         "2": {
           "fingerprint": "sha256:e8d64a409aa5786c",
           "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
+        }
+      }
+    },
+    "api.routes.required-start": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:e280a352ab258ff1",
+          "docsCommit": "585e3007317c81be3473a5204641ee9463772fb7"
         }
       }
     },
