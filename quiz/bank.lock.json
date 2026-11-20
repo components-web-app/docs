@@ -4798,7 +4798,7 @@
     },
     "nuxt.admin.instant-add": {
       "status": "live",
-      "version": 2,
+      "version": 3,
       "versions": {
         "1": {
           "fingerprint": "sha256:443f328c3343b9c1",
@@ -4807,6 +4807,10 @@
         "2": {
           "fingerprint": "sha256:f4cabc836ad351a1",
           "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
+        },
+        "3": {
+          "fingerprint": "sha256:392c958aa1d9d047",
+          "docsCommit": "b06fd78f7a7fe84878bc89a6ac7215d18253040c+dirty"
         }
       }
     },
@@ -4942,11 +4946,15 @@
     },
     "nuxt.coedit.model-prop": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:e876715e26d9079e",
           "docsCommit": "eee65cd7d07ef1c9f06f05d14f7e9c2667caaa9b+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:06688dca0625aeaf",
+          "docsCommit": "b06fd78f7a7fe84878bc89a6ac7215d18253040c+dirty"
         }
       }
     },
@@ -5062,11 +5070,15 @@
     },
     "nuxt.component.inner-element-classes": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:0acc970b77840588",
           "docsCommit": "5a77f55ee091789ec3f314638209e92ca359558c"
+        },
+        "2": {
+          "fingerprint": "sha256:99710212a1d948a3",
+          "docsCommit": "b06fd78f7a7fe84878bc89a6ac7215d18253040c+dirty"
         }
       }
     },
@@ -5110,11 +5122,15 @@
     },
     "nuxt.component.reads-resource": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:628d552b75a95cd8",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:29f949cff28377cb",
+          "docsCommit": "b06fd78f7a7fe84878bc89a6ac7215d18253040c+dirty"
         }
       }
     },
@@ -5134,27 +5150,35 @@
     },
     "nuxt.component.style-name-check": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:0204a4a37eee5ef2",
           "docsCommit": "5a77f55ee091789ec3f314638209e92ca359558c"
+        },
+        "2": {
+          "fingerprint": "sha256:ffc8a0fd150449d3",
+          "docsCommit": "b06fd78f7a7fe84878bc89a6ac7215d18253040c+dirty"
         }
       }
     },
     "nuxt.component.style-variants-beginner": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:111470b53d997861",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:111470b53d997861",
+          "docsCommit": "b06fd78f7a7fe84878bc89a6ac7215d18253040c+dirty"
         }
       }
     },
     "nuxt.component.style-variants-where": {
       "status": "live",
-      "version": 2,
+      "version": 3,
       "versions": {
         "1": {
           "fingerprint": "sha256:ff45e7454472c6b3",
@@ -5163,6 +5187,10 @@
         "2": {
           "fingerprint": "sha256:15ff615d87ac254d",
           "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
+        },
+        "3": {
+          "fingerprint": "sha256:de6024a86e67abb9",
+          "docsCommit": "b06fd78f7a7fe84878bc89a6ac7215d18253040c+dirty"
         }
       }
     },
@@ -5214,9 +5242,19 @@
         }
       }
     },
+    "nuxt.config.define-cwa-config-literal": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:b32141949db01384",
+          "docsCommit": "b06fd78f7a7fe84878bc89a6ac7215d18253040c+dirty"
+        }
+      }
+    },
     "nuxt.config.layout-classes": {
       "status": "live",
-      "version": 2,
+      "version": 3,
       "versions": {
         "1": {
           "fingerprint": "sha256:37fed62c3fe99e09",
@@ -5225,6 +5263,10 @@
         "2": {
           "fingerprint": "sha256:a677fe5cd3496d43",
           "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
+        },
+        "3": {
+          "fingerprint": "sha256:a67c9cc247faba00",
+          "docsCommit": "b06fd78f7a7fe84878bc89a6ac7215d18253040c+dirty"
         }
       }
     },
@@ -5446,7 +5488,7 @@
     },
     "nuxt.internals.redirect-base-url": {
       "status": "live",
-      "version": 2,
+      "version": 3,
       "versions": {
         "1": {
           "fingerprint": "sha256:e3d14209082ab5b2",
@@ -5455,6 +5497,10 @@
         "2": {
           "fingerprint": "sha256:ea8e1464e43b1d04",
           "docsCommit": "cfd44afa96c8220a2b610226c2cc38e8f8065268"
+        },
+        "3": {
+          "fingerprint": "sha256:06058958c7b11cff",
+          "docsCommit": "b06fd78f7a7fe84878bc89a6ac7215d18253040c+dirty"
         }
       }
     },
@@ -5523,6 +5569,16 @@
         "4": {
           "fingerprint": "sha256:281e68cd83874ece",
           "docsCommit": "9ff81ee4322ec1346c58b0cfb3bff98d6e868932"
+        }
+      }
+    },
+    "nuxt.kit.field-binding": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:1ccb45aa3de8d6ae",
+          "docsCommit": "b06fd78f7a7fe84878bc89a6ac7215d18253040c+dirty"
         }
       }
     },
@@ -5886,7 +5942,7 @@
     },
     "nuxt.resource-model.iri-argument": {
       "status": "live",
-      "version": 2,
+      "version": 3,
       "versions": {
         "1": {
           "fingerprint": "sha256:7e18f8346ba6b110",
@@ -5895,6 +5951,10 @@
         "2": {
           "fingerprint": "sha256:ae810ec731df06fd",
           "docsCommit": "eee65cd7d07ef1c9f06f05d14f7e9c2667caaa9b+dirty"
+        },
+        "3": {
+          "fingerprint": "sha256:83649ebd185b2e1e",
+          "docsCommit": "b06fd78f7a7fe84878bc89a6ac7215d18253040c+dirty"
         }
       }
     },
@@ -6075,6 +6135,16 @@
         "1": {
           "fingerprint": "sha256:2ac204350440b62f",
           "docsCommit": "b49338190931bcda931feed91ba6bca5e8f67440"
+        }
+      }
+    },
+    "nuxt.upload.held-file": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:6c7bd589ffa016d2",
+          "docsCommit": "b06fd78f7a7fe84878bc89a6ac7215d18253040c+dirty"
         }
       }
     }

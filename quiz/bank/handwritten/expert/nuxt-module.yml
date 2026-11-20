@@ -45,7 +45,7 @@ questions:
         linesHash: sha256:23f72f170cfb7b8c
 
   - id: nuxt.internals.redirect-base-url
-    version: 2
+    version: 3
     status: live
     level: expert
     area: nuxt-module
@@ -70,7 +70,10 @@ questions:
           const baseURL = nuxtApp.$config.app.baseURL.replace(/\/+$/, '')
           return navigateTo(`${baseURL}${resource.redirectPath}`, { redirectCode: 308 })
         }
-        return navigateTo(resource.redirectPath, { redirectCode: 308 })
+        const redirectPath = nuxtApp.$cwa.navigationDisabled
+          ? `${resource.redirectPath}${resource.redirectPath.includes('?') ? '&' : '?'}cwa_force=true`
+          : resource.redirectPath
+        return navigateTo(redirectPath, { redirectCode: 308 })
     answer:
       line: 7
       fix: '  return navigateTo(`${baseURL}${resource.redirectPath}`, { redirectCode: 308, external: true })'
@@ -79,7 +82,7 @@ questions:
         treats it as an app route and adds `baseURL` again. With it, the path is sent as it is, with the
         308 at once.
     sources:
-      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/route-middleware.ts, lines: [69, 77], commit: 279b74eb5519587688d6eadff1d8adc98a7d1d8f, linesHash: 'sha256:180e28509b404eee' }
+      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/route-middleware.ts, lines: [69, 80], commit: cf23976ca93ce730a292868830ca9772dbb05b81, linesHash: 'sha256:a34819719ff1112b' }
     author: llm-draft
 
   - id: nuxt.internals.disabled-page-fetch
@@ -138,7 +141,7 @@ questions:
         a: Changes after the render arrive over Mercure. The middleware doesn't fetch again on hydration.
         d: It checks that `from` and `to` are the same path, and nothing in the payload.
     sources:
-      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/route-middleware.ts, lines: [95, 105], commit: 279b74eb5519587688d6eadff1d8adc98a7d1d8f, linesHash: 'sha256:d3eaab0bdf60df73' }
+      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/route-middleware.ts, lines: [98, 108], commit: cf23976ca93ce730a292868830ca9772dbb05b81, linesHash: 'sha256:d3eaab0bdf60df73' }
     author: llm-draft
 
   - id: nuxt.internals.stale-redirect
@@ -167,8 +170,8 @@ questions:
         Each run of the middleware takes a new token. When the first route arrives, its token is no
         longer the current one, so its redirect is dropped.
     sources:
-      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/route-middleware.ts, lines: [107, 118], commit: 279b74eb5519587688d6eadff1d8adc98a7d1d8f, linesHash: 'sha256:4274538ab20a44e5' }
-      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/route-middleware.ts, lines: [26, 28], commit: 279b74eb5519587688d6eadff1d8adc98a7d1d8f, linesHash: 'sha256:31b0ff80c9ca159b' }
+      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/route-middleware.ts, lines: [110, 121], commit: cf23976ca93ce730a292868830ca9772dbb05b81, linesHash: 'sha256:4274538ab20a44e5' }
+      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/route-middleware.ts, lines: [26, 28], commit: cf23976ca93ce730a292868830ca9772dbb05b81, linesHash: 'sha256:31b0ff80c9ca159b' }
     author: llm-draft
 
   - id: nuxt.internals.response-cache-directives
@@ -299,7 +302,7 @@ questions:
         On the server it starts `siteConfig.loadConfig()` without awaiting it, and a failure is only
         logged. Then it awaits the route.
     sources:
-      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/route-middleware.ts, lines: [86, 93], commit: 279b74eb5519587688d6eadff1d8adc98a7d1d8f, linesHash: 'sha256:7eb0e48ffdf5d468' }
+      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/route-middleware.ts, lines: [89, 96], commit: cf23976ca93ce730a292868830ca9772dbb05b81, linesHash: 'sha256:7eb0e48ffdf5d468' }
     author: llm-draft
 
   - id: nuxt.internals.navigate-while-adding
@@ -328,8 +331,8 @@ questions:
         The route middleware asks the resources manager to confirm. A "Discard new resource?" dialog
         opens: cancel stops the navigation, and confirm drops the unsaved component and carries on.
     sources:
-      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/route-middleware.ts, lines: [35, 38], commit: 279b74eb5519587688d6eadff1d8adc98a7d1d8f, linesHash: 'sha256:41d40238906ac0f0' }
-      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/resources/resources-manager.ts, lines: [535, 544], commit: 279b74eb5519587688d6eadff1d8adc98a7d1d8f, linesHash: 'sha256:0c7c8d823040a6a1' }
+      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/route-middleware.ts, lines: [35, 38], commit: cf23976ca93ce730a292868830ca9772dbb05b81, linesHash: 'sha256:41d40238906ac0f0' }
+      - { kind: code, repo: cwa-nuxt-module, path: src/runtime/resources/resources-manager.ts, lines: [553, 562], commit: cf23976ca93ce730a292868830ca9772dbb05b81, linesHash: 'sha256:0c7c8d823040a6a1' }
     author: llm-draft
 
   - id: nuxt.internals.page-cache-fallback

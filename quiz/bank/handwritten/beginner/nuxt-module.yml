@@ -3,7 +3,7 @@
 
 questions:
   - id: nuxt.component.reads-resource
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: nuxt-module
@@ -21,19 +21,25 @@ questions:
 
         <script setup lang="ts">
         import type { IriProp } from '#cwa/composables/cwa-resource'
-        import { useCwaComponent } from '#imports'
+        import { useCwaComponent, defineCwaConfig } from '#imports'
+
+        defineCwaConfig({
+          name: 'Title',
+          description: 'The main heading of a page',
+          icon: 'heading',
+        })
 
         const props = defineProps<IriProp>()
         const { resource, exposeMeta } = useCwaComponent(props)
         defineExpose(exposeMeta)
         </script>
     answer:
-      lines: [11]
+      lines: [17]
       explanation: >-
         `useCwaComponent(props)` reads the resource for the component's IRI from the store. The module has
         already fetched it, and `resource` stays reactive to updates.
     sources:
-      - { kind: docs, page: /core-concepts/components, anchor: _2-the-vue-component-the-display, sectionHash: 'sha256:cc87dc88884ee7f5', title: 'Components › 2. The Vue component (the display)', block: 0, blockHash: 'sha256:58f142cdf2cf43cb' }
+      - { kind: docs, page: /core-concepts/components, anchor: _2-the-vue-component-the-display, sectionHash: 'sha256:ccc012efb4c22fd9', title: 'Components › 2. The Vue component (the display)', block: 0, blockHash: 'sha256:74ccd4241205c68f' }
     author: llm-draft
 
   - id: nuxt.component.iri-prop
@@ -123,7 +129,7 @@ questions:
         The module registers the files in `app/app/cwa/layouts/` as global components with the `CwaLayout`
         prefix. Nuxt's own layouts are something else: a CWA layout renders inside the module's root layout.
     sources:
-      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: how-uicomponent-names-resolve, sectionHash: 'sha256:20bb5b33597a1aac', title: 'Layouts › How uiComponent Names Resolve' }
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: how-uicomponent-names-resolve, sectionHash: 'sha256:7cfcf6390a43aa12', title: 'Layouts › How uiComponent Names Resolve' }
     author: llm-draft
 
   - id: nuxt.admin.start-editing
@@ -150,7 +156,7 @@ questions:
     author: llm-draft
 
   - id: nuxt.component.style-variants-beginner
-    version: 1
+    version: 2
     status: live
     # Shares a family with nuxt.component.style-variants-where, which this one would give away.
     family: component-style-variants
@@ -168,9 +174,9 @@ questions:
     answer:
       correct: b
       explanation: >-
-        A component's Vue file can name styles, each a set of CSS classes. Editors pick one in the admin, and it
-        is stored on that component as `uiClassNames`.
+        A component's Vue file names styles in its `defineCwaConfig`, each a label and a set of CSS classes.
+        Editors pick one in the admin, and its key is stored on that component in `uiClassNames`.
     sources:
-      - { kind: docs, page: /nuxt-module/composables/component/use-cwa-component, anchor: style-variants, sectionHash: 'sha256:73b5fa696d55a19d', title: 'useCwaComponent › Style Variants' }
+      - { kind: docs, page: /nuxt-module/composables/component/use-cwa-component, anchor: style-variants, sectionHash: 'sha256:56a62308d341ff56', title: 'useCwaComponent › Style Variants' }
       - { kind: docs, page: /api/components/creating-components, anchor: what-abstractcomponent-gives-you, sectionHash: 'sha256:81118f548996b5fb', title: 'Creating Components › What AbstractComponent Gives You' }
     author: llm-draft
