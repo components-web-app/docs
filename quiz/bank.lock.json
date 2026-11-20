@@ -1462,7 +1462,7 @@
     },
     "core.admin.delete-one-version": {
       "status": "live",
-      "version": 2,
+      "version": 3,
       "versions": {
         "1": {
           "fingerprint": "sha256:26d3bc191ffbf340",
@@ -1471,6 +1471,10 @@
         "2": {
           "fingerprint": "sha256:882a937d9db392cf",
           "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
+        },
+        "3": {
+          "fingerprint": "sha256:f142a5bdf8a51631",
+          "docsCommit": "b334b370acb9c874c0640c83c5f20b5d1f4202bd"
         }
       }
     },
@@ -1486,7 +1490,7 @@
     },
     "core.admin.link-in-edit-mode": {
       "status": "live",
-      "version": 2,
+      "version": 3,
       "versions": {
         "1": {
           "fingerprint": "sha256:df5a9a8f0fdfa884",
@@ -1495,6 +1499,10 @@
         "2": {
           "fingerprint": "sha256:4f02046faf04d29e",
           "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
+        },
+        "3": {
+          "fingerprint": "sha256:ea885ec5db12c886",
+          "docsCommit": "b334b370acb9c874c0640c83c5f20b5d1f4202bd"
         }
       }
     },
@@ -1510,7 +1518,7 @@
     },
     "core.admin.rename-child-routes": {
       "status": "live",
-      "version": 3,
+      "version": 4,
       "versions": {
         "1": {
           "fingerprint": "sha256:2c7f8e41e54f7304",
@@ -1523,6 +1531,10 @@
         "3": {
           "fingerprint": "sha256:69fd1e6df48acddd",
           "docsCommit": "9ff81ee4322ec1346c58b0cfb3bff98d6e868932"
+        },
+        "4": {
+          "fingerprint": "sha256:44337e8c7506d440",
+          "docsCommit": "b334b370acb9c874c0640c83c5f20b5d1f4202bd"
         }
       }
     },
@@ -4928,7 +4940,7 @@
     },
     "nuxt.admin.delete-shared-component": {
       "status": "live",
-      "version": 2,
+      "version": 3,
       "versions": {
         "1": {
           "fingerprint": "sha256:2547bef8ab67601d",
@@ -4937,6 +4949,10 @@
         "2": {
           "fingerprint": "sha256:1fe51384138453dc",
           "docsCommit": "9ff81ee4322ec1346c58b0cfb3bff98d6e868932"
+        },
+        "3": {
+          "fingerprint": "sha256:b24ed4a5053f8d91",
+          "docsCommit": "b334b370acb9c874c0640c83c5f20b5d1f4202bd"
         }
       }
     },
