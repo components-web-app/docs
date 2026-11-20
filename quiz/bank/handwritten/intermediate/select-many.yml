@@ -112,8 +112,8 @@ questions:
         c: The layout's components are rendered on the page, so their IRIs are among its tags.
         d: An editor's page is marked `private, no-store`. Viewing it neither stores nor purges anything.
     sources:
-      - { kind: docs, page: /core-concepts/caching, anchor: purges, sectionHash: 'sha256:be2ecb136ea04d20', title: 'Caching › Purges' }
-      - { kind: docs, page: /core-concepts/caching, anchor: what-each-layer-does, sectionHash: 'sha256:6ab6857f5442bf44', title: 'Caching › What each layer does' }
+      - { kind: docs, page: /core-concepts/caching, anchor: purges, sectionHash: 'sha256:e9f0223d0fda49b2', title: 'Caching › Purges' }
+      - { kind: docs, page: /core-concepts/caching, anchor: what-each-layer-does, sectionHash: 'sha256:6c7208b6b3b83278', title: 'Caching › What each layer does' }
       - { kind: docs, page: /core-concepts/caching, anchor: signed-in-editors-never-get-a-cached-page, sectionHash: 'sha256:77665ddad4825fb4', title: 'Caching › Signed-in editors never get a cached page' }
     author: llm-draft
 
