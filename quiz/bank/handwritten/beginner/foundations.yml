@@ -255,7 +255,7 @@ questions:
         A component group can belong to a layout, a page or a component. For a parent with children, the
         parent component's Vue file declares a `<CwaComponentGroup>`, and editors add the children to it.
     sources:
-      - { kind: docs, page: /core-concepts/components, anchor: component-patterns, sectionHash: 'sha256:d7524195850c0529', title: 'Components › Component Patterns' }
+      - { kind: docs, page: /core-concepts/components, anchor: component-patterns, sectionHash: 'sha256:084e00d9d6bb0c27', title: 'Components › Component Patterns' }
       - { kind: docs, page: /core-concepts/the-data-model, anchor: componentgroup, sectionHash: 'sha256:2d82038914cdd316', title: 'The Data Model › ComponentGroup' }
     author: llm-draft
 

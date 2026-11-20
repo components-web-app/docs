@@ -161,7 +161,7 @@ questions:
         Every cached response and page is tagged with the IRIs (API paths) of the resources in it. Saving a
         resource purges its IRI, so everything that used it is dropped.
     sources:
-      - { kind: docs, page: /core-concepts/caching, anchor: purges, sectionHash: 'sha256:be2ecb136ea04d20', title: 'Caching › Purges' }
+      - { kind: docs, page: /core-concepts/caching, anchor: purges, sectionHash: 'sha256:e9f0223d0fda49b2', title: 'Caching › Purges' }
     author: llm-draft
 
   - id: core.caching.editors-get-fresh-pages
