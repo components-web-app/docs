@@ -431,7 +431,7 @@ questions:
         It writes only the Vue file. Then it prints the matching `php bin/console make:api-component` command,
         which you run yourself; in the template, through the `php` container.
     sources:
-      - { kind: docs, page: /nuxt-module/building-your-ui/cwa-cli, anchor: next-steps-printed-after-generation, sectionHash: 'sha256:b52ba20da75c8a4d', title: 'CLI Generator › Next Steps Printed After Generation' }
+      - { kind: docs, page: /nuxt-module/building-your-ui/cwa-cli, anchor: next-steps-printed-after-generation, sectionHash: 'sha256:61fc411d6dd7c7b4', title: 'CLI Generator › Next Steps Printed After Generation' }
       - { kind: docs, page: /guides/your-first-component, anchor: the-api-entity, sectionHash: 'sha256:a50c17ac1cd7afd9', title: 'Your First Component › The API entity' }
     author: llm-draft
 
