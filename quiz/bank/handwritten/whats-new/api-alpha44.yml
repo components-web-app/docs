@@ -1,0 +1,63 @@
+# Hand-written What's new questions about the API bundle: changes in 2.0.0-alpha.44.
+# Each one has a `since` naming the release that brought the change in.
+# Format: quiz/README.md. Run `pnpm quiz:stamp <id>` to fill in or refresh the hashes.
+
+questions:
+  - id: api.routes.required-start
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [routes]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      `UpdateData` has `#[Silverback\RoutePrefix('/updates')]`. An update record's parent is the announcement
+      at `/announcements/summer-fair`. Which path can its new route have?
+    why: >-
+      The API refuses a route outside its required start, so a path that ignores the parent or the prefix
+      can't be saved.
+    since: [{ repo: api-components-bundle, version: '2.0.0-alpha.44' }]
+    options:
+      - { id: a, text: '`/announcements/summer-fair/updates/gates-open`' }
+      - { id: b, text: '`/announcements/updates/gates-open`' }
+      - { id: c, text: '`/announcements/summer-fair/gates-open-day`' }
+      - { id: d, text: '`/announcements/summer-fair/updates/`' }
+    answer:
+      correct: a
+      explanation: >-
+        The required start is the nearest routed ancestor's path, then the class's prefix, then `/`:
+        `/announcements/summer-fair/updates/`. The path must begin with it and go on after it, so a path that
+        is only the start is refused too. Anything else is a 422 on the path.
+    sources:
+      - { kind: docs, page: /api/routes, anchor: the-required-start-of-a-path, sectionHash: 'sha256:3f326369d54882f2', title: 'Routes › The Required Start of a Path' }
+    author: llm-draft
+
+  - id: api.routes.move-page
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [routes]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      A blog article at `/blog/my-post` has the `/blog` page as its parent. You change its `parentPage` to the
+      page at `/news`, and nothing is at `/news/my-post`. What happens to its route?
+    why: >-
+      Moving a page in the admin or through the API changes its URL, and old links need to keep working.
+    since: [{ repo: api-components-bundle, version: '2.0.0-alpha.44' }]
+    options:
+      - { id: a, text: 'It becomes `/news/my-post`, and `/blog/my-post` redirects to it' }
+      - { id: b, text: 'It stays `/blog/my-post` until you edit the route' }
+      - { id: c, text: 'The change is refused until you delete the route' }
+      - { id: d, text: 'It becomes `/news/my-post`, and `/blog/my-post` stops working' }
+    answer:
+      correct: a
+      explanation: >-
+        The bundle rewrites the route under the new required start, keeping the part after the old one, and
+        turns every old path into a redirect. Its routed descendants move with it. If any new path were taken,
+        the change would be a 422 on `parentPage` and nothing would move.
+    sources:
+      - { kind: docs, page: /api/routes, anchor: moving-a-page, sectionHash: 'sha256:51c091342202dd28', title: 'Routes › Moving a Page' }
+    author: llm-draft

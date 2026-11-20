@@ -108,7 +108,7 @@ questions:
         Ticking it renames every child path to stay under the new path and creates redirects from the old
         paths. Left unticked, only the parent is renamed.
     sources:
-      - { kind: docs, page: /core-concepts/admin-panel, anchor: editing-a-path, sectionHash: 'sha256:31287e077f84af8e', title: 'The Admin Panel › Editing a path' }
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: editing-a-path, sectionHash: 'sha256:48e0f7378d7f4ad5', title: 'The Admin Panel › Editing a path' }
     author: llm-draft
 
   - id: core.admin.reorder-where

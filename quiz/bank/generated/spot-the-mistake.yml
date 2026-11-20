@@ -2252,6 +2252,8 @@ questions:
   - id: gen.mistake.is-editing-value.5
     version: 1
     status: retired
+    retired:
+      reason: "stale-source: the source block is gone or no longer matches the catalogue entry"
     level: intermediate
     area: nuxt-module
     tags:
@@ -2292,11 +2294,11 @@ questions:
       fix: '  v-if="$cwa.admin.isEditing"'
       explanation: "`$cwa.admin.isEditing` is a plain boolean on a reactive object, not a ref. Reading `.value` on
         it gives `undefined`, so the check never sees edit mode."
-    retired:
-      reason: "stale-source: the source block is gone or no longer matches the catalogue entry"
   - id: gen.mistake.is-editing-value.3
     version: 1
     status: retired
+    retired:
+      reason: "stale-source: the source block is gone or no longer matches the catalogue entry"
     level: intermediate
     area: nuxt-module
     tags:
@@ -2345,11 +2347,11 @@ questions:
       fix: "    if (!$pwa?.needRefresh || $cwa.admin.isEditing) {"
       explanation: "`$cwa.admin.isEditing` is a plain boolean on a reactive object, not a ref. Reading `.value` on
         it gives `undefined`, so the check never sees edit mode."
-    retired:
-      reason: "stale-source: the source block is gone or no longer matches the catalogue entry"
   - id: gen.mistake.subpath-import.4
     version: 1
     status: retired
+    retired:
+      reason: "stale-source: the source block is gone or no longer matches the catalogue entry"
     level: intermediate
     area: nuxt-module
     tags:
@@ -2408,11 +2410,11 @@ questions:
       fix: import type { IriProp } from '#cwa/composables/cwa-resource'
       explanation: Import the module's types and helpers through the `#cwa` alias. The `@cwa/nuxt` package only
         exports its root entry, so a `@cwa/nuxt/...` subpath doesn't resolve.
-    retired:
-      reason: "stale-source: the source block is gone or no longer matches the catalogue entry"
   - id: gen.mistake.subpath-import.5
     version: 1
     status: retired
+    retired:
+      reason: "stale-source: the source block is gone or no longer matches the catalogue entry"
     level: intermediate
     area: nuxt-module
     tags:
@@ -2467,11 +2469,11 @@ questions:
       fix: import type { IriProp } from '#cwa/composables/cwa-resource'
       explanation: Import the module's types and helpers through the `#cwa` alias. The `@cwa/nuxt` package only
         exports its root entry, so a `@cwa/nuxt/...` subpath doesn't resolve.
-    retired:
-      reason: "stale-source: the source block is gone or no longer matches the catalogue entry"
   - id: gen.mistake.component-without-props.4
     version: 1
     status: retired
+    retired:
+      reason: "stale-source: the source block is gone or no longer matches the catalogue entry"
     level: beginner
     area: nuxt-module
     tags:
@@ -2516,11 +2518,11 @@ questions:
       fix: const { resource, exposeMeta } = useCwaComponent(props)
       explanation: "`useCwaComponent()` needs the component's props. The module passes each component an `iri` prop,
         and the composable reads it to find the resource. Called with nothing, it has no resource to load."
-    retired:
-      reason: "stale-source: the source block is gone or no longer matches the catalogue entry"
   - id: gen.mistake.component-without-props.5
     version: 1
     status: retired
+    retired:
+      reason: "stale-source: the source block is gone or no longer matches the catalogue entry"
     level: beginner
     area: nuxt-module
     tags:
@@ -2575,11 +2577,11 @@ questions:
       fix: const { resource, exposeMeta } = useCwaComponent(props)
       explanation: "`useCwaComponent()` needs the component's props. The module passes each component an `iri` prop,
         and the composable reads it to find the resource. Called with nothing, it has no resource to load."
-    retired:
-      reason: "stale-source: the source block is gone or no longer matches the catalogue entry"
   - id: gen.mistake.component-without-props.6
     version: 2
     status: retired
+    retired:
+      reason: "stale-source: the source block is gone or no longer matches the catalogue entry"
     level: beginner
     area: nuxt-module
     tags:
@@ -2629,8 +2631,6 @@ questions:
       fix: const { exposeMeta } = useCwaComponent(props)
       explanation: "`useCwaComponent()` needs the component's props. The module passes each component an `iri` prop,
         and the composable reads it to find the resource. Called with nothing, it has no resource to load."
-    retired:
-      reason: "stale-source: the source block is gone or no longer matches the catalogue entry"
   - id: gen.mistake.is-editing-value.4
     version: 1
     status: retired

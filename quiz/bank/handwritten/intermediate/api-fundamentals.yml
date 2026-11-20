@@ -142,7 +142,7 @@ questions:
         Only generated routes are prefixed with the parent's path. An explicit `route:` is used as written, so
         include the parent's segments to nest it.
     sources:
-      - { kind: docs, page: /api/dynamic-pages, anchor: route-auto-prefixing, sectionHash: 'sha256:9b1730643953152f', title: 'Page Data & Nested Pages › Route Auto-Prefixing' }
+      - { kind: docs, page: /api/dynamic-pages, anchor: route-auto-prefixing, sectionHash: 'sha256:0c59a76b7e197e2b', title: 'Page Data & Nested Pages › Route Auto-Prefixing' }
     author: llm-draft
 
   - id: api.nested.parent-reference
@@ -225,7 +225,7 @@ questions:
         A route can only be generated when the parent has one. Give the parent a route, or give the child an
         explicit `route:`.
     sources:
-      - { kind: docs, page: /api/routes, anchor: route-generation, sectionHash: 'sha256:8f60aa0a884d2ba7', title: 'Routes › Route Generation' }
+      - { kind: docs, page: /api/routes, anchor: route-generation, sectionHash: 'sha256:e7118dad0f928cd8', title: 'Routes › Route Generation' }
     author: llm-draft
 
   - id: api.routes.generate-replaces
@@ -251,7 +251,7 @@ questions:
       explanation: >-
         Changing a route's `path` with `PUT` or `PATCH` creates a redirect from the old path to the route.
     sources:
-      - { kind: docs, page: /api/routes, anchor: redirects, sectionHash: 'sha256:5e02add3f7b2cf92', title: 'Routes › Redirects' }
+      - { kind: docs, page: /api/routes, anchor: redirects, sectionHash: 'sha256:15c8819ffb75af0e', title: 'Routes › Redirects' }
     author: llm-draft
 
   - id: api.fixtures.template-argument

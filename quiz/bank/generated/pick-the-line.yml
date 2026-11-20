@@ -1445,6 +1445,8 @@ questions:
   - id: gen.target.define-expose.3
     version: 2
     status: retired
+    retired:
+      reason: "stale-source: the source block is gone or no longer matches the catalogue entry"
     level: beginner
     area: nuxt-module
     tags:
@@ -1501,11 +1503,11 @@ questions:
         - 17
       explanation: "`defineExpose(exposeMeta)` hands the component's metadata to the admin manager. Without it, the
         admin can't select the component."
-    retired:
-      reason: "stale-source: the source block is gone or no longer matches the catalogue entry"
   - id: gen.target.define-expose.4
     version: 2
     status: retired
+    retired:
+      reason: "stale-source: the source block is gone or no longer matches the catalogue entry"
     level: beginner
     area: nuxt-module
     tags:
@@ -1557,11 +1559,11 @@ questions:
         - 18
       explanation: "`defineExpose(exposeMeta)` hands the component's metadata to the admin manager. Without it, the
         admin can't select the component."
-    retired:
-      reason: "stale-source: the source block is gone or no longer matches the catalogue entry"
   - id: gen.target.define-expose.6
     version: 2
     status: retired
+    retired:
+      reason: "stale-source: the source block is gone or no longer matches the catalogue entry"
     level: beginner
     area: nuxt-module
     tags:
@@ -1608,8 +1610,6 @@ questions:
         - 13
       explanation: "`defineExpose(exposeMeta)` hands the component's metadata to the admin manager. Without it, the
         admin can't select the component."
-    retired:
-      reason: "stale-source: the source block is gone or no longer matches the catalogue entry"
   - id: gen.target.page-data-position.1
     version: 2
     status: retired
