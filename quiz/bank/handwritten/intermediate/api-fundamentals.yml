@@ -225,7 +225,7 @@ questions:
         A route can only be generated when the parent has one. Give the parent a route, or give the child an
         explicit `route:`.
     sources:
-      - { kind: docs, page: /api/routes, anchor: route-generation, sectionHash: 'sha256:7ee05edfeb18d7ad', title: 'Routes › Route Generation' }
+      - { kind: docs, page: /api/routes, anchor: route-generation, sectionHash: 'sha256:8f60aa0a884d2ba7', title: 'Routes › Route Generation' }
     author: llm-draft
 
   - id: api.routes.generate-replaces
