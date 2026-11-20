@@ -29,11 +29,11 @@ questions:
         Setting `model.value` starts a debounced `PATCH` (250 ms by default), and rapid changes are batched into
         one request.
     sources:
-      - { kind: docs, page: /nuxt-module/composables/admin-manager/use-cwa-resource-model, anchor: return-values, sectionHash: 'sha256:a470df5f3cdb75a7', title: 'useCwaResourceModel › Return Values' }
+      - { kind: docs, page: /nuxt-module/composables/admin-manager/use-cwa-resource-model, anchor: return-values, sectionHash: 'sha256:b571d059cb530d4b', title: 'useCwaResourceModel › Return Values' }
     author: llm-draft
 
   - id: nuxt.resource-model.iri-argument
-    version: 2
+    version: 3
     status: live
     level: intermediate
     area: nuxt-module
@@ -51,11 +51,9 @@ questions:
       text: |-
         <!-- app/app/cwa/components/Title/admin/Title.vue -->
         <template>
-            <div class="p-4 space-y-4">
-                <CwaUiFormLabelWrapper label="Title text">
-                    <CwaUiFormInput :model="titleModel" />
-                </CwaUiFormLabelWrapper>
-            </div>
+            <CwaUiManagerTab>
+                <CwaUiInput :model="titleModel" label="Title text" />
+            </CwaUiManagerTab>
         </template>
 
         <script setup lang="ts">
@@ -63,24 +61,24 @@ questions:
 
         const { exposeMeta, iri } = useCwaResourceManagerTab({ name: 'Content', order: 1 })
 
-        const titleModel = useCwaResourceModel<string>(iri.value, 'title')
+        const titleModel = useCwaResourceModel<string>(iri.value, 'title', { debounceTime: 0 })
 
         defineExpose(exposeMeta)
         </script>
     answer:
-      line: 15
-      fix: "const titleModel = useCwaResourceModel<string>(iri, 'title')"
+      line: 13
+      fix: "const titleModel = useCwaResourceModel<string>(iri, 'title', { debounceTime: 0 })"
       explanation: >-
         Pass `iri` itself, the reactive ref `useCwaResourceManagerTab` returns. The composable reads `iri.value`
         to follow the selected component, so a plain string gives it no IRI: the field stays empty and nothing
         is saved.
     sources:
-      - { kind: docs, page: /nuxt-module/building-your-ui/creating-components, anchor: one-tab, sectionHash: 'sha256:6597ecb0a8bc5625', title: 'Component Files › One Tab', block: 0, blockHash: 'sha256:d3d2be831b79efd9' }
-      - { kind: docs, page: /nuxt-module/composables/admin-manager/use-cwa-resource-manager-tab, anchor: return-values, sectionHash: 'sha256:3b7270f5ed56e80d', title: 'useCwaResourceManagerTab › Return Values' }
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-components, anchor: binding-a-field, sectionHash: 'sha256:57aae5b3c0aa13e2', title: 'Component Files › Binding a Field' }
+      - { kind: docs, page: /nuxt-module/composables/admin-manager/use-cwa-resource-manager-tab, anchor: return-values, sectionHash: 'sha256:28ac3107ed2e0142', title: 'useCwaResourceManagerTab › Return Values' }
     author: llm-draft
 
   - id: nuxt.component.style-name-check
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: nuxt-module
@@ -88,29 +86,29 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: >-
-      A component declares the styles `Light` and `Dark` with `useCwaComponent`'s `styles.classes`. It should
-      show an extra icon when the editor picks `Dark`. How do you test which style is selected?
+      A component's `defineCwaConfig` declares the styles `light` and `dark`, each with a `label` and `classes`.
+      It should show an extra icon when the editor picks `dark`. How do you test which style is selected?
     why: >-
-      Comparing `uiClassNames` with a style's name never matches, so the icon never shows, and renaming a
-      style's classes would break any check on the class string.
+      Comparing `uiClassNames` with a bare key never matches, so the icon never shows, and a check on the class
+      string breaks when the classes change.
     options:
-      - { id: a, text: '`resource.value.data.uiClassNames.includes(''Dark'')`' }
-      - { id: b, text: '`resource.value.data.style === ''Dark''`' }
-      - { id: c, text: '`getCurrentStyleName(resource.value.data) === ''Dark''`' }
-      - { id: d, text: '`$cwa.admin.selectedStyle === ''Dark''`' }
+      - { id: a, text: '`resource.value.data.uiClassNames.includes(''dark'')`' }
+      - { id: b, text: '`resource.value.data.style === ''dark''`' }
+      - { id: c, text: '`styleKeys.value.includes(''dark'')`' }
+      - { id: d, text: '`$cwa.admin.selectedStyle === ''dark''`' }
     answer:
       correct: c
       explanation: >-
-        The resource stores each selected style's class string in `uiClassNames`, never the style's name.
-        `getCurrentStyleName`, returned by `useCwaComponent`, maps it back to the name.
+        The resource stores each picked style as `style:<key>` in `uiClassNames`. `styleKeys`, returned by
+        `useCwaComponent`, lists the keys without the prefix.
       optionNotes:
-        a: '`uiClassNames` holds the class string, such as `bg-black text-white`, not `Dark`.'
+        a: '`uiClassNames` holds `style:dark`, not `dark`.'
     sources:
-      - { kind: docs, page: /nuxt-module/building-your-ui/creating-components, anchor: style-variants, sectionHash: 'sha256:bd0d1095b55c2b7b', title: 'Component Files › Style Variants' }
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-components, anchor: style-variants, sectionHash: 'sha256:53314dc4e30e2b9f', title: 'Component Files › Style Variants' }
     author: llm-draft
 
   - id: nuxt.component.inner-element-classes
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: nuxt-module
@@ -118,23 +116,23 @@ questions:
     type: multiple-choice
     difficulty: 3
     prompt: >-
-      A Button component's root element is a wrapper `<div>`, and the style classes an editor picks should go on
-      the `<a>` inside it. What do you do?
+      A Button component's root element is a wrapper `<div>`. Its `underlined` style should underline only the
+      `<a>` inside the wrapper. What do you do?
     why: >-
-      By default the classes land on the root element, so a style meant for the link styles the wrapper instead
-      and seems to do nothing.
+      A style's classes always land on the root element, so a class meant for the link styles the wrapper
+      instead and seems to do nothing.
     options:
-      - { id: a, text: 'Pass `autoClass: false`, then bind `uiClassNames` to the `<a>`' }
+      - { id: a, text: 'Test `styleKeys.includes(''underlined'')` and bind the class on the `<a>`' }
       - { id: b, text: 'Make the `<a>` the first child, and the classes move to it' }
-      - { id: c, text: 'Add a `target` key to each style in `styles.classes`' }
+      - { id: c, text: 'Add a `target` key to the style in `defineCwaConfig`' }
       - { id: d, text: 'Bind `:class="resource.data.style"` on the `<a>`' }
     answer:
       correct: a
       explanation: >-
-        The selected classes are applied to the root element automatically. `autoClass: false` turns that off,
-        and `useCwaComponent` returns `uiClassNames` for you to bind where you want.
+        The picked style's classes go on the root element, and there's no option to move them. `styleKeys`,
+        returned by `useCwaComponent`, lists the picked keys, so bind the inner element's class from it.
     sources:
-      - { kind: docs, page: /nuxt-module/composables/component/use-cwa-component, anchor: applying-classes-to-an-inner-element, sectionHash: 'sha256:124bfc6ca5c55993', title: 'useCwaComponent › Applying Classes to an Inner Element' }
+      - { kind: docs, page: /nuxt-module/composables/component/use-cwa-component, anchor: styling-an-inner-element, sectionHash: 'sha256:72faca45131a9745', title: 'useCwaComponent › Styling an Inner Element' }
     author: llm-draft
 
   - id: nuxt.collection.item-fields
