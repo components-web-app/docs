@@ -1,0 +1,96 @@
+# Hand-written What's new questions about deployment: template changes in 2.0.0-alpha.55 and 2.0.0-alpha.56.
+# Each one has a `since` naming the release that brought the change in.
+# Format: quiz/README.md. Run `pnpm quiz:stamp <id>` to fill in or refresh the hashes.
+
+questions:
+  - id: deploy.server.host-variable
+    version: 1
+    status: live
+    level: intermediate
+    area: deployment
+    tags: [deployment]
+    type: multiple-choice
+    difficulty: 2
+    prompt: >-
+      A project's pipeline should deploy it to one server over SSH. Which CI variable switches the project
+      to that?
+    why: >-
+      One variable decides which deploy jobs run, so a single-server project never tries to reach a cluster
+      it doesn't have.
+    since: [{ repo: components-web-app, version: '2.0.0-alpha.55' }]
+    options:
+      - { id: a, text: '`CWA_CI_PRODUCTION_DISABLED` set to `"true"`' }
+      - { id: b, text: '`CWA_CI_SERVER_HOST`, the server''s address' }
+      - { id: c, text: '`CWA_CI_SERVER_BUILD` set to `"true"`' }
+      - { id: d, text: '`KUBE_CONTEXT` left empty on every job' }
+    answer:
+      correct: b
+      explanation: >-
+        Setting `CWA_CI_SERVER_HOST` makes the project single-server: every Kubernetes job skips, and
+        production is deployed by the manual server job, which copies the commit over SSH and runs
+        `bin/server/deploy.sh` there.
+      optionNotes:
+        c: That builds the images on the server instead of pulling CI's, for a server of another architecture.
+    sources:
+      - { kind: docs, page: /deployment/one-server, anchor: set-up-the-server-and-the-variables, sectionHash: 'sha256:c60acab5ebaca6ec', title: 'Deploy to One Server › Set up the server and the variables' }
+    author: llm-draft
+
+  - id: deploy.k8s.fixtures-console-job
+    version: 1
+    status: live
+    level: advanced
+    area: deployment
+    tags: [deployment, kubernetes, fixtures]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      On Kubernetes, the pipeline's fixture job loads the fixtures. Where does `doctrine:fixtures:load` run?
+    why: >-
+      A large load beside the serving API shares its memory limit, and an OOM kill there takes the site down
+      until the pod has restarted and warmed.
+    since: [{ repo: components-web-app, version: '2.0.0-alpha.56' }]
+    options:
+      - { id: a, text: 'In the serving API pod, through `kubectl exec`' }
+      - { id: b, text: 'In the CI job itself, straight against the database' }
+      - { id: c, text: 'In a one-off Job from the release''s console CronJob' }
+      - { id: d, text: 'In the image variants Job, once the variants are made' }
+    answer:
+      correct: c
+      explanation: >-
+        The load runs in a one-off Job from the suspended `<release>-console` CronJob, with its own memory
+        limit. Only the cache flush that follows runs in the API pod, where Souin is.
+    sources:
+      - { kind: docs, page: /deployment/kubernetes, anchor: console-jobs, sectionHash: 'sha256:a49cd71fbd6a1f4b', title: 'Kubernetes & Helm › Console Jobs' }
+    author: llm-draft
+
+  - id: deploy.cloudflare.purge-option-a
+    version: 1
+    status: live
+    level: advanced
+    area: deployment
+    tags: [cloudflare, deployment]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      A site sits behind Cloudflare as a proxy only, with no Cache Rules. Why does it still need
+      `CADDY_CACHE_CDN_CONFIG` with `provider cloudflare`?
+    why: >-
+      Without the deploy purge, Cloudflare can keep an earlier build's `/_nuxt` files for a year, and pages
+      load the old code and CSS.
+    since: [{ repo: components-web-app, version: '2.0.0-alpha.56' }]
+    options:
+      - { id: a, text: 'Cloudflare caches `/_nuxt` files, and each deploy must purge them' }
+      - { id: b, text: 'Cloudflare caches every page for two hours unless told otherwise' }
+      - { id: c, text: 'Without it, Souin refuses every request that comes through Cloudflare' }
+      - { id: d, text: 'It turns on Cloudflare''s rate limiting rule for every `/_api` request' }
+    answer:
+      correct: a
+      explanation: >-
+        Cloudflare caches static files such as `/_nuxt/*` by default, sent as `immutable`. With the setting,
+        each deploy purges the zone after its rollout, and a deploy without it warns when the site answers
+        through Cloudflare.
+      optionNotes:
+        b: Without a Cache Rule, Cloudflare caches no HTML or JSON.
+    sources:
+      - { kind: docs, page: /deployment/cloudflare, anchor: the-deploy-purge, sectionHash: 'sha256:619d83379c0c0095', title: 'Cloudflare › The deploy purge' }
+    author: llm-draft

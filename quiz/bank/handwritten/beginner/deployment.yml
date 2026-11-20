@@ -22,7 +22,7 @@ questions:
         The Nuxt app is `app/`, and its source directory is `app/` too. Nuxt only looks in `app/app/cwa/`, so
         a file at `app/cwa/` is never found.
     sources:
-      - { kind: docs, page: /getting-started/installation, anchor: where-things-live, sectionHash: 'sha256:567f995785fc4015', title: 'Installation › Where things live' }
+      - { kind: docs, page: /getting-started/installation, anchor: where-things-live, sectionHash: 'sha256:3a1300d50f7447b9', title: 'Installation › Where things live' }
     author: llm-draft
 
   - id: deploy.install.dev-server
@@ -70,7 +70,7 @@ questions:
         Editors sign in with `ROLE_ADMIN`. `silverback:api-components:user:create --admin` gives a new account
         that role; without it you can't open the admin panel.
     sources:
-      - { kind: docs, page: /getting-started/installation, anchor: _2-let-binup-start-the-site, sectionHash: 'sha256:bcb5b937a33fb163', title: 'Installation › 2. Let bin/up start the site' }
+      - { kind: docs, page: /getting-started/installation, anchor: _2-let-binup-start-the-site, sectionHash: 'sha256:aeca1527518923c3', title: 'Installation › 2. Let bin/up start the site' }
       - { kind: docs, page: /getting-started/key-ideas, anchor: editing, sectionHash: 'sha256:56ff4c5739a87e28', title: 'Key Ideas › Editing' }
     author: llm-draft
 
@@ -97,14 +97,14 @@ questions:
     author: llm-draft
 
   - id: deploy.install.empty-home
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: deployment
     tags: [routes]
     type: multiple-choice
     difficulty: 2
-    prompt: You installed without the sample content, and `https://localhost` shows an error page saying the page can't be found. What does that mean?
+    prompt: You created the project as an empty site, and `https://localhost` shows an error page saying the page can't be found. What does that mean?
     options:
       - { id: a, text: 'The Nuxt dev server hasn''t started yet' }
       - { id: b, text: 'No page has the route `/` yet' }
@@ -116,7 +116,7 @@ questions:
         It's expected. The database starts empty, so nothing answers at `/` until you build a page with that
         route. Sign in and start with your first layout.
     sources:
-      - { kind: docs, page: /getting-started/installation, anchor: _2-let-binup-start-the-site, sectionHash: 'sha256:bcb5b937a33fb163', title: 'Installation › 2. Let bin/up start the site' }
+      - { kind: docs, page: /getting-started/installation, anchor: _2-let-binup-start-the-site, sectionHash: 'sha256:aeca1527518923c3', title: 'Installation › 2. Let bin/up start the site' }
     author: llm-draft
 
   - id: deploy.install.console-commands
@@ -139,5 +139,5 @@ questions:
         PHP and Composer run only inside Docker, so PHP commands go through the `php` container. Commands run
         from the project root.
     sources:
-      - { kind: docs, page: /getting-started/installation, anchor: where-things-live, sectionHash: 'sha256:567f995785fc4015', title: 'Installation › Where things live' }
+      - { kind: docs, page: /getting-started/installation, anchor: where-things-live, sectionHash: 'sha256:3a1300d50f7447b9', title: 'Installation › Where things live' }
     author: llm-draft

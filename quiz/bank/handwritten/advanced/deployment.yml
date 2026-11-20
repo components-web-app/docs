@@ -107,7 +107,7 @@ questions:
     author: llm-draft
 
   - id: deploy.cloudflare.option-a-rules
-    version: 1
+    version: 2
     status: live
     level: advanced
     area: deployment
@@ -116,8 +116,8 @@ questions:
     difficulty: 3
     prompt: With Cloudflare as a proxy only (Option A), which Cache Rules should the zone have?
     why: >-
-      Add a rule that caches pages in Option A and edits in the admin stop reaching visitors served from the
-      edge, because nothing tells Cloudflare to drop the old page.
+      Add a rule that caches pages in Option A and edits can stop reaching visitors served from the edge,
+      because Option A doesn't set up the rules and tags that let Cloudflare drop the old page.
     options:
       - { id: a, text: A rule that caches every page for two hours }
       - { id: b, text: A rule that bypasses the cache for everything }
@@ -126,12 +126,13 @@ questions:
     answer:
       correct: d
       explanation: >-
-        Cloudflare's defaults cache only static files, never HTML, JSON or a `private` response. Purges don't
-        reach Cloudflare in Option A, so it must not keep pages.
+        Cloudflare's defaults cache only static files, never HTML, JSON or a `private` response. Pages stay
+        with Souin, whose cache every edit purges. Caching pages at the edge is Option B, with its own rule and
+        tag purges.
       optionNotes:
         b: A bypass-everything rule sends every `/_nuxt` request to php.
     sources:
-      - { kind: docs, page: /deployment/cloudflare, anchor: leave-cloudflares-cache-alone, sectionHash: 'sha256:a9bd1a1243d606d8', title: 'Cloudflare › Leave Cloudflare''s cache alone' }
+      - { kind: docs, page: /deployment/cloudflare, anchor: leave-cloudflares-cache-alone, sectionHash: 'sha256:7497553bf66bc428', title: 'Cloudflare › Leave Cloudflare''s cache alone' }
     author: llm-draft
 
   - id: deploy.cloudflare.always-use-https

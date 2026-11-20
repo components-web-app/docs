@@ -217,24 +217,20 @@ code:
         code: |
           ```vue [app/cwa/components/Title/admin/Title.vue]
           <template>
-            <CwaUiFormLabelWrapper label="Title">
-              <CwaUiFormInput
-                v-model="titleModel.model.value"
+            <CwaUiManagerTab>
+              <CwaUiInput
+                field="title"
+                label="Title"
+                width="lg"
               />
-            </CwaUiFormLabelWrapper>
+            </CwaUiManagerTab>
           </template>
 
           <script setup lang="ts">
-          import {
-            useCwaResourceManagerTab,
-            useCwaResourceModel
-          } from '#imports'
+          import { useCwaResourceManagerTab } from '#imports'
 
-          const { exposeMeta, iri } =
+          const { exposeMeta } =
             useCwaResourceManagerTab({ name: 'Title' })
-
-          const titleModel =
-            useCwaResourceModel<string>(iri, 'title')
 
           defineExpose(exposeMeta)
           </script>

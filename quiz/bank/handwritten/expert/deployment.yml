@@ -33,7 +33,7 @@ questions:
       optionNotes:
         b: The deploy decides on the CDN config, and the purge uses the token written in it.
     sources:
-      - { kind: code, repo: components-web-app, path: bin/devops/k8s.sh, lines: [1663, 1680], commit: a6d4ca67f6e0ba5539b689fef70db79cfa5fed6c, linesHash: 'sha256:57262d81213ff43c' }
+      - { kind: code, repo: components-web-app, path: bin/devops/k8s.sh, lines: [1753, 1770], commit: c2bcaf2c31c906a24028a8a43e3309a7a9b155f4, linesHash: 'sha256:57262d81213ff43c' }
       - { kind: docs, page: /deployment/ci-cd, anchor: why-every-deploy-clears-the-page-cache, sectionHash: 'sha256:efa29d03b6a2e05d', title: 'CI/CD › Why every deploy clears the page cache' }
     author: llm-draft
 
@@ -63,7 +63,7 @@ questions:
         `"true"` purges review apps only. On production the job logs that it needs `"force"`, and loads
         with `--append`, keeping existing content.
     sources:
-      - { kind: code, repo: components-web-app, path: bin/devops/k8s.sh, lines: [1594, 1608], commit: a6d4ca67f6e0ba5539b689fef70db79cfa5fed6c, linesHash: 'sha256:3f9ddbfc0a66f94f' }
+      - { kind: code, repo: components-web-app, path: bin/devops/k8s.sh, lines: [1677, 1691], commit: c2bcaf2c31c906a24028a8a43e3309a7a9b155f4, linesHash: 'sha256:3f9ddbfc0a66f94f' }
       - { kind: docs, page: /deployment/ci-cd, anchor: purging-before-a-load, sectionHash: 'sha256:bec843d848a1ae81', title: 'CI/CD › Purging before a load' }
     author: llm-draft
 
@@ -126,8 +126,8 @@ questions:
         The template wraps the Mercure hub, and its `publish()` sends nothing while the variable is
         `true`. It's set only on the fixture command, so the running API still publishes as usual.
     sources:
-      - { kind: code, repo: components-web-app, path: api/src/Mercure/SkipAwareMercureHub.php, lines: [65, 72], commit: a6d4ca67f6e0ba5539b689fef70db79cfa5fed6c, linesHash: 'sha256:b5324028cac06d5d' }
-      - { kind: code, repo: components-web-app, path: bin/devops/k8s.sh, lines: [1615, 1616], commit: a6d4ca67f6e0ba5539b689fef70db79cfa5fed6c, linesHash: 'sha256:93293bade60a9144' }
+      - { kind: code, repo: components-web-app, path: api/src/Mercure/SkipAwareMercureHub.php, lines: [65, 72], commit: c2bcaf2c31c906a24028a8a43e3309a7a9b155f4, linesHash: 'sha256:b5324028cac06d5d' }
+      - { kind: code, repo: components-web-app, path: bin/devops/k8s.sh, lines: [1700, 1700], commit: c2bcaf2c31c906a24028a8a43e3309a7a9b155f4, linesHash: 'sha256:bb55b7fe584634eb' }
     author: llm-draft
 
   - id: deploy.internals.jwt-from-live-secret
