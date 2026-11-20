@@ -41,6 +41,125 @@ questions:
     generator:
       name: spot-the-mistake
       ref: builder-get-entity
+  - id: gen.mistake.is-editing-value.6
+    version: 1
+    status: live
+    level: intermediate
+    area: nuxt-module
+    tags:
+      - cwa-api
+      - admin
+    type: spot-the-mistake
+    family: mistake:is-editing-value
+    prompt: One line in this code is wrong. Click it.
+    why: Read `$cwa.admin.isEditing` with `.value` and your edit-only UI never appears, with no error to tell you
+      why.
+    code:
+      lang: vue
+      text: |-
+        <!-- app/app/cwa/components/Title/Title.vue -->
+        <template>
+            <h1>
+                <LazyCwaUiInlineEdit
+                    v-if="$cwa.admin.isEditing.value"
+                    :model="title"
+                    label="Title"
+                    placeholder="Add a title"
+                />
+                <template v-else>
+                    {{ resource?.data?.title }}
+                </template>
+            </h1>
+        </template>
+
+        <script setup lang="ts">
+        import { toRef } from 'vue'
+        import type { IriProp } from '#cwa/composables/cwa-resource'
+        import { useCwaComponent, useCwaResourceModel } from '#imports'
+
+        const props = defineProps<IriProp>()
+        const { resource, exposeMeta, $cwa } = useCwaComponent(props)
+        const title = useCwaResourceModel<string>(toRef(props, 'iri'), 'title')
+        defineExpose(exposeMeta)
+        </script>
+    answer:
+      line: 5
+      fix: '            v-if="$cwa.admin.isEditing"'
+      explanation: "`$cwa.admin.isEditing` is a plain boolean on a reactive object, not a ref. Reading `.value` on
+        it gives `undefined`, so the check never sees edit mode."
+    sources:
+      - kind: docs
+        page: /nuxt-module/cwa-layer/admin-panel
+        anchor: edit-mode
+        sectionHash: sha256:b4a6e117668a3bd1
+        title: Admin Panel Reference › Edit Mode
+      - kind: docs
+        page: /nuxt-module/building-your-ui/creating-components
+        anchor: part-3-editing-on-the-page
+        sectionHash: sha256:7730cb8edb68e0ef
+        title: "Component Files › Part 3: Editing on the Page"
+        block: 0
+        blockHash: sha256:014ee6e4c176d5a9
+    generator:
+      name: spot-the-mistake
+      ref: is-editing-value
+  - id: gen.mistake.is-editing-value.7
+    version: 1
+    status: live
+    level: intermediate
+    area: nuxt-module
+    tags:
+      - cwa-api
+      - admin
+    type: spot-the-mistake
+    family: mistake:is-editing-value
+    prompt: One line in this code is wrong. Click it.
+    why: Read `$cwa.admin.isEditing` with `.value` and your edit-only UI never appears, with no error to tell you
+      why.
+    code:
+      lang: vue
+      text: |2-
+                class="max-w-full h-auto"
+                :style="{ 'aspect-ratio': `${files.file.displayMedia.width} / ${files.file.displayMedia.height}` }"
+                @load="files.file.handleLoad"
+            >
+            <div
+                class="absolute inset-0 bg-gray-200 pointer-events-none transition-opacity"
+                :class="{ 'opacity-0': files.file.loaded }"
+            />
+        </div>
+        <LazyCwaUiEditPlaceholder
+            v-else-if="$cwa.admin.isEditing.value"
+            label="Add an image"
+            class="w-40 h-40"
+        />
+        <div
+            v-else
+            class="w-40 h-40 bg-gray-200 flex items-center justify-center text-gray-500 font-bold"
+        >
+            No Image
+        </div>
+    answer:
+      line: 11
+      fix: '    v-else-if="$cwa.admin.isEditing"'
+      explanation: "`$cwa.admin.isEditing` is a plain boolean on a reactive object, not a ref. Reading `.value` on
+        it gives `undefined`, so the check never sees edit mode."
+    sources:
+      - kind: docs
+        page: /nuxt-module/cwa-layer/admin-panel
+        anchor: edit-mode
+        sectionHash: sha256:b4a6e117668a3bd1
+        title: Admin Panel Reference › Edit Mode
+      - kind: docs
+        page: /nuxt-module/component-helpers/images-and-uploads
+        anchor: display-component
+        sectionHash: sha256:459248b5c9ef6e93
+        title: Images & Media › Display Component
+        block: 0
+        blockHash: sha256:d169471af0dd0ea6
+    generator:
+      name: spot-the-mistake
+      ref: is-editing-value
   - id: gen.mistake.is-editing-value.1
     version: 2
     status: live
@@ -132,100 +251,6 @@ questions:
         title: Rich-Text Editor › Choosing the Editor's Buttons
         block: 0
         blockHash: sha256:8db892a9f7899e3c
-    generator:
-      name: spot-the-mistake
-      ref: is-editing-value
-  - id: gen.mistake.is-editing-value.5
-    version: 1
-    status: live
-    level: intermediate
-    area: nuxt-module
-    tags:
-      - cwa-api
-      - admin
-    type: spot-the-mistake
-    family: mistake:is-editing-value
-    prompt: One line in this code is wrong. Click it.
-    why: Read `$cwa.admin.isEditing` with `.value` and your edit-only UI never appears, with no error to tell you
-      why.
-    code:
-      lang: vue
-      text: |-
-        <TipTapHtmlEditor
-          v-if="$cwa.admin.isEditing.value"
-          :model="resourceModel"
-          :iri="iri"
-          field="html"
-        />
-    answer:
-      line: 2
-      fix: '  v-if="$cwa.admin.isEditing"'
-      explanation: "`$cwa.admin.isEditing` is a plain boolean on a reactive object, not a ref. Reading `.value` on
-        it gives `undefined`, so the check never sees edit mode."
-    sources:
-      - kind: docs
-        page: /nuxt-module/cwa-layer/admin-panel
-        anchor: edit-mode
-        sectionHash: sha256:b4a6e117668a3bd1
-        title: Admin Panel Reference › Edit Mode
-      - kind: docs
-        page: /nuxt-module/component-helpers/rich-text-editor
-        anchor: typing-at-the-same-time
-        sectionHash: sha256:89101653984144dd
-        title: Rich-Text Editor › Typing at the Same Time
-        block: 0
-        blockHash: sha256:c3adb4a218015a36
-    generator:
-      name: spot-the-mistake
-      ref: is-editing-value
-  - id: gen.mistake.is-editing-value.3
-    version: 1
-    status: live
-    level: intermediate
-    area: nuxt-module
-    tags:
-      - cwa-api
-      - admin
-    type: spot-the-mistake
-    family: mistake:is-editing-value
-    prompt: One line in this code is wrong. Click it.
-    why: Read `$cwa.admin.isEditing` with `.value` and your edit-only UI never appears, with no error to tell you
-      why.
-    code:
-      lang: ts
-      text: |-
-        export default defineNuxtPlugin((nuxtApp) => {
-          useRouter().afterEach((to, from, failure) => {
-            if (failure || to.path === from.path) {
-              return
-            }
-            const $pwa = nuxtApp.$pwa as ReturnType<typeof usePWA> | undefined
-            const $cwa = nuxtApp.$cwa as ReturnType<typeof useCwa>
-            // Held while an admin is editing, so unsaved inline edits are never lost
-            if (!$pwa?.needRefresh || $cwa.admin.isEditing.value) {
-              return
-            }
-            void $pwa.updateServiceWorker()
-          })
-        })
-    answer:
-      line: 9
-      fix: "    if (!$pwa?.needRefresh || $cwa.admin.isEditing) {"
-      explanation: "`$cwa.admin.isEditing` is a plain boolean on a reactive object, not a ref. Reading `.value` on
-        it gives `undefined`, so the check never sees edit mode."
-    sources:
-      - kind: docs
-        page: /nuxt-module/cwa-layer/admin-panel
-        anchor: edit-mode
-        sectionHash: sha256:b4a6e117668a3bd1
-        title: Admin Panel Reference › Edit Mode
-      - kind: docs
-        page: /nuxt-module/pwa
-        anchor: applying-updates
-        sectionHash: sha256:bbe92a4728bdb58b
-        title: Progressive Web App & Offline › Applying Updates
-        block: 1
-        blockHash: sha256:60c62f519ea31f5a
     generator:
       name: spot-the-mistake
       ref: is-editing-value
@@ -671,7 +696,7 @@ questions:
       name: spot-the-mistake
       ref: cwa-disabled-false
   - id: gen.mistake.subpath-import.1
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: nuxt-module
@@ -693,7 +718,13 @@ questions:
 
         <script setup lang="ts">
         import type { IriProp } from '@cwa/nuxt/runtime/composables/cwa-resource'
-        import { useCwaComponent } from '#imports'
+        import { useCwaComponent, defineCwaConfig } from '#imports'
+
+        defineCwaConfig({
+          name: 'Title',
+          description: 'The main heading of a page',
+          icon: 'heading',
+        })
 
         const props = defineProps<IriProp>()
         const { resource, exposeMeta } = useCwaComponent(props)
@@ -713,15 +744,15 @@ questions:
       - kind: docs
         page: /core-concepts/components
         anchor: _2-the-vue-component-the-display
-        sectionHash: sha256:cc87dc88884ee7f5
+        sectionHash: sha256:ccc012efb4c22fd9
         title: Components › 2. The Vue component (the display)
         block: 0
-        blockHash: sha256:58f142cdf2cf43cb
+        blockHash: sha256:74ccd4241205c68f
     generator:
       name: spot-the-mistake
       ref: subpath-import
   - id: gen.mistake.subpath-import.2
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: nuxt-module
@@ -756,6 +787,10 @@ questions:
         <script setup lang="ts">
         import type { IriProp } from '@cwa/nuxt/runtime/composables/cwa-resource'
 
+        defineCwaConfig({
+          name: 'Two Column Page',
+        })
+
         const props = defineProps<IriProp>()
         </script>
     answer:
@@ -772,15 +807,15 @@ questions:
       - kind: docs
         page: /guides/your-first-page-template
         anchor: the-file
-        sectionHash: sha256:9d4da2ea60160308
+        sectionHash: sha256:26e89976e16a5487
         title: Your First Page Template › The File
         block: 0
-        blockHash: sha256:6bc05eb5a4176069
+        blockHash: sha256:ec211283cc5876c2
     generator:
       name: spot-the-mistake
       ref: subpath-import
   - id: gen.mistake.subpath-import.3
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: nuxt-module
@@ -812,6 +847,13 @@ questions:
         <script setup lang="ts">
         import type { IriProp } from '@cwa/nuxt/runtime/composables/cwa-resource'
 
+        defineCwaConfig({
+          name: 'Quote',
+          description: 'A pull quote with an optional author',
+          icon: 'quote',
+          group: 'Text',
+        })
+
         const props = defineProps<IriProp>()
         const { resource, exposeMeta } = useCwaComponent(props)
         defineExpose(exposeMeta)
@@ -830,14 +872,14 @@ questions:
       - kind: docs
         page: /guides/your-first-component
         anchor: the-vue-file
-        sectionHash: sha256:d7675402ce0512d0
+        sectionHash: sha256:11bf0b7805d1ee90
         title: Your First Component › The Vue file
         block: 1
-        blockHash: sha256:df2358ca3d144100
+        blockHash: sha256:4c90d3669fe2bd37
     generator:
       name: spot-the-mistake
       ref: subpath-import
-  - id: gen.mistake.subpath-import.4
+  - id: gen.mistake.subpath-import.7
     version: 1
     status: live
     level: intermediate
@@ -855,28 +897,22 @@ questions:
       text: |-
         <script setup lang="ts">
         import type { IriProp } from '@cwa/nuxt/runtime/composables/cwa-resource'
-        import { useCwaComponent } from '#imports'
 
-        const props = defineProps<IriProp>()
-
-        const { resource, exposeMeta } = useCwaComponent(props, [], {
+        defineCwaConfig({
+          name: 'Quote',
+          description: 'A pull quote with an optional author',
+          icon: 'quote',
+          group: 'Text',
           styles: {
-            multiple: false,
-            classes: {
-              'Filled Button': 'bg-blue-600 text-white px-6 py-2 rounded-md',
-              'Outlined Button': 'border border-blue-600 text-blue-600 px-6 py-2 rounded-md',
-            }
-          }
+            boxed: { label: 'Boxed', classes: 'rounded bg-stone-100 py-4' },
+            centred: { label: 'Centred', classes: 'text-center' },
+          },
         })
 
+        const props = defineProps<IriProp>()
+        const { resource, exposeMeta } = useCwaComponent(props)
         defineExpose(exposeMeta)
         </script>
-
-        <template>
-          <a :href="resource?.data?.url || '#'">
-            {{ resource?.data?.label }}
-          </a>
-        </template>
     answer:
       line: 2
       fix: import type { IriProp } from '#cwa/composables/cwa-resource'
@@ -890,15 +926,15 @@ questions:
         title: Module Setup › TypeScript Support
       - kind: docs
         page: /guides/alternative-ui-variants
-        anchor: approach-1-style-classes
-        sectionHash: sha256:1b996abbfde421dc
-        title: "Alternative UI Variants › Approach 1: Style Classes"
+        anchor: approach-1-styles
+        sectionHash: sha256:76f6ae1b870270ff
+        title: "Alternative UI Variants › Approach 1: Styles"
         block: 0
-        blockHash: sha256:32a1bc29f03d7ebd
+        blockHash: sha256:6a7fe78bad12e612
     generator:
       name: spot-the-mistake
       ref: subpath-import
-  - id: gen.mistake.subpath-import.5
+  - id: gen.mistake.subpath-import.8
     version: 1
     status: live
     level: intermediate
@@ -914,28 +950,32 @@ questions:
     code:
       lang: vue
       text: |-
-        import { computed } from 'vue'
+        <template>
+          <figure class="my-6 border-l-4 border-stone-400 pl-4">
+            <span v-if="styleKeys.includes('boxed')" aria-hidden="true" class="text-6xl">“</span>
+            <blockquote class="text-xl italic">
+              {{ resource?.data?.text || 'No quote yet' }}
+            </blockquote>
+            <figcaption
+              v-if="resource?.data?.author"
+              class="mt-2 text-sm"
+            >
+              — {{ resource.data.author }}
+            </figcaption>
+          </figure>
+        </template>
+
+        <script setup lang="ts">
         import type { IriProp } from '@cwa/nuxt/runtime/composables/cwa-resource'
-        import { useCwaComponent } from '#imports'
+
+        // defineCwaConfig({ ... }) as above
 
         const props = defineProps<IriProp>()
-
-        const { resource, exposeMeta, getCurrentStyleName } = useCwaComponent(props, [], {
-          styles: {
-            multiple: false,
-            classes: {
-              'Filled Button': 'bg-blue-600 text-white px-6 py-2 rounded-md',
-              'Outlined Button': 'border border-blue-600 text-blue-600 px-6 py-2 rounded-md',
-            }
-          }
-        })
-
-        const currentStyleName = computed(() => {
-          if (!resource.value?.data) return 'Default'
-          return getCurrentStyleName(resource.value.data) ?? 'Default'
-        })
+        const { resource, exposeMeta, styleKeys } = useCwaComponent(props)
+        defineExpose(exposeMeta)
+        </script>
     answer:
-      line: 2
+      line: 17
       fix: import type { IriProp } from '#cwa/composables/cwa-resource'
       explanation: Import the module's types and helpers through the `#cwa` alias. The `@cwa/nuxt` package only
         exports its root entry, so a `@cwa/nuxt/...` subpath doesn't resolve.
@@ -947,16 +987,16 @@ questions:
         title: Module Setup › TypeScript Support
       - kind: docs
         page: /guides/alternative-ui-variants
-        anchor: conditional-rendering-based-on-style
-        sectionHash: sha256:dbde099ff99715c7
-        title: Alternative UI Variants › Conditional rendering based on style
+        anchor: changing-markup-with-a-style
+        sectionHash: sha256:c9ee7982c0e05791
+        title: Alternative UI Variants › Changing markup with a style
         block: 0
-        blockHash: sha256:9cc2b9251be32c5c
+        blockHash: sha256:12311b1ff633b342
     generator:
       name: spot-the-mistake
       ref: subpath-import
   - id: gen.mistake.subpath-import.6
-    version: 2
+    version: 3
     status: live
     level: intermediate
     area: nuxt-module
@@ -971,27 +1011,31 @@ questions:
     code:
       lang: vue
       text: |-
-        <!-- app/app/cwa/components/NavigationLink/ui/YouTube.vue -->
         <template>
-          <a :href="resource?.data?.url">
-            <!-- your own icon component, or an inline SVG -->
-            <YouTubeIcon class="w-15 h-10" />
-            <span class="sr-only">{{ resource?.data?.label }}</span>
-          </a>
+          <div class="my-6 rounded-lg bg-stone-900 p-8 text-white">
+            <span aria-hidden="true" class="block text-6xl leading-none">“</span>
+            <p class="text-2xl">
+              {{ resource?.data?.text || 'No quote yet' }}
+            </p>
+            <p v-if="resource?.data?.author" class="mt-4 text-sm uppercase tracking-wide">
+              {{ resource.data.author }}
+            </p>
+          </div>
         </template>
 
         <script setup lang="ts">
         import type { IriProp } from '@cwa/nuxt/runtime/composables/cwa-resource'
-        import { useCwaComponent } from '#imports'
+
+        defineCwaConfig({
+          name: 'Card',
+        })
 
         const props = defineProps<IriProp>()
-        const { resource, exposeMeta } = useCwaComponent(props, [], {
-          name: 'YouTube'
-        })
+        const { resource, exposeMeta } = useCwaComponent(props)
         defineExpose(exposeMeta)
         </script>
     answer:
-      line: 11
+      line: 14
       fix: import type { IriProp } from '#cwa/composables/cwa-resource'
       explanation: Import the module's types and helpers through the `#cwa` alias. The `@cwa/nuxt` package only
         exports its root entry, so a `@cwa/nuxt/...` subpath doesn't resolve.
@@ -1004,10 +1048,10 @@ questions:
       - kind: docs
         page: /guides/alternative-ui-variants
         anchor: the-ui-file
-        sectionHash: sha256:97d0c4346cea8201
+        sectionHash: sha256:3ccdcbd518123273
         title: Alternative UI Variants › The ui/ file
         block: 0
-        blockHash: sha256:67f7d40df9d95df6
+        blockHash: sha256:9b9e5dc1b03a93a9
     generator:
       name: spot-the-mistake
       ref: subpath-import
@@ -1470,7 +1514,7 @@ questions:
       - kind: docs
         page: /core-concepts/layouts-and-pages
         anchor: layouts
-        sectionHash: sha256:4330f59d11ef7503
+        sectionHash: sha256:80a9a4f9314e6d8a
         title: Layouts & Pages › Layouts
       - kind: docs
         page: /core-concepts/layouts-and-pages
@@ -1483,7 +1527,7 @@ questions:
       name: spot-the-mistake
       ref: layout-slot
   - id: gen.mistake.layout-slot.2
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: nuxt-module
@@ -1517,7 +1561,12 @@ questions:
         </template>
 
         <script setup lang="ts">
-        useCwaLayout()
+        defineCwaConfig({
+          name: 'Landing Layout',
+          styles: {
+            muted: { label: 'Muted Background', classes: 'bg-stone-100' },
+          },
+        })
         </script>
     answer:
       line: 12
@@ -1528,15 +1577,15 @@ questions:
       - kind: docs
         page: /core-concepts/layouts-and-pages
         anchor: layouts
-        sectionHash: sha256:4330f59d11ef7503
+        sectionHash: sha256:80a9a4f9314e6d8a
         title: Layouts & Pages › Layouts
       - kind: docs
         page: /guides/your-first-layout
         anchor: the-file
-        sectionHash: sha256:a1f4ee1da582b30f
+        sectionHash: sha256:837085f1b693046a
         title: Your First Layout › The File
         block: 0
-        blockHash: sha256:cfdf8a99c2ad44d7
+        blockHash: sha256:c0afc0d0d892216a
     generator:
       name: spot-the-mistake
       ref: layout-slot
@@ -1583,7 +1632,7 @@ questions:
       - kind: docs
         page: /core-concepts/layouts-and-pages
         anchor: layouts
-        sectionHash: sha256:4330f59d11ef7503
+        sectionHash: sha256:80a9a4f9314e6d8a
         title: Layouts & Pages › Layouts
       - kind: docs
         page: /nuxt-module/building-your-ui/creating-layouts
@@ -1637,7 +1686,7 @@ questions:
       - kind: docs
         page: /core-concepts/layouts-and-pages
         anchor: layouts
-        sectionHash: sha256:4330f59d11ef7503
+        sectionHash: sha256:80a9a4f9314e6d8a
         title: Layouts & Pages › Layouts
       - kind: docs
         page: /nuxt-module/building-your-ui/creating-layouts
@@ -1650,7 +1699,7 @@ questions:
       name: spot-the-mistake
       ref: layout-slot
   - id: gen.mistake.component-without-props.1
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: nuxt-module
@@ -1671,14 +1720,20 @@ questions:
 
         <script setup lang="ts">
         import type { IriProp } from '#cwa/composables/cwa-resource'
-        import { useCwaComponent } from '#imports'
+        import { useCwaComponent, defineCwaConfig } from '#imports'
+
+        defineCwaConfig({
+          name: 'Title',
+          description: 'The main heading of a page',
+          icon: 'heading',
+        })
 
         const props = defineProps<IriProp>()
         const { resource, exposeMeta } = useCwaComponent()
         defineExpose(exposeMeta)
         </script>
     answer:
-      line: 11
+      line: 17
       fix: const { resource, exposeMeta } = useCwaComponent(props)
       explanation: "`useCwaComponent()` needs the component's props. The module passes each component an `iri` prop,
         and the composable reads it to find the resource. Called with nothing, it has no resource to load."
@@ -1686,20 +1741,20 @@ questions:
       - kind: docs
         page: /nuxt-module/composables/component/use-cwa-component
         anchor: return-values
-        sectionHash: sha256:db39379ae980b37e
+        sectionHash: sha256:a5a36a9138c28cf6
         title: useCwaComponent › Return Values
       - kind: docs
         page: /core-concepts/components
         anchor: _2-the-vue-component-the-display
-        sectionHash: sha256:cc87dc88884ee7f5
+        sectionHash: sha256:ccc012efb4c22fd9
         title: Components › 2. The Vue component (the display)
         block: 0
-        blockHash: sha256:58f142cdf2cf43cb
+        blockHash: sha256:74ccd4241205c68f
     generator:
       name: spot-the-mistake
       ref: component-without-props
   - id: gen.mistake.component-without-props.2
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: nuxt-module
@@ -1730,12 +1785,19 @@ questions:
         <script setup lang="ts">
         import type { IriProp } from '#cwa/composables/cwa-resource'
 
+        defineCwaConfig({
+          name: 'Quote',
+          description: 'A pull quote with an optional author',
+          icon: 'quote',
+          group: 'Text',
+        })
+
         const props = defineProps<IriProp>()
         const { resource, exposeMeta } = useCwaComponent()
         defineExpose(exposeMeta)
         </script>
     answer:
-      line: 19
+      line: 26
       fix: const { resource, exposeMeta } = useCwaComponent(props)
       explanation: "`useCwaComponent()` needs the component's props. The module passes each component an `iri` prop,
         and the composable reads it to find the resource. Called with nothing, it has no resource to load."
@@ -1743,15 +1805,188 @@ questions:
       - kind: docs
         page: /nuxt-module/composables/component/use-cwa-component
         anchor: return-values
-        sectionHash: sha256:db39379ae980b37e
+        sectionHash: sha256:a5a36a9138c28cf6
         title: useCwaComponent › Return Values
       - kind: docs
         page: /guides/your-first-component
         anchor: the-vue-file
-        sectionHash: sha256:d7675402ce0512d0
+        sectionHash: sha256:11bf0b7805d1ee90
         title: Your First Component › The Vue file
         block: 1
-        blockHash: sha256:df2358ca3d144100
+        blockHash: sha256:4c90d3669fe2bd37
+    generator:
+      name: spot-the-mistake
+      ref: component-without-props
+  - id: gen.mistake.component-without-props.7
+    version: 1
+    status: live
+    level: beginner
+    area: nuxt-module
+    tags:
+      - components
+      - composables
+    type: spot-the-mistake
+    family: mistake:component-without-props
+    prompt: One line in this component is wrong. Click it.
+    why: If a new component renders empty while its resource has data in the API, check this call first.
+    code:
+      lang: vue
+      text: |-
+        <script setup lang="ts">
+        import type { IriProp } from '#cwa/composables/cwa-resource'
+
+        defineCwaConfig({
+          name: 'Quote',
+          description: 'A pull quote with an optional author',
+          icon: 'quote',
+          group: 'Text',
+          styles: {
+            boxed: { label: 'Boxed', classes: 'rounded bg-stone-100 py-4' },
+            centred: { label: 'Centred', classes: 'text-center' },
+          },
+        })
+
+        const props = defineProps<IriProp>()
+        const { resource, exposeMeta } = useCwaComponent()
+        defineExpose(exposeMeta)
+        </script>
+    answer:
+      line: 16
+      fix: const { resource, exposeMeta } = useCwaComponent(props)
+      explanation: "`useCwaComponent()` needs the component's props. The module passes each component an `iri` prop,
+        and the composable reads it to find the resource. Called with nothing, it has no resource to load."
+    sources:
+      - kind: docs
+        page: /nuxt-module/composables/component/use-cwa-component
+        anchor: return-values
+        sectionHash: sha256:a5a36a9138c28cf6
+        title: useCwaComponent › Return Values
+      - kind: docs
+        page: /guides/alternative-ui-variants
+        anchor: approach-1-styles
+        sectionHash: sha256:76f6ae1b870270ff
+        title: "Alternative UI Variants › Approach 1: Styles"
+        block: 0
+        blockHash: sha256:6a7fe78bad12e612
+    generator:
+      name: spot-the-mistake
+      ref: component-without-props
+  - id: gen.mistake.component-without-props.8
+    version: 1
+    status: live
+    level: beginner
+    area: nuxt-module
+    tags:
+      - components
+      - composables
+    type: spot-the-mistake
+    family: mistake:component-without-props
+    prompt: One line in this component is wrong. Click it.
+    why: If a new component renders empty while its resource has data in the API, check this call first.
+    code:
+      lang: vue
+      text: |-
+        <template>
+          <figure class="my-6 border-l-4 border-stone-400 pl-4">
+            <span v-if="styleKeys.includes('boxed')" aria-hidden="true" class="text-6xl">“</span>
+            <blockquote class="text-xl italic">
+              {{ resource?.data?.text || 'No quote yet' }}
+            </blockquote>
+            <figcaption
+              v-if="resource?.data?.author"
+              class="mt-2 text-sm"
+            >
+              — {{ resource.data.author }}
+            </figcaption>
+          </figure>
+        </template>
+
+        <script setup lang="ts">
+        import type { IriProp } from '#cwa/composables/cwa-resource'
+
+        // defineCwaConfig({ ... }) as above
+
+        const props = defineProps<IriProp>()
+        const { resource, exposeMeta, styleKeys } = useCwaComponent()
+        defineExpose(exposeMeta)
+        </script>
+    answer:
+      line: 22
+      fix: const { resource, exposeMeta, styleKeys } = useCwaComponent(props)
+      explanation: "`useCwaComponent()` needs the component's props. The module passes each component an `iri` prop,
+        and the composable reads it to find the resource. Called with nothing, it has no resource to load."
+    sources:
+      - kind: docs
+        page: /nuxt-module/composables/component/use-cwa-component
+        anchor: return-values
+        sectionHash: sha256:a5a36a9138c28cf6
+        title: useCwaComponent › Return Values
+      - kind: docs
+        page: /guides/alternative-ui-variants
+        anchor: changing-markup-with-a-style
+        sectionHash: sha256:c9ee7982c0e05791
+        title: Alternative UI Variants › Changing markup with a style
+        block: 0
+        blockHash: sha256:12311b1ff633b342
+    generator:
+      name: spot-the-mistake
+      ref: component-without-props
+  - id: gen.mistake.component-without-props.9
+    version: 1
+    status: live
+    level: beginner
+    area: nuxt-module
+    tags:
+      - components
+      - composables
+    type: spot-the-mistake
+    family: mistake:component-without-props
+    prompt: One line in this component is wrong. Click it.
+    why: If a new component renders empty while its resource has data in the API, check this call first.
+    code:
+      lang: vue
+      text: |-
+        <template>
+          <div class="my-6 rounded-lg bg-stone-900 p-8 text-white">
+            <span aria-hidden="true" class="block text-6xl leading-none">“</span>
+            <p class="text-2xl">
+              {{ resource?.data?.text || 'No quote yet' }}
+            </p>
+            <p v-if="resource?.data?.author" class="mt-4 text-sm uppercase tracking-wide">
+              {{ resource.data.author }}
+            </p>
+          </div>
+        </template>
+
+        <script setup lang="ts">
+        import type { IriProp } from '#cwa/composables/cwa-resource'
+
+        defineCwaConfig({
+          name: 'Card',
+        })
+
+        const props = defineProps<IriProp>()
+        const { resource, exposeMeta } = useCwaComponent()
+        defineExpose(exposeMeta)
+        </script>
+    answer:
+      line: 21
+      fix: const { resource, exposeMeta } = useCwaComponent(props)
+      explanation: "`useCwaComponent()` needs the component's props. The module passes each component an `iri` prop,
+        and the composable reads it to find the resource. Called with nothing, it has no resource to load."
+    sources:
+      - kind: docs
+        page: /nuxt-module/composables/component/use-cwa-component
+        anchor: return-values
+        sectionHash: sha256:a5a36a9138c28cf6
+        title: useCwaComponent › Return Values
+      - kind: docs
+        page: /guides/alternative-ui-variants
+        anchor: the-ui-file
+        sectionHash: sha256:3ccdcbd518123273
+        title: Alternative UI Variants › The ui/ file
+        block: 0
+        blockHash: sha256:9b9e5dc1b03a93a9
     generator:
       name: spot-the-mistake
       ref: component-without-props
@@ -1795,7 +2030,7 @@ questions:
       - kind: docs
         page: /nuxt-module/composables/component/use-cwa-component
         anchor: return-values
-        sectionHash: sha256:db39379ae980b37e
+        sectionHash: sha256:a5a36a9138c28cf6
         title: useCwaComponent › Return Values
       - kind: docs
         page: /nuxt-module/building-your-ui/creating-components
@@ -1804,162 +2039,6 @@ questions:
         title: Component Files › The Mandatory Pattern
         block: 0
         blockHash: sha256:6a5b7ec046544e6c
-    generator:
-      name: spot-the-mistake
-      ref: component-without-props
-  - id: gen.mistake.component-without-props.4
-    version: 1
-    status: live
-    level: beginner
-    area: nuxt-module
-    tags:
-      - components
-      - composables
-    type: spot-the-mistake
-    family: mistake:component-without-props
-    prompt: One line in this component is wrong. Click it.
-    why: If a new component renders empty while its resource has data in the API, check this call first.
-    code:
-      lang: vue
-      text: |-
-        <template>
-          <!-- TODO: add your template -->
-        </template>
-
-        <script setup lang="ts">
-        import type { IriProp } from '#cwa/composables/cwa-resource'
-
-        const props = defineProps<IriProp>()
-        const { resource, exposeMeta } = useCwaComponent()
-        defineExpose(exposeMeta)
-        </script>
-    answer:
-      line: 9
-      fix: const { resource, exposeMeta } = useCwaComponent(props)
-      explanation: "`useCwaComponent()` needs the component's props. The module passes each component an `iri` prop,
-        and the composable reads it to find the resource. Called with nothing, it has no resource to load."
-    sources:
-      - kind: docs
-        page: /nuxt-module/composables/component/use-cwa-component
-        anchor: return-values
-        sectionHash: sha256:db39379ae980b37e
-        title: useCwaComponent › Return Values
-      - kind: docs
-        page: /nuxt-module/building-your-ui/cwa-cli
-        anchor: what-gets-generated
-        sectionHash: sha256:afb530103b2db9e6
-        title: CLI Generator › What Gets Generated
-        block: 0
-        blockHash: sha256:e8cffca99014ceee
-    generator:
-      name: spot-the-mistake
-      ref: component-without-props
-  - id: gen.mistake.component-without-props.5
-    version: 1
-    status: live
-    level: beginner
-    area: nuxt-module
-    tags:
-      - components
-      - composables
-    type: spot-the-mistake
-    family: mistake:component-without-props
-    prompt: One line in this component is wrong. Click it.
-    why: If a new component renders empty while its resource has data in the API, check this call first.
-    code:
-      lang: vue
-      text: |-
-        <!-- app/app/cwa/components/RichText/RichText.vue -->
-        <template>
-            <div ref="container" v-cwa-html="content" class="prose" />
-        </template>
-
-        <script setup lang="ts">
-        import { computed, ref } from 'vue'
-        import type { IriProp } from '#cwa/composables/cwa-resource'
-        import { useCwaComponent, useHtmlContent } from '#imports'
-
-        const props = defineProps<IriProp>()
-
-        const { resource, exposeMeta } = useCwaComponent()
-
-        const content = computed(() => resource.value?.data?.content ?? '')
-
-        const container = ref<HTMLElement | null>(null)
-        const { vCwaHtml } = useHtmlContent(container, content)
-
-        defineExpose(exposeMeta)
-        </script>
-    answer:
-      line: 13
-      fix: const { resource, exposeMeta } = useCwaComponent(props)
-      explanation: "`useCwaComponent()` needs the component's props. The module passes each component an `iri` prop,
-        and the composable reads it to find the resource. Called with nothing, it has no resource to load."
-    sources:
-      - kind: docs
-        page: /nuxt-module/composables/component/use-cwa-component
-        anchor: return-values
-        sectionHash: sha256:db39379ae980b37e
-        title: useCwaComponent › Return Values
-      - kind: docs
-        page: /nuxt-module/component-helpers/html-content
-        anchor: usage
-        sectionHash: sha256:144ca3e5a7959ee8
-        title: HTML Content › Usage
-        block: 0
-        blockHash: sha256:51b0148ece554cb1
-    generator:
-      name: spot-the-mistake
-      ref: component-without-props
-  - id: gen.mistake.component-without-props.6
-    version: 2
-    status: live
-    level: beginner
-    area: nuxt-module
-    tags:
-      - components
-      - composables
-    type: spot-the-mistake
-    family: mistake:component-without-props
-    prompt: One line in this component is wrong. Click it.
-    why: If a new component renders empty while its resource has data in the API, check this call first.
-    code:
-      lang: vue
-      text: |-
-        <script setup lang="ts">
-        import { toRef } from 'vue'
-        import type { IriProp } from '#cwa/composables/cwa-resource'
-        import { useCwaComponent, useCwaForm, useCwaFormInput } from '#imports'
-
-        const props = defineProps<IriProp>()
-        const { exposeMeta } = useCwaComponent()
-        defineExpose(exposeMeta)
-
-        // the form composables take the IRI as a ref
-        const iriRef = toRef(props, 'iri')
-        const form    = useCwaForm(iriRef)
-        const name    = useCwaFormInput(iriRef, 'contact_form[name]')
-        const email   = useCwaFormInput(iriRef, 'contact_form[email]')
-        const message = useCwaFormInput(iriRef, 'contact_form[message]')
-        </script>
-    answer:
-      line: 7
-      fix: const { exposeMeta } = useCwaComponent(props)
-      explanation: "`useCwaComponent()` needs the component's props. The module passes each component an `iri` prop,
-        and the composable reads it to find the resource. Called with nothing, it has no resource to load."
-    sources:
-      - kind: docs
-        page: /nuxt-module/composables/component/use-cwa-component
-        anchor: return-values
-        sectionHash: sha256:db39379ae980b37e
-        title: useCwaComponent › Return Values
-      - kind: docs
-        page: /nuxt-module/component-helpers/forms
-        anchor: form-container-component
-        sectionHash: sha256:709b83ce0d041c75
-        title: Working with Forms › Form Container Component
-        block: 0
-        blockHash: sha256:97365a10ae8306d6
     generator:
       name: spot-the-mistake
       ref: component-without-props
@@ -2170,9 +2249,393 @@ questions:
     generator:
       name: spot-the-mistake
       ref: publish-group-name
+  - id: gen.mistake.is-editing-value.5
+    version: 1
+    status: retired
+    level: intermediate
+    area: nuxt-module
+    tags:
+      - cwa-api
+      - admin
+    family: mistake:is-editing-value
+    prompt: One line in this code is wrong. Click it.
+    why: Read `$cwa.admin.isEditing` with `.value` and your edit-only UI never appears, with no error to tell you
+      why.
+    sources:
+      - kind: docs
+        page: /nuxt-module/cwa-layer/admin-panel
+        anchor: edit-mode
+        sectionHash: sha256:b4a6e117668a3bd1
+        title: Admin Panel Reference › Edit Mode
+      - kind: docs
+        page: /nuxt-module/component-helpers/rich-text-editor
+        anchor: typing-at-the-same-time
+        sectionHash: sha256:89101653984144dd
+        title: Rich-Text Editor › Typing at the Same Time
+        block: 0
+        blockHash: sha256:c3adb4a218015a36
+    generator:
+      name: spot-the-mistake
+      ref: is-editing-value
+    type: spot-the-mistake
+    code:
+      lang: vue
+      text: |-
+        <TipTapHtmlEditor
+          v-if="$cwa.admin.isEditing.value"
+          :model="resourceModel"
+          :iri="iri"
+          field="html"
+        />
+    answer:
+      line: 2
+      fix: '  v-if="$cwa.admin.isEditing"'
+      explanation: "`$cwa.admin.isEditing` is a plain boolean on a reactive object, not a ref. Reading `.value` on
+        it gives `undefined`, so the check never sees edit mode."
+    retired:
+      reason: "stale-source: the source block is gone or no longer matches the catalogue entry"
+  - id: gen.mistake.is-editing-value.3
+    version: 1
+    status: retired
+    level: intermediate
+    area: nuxt-module
+    tags:
+      - cwa-api
+      - admin
+    family: mistake:is-editing-value
+    prompt: One line in this code is wrong. Click it.
+    why: Read `$cwa.admin.isEditing` with `.value` and your edit-only UI never appears, with no error to tell you
+      why.
+    sources:
+      - kind: docs
+        page: /nuxt-module/cwa-layer/admin-panel
+        anchor: edit-mode
+        sectionHash: sha256:b4a6e117668a3bd1
+        title: Admin Panel Reference › Edit Mode
+      - kind: docs
+        page: /nuxt-module/pwa
+        anchor: applying-updates
+        sectionHash: sha256:bbe92a4728bdb58b
+        title: Progressive Web App & Offline › Applying Updates
+        block: 1
+        blockHash: sha256:60c62f519ea31f5a
+    generator:
+      name: spot-the-mistake
+      ref: is-editing-value
+    type: spot-the-mistake
+    code:
+      lang: ts
+      text: |-
+        export default defineNuxtPlugin((nuxtApp) => {
+          useRouter().afterEach((to, from, failure) => {
+            if (failure || to.path === from.path) {
+              return
+            }
+            const $pwa = nuxtApp.$pwa as ReturnType<typeof usePWA> | undefined
+            const $cwa = nuxtApp.$cwa as ReturnType<typeof useCwa>
+            // Held while an admin is editing, so unsaved inline edits are never lost
+            if (!$pwa?.needRefresh || $cwa.admin.isEditing.value) {
+              return
+            }
+            void $pwa.updateServiceWorker()
+          })
+        })
+    answer:
+      line: 9
+      fix: "    if (!$pwa?.needRefresh || $cwa.admin.isEditing) {"
+      explanation: "`$cwa.admin.isEditing` is a plain boolean on a reactive object, not a ref. Reading `.value` on
+        it gives `undefined`, so the check never sees edit mode."
+    retired:
+      reason: "stale-source: the source block is gone or no longer matches the catalogue entry"
+  - id: gen.mistake.subpath-import.4
+    version: 1
+    status: retired
+    level: intermediate
+    area: nuxt-module
+    tags:
+      - module-setup
+      - composables
+    family: mistake:subpath-import
+    prompt: One line in this code is wrong. Click it.
+    why: A package path doesn't resolve, so code copied with one fails the build or the type check. Change any
+      `@cwa/nuxt/...` import you paste in to `#cwa/...`.
+    sources:
+      - kind: docs
+        page: /nuxt-module/module-setup
+        anchor: typescript-support
+        sectionHash: sha256:7ba383c3c56ea423
+        title: Module Setup › TypeScript Support
+      - kind: docs
+        page: /guides/alternative-ui-variants
+        anchor: approach-1-style-classes
+        sectionHash: sha256:1b996abbfde421dc
+        title: "Alternative UI Variants › Approach 1: Style Classes"
+        block: 0
+        blockHash: sha256:32a1bc29f03d7ebd
+    generator:
+      name: spot-the-mistake
+      ref: subpath-import
+    type: spot-the-mistake
+    code:
+      lang: vue
+      text: |-
+        <script setup lang="ts">
+        import type { IriProp } from '@cwa/nuxt/runtime/composables/cwa-resource'
+        import { useCwaComponent } from '#imports'
+
+        const props = defineProps<IriProp>()
+
+        const { resource, exposeMeta } = useCwaComponent(props, [], {
+          styles: {
+            multiple: false,
+            classes: {
+              'Filled Button': 'bg-blue-600 text-white px-6 py-2 rounded-md',
+              'Outlined Button': 'border border-blue-600 text-blue-600 px-6 py-2 rounded-md',
+            }
+          }
+        })
+
+        defineExpose(exposeMeta)
+        </script>
+
+        <template>
+          <a :href="resource?.data?.url || '#'">
+            {{ resource?.data?.label }}
+          </a>
+        </template>
+    answer:
+      line: 2
+      fix: import type { IriProp } from '#cwa/composables/cwa-resource'
+      explanation: Import the module's types and helpers through the `#cwa` alias. The `@cwa/nuxt` package only
+        exports its root entry, so a `@cwa/nuxt/...` subpath doesn't resolve.
+    retired:
+      reason: "stale-source: the source block is gone or no longer matches the catalogue entry"
+  - id: gen.mistake.subpath-import.5
+    version: 1
+    status: retired
+    level: intermediate
+    area: nuxt-module
+    tags:
+      - module-setup
+      - composables
+    family: mistake:subpath-import
+    prompt: One line in this code is wrong. Click it.
+    why: A package path doesn't resolve, so code copied with one fails the build or the type check. Change any
+      `@cwa/nuxt/...` import you paste in to `#cwa/...`.
+    sources:
+      - kind: docs
+        page: /nuxt-module/module-setup
+        anchor: typescript-support
+        sectionHash: sha256:7ba383c3c56ea423
+        title: Module Setup › TypeScript Support
+      - kind: docs
+        page: /guides/alternative-ui-variants
+        anchor: conditional-rendering-based-on-style
+        sectionHash: sha256:dbde099ff99715c7
+        title: Alternative UI Variants › Conditional rendering based on style
+        block: 0
+        blockHash: sha256:9cc2b9251be32c5c
+    generator:
+      name: spot-the-mistake
+      ref: subpath-import
+    type: spot-the-mistake
+    code:
+      lang: vue
+      text: |-
+        import { computed } from 'vue'
+        import type { IriProp } from '@cwa/nuxt/runtime/composables/cwa-resource'
+        import { useCwaComponent } from '#imports'
+
+        const props = defineProps<IriProp>()
+
+        const { resource, exposeMeta, getCurrentStyleName } = useCwaComponent(props, [], {
+          styles: {
+            multiple: false,
+            classes: {
+              'Filled Button': 'bg-blue-600 text-white px-6 py-2 rounded-md',
+              'Outlined Button': 'border border-blue-600 text-blue-600 px-6 py-2 rounded-md',
+            }
+          }
+        })
+
+        const currentStyleName = computed(() => {
+          if (!resource.value?.data) return 'Default'
+          return getCurrentStyleName(resource.value.data) ?? 'Default'
+        })
+    answer:
+      line: 2
+      fix: import type { IriProp } from '#cwa/composables/cwa-resource'
+      explanation: Import the module's types and helpers through the `#cwa` alias. The `@cwa/nuxt` package only
+        exports its root entry, so a `@cwa/nuxt/...` subpath doesn't resolve.
+    retired:
+      reason: "stale-source: the source block is gone or no longer matches the catalogue entry"
+  - id: gen.mistake.component-without-props.4
+    version: 1
+    status: retired
+    level: beginner
+    area: nuxt-module
+    tags:
+      - components
+      - composables
+    family: mistake:component-without-props
+    prompt: One line in this component is wrong. Click it.
+    why: If a new component renders empty while its resource has data in the API, check this call first.
+    sources:
+      - kind: docs
+        page: /nuxt-module/composables/component/use-cwa-component
+        anchor: return-values
+        sectionHash: sha256:db39379ae980b37e
+        title: useCwaComponent › Return Values
+      - kind: docs
+        page: /nuxt-module/building-your-ui/cwa-cli
+        anchor: what-gets-generated
+        sectionHash: sha256:afb530103b2db9e6
+        title: CLI Generator › What Gets Generated
+        block: 0
+        blockHash: sha256:e8cffca99014ceee
+    generator:
+      name: spot-the-mistake
+      ref: component-without-props
+    type: spot-the-mistake
+    code:
+      lang: vue
+      text: |-
+        <template>
+          <!-- TODO: add your template -->
+        </template>
+
+        <script setup lang="ts">
+        import type { IriProp } from '#cwa/composables/cwa-resource'
+
+        const props = defineProps<IriProp>()
+        const { resource, exposeMeta } = useCwaComponent()
+        defineExpose(exposeMeta)
+        </script>
+    answer:
+      line: 9
+      fix: const { resource, exposeMeta } = useCwaComponent(props)
+      explanation: "`useCwaComponent()` needs the component's props. The module passes each component an `iri` prop,
+        and the composable reads it to find the resource. Called with nothing, it has no resource to load."
+    retired:
+      reason: "stale-source: the source block is gone or no longer matches the catalogue entry"
+  - id: gen.mistake.component-without-props.5
+    version: 1
+    status: retired
+    level: beginner
+    area: nuxt-module
+    tags:
+      - components
+      - composables
+    family: mistake:component-without-props
+    prompt: One line in this component is wrong. Click it.
+    why: If a new component renders empty while its resource has data in the API, check this call first.
+    sources:
+      - kind: docs
+        page: /nuxt-module/composables/component/use-cwa-component
+        anchor: return-values
+        sectionHash: sha256:db39379ae980b37e
+        title: useCwaComponent › Return Values
+      - kind: docs
+        page: /nuxt-module/component-helpers/html-content
+        anchor: usage
+        sectionHash: sha256:144ca3e5a7959ee8
+        title: HTML Content › Usage
+        block: 0
+        blockHash: sha256:51b0148ece554cb1
+    generator:
+      name: spot-the-mistake
+      ref: component-without-props
+    type: spot-the-mistake
+    code:
+      lang: vue
+      text: |-
+        <!-- app/app/cwa/components/RichText/RichText.vue -->
+        <template>
+            <div ref="container" v-cwa-html="content" class="prose" />
+        </template>
+
+        <script setup lang="ts">
+        import { computed, ref } from 'vue'
+        import type { IriProp } from '#cwa/composables/cwa-resource'
+        import { useCwaComponent, useHtmlContent } from '#imports'
+
+        const props = defineProps<IriProp>()
+
+        const { resource, exposeMeta } = useCwaComponent()
+
+        const content = computed(() => resource.value?.data?.content ?? '')
+
+        const container = ref<HTMLElement | null>(null)
+        const { vCwaHtml } = useHtmlContent(container, content)
+
+        defineExpose(exposeMeta)
+        </script>
+    answer:
+      line: 13
+      fix: const { resource, exposeMeta } = useCwaComponent(props)
+      explanation: "`useCwaComponent()` needs the component's props. The module passes each component an `iri` prop,
+        and the composable reads it to find the resource. Called with nothing, it has no resource to load."
+    retired:
+      reason: "stale-source: the source block is gone or no longer matches the catalogue entry"
+  - id: gen.mistake.component-without-props.6
+    version: 2
+    status: retired
+    level: beginner
+    area: nuxt-module
+    tags:
+      - components
+      - composables
+    family: mistake:component-without-props
+    prompt: One line in this component is wrong. Click it.
+    why: If a new component renders empty while its resource has data in the API, check this call first.
+    sources:
+      - kind: docs
+        page: /nuxt-module/composables/component/use-cwa-component
+        anchor: return-values
+        sectionHash: sha256:db39379ae980b37e
+        title: useCwaComponent › Return Values
+      - kind: docs
+        page: /nuxt-module/component-helpers/forms
+        anchor: form-container-component
+        sectionHash: sha256:709b83ce0d041c75
+        title: Working with Forms › Form Container Component
+        block: 0
+        blockHash: sha256:97365a10ae8306d6
+    generator:
+      name: spot-the-mistake
+      ref: component-without-props
+    type: spot-the-mistake
+    code:
+      lang: vue
+      text: |-
+        <script setup lang="ts">
+        import { toRef } from 'vue'
+        import type { IriProp } from '#cwa/composables/cwa-resource'
+        import { useCwaComponent, useCwaForm, useCwaFormInput } from '#imports'
+
+        const props = defineProps<IriProp>()
+        const { exposeMeta } = useCwaComponent()
+        defineExpose(exposeMeta)
+
+        // the form composables take the IRI as a ref
+        const iriRef = toRef(props, 'iri')
+        const form    = useCwaForm(iriRef)
+        const name    = useCwaFormInput(iriRef, 'contact_form[name]')
+        const email   = useCwaFormInput(iriRef, 'contact_form[email]')
+        const message = useCwaFormInput(iriRef, 'contact_form[message]')
+        </script>
+    answer:
+      line: 7
+      fix: const { exposeMeta } = useCwaComponent(props)
+      explanation: "`useCwaComponent()` needs the component's props. The module passes each component an `iri` prop,
+        and the composable reads it to find the resource. Called with nothing, it has no resource to load."
+    retired:
+      reason: "stale-source: the source block is gone or no longer matches the catalogue entry"
   - id: gen.mistake.is-editing-value.4
     version: 1
     status: retired
+    retired:
+      reason: "stale-source: the source block is gone or no longer matches the catalogue entry"
     level: intermediate
     area: nuxt-module
     tags:
@@ -2213,8 +2676,6 @@ questions:
       fix: '  v-if="$cwa.admin.isEditing"'
       explanation: "`$cwa.admin.isEditing` is a plain boolean on a reactive object, not a ref. Reading `.value` on
         it gives `undefined`, so the check never sees edit mode."
-    retired:
-      reason: "stale-source: the source block is gone or no longer matches the catalogue entry"
   - id: gen.mistake.page-title-property.1
     version: 1
     status: retired

@@ -215,5 +215,5 @@ questions:
         The module registers layouts with the `CwaLayout` prefix, and a layout's `uiComponent` holds that full
         name. It is rendered as stored, so `Landing` wouldn't resolve.
     sources:
-      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: how-uicomponent-names-resolve, sectionHash: 'sha256:20bb5b33597a1aac', title: 'Layouts › How uiComponent Names Resolve' }
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: how-uicomponent-names-resolve, sectionHash: 'sha256:7cfcf6390a43aa12', title: 'Layouts › How uiComponent Names Resolve' }
     author: llm-draft

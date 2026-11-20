@@ -236,7 +236,7 @@ questions:
         A layout that isn't registered still renders correctly. It just has no name in the admin and no style
         options for editors to pick.
     sources:
-      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: registering-layout-options, sectionHash: 'sha256:260fe9e4c1275e6b', title: 'Layouts › Registering Layout Options' }
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-layouts, anchor: configuring-a-layout, sectionHash: 'sha256:1a117cc1b591428c', title: 'Layouts › Configuring a Layout' }
     author: llm-draft
 
   - id: nuxt.layout.style-classes-applied
@@ -431,7 +431,7 @@ questions:
         It writes only the Vue file. Then it prints the matching `php bin/console make:api-component` command,
         which you run yourself; in the template, through the `php` container.
     sources:
-      - { kind: docs, page: /nuxt-module/building-your-ui/cwa-cli, anchor: next-steps-printed-after-generation, sectionHash: 'sha256:bf064d8f57aa2367', title: 'CLI Generator › Next Steps Printed After Generation' }
+      - { kind: docs, page: /nuxt-module/building-your-ui/cwa-cli, anchor: next-steps-printed-after-generation, sectionHash: 'sha256:b52ba20da75c8a4d', title: 'CLI Generator › Next Steps Printed After Generation' }
       - { kind: docs, page: /guides/your-first-component, anchor: the-api-entity, sectionHash: 'sha256:a50c17ac1cd7afd9', title: 'Your First Component › The API entity' }
     author: llm-draft
 
@@ -460,7 +460,7 @@ questions:
         create `app/app/cwa/components/Quote/admin/Quote.vue` yourself.
     sources:
       - { kind: docs, page: /guides/your-first-component, anchor: the-admin-tab, sectionHash: 'sha256:9356627d9c23011b', title: 'Your First Component › The admin tab' }
-      - { kind: docs, page: /nuxt-module/building-your-ui/creating-components, anchor: file-convention, sectionHash: 'sha256:280282ea4133bd3d', title: 'Component Files › File Convention' }
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-components, anchor: file-convention, sectionHash: 'sha256:e483f44a690aa2ca', title: 'Component Files › File Convention' }
     author: llm-draft
 
   - id: nuxt.component.multiple-tabs
@@ -485,7 +485,7 @@ questions:
         Each file in `admin/` is one tab. Each calls `useCwaResourceManagerTab({ name, order })`, and lower
         `order` numbers appear first.
     sources:
-      - { kind: docs, page: /nuxt-module/building-your-ui/creating-components, anchor: multiple-tabs, sectionHash: 'sha256:c2d40e96d099336a', title: 'Component Files › Multiple Tabs' }
+      - { kind: docs, page: /nuxt-module/building-your-ui/creating-components, anchor: multiple-tabs, sectionHash: 'sha256:5f3bc480e014bc94', title: 'Component Files › Multiple Tabs' }
     author: llm-draft
 
   - id: nuxt.component.admin-tab-model

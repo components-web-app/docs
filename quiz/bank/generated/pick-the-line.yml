@@ -5,7 +5,7 @@
 
 questions:
   - id: gen.target.define-expose.1
-    version: 2
+    version: 3
     status: live
     level: beginner
     area: nuxt-module
@@ -25,7 +25,13 @@ questions:
 
         <script setup lang="ts">
         import type { IriProp } from '#cwa/composables/cwa-resource'
-        import { useCwaComponent } from '#imports'
+        import { useCwaComponent, defineCwaConfig } from '#imports'
+
+        defineCwaConfig({
+          name: 'Title',
+          description: 'The main heading of a page',
+          icon: 'heading',
+        })
 
         const props = defineProps<IriProp>()
         const { resource, exposeMeta } = useCwaComponent(props)
@@ -33,27 +39,27 @@ questions:
         </script>
     answer:
       lines:
-        - 12
+        - 18
       explanation: "`defineExpose(exposeMeta)` hands the component's metadata to the admin manager. Without it, the
         admin can't select the component."
     sources:
       - kind: docs
         page: /nuxt-module/composables/component/use-cwa-component
         anchor: return-values
-        sectionHash: sha256:db39379ae980b37e
+        sectionHash: sha256:a5a36a9138c28cf6
         title: useCwaComponent › Return Values
       - kind: docs
         page: /core-concepts/components
         anchor: _2-the-vue-component-the-display
-        sectionHash: sha256:cc87dc88884ee7f5
+        sectionHash: sha256:ccc012efb4c22fd9
         title: Components › 2. The Vue component (the display)
         block: 0
-        blockHash: sha256:58f142cdf2cf43cb
+        blockHash: sha256:74ccd4241205c68f
     generator:
       name: pick-the-line
       ref: define-expose
   - id: gen.target.define-expose.2
-    version: 2
+    version: 3
     status: live
     level: beginner
     area: nuxt-module
@@ -83,33 +89,40 @@ questions:
         <script setup lang="ts">
         import type { IriProp } from '#cwa/composables/cwa-resource'
 
+        defineCwaConfig({
+          name: 'Quote',
+          description: 'A pull quote with an optional author',
+          icon: 'quote',
+          group: 'Text',
+        })
+
         const props = defineProps<IriProp>()
         const { resource, exposeMeta } = useCwaComponent(props)
         defineExpose(exposeMeta)
         </script>
     answer:
       lines:
-        - 20
+        - 27
       explanation: "`defineExpose(exposeMeta)` hands the component's metadata to the admin manager. Without it, the
         admin can't select the component."
     sources:
       - kind: docs
         page: /nuxt-module/composables/component/use-cwa-component
         anchor: return-values
-        sectionHash: sha256:db39379ae980b37e
+        sectionHash: sha256:a5a36a9138c28cf6
         title: useCwaComponent › Return Values
       - kind: docs
         page: /guides/your-first-component
         anchor: the-vue-file
-        sectionHash: sha256:d7675402ce0512d0
+        sectionHash: sha256:11bf0b7805d1ee90
         title: Your First Component › The Vue file
         block: 1
-        blockHash: sha256:df2358ca3d144100
+        blockHash: sha256:4c90d3669fe2bd37
     generator:
       name: pick-the-line
       ref: define-expose
-  - id: gen.target.define-expose.3
-    version: 2
+  - id: gen.target.define-expose.7
+    version: 1
     status: live
     level: beginner
     area: nuxt-module
@@ -124,28 +137,22 @@ questions:
       text: |-
         <script setup lang="ts">
         import type { IriProp } from '#cwa/composables/cwa-resource'
-        import { useCwaComponent } from '#imports'
 
-        const props = defineProps<IriProp>()
-
-        const { resource, exposeMeta } = useCwaComponent(props, [], {
+        defineCwaConfig({
+          name: 'Quote',
+          description: 'A pull quote with an optional author',
+          icon: 'quote',
+          group: 'Text',
           styles: {
-            multiple: false,
-            classes: {
-              'Filled Button': 'bg-blue-600 text-white px-6 py-2 rounded-md',
-              'Outlined Button': 'border border-blue-600 text-blue-600 px-6 py-2 rounded-md',
-            }
-          }
+            boxed: { label: 'Boxed', classes: 'rounded bg-stone-100 py-4' },
+            centred: { label: 'Centred', classes: 'text-center' },
+          },
         })
 
+        const props = defineProps<IriProp>()
+        const { resource, exposeMeta } = useCwaComponent(props)
         defineExpose(exposeMeta)
         </script>
-
-        <template>
-          <a :href="resource?.data?.url || '#'">
-            {{ resource?.data?.label }}
-          </a>
-        </template>
     answer:
       lines:
         - 17
@@ -155,20 +162,20 @@ questions:
       - kind: docs
         page: /nuxt-module/composables/component/use-cwa-component
         anchor: return-values
-        sectionHash: sha256:db39379ae980b37e
+        sectionHash: sha256:a5a36a9138c28cf6
         title: useCwaComponent › Return Values
       - kind: docs
         page: /guides/alternative-ui-variants
-        anchor: approach-1-style-classes
-        sectionHash: sha256:1b996abbfde421dc
-        title: "Alternative UI Variants › Approach 1: Style Classes"
+        anchor: approach-1-styles
+        sectionHash: sha256:76f6ae1b870270ff
+        title: "Alternative UI Variants › Approach 1: Styles"
         block: 0
-        blockHash: sha256:32a1bc29f03d7ebd
+        blockHash: sha256:6a7fe78bad12e612
     generator:
       name: pick-the-line
       ref: define-expose
-  - id: gen.target.define-expose.4
-    version: 2
+  - id: gen.target.define-expose.8
+    version: 1
     status: live
     level: beginner
     area: nuxt-module
@@ -181,102 +188,53 @@ questions:
     code:
       lang: vue
       text: |-
-        const props = defineProps<IriProp>()
-
-        const { resource, exposeMeta, getCurrentStyleName } = useCwaComponent(props, [], {
-          styles: {
-            multiple: false,
-            classes: {
-              'Filled Button': 'bg-blue-600 text-white px-6 py-2 rounded-md',
-              'Outlined Button': 'border border-blue-600 text-blue-600 px-6 py-2 rounded-md',
-            }
-          }
-        })
-
-        const currentStyleName = computed(() => {
-          if (!resource.value?.data) return 'Default'
-          return getCurrentStyleName(resource.value.data) ?? 'Default'
-        })
-
-        defineExpose(exposeMeta)
-        </script>
-    answer:
-      lines:
-        - 18
-      explanation: "`defineExpose(exposeMeta)` hands the component's metadata to the admin manager. Without it, the
-        admin can't select the component."
-    sources:
-      - kind: docs
-        page: /nuxt-module/composables/component/use-cwa-component
-        anchor: return-values
-        sectionHash: sha256:db39379ae980b37e
-        title: useCwaComponent › Return Values
-      - kind: docs
-        page: /guides/alternative-ui-variants
-        anchor: conditional-rendering-based-on-style
-        sectionHash: sha256:dbde099ff99715c7
-        title: Alternative UI Variants › Conditional rendering based on style
-        block: 0
-        blockHash: sha256:9cc2b9251be32c5c
-    generator:
-      name: pick-the-line
-      ref: define-expose
-  - id: gen.target.define-expose.5
-    version: 2
-    status: live
-    level: beginner
-    area: nuxt-module
-    tags:
-      - components
-    type: pick-the-line
-    family: target:define-expose
-    prompt: Without which line would clicking this component in edit mode do nothing?
-    why: If clicking a new component in edit mode does nothing, this missing line is the first thing to check.
-    code:
-      lang: vue
-      text: |-
-        <!-- app/app/cwa/components/NavigationLink/ui/YouTube.vue -->
         <template>
-          <a :href="resource?.data?.url">
-            <!-- your own icon component, or an inline SVG -->
-            <YouTubeIcon class="w-15 h-10" />
-            <span class="sr-only">{{ resource?.data?.label }}</span>
-          </a>
+          <figure class="my-6 border-l-4 border-stone-400 pl-4">
+            <span v-if="styleKeys.includes('boxed')" aria-hidden="true" class="text-6xl">“</span>
+            <blockquote class="text-xl italic">
+              {{ resource?.data?.text || 'No quote yet' }}
+            </blockquote>
+            <figcaption
+              v-if="resource?.data?.author"
+              class="mt-2 text-sm"
+            >
+              — {{ resource.data.author }}
+            </figcaption>
+          </figure>
         </template>
 
         <script setup lang="ts">
         import type { IriProp } from '#cwa/composables/cwa-resource'
-        import { useCwaComponent } from '#imports'
+
+        // defineCwaConfig({ ... }) as above
 
         const props = defineProps<IriProp>()
-        const { resource, exposeMeta } = useCwaComponent(props, [], {
-          name: 'YouTube'
-        })
+        const { resource, exposeMeta, styleKeys } = useCwaComponent(props)
         defineExpose(exposeMeta)
         </script>
     answer:
       lines:
-        - 18
+        - 23
       explanation: "`defineExpose(exposeMeta)` hands the component's metadata to the admin manager. Without it, the
         admin can't select the component."
     sources:
       - kind: docs
         page: /nuxt-module/composables/component/use-cwa-component
         anchor: return-values
-        sectionHash: sha256:db39379ae980b37e
+        sectionHash: sha256:a5a36a9138c28cf6
         title: useCwaComponent › Return Values
       - kind: docs
         page: /guides/alternative-ui-variants
-        anchor: the-ui-file
-        sectionHash: sha256:97d0c4346cea8201
-        title: Alternative UI Variants › The ui/ file
+        anchor: changing-markup-with-a-style
+        sectionHash: sha256:c9ee7982c0e05791
+        title: Alternative UI Variants › Changing markup with a style
         block: 0
-        blockHash: sha256:67f7d40df9d95df6
+        blockHash: sha256:12311b1ff633b342
     generator:
       name: pick-the-line
       ref: define-expose
-  - id: gen.target.define-expose.6
-    version: 2
+  - id: gen.target.define-expose.5
+    version: 3
     status: live
     level: beginner
     area: nuxt-module
@@ -290,14 +248,23 @@ questions:
       lang: vue
       text: |-
         <template>
-          <div v-if="resource?.data">
-            <h2>{{ resource.data.title }}</h2>
+          <div class="my-6 rounded-lg bg-stone-900 p-8 text-white">
+            <span aria-hidden="true" class="block text-6xl leading-none">“</span>
+            <p class="text-2xl">
+              {{ resource?.data?.text || 'No quote yet' }}
+            </p>
+            <p v-if="resource?.data?.author" class="mt-4 text-sm uppercase tracking-wide">
+              {{ resource.data.author }}
+            </p>
           </div>
         </template>
 
         <script setup lang="ts">
         import type { IriProp } from '#cwa/composables/cwa-resource'
-        import { useCwaComponent } from '#imports'
+
+        defineCwaConfig({
+          name: 'Card',
+        })
 
         const props = defineProps<IriProp>()
         const { resource, exposeMeta } = useCwaComponent(props)
@@ -305,22 +272,75 @@ questions:
         </script>
     answer:
       lines:
-        - 13
+        - 22
       explanation: "`defineExpose(exposeMeta)` hands the component's metadata to the admin manager. Without it, the
         admin can't select the component."
     sources:
       - kind: docs
         page: /nuxt-module/composables/component/use-cwa-component
         anchor: return-values
-        sectionHash: sha256:db39379ae980b37e
+        sectionHash: sha256:a5a36a9138c28cf6
         title: useCwaComponent › Return Values
       - kind: docs
-        page: /nuxt-module/composables/component/use-cwa-component
-        anchor: example
-        sectionHash: sha256:df121ccdabd91158
-        title: useCwaComponent › Example
+        page: /guides/alternative-ui-variants
+        anchor: the-ui-file
+        sectionHash: sha256:3ccdcbd518123273
+        title: Alternative UI Variants › The ui/ file
         block: 0
-        blockHash: sha256:0eb850e42ebd4efc
+        blockHash: sha256:9b9e5dc1b03a93a9
+    generator:
+      name: pick-the-line
+      ref: define-expose
+  - id: gen.target.define-expose.9
+    version: 1
+    status: live
+    level: beginner
+    area: nuxt-module
+    tags:
+      - components
+    type: pick-the-line
+    family: target:define-expose
+    prompt: Without which line would clicking this component in edit mode do nothing?
+    why: If clicking a new component in edit mode does nothing, this missing line is the first thing to check.
+    code:
+      lang: vue
+      text: |-
+        <!-- app/app/cwa/components/Title/Title.vue -->
+        <script setup lang="ts">
+        defineCwaConfig({
+            name: 'Title',
+            description: 'The main heading of a page',
+            icon: 'heading',
+            group: 'Text',
+            defaultData: { title: 'New title' },
+            styles: {
+                centred: { label: 'Centred', classes: 'text-center' },
+                underlined: { label: 'Underlined', classes: 'pb-1' },
+            },
+        })
+
+        const props = defineProps<IriProp>()
+        const { resource, exposeMeta, styleKeys } = useCwaComponent(props)
+        defineExpose(exposeMeta)
+        </script>
+    answer:
+      lines:
+        - 17
+      explanation: "`defineExpose(exposeMeta)` hands the component's metadata to the admin manager. Without it, the
+        admin can't select the component."
+    sources:
+      - kind: docs
+        page: /nuxt-module/composables/component/use-cwa-component
+        anchor: return-values
+        sectionHash: sha256:a5a36a9138c28cf6
+        title: useCwaComponent › Return Values
+      - kind: docs
+        page: /nuxt-module/building-your-ui/creating-components
+        anchor: configuring-a-component
+        sectionHash: sha256:6d348eddd3d4498f
+        title: Component Files › Configuring a Component
+        block: 0
+        blockHash: sha256:b8d4ba4b20cfafa6
     generator:
       name: pick-the-line
       ref: define-expose
@@ -1171,7 +1191,7 @@ questions:
       name: pick-the-line
       ref: allowed-components
   - id: gen.target.allowed-components.2
-    version: 3
+    version: 4
     status: live
     level: beginner
     area: nuxt-module
@@ -1207,7 +1227,12 @@ questions:
         </template>
 
         <script setup lang="ts">
-        useCwaLayout()
+        defineCwaConfig({
+          name: 'Landing Layout',
+          styles: {
+            muted: { label: 'Muted Background', classes: 'bg-stone-100' },
+          },
+        })
         </script>
     answer:
       lines:
@@ -1223,10 +1248,10 @@ questions:
       - kind: docs
         page: /guides/your-first-layout
         anchor: the-file
-        sectionHash: sha256:a1f4ee1da582b30f
+        sectionHash: sha256:837085f1b693046a
         title: Your First Layout › The File
         block: 0
-        blockHash: sha256:cfdf8a99c2ad44d7
+        blockHash: sha256:c0afc0d0d892216a
     generator:
       name: pick-the-line
       ref: allowed-components
@@ -1417,6 +1442,174 @@ questions:
     generator:
       name: pick-the-line
       ref: fixture-redirect
+  - id: gen.target.define-expose.3
+    version: 2
+    status: retired
+    level: beginner
+    area: nuxt-module
+    tags:
+      - components
+    family: target:define-expose
+    prompt: Without which line would clicking this component in edit mode do nothing?
+    why: If clicking a new component in edit mode does nothing, this missing line is the first thing to check.
+    sources:
+      - kind: docs
+        page: /nuxt-module/composables/component/use-cwa-component
+        anchor: return-values
+        sectionHash: sha256:db39379ae980b37e
+        title: useCwaComponent › Return Values
+      - kind: docs
+        page: /guides/alternative-ui-variants
+        anchor: approach-1-style-classes
+        sectionHash: sha256:1b996abbfde421dc
+        title: "Alternative UI Variants › Approach 1: Style Classes"
+        block: 0
+        blockHash: sha256:32a1bc29f03d7ebd
+    generator:
+      name: pick-the-line
+      ref: define-expose
+    type: pick-the-line
+    code:
+      lang: vue
+      text: |-
+        <script setup lang="ts">
+        import type { IriProp } from '#cwa/composables/cwa-resource'
+        import { useCwaComponent } from '#imports'
+
+        const props = defineProps<IriProp>()
+
+        const { resource, exposeMeta } = useCwaComponent(props, [], {
+          styles: {
+            multiple: false,
+            classes: {
+              'Filled Button': 'bg-blue-600 text-white px-6 py-2 rounded-md',
+              'Outlined Button': 'border border-blue-600 text-blue-600 px-6 py-2 rounded-md',
+            }
+          }
+        })
+
+        defineExpose(exposeMeta)
+        </script>
+
+        <template>
+          <a :href="resource?.data?.url || '#'">
+            {{ resource?.data?.label }}
+          </a>
+        </template>
+    answer:
+      lines:
+        - 17
+      explanation: "`defineExpose(exposeMeta)` hands the component's metadata to the admin manager. Without it, the
+        admin can't select the component."
+    retired:
+      reason: "stale-source: the source block is gone or no longer matches the catalogue entry"
+  - id: gen.target.define-expose.4
+    version: 2
+    status: retired
+    level: beginner
+    area: nuxt-module
+    tags:
+      - components
+    family: target:define-expose
+    prompt: Without which line would clicking this component in edit mode do nothing?
+    why: If clicking a new component in edit mode does nothing, this missing line is the first thing to check.
+    sources:
+      - kind: docs
+        page: /nuxt-module/composables/component/use-cwa-component
+        anchor: return-values
+        sectionHash: sha256:db39379ae980b37e
+        title: useCwaComponent › Return Values
+      - kind: docs
+        page: /guides/alternative-ui-variants
+        anchor: conditional-rendering-based-on-style
+        sectionHash: sha256:dbde099ff99715c7
+        title: Alternative UI Variants › Conditional rendering based on style
+        block: 0
+        blockHash: sha256:9cc2b9251be32c5c
+    generator:
+      name: pick-the-line
+      ref: define-expose
+    type: pick-the-line
+    code:
+      lang: vue
+      text: |-
+        const props = defineProps<IriProp>()
+
+        const { resource, exposeMeta, getCurrentStyleName } = useCwaComponent(props, [], {
+          styles: {
+            multiple: false,
+            classes: {
+              'Filled Button': 'bg-blue-600 text-white px-6 py-2 rounded-md',
+              'Outlined Button': 'border border-blue-600 text-blue-600 px-6 py-2 rounded-md',
+            }
+          }
+        })
+
+        const currentStyleName = computed(() => {
+          if (!resource.value?.data) return 'Default'
+          return getCurrentStyleName(resource.value.data) ?? 'Default'
+        })
+
+        defineExpose(exposeMeta)
+        </script>
+    answer:
+      lines:
+        - 18
+      explanation: "`defineExpose(exposeMeta)` hands the component's metadata to the admin manager. Without it, the
+        admin can't select the component."
+    retired:
+      reason: "stale-source: the source block is gone or no longer matches the catalogue entry"
+  - id: gen.target.define-expose.6
+    version: 2
+    status: retired
+    level: beginner
+    area: nuxt-module
+    tags:
+      - components
+    family: target:define-expose
+    prompt: Without which line would clicking this component in edit mode do nothing?
+    why: If clicking a new component in edit mode does nothing, this missing line is the first thing to check.
+    sources:
+      - kind: docs
+        page: /nuxt-module/composables/component/use-cwa-component
+        anchor: return-values
+        sectionHash: sha256:db39379ae980b37e
+        title: useCwaComponent › Return Values
+      - kind: docs
+        page: /nuxt-module/composables/component/use-cwa-component
+        anchor: example
+        sectionHash: sha256:df121ccdabd91158
+        title: useCwaComponent › Example
+        block: 0
+        blockHash: sha256:0eb850e42ebd4efc
+    generator:
+      name: pick-the-line
+      ref: define-expose
+    type: pick-the-line
+    code:
+      lang: vue
+      text: |-
+        <template>
+          <div v-if="resource?.data">
+            <h2>{{ resource.data.title }}</h2>
+          </div>
+        </template>
+
+        <script setup lang="ts">
+        import type { IriProp } from '#cwa/composables/cwa-resource'
+        import { useCwaComponent } from '#imports'
+
+        const props = defineProps<IriProp>()
+        const { resource, exposeMeta } = useCwaComponent(props)
+        defineExpose(exposeMeta)
+        </script>
+    answer:
+      lines:
+        - 13
+      explanation: "`defineExpose(exposeMeta)` hands the component's metadata to the admin manager. Without it, the
+        admin can't select the component."
+    retired:
+      reason: "stale-source: the source block is gone or no longer matches the catalogue entry"
   - id: gen.target.page-data-position.1
     version: 2
     status: retired
