@@ -109,31 +109,32 @@ questions:
     author: llm-draft
 
   - id: core.admin.reorder-where
-    version: 2
+    version: 3
     status: live
     level: intermediate
     area: core-concepts
     tags: [admin]
     type: multiple-choice
-    difficulty: 1
+    difficulty: 2
     prompt: >-
-      Where does an editor reorder the components in a component group (a named list of components, such as
-      `main`)?
+      An editor wants to drag the components of a component group (a named list of components, such as
+      `main`) into a new order on the page. What do they turn on first, and where?
     why: >-
-      If an editor asks how to drag components into place, point them to the Order tab: there's no drag
-      reordering on the page.
+      If an editor asks how to drag components into place, point them to the group's own tab: a component's
+      Order tab only moves it one place at a time.
     options:
-      - { id: a, text: The Order tab in the manager panel }
-      - { id: b, text: By dragging the component on the page }
-      - { id: c, text: The `/_cwa/pages` admin page }
-      - { id: d, text: The page's route settings }
+      - { id: a, text: '**Enable reordering**, in the selected group''s **Group** tab' }
+      - { id: b, text: '**Enable reordering**, in the selected component''s **Order** tab' }
+      - { id: c, text: 'Nothing: components can be dragged whenever edit mode is on' }
+      - { id: d, text: 'A **Reorder** setting on the page in `/_cwa/pages`' }
     answer:
       correct: a
       explanation: >-
-        Select a component, open the manager panel's **Order** tab and turn on **Enable reordering**. Then use
-        **Move Up**, **Move Down** or a position number.
+        Select the group itself, for example by right-clicking a component in it and choosing the group, and turn
+        on **Enable reordering** in its **Group** tab. A component's **Order** tab has a **Position** field with
+        **Move up** and **Move down** instead.
     sources:
-      - { kind: docs, page: /core-concepts/admin-panel, anchor: reordering, sectionHash: 'sha256:59cdff50926702be', title: 'The Admin Panel › Reordering' }
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: reordering, sectionHash: 'sha256:85235e8b8d3c72d9', title: 'The Admin Panel › Reordering' }
     author: llm-draft
 
   - id: core.caching.save-refreshes-pages
