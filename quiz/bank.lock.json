@@ -2333,7 +2333,7 @@
       }
     },
     "core.naming.nuxt-config-keys": {
-      "status": "live",
+      "status": "retired",
       "version": 2,
       "versions": {
         "1": {
@@ -3568,21 +3568,29 @@
     },
     "gen.mistake.component-without-props.1": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:29dff1837f38537d",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:1fdc4f1909c97427",
+          "docsCommit": "f8bdc022309052ac78bb01dc594311f3c8f96a43"
         }
       }
     },
     "gen.mistake.component-without-props.2": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:dd3a96a3511c7a6c",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:7be9709f8d827b85",
+          "docsCommit": "f8bdc022309052ac78bb01dc594311f3c8f96a43"
         }
       }
     },
@@ -3597,7 +3605,7 @@
       }
     },
     "gen.mistake.component-without-props.4": {
-      "status": "live",
+      "status": "retired",
       "version": 1,
       "versions": {
         "1": {
@@ -3607,7 +3615,7 @@
       }
     },
     "gen.mistake.component-without-props.5": {
-      "status": "live",
+      "status": "retired",
       "version": 1,
       "versions": {
         "1": {
@@ -3617,7 +3625,7 @@
       }
     },
     "gen.mistake.component-without-props.6": {
-      "status": "live",
+      "status": "retired",
       "version": 2,
       "versions": {
         "1": {
@@ -3627,6 +3635,36 @@
         "2": {
           "fingerprint": "sha256:507fb3c687b1c397",
           "docsCommit": "a1056e349c0674125d27aa7e59429f1d171722cf+dirty"
+        }
+      }
+    },
+    "gen.mistake.component-without-props.7": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:47902292c7433a04",
+          "docsCommit": "f8bdc022309052ac78bb01dc594311f3c8f96a43"
+        }
+      }
+    },
+    "gen.mistake.component-without-props.8": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:56b3bf893419e741",
+          "docsCommit": "f8bdc022309052ac78bb01dc594311f3c8f96a43"
+        }
+      }
+    },
+    "gen.mistake.component-without-props.9": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:3ceadef5f2e6a95c",
+          "docsCommit": "f8bdc022309052ac78bb01dc594311f3c8f96a43"
         }
       }
     },
@@ -3709,7 +3747,7 @@
       }
     },
     "gen.mistake.is-editing-value.3": {
-      "status": "live",
+      "status": "retired",
       "version": 1,
       "versions": {
         "1": {
@@ -3729,12 +3767,32 @@
       }
     },
     "gen.mistake.is-editing-value.5": {
-      "status": "live",
+      "status": "retired",
       "version": 1,
       "versions": {
         "1": {
           "fingerprint": "sha256:2a5f75aaa02f9bb6",
           "docsCommit": "91a0282cc99e4da32ccd4627fdddd3ffabdefaf9"
+        }
+      }
+    },
+    "gen.mistake.is-editing-value.6": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:b771ddbb0d9da513",
+          "docsCommit": "f8bdc022309052ac78bb01dc594311f3c8f96a43"
+        }
+      }
+    },
+    "gen.mistake.is-editing-value.7": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:07eeb49dfb085a04",
+          "docsCommit": "f8bdc022309052ac78bb01dc594311f3c8f96a43"
         }
       }
     },
@@ -3794,11 +3852,15 @@
     },
     "gen.mistake.layout-slot.2": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:da8a062bce650786",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:deb1d3a99829ea04",
+          "docsCommit": "f8bdc022309052ac78bb01dc594311f3c8f96a43"
         }
       }
     },
@@ -3994,36 +4056,48 @@
     },
     "gen.mistake.subpath-import.1": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:b9631a822a922faa",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:f2002195c315eb6d",
+          "docsCommit": "f8bdc022309052ac78bb01dc594311f3c8f96a43"
         }
       }
     },
     "gen.mistake.subpath-import.2": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:3b2a50ba305b9312",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:e210187a4c9609b3",
+          "docsCommit": "f8bdc022309052ac78bb01dc594311f3c8f96a43"
         }
       }
     },
     "gen.mistake.subpath-import.3": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:5136a2a1500239d3",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:46aab7ea6f690794",
+          "docsCommit": "f8bdc022309052ac78bb01dc594311f3c8f96a43"
         }
       }
     },
     "gen.mistake.subpath-import.4": {
-      "status": "live",
+      "status": "retired",
       "version": 1,
       "versions": {
         "1": {
@@ -4033,7 +4107,7 @@
       }
     },
     "gen.mistake.subpath-import.5": {
-      "status": "live",
+      "status": "retired",
       "version": 1,
       "versions": {
         "1": {
@@ -4044,11 +4118,35 @@
     },
     "gen.mistake.subpath-import.6": {
       "status": "live",
-      "version": 2,
+      "version": 3,
       "versions": {
         "2": {
           "fingerprint": "sha256:2189e7eeea35cfff",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "3": {
+          "fingerprint": "sha256:210c1cb2f4ae1ce2",
+          "docsCommit": "f8bdc022309052ac78bb01dc594311f3c8f96a43"
+        }
+      }
+    },
+    "gen.mistake.subpath-import.7": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:1bcedb316c9c68b5",
+          "docsCommit": "f8bdc022309052ac78bb01dc594311f3c8f96a43"
+        }
+      }
+    },
+    "gen.mistake.subpath-import.8": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:bbc897cd9375d768",
+          "docsCommit": "f8bdc022309052ac78bb01dc594311f3c8f96a43"
         }
       }
     },
@@ -4078,7 +4176,7 @@
     },
     "gen.target.allowed-components.2": {
       "status": "live",
-      "version": 3,
+      "version": 4,
       "versions": {
         "2": {
           "fingerprint": "sha256:8ebe1f1566fddbe5",
@@ -4087,6 +4185,10 @@
         "3": {
           "fingerprint": "sha256:fe3f35039179b8bf",
           "docsCommit": "f65104ac0970aedb4cebc20251242458be940444+dirty"
+        },
+        "4": {
+          "fingerprint": "sha256:a21caba37a862a4e",
+          "docsCommit": "f8bdc022309052ac78bb01dc594311f3c8f96a43"
         }
       }
     },
@@ -4106,26 +4208,34 @@
     },
     "gen.target.define-expose.1": {
       "status": "live",
-      "version": 2,
+      "version": 3,
       "versions": {
         "2": {
           "fingerprint": "sha256:8e5c63cda19f69b9",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "3": {
+          "fingerprint": "sha256:71317a4c5229a1d6",
+          "docsCommit": "f8bdc022309052ac78bb01dc594311f3c8f96a43"
         }
       }
     },
     "gen.target.define-expose.2": {
       "status": "live",
-      "version": 2,
+      "version": 3,
       "versions": {
         "2": {
           "fingerprint": "sha256:d982d15619988d0d",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "3": {
+          "fingerprint": "sha256:80ff2dacb50a35e1",
+          "docsCommit": "f8bdc022309052ac78bb01dc594311f3c8f96a43"
         }
       }
     },
     "gen.target.define-expose.3": {
-      "status": "live",
+      "status": "retired",
       "version": 2,
       "versions": {
         "2": {
@@ -4135,7 +4245,7 @@
       }
     },
     "gen.target.define-expose.4": {
-      "status": "live",
+      "status": "retired",
       "version": 2,
       "versions": {
         "2": {
@@ -4146,21 +4256,55 @@
     },
     "gen.target.define-expose.5": {
       "status": "live",
-      "version": 2,
+      "version": 3,
       "versions": {
         "2": {
           "fingerprint": "sha256:92b9d876fe19d5d8",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "3": {
+          "fingerprint": "sha256:953d09bc594b9afe",
+          "docsCommit": "f8bdc022309052ac78bb01dc594311f3c8f96a43"
         }
       }
     },
     "gen.target.define-expose.6": {
-      "status": "live",
+      "status": "retired",
       "version": 2,
       "versions": {
         "2": {
           "fingerprint": "sha256:c7ed24f69a05878e",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        }
+      }
+    },
+    "gen.target.define-expose.7": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:0f262b0a19477ffb",
+          "docsCommit": "f8bdc022309052ac78bb01dc594311f3c8f96a43"
+        }
+      }
+    },
+    "gen.target.define-expose.8": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:ce1857f2244cac67",
+          "docsCommit": "f8bdc022309052ac78bb01dc594311f3c8f96a43"
+        }
+      }
+    },
+    "gen.target.define-expose.9": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:f3f50aa4326ff8a4",
+          "docsCommit": "f8bdc022309052ac78bb01dc594311f3c8f96a43"
         }
       }
     },
