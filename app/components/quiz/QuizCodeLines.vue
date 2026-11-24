@@ -23,6 +23,8 @@ const props = defineProps<{
     fix?: string
     /** Spot-the-mistake: `correct` is the wrong line, so it is marked as the mistake, not in green. */
     mistake?: boolean
+    /** The answer wasn't scored: show the choice without marking it right or wrong. */
+    ungraded?: boolean
   }
 }>()
 
@@ -99,7 +101,7 @@ function onKeydown(event: KeyboardEvent, line: number) {
 
 function markOf(line: number): 'correct' | 'wrong' | 'missed' | undefined {
   const marks = props.marks
-  if (!marks) {
+  if (!marks || marks.ungraded) {
     return undefined
   }
   const isCorrect = marks.correct.includes(line)
@@ -119,6 +121,9 @@ function rowClass(line: { number: number, blank: boolean }) {
   }
   if (mark === 'wrong') {
     return 'bg-error/10 ring-1 ring-inset ring-error/50'
+  }
+  if (props.marks?.ungraded && props.marks.chosen === line.number) {
+    return 'bg-primary/15 ring-1 ring-inset ring-primary'
   }
   if (interactive.value && !line.blank) {
     return props.modelValue === line.number

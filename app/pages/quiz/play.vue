@@ -187,7 +187,8 @@ const optionMarks = computed(() => {
   return {
     chosen: chosenOption(r.choice),
     correct: correct.value && 'optionId' in correct.value ? correct.value.optionId : undefined,
-    notes: r.result.feedback?.optionNotes
+    notes: r.result.feedback?.optionNotes,
+    ungraded: r.result.status === 'ungraded'
   }
 })
 
@@ -199,7 +200,8 @@ const manyMarks = computed(() => {
   return {
     chosen: chosenOptions(r.choice),
     correct: correct.value && 'optionIds' in correct.value ? correct.value.optionIds : [],
-    notes: r.result.feedback?.optionNotes
+    notes: r.result.feedback?.optionNotes,
+    ungraded: r.result.status === 'ungraded'
   }
 })
 
@@ -212,7 +214,8 @@ const lineMarks = computed(() => {
     chosen: chosenLine(r.choice),
     correct: correct.value && 'lines' in correct.value ? correct.value.lines : [],
     fix: r.result.key?.fix,
-    mistake: r.question.type === 'spot-the-mistake'
+    mistake: r.question.type === 'spot-the-mistake',
+    ungraded: r.result.status === 'ungraded'
   }
 })
 

@@ -73,6 +73,18 @@ test('quiz - can be answered with the keyboard only', async ({ page }) => {
   await expect(page.getByText(/pass mark/)).toBeVisible()
 })
 
+test('quiz - an unscored answer is not marked wrong', async ({ page }) => {
+  // No keys: every answer is ungraded, as when a deploy changes the bank mid-quiz.
+  await page.route('**/api/quiz/keys/*.json', route => route.fulfill({ json: [] }))
+  await page.goto(PLAY)
+  await page.waitForLoadState('networkidle')
+  await page.locator(CHOICE).first().click()
+  await page.getByRole('button', { name: 'Check answer' }).click()
+  await expect(page.getByRole('heading', { name: 'Not scored' })).toBeVisible()
+  await expect(page.getByText('Your answer, wrong')).toHaveCount(0)
+  await expect(page.locator('.border-error, .ring-error\\/50')).toHaveCount(0)
+})
+
 async function tabTo(page: Page, name: RegExp) {
   for (let i = 0; i < 30; i++) {
     await page.keyboard.press('Tab')

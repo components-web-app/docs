@@ -16,6 +16,8 @@ const props = defineProps<{
     chosen: string[]
     correct: string[]
     notes?: Record<string, MarkdownDocument>
+    /** The answer wasn't scored: show the choice without marking it right or wrong. */
+    ungraded?: boolean
   }
 }>()
 
@@ -88,7 +90,7 @@ function onKeydown(event: KeyboardEvent, id: string) {
 
 function markOf(id: string): 'correct' | 'wrong' | 'missed' | 'left' | undefined {
   const marks = props.marks
-  if (!marks) {
+  if (!marks || marks.ungraded) {
     return undefined
   }
   const right = marks.correct.includes(id)
@@ -108,6 +110,9 @@ function rowClass(id: string) {
   }
   if (mark === 'wrong') {
     return 'border-error bg-error/10'
+  }
+  if (props.marks?.ungraded && props.marks.chosen.includes(id)) {
+    return 'border-primary bg-primary/10'
   }
   if (!interactive.value) {
     return 'border-default opacity-75'
