@@ -1244,6 +1244,16 @@
         }
       }
     },
+    "api.routes.path-characters": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:52f84102eeebba9d",
+          "docsCommit": "a57e1bfe51ee6d6a217b7615a2cfea7a0890e836"
+        }
+      }
+    },
     "api.routes.redirect-status": {
       "status": "live",
       "version": 3,
@@ -3487,6 +3497,16 @@
         "2": {
           "fingerprint": "sha256:3e79e246fa6b3845",
           "docsCommit": "9ff81ee4322ec1346c58b0cfb3bff98d6e868932"
+        }
+      }
+    },
+    "deploy.scaled.redis-not-flushed": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:f4d58b5a03414787",
+          "docsCommit": "a57e1bfe51ee6d6a217b7615a2cfea7a0890e836"
         }
       }
     },

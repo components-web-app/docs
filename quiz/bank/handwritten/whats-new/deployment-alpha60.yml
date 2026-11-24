@@ -1,0 +1,33 @@
+# Hand-written What's new questions about deployment: template changes in 2.0.0-alpha.60.
+# Each one has a `since` naming the release that brought the change in.
+# Format: quiz/README.md. Run `pnpm quiz:stamp <id>` to fill in or refresh the hashes.
+
+questions:
+  - id: deploy.scaled.redis-not-flushed
+    version: 1
+    status: live
+    level: advanced
+    area: deployment
+    tags: [deployment, http-caching]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      In scaled mode, a production deploy's flush can't reach the Redis pod. What does the deploy do?
+    why: >-
+      The release is already live when the flush runs, so stopping the deploy wouldn't help; it tells you
+      loudly instead, with the command to flush Redis by hand.
+    since: [{ repo: components-web-app, version: '2.0.0-alpha.60' }]
+    options:
+      - { id: a, text: 'Prints a warning banner and carries on' }
+      - { id: b, text: 'Fails the deploy and rolls the release back' }
+      - { id: c, text: 'Skips the Redis flush without a word' }
+      - { id: d, text: 'Retries until Redis answers, holding the deploy' }
+    answer:
+      correct: a
+      explanation: >-
+        The job prints the banner with the pod, its reply and a `kubectl exec … FLUSHDB ASYNC` command, and
+        Souin's flush still runs. A deploy carries on; a fixture load, the image variants job and a
+        maintenance window fail instead.
+    sources:
+      - { kind: docs, page: /deployment/scaled-mode, anchor: when-redis-isnt-flushed, sectionHash: 'sha256:f85ec1c4a82cfb6a', title: "Scaled Mode › When Redis isn't flushed" }
+    author: llm-draft

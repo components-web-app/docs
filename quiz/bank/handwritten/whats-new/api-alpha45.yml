@@ -1,0 +1,33 @@
+# Hand-written What's new questions about the API bundle: changes in 2.0.0-alpha.45.
+# Each one has a `since` naming the release that brought the change in.
+# Format: quiz/README.md. Run `pnpm quiz:stamp <id>` to fill in or refresh the hashes.
+
+questions:
+  - id: api.routes.path-characters
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [routes]
+    type: multiple-choice
+    difficulty: 2
+    prompt: >-
+      An editor saves a page with the route path `/events/summer fair`, with a space in it. What does the
+      API do?
+    why: >-
+      A space, `?` or `#` in a stored path would make a URL that can't be requested as written, so the API
+      refuses it rather than guessing what was meant.
+    since: [{ repo: api-components-bundle, version: '2.0.0-alpha.45' }]
+    options:
+      - { id: a, text: 'Refuses it with a 422 on `path`' }
+      - { id: b, text: 'Saves it as `/events/summer-fair`' }
+      - { id: c, text: 'Saves it as `/events/summer%20fair`' }
+      - { id: d, text: 'Saves it, and visitors get a 404' }
+    answer:
+      correct: a
+      explanation: >-
+        A path containing whitespace, `?` or `#` is a 422 on `path` wherever a path is written, and the API
+        never tidies it for you. A path already stored isn't checked again until it changes.
+    sources:
+      - { kind: docs, page: /api/routes, anchor: the-route-resource, sectionHash: 'sha256:352ba9b06b54e154', title: 'Routes › The Route Resource' }
+    author: llm-draft
