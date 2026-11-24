@@ -29,6 +29,10 @@ If a change is documented, move it to **Documented** below. If it is intentional
 
 ## Pending Documentation Review
 
+### 2026-11-24 — in progress, document when each lands on dev/main
+- **Allowed UI variants and styles per component group** (module + bundle, being built): `allowed-components` will be able to limit a type to some of its UI variants and styles. Today `ComponentGroup::$allowedComponents` is type IRIs only, and the only style rule is per variant (Categorise and Restrict › Restrict Styles per UI Variant). When it lands: API › Component Groups, `<CwaComponentGroup>` › Allowed Components, Categorise and Restrict.
+- **Module extension tools** (an ecommerce extension first, more to follow): Daniel wants a new docs section, probably **"Extending the CWA"**, for writing an extension. Ask the module session for the API once it's on `dev`; I answered its extension-API design consult on 2026-11-23.
+
 - Template #129 (admin-editable site settings) is a proposal only.
 
 ### 2026-10-20 — template #96 "A gentler first hour" (2.0.0-beta): filed, not built
