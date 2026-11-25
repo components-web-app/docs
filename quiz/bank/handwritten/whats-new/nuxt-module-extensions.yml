@@ -31,7 +31,7 @@ questions:
         An extension's files are registered below the site's, so a site file with the same name wins and
         the build logs the replacement. Only two extensions defining one name fail the build.
     sources:
-      - { kind: docs, page: /extending-the-cwa/registering-an-extension, anchor: replacing-an-extensions-file, sectionHash: 'sha256:247ba12ddeac2931', title: 'Registering an Extension › Replacing an Extension''s File' }
+      - { kind: docs, page: /extending-the-cwa/registering-an-extension, anchor: replacing-an-extensions-file, sectionHash: 'sha256:48ce31e31916a0be', title: 'Registering an Extension › Replacing an Extension''s File' }
     author: llm-draft
 
   - id: nuxt.extend.signed-in-hook

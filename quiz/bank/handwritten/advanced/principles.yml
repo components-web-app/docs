@@ -117,7 +117,7 @@ questions:
         express that. A page then inherits the lowest lifetime of the responses it used.
     sources:
       - { kind: docs, page: /api/http-caching, anchor: scheduled-publication-and-cache-lifetime, sectionHash: 'sha256:c6db8175c896f86b', title: 'HTTP Caching › Scheduled Publication and Cache Lifetime' }
-      - { kind: docs, page: /nuxt-module/page-caching, anchor: how-long-a-page-is-kept, sectionHash: 'sha256:118538e80ad6a936', title: 'Page Caching › How Long a Page Is Kept' }
+      - { kind: docs, page: /nuxt-module/page-caching, anchor: how-long-a-page-is-kept, sectionHash: 'sha256:90268fa8995702d2', title: 'Page Caching › How Long a Page Is Kept' }
     author: llm-draft
 
   - id: api.real-time.failed-publish

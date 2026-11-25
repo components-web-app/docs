@@ -27,7 +27,7 @@ questions:
       optionNotes:
         a: One hour applies only when no API response supplies a lifetime.
     sources:
-      - { kind: docs, page: /nuxt-module/page-caching, anchor: how-long-a-page-is-kept, sectionHash: 'sha256:118538e80ad6a936', title: 'Page Caching › How Long a Page Is Kept' }
+      - { kind: docs, page: /nuxt-module/page-caching, anchor: how-long-a-page-is-kept, sectionHash: 'sha256:90268fa8995702d2', title: 'Page Caching › How Long a Page Is Kept' }
     author: llm-draft
 
   - id: nuxt.page-cache.max-age-zero
@@ -76,10 +76,11 @@ questions:
     answer:
       correct: c
       explanation: >-
-        Only CWA resources are tagged for purging. A date rendered on the server or a third-party fetch is never
-        purged, so with the default lifetime it can stay for up to a year. `sharedMaxAge` caps every page.
+        A page is tagged only with the resources it fetched from the API. A date rendered on the server or a
+        third-party fetch is never purged, so with the default lifetime it can stay for up to a year.
+        `sharedMaxAge` caps every page.
     sources:
-      - { kind: docs, page: /nuxt-module/page-caching, anchor: how-long-a-page-is-kept, sectionHash: 'sha256:118538e80ad6a936', title: 'Page Caching › How Long a Page Is Kept' }
+      - { kind: docs, page: /nuxt-module/page-caching, anchor: how-long-a-page-is-kept, sectionHash: 'sha256:90268fa8995702d2', title: 'Page Caching › How Long a Page Is Kept' }
     author: llm-draft
 
   - id: nuxt.page-cache.unpublished-component
