@@ -544,7 +544,7 @@ questions:
         left out of the response. The Quote silently stops rendering, so the list must name every type already
         in the group.
     sources:
-      - { kind: docs, page: /nuxt-module/cwa-components/cwa-component-group, anchor: allowed-components, sectionHash: 'sha256:e5c6f82c4849e231', title: '<CwaComponentGroup /> › Allowed Components' }
+      - { kind: docs, page: /nuxt-module/cwa-components/cwa-component-group, anchor: allowed-components, sectionHash: 'sha256:0a8f4c409587abc3', title: '<CwaComponentGroup /> › Allowed Components' }
     author: llm-draft
 
   - id: nuxt.group.rename-reference

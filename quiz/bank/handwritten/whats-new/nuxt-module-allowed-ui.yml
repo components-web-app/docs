@@ -36,5 +36,5 @@ questions:
         c: '`CwaComponentQuote`, the component''s own file, would have to be in the `ui` list too.'
         d: 'Object entries and names mix in one list; each allows its own component.'
     sources:
-      - { kind: docs, page: /nuxt-module/cwa-components/cwa-component-group, anchor: limiting-uis-and-styles, sectionHash: 'sha256:add57416cc97480e', title: '<CwaComponentGroup /> › Limiting UIs and Styles' }
+      - { kind: docs, page: /nuxt-module/cwa-components/cwa-component-group, anchor: limiting-uis-and-styles, sectionHash: 'sha256:af55cc39db94e5b3', title: '<CwaComponentGroup /> › Limiting UIs and Styles' }
     author: llm-draft
