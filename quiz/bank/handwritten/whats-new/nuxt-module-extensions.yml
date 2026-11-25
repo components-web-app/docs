@@ -1,0 +1,65 @@
+# Hand-written What's new questions about the Nuxt module: extensions (cwa:extend, admin pages, auth events),
+# on dev after 2.0.0-alpha.39.
+# Format: quiz/README.md. Run `pnpm quiz:stamp <id>` to fill in or refresh the hashes.
+
+questions:
+  - id: nuxt.extend.app-file-wins
+    version: 1
+    status: live
+    level: intermediate
+    area: nuxt-module
+    tags: [components]
+    type: multiple-choice
+    difficulty: 2
+    prompt: >-
+      A shop extension registers with the prefix `Shop` and ships a `ShopProductCard` component. A site
+      that installs it wants the card to look different, so it adds
+      `app/app/cwa/components/ShopProductCard/ShopProductCard.vue` of its own. What happens when the
+      site builds?
+    why: >-
+      A site should be able to change how an extension looks without forking the extension.
+    since:
+      - { repo: cwa-nuxt-module, version: 2.0.0-alpha.39, unreleased: true }  # on dev after alpha.39
+    options:
+      - { id: a, text: "The site's file is used, and the build logs that it replaced the extension's" }
+      - { id: b, text: 'The build fails, because two files define `ShopProductCard`' }
+      - { id: c, text: "The extension's file is used, because it registered the name first" }
+      - { id: d, text: "The site's file is renamed `CwaShopProductCard` to keep them apart" }
+    answer:
+      correct: a
+      explanation: >-
+        An extension's files are registered below the site's, so a site file with the same name wins and
+        the build logs the replacement. Only two extensions defining one name fail the build.
+    sources:
+      - { kind: docs, page: /extending-the-cwa/registering-an-extension, anchor: replacing-an-extensions-file, sectionHash: 'sha256:247ba12ddeac2931', title: 'Registering an Extension › Replacing an Extension''s File' }
+    author: llm-draft
+
+  - id: nuxt.extend.signed-in-hook
+    version: 1
+    status: live
+    level: intermediate
+    area: nuxt-module
+    tags: [auth]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      An extension listens to `cwa:auth:signed-in` to merge a visitor's basket. A user signed in
+      yesterday, and today they open the site with their session still valid. Is the hook called?
+    why: >-
+      Code that runs on sign-in shouldn't run again on every page load, or a merge would repeat each visit.
+    since:
+      - { repo: cwa-nuxt-module, version: 2.0.0-alpha.39, unreleased: true }  # on dev after alpha.39
+    options:
+      - { id: a, text: 'No, it is called only after a sign-in through `signIn()`' }
+      - { id: b, text: 'Yes, once the page loads and `/me` returns the user' }
+      - { id: c, text: 'Yes, during the server render of the first page' }
+      - { id: d, text: 'No, it is called only when the user changes role' }
+    answer:
+      correct: a
+      explanation: >-
+        `cwa:auth:signed-in` follows a sign-in through `$cwa.auth.signIn()`, which the login page uses,
+        once the user has loaded. A page load for someone already signed in doesn't call it; read the
+        auth state for that.
+    sources:
+      - { kind: docs, page: /extending-the-cwa/auth-events, anchor: when-each-is-called, sectionHash: 'sha256:ac1699f506d588e4', title: 'Sign-In and Sign-Out Events › When Each Is Called' }
+    author: llm-draft

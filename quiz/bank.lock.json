@@ -5546,6 +5546,26 @@
         }
       }
     },
+    "nuxt.extend.app-file-wins": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:9bfc1b383feef743",
+          "docsCommit": "3b7e4dfa56ba9d46cbf9ac307f6e135b55f63b45"
+        }
+      }
+    },
+    "nuxt.extend.signed-in-hook": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:042fc20f4e600fbc",
+          "docsCommit": "3b7e4dfa56ba9d46cbf9ac307f6e135b55f63b45"
+        }
+      }
+    },
     "nuxt.forms.field-name": {
       "status": "live",
       "version": 1,
