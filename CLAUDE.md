@@ -29,6 +29,10 @@ If a change is documented, move it to **Documented** below. If it is intentional
 
 ## Pending Documentation Review
 
+### 2026-11-25 — open, document once merged
+- **docs #344, module narrow admin roles** (module #495, into dev, needs bundle alpha.46): `isAdmin` and content areas = ROLE_CMS_ADMIN, users pages = ROLE_USER_ADMIN, header for either; extension admin pages default ROLE_ADMIN; user dialog Role levels select, extension role toggles, "You can't grant a role you don't have." Then drop the "recommend ROLE_ADMIN for editors" line on /api/users/admin-roles.
+- **docs #342, page HTML tagged with every resource** (module d8c5aac6, on dev).
+
 - Template #129 (admin-editable site settings) is a proposal only.
 
 ### 2026-10-20 — template #96 "A gentler first hour" (2.0.0-beta): filed, not built
