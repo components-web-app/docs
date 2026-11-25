@@ -38,3 +38,24 @@ html.dark .shiki span{
 :not(pre) > code {
   overflow-wrap: anywhere;
 }
+
+/*
+ * In a table, inline code wraps like text and breaks only between words. Breaking anywhere lets the
+ * browser shrink a column of names or types to one character a line. The last column holds the
+ * descriptions, so long code there may still break anywhere.
+ */
+td code:not(pre code) {
+  display: inline;
+  overflow-wrap: break-word;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+td:last-child:not(:first-child) code:not(pre code) {
+  overflow-wrap: anywhere;
+}
+
+/* Docs pages are wider than the rest of the site, so tables with several columns have room. */
+html.docs-wide {
+  --ui-container: 90rem;
+}

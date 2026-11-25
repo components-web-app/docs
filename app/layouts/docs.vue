@@ -20,6 +20,9 @@ onMounted(() => {
 const topNavKey = computed(() => (!mounted.value || isDesktop.value) ? 'open' : 'mobile')
 const topNavDefaultOpen = computed(() => (!mounted.value || isDesktop.value) ? undefined : false)
 
+// Docs pages use a wider container (see main.css).
+useHead({ htmlAttrs: { class: 'docs-wide' } })
+
 const ALWAYS_OPEN_ON_DESKTOP = ['/getting-started', '/guides', '/core-concepts']
 
 // The quiz is a page of its own, not a content file, so it's added at the top of the sidebar here.

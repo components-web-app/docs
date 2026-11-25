@@ -98,10 +98,15 @@ const links = computed(() => [toc?.bottom?.edit && {
   to: `${toc.bottom.edit}/${channel.value.branch}/content/${page?.value?.stem}.md`,
   target: '_blank'
 }, ...(toc?.bottom?.links || [])].filter(Boolean))
+
+// With a table of contents, it takes a fifth of the width and the page the rest, so wide tables have room.
+const pageUi = computed(() => page.value?.toc !== false
+  ? { root: 'lg:grid-cols-10', center: 'lg:col-span-8', right: 'lg:col-span-2' }
+  : undefined)
 </script>
 
 <template>
-  <UPage>
+  <UPage :ui="pageUi">
     <DocsChannelNotice class="mt-6" />
 
     <UAlert
