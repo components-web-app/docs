@@ -5566,6 +5566,16 @@
         }
       }
     },
+    "nuxt.group.allowed-ui-entry": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:518fec6ebbff32ea",
+          "docsCommit": "afd58de7497e37612916e5fcef381add84900239"
+        }
+      }
+    },
     "nuxt.group.max-components-binding": {
       "status": "live",
       "version": 2,

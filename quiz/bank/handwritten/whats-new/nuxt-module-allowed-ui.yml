@@ -1,0 +1,40 @@
+# Hand-written What's new questions about the Nuxt module: allowed UIs and styles per component group,
+# on dev after 2.0.0-alpha.39.
+# Format: quiz/README.md. Run `pnpm quiz:stamp <id>` to fill in or refresh the hashes.
+
+questions:
+  - id: nuxt.group.allowed-ui-entry
+    version: 1
+    status: live
+    level: intermediate
+    area: nuxt-module
+    tags: [components, admin]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      A sidebar's `<CwaComponentGroup>` has
+      `:allowed-components="[{ component: CwaComponentNames.Quote, ui: ['CwaComponentQuoteUiCard'] }, CwaComponentNames.Image]"`.
+      What can an editor add to the sidebar?
+    why: >-
+      One group can take a component only in the look that suits it, without a separate component type.
+    since:
+      - { repo: cwa-nuxt-module, version: 2.0.0-alpha.39, unreleased: true }  # on dev after alpha.39
+      - { repo: api-components-bundle, version: 2.0.0-alpha.46 }
+    options:
+      - { id: a, text: 'A Quote with the Card UI, and an Image with any UI' }
+      - { id: b, text: 'A Quote with any UI, and an Image with the Card UI' }
+      - { id: c, text: 'A Quote with the Card UI or its own file, and an Image' }
+      - { id: d, text: 'Only a Quote: an object entry replaces the plain names' }
+    answer:
+      correct: a
+      explanation: >-
+        An object entry allows the component and limits its UIs, here to Card. `CwaComponentQuote`, the
+        component's own file, isn't listed, so the Quote must use Card. The plain `Image` entry allows any UI
+        and style. The module syncs the rule to the group's `allowedComponentUi`, and the API refuses
+        anything else.
+      optionNotes:
+        c: '`CwaComponentQuote`, the component''s own file, would have to be in the `ui` list too.'
+        d: 'Object entries and names mix in one list; each allows its own component.'
+    sources:
+      - { kind: docs, page: /nuxt-module/cwa-components/cwa-component-group, anchor: limiting-uis-and-styles, sectionHash: 'sha256:add57416cc97480e', title: '<CwaComponentGroup /> › Limiting UIs and Styles' }
+    author: llm-draft

@@ -29,7 +29,7 @@ questions:
         A clone isn't a copy. It places the same component, with the same IRI, in another component position, so
         an edit or a publish in either place changes it everywhere.
     sources:
-      - { kind: docs, page: /core-concepts/admin-panel, anchor: cloning-a-component, sectionHash: 'sha256:58a22875be601b74', title: 'The Admin Panel › Cloning a Component' }
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: cloning-a-component, sectionHash: 'sha256:e4dac22f69253a0c', title: 'The Admin Panel › Cloning a Component' }
     author: llm-draft
 
   - id: nuxt.admin.clone-draft
@@ -58,7 +58,7 @@ questions:
         When the selected component is the draft of a published component, the clone places the published
         component, which the draft belongs to.
     sources:
-      - { kind: docs, page: /core-concepts/admin-panel, anchor: cloning-a-component, sectionHash: 'sha256:58a22875be601b74', title: 'The Admin Panel › Cloning a Component' }
+      - { kind: docs, page: /core-concepts/admin-panel, anchor: cloning-a-component, sectionHash: 'sha256:e4dac22f69253a0c', title: 'The Admin Panel › Cloning a Component' }
     author: llm-draft
 
   - id: nuxt.admin.delete-shared-component
@@ -176,7 +176,7 @@ questions:
       optionNotes:
         a: A `4xx` such as a `404` doesn't count, so that page is cached; a `5xx` does.
     sources:
-      - { kind: docs, page: /nuxt-module/page-caching, anchor: when-a-page-is-not-cached, sectionHash: 'sha256:d4260c3b7504992a', title: 'Page Caching › When a Page Is Not Cached' }
+      - { kind: docs, page: /nuxt-module/page-caching, anchor: when-a-page-is-not-cached, sectionHash: 'sha256:5d57f0d1d2b3b372', title: 'Page Caching › When a Page Is Not Cached' }
     author: llm-draft
 
   - id: nuxt.real-time.scheduled-component

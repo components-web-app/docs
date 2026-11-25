@@ -1178,7 +1178,7 @@ questions:
       - kind: docs
         page: /nuxt-module/cwa-components/cwa-component-group
         anchor: allowed-components
-        sectionHash: sha256:df8c8d2bc0897bee
+        sectionHash: sha256:e5c6f82c4849e231
         title: <CwaComponentGroup /> › Allowed Components
       - kind: docs
         page: /core-concepts/layouts-and-pages
@@ -1243,7 +1243,7 @@ questions:
       - kind: docs
         page: /nuxt-module/cwa-components/cwa-component-group
         anchor: allowed-components
-        sectionHash: sha256:df8c8d2bc0897bee
+        sectionHash: sha256:e5c6f82c4849e231
         title: <CwaComponentGroup /> › Allowed Components
       - kind: docs
         page: /guides/your-first-layout
@@ -1285,7 +1285,7 @@ questions:
       - kind: docs
         page: /nuxt-module/cwa-components/cwa-component-group
         anchor: allowed-components
-        sectionHash: sha256:df8c8d2bc0897bee
+        sectionHash: sha256:e5c6f82c4849e231
         title: <CwaComponentGroup /> › Allowed Components
         block: 0
         blockHash: sha256:5671f480ab1307de
