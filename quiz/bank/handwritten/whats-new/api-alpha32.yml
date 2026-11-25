@@ -92,7 +92,7 @@ questions:
     author: llm-draft
 
   - id: api.groups.usage-admin-only
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: api
@@ -110,14 +110,14 @@ questions:
       - { id: a, text: 'The counts, without the list of `locations`' }
       - { id: b, text: 'The counts and the locations they can read' }
       - { id: c, text: 'A `401`, the same as an anonymous request' }
-      - { id: d, text: 'A `403`: only `ROLE_ADMIN` may read it' }
+      - { id: d, text: 'A `403`: only `ROLE_CMS_ADMIN` may read it' }
     answer:
       correct: d
       explanation: >-
-        The usage endpoint is `ROLE_ADMIN` only. Any other signed-in user gets a `403`, and an anonymous request a
-        `401`.
+        The usage endpoint is for content admins only (`ROLE_CMS_ADMIN`, which `ROLE_ADMIN` reaches). Any
+        other signed-in user gets a `403`, and an anonymous request a `401`.
     sources:
-      - { kind: docs, page: /api/components/component-groups, anchor: who-can-read-it, sectionHash: 'sha256:8d7f32e5c8a2f59a', title: 'Component Groups & Positions › Who can read it' }
+      - { kind: docs, page: /api/components/component-groups, anchor: who-can-read-it, sectionHash: 'sha256:32c633ee0e90edfd', title: 'Component Groups & Positions › Who can read it' }
     author: llm-draft
 
   - id: api.security.route-pattern-whole-path

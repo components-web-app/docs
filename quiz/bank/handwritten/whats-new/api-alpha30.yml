@@ -29,7 +29,7 @@ questions:
         Only a request with no body at all flushes the whole cache. Any other body that isn't a valid scope,
         including `{}`, `null` and an empty list, is a `422`, and nothing is purged.
     sources:
-      - { kind: docs, page: /api/http-caching, anchor: from-the-api, sectionHash: 'sha256:623278e2bb05c07b', title: 'HTTP Caching › From the API' }
+      - { kind: docs, page: /api/http-caching, anchor: from-the-api, sectionHash: 'sha256:9510f4b6275ccd70', title: 'HTTP Caching › From the API' }
     author: llm-draft
 
   - id: api.cache.warm-after-flush-trigger

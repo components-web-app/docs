@@ -29,7 +29,7 @@ questions:
       optionNotes:
         a: An anonymous visitor's route response is publicly cacheable.
     sources:
-      - { kind: docs, page: /api/http-caching, anchor: http-cache-safety, sectionHash: 'sha256:92970fec63b25fcd', title: 'HTTP Caching › HTTP Cache Safety' }
+      - { kind: docs, page: /api/http-caching, anchor: http-cache-safety, sectionHash: 'sha256:8ae0892d056c2ea5', title: 'HTTP Caching › HTTP Cache Safety' }
     author: llm-draft
 
   - id: api.cache.vary-cookie
@@ -55,7 +55,7 @@ questions:
         Varying on the cookie would split the cache for anonymous visitors. It isn't needed either: the
         responses that differ are marked non-cacheable outright, and the anonymous variant carries no cookie.
     sources:
-      - { kind: docs, page: /api/http-caching, anchor: http-cache-safety, sectionHash: 'sha256:92970fec63b25fcd', title: 'HTTP Caching › HTTP Cache Safety' }
+      - { kind: docs, page: /api/http-caching, anchor: http-cache-safety, sectionHash: 'sha256:8ae0892d056c2ea5', title: 'HTTP Caching › HTTP Cache Safety' }
     author: llm-draft
 
   - id: api.cache.component-save-purge
@@ -110,7 +110,7 @@ questions:
         A component with a future `publishedAt` sends `Expires` set to that date, and the bundle lowers
         `s-maxage` and `max-age` to the time left. The cached copy expires on time with no purge.
     sources:
-      - { kind: docs, page: /api/http-caching, anchor: scheduled-publication-and-cache-lifetime, sectionHash: 'sha256:1493bbf7a17d8444', title: 'HTTP Caching › Scheduled Publication and Cache Lifetime' }
+      - { kind: docs, page: /api/http-caching, anchor: scheduled-publication-and-cache-lifetime, sectionHash: 'sha256:c6db8175c896f86b', title: 'HTTP Caching › Scheduled Publication and Cache Lifetime' }
     author: llm-draft
 
   - id: api.cache.site-config-tag
@@ -137,7 +137,7 @@ questions:
         The module tags every page it caches with `cwa-html`, and a write to a class in
         `purge_rendered_html_classes` (site config by default) purges it. Both sides must use the same name.
     sources:
-      - { kind: docs, page: /api/http-caching, anchor: purging-every-rendered-page, sectionHash: 'sha256:ef0a84284564cd0d', title: 'HTTP Caching › Purging Every Rendered Page' }
+      - { kind: docs, page: /api/http-caching, anchor: purging-every-rendered-page, sectionHash: 'sha256:7c8679cca07a9d3b', title: 'HTTP Caching › Purging Every Rendered Page' }
     author: llm-draft
 
   - id: api.security.unplaced-component
@@ -163,11 +163,11 @@ questions:
         With no location at all, every check in the component voter abstains, and the voter grants access. Use
         `#[Silverback\Publishable]` or your own security if a component must stay private before it is placed.
     sources:
-      - { kind: docs, page: /api/users/access-control, anchor: component-security, sectionHash: 'sha256:92f2ea65acea4a29', title: 'Access Control › Component Security' }
+      - { kind: docs, page: /api/users/access-control, anchor: component-security, sectionHash: 'sha256:acfa01328748714a', title: 'Access Control › Component Security' }
     author: llm-draft
 
   - id: api.security.unrouted-parent
-    version: 1
+    version: 2
     status: live
     level: advanced
     area: api
@@ -182,7 +182,7 @@ questions:
       - { id: a, text: 'No: a page without a route is always private' }
       - { id: b, text: 'Only if the parent itself is flagged as public without a route' }
       - { id: c, text: 'Yes: the child''s live route makes its ancestors readable' }
-      - { id: d, text: 'Only when `routable_security` is not set' }
+      - { id: d, text: 'Only when `routable_security` is `null`' }
     answer:
       correct: c
       explanation: >-
@@ -190,8 +190,8 @@ questions:
         So the parent renders at its depth on the child's URL. It isn't listed in `GET /_/pages`, which only
         lists records with their own live route.
     sources:
-      - { kind: docs, page: /api/users/access-control, anchor: public-access-follows-routes, sectionHash: 'sha256:6c2a38e8e833d3c8', title: 'Access Control › Public Access Follows Routes' }
-      - { kind: docs, page: /api/users/access-control, anchor: routable_security, sectionHash: 'sha256:629bea713d1b801f', title: 'Access Control › routablesecurity' }
+      - { kind: docs, page: /api/users/access-control, anchor: public-access-follows-routes, sectionHash: 'sha256:b59d08857fd0b19f', title: 'Access Control › Public Access Follows Routes' }
+      - { kind: docs, page: /api/users/access-control, anchor: routable_security, sectionHash: 'sha256:3b30de06eb75a641', title: 'Access Control › routablesecurity' }
     author: llm-draft
 
   - id: api.filters.or-where
@@ -280,8 +280,8 @@ questions:
         Only on an operation opened with `publishable_permission: false` would their `PATCH` reach the component,
         and then it would update the published version directly, skipping the draft stage.
     sources:
-      - { kind: docs, page: /api/components/annotations/publishable, anchor: configuring-who-can-publish, sectionHash: 'sha256:36fe7b0979cf41d5', title: 'Publishable › Configuring Who Can Publish' }
-      - { kind: docs, page: /api/users/non-admin-users, anchor: what-only-editors-can-write, sectionHash: 'sha256:eb6d33f5da676259', title: 'Sites with Non-Admin Users › What Only Editors Can Write' }
+      - { kind: docs, page: /api/components/annotations/publishable, anchor: configuring-who-can-publish, sectionHash: 'sha256:3ae1f6d63b4f529f', title: 'Publishable › Configuring Who Can Publish' }
+      - { kind: docs, page: /api/users/non-admin-users, anchor: what-only-editors-can-write, sectionHash: 'sha256:e741ae1f49c927a4', title: 'Sites with Non-Admin Users › What Only Editors Can Write' }
     author: llm-draft
 
   - id: api.real-time.protocol-version
@@ -359,7 +359,7 @@ questions:
     author: llm-draft
 
   - id: api.cache.personalised-classes
-    version: 2
+    version: 3
     status: live
     level: advanced
     area: api
@@ -375,19 +375,20 @@ questions:
       text: |-
         silverback_api_components:
             http_cache:
+                scheduled_expiry_resource_classes:
+                    - 'App\Entity\EventListing'
                 personalised_resource_classes:
-                    - 'Silverback\ApiComponentsBundle\Entity\Core\Route'
-                    - 'Silverback\ApiComponentsBundle\ApiResource\ResourceManifest'
-                    - 'Silverback\ApiComponentsBundle\Entity\Core\ComponentPosition'
-                    - 'Silverback\ApiComponentsBundle\Entity\Core\Page'
                     - 'App\Entity\MyPersonalisedComponent'
+                purge_rendered_html_classes:
+                    - 'App\Entity\SiteBanner'
     answer:
-      lines: [8]
+      lines: [6]
       explanation: >-
-        A class in `personalised_resource_classes` gets `private, no-store` on authenticated `GET`s. The first
-        four are the defaults; publishable resources are matched without being listed.
+        A class in `personalised_resource_classes` gets `private, no-store` on authenticated `GET`s. The
+        bundle's own classes are always in the list, so you only add yours, and publishable resources are
+        matched without being listed.
     sources:
-      - { kind: docs, page: /api/http-caching, anchor: http-cache-safety, sectionHash: 'sha256:92970fec63b25fcd', title: 'HTTP Caching › HTTP Cache Safety', block: 1, blockHash: 'sha256:7dea776ba6e90661' }
+      - { kind: docs, page: /api/http-caching, anchor: http-cache-safety, sectionHash: 'sha256:8ae0892d056c2ea5', title: 'HTTP Caching › HTTP Cache Safety' }
     author: llm-draft
 
   - id: api.fixtures.link-iri-page-data

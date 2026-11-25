@@ -112,5 +112,5 @@ questions:
         A missing name is made from the path: each `/` becomes `-`, and a `-` at either end is dropped. If the
         name were taken, `-1`, `-2` and so on would be added.
     sources:
-      - { kind: docs, page: /api/routes, anchor: embedding-a-new-route, sectionHash: 'sha256:9c634fdc61e01808', title: 'Routes › Embedding a New Route' }
+      - { kind: docs, page: /api/routes, anchor: embedding-a-new-route, sectionHash: 'sha256:7fd410dfa23224a1', title: 'Routes › Embedding a New Route' }
     author: llm-draft

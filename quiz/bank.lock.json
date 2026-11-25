@@ -102,7 +102,7 @@
     },
     "api.cache.personalised-classes": {
       "status": "live",
-      "version": 2,
+      "version": 3,
       "versions": {
         "1": {
           "fingerprint": "sha256:d9ad5e2b991cf4a2",
@@ -111,6 +111,10 @@
         "2": {
           "fingerprint": "sha256:99c70eb93ecd0ad1",
           "docsCommit": "f8f046bc2ed3fbbc0924ae443f7ced3cc25065f2"
+        },
+        "3": {
+          "fingerprint": "sha256:1e11edaec4c9b17b",
+          "docsCommit": "a5d0e4477162913a68401f8ac8ab3b5ccf1ac1d2+dirty"
         }
       }
     },
@@ -654,11 +658,15 @@
     },
     "api.groups.usage-admin-only": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:4e781d7b215d21c2",
           "docsCommit": "4667755e4a6ab9bc4416bec7c41a386534cc1623"
+        },
+        "2": {
+          "fingerprint": "sha256:bec0569cbc06772a",
+          "docsCommit": "a5d0e4477162913a68401f8ac8ab3b5ccf1ac1d2+dirty"
         }
       }
     },
@@ -1378,11 +1386,15 @@
     },
     "api.security.unrouted-parent": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:7f664f0ab408892d",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:1906160a5592a34e",
+          "docsCommit": "a5d0e4477162913a68401f8ac8ab3b5ccf1ac1d2+dirty"
         }
       }
     },
@@ -1497,6 +1509,16 @@
         "1": {
           "fingerprint": "sha256:3af6d309897aded7",
           "docsCommit": "1984a1d83320370662bb4776d633766972cc18e9"
+        }
+      }
+    },
+    "api.users.user-admin-outranks": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:bb98a4c86d1fd333",
+          "docsCommit": "a5d0e4477162913a68401f8ac8ab3b5ccf1ac1d2+dirty"
         }
       }
     },

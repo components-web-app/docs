@@ -33,3 +33,33 @@ questions:
     sources:
       - { kind: docs, page: /api/components/component-groups, anchor: when-a-component-is-refused, sectionHash: 'sha256:3145ee74333fcb26', title: "Component Groups & Positions › When a component is refused" }
     author: llm-draft
+
+  - id: api.users.user-admin-outranks
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [security, auth]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      A signed-in user has `ROLE_USER_ADMIN` and nothing more. They send a `PATCH` to change another
+      user's email address. That user has `ROLE_SUPER_ADMIN`. What does the API do?
+    why: >-
+      Someone who looks after accounts shouldn't be able to take over an account with more power than
+      their own, for example by changing its email address and resetting the password.
+    since: [{ repo: api-components-bundle, version: '2.0.0-alpha.46' }]
+    options:
+      - { id: a, text: 'Refuses it with a `403`' }
+      - { id: b, text: 'Saves it, as any user admin can edit any user' }
+      - { id: c, text: 'Refuses it with a `422` on `roles`' }
+      - { id: d, text: 'Saves it as a pending change for the user to confirm' }
+    answer:
+      correct: a
+      explanation: >-
+        Editing another user needs `ROLE_USER_ADMIN` and outranking them: the caller must reach every
+        role the user reaches. A super admin reaches roles a user admin doesn't, so the edit is a `403`.
+        The `422` on `roles` is for adding a role the caller doesn't reach.
+    sources:
+      - { kind: docs, page: /api/users/admin-roles, anchor: managing-users, sectionHash: 'sha256:439d8a505c7a8279', title: 'Admin Roles › Managing Users' }
+    author: llm-draft

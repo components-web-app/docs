@@ -49,8 +49,8 @@ questions:
         going live, whichever is sooner. `max()` picks the later one, so the old page outlives the
         go-live.
     sources:
-      - { kind: code, repo: api-components-bundle, path: src/EventListener/Api/CacheHeadersEventListener.php, lines: [127, 144], commit: 4b50321592c92720443a3eb54724dfac4993d71c, linesHash: 'sha256:712348427f1d7d93' }
-      - { kind: docs, page: /api/http-caching, anchor: scheduled-publication-and-cache-lifetime, sectionHash: 'sha256:1493bbf7a17d8444', title: 'HTTP Caching › Scheduled Publication and Cache Lifetime' }
+      - { kind: code, repo: api-components-bundle, path: src/EventListener/Api/CacheHeadersEventListener.php, lines: [127, 144], commit: d4b6370ed49b4eceebd2714e01b512fc392bdeac, linesHash: 'sha256:712348427f1d7d93' }
+      - { kind: docs, page: /api/http-caching, anchor: scheduled-publication-and-cache-lifetime, sectionHash: 'sha256:c6db8175c896f86b', title: 'HTTP Caching › Scheduled Publication and Cache Lifetime' }
     author: llm-draft
 
   - id: api.internals.unpublished-route-response

@@ -116,7 +116,7 @@ questions:
         route going live can change pages that never mention it, such as a navigation menu, and no cache tag can
         express that. A page then inherits the lowest lifetime of the responses it used.
     sources:
-      - { kind: docs, page: /api/http-caching, anchor: scheduled-publication-and-cache-lifetime, sectionHash: 'sha256:1493bbf7a17d8444', title: 'HTTP Caching › Scheduled Publication and Cache Lifetime' }
+      - { kind: docs, page: /api/http-caching, anchor: scheduled-publication-and-cache-lifetime, sectionHash: 'sha256:c6db8175c896f86b', title: 'HTTP Caching › Scheduled Publication and Cache Lifetime' }
       - { kind: docs, page: /nuxt-module/page-caching, anchor: how-long-a-page-is-kept, sectionHash: 'sha256:118538e80ad6a936', title: 'Page Caching › How Long a Page Is Kept' }
     author: llm-draft
 
@@ -198,7 +198,7 @@ questions:
         request and deletes only what is orphaned now. The placed component comes back in `rejected` as
         `not_orphaned`, and one refusal doesn't stop the rest.
     sources:
-      - { kind: docs, page: /api/orphaned-data, anchor: deleting-orphans, sectionHash: 'sha256:3c36d4168713f1dd', title: 'Orphaned Data › Deleting Orphans' }
+      - { kind: docs, page: /api/orphaned-data, anchor: deleting-orphans, sectionHash: 'sha256:1dace081e8d451dd', title: 'Orphaned Data › Deleting Orphans' }
     author: llm-draft
 
   # ---------------------------------------------------------------- Nuxt module
