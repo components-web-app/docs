@@ -5718,7 +5718,7 @@
     },
     "nuxt.internals.no-cwa-resources": {
       "status": "live",
-      "version": 2,
+      "version": 3,
       "versions": {
         "1": {
           "fingerprint": "sha256:3bcc1b82ca57497c",
@@ -5727,6 +5727,10 @@
         "2": {
           "fingerprint": "sha256:42c32760a8e38461",
           "docsCommit": "cfd44afa96c8220a2b610226c2cc38e8f8065268"
+        },
+        "3": {
+          "fingerprint": "sha256:86726e15c2ec49ea",
+          "docsCommit": "b715115b06b2be9e32e16417598e7ebef7d3628c"
         }
       }
     },
