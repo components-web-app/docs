@@ -143,7 +143,7 @@ questions:
         it at error level, with a message containing `could not be published`, and the save still returns its
         normal response. Other open pages miss that update until they next fetch.
     sources:
-      - { kind: docs, page: /api/real-time, anchor: when-updates-dont-arrive, sectionHash: 'sha256:8c3e73c60960a7f7', title: 'Real-Time Updates (Mercure) › When Updates Don''t Arrive' }
+      - { kind: docs, page: /api/real-time, anchor: when-updates-dont-arrive, sectionHash: 'sha256:97969b0a688fc184', title: 'Real-Time Updates (Mercure) › When Updates Don''t Arrive' }
     author: llm-draft
 
   - id: api.real-time.secure-subscriptions

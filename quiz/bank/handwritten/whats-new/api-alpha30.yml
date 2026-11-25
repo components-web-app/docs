@@ -245,7 +245,7 @@ questions:
       optionNotes:
         a: An anonymous visitor gets no Mercure cookie at all, because public updates need none.
     sources:
-      - { kind: docs, page: /api/real-time, anchor: the-subscriber-cookie, sectionHash: 'sha256:1b238ae47ee1ac9a', title: 'Real-Time Updates (Mercure) › The Subscriber Cookie' }
+      - { kind: docs, page: /api/real-time, anchor: the-subscriber-cookie, sectionHash: 'sha256:d0435748a98a4b5b', title: 'Real-Time Updates (Mercure) › The Subscriber Cookie' }
     author: llm-draft
 
   - id: api.groups.component-in-own-subtree
