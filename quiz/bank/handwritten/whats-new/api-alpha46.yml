@@ -1,0 +1,35 @@
+# Hand-written What's new questions about the API bundle: changes in 2.0.0-alpha.46.
+# Each one has a `since` naming the release that brought the change in.
+# Format: quiz/README.md. Run `pnpm quiz:stamp <id>` to fill in or refresh the hashes.
+
+questions:
+  - id: api.groups.allowed-component-ui
+    version: 1
+    status: live
+    level: intermediate
+    area: api
+    tags: [components]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      A Quote sits in two component groups. One group's `allowedComponentUi` lets Quotes use only the
+      `CwaComponentQuoteUiCard` variant, and the other doesn't mention Quotes. An editor changes the
+      Quote's `uiComponent` to another variant. What does the API do?
+    why: >-
+      A component can be in more than one group, so a change to how it looks has to suit every group
+      that shows it, not only the one the editor happens to be looking at.
+    since: [{ repo: api-components-bundle, version: '2.0.0-alpha.46' }]
+    options:
+      - { id: a, text: 'Refuses the change with a 422 on `uiComponent`' }
+      - { id: b, text: 'Saves it, and the first group hides the Quote' }
+      - { id: c, text: 'Saves it, as only placing a Quote is checked' }
+      - { id: d, text: 'Removes the Quote from the first group' }
+    answer:
+      correct: a
+      explanation: >-
+        A changed `uiComponent` or `uiClassNames` is checked against every group the component is in. A
+        group with no rule for Quotes allows any UI, but the first group doesn't allow this one, so the
+        write is a 422 on `uiComponent` naming that group.
+    sources:
+      - { kind: docs, page: /api/components/component-groups, anchor: when-a-component-is-refused, sectionHash: 'sha256:3145ee74333fcb26', title: "Component Groups & Positions › When a component is refused" }
+    author: llm-draft

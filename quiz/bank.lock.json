@@ -540,6 +540,16 @@
         }
       }
     },
+    "api.groups.allowed-component-ui": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:81019a77e2abfe81",
+          "docsCommit": "0b8ef26eaedc0c0cd253ca30404339d791f7dc6f"
+        }
+      }
+    },
     "api.groups.component-in-own-subtree": {
       "status": "live",
       "version": 2,

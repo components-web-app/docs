@@ -1372,7 +1372,7 @@ questions:
       - kind: docs
         page: /api/data-fixtures/builder-reference
         anchor: pagebuilder-from-cwa-page
-        sectionHash: sha256:a16b5b7f40d840b0
+        sectionHash: sha256:fbdb6382ed975afa
         title: Builder Reference › PageBuilder — from $cwa->page()
       - kind: docs
         page: /api/data-fixtures/writing-a-scaffold
@@ -1412,7 +1412,7 @@ questions:
       - kind: docs
         page: /api/data-fixtures/builder-reference
         anchor: pagebuilder-from-cwa-page
-        sectionHash: sha256:a16b5b7f40d840b0
+        sectionHash: sha256:fbdb6382ed975afa
         title: Builder Reference › PageBuilder — from $cwa->page()
       - kind: docs
         page: /api/data-fixtures/builder-reference
