@@ -29,9 +29,11 @@ If a change is documented, move it to **Documented** below. If it is intentional
 
 ## Pending Documentation Review
 
-### 2026-11-24 — in progress, document when each lands on dev/main
-- **Allowed UI variants and styles per component group** (module + bundle, being built): `allowed-components` will be able to limit a type to some of its UI variants and styles. Today `ComponentGroup::$allowedComponents` is type IRIs only, and the only style rule is per variant (Categorise and Restrict › Restrict Styles per UI Variant). When it lands: API › Component Groups, `<CwaComponentGroup>` › Allowed Components, Categorise and Restrict.
-- **Module extension tools** (an ecommerce extension first, more to follow): Daniel wants a new docs section, probably **"Extending the CWA"**, for writing an extension. Ask the module session for the API once it's on `dev`; I answered its extension-API design consult on 2026-11-23.
+### 2026-11-25 — module PRs #489–#491 and bundle PR #613, open, not merged (next module release, with bundle 2.0.0-alpha.46)
+Document each once merged to dev/main, checked against source.
+- **docs #336, Extending the CWA** (module #489, issue #487): `nuxt.hook('cwa:extend', register => register({ name, prefix, dir, adminPages, pageCache }))`. PascalCase `prefix` (not `Cwa…`) on every name; `dir` holds `components/`, `layouts/`, `pages/` like `app/cwa/`, and an app's same-named component wins (logged); `adminPages` mount at `/_cwa/<path>`, `role` default `ROLE_ADMIN`, `menu` adds an entry under "Extensions"; `pageCache` keeps per-visitor paths uncached (most specific rule wins, an app's exact-path rule wins, `/x/**` matches `/x`); the build fails on a clash, bad prefix, colliding admin path or bad role. New section "Extending the CWA" (Daniel), ecommerce as the first example. Phases 2 (list page and item dialog components for extension admin pages) and 3 (feature switches, typed events) to come, each its own issue.
+- **docs #337, allowed UIs and styles per group** (module #490, issue #488; bundle #613): `:allowed-components` entries `{ component, ui?, styles? }`, full UI names (primary `CwaComponent<Name>`) and style keys typed by `CwaComponentUis`/`CwaComponentStyles`; a left-out list allows any. Bundle enforces on place, clone, move and a UI/style change, against every group. Collection IRIs in `allowedComponents` warn and stop working in the next alpha. Pages: API › Component Groups, `<CwaComponentGroup>` › Allowed Components, Categorise and Restrict, Bundle versions.
+- **docs #338, site name fallback** (module #491): with no API site config at SSR, the title uses `cwa.siteConfig.siteName` and the page isn't cached.
 
 - Template #129 (admin-editable site settings) is a proposal only.
 
