@@ -3114,11 +3114,15 @@
     },
     "deploy.install.admin-role": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:d6b2d425e62f45f0",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:c30c0b6811501f4e",
+          "docsCommit": "c6a0ad7242d878c491e57c8a4bf6cf035906dda9+dirty"
         }
       }
     },
@@ -4119,7 +4123,7 @@
       }
     },
     "gen.mistake.static-layout-nuxt-name.1": {
-      "status": "live",
+      "status": "retired",
       "version": 1,
       "versions": {
         "1": {
@@ -4129,7 +4133,7 @@
       }
     },
     "gen.mistake.static-layout-nuxt-name.2": {
-      "status": "live",
+      "status": "retired",
       "version": 2,
       "versions": {
         "2": {
@@ -5101,6 +5105,16 @@
         "1": {
           "fingerprint": "sha256:9c74ef26ad54deb0",
           "docsCommit": "52428f4f633480572077f2ac32607e2c801e37aa+dirty"
+        }
+      }
+    },
+    "nuxt.admin.user-admin-only": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:5a1fb67ac1a1bd06",
+          "docsCommit": "c6a0ad7242d878c491e57c8a4bf6cf035906dda9+dirty"
         }
       }
     },
@@ -6307,6 +6321,16 @@
         "1": {
           "fingerprint": "sha256:de27d0ce488e8c0e",
           "docsCommit": "b49338190931bcda931feed91ba6bca5e8f67440"
+        }
+      }
+    },
+    "nuxt.setup.cwa-layout-by-reference": {
+      "status": "live",
+      "version": 1,
+      "versions": {
+        "1": {
+          "fingerprint": "sha256:eccabcb5687ec9fe",
+          "docsCommit": "c6a0ad7242d878c491e57c8a4bf6cf035906dda9+dirty"
         }
       }
     },

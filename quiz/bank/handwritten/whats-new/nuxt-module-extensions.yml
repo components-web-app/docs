@@ -1,5 +1,5 @@
 # Hand-written What's new questions about the Nuxt module: extensions (cwa:extend, admin pages, auth events),
-# on dev after 2.0.0-alpha.39.
+# in 2.0.0-alpha.40.
 # Format: quiz/README.md. Run `pnpm quiz:stamp <id>` to fill in or refresh the hashes.
 
 questions:
@@ -19,7 +19,7 @@ questions:
     why: >-
       A site should be able to change how an extension looks without forking the extension.
     since:
-      - { repo: cwa-nuxt-module, version: 2.0.0-alpha.39, unreleased: true }  # on dev after alpha.39
+      - { repo: cwa-nuxt-module, version: 2.0.0-alpha.40 }
     options:
       - { id: a, text: "The site's file is used, and the build logs that it replaced the extension's" }
       - { id: b, text: 'The build fails, because two files define `ShopProductCard`' }
@@ -48,7 +48,7 @@ questions:
     why: >-
       Code that runs on sign-in shouldn't run again on every page load, or a merge would repeat each visit.
     since:
-      - { repo: cwa-nuxt-module, version: 2.0.0-alpha.39, unreleased: true }  # on dev after alpha.39
+      - { repo: cwa-nuxt-module, version: 2.0.0-alpha.40 }
     options:
       - { id: a, text: 'No, it is called only after a sign-in through `signIn()`' }
       - { id: b, text: 'Yes, once the page loads and `/me` returns the user' }

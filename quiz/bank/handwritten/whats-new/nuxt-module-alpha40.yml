@@ -1,0 +1,67 @@
+# Hand-written What's new questions about the Nuxt module 2.0.0-alpha.40: a CWA layout on a page of your
+# own, and the narrow admin roles.
+# Format: quiz/README.md. Run `pnpm quiz:stamp <id>` to fill in or refresh the hashes.
+
+questions:
+  - id: nuxt.setup.cwa-layout-by-reference
+    version: 1
+    status: live
+    level: intermediate
+    area: nuxt-module
+    tags: [module-setup, layouts-and-pages]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      A status page of your own sets `definePageMeta({ cwa: { disabled: true, layout: 'main' } })`. What does
+      the module load for it?
+    why: >-
+      A page outside CWA can still show the site's header and footer, with the component groups editors fill.
+    since:
+      - { repo: cwa-nuxt-module, version: 2.0.0-alpha.40 }
+      - { repo: api-components-bundle, version: 2.0.0-alpha.47 }
+    options:
+      - { id: a, text: 'The layout with `reference` `main`, and its groups' }
+      - { id: b, text: 'Nothing: `disabled` stops every CWA fetch' }
+      - { id: c, text: 'The route at the page''s path, then the `main` layout' }
+      - { id: d, text: 'The Nuxt layout named `main`' }
+    answer:
+      correct: a
+      explanation: >-
+        `cwa.layout` names a CWA layout by its `reference`. The module loads it from `/_/layouts/main` on the
+        server render and after each navigation, and fetches no route, page or manifest. If it can't be loaded,
+        the default layout is shown with a warning.
+      optionNotes:
+        b: '`layout` is the one fetch `disabled` allows.'
+        d: 'The Nuxt layout is the `layout` key outside `cwa`. This one is inside `cwa`.'
+    sources:
+      - { kind: docs, page: /nuxt-module/module-setup, anchor: use-a-cwa-layout, sectionHash: 'sha256:71c664819718e8de', title: 'Module Setup › Use a CWA Layout' }
+    author: llm-draft
+
+  - id: nuxt.admin.user-admin-only
+    version: 1
+    status: live
+    level: intermediate
+    area: nuxt-module
+    tags: [admin, auth, security]
+    type: multiple-choice
+    difficulty: 3
+    prompt: >-
+      A user's only admin role is `ROLE_USER_ADMIN`. What do they get in the Nuxt admin?
+    why: >-
+      You can give someone account management without letting them edit the site's content.
+    since:
+      - { repo: cwa-nuxt-module, version: 2.0.0-alpha.40 }
+      - { repo: api-components-bundle, version: 2.0.0-alpha.46 }
+    options:
+      - { id: a, text: 'The admin header with only Users, and no edit mode' }
+      - { id: b, text: 'Everything: any admin role opens the whole admin' }
+      - { id: c, text: 'Nothing: the admin opens only for `ROLE_ADMIN`' }
+      - { id: d, text: 'Edit mode, but no Users page' }
+    answer:
+      correct: a
+      explanation: >-
+        Edit mode and the content admin pages need `ROLE_CMS_ADMIN`, which `ROLE_USER_ADMIN` doesn't include.
+        The users pages need `ROLE_USER_ADMIN`, so the header shows and offers only **Users**.
+    sources:
+      - { kind: docs, page: /api/users/admin-roles, anchor: the-role-hierarchy, sectionHash: 'sha256:206e882f1e3b7042', title: 'Admin Roles › The Role Hierarchy' }
+    author: llm-draft

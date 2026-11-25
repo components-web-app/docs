@@ -176,7 +176,7 @@ questions:
       optionNotes:
         a: A `4xx` such as a `404` doesn't count, so that page is cached; a `5xx` does.
     sources:
-      - { kind: docs, page: /nuxt-module/page-caching, anchor: when-a-page-is-not-cached, sectionHash: 'sha256:5d57f0d1d2b3b372', title: 'Page Caching › When a Page Is Not Cached' }
+      - { kind: docs, page: /nuxt-module/page-caching, anchor: when-a-page-is-not-cached, sectionHash: 'sha256:40ac808d33541d02', title: 'Page Caching › When a Page Is Not Cached' }
     author: llm-draft
 
   - id: nuxt.real-time.scheduled-component

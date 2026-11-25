@@ -286,12 +286,12 @@ questions:
       - kind: docs
         page: /nuxt-module/cwa-api/auth
         anchor: state
-        sectionHash: sha256:8e7fd8e732d171f5
+        sectionHash: sha256:215ef4030ccc5671
         title: cwa.auth › State
       - kind: docs
         page: /nuxt-module/authentication
         anchor: reading-auth-state
-        sectionHash: sha256:42ec771f5f4b2b90
+        sectionHash: sha256:6051641ffa908e43
         title: Front-End Authentication › Reading Auth State
         block: 1
         blockHash: sha256:aa2f049cd0d90315
@@ -336,7 +336,7 @@ questions:
       - kind: docs
         page: /nuxt-module/cwa-api/auth
         anchor: state
-        sectionHash: sha256:8e7fd8e732d171f5
+        sectionHash: sha256:215ef4030ccc5671
         title: cwa.auth › State
       - kind: docs
         page: /nuxt-module/authentication
@@ -496,7 +496,7 @@ questions:
       - kind: docs
         page: /nuxt-module/module-setup
         anchor: disable-cwa-route-fetching
-        sectionHash: sha256:7d2c3f9a44902a9a
+        sectionHash: sha256:77a3225a04f34a98
         title: Module Setup › Disable CWA Route Fetching
         block: 0
         blockHash: sha256:c7106abaf1cdaca5
@@ -533,7 +533,7 @@ questions:
       - kind: docs
         page: /nuxt-module/module-setup
         anchor: disable-cwa-route-fetching
-        sectionHash: sha256:7d2c3f9a44902a9a
+        sectionHash: sha256:77a3225a04f34a98
         title: Module Setup › Disable CWA Route Fetching
       - kind: docs
         page: /nuxt-module/module-setup
@@ -581,7 +581,7 @@ questions:
       - kind: docs
         page: /nuxt-module/module-setup
         anchor: disable-cwa-route-fetching
-        sectionHash: sha256:7d2c3f9a44902a9a
+        sectionHash: sha256:77a3225a04f34a98
         title: Module Setup › Disable CWA Route Fetching
       - kind: docs
         page: /nuxt-module/composables/auth/use-verify-email
@@ -622,12 +622,12 @@ questions:
       - kind: docs
         page: /nuxt-module/module-setup
         anchor: disable-cwa-route-fetching
-        sectionHash: sha256:7d2c3f9a44902a9a
+        sectionHash: sha256:77a3225a04f34a98
         title: Module Setup › Disable CWA Route Fetching
       - kind: docs
         page: /nuxt-module/authentication
         anchor: protecting-pages
-        sectionHash: sha256:a39674deb4430c44
+        sectionHash: sha256:e48203a738363f05
         title: Front-End Authentication › Protecting Pages
         block: 0
         blockHash: sha256:631e4bb611a3587a
@@ -683,7 +683,7 @@ questions:
       - kind: docs
         page: /nuxt-module/module-setup
         anchor: disable-cwa-route-fetching
-        sectionHash: sha256:7d2c3f9a44902a9a
+        sectionHash: sha256:77a3225a04f34a98
         title: Module Setup › Disable CWA Route Fetching
       - kind: docs
         page: /nuxt-module/authentication
@@ -1055,98 +1055,6 @@ questions:
     generator:
       name: spot-the-mistake
       ref: subpath-import
-  - id: gen.mistake.static-layout-nuxt-name.1
-    version: 1
-    status: live
-    level: advanced
-    area: nuxt-module
-    tags:
-      - module-setup
-      - layouts-and-pages
-    type: spot-the-mistake
-    family: mistake:static-layout-nuxt-name
-    prompt: One line in this code is wrong. Click it.
-    why: Both are called layouts, so the names are easy to mix up. With a Nuxt layout name, the page shows the
-      default layout and a warning that the layout component can't be resolved.
-    code:
-      lang: vue
-      text: |-
-        <script setup lang="ts">
-        definePageMeta({
-            cwa: {
-                disabled: true,
-                staticLayout: 'primary',
-            }
-        })
-        </script>
-    answer:
-      line: 5
-      fix: "        staticLayout: 'CwaLayoutPrimary',"
-      explanation: "`staticLayout` takes a registered component name, such as `CwaLayoutPrimary` for
-        `app/app/cwa/layouts/primary.vue`. It renders inside `cwa-root-layout`, so it isn't a Nuxt layout
-        name."
-    sources:
-      - kind: docs
-        page: /nuxt-module/module-setup
-        anchor: use-a-static-layout-component
-        sectionHash: sha256:b88ee19e60ecdc18
-        title: Module Setup › Use a Static Layout Component
-        block: 0
-        blockHash: sha256:4d69724fea997f4b
-    generator:
-      name: spot-the-mistake
-      ref: static-layout-nuxt-name
-  - id: gen.mistake.static-layout-nuxt-name.2
-    version: 2
-    status: live
-    level: advanced
-    area: nuxt-module
-    tags:
-      - module-setup
-      - layouts-and-pages
-    type: spot-the-mistake
-    family: mistake:static-layout-nuxt-name
-    prompt: One line in this code is wrong. Click it.
-    why: Both are called layouts, so the names are easy to mix up. With a Nuxt layout name, the page shows the
-      default layout and a warning that the layout component can't be resolved.
-    code:
-      lang: ts
-      text: |-
-        definePageMeta({
-            cwa: {
-                // Don't resolve this path as CWA content. Required on every page of
-                // your own that isn't CWA content (see below).
-                disabled: true,
-
-                // Render this layout component instead of the one resolved from the API's
-                // Layout resource. A registered component name (app/app/cwa/layouts/primary.vue
-                // registers as CwaLayoutPrimary), rendered inside cwa-root-layout.
-                // It is not a Nuxt layout name.
-                staticLayout: 'primary',
-            }
-        })
-    answer:
-      line: 11
-      fix: "        staticLayout: 'CwaLayoutPrimary',"
-      explanation: "`staticLayout` takes a registered component name, such as `CwaLayoutPrimary` for
-        `app/app/cwa/layouts/primary.vue`. It renders inside `cwa-root-layout`, so it isn't a Nuxt layout
-        name."
-    sources:
-      - kind: docs
-        page: /nuxt-module/module-setup
-        anchor: use-a-static-layout-component
-        sectionHash: sha256:b88ee19e60ecdc18
-        title: Module Setup › Use a Static Layout Component
-      - kind: docs
-        page: /nuxt-module/configuration/nuxt-config
-        anchor: definepagemeta-cwa-options
-        sectionHash: sha256:d480ab634e57b325
-        title: Nuxt Config › definePageMeta CWA Options
-        block: 0
-        blockHash: sha256:9cd8d9c1d2eb79f5
-    generator:
-      name: spot-the-mistake
-      ref: static-layout-nuxt-name
   - id: gen.mistake.layout-builder-prefix.1
     version: 1
     status: live
@@ -2249,6 +2157,102 @@ questions:
     generator:
       name: spot-the-mistake
       ref: publish-group-name
+  - id: gen.mistake.static-layout-nuxt-name.1
+    version: 1
+    status: retired
+    level: advanced
+    area: nuxt-module
+    tags:
+      - module-setup
+      - layouts-and-pages
+    family: mistake:static-layout-nuxt-name
+    prompt: One line in this code is wrong. Click it.
+    why: Both are called layouts, so the names are easy to mix up. With a Nuxt layout name, the page shows the
+      default layout and a warning that the layout component can't be resolved.
+    sources:
+      - kind: docs
+        page: /nuxt-module/module-setup
+        anchor: use-a-static-layout-component
+        sectionHash: sha256:b88ee19e60ecdc18
+        title: Module Setup › Use a Static Layout Component
+        block: 0
+        blockHash: sha256:4d69724fea997f4b
+    generator:
+      name: spot-the-mistake
+      ref: static-layout-nuxt-name
+    type: spot-the-mistake
+    code:
+      lang: vue
+      text: |-
+        <script setup lang="ts">
+        definePageMeta({
+            cwa: {
+                disabled: true,
+                staticLayout: 'primary',
+            }
+        })
+        </script>
+    answer:
+      line: 5
+      fix: "        staticLayout: 'CwaLayoutPrimary',"
+      explanation: "`staticLayout` takes a registered component name, such as `CwaLayoutPrimary` for
+        `app/app/cwa/layouts/primary.vue`. It renders inside `cwa-root-layout`, so it isn't a Nuxt layout
+        name."
+    retired:
+      reason: "stale-source: the source block is gone or no longer matches the catalogue entry"
+  - id: gen.mistake.static-layout-nuxt-name.2
+    version: 2
+    status: retired
+    level: advanced
+    area: nuxt-module
+    tags:
+      - module-setup
+      - layouts-and-pages
+    family: mistake:static-layout-nuxt-name
+    prompt: One line in this code is wrong. Click it.
+    why: Both are called layouts, so the names are easy to mix up. With a Nuxt layout name, the page shows the
+      default layout and a warning that the layout component can't be resolved.
+    sources:
+      - kind: docs
+        page: /nuxt-module/module-setup
+        anchor: use-a-static-layout-component
+        sectionHash: sha256:b88ee19e60ecdc18
+        title: Module Setup › Use a Static Layout Component
+      - kind: docs
+        page: /nuxt-module/configuration/nuxt-config
+        anchor: definepagemeta-cwa-options
+        sectionHash: sha256:d480ab634e57b325
+        title: Nuxt Config › definePageMeta CWA Options
+        block: 0
+        blockHash: sha256:9cd8d9c1d2eb79f5
+    generator:
+      name: spot-the-mistake
+      ref: static-layout-nuxt-name
+    type: spot-the-mistake
+    code:
+      lang: ts
+      text: |-
+        definePageMeta({
+            cwa: {
+                // Don't resolve this path as CWA content. Required on every page of
+                // your own that isn't CWA content (see below).
+                disabled: true,
+
+                // Render this layout component instead of the one resolved from the API's
+                // Layout resource. A registered component name (app/app/cwa/layouts/primary.vue
+                // registers as CwaLayoutPrimary), rendered inside cwa-root-layout.
+                // It is not a Nuxt layout name.
+                staticLayout: 'primary',
+            }
+        })
+    answer:
+      line: 11
+      fix: "        staticLayout: 'CwaLayoutPrimary',"
+      explanation: "`staticLayout` takes a registered component name, such as `CwaLayoutPrimary` for
+        `app/app/cwa/layouts/primary.vue`. It renders inside `cwa-root-layout`, so it isn't a Nuxt layout
+        name."
+    retired:
+      reason: "stale-source: the source block is gone or no longer matches the catalogue entry"
   - id: gen.mistake.is-editing-value.5
     version: 1
     status: retired

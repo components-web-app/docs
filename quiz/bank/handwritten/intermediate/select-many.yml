@@ -36,7 +36,7 @@ questions:
         d: The flag is about the route fetch, not the layout. Your own page needs it with any layout.
         e: An editor's page is rendered by CWA's catch-all route. There's no file of yours to set the flag in.
     sources:
-      - { kind: docs, page: /nuxt-module/module-setup, anchor: disable-cwa-route-fetching, sectionHash: 'sha256:7d2c3f9a44902a9a', title: 'Module Setup › Disable CWA Route Fetching' }
+      - { kind: docs, page: /nuxt-module/module-setup, anchor: disable-cwa-route-fetching, sectionHash: 'sha256:77a3225a04f34a98', title: 'Module Setup › Disable CWA Route Fetching' }
       - { kind: docs, page: /nuxt-module/module-setup, anchor: use-the-cwa-root-layout-on-your-own-page, sectionHash: 'sha256:b0c7167c6d88bb4b', title: 'Module Setup › Use the CWA Root Layout on Your Own Page' }
     author: llm-draft
 

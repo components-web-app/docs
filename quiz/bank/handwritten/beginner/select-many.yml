@@ -137,7 +137,7 @@ questions:
     sources:
       - { kind: docs, page: /nuxt-module/cwa-layer/overview, anchor: pages-auto-registered, sectionHash: 'sha256:cad6d0bd572b7d8e', title: 'The CWA Layer › Pages (auto-registered)' }
       - { kind: docs, page: /nuxt-module/cwa-layer/overview, anchor: layout, sectionHash: 'sha256:dcc3e2c8c5c6fc89', title: 'The CWA Layer › Layout' }
-      - { kind: docs, page: /nuxt-module/cwa-layer/overview, anchor: route-middleware, sectionHash: 'sha256:dfc275b378f933f9', title: 'The CWA Layer › Route Middleware' }
+      - { kind: docs, page: /nuxt-module/cwa-layer/overview, anchor: route-middleware, sectionHash: 'sha256:b6fcfbd8e0c2f782', title: 'The CWA Layer › Route Middleware' }
     author: llm-draft
 
   - id: nuxt.admin.admin-pages
@@ -166,7 +166,7 @@ questions:
         b: A component type is a PHP entity plus Vue files. The admin only adds components of types that already exist.
         d: Vue files are code in your app. The admin's **Page UI** select only picks which page template a page uses.
     sources:
-      - { kind: docs, page: /nuxt-module/cwa-layer/admin-panel, anchor: admin-routes, sectionHash: 'sha256:37e7b7473fdcb1b5', title: 'Admin Panel Reference › Admin Routes' }
+      - { kind: docs, page: /nuxt-module/cwa-layer/admin-panel, anchor: admin-routes, sectionHash: 'sha256:18d907135a50d2bd', title: 'Admin Panel Reference › Admin Routes' }
       - { kind: docs, page: /core-concepts/admin-panel, anchor: the-admin-bar, sectionHash: 'sha256:1c07227c42ad64a6', title: 'The Admin Panel › The Admin Bar' }
     author: llm-draft
 

@@ -191,7 +191,7 @@ questions:
         lists records with their own live route.
     sources:
       - { kind: docs, page: /api/users/access-control, anchor: public-access-follows-routes, sectionHash: 'sha256:b59d08857fd0b19f', title: 'Access Control › Public Access Follows Routes' }
-      - { kind: docs, page: /api/users/access-control, anchor: routable_security, sectionHash: 'sha256:3b30de06eb75a641', title: 'Access Control › routablesecurity' }
+      - { kind: docs, page: /api/users/access-control, anchor: routable_security, sectionHash: 'sha256:97506b9d0d1fc14e', title: 'Access Control › routablesecurity' }
     author: llm-draft
 
   - id: api.filters.or-where
@@ -280,8 +280,8 @@ questions:
         Only on an operation opened with `publishable_permission: false` would their `PATCH` reach the component,
         and then it would update the published version directly, skipping the draft stage.
     sources:
-      - { kind: docs, page: /api/components/annotations/publishable, anchor: configuring-who-can-publish, sectionHash: 'sha256:3ae1f6d63b4f529f', title: 'Publishable › Configuring Who Can Publish' }
-      - { kind: docs, page: /api/users/non-admin-users, anchor: what-only-editors-can-write, sectionHash: 'sha256:e741ae1f49c927a4', title: 'Sites with Non-Admin Users › What Only Editors Can Write' }
+      - { kind: docs, page: /api/components/annotations/publishable, anchor: configuring-who-can-publish, sectionHash: 'sha256:10497e1d3923e6f5', title: 'Publishable › Configuring Who Can Publish' }
+      - { kind: docs, page: /api/users/non-admin-users, anchor: what-only-editors-can-write, sectionHash: 'sha256:3dd32b0df842c4fe', title: 'Sites with Non-Admin Users › What Only Editors Can Write' }
     author: llm-draft
 
   - id: api.real-time.protocol-version

@@ -49,7 +49,7 @@ questions:
     author: llm-draft
 
   - id: deploy.install.admin-role
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: deployment
@@ -58,20 +58,20 @@ questions:
     difficulty: 1
     # Easy to guess from the name alone, so it is shown half as often.
     exposure: { weight: 0.5 }
-    prompt: Which role does an account need to open the admin panel?
+    prompt: Which role does `user:create --admin` give a new account, so it can open the admin panel?
     options:
       - { id: a, text: '`ROLE_EDITOR`' }
       - { id: b, text: '`ROLE_USER`' }
-      - { id: c, text: '`ROLE_CMS`' }
+      - { id: c, text: '`ROLE_MANAGER`' }
       - { id: d, text: '`ROLE_ADMIN`' }
     answer:
       correct: d
       explanation: >-
-        Editors sign in with `ROLE_ADMIN`. `silverback:api-components:user:create --admin` gives a new account
-        that role; without it you can't open the admin panel.
+        `--admin` gives `ROLE_ADMIN`, which includes `ROLE_CMS_ADMIN`, the content admin role the admin panel
+        needs. Without the flag the account gets only `ROLE_USER` and can't open the admin panel.
     sources:
       - { kind: docs, page: /getting-started/installation, anchor: _2-let-binup-start-the-site, sectionHash: 'sha256:aeca1527518923c3', title: 'Installation › 2. Let bin/up start the site' }
-      - { kind: docs, page: /getting-started/key-ideas, anchor: editing, sectionHash: 'sha256:56ff4c5739a87e28', title: 'Key Ideas › Editing' }
+      - { kind: docs, page: /getting-started/key-ideas, anchor: editing, sectionHash: 'sha256:e9004161212507c7', title: 'Key Ideas › Editing' }
     author: llm-draft
 
   - id: deploy.install.admin-url

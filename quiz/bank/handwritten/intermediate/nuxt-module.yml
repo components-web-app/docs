@@ -155,7 +155,7 @@ questions:
         `user` and `roles` are plain reactive getters, not refs, so `.value` on them gives `undefined`.
         `roles` is `undefined` when nobody is signed in.
     sources:
-      - { kind: docs, page: /nuxt-module/cwa-api/auth, anchor: state, sectionHash: 'sha256:8e7fd8e732d171f5', title: 'cwa.auth › State' }
+      - { kind: docs, page: /nuxt-module/cwa-api/auth, anchor: state, sectionHash: 'sha256:215ef4030ccc5671', title: 'cwa.auth › State' }
     author: llm-draft
 
   - id: nuxt.config.layout-classes

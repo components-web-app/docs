@@ -106,7 +106,7 @@ questions:
         The API leaves the unpublished component out of the visitor's position, so the module renders nothing
         there and requests nothing. The page carries the component's tag, so publishing it drops the page.
     sources:
-      - { kind: docs, page: /nuxt-module/page-caching, anchor: when-a-page-is-not-cached, sectionHash: 'sha256:5d57f0d1d2b3b372', title: 'Page Caching › When a Page Is Not Cached' }
+      - { kind: docs, page: /nuxt-module/page-caching, anchor: when-a-page-is-not-cached, sectionHash: 'sha256:40ac808d33541d02', title: 'Page Caching › When a Page Is Not Cached' }
     author: llm-draft
 
   - id: nuxt.setup.load-by-iri-public
@@ -163,6 +163,6 @@ questions:
       optionNotes:
         b: Your `app/app/pages/` files take precedence over CWA's catch-all route.
     sources:
-      - { kind: docs, page: /nuxt-module/module-setup, anchor: disable-cwa-route-fetching, sectionHash: 'sha256:7d2c3f9a44902a9a', title: 'Module Setup › Disable CWA Route Fetching' }
-      - { kind: docs, page: /nuxt-module/module-setup, anchor: mixing-your-own-pages-with-cwa, sectionHash: 'sha256:ff0c746c5a55f2d3', title: 'Module Setup › Mixing Your Own Pages with CWA' }
+      - { kind: docs, page: /nuxt-module/module-setup, anchor: disable-cwa-route-fetching, sectionHash: 'sha256:77a3225a04f34a98', title: 'Module Setup › Disable CWA Route Fetching' }
+      - { kind: docs, page: /nuxt-module/module-setup, anchor: mixing-your-own-pages-with-cwa, sectionHash: 'sha256:7406f56c9bc415a7', title: 'Module Setup › Mixing Your Own Pages with CWA' }
     author: llm-draft

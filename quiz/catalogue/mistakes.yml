@@ -146,8 +146,9 @@ mistakes:
     readMore: { page: /nuxt-module/configuration/nuxt-config, anchor: runtime-config }
     limit: 3
 
+  # Retired: module 2.0.0-alpha.40 deprecates staticLayout for cwa.layout, and the docs no longer describe it.
   - id: static-layout-nuxt-name
-    status: live
+    status: retired
     title: A Nuxt layout name in staticLayout
     level: advanced
     area: nuxt-module

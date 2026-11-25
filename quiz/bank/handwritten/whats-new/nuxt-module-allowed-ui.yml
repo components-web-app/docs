@@ -1,5 +1,5 @@
 # Hand-written What's new questions about the Nuxt module: allowed UIs and styles per component group,
-# on dev after 2.0.0-alpha.39.
+# in 2.0.0-alpha.40.
 # Format: quiz/README.md. Run `pnpm quiz:stamp <id>` to fill in or refresh the hashes.
 
 questions:
@@ -18,7 +18,7 @@ questions:
     why: >-
       One group can take a component only in the look that suits it, without a separate component type.
     since:
-      - { repo: cwa-nuxt-module, version: 2.0.0-alpha.39, unreleased: true }  # on dev after alpha.39
+      - { repo: cwa-nuxt-module, version: 2.0.0-alpha.40 }
       - { repo: api-components-bundle, version: 2.0.0-alpha.46 }
     options:
       - { id: a, text: 'A Quote with the Card UI, and an Image with any UI' }

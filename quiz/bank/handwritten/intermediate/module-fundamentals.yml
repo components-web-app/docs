@@ -327,7 +327,7 @@ questions:
         A page that uses `fetch` is the one page of your own that leaves `disabled` off. `fetch` already replaces
         the route lookup for the path with the page you name.
     sources:
-      - { kind: docs, page: /nuxt-module/configuration/nuxt-config, anchor: definepagemeta-cwa-options, sectionHash: 'sha256:d480ab634e57b325', title: 'Nuxt Config › definePageMeta CWA Options' }
+      - { kind: docs, page: /nuxt-module/configuration/nuxt-config, anchor: definepagemeta-cwa-options, sectionHash: 'sha256:81ae09a4f5a39829', title: 'Nuxt Config › definePageMeta CWA Options' }
     author: llm-draft
 
   - id: nuxt.config.server-api-url
@@ -385,7 +385,7 @@ questions:
         Route middleware is UX, not security. The API enforces access on every request, whatever the front end
         does.
     sources:
-      - { kind: docs, page: /nuxt-module/authentication, anchor: protecting-pages, sectionHash: 'sha256:a39674deb4430c44', title: 'Front-End Authentication › Protecting Pages' }
+      - { kind: docs, page: /nuxt-module/authentication, anchor: protecting-pages, sectionHash: 'sha256:e48203a738363f05', title: 'Front-End Authentication › Protecting Pages' }
     author: llm-draft
 
   - id: nuxt.auth.after-sign-in
