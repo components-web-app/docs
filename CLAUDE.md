@@ -29,6 +29,9 @@ If a change is documented, move it to **Documented** below. If it is intentional
 
 ## Pending Documentation Review
 
+### Repo watch: last reviewed
+- Module `origin/dev` `dad3d057`; bundle `origin/main` `2ef71eea` (nothing after 2.0.0-alpha.47); ecommerce extension (GitLab silverbackpublishing `main`) `4bbd1720`, plus `feature/checkout-payment-methods`, `feature/shop-admin`, `feature/shop-cwa-pages`. Update these after each review.
+
 ### 2026-11-26 — coming in module 2.0.0-alpha.41
 - A self-service "My account" page at `/_cwa/account` with `useCwaAccount`, `useCwaChangePassword` and `useCwaChangeEmail`. No PR yet: file a docs issue when it's open.
 
