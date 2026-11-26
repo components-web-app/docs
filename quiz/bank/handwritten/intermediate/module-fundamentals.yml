@@ -327,7 +327,7 @@ questions:
         A page that uses `fetch` is the one page of your own that leaves `disabled` off. `fetch` already replaces
         the route lookup for the path with the page you name.
     sources:
-      - { kind: docs, page: /nuxt-module/configuration/nuxt-config, anchor: definepagemeta-cwa-options, sectionHash: 'sha256:81ae09a4f5a39829', title: 'Nuxt Config › definePageMeta CWA Options' }
+      - { kind: docs, page: /nuxt-module/configuration/nuxt-config, anchor: definepagemeta-cwa-options, sectionHash: 'sha256:597d668f786e825a', title: 'Nuxt Config › definePageMeta CWA Options' }
     author: llm-draft
 
   - id: nuxt.config.server-api-url
@@ -544,7 +544,7 @@ questions:
         left out of the response. The Quote silently stops rendering, so the list must name every type already
         in the group.
     sources:
-      - { kind: docs, page: /nuxt-module/cwa-components/cwa-component-group, anchor: allowed-components, sectionHash: 'sha256:0a8f4c409587abc3', title: '<CwaComponentGroup /> › Allowed Components' }
+      - { kind: docs, page: /nuxt-module/cwa-components/cwa-component-group, anchor: allowed-components, sectionHash: 'sha256:23af9cec83d948d6', title: '<CwaComponentGroup /> › Allowed Components' }
     author: llm-draft
 
   - id: nuxt.group.rename-reference

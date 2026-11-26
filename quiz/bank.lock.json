@@ -5602,11 +5602,15 @@
     },
     "nuxt.group.allowed-ui-entry": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:518fec6ebbff32ea",
           "docsCommit": "afd58de7497e37612916e5fcef381add84900239"
+        },
+        "2": {
+          "fingerprint": "sha256:fa4e2a8529f324c8",
+          "docsCommit": "fa436c32cad65834e01f1f889663a8d134b5c2a0"
         }
       }
     },

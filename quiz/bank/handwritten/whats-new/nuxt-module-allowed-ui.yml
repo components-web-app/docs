@@ -4,7 +4,7 @@
 
 questions:
   - id: nuxt.group.allowed-ui-entry
-    version: 1
+    version: 2
     status: live
     level: intermediate
     area: nuxt-module
@@ -13,12 +13,12 @@ questions:
     difficulty: 3
     prompt: >-
       A sidebar's `<CwaComponentGroup>` has
-      `:allowed-components="[{ component: CwaComponentNames.Quote, ui: ['CwaComponentQuoteUiCard'] }, CwaComponentNames.Image]"`.
+      `:allowed-components="[{ component: CwaComponentNames.Quote, ui: ['Card'] }, CwaComponentNames.Image]"`.
       What can an editor add to the sidebar?
     why: >-
       One group can take a component only in the look that suits it, without a separate component type.
     since:
-      - { repo: cwa-nuxt-module, version: 2.0.0-alpha.40 }
+      - { repo: cwa-nuxt-module, version: 2.0.0-alpha.40, unreleased: true }  # short UI names on dev after alpha.40
       - { repo: api-components-bundle, version: 2.0.0-alpha.46 }
     options:
       - { id: a, text: 'A Quote with the Card UI, and an Image with any UI' }
@@ -28,13 +28,13 @@ questions:
     answer:
       correct: a
       explanation: >-
-        An object entry allows the component and limits its UIs, here to Card. `CwaComponentQuote`, the
-        component's own file, isn't listed, so the Quote must use Card. The plain `Image` entry allows any UI
+        An object entry allows the component and limits its UIs, here to Card. `default`, the component's
+        own file, isn't listed, so the Quote must use Card. The plain `Image` entry allows any UI
         and style. The module syncs the rule to the group's `allowedComponentUi`, and the API refuses
         anything else.
       optionNotes:
-        c: '`CwaComponentQuote`, the component''s own file, would have to be in the `ui` list too.'
+        c: '`default`, the component''s own file, would have to be in the `ui` list too.'
         d: 'Object entries and names mix in one list; each allows its own component.'
     sources:
-      - { kind: docs, page: /nuxt-module/cwa-components/cwa-component-group, anchor: limiting-uis-and-styles, sectionHash: 'sha256:af55cc39db94e5b3', title: '<CwaComponentGroup /> › Limiting UIs and Styles' }
+      - { kind: docs, page: /nuxt-module/cwa-components/cwa-component-group, anchor: limiting-uis-and-styles, sectionHash: 'sha256:61264572c5ab124f', title: '<CwaComponentGroup /> › Limiting UIs and Styles' }
     author: llm-draft
