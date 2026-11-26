@@ -29,9 +29,8 @@ If a change is documented, move it to **Documented** below. If it is intentional
 
 ## Pending Documentation Review
 
-### 2026-11-26 — module dev after alpha.40, heading for 2.0.0-alpha.41
-- Docs #349 (module #499, `c42d758e`): `CwaUiDescriptorFields`, `CwaUiSecretInput`, dotted paths in `useItemPage`. Docs #350 (module #500, `4f5f199b`): Show value, optional `CwaUiNumber`, `disabled`. Not written yet.
-- Coming, no PR yet: a self-service "My account" page at `/_cwa/account` with `useCwaAccount`, `useCwaChangePassword` and `useCwaChangeEmail`. File an issue when its PR is open.
+### 2026-11-26 — coming in module 2.0.0-alpha.41
+- A self-service "My account" page at `/_cwa/account` with `useCwaAccount`, `useCwaChangePassword` and `useCwaChangeEmail`. No PR yet: file a docs issue when it's open.
 
 ### 2026-11-25
 - Template #129 (admin-editable site settings) is a proposal only.
@@ -49,6 +48,7 @@ Researched and recorded on the issue (body + [findings comment](https://github.c
 
 ## Documented
 
+- **2026-11-26 — docs #349, #350: module dev after alpha.40 (#497–#501, heading for alpha.41), checked against module `origin/dev` `dad3d057`.** Extending the CWA › Admin Pages › Editing an Item: `useCwaAdminItem`'s `form` on `<CwaUiDialog>`, dotted `field` paths (once one is bound under a property, that property is compared leaf by leaf; only changed leaves are sent, nested; a 422 lands on the longest bound path), `<CwaUiDescriptorFields>` (`CwaFieldDescriptor` from `@cwa/nuxt`; an unknown `type` is a text input with a dev warning; `path`, `disabled`), `<CwaUiSecretInput>` (Set, Replace, Remove sends `null`, Will be removed, Keep current, Show value, never `''`; `required` can't be removed). Kit table rows; `CwaUiNumber` `optional` saves `null`. Also #497 (the admin header shows for a user whose only admin role is an extension page's, so the runAction error notice line was wrong) and #498 (**Collaborative editing unavailable** replaces Live editing paused; quiz `nuxt.presence.live-editing-paused` v2). #501 (og image 500 in dev) needs nothing. **Filed as Possible:** module #502 (with a dotted field bound, `keepLocalEdits` keeps the whole parent object, so a 412 or remote change to a sibling leaf is reverted on the next Save), #503 (an empty optional `CwaUiNumber` writes `null` over the `undefined` API Platform leaves for a skipped null, so tabbing through marks it unsaved).
 - **2026-11-25 — `@cwa/nuxt` 2.0.0-alpha.40 (needs bundle 2.0.0-alpha.47) and template `main` after alpha.60, docs #344, #346, #347, #348.** Checked against module tag `v2.0.0-alpha.40` (`88746e77`) and template `origin/main` (`709904c`).
   - **#344 (module #495, `70d97487`):** `isAdmin` is `ROLE_CMS_ADMIN`; `cwa-admin` defaults to it (a page's `cwaAdminRole` overrides); users pages need `ROLE_USER_ADMIN`, and the header shows for either (a user admin alone sees only **Users**); extension pages default `ROLE_ADMIN`, so `ROLE_CMS_ADMIN` alone doesn't open them; the user dialog's Role levels (User … Super admin) and extension role toggles labelled by menu entries, "You can't grant a role you don't have." `/me` lists reachable roles, so the "no hierarchy client-side" lines were reworded. Admin Roles now recommends `ROLE_CMS_ADMIN` for editors.
   - **#348 (module #496, `f8375dab`):** Module Setup › Use a CWA Layout replaces Use a Static Layout Component; nuxt-config's key table; `staticLayout` deprecated (warns once). The `static-layout-nuxt-name` mistake is retired.
