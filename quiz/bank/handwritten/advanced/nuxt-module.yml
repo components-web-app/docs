@@ -164,5 +164,5 @@ questions:
         b: Your `app/app/pages/` files take precedence over CWA's catch-all route.
     sources:
       - { kind: docs, page: /nuxt-module/module-setup, anchor: disable-cwa-route-fetching, sectionHash: 'sha256:77a3225a04f34a98', title: 'Module Setup › Disable CWA Route Fetching' }
-      - { kind: docs, page: /nuxt-module/module-setup, anchor: mixing-your-own-pages-with-cwa, sectionHash: 'sha256:7406f56c9bc415a7', title: 'Module Setup › Mixing Your Own Pages with CWA' }
+      - { kind: docs, page: /nuxt-module/module-setup, anchor: mixing-your-own-pages-with-cwa, sectionHash: 'sha256:5aac8f6063c94842', title: 'Module Setup › Mixing Your Own Pages with CWA' }
     author: llm-draft

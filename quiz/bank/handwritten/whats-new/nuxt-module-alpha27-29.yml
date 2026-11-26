@@ -4,7 +4,7 @@
 
 questions:
   - id: nuxt.presence.live-editing-paused
-    version: 1
+    version: 2
     status: live
     level: beginner
     area: nuxt-module
@@ -13,7 +13,7 @@ questions:
     difficulty: 2
     prompt: >-
       An admin is editing a page. The avatars of the other admins disappear from the admin bar, and it reads
-      **Live editing paused** instead. What has happened?
+      **Collaborative editing unavailable** instead. What has happened?
     why: >-
       Knowing the pause is harmless stops an editor from reloading and losing what they were doing.
     since: [{ repo: cwa-nuxt-module, version: '2.0.0-alpha.27' }]
@@ -25,13 +25,13 @@ questions:
     answer:
       correct: b
       explanation: >-
-        While the real-time connection is down, the header says **Live editing paused** instead of showing
-        avatars. The admin can keep editing; other admins' changes and who's here catch up when the connection
+        While the real-time connection is down, the header says **Collaborative editing unavailable** instead of
+        showing avatars. The admin can keep editing; other admins' changes and who's here catch up when the connection
         returns.
       optionNotes:
         d: 'After 5 minutes without input an admin is only shown as idle, dimmed in the others'' list. Edit mode stays on.'
     sources:
-      - { kind: docs, page: /nuxt-module/component-helpers/real-time-updates, anchor: who-else-is-here, sectionHash: 'sha256:5e4d3377c14e806d', title: 'Real-Time Updates in Components › Who Else Is Here' }
+      - { kind: docs, page: /nuxt-module/component-helpers/real-time-updates, anchor: who-else-is-here, sectionHash: 'sha256:73d6564a9e2f0296', title: 'Real-Time Updates in Components › Who Else Is Here' }
     author: llm-draft
 
   - id: nuxt.presence.own-field-editor
@@ -93,7 +93,7 @@ questions:
       optionNotes:
         c: 'Handlers hear every other tab, including the same admin''s other windows. Only the sending tab is left out.'
     sources:
-      - { kind: docs, page: /nuxt-module/composables/admin-manager/use-cwa-realtime, anchor: send, sectionHash: 'sha256:500956e3dd698697', title: 'useCwaRealtime › send' }
+      - { kind: docs, page: /nuxt-module/composables/admin-manager/use-cwa-realtime, anchor: send, sectionHash: 'sha256:6f35c8c02d1e492e', title: 'useCwaRealtime › send' }
     author: llm-draft
 
   - id: nuxt.coedit.refused-save-without-realtime

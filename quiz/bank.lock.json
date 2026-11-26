@@ -6134,11 +6134,15 @@
     },
     "nuxt.presence.live-editing-paused": {
       "status": "live",
-      "version": 1,
+      "version": 2,
       "versions": {
         "1": {
           "fingerprint": "sha256:d98b2d946a2c4def",
           "docsCommit": "4fd8ae35a7b840e26a1fd46d6c9b49d570ff2cd2+dirty"
+        },
+        "2": {
+          "fingerprint": "sha256:96eee825ebc1d5fd",
+          "docsCommit": "905cdee815feccb4c3a3bc362bb85ec26adc5c24+dirty"
         }
       }
     },
