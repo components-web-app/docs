@@ -34,7 +34,7 @@ questions:
         b: '`layout` is the one fetch `disabled` allows.'
         d: 'The Nuxt layout is the `layout` key outside `cwa`. This one is inside `cwa`.'
     sources:
-      - { kind: docs, page: /nuxt-module/module-setup, anchor: use-a-cwa-layout, sectionHash: 'sha256:820044defb9405f5', title: 'Module Setup › Use a CWA Layout' }
+      - { kind: docs, page: /nuxt-module/module-setup, anchor: use-a-cwa-layout, sectionHash: 'sha256:57ed620099dc1561', title: 'Module Setup › Use a CWA Layout' }
     author: llm-draft
 
   - id: nuxt.admin.user-admin-only
