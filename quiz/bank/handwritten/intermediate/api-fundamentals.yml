@@ -86,7 +86,7 @@ questions:
         The API works out which article is being viewed from the `path` header. It holds the page's route path,
         such as `/blog/first-post`, or the article's IRI (its API path). The Nuxt module sends it for you.
     sources:
-      - { kind: docs, page: /api/dynamic-pages, anchor: component-positions-from-pagedata, sectionHash: 'sha256:325ae33d66116561', title: 'Page Data & Nested Pages › Component Positions from PageData' }
+      - { kind: docs, page: /api/dynamic-pages, anchor: component-positions-from-pagedata, sectionHash: 'sha256:2ce94bead8ca1fcc', title: 'Page Data & Nested Pages › Component Positions from PageData' }
     author: llm-draft
 
   - id: api.page-data.per-field-filter
