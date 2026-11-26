@@ -18,7 +18,7 @@ questions:
     why: >-
       One group can take a component only in the look that suits it, without a separate component type.
     since:
-      - { repo: cwa-nuxt-module, version: 2.0.0-alpha.40, unreleased: true }  # short UI names on dev after alpha.40
+      - { repo: cwa-nuxt-module, version: 2.0.0-alpha.41 }
       - { repo: api-components-bundle, version: 2.0.0-alpha.46 }
     options:
       - { id: a, text: 'A Quote with the Card UI, and an Image with any UI' }
