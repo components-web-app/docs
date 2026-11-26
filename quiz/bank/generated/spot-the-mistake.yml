@@ -627,7 +627,7 @@ questions:
       - kind: docs
         page: /nuxt-module/authentication
         anchor: protecting-pages
-        sectionHash: sha256:e48203a738363f05
+        sectionHash: sha256:6005c942957b989a
         title: Front-End Authentication › Protecting Pages
         block: 0
         blockHash: sha256:631e4bb611a3587a
