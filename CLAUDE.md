@@ -29,6 +29,10 @@ If a change is documented, move it to **Documented** below. If it is intentional
 
 ## Pending Documentation Review
 
+### 2026-11-26 — module dev after alpha.40, heading for 2.0.0-alpha.41
+- Docs #349 (module #499, `c42d758e`): `CwaUiDescriptorFields`, `CwaUiSecretInput`, dotted paths in `useItemPage`. Docs #350 (module #500, `4f5f199b`): Show value, optional `CwaUiNumber`, `disabled`. Not written yet.
+- Coming, no PR yet: a self-service "My account" page at `/_cwa/account` with `useCwaAccount`, `useCwaChangePassword` and `useCwaChangeEmail`. File an issue when its PR is open.
+
 ### 2026-11-25
 - Template #129 (admin-editable site settings) is a proposal only.
 
