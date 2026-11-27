@@ -30,7 +30,7 @@ If a change is documented, move it to **Documented** below. If it is intentional
 ## Pending Documentation Review
 
 ### Repo watch: last reviewed
-- Module `origin/dev` `b79c9569` (2.0.0-alpha.42); bundle `origin/main` `ffcf53df` (2.0.0-alpha.48); ecommerce extension (GitLab silverbackpublishing `main`) `3c568cf1`, plus `feature/checkout-payment-methods`, `feature/shop-admin`, `feature/shop-cwa-pages`. Update these after each review.
+- Module `origin/dev` `7e171c1a` (2.0.0-alpha.43); bundle `origin/main` `ffcf53df` (2.0.0-alpha.48); ecommerce extension (GitLab silverbackpublishing `main`) `3c568cf1`, plus `feature/checkout-payment-methods`, `feature/shop-admin`, `feature/shop-cwa-pages`. Update these after each review.
 
 ### 2026-11-25
 - Template #129 (admin-editable site settings) is a proposal only.
@@ -48,6 +48,7 @@ Researched and recorded on the issue (body + [findings comment](https://github.c
 
 ## Documented
 
+- **2026-11-27 — docs #359: `@cwa/nuxt` 2.0.0-alpha.43 tagged (`7e171c1a`, #516).** Bundle versions row (no new requirement): a file chosen before Add is uploaded to the new component again (broken since alpha.36: Add replaced the stored new resource, so no held file matched). No page described the bug.
 - **2026-11-26 — docs #358: `@cwa/nuxt` 2.0.0-alpha.42 tagged (`b79c9569`, #515).** Module Setup › Bundle versions row (no new requirement): `nuxt typecheck` failed in alpha.41 with TS2769 in `CwaRootLayout.vue` when `typescript.strict: false`, and in strict apps on the missing `@types/lodash-es` (now a dependency). No other docs.
 - **2026-11-26 — `@cwa/nuxt` 2.0.0-alpha.41 tagged (`0d0afe5e`, #505, #507, #509–#514).** Module Setup › Bundle versions row (no new requirement; bundle alpha.47 still the floor). Quiz `nuxt.group.allowed-ui-entry` since moved from unreleased to alpha.41. #514 (dependency updates, Nuxt 4.7 tested, minimum stays 4.6.0; `@nuxtjs/sitemap` 9.2 turns its XSL stylesheet off by default) needs no docs: no page mentions the sitemap stylesheet.
 - **2026-11-26 — docs #356: extension page data tabs and lists (module #512, `2122eb26`, heading for alpha.41).** New page Extending the CWA › Page Data Tabs and Lists (`55.extending-the-cwa/3.page-data-tabs-and-lists.md`; auth-events renumbered to 4, URL unchanged): `pageDataTabs` (`key`/hash, after Details before Routes, hidden while adding, default `ROLE_CMS_ADMIN`, props `iri` and `data`, saves outside the dialog via `ExtensionTabSurface`), `hideExtensionTabs` in `cwa.pageData.<Class>`, `pageDataLists` (default `ROLE_ADMIN`, types list then `<path>/:type`, a single type redirects, row dialog at `:type/:iri`, route names `-type`, `-type-iri`, columns get `data`), the build errors. Matching is by `supportedClass.supportedProperty` in the API docs. Registering options row, overview, nuxt-config `pageData` row.
