@@ -30,7 +30,7 @@ If a change is documented, move it to **Documented** below. If it is intentional
 ## Pending Documentation Review
 
 ### Repo watch: last reviewed
-- Module `origin/dev` `6a84eed3` (after 2.0.0-alpha.43); bundle `origin/main` `ffcf53df` (2.0.0-alpha.48); ecommerce extension (GitLab silverbackpublishing `main`) `b17abf91`, plus `feature/checkout-payment-methods`, `feature/shop-admin`, `feature/shop-cwa-pages`. Update these after each review.
+- Module `origin/dev` `6a84eed3` (2.0.0-alpha.44, `main` `fecc9854`); bundle `origin/main` `ceaa5265` (2.0.0-alpha.49); ecommerce extension (GitLab silverbackpublishing `main`) `b17abf91`, plus `feature/checkout-payment-methods`, `feature/shop-admin`, `feature/shop-cwa-pages`. Update these after each review.
 
 ### 2026-11-25
 - Template #129 (admin-editable site settings) is a proposal only.
@@ -48,6 +48,7 @@ Researched and recorded on the issue (body + [findings comment](https://github.c
 
 ## Documented
 
+- **2026-11-27 — `@cwa/nuxt` 2.0.0-alpha.44 and bundle 2.0.0-alpha.49 tagged (`25585ef`).** Bundle versions row: alpha.49 recommended, not required (without `adminPreferences` the My account section is hidden and the top bar uses `cwa.admin.topBar` or the default). Admin Top Bar says it needs bundle alpha.49. Bundle alpha.49's `src` matches PR #620's head `4c624051`, so docs #363 needed no change and is closed.
 - **2026-11-27 — docs #363: `adminPreferences` (bundle PR #620 for #619, written from its head `4c624051` before merge; `aed6738`).** API › Authentication › Admin Preferences and the AbstractUser table row: self-only (`User:self` added by `UserNormalizer` when the token's user is the object, not in collections or Mercure), `/me` always has it, own PATCH without `oldPassword`, `null` or `{}` clears, another user's write silently ignored (200, unchanged), 422 messages for non-object and >4096 bytes. Re-check against `main` when #620 merges; add the bundle requirement to Admin Panel › The Admin Top Bar and a Bundle versions row when tagged.
 - **2026-11-27 — docs #361: the admin top bar (module #517, merged `6a84eed3`, heading for alpha.44; `69fa413`).** Layer Admin Panel › The Admin Top Bar: the house (back to the last site page, else `/`), then shortcuts from the admin's own choice (My account › Admin top bar, saved as `adminPreferences` on their user, shown only when `/me` has the field; needs bundle #619, open), else `cwa.admin.topBar`, else built-ins then `topBar: true` extensions. Ids `layouts`…`users`, `ext:<area segment>`; a list is complete; role-filtered. Registering an Extension: `topBar` row and its three build errors; nuxt-config `admin.topBar` row. When bundle #619 lands, add its requirement.
 - **2026-11-27 — docs #362: an extension's admin pages in the PWA precache.** PWA › Keeping Admin Chunks Out of the Precache: the template's `isAdminOnlySource` matches `pages/_cwa/`, so an extension's `adminPages`/`pageDataTabs` files (and what only they import) must be added. Reasoned from the template hook and `register()`, not a build.
