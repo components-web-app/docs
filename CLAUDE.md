@@ -30,7 +30,7 @@ If a change is documented, move it to **Documented** below. If it is intentional
 ## Pending Documentation Review
 
 ### Repo watch: last reviewed
-- Module `origin/dev` `7e171c1a` (2.0.0-alpha.43); bundle `origin/main` `ffcf53df` (2.0.0-alpha.48); ecommerce extension (GitLab silverbackpublishing `main`) `b17abf91`, plus `feature/checkout-payment-methods`, `feature/shop-admin`, `feature/shop-cwa-pages`. Update these after each review.
+- Module `origin/dev` `6a84eed3` (after 2.0.0-alpha.43); bundle `origin/main` `ffcf53df` (2.0.0-alpha.48); ecommerce extension (GitLab silverbackpublishing `main`) `b17abf91`, plus `feature/checkout-payment-methods`, `feature/shop-admin`, `feature/shop-cwa-pages`. Update these after each review.
 
 ### 2026-11-25
 - Template #129 (admin-editable site settings) is a proposal only.
@@ -48,6 +48,7 @@ Researched and recorded on the issue (body + [findings comment](https://github.c
 
 ## Documented
 
+- **2026-11-27 — docs #361: the admin top bar (module #517, merged `6a84eed3`, heading for alpha.44; `69fa413`).** Layer Admin Panel › The Admin Top Bar: the house (back to the last site page, else `/`), then shortcuts from the admin's own choice (My account › Admin top bar, saved as `adminPreferences` on their user, shown only when `/me` has the field; needs bundle #619, open), else `cwa.admin.topBar`, else built-ins then `topBar: true` extensions. Ids `layouts`…`users`, `ext:<area segment>`; a list is complete; role-filtered. Registering an Extension: `topBar` row and its three build errors; nuxt-config `admin.topBar` row. When bundle #619 lands, add its requirement.
 - **2026-11-27 — docs #362: an extension's admin pages in the PWA precache.** PWA › Keeping Admin Chunks Out of the Precache: the template's `isAdminOnlySource` matches `pages/_cwa/`, so an extension's `adminPages`/`pageDataTabs` files (and what only they import) must be added. Reasoned from the template hook and `register()`, not a build.
 - **2026-11-27 — docs #360: the generated constants first in Limiting UIs and Styles (`85457a7`).** The example and the `ui`/`styles` bullets use `CwaComponentUis.Quote.Card` and `CwaComponentStyles.Quote.boxed`; strings are the alternative (each constant's value is the name itself, `module.ts`'s `cwa-component-names` template). Categorise and Restrict's bullet and quiz `nuxt.group.allowed-ui-entry` v3 follow.
 - **2026-11-27 — docs #359: `@cwa/nuxt` 2.0.0-alpha.43 tagged (`7e171c1a`, #516).** Bundle versions row (no new requirement): a file chosen before Add is uploaded to the new component again (broken since alpha.36: Add replaced the stored new resource, so no held file matched). No page described the bug.
