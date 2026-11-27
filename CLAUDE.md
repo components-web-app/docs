@@ -30,7 +30,7 @@ If a change is documented, move it to **Documented** below. If it is intentional
 ## Pending Documentation Review
 
 ### Repo watch: last reviewed
-- Module `origin/dev` `7e171c1a` (2.0.0-alpha.43); bundle `origin/main` `ffcf53df` (2.0.0-alpha.48); ecommerce extension (GitLab silverbackpublishing `main`) `122ce7d2`, plus `feature/checkout-payment-methods`, `feature/shop-admin`, `feature/shop-cwa-pages`. Update these after each review.
+- Module `origin/dev` `7e171c1a` (2.0.0-alpha.43); bundle `origin/main` `ffcf53df` (2.0.0-alpha.48); ecommerce extension (GitLab silverbackpublishing `main`) `15d45e47`, plus `feature/checkout-payment-methods`, `feature/shop-admin`, `feature/shop-cwa-pages`. Update these after each review.
 
 ### 2026-11-25
 - Template #129 (admin-editable site settings) is a proposal only.
