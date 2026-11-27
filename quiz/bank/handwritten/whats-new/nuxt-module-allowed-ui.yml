@@ -4,7 +4,7 @@
 
 questions:
   - id: nuxt.group.allowed-ui-entry
-    version: 2
+    version: 3
     status: live
     level: intermediate
     area: nuxt-module
@@ -13,7 +13,7 @@ questions:
     difficulty: 3
     prompt: >-
       A sidebar's `<CwaComponentGroup>` has
-      `:allowed-components="[{ component: CwaComponentNames.Quote, ui: ['Card'] }, CwaComponentNames.Image]"`.
+      `:allowed-components="[{ component: CwaComponentNames.Quote, ui: [CwaComponentUis.Quote.Card] }, CwaComponentNames.Image]"`.
       What can an editor add to the sidebar?
     why: >-
       One group can take a component only in the look that suits it, without a separate component type.
@@ -36,5 +36,5 @@ questions:
         c: '`default`, the component''s own file, would have to be in the `ui` list too.'
         d: 'Object entries and names mix in one list; each allows its own component.'
     sources:
-      - { kind: docs, page: /nuxt-module/cwa-components/cwa-component-group, anchor: limiting-uis-and-styles, sectionHash: 'sha256:61264572c5ab124f', title: '<CwaComponentGroup /> › Limiting UIs and Styles' }
+      - { kind: docs, page: /nuxt-module/cwa-components/cwa-component-group, anchor: limiting-uis-and-styles, sectionHash: 'sha256:ba1fd6df04b423e1', title: '<CwaComponentGroup /> › Limiting UIs and Styles' }
     author: llm-draft
